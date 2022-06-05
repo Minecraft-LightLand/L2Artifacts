@@ -1,0 +1,46 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "B1C",
+    "1A1",
+    "D2E"
+  ],
+  "key": {
+    "A": {
+      "item": "minecraft:book"
+    },
+    "B": {
+      "item": "minecraft:diamond_pickaxe"
+    },
+    "C": {
+      "item": "minecraft:diamond_sword"
+    },
+    "D": {
+      "item": "minecraft:diamond_axe"
+    },
+    "E": {
+      "item": "minecraft:diamond_shovel"
+    },
+    "1": {
+      "enchantment": "minecraft:power",
+      "minLevel": 3,
+      "type": "l2enchantments:enchantment"
+    },
+    "2": {
+      "enchantment": "minecraft:binding_curse",
+      "minLevel": 1,
+      "type": "l2enchantments:enchantment"
+    }
+  },
+  "result": {
+    "item": "minecraft:enchanted_book",
+    "nbt": {
+      "Enchantments": [
+        {
+          "id": "l2enchantments:reach",
+          "lvl": 1
+        }
+      ]
+    }
+  }
+}

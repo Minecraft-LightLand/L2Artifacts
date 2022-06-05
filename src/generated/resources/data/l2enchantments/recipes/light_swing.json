@@ -1,0 +1,40 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "C1C",
+    "BAB",
+    "C2C"
+  ],
+  "key": {
+    "A": {
+      "item": "minecraft:book"
+    },
+    "B": {
+      "item": "minecraft:lapis_lazuli"
+    },
+    "C": {
+      "item": "minecraft:iron_ingot"
+    },
+    "1": {
+      "enchantment": "minecraft:efficiency",
+      "minLevel": 3,
+      "type": "l2enchantments:enchantment"
+    },
+    "2": {
+      "enchantment": "minecraft:vanishing_curse",
+      "minLevel": 1,
+      "type": "l2enchantments:enchantment"
+    }
+  },
+  "result": {
+    "item": "minecraft:enchanted_book",
+    "nbt": {
+      "Enchantments": [
+        {
+          "id": "l2enchantments:light_swing",
+          "lvl": 1
+        }
+      ]
+    }
+  }
+}

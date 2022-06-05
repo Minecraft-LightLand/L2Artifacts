@@ -1,0 +1,40 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "C1C",
+    "BAB",
+    "C2C"
+  ],
+  "key": {
+    "A": {
+      "item": "minecraft:book"
+    },
+    "B": {
+      "item": "minecraft:nether_star"
+    },
+    "C": {
+      "item": "minecraft:rabbit_foot"
+    },
+    "1": {
+      "enchantment": "minecraft:efficiency",
+      "minLevel": 5,
+      "type": "l2enchantments:enchantment"
+    },
+    "2": {
+      "enchantment": "minecraft:binding_curse",
+      "minLevel": 1,
+      "type": "l2enchantments:enchantment"
+    }
+  },
+  "result": {
+    "item": "minecraft:enchanted_book",
+    "nbt": {
+      "Enchantments": [
+        {
+          "id": "l2enchantments:fast_leg",
+          "lvl": 1
+        }
+      ]
+    }
+  }
+}

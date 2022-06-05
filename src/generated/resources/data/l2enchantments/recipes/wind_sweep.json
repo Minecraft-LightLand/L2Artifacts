@@ -1,0 +1,40 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "C1C",
+    "BAB",
+    "C2C"
+  ],
+  "key": {
+    "A": {
+      "item": "minecraft:book"
+    },
+    "B": {
+      "item": "minecraft:lapis_lazuli"
+    },
+    "C": {
+      "item": "minecraft:diamond_sword"
+    },
+    "1": {
+      "enchantment": "minecraft:sweeping",
+      "minLevel": 1,
+      "type": "l2enchantments:enchantment"
+    },
+    "2": {
+      "enchantment": "minecraft:knockback",
+      "minLevel": 1,
+      "type": "l2enchantments:enchantment"
+    }
+  },
+  "result": {
+    "item": "minecraft:enchanted_book",
+    "nbt": {
+      "Enchantments": [
+        {
+          "id": "l2enchantments:wind_sweep",
+          "lvl": 1
+        }
+      ]
+    }
+  }
+}

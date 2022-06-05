@@ -1,0 +1,47 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "C1C",
+    "3A4",
+    "C2C"
+  ],
+  "key": {
+    "A": {
+      "item": "minecraft:book"
+    },
+    "C": {
+      "item": "minecraft:phantom_membrane"
+    },
+    "1": {
+      "enchantment": "minecraft:unbreaking",
+      "minLevel": 3,
+      "type": "l2enchantments:enchantment"
+    },
+    "2": {
+      "enchantment": "minecraft:binding_curse",
+      "minLevel": 1,
+      "type": "l2enchantments:enchantment"
+    },
+    "3": {
+      "enchantment": "minecraft:mending",
+      "minLevel": 1,
+      "type": "l2enchantments:enchantment"
+    },
+    "4": {
+      "enchantment": "minecraft:infinity",
+      "minLevel": 1,
+      "type": "l2enchantments:enchantment"
+    }
+  },
+  "result": {
+    "item": "minecraft:enchanted_book",
+    "nbt": {
+      "Enchantments": [
+        {
+          "id": "l2enchantments:remnant",
+          "lvl": 1
+        }
+      ]
+    }
+  }
+}

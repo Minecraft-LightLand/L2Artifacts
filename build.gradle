@@ -119,6 +119,9 @@ repositories {
     flatDir{
         dirs 'libs'
     }
+    maven {
+        url = "https://maven.theillusivec4.top/"
+    }
 }
 
 dependencies {
@@ -138,6 +141,11 @@ dependencies {
     implementation fg.deobf('curse.maven:wthit-forge-455982:3791304')
     implementation fg.deobf('curse.maven:badpackets-615134:3773642')
     implementation fg.deobf("mezz.jei:jei-${jei_minecraft_version}:${jei_version}")
+
+    runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}")
+    compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}:api")
+    implementation fg.deobf("top.theillusivec4.caelus:caelus-forge:${caelus_version}")
+    implementation fg.deobf('curse.maven:curious-elytra-317716:3601975')
 
 }
 

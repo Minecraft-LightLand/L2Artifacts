@@ -1,6 +1,7 @@
 package dev.xkmc.l2artifacts.init;
 
 import dev.xkmc.l2artifacts.content.config.SlotStatConfig;
+import dev.xkmc.l2artifacts.content.config.StatTypeConfig;
 import dev.xkmc.l2library.network.BaseConfig;
 import dev.xkmc.l2library.network.PacketHandlerWithConfig;
 import net.minecraft.resources.ResourceLocation;
@@ -30,6 +31,7 @@ public class NetworkManager {
 	public static void register() {
 		HANDLER.addAfterReloadListener(() -> {
 			SlotStatConfig.cache = null;
+			StatTypeConfig.cache = null;
 		});
 	}
 

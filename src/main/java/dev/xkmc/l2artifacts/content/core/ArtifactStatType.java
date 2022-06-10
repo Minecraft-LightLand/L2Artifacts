@@ -1,10 +1,13 @@
 package dev.xkmc.l2artifacts.content.core;
 
 import com.google.common.collect.ImmutableMultimap;
+import dev.xkmc.l2artifacts.content.config.StatTypeConfig;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactRegistry;
 import dev.xkmc.l2library.base.NamedEntry;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+
+import java.util.Random;
 
 public class ArtifactStatType extends NamedEntry<ArtifactStatType> {
 
@@ -21,4 +24,8 @@ public class ArtifactStatType extends NamedEntry<ArtifactStatType> {
 		builder.put(attr, new AttributeModifier(entry.id, entry.name, entry.value, op));
 	}
 
+	public double getInitialValue(ArtifactStats stat, Random random) {
+		StatTypeConfig.Entry entry = StatTypeConfig.getInstance().stats.get(this);
+		return random.nextDouble(entry.low, entry.high) * stat.rank;
+	}
 }

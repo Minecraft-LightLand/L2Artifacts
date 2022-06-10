@@ -11,6 +11,8 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.attributes.RangedAttribute;
+import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 import net.minecraftforge.registries.NewRegistryEvent;
@@ -34,10 +36,16 @@ public class ArtifactRegistry {
 	public static RegistryEntry<ArtifactSlot> SLOT_BODY = regSlot("body", ArtifactSlot::new);
 	public static RegistryEntry<ArtifactSlot> SLOT_BELT = regSlot("belt", ArtifactSlot::new);
 
+	public static RegistryEntry<Attribute> CRIT_RATE = REGISTRATE.simple("crit_rate", Attribute.class, () -> new RangedAttribute("crit_rate", 0.05, 0, 1).setSyncable(true));
+	public static RegistryEntry<Attribute> CRIT_DMG = REGISTRATE.simple("crit_damage", Attribute.class, () -> new RangedAttribute("crit_damage", 0.50, 0, 1000).setSyncable(true));
+
 	public static RegistryEntry<ArtifactStatType> HEALTH_ADD = regStat("health_add", () -> Attributes.MAX_HEALTH, ADDITION);
 	public static RegistryEntry<ArtifactStatType> ARMOR_ADD = regStat("armor_add", () -> Attributes.ARMOR, ADDITION);
 	public static RegistryEntry<ArtifactStatType> TOUGH_ADD = regStat("tough_add", () -> Attributes.ARMOR_TOUGHNESS, ADDITION);
 	public static RegistryEntry<ArtifactStatType> ATK_ADD = regStat("attack_add", () -> Attributes.ATTACK_DAMAGE, ADDITION);
+	public static RegistryEntry<ArtifactStatType> REACH_ADD = regStat("reach_add", ForgeMod.ATTACK_RANGE, ADDITION);
+	public static RegistryEntry<ArtifactStatType> CR_ADD = regStat("crit_rate_add", CRIT_RATE, ADDITION);
+	public static RegistryEntry<ArtifactStatType> CD_ADD = regStat("crit_damage_add", CRIT_DMG, ADDITION);
 	public static RegistryEntry<ArtifactStatType> ATK_MULT = regStat("attack_mult", () -> Attributes.ATTACK_DAMAGE, MULTIPLY_TOTAL);
 	public static RegistryEntry<ArtifactStatType> SPEED_MULT = regStat("speed_mult", () -> Attributes.MOVEMENT_SPEED, MULTIPLY_TOTAL);
 	public static RegistryEntry<ArtifactStatType> ATK_SPEED_MULT = regStat("attack_speed_mult", () -> Attributes.ATTACK_SPEED, MULTIPLY_TOTAL);
@@ -69,10 +77,6 @@ public class ArtifactRegistry {
 
 	private static RegistryEntry<ArtifactStatType> regStat(String id, Supplier<Attribute> attr, AttributeModifier.Operation op) {
 		return REGISTRATE.generic(ArtifactStatType.class, id, () -> new ArtifactStatType(attr.get(), op)).defaultLang().register();
-	}
-
-	private static RegistryEntry<ArtifactSet> regSet(String id, NonNullSupplier<ArtifactSet> set) {
-		return REGISTRATE.generic(ArtifactSet.class, id, set).defaultLang().register();
 	}
 
 }

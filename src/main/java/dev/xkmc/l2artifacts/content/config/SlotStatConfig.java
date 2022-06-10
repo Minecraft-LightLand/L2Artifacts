@@ -33,5 +33,4 @@ public class SlotStatConfig extends BaseConfig {
 	@SerialClass.SerialField
 	public HashMap<ArtifactSlot, ArrayList<ArtifactStatType>> available_sub_stats = new HashMap<>();
 
-
 }

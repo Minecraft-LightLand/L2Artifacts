@@ -1,0 +1,136 @@
+package dev.xkmc.l2artifacts.init.data;
+
+import dev.xkmc.l2artifacts.content.config.SlotStatConfig;
+import dev.xkmc.l2artifacts.content.config.StatTypeConfig;
+import dev.xkmc.l2artifacts.content.core.ArtifactSlot;
+import dev.xkmc.l2artifacts.content.core.ArtifactStatType;
+import dev.xkmc.l2artifacts.init.registrate.ArtifactRegistry;
+import dev.xkmc.l2library.network.BaseConfig;
+import dev.xkmc.l2library.network.ConfigDataProvider;
+import net.minecraft.data.DataGenerator;
+import net.minecraft.resources.ResourceLocation;
+
+import java.util.ArrayList;
+import java.util.Map;
+import java.util.Objects;
+
+public class ConfigGen extends ConfigDataProvider {
+
+	public ConfigGen(DataGenerator generator) {
+		super(generator, "./data/", "Artifact Config");
+	}
+
+	@Override
+	public void add(Map<String, BaseConfig> map) {
+		{
+			ArrayList<ArtifactStatType> all = new ArrayList<>();
+			{
+				all.add(ArtifactRegistry.HEALTH_ADD.get());
+				all.add(ArtifactRegistry.ARMOR_ADD.get());
+				all.add(ArtifactRegistry.TOUGH_ADD.get());
+				all.add(ArtifactRegistry.ATK_ADD.get());
+				all.add(ArtifactRegistry.ATK_MULT.get());
+				all.add(ArtifactRegistry.CR_ADD.get());
+				all.add(ArtifactRegistry.CD_ADD.get());
+				all.add(ArtifactRegistry.REACH_ADD.get());
+				all.add(ArtifactRegistry.ATK_SPEED_MULT.get());
+				all.add(ArtifactRegistry.SPEED_MULT.get());
+			}
+			{
+				ArrayList<ArtifactStatType> list = new ArrayList<>();
+				list.add(ArtifactRegistry.HEALTH_ADD.get());
+				list.add(ArtifactRegistry.ARMOR_ADD.get());
+
+				list.add(ArtifactRegistry.TOUGH_ADD.get());
+				addSlotStat(map, ArtifactRegistry.SLOT_BODY.get(), list, all);
+			}
+			{
+				ArrayList<ArtifactStatType> list = new ArrayList<>();
+				list.add(ArtifactRegistry.ATK_ADD.get());
+				list.add(ArtifactRegistry.ATK_MULT.get());
+
+				list.add(ArtifactRegistry.REACH_ADD.get());
+				addSlotStat(map, ArtifactRegistry.SLOT_BRACELET.get(), list, all);
+			}
+			{
+				ArrayList<ArtifactStatType> list = new ArrayList<>();
+				list.add(ArtifactRegistry.HEALTH_ADD.get());
+				list.add(ArtifactRegistry.ARMOR_ADD.get());
+				list.add(ArtifactRegistry.ATK_ADD.get());
+				list.add(ArtifactRegistry.ATK_MULT.get());
+
+				list.add(ArtifactRegistry.CR_ADD.get());
+				list.add(ArtifactRegistry.CD_ADD.get());
+				addSlotStat(map, ArtifactRegistry.SLOT_HEAD.get(), list, all);
+			}
+			{
+				ArrayList<ArtifactStatType> list = new ArrayList<>();
+				list.add(ArtifactRegistry.HEALTH_ADD.get());
+				list.add(ArtifactRegistry.ARMOR_ADD.get());
+				list.add(ArtifactRegistry.ATK_ADD.get());
+				list.add(ArtifactRegistry.ATK_MULT.get());
+
+				list.add(ArtifactRegistry.ATK_SPEED_MULT.get());
+				list.add(ArtifactRegistry.SPEED_MULT.get());
+				addSlotStat(map, ArtifactRegistry.SLOT_BELT.get(), list, all);
+			}
+			{
+				ArrayList<ArtifactStatType> list = new ArrayList<>();
+				list.add(ArtifactRegistry.HEALTH_ADD.get());
+				list.add(ArtifactRegistry.ARMOR_ADD.get());
+				list.add(ArtifactRegistry.ATK_ADD.get());
+				list.add(ArtifactRegistry.ATK_MULT.get());
+
+				list.add(ArtifactRegistry.TOUGH_ADD.get());
+				list.add(ArtifactRegistry.REACH_ADD.get());
+
+				list.add(ArtifactRegistry.CR_ADD.get());
+				list.add(ArtifactRegistry.CD_ADD.get());
+				list.add(ArtifactRegistry.ATK_SPEED_MULT.get());
+				list.add(ArtifactRegistry.SPEED_MULT.get());
+
+				addSlotStat(map, ArtifactRegistry.SLOT_NECKLACE.get(), list, all);
+			}
+		}
+
+		{
+			addStatType(map, ArtifactRegistry.HEALTH_ADD.get(), 1);
+			addStatType(map, ArtifactRegistry.ARMOR_ADD.get(), 1);
+			addStatType(map, ArtifactRegistry.TOUGH_ADD.get(), 1);
+			addStatType(map, ArtifactRegistry.ATK_ADD.get(), 1);
+			addStatType(map, ArtifactRegistry.ATK_MULT.get(), 0.02);
+			addStatType(map, ArtifactRegistry.CR_ADD.get(), 0.01);
+			addStatType(map, ArtifactRegistry.CD_ADD.get(), 0.02);
+			addStatType(map, ArtifactRegistry.REACH_ADD.get(), 0.02);
+			addStatType(map, ArtifactRegistry.SPEED_MULT.get(), 0.02);
+			addStatType(map, ArtifactRegistry.ATK_SPEED_MULT.get(), 0.02);
+		}
+	}
+
+	private static void addSlotStat(Map<String, BaseConfig> map, ArtifactSlot slot, ArrayList<ArtifactStatType> main, ArrayList<ArtifactStatType> sub) {
+		SlotStatConfig config = new SlotStatConfig();
+		ResourceLocation rl = Objects.requireNonNull(slot.getRegistryName());
+		config.available_main_stats.put(ArtifactRegistry.SLOT_BELT.get(), main);
+		config.available_sub_stats.put(ArtifactRegistry.SLOT_BELT.get(), sub);
+		map.put(rl.getNamespace() + "/artifact_config/slot_stats/" + rl.getPath(), config);
+	}
+
+	private static void addStatType(Map<String, BaseConfig> map, ArtifactStatType type, double base) {
+		StatTypeConfig config = new StatTypeConfig();
+		ResourceLocation rl = Objects.requireNonNull(type.getRegistryName());
+		config.stats.put(type, genEntry(base, 0.2, 2));
+		map.put(rl.getNamespace() + "/artifact_config/stat_types/" + rl.getPath(), config);
+	}
+
+	private static StatTypeConfig.Entry genEntry(double base, double sub, double factor) {
+		StatTypeConfig.Entry entry = new StatTypeConfig.Entry();
+		entry.base_low = base;
+		entry.base_high = base * factor;
+		entry.main_low = base * sub;
+		entry.main_high = base * sub * factor;
+		entry.sub_low = base * sub;
+		entry.sub_high = base * sub * factor;
+		return entry;
+	}
+
+}

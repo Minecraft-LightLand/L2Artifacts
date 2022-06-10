@@ -76,7 +76,7 @@ public class ArtifactRegistry {
 	}
 
 	private static RegistryEntry<ArtifactStatType> regStat(String id, Supplier<Attribute> attr, AttributeModifier.Operation op) {
-		return REGISTRATE.generic(ArtifactStatType.class, id, () -> new ArtifactStatType(attr.get(), op)).defaultLang().register();
+		return REGISTRATE.generic(ArtifactStatType.class, id, () -> new ArtifactStatType(attr, op)).defaultLang().register();
 	}
 
 }

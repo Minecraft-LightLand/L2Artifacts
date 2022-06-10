@@ -1,5 +1,6 @@
 package dev.xkmc.l2artifacts.init;
 
+import dev.xkmc.l2artifacts.init.data.ConfigGen;
 import dev.xkmc.l2artifacts.init.data.LangGen;
 import dev.xkmc.l2artifacts.init.data.ModConfig;
 import dev.xkmc.l2artifacts.init.data.RecipeGen;
@@ -15,6 +16,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.forge.event.lifecycle.GatherDataEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import top.theillusivec4.curios.api.SlotTypeMessage;
@@ -41,6 +43,7 @@ public class L2Artifacts {
 	private static void registerModBusEvents(IEventBus bus) {
 		bus.addListener(ArtifactRegistry::createRegistries);
 		bus.addListener(L2Artifacts::setup);
+		bus.addListener(L2Artifacts::gatherData);
 		bus.addListener(ModClient::clientSetup);
 		bus.addListener(L2Artifacts::sendMessage);
 	}
@@ -57,6 +60,10 @@ public class L2Artifacts {
 	private static void setup(final FMLCommonSetupEvent event) {
 		event.enqueueWork(() -> {
 		});
+	}
+
+	public static void gatherData(GatherDataEvent event) {
+		event.getGenerator().addProvider(new ConfigGen(event.getGenerator()));
 	}
 
 	private static void sendMessage(final InterModEnqueueEvent event) {

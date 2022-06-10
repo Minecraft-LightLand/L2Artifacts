@@ -9,6 +9,7 @@ import dev.xkmc.l2library.base.NamedEntry;
 import dev.xkmc.l2library.repack.registrate.AbstractRegistrate;
 import dev.xkmc.l2library.repack.registrate.builders.AbstractBuilder;
 import dev.xkmc.l2library.repack.registrate.builders.BuilderCallback;
+import dev.xkmc.l2library.repack.registrate.util.entry.ItemEntry;
 import dev.xkmc.l2library.repack.registrate.util.entry.RegistryEntry;
 import dev.xkmc.l2library.repack.registrate.util.nullness.NonNullSupplier;
 import dev.xkmc.l2library.repack.registrate.util.nullness.NonnullType;
@@ -21,17 +22,19 @@ public class ArtifactRegistrate extends LcyRegistrate {
 		super(L2Artifacts.MODID);
 	}
 
-
-	public <T extends ArtifactSet> RegistryEntry<T> regSet(String id, NonNullSupplier<T> sup, int min_rank, int max_rank, RegistryEntry<ArtifactSlot>... slots) {
-		return this.entry(id, (cb) -> new SetBuilder<>(this, id, cb, sup, min_rank, max_rank, slots))
+	@SafeVarargs
+	public final <T extends ArtifactSet> SetEntry<T> regSet(String id, NonNullSupplier<T> sup, int min_rank, int max_rank, RegistryEntry<ArtifactSlot>... slots) {
+		return (SetEntry<T>) this.entry(id, (cb) -> new SetBuilder<>(this, id, cb, sup, min_rank, max_rank, slots))
 				.regItems().defaultLang().register();
 	}
 
-	public static class SetBuilder<T extends ArtifactSet> extends AbstractBuilder<ArtifactSet, T, ArtifactRegistrate, ArtifactRegistrate.SetBuilder<T>> {
+	public static class SetBuilder<T extends ArtifactSet, I extends BaseArtifact> extends AbstractBuilder<ArtifactSet, T, ArtifactRegistrate, ArtifactRegistrate.SetBuilder<T, I>> {
 
 		private final NonNullSupplier<T> sup;
 		private final int min_rank, max_rank;
 		private final RegistryEntry<ArtifactSlot>[] slots;
+
+		private ItemEntry<BaseArtifact>[][] items;
 
 		@SafeVarargs
 		SetBuilder(ArtifactRegistrate parent, String name, BuilderCallback callback, NonNullSupplier<T> sup, int min_rank, int max_rank, RegistryEntry<ArtifactSlot>... slots) {
@@ -42,15 +45,23 @@ public class ArtifactRegistrate extends LcyRegistrate {
 			this.slots = slots;
 		}
 
-		public SetBuilder<T> regItems() {
-			for (int i = min_rank; i <= max_rank; i++) {
-				for (RegistryEntry<ArtifactSlot> slot : slots) {
-					String name = this.getName() + "_" + slot.getId().getPath() + "_" + i;
-					int rank = i;
-					L2Artifacts.REGISTRATE.item(name, p -> new BaseArtifact(p, slot, rank)).build();
+		@SuppressWarnings({"rawtype", "unchecked"})
+		public SetBuilder<T, I> regItems() {
+			items = new ItemEntry[slots.length][max_rank - min_rank + 1];
+			for (int i = 0; i < slots.length; i++) {
+				RegistryEntry<ArtifactSlot> slot = slots[i];
+				for (int r = min_rank; r <= max_rank; r++) {
+					String name = this.getName() + "_" + slot.getId().getPath() + "_" + r;
+					int rank = r;
+					items[i][r - min_rank] = L2Artifacts.REGISTRATE.item(name, p -> new BaseArtifact(p, slot, rank)).register();
 				}
 			}
 			return this;
+		}
+
+		@Override
+		protected RegistryEntry<T> createEntryWrapper(RegistryObject<T> delegate) {
+			return new SetEntry<>(this.getOwner(), delegate, items);
 		}
 
 		@NonnullType
@@ -59,15 +70,18 @@ public class ArtifactRegistrate extends LcyRegistrate {
 			return this.sup.get();
 		}
 
-		public SetBuilder<T> defaultLang() {
+		public SetBuilder<T, I> defaultLang() {
 			return this.lang(NamedEntry::getDescriptionId);
 		}
 	}
 
 	public static class SetEntry<T extends ArtifactSet> extends RegistryEntry<T> {
 
-		public SetEntry(AbstractRegistrate<?> owner, RegistryObject<T> delegate) {
+		public final ItemEntry<BaseArtifact>[][] items;
+
+		public SetEntry(AbstractRegistrate<?> owner, RegistryObject<T> delegate, ItemEntry<BaseArtifact>[][] items) {
 			super(owner, delegate);
+			this.items = items;
 		}
 
 	}

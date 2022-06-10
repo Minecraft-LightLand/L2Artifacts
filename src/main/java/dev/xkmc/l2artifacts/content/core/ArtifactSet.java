@@ -5,7 +5,7 @@ import dev.xkmc.l2library.base.NamedEntry;
 
 public class ArtifactSet extends NamedEntry<ArtifactSet> {
 
-	public ArtifactSet(String id) {
+	public ArtifactSet() {
 		super(() -> ArtifactRegistry.SET);
 	}
 

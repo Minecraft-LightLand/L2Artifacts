@@ -12,6 +12,8 @@ import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.attributes.RangedAttribute;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.IForgeRegistryEntry;
@@ -50,6 +52,15 @@ public class ArtifactRegistry {
 	public static RegistryEntry<ArtifactStatType> SPEED_MULT = regStat("speed_mult", () -> Attributes.MOVEMENT_SPEED, MULTIPLY_TOTAL);
 	public static RegistryEntry<ArtifactStatType> ATK_SPEED_MULT = regStat("attack_speed_mult", () -> Attributes.ATTACK_SPEED, MULTIPLY_TOTAL);
 
+	public static final Tab TAB = new Tab("artifacts");
+
+	static {
+		REGISTRATE.creativeModeTab(() -> TAB);
+	}
+
+	public static final ArtifactRegistrate.SetEntry<ArtifactSet> SET_GAMBLER = REGISTRATE.regSet("gambler", ArtifactSet::new, 1, 5, SLOT_HEAD, SLOT_NECKLACE, SLOT_BRACELET, SLOT_BRACELET, SLOT_BELT);
+	public static final ArtifactRegistrate.SetEntry<ArtifactSet> SET_BERSERKER = REGISTRATE.regSet("berserker", ArtifactSet::new, 1, 5, SLOT_HEAD, SLOT_NECKLACE, SLOT_BRACELET, SLOT_BRACELET, SLOT_BELT);
+
 	@SuppressWarnings({"unchecked"})
 	public static void createRegistries(NewRegistryEvent event) {
 		event.create(new RegistryBuilder<ArtifactSlot>()
@@ -78,5 +89,18 @@ public class ArtifactRegistry {
 	private static RegistryEntry<ArtifactStatType> regStat(String id, Supplier<Attribute> attr, AttributeModifier.Operation op) {
 		return REGISTRATE.generic(ArtifactStatType.class, id, () -> new ArtifactStatType(attr, op)).defaultLang().register();
 	}
+
+	public static class Tab extends CreativeModeTab {
+
+		public Tab(String label) {
+			super(L2Artifacts.MODID + ":" + label);
+		}
+
+		@Override
+		public ItemStack makeIcon() {
+			return SET_GAMBLER.items[0][0].asStack();
+		}
+	}
+
 
 }

@@ -2,6 +2,8 @@ package dev.xkmc.l2artifacts.content.core;
 
 import dev.xkmc.l2artifacts.init.data.ModConfig;
 
+import java.util.Random;
+
 public class ArtifactUpgradeManager {
 
 	public static int getExpForLevel(int rank, int level) {
@@ -27,11 +29,12 @@ public class ArtifactUpgradeManager {
 		return rank * ModConfig.COMMON.maxLevelPerRank.get();
 	}
 
-	public static void onUpgrade(ArtifactStats stats) {
+	public static void onUpgrade(ArtifactStats stats, Random random) {
 		int gate = ModConfig.COMMON.levelPerSubStat.get();
-		//TODO upgrade main stats
+		stats.add(stats.main_stat.type, stats.main_stat.type.getMainValue(stats, random));
 		if (stats.level % gate == 0) {
-			//TODO upgrade sub stats
+			StatEntry substat = stats.sub_stats.get(random.nextInt(stats.sub_stats.size()));
+			stats.add(substat.type, substat.type.getSubValue(stats, random));
 		}
 	}
 }

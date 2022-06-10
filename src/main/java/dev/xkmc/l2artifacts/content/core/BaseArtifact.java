@@ -17,6 +17,7 @@ import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.Random;
 import java.util.function.Supplier;
 
 public class BaseArtifact extends Item {
@@ -54,10 +55,10 @@ public class BaseArtifact extends Item {
 		return InteractionResultHolder.pass(stack);
 	}
 
-	public void upgrade(ItemStack stack, int exp) {
+	public void upgrade(ItemStack stack, int exp, Random random) {
 		if (stack.getTag() != null && stack.getTag().contains(KEY)) {
 			ArtifactStats stats = TagCodec.fromTag(stack.getTag().getCompound(KEY), ArtifactStats.class);
-			stats.addExp(exp);
+			stats.addExp(exp, random);
 			stack.getTag().put(KEY, TagCodec.toTag(new CompoundTag(), stats));
 		}
 	}

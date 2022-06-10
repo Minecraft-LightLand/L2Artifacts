@@ -29,7 +29,7 @@ public class ArtifactSlot extends NamedEntry<ArtifactSlot> {
 			int index = random.nextInt(sub_list.size());
 			ArtifactStatType sub = sub_list.get(index);
 			sub_list.remove(index);
-			stat.add(sub, sub.getInitialValue(stat, random));
+			stat.add(sub, sub.getSubValue(stat, random));
 		}
 	}
 

@@ -18,13 +18,7 @@ public class ArtifactStats {
 	public ArtifactSlot slot;
 
 	@SerialClass.SerialField
-	public int rank;
-
-	@SerialClass.SerialField
-	public int level;
-
-	@SerialClass.SerialField
-	public int exp;
+	public int rank, level, exp;
 
 	@SerialClass.SerialField
 	public StatEntry main_stat;
@@ -83,7 +77,7 @@ public class ArtifactStats {
 		return builder.build();
 	}
 
-	public void addExp(int exp) {
+	public void addExp(int exp, Random random) {
 		this.exp += exp;
 		int max_level = ArtifactUpgradeManager.getMaxLevel(rank);
 		while (true) {
@@ -96,7 +90,7 @@ public class ArtifactStats {
 			}
 			this.exp -= max_exp;
 			this.level++;
-			ArtifactUpgradeManager.onUpgrade(this);
+			ArtifactUpgradeManager.onUpgrade(this, random);
 		}
 		if (this.level == max_level) {
 			this.exp = 0;

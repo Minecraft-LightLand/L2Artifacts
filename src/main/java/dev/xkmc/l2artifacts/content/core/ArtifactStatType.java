@@ -26,6 +26,17 @@ public class ArtifactStatType extends NamedEntry<ArtifactStatType> {
 
 	public double getInitialValue(ArtifactStats stat, Random random) {
 		StatTypeConfig.Entry entry = StatTypeConfig.getInstance().stats.get(this);
-		return random.nextDouble(entry.low, entry.high) * stat.rank;
+		return random.nextDouble(entry.base_low, entry.base_high) * stat.rank;
 	}
+
+	public double getMainValue(ArtifactStats stat, Random random) {
+		StatTypeConfig.Entry entry = StatTypeConfig.getInstance().stats.get(this);
+		return random.nextDouble(entry.main_low, entry.main_high) * stat.rank;
+	}
+
+	public double getSubValue(ArtifactStats stat, Random random) {
+		StatTypeConfig.Entry entry = StatTypeConfig.getInstance().stats.get(this);
+		return random.nextDouble(entry.sub_low, entry.sub_high) * stat.rank;
+	}
+
 }

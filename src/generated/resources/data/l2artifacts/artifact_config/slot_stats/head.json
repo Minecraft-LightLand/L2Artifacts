@@ -1,7 +1,7 @@
 {
   "_class": "dev.xkmc.l2artifacts.content.config.SlotStatConfig",
   "available_main_stats": {
-    "l2artifacts:belt": [
+    "l2artifacts:head": [
       "l2artifacts:health_add",
       "l2artifacts:armor_add",
       "l2artifacts:attack_add",
@@ -11,7 +11,7 @@
     ]
   },
   "available_sub_stats": {
-    "l2artifacts:belt": [
+    "l2artifacts:head": [
       "l2artifacts:health_add",
       "l2artifacts:armor_add",
       "l2artifacts:tough_add",

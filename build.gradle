@@ -142,6 +142,10 @@ dependencies {
     implementation fg.deobf('curse.maven:badpackets-615134:3773642')
     implementation fg.deobf("mezz.jei:jei-${jei_minecraft_version}:${jei_version}")
 
+    implementation fg.deobf('curse.maven:attributefix-280510:3801087')
+    implementation fg.deobf('curse.maven:max-health-fix-492246:3764471')
+    implementation fg.deobf('curse.maven:tool-stats-377109:3697308')
+
     runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}")
     compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}:api")
     implementation fg.deobf("top.theillusivec4.caelus:caelus-forge:${caelus_version}")

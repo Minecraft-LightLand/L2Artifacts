@@ -17,7 +17,7 @@ import java.util.Objects;
 public class ConfigGen extends ConfigDataProvider {
 
 	public ConfigGen(DataGenerator generator) {
-		super(generator, "./data/", "Artifact Config");
+		super(generator, "data/", "Artifact Config");
 	}
 
 	@Override
@@ -110,8 +110,8 @@ public class ConfigGen extends ConfigDataProvider {
 	private static void addSlotStat(Map<String, BaseConfig> map, ArtifactSlot slot, ArrayList<ArtifactStatType> main, ArrayList<ArtifactStatType> sub) {
 		SlotStatConfig config = new SlotStatConfig();
 		ResourceLocation rl = Objects.requireNonNull(slot.getRegistryName());
-		config.available_main_stats.put(ArtifactRegistry.SLOT_BELT.get(), main);
-		config.available_sub_stats.put(ArtifactRegistry.SLOT_BELT.get(), sub);
+		config.available_main_stats.put(slot, main);
+		config.available_sub_stats.put(slot, sub);
 		map.put(rl.getNamespace() + "/artifact_config/slot_stats/" + rl.getPath(), config);
 	}
 

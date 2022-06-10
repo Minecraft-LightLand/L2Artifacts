@@ -1,0 +1,15 @@
+{
+  "replace": false,
+  "values": [
+    "l2artifacts:gambler_head_1",
+    "l2artifacts:gambler_head_2",
+    "l2artifacts:gambler_head_3",
+    "l2artifacts:gambler_head_4",
+    "l2artifacts:gambler_head_5",
+    "l2artifacts:berserker_head_1",
+    "l2artifacts:berserker_head_2",
+    "l2artifacts:berserker_head_3",
+    "l2artifacts:berserker_head_4",
+    "l2artifacts:berserker_head_5"
+  ]
+}

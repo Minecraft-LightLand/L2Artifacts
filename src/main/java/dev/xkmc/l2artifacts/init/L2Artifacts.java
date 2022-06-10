@@ -1,7 +1,8 @@
 package dev.xkmc.l2artifacts.init;
 
+import dev.xkmc.l2artifacts.content.capability.CapabilityEvent;
 import dev.xkmc.l2artifacts.init.data.ConfigGen;
-import dev.xkmc.l2artifacts.init.data.LangGen;
+import dev.xkmc.l2artifacts.init.data.LangData;
 import dev.xkmc.l2artifacts.init.data.ModConfig;
 import dev.xkmc.l2artifacts.init.data.RecipeGen;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactRegistrate;
@@ -33,11 +34,12 @@ public class L2Artifacts {
 	private static void registerRegistrates(IEventBus bus) {
 		ModConfig.init();
 		NetworkManager.register();
-		REGISTRATE.addDataGenerator(ProviderType.LANG, LangGen::genLang);
+		REGISTRATE.addDataGenerator(ProviderType.LANG, LangData::genLang);
 		REGISTRATE.addDataGenerator(ProviderType.RECIPE, RecipeGen::genRecipe);
 	}
 
 	private static void registerForgeEvents() {
+		MinecraftForge.EVENT_BUS.register(CapabilityEvent.class);
 	}
 
 	private static void registerModBusEvents(IEventBus bus) {

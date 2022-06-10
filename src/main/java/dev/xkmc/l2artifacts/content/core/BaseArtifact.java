@@ -1,6 +1,7 @@
 package dev.xkmc.l2artifacts.content.core;
 
 import com.google.common.collect.Multimap;
+import dev.xkmc.l2artifacts.init.data.LangData;
 import dev.xkmc.l2library.serial.codec.TagCodec;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -34,15 +35,6 @@ public class BaseArtifact extends Item {
 	}
 
 	@Override
-	public Multimap<Attribute, AttributeModifier> getAttributeModifiers(EquipmentSlot slot, ItemStack stack) {
-		if (stack.getTag() != null && stack.getTag().contains(KEY)) {
-			ArtifactStats stats = TagCodec.fromTag(stack.getTag().getCompound(KEY), ArtifactStats.class);
-			return stats.buildAttributes();
-		}
-		return super.getAttributeModifiers(slot, stack);
-	}
-
-	@Override
 	public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
 		ItemStack stack = player.getItemInHand(hand);
 		if (stack.getTag() == null || !stack.getTag().contains(KEY)) {
@@ -65,7 +57,9 @@ public class BaseArtifact extends Item {
 
 	@Override
 	public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> list, TooltipFlag flag) {
-		//TODO
+		if (stack.getTag() == null || !stack.getTag().contains(KEY)) {
+			list.add(LangData.RAW_ARTIFACT.get());
+		}
 		super.appendHoverText(stack, level, list, flag);
 	}
 }

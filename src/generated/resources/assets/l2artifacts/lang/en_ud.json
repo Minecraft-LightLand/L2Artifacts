@@ -39,6 +39,8 @@
   "item.l2artifacts.gambler_necklace_3": "\u0190 \u01DD\u0254\u0250\u05DF\u029E\u0254\u01DDN \u0279\u01DD\u05DFq\u026F\u0250\u2141",
   "item.l2artifacts.gambler_necklace_4": "\u3123 \u01DD\u0254\u0250\u05DF\u029E\u0254\u01DDN \u0279\u01DD\u05DFq\u026F\u0250\u2141",
   "item.l2artifacts.gambler_necklace_5": "\u03DB \u01DD\u0254\u0250\u05DF\u029E\u0254\u01DDN \u0279\u01DD\u05DFq\u026F\u0250\u2141",
+  "itemGroup.l2artifacts.artifacts": "s\u0287\u0254\u0250\u025F\u0131\u0287\u0279\u2C6F",
+  "l2artifacts.tooltip.raw_artifact": "s\u0287\u0250\u0287S \u05DF\u0250\u01DD\u028C\u01DD\u1D1A o\u0287 \u029E\u0254\u0131\u05DF\u0186 \u0287\u0265b\u0131\u1D1A",
   "set.l2artifacts.berserker": "\u0279\u01DD\u029E\u0279\u01DDs\u0279\u01DD\u15FA",
   "set.l2artifacts.gambler": "\u0279\u01DD\u05DFq\u026F\u0250\u2141",
   "slot.l2artifacts.belt": "\u0287\u05DF\u01DD\u15FA",

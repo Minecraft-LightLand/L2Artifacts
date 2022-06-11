@@ -61,7 +61,7 @@ public class ConfigGen extends ConfigDataProvider {
 
 				list.add(ArtifactRegistry.CR_ADD.get());
 				list.add(ArtifactRegistry.CD_ADD.get());
-				addSlotStat(map, ArtifactRegistry.SLOT_HEAD.get(), list, all);
+				addSlotStat(map, ArtifactRegistry.SLOT_NECKLACE.get(), list, all);
 			}
 			{
 				ArrayList<ArtifactStatType> list = new ArrayList<>();
@@ -89,7 +89,7 @@ public class ConfigGen extends ConfigDataProvider {
 				list.add(ArtifactRegistry.ATK_SPEED_MULT.get());
 				list.add(ArtifactRegistry.SPEED_MULT.get());
 
-				addSlotStat(map, ArtifactRegistry.SLOT_NECKLACE.get(), list, all);
+				addSlotStat(map, ArtifactRegistry.SLOT_HEAD.get(), list, all);
 			}
 		}
 

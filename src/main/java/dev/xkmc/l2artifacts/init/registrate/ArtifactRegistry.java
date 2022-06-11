@@ -93,7 +93,7 @@ public class ArtifactRegistry {
 	public static class Tab extends CreativeModeTab {
 
 		public Tab(String label) {
-			super(L2Artifacts.MODID + ":" + label);
+			super(L2Artifacts.MODID + "." + label);
 		}
 
 		@Override

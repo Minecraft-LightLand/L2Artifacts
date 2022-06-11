@@ -2,6 +2,8 @@ package dev.xkmc.l2artifacts.content.core;
 
 import dev.xkmc.l2artifacts.init.data.LangData;
 import dev.xkmc.l2library.serial.codec.TagCodec;
+import dev.xkmc.l2library.util.Proxy;
+import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
@@ -79,29 +81,32 @@ public class BaseArtifact extends Item {
 
 	@Override
 	public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> list, TooltipFlag flag) {
-		if (stack.getTag() == null || !stack.getTag().contains(KEY)) {
-			list.add(LangData.RAW_ARTIFACT.get());
-		} else {
-			getStats(stack).ifPresent(stats -> {
-				list.add(LangData.ARTIFACT_LEVEL.get(stats.level));
-				if (stats.level < ArtifactUpgradeManager.getMaxLevel(stats.rank)) {
-					list.add(LangData.ARTIFACT_EXP.get(stats.exp, ArtifactUpgradeManager.getExpForLevel(stats.rank, stats.level)));
-				}
-				if (stats.level > stats.old_level) {
-					list.add(LangData.UPGRADE.get());
-				} else {
-					list.add(LangData.MAIN_STAT.get());
-					list.add(stats.main_stat.getTooltip());
-					if (stats.sub_stats.size() > 0) {
-						list.add(LangData.SUB_STAT.get());
-						for (StatEntry ent : stats.sub_stats) {
-							list.add(ent.getTooltip());
+		if (Proxy.getPlayer() != null) {
+			if (stack.getTag() == null || !stack.getTag().contains(KEY)) {
+				list.add(LangData.RAW_ARTIFACT.get());
+			} else {
+				getStats(stack).ifPresent(stats -> {
+					boolean max = stats.level == ArtifactUpgradeManager.getMaxLevel(stats.rank);
+					list.add(LangData.ARTIFACT_LEVEL.get(stats.level).withStyle(max ? ChatFormatting.GOLD : ChatFormatting.WHITE));
+					if (stats.level < ArtifactUpgradeManager.getMaxLevel(stats.rank)) {
+						list.add(LangData.ARTIFACT_EXP.get(stats.exp, ArtifactUpgradeManager.getExpForLevel(stats.rank, stats.level)));
+					}
+					if (stats.level > stats.old_level) {
+						list.add(LangData.UPGRADE.get());
+					} else {
+						list.add(LangData.MAIN_STAT.get());
+						list.add(stats.main_stat.getTooltip());
+						if (stats.sub_stats.size() > 0) {
+							list.add(LangData.SUB_STAT.get());
+							for (StatEntry ent : stats.sub_stats) {
+								list.add(ent.getTooltip());
+							}
 						}
 					}
-				}
-			});
+				});
+			}
+			list.add(LangData.EXP_CONVERSION.get(ArtifactUpgradeManager.getExpForConversion(rank, getStats(stack).orElse(null))));
 		}
-		list.add(LangData.EXP_CONVERSION.get(ArtifactUpgradeManager.getExpForConversion(rank, getStats(stack).orElse(null))));
 		super.appendHoverText(stack, level, list, flag);
 	}
 }

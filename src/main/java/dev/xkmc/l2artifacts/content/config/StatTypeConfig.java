@@ -16,10 +16,16 @@ public class StatTypeConfig extends BaseConfig {
 	public static StatTypeConfig getInstance() {
 		if (cache != null) return cache;
 		List<StatTypeConfig> configs = NetworkManager.getConfigs("stat_types").map(e -> (StatTypeConfig) e.getValue()).toList();
-		HashMap<ArtifactStatType, Entry> main = BaseConfig.collectMap(configs, e -> e.stats, Entry::new, Entry::set);
+		HashMap<ArtifactStatType, Entry> main = BaseConfig.collectMap(configs, e -> e.stats, StatTypeConfig::getEmpty, Entry::set);
 		StatTypeConfig ans = new StatTypeConfig();
 		ans.stats = main;
 		cache = ans;
+		return ans;
+	}
+
+	private static Entry getEmpty() {
+		Entry ans = new Entry();
+		ans.count = 0;
 		return ans;
 	}
 

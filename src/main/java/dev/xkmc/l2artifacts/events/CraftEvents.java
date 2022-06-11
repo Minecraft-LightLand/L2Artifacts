@@ -17,7 +17,7 @@ public class CraftEvents {
 		ItemStack fodder = event.getRight();
 		int val = 0;
 		if (fodder.getItem() instanceof BaseArtifact base) {
-			val = ArtifactUpgradeManager.getExpForConversion(base.rank, BaseArtifact.getStats(stack).orElse(null));
+			val = ArtifactUpgradeManager.getExpForConversion(base.rank, BaseArtifact.getStats(fodder).orElse(null));
 		}
 		if (val > 0 && stack.getItem() instanceof BaseArtifact) {
 			Optional<ArtifactStats> opt = BaseArtifact.getStats(stack);

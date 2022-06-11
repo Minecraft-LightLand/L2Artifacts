@@ -32,19 +32,19 @@ public class ArtifactStatType extends NamedEntry<ArtifactStatType> {
 		builder.put(attr.get(), new AttributeModifier(entry.id, entry.name, entry.value, op));
 	}
 
-	public double getInitialValue(ArtifactStats stat, Random random) {
+	public double getInitialValue(int rank, Random random) {
 		StatTypeConfig.Entry entry = StatTypeConfig.getInstance().stats.get(this);
-		return random.nextDouble(entry.base_low, entry.base_high) * stat.rank;
+		return random.nextDouble(entry.base_low, entry.base_high) * rank;
 	}
 
-	public double getMainValue(ArtifactStats stat, Random random) {
+	public double getMainValue(int rank, Random random) {
 		StatTypeConfig.Entry entry = StatTypeConfig.getInstance().stats.get(this);
-		return random.nextDouble(entry.main_low, entry.main_high) * stat.rank;
+		return random.nextDouble(entry.main_low, entry.main_high) * rank;
 	}
 
-	public double getSubValue(ArtifactStats stat, Random random) {
+	public double getSubValue(int rank, Random random) {
 		StatTypeConfig.Entry entry = StatTypeConfig.getInstance().stats.get(this);
-		return random.nextDouble(entry.sub_low, entry.sub_high) * stat.rank;
+		return random.nextDouble(entry.sub_low, entry.sub_high) * rank;
 	}
 
 	public Component getTooltip(double val) {

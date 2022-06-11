@@ -36,7 +36,7 @@ public class ModConfig {
 			expRetention = builder.comment("experience retained for using upgraded artifact to upgrade")
 					.defineInRange("expRetention", 0.8, 0, 1);
 			baseExpConversion = builder.comment("experience available for level 0 rank 1 artifact")
-					.defineInRange("baseExpConversion", 20, 1, 10000);
+					.defineInRange("baseExpConversion", 100, 1, 1000000);
 			expConversionRankFactor = builder.comment("exponential experience available per rank")
 					.defineInRange("expConversionRankFactor", 2d, 1, 10);
 		}

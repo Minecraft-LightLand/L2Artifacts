@@ -20,7 +20,7 @@ public class ArtifactSlot extends NamedEntry<ArtifactSlot> {
 
 		ArtifactStatType main = main_list.get(random.nextInt(main_list.size()));
 		sub_list.remove(main);
-		stat.add(main, main.getInitialValue(stat, random));
+		stat.add(main, main.getInitialValue(stat.rank, random));
 		int roll = stat.rank - 1;
 		for (int i = 0; i < roll; i++) {
 			if (sub_list.size() == 0) {
@@ -29,7 +29,7 @@ public class ArtifactSlot extends NamedEntry<ArtifactSlot> {
 			int index = random.nextInt(sub_list.size());
 			ArtifactStatType sub = sub_list.get(index);
 			sub_list.remove(index);
-			stat.add(sub, sub.getSubValue(stat, random));
+			stat.add(sub, sub.getSubValue(stat.rank, random));
 		}
 	}
 

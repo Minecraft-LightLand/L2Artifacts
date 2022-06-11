@@ -13,9 +13,10 @@ public enum LangData {
 	RAW_ARTIFACT("tooltip.raw_artifact", "Right Click to Reveal Stats", 0, null),
 	ARTIFACT_LEVEL("tooltip.artifact_level", "Level: %s", 1, null),
 	ARTIFACT_EXP("tooltip.artifact_exp", "Exp: %s/%s", 2, null),
+	UPGRADE("tooltip.upgrade", "Right Click to Reveal Upgrade Result", 0, ChatFormatting.GOLD),
 	MAIN_STAT("tooltip.main_stat", "Main Stats", 0, ChatFormatting.GRAY),
 	SUB_STAT("tooltip.sub_stat", "Sub Stats", 0, ChatFormatting.GRAY),
-	;
+	EXP_CONVERSION("tooltip.exp_conversion", "Exp as fodder: %s", 1, ChatFormatting.GRAY);
 
 	private final String key, def;
 	private final int arg;

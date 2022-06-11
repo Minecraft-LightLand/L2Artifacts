@@ -1,6 +1,7 @@
 package dev.xkmc.l2artifacts.init;
 
 import dev.xkmc.l2artifacts.events.CommonEvents;
+import dev.xkmc.l2artifacts.events.CraftEvents;
 import dev.xkmc.l2artifacts.events.CritHandler;
 import dev.xkmc.l2artifacts.init.data.ConfigGen;
 import dev.xkmc.l2artifacts.init.data.LangData;
@@ -43,6 +44,7 @@ public class L2Artifacts {
 	private static void registerForgeEvents() {
 		AttackEventHandler.LISTENERS.add(new CritHandler());
 		MinecraftForge.EVENT_BUS.register(CommonEvents.class);
+		MinecraftForge.EVENT_BUS.register(CraftEvents.class);
 	}
 
 	private static void registerModBusEvents(IEventBus bus) {
@@ -78,6 +80,7 @@ public class L2Artifacts {
 		InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE, () -> SlotTypePreset.BODY.getMessageBuilder().build());
 		InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE, () -> SlotTypePreset.BELT.getMessageBuilder().build());
 		InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE, () -> SlotTypePreset.RING.getMessageBuilder().size(3).build());
+		InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE, () -> SlotTypePreset.CHARM.getMessageBuilder().build());
 	}
 
 }

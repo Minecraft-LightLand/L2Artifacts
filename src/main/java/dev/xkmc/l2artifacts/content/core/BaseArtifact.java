@@ -16,6 +16,7 @@ import org.jetbrains.annotations.Nullable;
 import top.theillusivec4.curios.api.CuriosApi;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 import java.util.function.Supplier;
 
@@ -26,6 +27,20 @@ public class BaseArtifact extends Item {
 	protected static Rarity getRarity(int rank) {
 		return rank <= 2 ? Rarity.UNCOMMON : rank <= 4 ? Rarity.RARE : Rarity.EPIC;
 	}
+
+	public static void upgrade(ItemStack stack, int exp, Random random) {
+		if (stack.getTag() != null && stack.getTag().contains(KEY)) {
+			ArtifactStats stats = TagCodec.fromTag(stack.getTag().getCompound(KEY), ArtifactStats.class);
+			stats.addExp(exp, random);
+			stack.getTag().put(KEY, TagCodec.toTag(new CompoundTag(), stats));
+		}
+	}
+
+	public static Optional<ArtifactStats> getStats(ItemStack stack) {
+		return CuriosApi.getCuriosHelper().getCurio(stack).filter(e -> e instanceof ArtifactCurioCap)
+				.flatMap(e -> ((ArtifactCurioCap) e).getStats());
+	}
+
 
 	public final Supplier<ArtifactSlot> slot;
 	public final int rank;
@@ -45,16 +60,21 @@ public class BaseArtifact extends Item {
 				stack.getOrCreateTag().put(KEY, TagCodec.toTag(new CompoundTag(), stats));
 			}
 			return InteractionResultHolder.success(stack);
+		} else {
+			Optional<ArtifactStats> opt = getStats(stack);
+			if (opt.isPresent()) {
+				ArtifactStats stats = opt.get();
+				if (stats.level > stats.old_level) {
+					for (int i = stats.old_level + 1; i <= stats.level; i++) {
+						ArtifactUpgradeManager.onUpgrade(stats, i, level.random);
+					}
+					stats.old_level = stats.level;
+					stack.getOrCreateTag().put(KEY, TagCodec.toTag(new CompoundTag(), stats));
+					return InteractionResultHolder.success(stack);
+				}
+			}
 		}
 		return InteractionResultHolder.pass(stack);
-	}
-
-	public void upgrade(ItemStack stack, int exp, Random random) {
-		if (stack.getTag() != null && stack.getTag().contains(KEY)) {
-			ArtifactStats stats = TagCodec.fromTag(stack.getTag().getCompound(KEY), ArtifactStats.class);
-			stats.addExp(exp, random);
-			stack.getTag().put(KEY, TagCodec.toTag(new CompoundTag(), stats));
-		}
 	}
 
 	@Override
@@ -62,14 +82,14 @@ public class BaseArtifact extends Item {
 		if (stack.getTag() == null || !stack.getTag().contains(KEY)) {
 			list.add(LangData.RAW_ARTIFACT.get());
 		} else {
-			CuriosApi.getCuriosHelper().getCurio(stack).ifPresent(e -> {
-				if (!(e instanceof ArtifactCurioCap cap))
-					return;
-				cap.getStats().ifPresent(stats -> {
-					list.add(LangData.ARTIFACT_LEVEL.get(stats.level));
-					if (stats.level < ArtifactUpgradeManager.getMaxLevel(stats.rank)) {
-						list.add(LangData.ARTIFACT_EXP.get(stats.exp, ArtifactUpgradeManager.getExpForLevel(stats.rank, stats.level)));
-					}
+			getStats(stack).ifPresent(stats -> {
+				list.add(LangData.ARTIFACT_LEVEL.get(stats.level));
+				if (stats.level < ArtifactUpgradeManager.getMaxLevel(stats.rank)) {
+					list.add(LangData.ARTIFACT_EXP.get(stats.exp, ArtifactUpgradeManager.getExpForLevel(stats.rank, stats.level)));
+				}
+				if (stats.level > stats.old_level) {
+					list.add(LangData.UPGRADE.get());
+				} else {
 					list.add(LangData.MAIN_STAT.get());
 					list.add(stats.main_stat.getTooltip());
 					if (stats.sub_stats.size() > 0) {
@@ -78,9 +98,10 @@ public class BaseArtifact extends Item {
 							list.add(ent.getTooltip());
 						}
 					}
-				});
+				}
 			});
 		}
+		list.add(LangData.EXP_CONVERSION.get(ArtifactUpgradeManager.getExpForConversion(rank, getStats(stack).orElse(null))));
 		super.appendHoverText(stack, level, list, flag);
 	}
 }

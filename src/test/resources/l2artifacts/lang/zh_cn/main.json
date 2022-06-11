@@ -9,6 +9,8 @@
 	"artifact_level": "等级: %s",
 	"main_stat": "主词条:",
 	"raw_artifact": "右键鉴定属性",
-	"sub_stat": "副词条:"
+	"sub_stat": "副词条:",
+	"upgrade": "右键显示升级后的属性",
+	"exp_conversion": "作为升级材料可提供经验: %s"
   }
 }

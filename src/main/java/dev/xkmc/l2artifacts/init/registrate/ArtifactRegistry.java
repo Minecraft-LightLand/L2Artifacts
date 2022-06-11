@@ -41,16 +41,16 @@ public class ArtifactRegistry {
 	public static RegistryEntry<Attribute> CRIT_RATE = REGISTRATE.simple("crit_rate", Attribute.class, () -> new RangedAttribute("crit_rate", 0.05, 0, 1).setSyncable(true));
 	public static RegistryEntry<Attribute> CRIT_DMG = REGISTRATE.simple("crit_damage", Attribute.class, () -> new RangedAttribute("crit_damage", 0.50, 0, 1000).setSyncable(true));
 
-	public static RegistryEntry<ArtifactStatType> HEALTH_ADD = regStat("health_add", () -> Attributes.MAX_HEALTH, ADDITION);
-	public static RegistryEntry<ArtifactStatType> ARMOR_ADD = regStat("armor_add", () -> Attributes.ARMOR, ADDITION);
-	public static RegistryEntry<ArtifactStatType> TOUGH_ADD = regStat("tough_add", () -> Attributes.ARMOR_TOUGHNESS, ADDITION);
-	public static RegistryEntry<ArtifactStatType> ATK_ADD = regStat("attack_add", () -> Attributes.ATTACK_DAMAGE, ADDITION);
-	public static RegistryEntry<ArtifactStatType> REACH_ADD = regStat("reach_add", ForgeMod.ATTACK_RANGE, ADDITION);
-	public static RegistryEntry<ArtifactStatType> CR_ADD = regStat("crit_rate_add", CRIT_RATE, ADDITION);
-	public static RegistryEntry<ArtifactStatType> CD_ADD = regStat("crit_damage_add", CRIT_DMG, ADDITION);
-	public static RegistryEntry<ArtifactStatType> ATK_MULT = regStat("attack_mult", () -> Attributes.ATTACK_DAMAGE, MULTIPLY_TOTAL);
-	public static RegistryEntry<ArtifactStatType> SPEED_MULT = regStat("speed_mult", () -> Attributes.MOVEMENT_SPEED, MULTIPLY_TOTAL);
-	public static RegistryEntry<ArtifactStatType> ATK_SPEED_MULT = regStat("attack_speed_mult", () -> Attributes.ATTACK_SPEED, MULTIPLY_TOTAL);
+	public static RegistryEntry<ArtifactStatType> HEALTH_ADD = regStat("health_add", () -> Attributes.MAX_HEALTH, ADDITION, false);
+	public static RegistryEntry<ArtifactStatType> ARMOR_ADD = regStat("armor_add", () -> Attributes.ARMOR, ADDITION, false);
+	public static RegistryEntry<ArtifactStatType> TOUGH_ADD = regStat("tough_add", () -> Attributes.ARMOR_TOUGHNESS, ADDITION, false);
+	public static RegistryEntry<ArtifactStatType> ATK_ADD = regStat("attack_add", () -> Attributes.ATTACK_DAMAGE, ADDITION, false);
+	public static RegistryEntry<ArtifactStatType> REACH_ADD = regStat("reach_add", ForgeMod.ATTACK_RANGE, ADDITION, false);
+	public static RegistryEntry<ArtifactStatType> CR_ADD = regStat("crit_rate_add", CRIT_RATE, ADDITION, true);
+	public static RegistryEntry<ArtifactStatType> CD_ADD = regStat("crit_damage_add", CRIT_DMG, ADDITION, true);
+	public static RegistryEntry<ArtifactStatType> ATK_MULT = regStat("attack_mult", () -> Attributes.ATTACK_DAMAGE, MULTIPLY_TOTAL, true);
+	public static RegistryEntry<ArtifactStatType> SPEED_MULT = regStat("speed_mult", () -> Attributes.MOVEMENT_SPEED, MULTIPLY_TOTAL, true);
+	public static RegistryEntry<ArtifactStatType> ATK_SPEED_MULT = regStat("attack_speed_mult", () -> Attributes.ATTACK_SPEED, MULTIPLY_TOTAL, true);
 
 	public static final Tab TAB = new Tab("artifacts");
 
@@ -58,8 +58,8 @@ public class ArtifactRegistry {
 		REGISTRATE.creativeModeTab(() -> TAB);
 	}
 
-	public static final ArtifactRegistrate.SetEntry<ArtifactSet> SET_GAMBLER = REGISTRATE.regSet("gambler", ArtifactSet::new, 1, 5, SLOT_HEAD, SLOT_NECKLACE, SLOT_BRACELET, SLOT_BRACELET, SLOT_BELT);
-	public static final ArtifactRegistrate.SetEntry<ArtifactSet> SET_BERSERKER = REGISTRATE.regSet("berserker", ArtifactSet::new, 1, 5, SLOT_HEAD, SLOT_NECKLACE, SLOT_BRACELET, SLOT_BRACELET, SLOT_BELT);
+	public static final ArtifactRegistrate.SetEntry<ArtifactSet> SET_GAMBLER = REGISTRATE.regSet("gambler", ArtifactSet::new, 1, 5, SLOT_HEAD, SLOT_NECKLACE, SLOT_BODY, SLOT_BRACELET, SLOT_BELT);
+	public static final ArtifactRegistrate.SetEntry<ArtifactSet> SET_BERSERKER = REGISTRATE.regSet("berserker", ArtifactSet::new, 1, 5, SLOT_HEAD, SLOT_NECKLACE, SLOT_BODY, SLOT_BRACELET, SLOT_BELT);
 
 	@SuppressWarnings({"unchecked"})
 	public static void createRegistries(NewRegistryEvent event) {
@@ -86,8 +86,8 @@ public class ArtifactRegistry {
 		return REGISTRATE.generic(ArtifactSlot.class, id, slot).defaultLang().register();
 	}
 
-	private static RegistryEntry<ArtifactStatType> regStat(String id, Supplier<Attribute> attr, AttributeModifier.Operation op) {
-		return REGISTRATE.generic(ArtifactStatType.class, id, () -> new ArtifactStatType(attr, op)).defaultLang().register();
+	private static RegistryEntry<ArtifactStatType> regStat(String id, Supplier<Attribute> attr, AttributeModifier.Operation op, boolean useMult) {
+		return REGISTRATE.generic(ArtifactStatType.class, id, () -> new ArtifactStatType(attr, op, useMult)).defaultLang().register();
 	}
 
 	public static class Tab extends CreativeModeTab {

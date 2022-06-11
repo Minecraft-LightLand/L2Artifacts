@@ -1,3 +1,14 @@
 {
-    
+  "curios.identifier.bracelet": "手环",
+  "curios.modifiers.bracelet": "佩戴手环时:",
+  "attribute.name.crit_rate": "暴击率",
+  "attribute.name.crit_damage": "暴击伤害",
+  "attribute.name.attack_range": "攻击距离",
+  "l2artifacts.tooltip": {
+	"artifact_exp": "经验值: %s/%s",
+	"artifact_level": "等级: %s",
+	"main_stat": "主词条:",
+	"raw_artifact": "右键鉴定属性",
+	"sub_stat": "副词条:"
+  }
 }

@@ -10,7 +10,12 @@ import javax.annotation.Nullable;
 import java.util.Locale;
 
 public enum LangData {
-	RAW_ARTIFACT("tooltip.raw_artifact", "Right Click to Reveal Stats", 0, null);
+	RAW_ARTIFACT("tooltip.raw_artifact", "Right Click to Reveal Stats", 0, null),
+	ARTIFACT_LEVEL("tooltip.artifact_level", "Level: %s", 1, null),
+	ARTIFACT_EXP("tooltip.artifact_exp", "Exp: %s/%s", 2, null),
+	MAIN_STAT("tooltip.main_stat", "Main Stats", 0, null),
+	SUB_STAT("tooltip.sub_stat", "Sub Stats", 0, null),
+	;
 
 	private final String key, def;
 	private final int arg;
@@ -43,6 +48,8 @@ public enum LangData {
 			pvd.add(lang.key, lang.def);
 		}
 		pvd.add("itemGroup." + L2Artifacts.MODID + ".artifacts", "Artifacts");
+		pvd.add("attribute.name.crit_rate", "Crit Rate");
+		pvd.add("attribute.name.crit_damage", "Crit Damage");
 	}
 
 }

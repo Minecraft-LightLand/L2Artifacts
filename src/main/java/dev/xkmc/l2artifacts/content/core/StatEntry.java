@@ -2,6 +2,7 @@ package dev.xkmc.l2artifacts.content.core;
 
 import dev.xkmc.l2library.serial.SerialClass;
 import dev.xkmc.l2library.util.MathHelper;
+import net.minecraft.network.chat.Component;
 
 import java.util.UUID;
 
@@ -29,10 +30,12 @@ public class StatEntry {
 		init(slot);
 	}
 
-	protected void init(ArtifactSlot slot){
+	protected void init(ArtifactSlot slot) {
 		this.name = slot.getID() + "-" + type.getID();
 		this.id = MathHelper.getUUIDfromString(name);
 	}
 
-
+	public Component getTooltip() {
+		return type.getTooltip(value);
+	}
 }

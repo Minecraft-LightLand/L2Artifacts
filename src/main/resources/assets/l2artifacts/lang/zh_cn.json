@@ -48,5 +48,15 @@
   "item.l2artifacts.gambler_belt_2": "赌徒的腰带-稀有级",
   "item.l2artifacts.gambler_belt_3": "赌徒的腰带-特质级",
   "item.l2artifacts.gambler_belt_4": "赌徒的腰带-传奇级",
-  "item.l2artifacts.gambler_belt_5": "赌徒的腰带-神化级"
+  "item.l2artifacts.gambler_belt_5": "赌徒的腰带-神化级",
+  "curios.identifier.bracelet": "手环",
+  "curios.modifiers.bracelet": "佩戴手环时:",
+  "attribute.name.crit_rate": "暴击率",
+  "attribute.name.crit_damage": "暴击伤害",
+  "attribute.name.attack_range": "攻击距离",
+  "l2artifacts.tooltip.artifact_exp": "经验值: %s/%s",
+  "l2artifacts.tooltip.artifact_level": "等级: %s",
+  "l2artifacts.tooltip.main_stat": "主词条:",
+  "l2artifacts.tooltip.raw_artifact": "右键鉴定属性",
+  "l2artifacts.tooltip.sub_stat": "副词条:"
 }

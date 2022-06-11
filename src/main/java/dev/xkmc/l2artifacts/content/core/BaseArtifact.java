@@ -1,6 +1,5 @@
 package dev.xkmc.l2artifacts.content.core;
 
-import dev.xkmc.l2artifacts.content.capability.ArtifactCurioCap;
 import dev.xkmc.l2artifacts.init.data.LangData;
 import dev.xkmc.l2library.serial.codec.TagCodec;
 import net.minecraft.nbt.CompoundTag;

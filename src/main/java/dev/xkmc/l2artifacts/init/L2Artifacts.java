@@ -1,12 +1,14 @@
 package dev.xkmc.l2artifacts.init;
 
-import dev.xkmc.l2artifacts.content.capability.CapabilityEvent;
+import dev.xkmc.l2artifacts.events.CommonEvents;
+import dev.xkmc.l2artifacts.events.CritHandler;
 import dev.xkmc.l2artifacts.init.data.ConfigGen;
 import dev.xkmc.l2artifacts.init.data.LangData;
 import dev.xkmc.l2artifacts.init.data.ModConfig;
 import dev.xkmc.l2artifacts.init.data.RecipeGen;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactRegistrate;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactRegistry;
+import dev.xkmc.l2library.init.events.AttackEventHandler;
 import dev.xkmc.l2library.repack.registrate.providers.ProviderType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
@@ -39,7 +41,8 @@ public class L2Artifacts {
 	}
 
 	private static void registerForgeEvents() {
-		MinecraftForge.EVENT_BUS.register(CapabilityEvent.class);
+		AttackEventHandler.LISTENERS.add(new CritHandler());
+		MinecraftForge.EVENT_BUS.register(CommonEvents.class);
 	}
 
 	private static void registerModBusEvents(IEventBus bus) {

@@ -38,8 +38,8 @@ public class ArtifactRegistry {
 	public static RegistryEntry<ArtifactSlot> SLOT_BODY = regSlot("body", ArtifactSlot::new);
 	public static RegistryEntry<ArtifactSlot> SLOT_BELT = regSlot("belt", ArtifactSlot::new);
 
-	public static RegistryEntry<Attribute> CRIT_RATE = REGISTRATE.simple("crit_rate", Attribute.class, () -> new RangedAttribute("crit_rate", 0.05, 0, 1).setSyncable(true));
-	public static RegistryEntry<Attribute> CRIT_DMG = REGISTRATE.simple("crit_damage", Attribute.class, () -> new RangedAttribute("crit_damage", 0.50, 0, 1000).setSyncable(true));
+	public static RegistryEntry<Attribute> CRIT_RATE = REGISTRATE.simple("crit_rate", Attribute.class, () -> new RangedAttribute("attribute.name.crit_rate", 0.05, 0, 1).setSyncable(true));
+	public static RegistryEntry<Attribute> CRIT_DMG = REGISTRATE.simple("crit_damage", Attribute.class, () -> new RangedAttribute("attribute.name.crit_damage", 0.50, 0, 1000).setSyncable(true));
 
 	public static RegistryEntry<ArtifactStatType> HEALTH_ADD = regStat("health_add", () -> Attributes.MAX_HEALTH, ADDITION, false);
 	public static RegistryEntry<ArtifactStatType> ARMOR_ADD = regStat("armor_add", () -> Attributes.ARMOR, ADDITION, false);

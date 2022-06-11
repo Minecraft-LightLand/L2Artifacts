@@ -1,15 +1,18 @@
-package dev.xkmc.l2artifacts.content.capability;
+package dev.xkmc.l2artifacts.content.core;
 
 import com.google.common.collect.Multimap;
 import dev.xkmc.l2artifacts.content.core.ArtifactStats;
 import dev.xkmc.l2artifacts.content.core.BaseArtifact;
 import dev.xkmc.l2library.serial.codec.TagCodec;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.item.ItemStack;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurio;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -43,4 +46,8 @@ public class ArtifactCurioCap implements ICurio {
 		return ICurio.super.getAttributeModifiers(slotContext, uuid);
 	}
 
+	@Override
+	public List<Component> getAttributesTooltip(List<Component> tooltips) {
+		return new ArrayList<>();
+	}
 }

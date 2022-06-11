@@ -4,7 +4,7 @@ license="All rights reserved"
 [[mods]]
 modId="l2artifacts"
 version="${file.jarVersion}" #mandatory
-displayName="Player Difficulty" #mandatory
+displayName="L2 Artifacts" #mandatory
 logoFile="l2artifacts.png" #optional
 credits="Thanks for this example mod goes to Java" #optional
 authors="Love, Cheese and small house plants" #optional
@@ -25,6 +25,6 @@ description='''
 [[dependencies.l2artifacts]]
     modId="l2library"
     mandatory=true
-    versionRange="[0.0.8,)"
+    versionRange="[0.0.9,)"
     ordering="AFTER"
     side="BOTH"

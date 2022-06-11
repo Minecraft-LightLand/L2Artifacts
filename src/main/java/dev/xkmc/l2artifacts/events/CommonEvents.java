@@ -1,12 +1,16 @@
-package dev.xkmc.l2artifacts.content.capability;
+package dev.xkmc.l2artifacts.events;
 
+import dev.xkmc.l2artifacts.content.core.ArtifactCurioCap;
 import dev.xkmc.l2artifacts.content.core.BaseArtifact;
+import dev.xkmc.l2artifacts.init.registrate.ArtifactRegistry;
 import net.minecraft.core.Direction;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
+import net.minecraftforge.event.entity.player.CriticalHitEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import top.theillusivec4.curios.api.CuriosCapability;
 import top.theillusivec4.curios.api.type.capability.ICurio;
@@ -15,7 +19,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Objects;
 
-public class CapabilityEvent {
+public class CommonEvents {
 
 	@SubscribeEvent
 	public static void attachCapabilities(AttachCapabilitiesEvent<ItemStack> event) {
@@ -31,9 +35,6 @@ public class CapabilityEvent {
 		});
 		Objects.requireNonNull(stats);
 		event.addListener(stats::invalidate);
-
-
 	}
-
 
 }

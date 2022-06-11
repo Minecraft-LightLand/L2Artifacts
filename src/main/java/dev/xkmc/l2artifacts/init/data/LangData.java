@@ -13,8 +13,8 @@ public enum LangData {
 	RAW_ARTIFACT("tooltip.raw_artifact", "Right Click to Reveal Stats", 0, null),
 	ARTIFACT_LEVEL("tooltip.artifact_level", "Level: %s", 1, null),
 	ARTIFACT_EXP("tooltip.artifact_exp", "Exp: %s/%s", 2, null),
-	MAIN_STAT("tooltip.main_stat", "Main Stats", 0, null),
-	SUB_STAT("tooltip.sub_stat", "Sub Stats", 0, null),
+	MAIN_STAT("tooltip.main_stat", "Main Stats", 0, ChatFormatting.GRAY),
+	SUB_STAT("tooltip.sub_stat", "Sub Stats", 0, ChatFormatting.GRAY),
 	;
 
 	private final String key, def;

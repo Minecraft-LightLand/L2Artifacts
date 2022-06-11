@@ -1,0 +1,59 @@
+package dev.xkmc.l2artifacts.content.effects;
+
+import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
+import dev.xkmc.l2artifacts.content.core.BaseArtifact;
+import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.world.entity.ai.attributes.Attribute;
+import net.minecraft.world.entity.ai.attributes.AttributeInstance;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.player.Player;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Supplier;
+
+import static net.minecraft.world.item.ItemStack.ATTRIBUTE_MODIFIER_FORMAT;
+
+public abstract class AttributeSetEffect extends SetEffect {
+
+	public record AttrSetEntry(Supplier<Attribute> attr, AttributeModifier.Operation op,
+							   double base, double slope, boolean useMult) {
+
+	}
+
+	private final AttrSetEntry[] entries;
+
+	public AttributeSetEffect(AttrSetEntry... entries) {
+		super(entries.length);
+		this.entries = entries;
+	}
+
+	@Override
+	public void update(Player player, ArtifactSetConfig.Entry ent, int rank, boolean enabled) {
+		for (int i = 0; i < entries.length; i++) {
+			AttrSetEntry entry = entries[i];
+			double val = entry.base + entry.slope * (rank - 1);
+			AttributeInstance ins = player.getAttribute(entry.attr().get());
+			if (ins == null)
+				continue;
+			ins.removeModifier(ent.id[i]);
+			if (enabled) {
+				ins.addTransientModifier(new AttributeModifier(ent.id[i], ent.str, val, entry.op));
+			}
+		}
+	}
+
+	@Override
+	public List<MutableComponent> getDetailedDescription(BaseArtifact item) {
+		List<MutableComponent> ans = new ArrayList<>();
+		for (AttrSetEntry ent : entries) {
+			double val = ent.base + ent.slope * (item.rank - 1);
+			ans.add(new TranslatableComponent(
+					"attribute.modifier.plus." + (ent.useMult ? 1 : 0),
+					ATTRIBUTE_MODIFIER_FORMAT.format(ent.useMult ? val * 100 : val),
+					new TranslatableComponent(ent.attr.get().getDescriptionId())));
+		}
+		return ans;
+	}
+}

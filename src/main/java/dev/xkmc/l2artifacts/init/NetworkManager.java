@@ -1,5 +1,6 @@
 package dev.xkmc.l2artifacts.init;
 
+import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
 import dev.xkmc.l2artifacts.content.config.SlotStatConfig;
 import dev.xkmc.l2artifacts.content.config.StatTypeConfig;
 import dev.xkmc.l2library.network.BaseConfig;
@@ -32,6 +33,7 @@ public class NetworkManager {
 		HANDLER.addAfterReloadListener(() -> {
 			SlotStatConfig.cache = null;
 			StatTypeConfig.cache = null;
+			ArtifactSetConfig.cache = null;
 		});
 	}
 

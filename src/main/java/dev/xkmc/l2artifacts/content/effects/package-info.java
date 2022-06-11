@@ -1,7 +1,7 @@
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
 
-package dev.xkmc.l2artifacts.content.sets;
+package dev.xkmc.l2artifacts.content.effects;
 
 import net.minecraft.MethodsReturnNonnullByDefault;
 

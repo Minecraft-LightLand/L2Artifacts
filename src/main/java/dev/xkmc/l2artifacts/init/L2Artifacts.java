@@ -45,6 +45,7 @@ public class L2Artifacts {
 		AttackEventHandler.LISTENERS.add(new CritHandler());
 		MinecraftForge.EVENT_BUS.register(CommonEvents.class);
 		MinecraftForge.EVENT_BUS.register(CraftEvents.class);
+		MinecraftForge.EVENT_BUS.register(CritHandler.class);
 	}
 
 	private static void registerModBusEvents(IEventBus bus) {

@@ -56,7 +56,7 @@ public class ArtifactRegistrate extends LcyRegistrate {
 				for (int r = min_rank; r <= max_rank; r++) {
 					String name = this.getName() + "_" + slot_name + "_" + r;
 					int rank = r;
-					items[i][r - min_rank] = L2Artifacts.REGISTRATE.item(name, p -> new BaseArtifact(p, slot, rank))
+					items[i][r - min_rank] = L2Artifacts.REGISTRATE.item(name, p -> new BaseArtifact(p, asSupplier()::get, slot, rank))
 							.tag(ForgeRegistries.ITEMS.tags().createTagKey(new ResourceLocation("curios", slot_name))).register();
 				}
 			}

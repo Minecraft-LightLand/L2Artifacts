@@ -1,8 +1,6 @@
 package dev.xkmc.l2artifacts.content.core;
 
 import com.google.common.collect.Multimap;
-import dev.xkmc.l2artifacts.content.core.ArtifactStats;
-import dev.xkmc.l2artifacts.content.core.BaseArtifact;
 import dev.xkmc.l2library.serial.codec.TagCodec;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.ai.attributes.Attribute;
@@ -49,5 +47,26 @@ public class ArtifactCurioCap implements ICurio {
 	@Override
 	public List<Component> getAttributesTooltip(List<Component> tooltips) {
 		return new ArrayList<>();
+	}
+
+	@Override
+	public void onEquip(SlotContext slotContext, ItemStack prevStack) {
+		if (stack.getItem() instanceof BaseArtifact base) {
+			base.set.get().update(slotContext);
+		}
+	}
+
+	@Override
+	public void onUnequip(SlotContext slotContext, ItemStack newStack) {
+		if (stack.getItem() instanceof BaseArtifact base) {
+			base.set.get().update(slotContext);
+		}
+	}
+
+	@Override
+	public void curioTick(SlotContext slotContext) {
+		if (stack.getItem() instanceof BaseArtifact base) {
+			base.set.get().tick(slotContext);
+		}
 	}
 }

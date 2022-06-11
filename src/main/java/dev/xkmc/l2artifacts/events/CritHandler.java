@@ -3,8 +3,11 @@ package dev.xkmc.l2artifacts.events;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactRegistry;
 import dev.xkmc.l2library.init.events.AttackEventHandler;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.AbstractArrow;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.player.CriticalHitEvent;
 import net.minecraftforge.eventbus.api.Event;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 public class CritHandler implements AttackEventHandler.AttackListener {
 
@@ -20,4 +23,19 @@ public class CritHandler implements AttackEventHandler.AttackListener {
 		}
 
 	}
+
+	@SubscribeEvent
+	public static void onEntityJoin(EntityJoinWorldEvent event) {
+		if (event.getEntity() instanceof AbstractArrow arrow) {
+			if (arrow.getOwner() instanceof Player player) {
+				double cr = player.getAttributeValue(ArtifactRegistry.CRIT_RATE.get());
+				double cd = player.getAttributeValue(ArtifactRegistry.CRIT_DMG.get());
+				if (player.getRandom().nextDouble() < cr) {
+					arrow.setBaseDamage((float) (arrow.getBaseDamage() * (1 + cd)));
+				}
+			}
+		}
+	}
+
+
 }

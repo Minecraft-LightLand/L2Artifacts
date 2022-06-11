@@ -43,12 +43,13 @@ public class BaseArtifact extends Item {
 				.flatMap(e -> ((ArtifactCurioCap) e).getStats());
 	}
 
-
+	public final Supplier<ArtifactSet> set;
 	public final Supplier<ArtifactSlot> slot;
 	public final int rank;
 
-	public BaseArtifact(Properties properties, Supplier<ArtifactSlot> slot, int rank) {
+	public BaseArtifact(Properties properties, Supplier<ArtifactSet> set, Supplier<ArtifactSlot> slot, int rank) {
 		super(properties.stacksTo(1).rarity(getRarity(rank)));
+		this.set = set;
 		this.slot = slot;
 		this.rank = rank;
 	}
@@ -105,6 +106,7 @@ public class BaseArtifact extends Item {
 					}
 				});
 			}
+			list.addAll(set.get().getAllDescs(stack, flag));
 			list.add(LangData.EXP_CONVERSION.get(ArtifactUpgradeManager.getExpForConversion(rank, getStats(stack).orElse(null))));
 		}
 		super.appendHoverText(stack, level, list, flag);

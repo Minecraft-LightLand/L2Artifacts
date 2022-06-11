@@ -34,6 +34,10 @@ public enum LangData {
 		return name.toLowerCase(Locale.ROOT);
 	}
 
+	public static TranslatableComponent getTranslate(String s) {
+		return new TranslatableComponent(L2Artifacts.MODID + "." + s);
+	}
+
 	public MutableComponent get(Object... args) {
 		if (args.length != arg)
 			throw new IllegalArgumentException("for " + name() + ": expect " + arg + " parameters, got " + args.length);
@@ -51,6 +55,8 @@ public enum LangData {
 		pvd.add("itemGroup." + L2Artifacts.MODID + ".artifacts", "Artifacts");
 		pvd.add("attribute.name.crit_rate", "Crit Rate");
 		pvd.add("attribute.name.crit_damage", "Crit Damage");
+		pvd.add("l2artifact.set.2", "When Equip 2 of this Set: ");
+		pvd.add("l2artifact.set.4", "When Equip 4 of this Set: ");
 	}
 
 }

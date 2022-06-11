@@ -3,6 +3,7 @@ package dev.xkmc.l2artifacts.init.registrate;
 import dev.xkmc.l2artifacts.content.core.ArtifactSet;
 import dev.xkmc.l2artifacts.content.core.ArtifactSlot;
 import dev.xkmc.l2artifacts.content.core.ArtifactStatType;
+import dev.xkmc.l2artifacts.content.effects.SetEffect;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
 import dev.xkmc.l2library.repack.registrate.util.entry.RegistryEntry;
 import dev.xkmc.l2library.repack.registrate.util.nullness.NonNullSupplier;
@@ -31,6 +32,7 @@ public class ArtifactRegistry {
 	public static IForgeRegistry<ArtifactSlot> SLOT;
 	public static IForgeRegistry<ArtifactStatType> STAT_TYPE;
 	public static IForgeRegistry<ArtifactSet> SET;
+	public static IForgeRegistry<SetEffect> SET_EFFECT;
 
 	public static RegistryEntry<ArtifactSlot> SLOT_HEAD = regSlot("head", ArtifactSlot::new);
 	public static RegistryEntry<ArtifactSlot> SLOT_NECKLACE = regSlot("necklace", ArtifactSlot::new);
@@ -74,6 +76,10 @@ public class ArtifactRegistry {
 		event.create(new RegistryBuilder<ArtifactSet>()
 				.setName(new ResourceLocation(L2Artifacts.MODID, "set"))
 				.setType(ArtifactSet.class), e -> SET = regSerializer(e));
+
+		event.create(new RegistryBuilder<SetEffect>()
+				.setName(new ResourceLocation(L2Artifacts.MODID, "set_effect"))
+				.setType(SetEffect.class), e -> SET_EFFECT = regSerializer(e));
 	}
 
 	@SuppressWarnings({"rawtypes"})

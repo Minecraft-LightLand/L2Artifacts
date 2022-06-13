@@ -11,8 +11,10 @@ import dev.xkmc.l2artifacts.init.registrate.ArtifactRegistrate;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactRegistry;
 import dev.xkmc.l2library.init.events.AttackEventHandler;
 import dev.xkmc.l2library.repack.registrate.providers.ProviderType;
+import net.minecraft.world.entity.EntityType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.entity.EntityAttributeModificationEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.InterModComms;
@@ -50,6 +52,7 @@ public class L2Artifacts {
 
 	private static void registerModBusEvents(IEventBus bus) {
 		bus.addListener(ArtifactRegistry::createRegistries);
+		bus.addListener(L2Artifacts::modifyAttributes);
 		bus.addListener(L2Artifacts::setup);
 		bus.addListener(L2Artifacts::gatherData);
 		bus.addListener(ModClient::clientSetup);
@@ -63,6 +66,11 @@ public class L2Artifacts {
 		DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> ModClient.onCtorClient(bus, MinecraftForge.EVENT_BUS));
 		registerRegistrates(bus);
 		registerForgeEvents();
+	}
+
+	private static void modifyAttributes(EntityAttributeModificationEvent event) {
+		event.add(EntityType.PLAYER, ArtifactRegistry.CRIT_RATE.get());
+		event.add(EntityType.PLAYER, ArtifactRegistry.CRIT_DMG.get());
 	}
 
 	private static void setup(final FMLCommonSetupEvent event) {

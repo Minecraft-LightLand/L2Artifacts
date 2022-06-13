@@ -72,7 +72,7 @@ public class ArtifactRegistry {
 	public static final RegistryEntry<AttributeSetEffect> EFF_GAMBLER_5 = REGISTRATE.setEffect("gambler_5", () -> new AttributeSetEffect(
 			new AttributeSetEffect.AttrSetEntry(CRIT_RATE, ADDITION, 0.04, 0.02, true),
 			new AttributeSetEffect.AttrSetEntry(CRIT_DMG, ADDITION, 0.08, 0.04, true),
-			new AttributeSetEffect.AttrSetEntry(() -> Attributes.LUCK, ADDITION, 1, 0.5, true)
+			new AttributeSetEffect.AttrSetEntry(() -> Attributes.LUCK, ADDITION, 1, 0.5, false)
 	));
 
 	public static final RegistryEntry<AttributeSetEffect> EFF_BERSERKER_3 = REGISTRATE.setEffect("berserker_3", () -> new AttributeSetEffect(

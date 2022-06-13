@@ -26,6 +26,7 @@ public class ArtifactSetConfig extends BaseConfig {
 		map.values().forEach(e -> e.sort(null));
 		ArtifactSetConfig ans = new ArtifactSetConfig();
 		map.forEach((k, v) -> v.forEach(e -> e.validate(k)));
+		ans.map = map;
 		cache = ans;
 		return ans;
 	}

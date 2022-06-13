@@ -49,9 +49,10 @@ public class AttributeSetEffect extends SetEffect {
 		List<MutableComponent> ans = new ArrayList<>();
 		for (AttrSetEntry ent : entries) {
 			double val = ent.base + ent.slope * (item.rank - 1);
+			String sign = val > 0 ? "attribute.modifier.plus." : "attribute.modifier.take.";
 			ans.add(new TranslatableComponent(
-					"attribute.modifier.plus." + (ent.useMult ? 1 : 0),
-					ATTRIBUTE_MODIFIER_FORMAT.format(ent.useMult ? val * 100 : val),
+					sign + (ent.useMult ? 1 : 0),
+					ATTRIBUTE_MODIFIER_FORMAT.format(Math.abs(ent.useMult ? val * 100 : val)),
 					new TranslatableComponent(ent.attr.get().getDescriptionId())));
 		}
 		return ans;

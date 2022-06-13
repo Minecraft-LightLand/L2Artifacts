@@ -65,5 +65,9 @@
   "l2artifacts.set.2": "两件套: ",
   "l2artifacts.set.3": "三件套: ",
   "l2artifacts.set.4": "四件套: ",
-  "l2artifacts.set.5": "五件套: "
+  "l2artifacts.set.5": "五件套: ",
+  "set_effect.l2artifacts.berserker_3": "嗜血暴徒",
+  "set_effect.l2artifacts.berserker_5": "狂暴之血",
+  "set_effect.l2artifacts.gambler_3": "趋险的本性",
+  "set_effect.l2artifacts.gambler_5": "幸运女神的加护"
 }

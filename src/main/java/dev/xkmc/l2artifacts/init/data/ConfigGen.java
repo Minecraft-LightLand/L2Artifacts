@@ -1,7 +1,9 @@
 package dev.xkmc.l2artifacts.init.data;
 
+import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
 import dev.xkmc.l2artifacts.content.config.SlotStatConfig;
 import dev.xkmc.l2artifacts.content.config.StatTypeConfig;
+import dev.xkmc.l2artifacts.content.core.ArtifactSet;
 import dev.xkmc.l2artifacts.content.core.ArtifactSlot;
 import dev.xkmc.l2artifacts.content.core.ArtifactStatType;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactRegistry;
@@ -13,6 +15,7 @@ import net.minecraft.resources.ResourceLocation;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 
 public class ConfigGen extends ConfigDataProvider {
 
@@ -22,6 +25,7 @@ public class ConfigGen extends ConfigDataProvider {
 
 	@Override
 	public void add(Map<String, BaseConfig> map) {
+		// Slot Stat Config
 		{
 			ArrayList<ArtifactStatType> all = new ArrayList<>();
 			{
@@ -93,6 +97,7 @@ public class ConfigGen extends ConfigDataProvider {
 			}
 		}
 
+		// Stat Type Config
 		{
 			addStatType(map, ArtifactRegistry.HEALTH_ADD.get(), 1);
 			addStatType(map, ArtifactRegistry.ARMOR_ADD.get(), 1);
@@ -104,6 +109,17 @@ public class ConfigGen extends ConfigDataProvider {
 			addStatType(map, ArtifactRegistry.REACH_ADD.get(), 0.02);
 			addStatType(map, ArtifactRegistry.SPEED_MULT.get(), 0.02);
 			addStatType(map, ArtifactRegistry.ATK_SPEED_MULT.get(), 0.02);
+		}
+
+		// Set Effect Config
+		{
+			addArtifactSet(map, ArtifactRegistry.SET_GAMBLER.get(), (c) -> c
+					.add(3, ArtifactRegistry.EFF_GAMBLER_3.get())
+					.add(5, ArtifactRegistry.EFF_GAMBLER_5.get()));
+
+			addArtifactSet(map, ArtifactRegistry.SET_BERSERKER.get(), (c) -> c
+					.add(3, ArtifactRegistry.EFF_BERSERKER_3.get())
+					.add(5, ArtifactRegistry.EFF_BERSERKER_5.get()));
 		}
 	}
 
@@ -122,6 +138,11 @@ public class ConfigGen extends ConfigDataProvider {
 		map.put(rl.getNamespace() + "/artifact_config/stat_types/" + rl.getPath(), config);
 	}
 
+	private static void addArtifactSet(Map<String, BaseConfig> map, ArtifactSet set, Consumer<ArtifactSetConfig.SetBuilder> builder) {
+		ResourceLocation rl = Objects.requireNonNull(set.getRegistryName());
+		map.put(rl.getNamespace() + "/artifact_config/artifact_sets/" + rl.getPath(), ArtifactSetConfig.construct(set, builder));
+	}
+
 	private static StatTypeConfig.Entry genEntry(double base, double sub, double factor) {
 		StatTypeConfig.Entry entry = new StatTypeConfig.Entry();
 		entry.base_low = base;
@@ -132,5 +153,6 @@ public class ConfigGen extends ConfigDataProvider {
 		entry.sub_high = base * sub * factor;
 		return entry;
 	}
+
 
 }

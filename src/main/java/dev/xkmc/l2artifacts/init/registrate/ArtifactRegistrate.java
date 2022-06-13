@@ -3,6 +3,7 @@ package dev.xkmc.l2artifacts.init.registrate;
 import dev.xkmc.l2artifacts.content.core.ArtifactSet;
 import dev.xkmc.l2artifacts.content.core.ArtifactSlot;
 import dev.xkmc.l2artifacts.content.core.BaseArtifact;
+import dev.xkmc.l2artifacts.content.effects.SetEffect;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
 import dev.xkmc.l2library.base.LcyRegistrate;
 import dev.xkmc.l2library.base.NamedEntry;
@@ -28,6 +29,11 @@ public class ArtifactRegistrate extends LcyRegistrate {
 	public final <T extends ArtifactSet> SetEntry<T> regSet(String id, NonNullSupplier<T> sup, int min_rank, int max_rank, RegistryEntry<ArtifactSlot>... slots) {
 		return (SetEntry<T>) this.entry(id, (cb) -> new SetBuilder<>(this, id, cb, sup, min_rank, max_rank, slots))
 				.regItems().defaultLang().register();
+	}
+
+	public <T extends SetEffect> RegistryEntry<T> setEffect(String id, NonNullSupplier<T> sup){
+		return generic(SetEffect.class, id, sup).defaultLang().register();
+
 	}
 
 	public static class SetBuilder<T extends ArtifactSet, I extends BaseArtifact> extends AbstractBuilder<ArtifactSet, T, ArtifactRegistrate, ArtifactRegistrate.SetBuilder<T, I>> {

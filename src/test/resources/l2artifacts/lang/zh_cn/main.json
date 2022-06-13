@@ -21,5 +21,11 @@
 	  "4": "四件套: ",
 	  "5": "五件套: "
 	}
+  },
+  "set_effect.l2artifacts": {
+	"berserker_3": "嗜血暴徒",
+	"berserker_5": "狂暴之血",
+	"gambler_3": "趋险的本性",
+	"gambler_5": "幸运女神的加护"
   }
 }

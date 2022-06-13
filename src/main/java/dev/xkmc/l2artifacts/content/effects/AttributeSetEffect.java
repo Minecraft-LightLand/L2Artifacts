@@ -15,7 +15,7 @@ import java.util.function.Supplier;
 
 import static net.minecraft.world.item.ItemStack.ATTRIBUTE_MODIFIER_FORMAT;
 
-public abstract class AttributeSetEffect extends SetEffect {
+public class AttributeSetEffect extends SetEffect {
 
 	public record AttrSetEntry(Supplier<Attribute> attr, AttributeModifier.Operation op,
 							   double base, double slope, boolean useMult) {

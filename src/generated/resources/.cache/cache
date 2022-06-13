@@ -1,5 +1,5 @@
-94bbe1ae6ea7eacd2979b04efb9fb976b80acae4 assets/l2artifacts/lang/en_ud.json
-8294a569d0b47302b87a8d6762c1c4235f295b54 assets/l2artifacts/lang/en_us.json
+7f0e6fc72ac10a9d32d4ace0863084c3ac80fcb5 assets/l2artifacts/lang/en_ud.json
+21f820ecebf554294fba5f20cbd1a381c0aec952 assets/l2artifacts/lang/en_us.json
 96467b598960b30ad0303f8347253ff701597479 assets/l2artifacts/models/item/berserker_belt_1.json
 5972e85e5a381204ead86590fc469034bb2998a6 assets/l2artifacts/models/item/berserker_belt_2.json
 932ec405179b784706d32de738e079037ef3bfe8 assets/l2artifacts/models/item/berserker_belt_3.json
@@ -55,6 +55,8 @@ f1584a8e8f2a8ac65dfe56364c239bfb67cf39ed assets/l2artifacts/models/item/gambler_
 1ad965bb019a6ea6155f4443051cb27ea96e2770 data/curios/tags/items/bracelet.json
 20e7fa17448aeccd8fa1c2e10ebf2a1222c92ba5 data/curios/tags/items/head.json
 632cef1c6ed58e7bad42dd7bd8f8cec029d57032 data/curios/tags/items/necklace.json
+7680dc54285d3f02975083689a8db547e80e52b0 data/l2artifacts/artifact_config/artifact_sets/berserker.json
+32612fe711f1a6e05c2386717c3944aeb3bf515d data/l2artifacts/artifact_config/artifact_sets/gambler.json
 f9ab0468b3e37ffd37164dd95751d5d61e4b9b0f data/l2artifacts/artifact_config/slot_stats/belt.json
 dbc1e848665ea62f032f8de2389ae51747e7a67b data/l2artifacts/artifact_config/slot_stats/body.json
 bf7893636382983f9b9d34b5ff037a62cdab8e17 data/l2artifacts/artifact_config/slot_stats/bracelet.json

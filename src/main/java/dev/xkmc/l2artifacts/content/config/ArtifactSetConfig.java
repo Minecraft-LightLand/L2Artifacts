@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
+import java.util.function.Consumer;
 
 @SerialClass
 public class ArtifactSetConfig extends BaseConfig {
@@ -29,6 +30,14 @@ public class ArtifactSetConfig extends BaseConfig {
 		return ans;
 	}
 
+	public static ArtifactSetConfig construct(ArtifactSet set, Consumer<SetBuilder> builder) {
+		ArtifactSetConfig config = new ArtifactSetConfig();
+		ArrayList<Entry> list = new ArrayList<>();
+		builder.accept((count, effect) -> list.add(new Entry(count, effect)));
+		config.map.put(set, list);
+		return config;
+	}
+
 	@SerialClass.SerialField
 	public HashMap<ArtifactSet, ArrayList<Entry>> map = new HashMap<>();
 
@@ -43,6 +52,16 @@ public class ArtifactSetConfig extends BaseConfig {
 
 		public String str;
 		public UUID[] id;
+
+		@Deprecated
+		public Entry() {
+
+		}
+
+		Entry(int count, SetEffect effect) {
+			this.count = count;
+			this.effect = effect;
+		}
 
 		@Override
 		public int compareTo(@NotNull ArtifactSetConfig.Entry o) {
@@ -60,4 +79,14 @@ public class ArtifactSetConfig extends BaseConfig {
 
 	}
 
+	public interface SetBuilder {
+
+		void add_impl(int count, SetEffect effect);
+
+		default SetBuilder add(int count, SetEffect effect) {
+			add_impl(count, effect);
+			return this;
+		}
+
+	}
 }

@@ -3,6 +3,7 @@ package dev.xkmc.l2artifacts.init.registrate;
 import dev.xkmc.l2artifacts.content.core.ArtifactSet;
 import dev.xkmc.l2artifacts.content.core.ArtifactSlot;
 import dev.xkmc.l2artifacts.content.core.ArtifactStatType;
+import dev.xkmc.l2artifacts.content.effects.AttributeSetEffect;
 import dev.xkmc.l2artifacts.content.effects.SetEffect;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
 import dev.xkmc.l2library.repack.registrate.util.entry.RegistryEntry;
@@ -62,6 +63,29 @@ public class ArtifactRegistry {
 
 	public static final ArtifactRegistrate.SetEntry<ArtifactSet> SET_GAMBLER = REGISTRATE.regSet("gambler", ArtifactSet::new, 1, 5, SLOT_HEAD, SLOT_NECKLACE, SLOT_BODY, SLOT_BRACELET, SLOT_BELT);
 	public static final ArtifactRegistrate.SetEntry<ArtifactSet> SET_BERSERKER = REGISTRATE.regSet("berserker", ArtifactSet::new, 1, 5, SLOT_HEAD, SLOT_NECKLACE, SLOT_BODY, SLOT_BRACELET, SLOT_BELT);
+
+	public static final RegistryEntry<AttributeSetEffect> EFF_GAMBLER_3 = REGISTRATE.setEffect("gambler_3", () -> new AttributeSetEffect(
+			new AttributeSetEffect.AttrSetEntry(CRIT_RATE, ADDITION, -0.2, 0, true),
+			new AttributeSetEffect.AttrSetEntry(CRIT_DMG, ADDITION, 0.2, 0.2, true)
+	));
+
+	public static final RegistryEntry<AttributeSetEffect> EFF_GAMBLER_5 = REGISTRATE.setEffect("gambler_5", () -> new AttributeSetEffect(
+			new AttributeSetEffect.AttrSetEntry(CRIT_RATE, ADDITION, 0.04, 0.02, true),
+			new AttributeSetEffect.AttrSetEntry(CRIT_DMG, ADDITION, 0.08, 0.04, true),
+			new AttributeSetEffect.AttrSetEntry(() -> Attributes.LUCK, ADDITION, 1, 0.5, true)
+	));
+
+	public static final RegistryEntry<AttributeSetEffect> EFF_BERSERKER_3 = REGISTRATE.setEffect("berserker_3", () -> new AttributeSetEffect(
+			new AttributeSetEffect.AttrSetEntry(() -> Attributes.ARMOR, ADDITION, -10, 0, false),
+			new AttributeSetEffect.AttrSetEntry(() -> Attributes.ATTACK_DAMAGE, MULTIPLY_TOTAL, 0.2, 0.1, true)
+	));
+
+	public static final RegistryEntry<AttributeSetEffect> EFF_BERSERKER_5 = REGISTRATE.setEffect("berserker_5", () -> new AttributeSetEffect(
+			new AttributeSetEffect.AttrSetEntry(() -> Attributes.MOVEMENT_SPEED, MULTIPLY_TOTAL, 0.04, 0.02, true),
+			new AttributeSetEffect.AttrSetEntry(() -> Attributes.ATTACK_SPEED, MULTIPLY_TOTAL, 0.04, 0.02, true),
+			new AttributeSetEffect.AttrSetEntry(CRIT_DMG, ADDITION, 0.04, 0.02, true)
+	));
+
 
 	@SuppressWarnings({"unchecked"})
 	public static void createRegistries(NewRegistryEvent event) {

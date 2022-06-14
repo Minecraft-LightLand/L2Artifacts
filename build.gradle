@@ -151,6 +151,11 @@ dependencies {
     implementation fg.deobf("top.theillusivec4.caelus:caelus-forge:${caelus_version}")
     implementation fg.deobf('curse.maven:curious-elytra-317716:3601975')
 
+
+    implementation fg.deobf("dev.latvian.mods:kubejs-forge:${kubejs_version}")
+    implementation fg.deobf("dev.latvian.mods:rhino-forge:${rhino_version}")
+    implementation fg.deobf("dev.architectury:architectury-forge:${architectury_version}")
+
 }
 
 // Example for how to get properties into the manifest for reading at runtime.

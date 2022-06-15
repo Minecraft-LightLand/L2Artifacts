@@ -7,6 +7,7 @@ import dev.xkmc.l2library.base.NamedEntry;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.entity.player.Player;
+import net.minecraftforge.eventbus.api.Event;
 
 import java.util.List;
 
@@ -35,4 +36,7 @@ public abstract class SetEffect extends NamedEntry<SetEffect> {
 		return List.of(new TranslatableComponent(getDescriptionId() + ".desc"));
 	}
 
+	public <T extends Event> void propagateEvent(Player player, ArtifactSetConfig.Entry ent, int rank, boolean b, T event) {
+
+	}
 }

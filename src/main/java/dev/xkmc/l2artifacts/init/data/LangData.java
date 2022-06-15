@@ -60,6 +60,10 @@ public enum LangData {
 		pvd.add("l2artifacts.set.3", "When Equip 3 of this Set: ");
 		pvd.add("l2artifacts.set.4", "When Equip 4 of this Set: ");
 		pvd.add("l2artifacts.set.5", "When Equip 5 of this Set: ");
+
+		pvd.add("set-effect.l2artifacts.protection_absorption.desc","When at full health, gain %s points of absorption");
+		pvd.add("set-effect.l2artifacts.protection_protection.desc","When at full health, reduce damage by %s%%");
+		pvd.add("set-effect.l2artifacts.damocles.desc","When at full health, direct attack damage increase by %s%%. When below half health, die immediately.");
 	}
 
 }

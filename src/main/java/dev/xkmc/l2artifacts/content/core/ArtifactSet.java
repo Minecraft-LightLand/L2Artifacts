@@ -12,6 +12,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraftforge.eventbus.api.Event;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.SlotResult;
@@ -35,7 +36,7 @@ public class ArtifactSet extends NamedEntry<ArtifactSet> {
 		super(() -> ArtifactRegistry.SET);
 	}
 
-	public Optional<SetContext> getCount(@Nullable SlotContext context) {
+	public Optional<SetContext> getCountAndIndex(@Nullable SlotContext context) {
 		LivingEntity e = context == null ? Proxy.getPlayer() : context.entity();
 		if (e instanceof Player player) {
 			List<SlotResult> list = CuriosApi.getCuriosHelper().findCurios(player, stack -> stack.getItem() instanceof BaseArtifact artifact && artifact.set.get() == this);
@@ -54,10 +55,24 @@ public class ArtifactSet extends NamedEntry<ArtifactSet> {
 		return Optional.empty();
 	}
 
+	public Optional<SetContext> getSetCount(LivingEntity e) {
+		if (e instanceof Player player) {
+			List<SlotResult> list = CuriosApi.getCuriosHelper().findCurios(player, stack -> stack.getItem() instanceof BaseArtifact artifact && artifact.set.get() == this);
+			int rank = ModConfig.COMMON.maxRank.get();
+			for (SlotResult result : list) {
+				if (result.stack().getItem() instanceof BaseArtifact artifact) {
+					rank = Math.min(rank, artifact.rank);
+				}
+			}
+			return Optional.of(new SetContext(list.size(), rank, -1));
+		}
+		return Optional.empty();
+	}
+
 	public void update(SlotContext context) {
 		LivingEntity e = context.entity();
 		if (e instanceof Player player) {
-			Optional<SetContext> result = getCount(context);
+			Optional<SetContext> result = getCountAndIndex(context);
 			if (result.isPresent()) {
 				ArtifactSetConfig config = ArtifactSetConfig.getInstance();
 				ArrayList<ArtifactSetConfig.Entry> list = config.map.get(this);
@@ -71,7 +86,7 @@ public class ArtifactSet extends NamedEntry<ArtifactSet> {
 	public void tick(SlotContext context) {
 		LivingEntity e = context.entity();
 		if (e instanceof Player player) {
-			Optional<SetContext> result = getCount(context);
+			Optional<SetContext> result = getCountAndIndex(context);
 			if (result.isPresent() && result.get().current_index() == 0) {
 				ArtifactSetConfig config = ArtifactSetConfig.getInstance();
 				ArrayList<ArtifactSetConfig.Entry> list = config.map.get(this);
@@ -82,11 +97,25 @@ public class ArtifactSet extends NamedEntry<ArtifactSet> {
 		}
 	}
 
+	public <T extends Event> void propagateEvent(SlotContext context, T event) {
+		LivingEntity e = context.entity();
+		if (e instanceof Player player) {
+			Optional<SetContext> result = getCountAndIndex(context);
+			if (result.isPresent() && result.get().current_index() == 0) {
+				ArtifactSetConfig config = ArtifactSetConfig.getInstance();
+				ArrayList<ArtifactSetConfig.Entry> list = config.map.get(this);
+				for (ArtifactSetConfig.Entry ent : list) {
+					ent.effect.propagateEvent(player, ent, result.get().min_rank(), result.get().count() >= ent.count, event);
+				}
+			}
+		}
+	}
+
 	public List<MutableComponent> getAllDescs(ItemStack stack, TooltipFlag flag) {
 		List<MutableComponent> ans = new ArrayList<>();
 		BaseArtifact artifact = (BaseArtifact) stack.getItem();
 		if (Proxy.getPlayer() != null) {
-			Optional<SetContext> opt = getCount(null);
+			Optional<SetContext> opt = getSetCount(Proxy.getPlayer());
 			if (opt.isPresent()) {
 				SetContext ctx = opt.get();
 				ArtifactSetConfig config = ArtifactSetConfig.getInstance();

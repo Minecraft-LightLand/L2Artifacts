@@ -26,6 +26,13 @@
 	"berserker_3": "嗜血暴徒",
 	"berserker_5": "狂暴之血",
 	"gambler_3": "趋险的本性",
-	"gambler_5": "幸运女神的加护"
+	"gambler_5": "幸运女神的加护",
+	"perfection_absorption": "完美之心",
+	"perfection_absorption.desc": "满血时每秒增加1点伤害吸收，最多%s点",
+	"perfection_protection": "完美之人",
+	"perfection_protection.desc": "满血时收到的伤害减少%s%%",
+	"damocles": "达摩克利斯之剑",
+	"damocles.desc": "满血时近战伤害+%s%%，半血直接死亡"
+
   }
 }

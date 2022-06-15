@@ -1,3 +1,8 @@
+1. Event Propagation
+2. Artifact Tick reduce loop iteration
+3. BaseArtifact Item builder for KubeJS
+
+
 As in you have x item that you want to let users register during a KubeJS event?
 
 You’d start by making a KubeJSPlugin class (a class that extends KubeJSPlugin).

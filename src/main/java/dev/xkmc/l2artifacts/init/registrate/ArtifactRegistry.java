@@ -3,8 +3,7 @@ package dev.xkmc.l2artifacts.init.registrate;
 import dev.xkmc.l2artifacts.content.core.ArtifactSet;
 import dev.xkmc.l2artifacts.content.core.ArtifactSlot;
 import dev.xkmc.l2artifacts.content.core.ArtifactStatType;
-import dev.xkmc.l2artifacts.content.effects.AttributeSetEffect;
-import dev.xkmc.l2artifacts.content.effects.SetEffect;
+import dev.xkmc.l2artifacts.content.effects.*;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
 import dev.xkmc.l2library.repack.registrate.util.entry.RegistryEntry;
 import dev.xkmc.l2library.repack.registrate.util.nullness.NonNullSupplier;
@@ -63,6 +62,8 @@ public class ArtifactRegistry {
 
 	public static final ArtifactRegistrate.SetEntry<ArtifactSet> SET_GAMBLER = REGISTRATE.regSet("gambler", ArtifactSet::new, 1, 5, SLOT_HEAD, SLOT_NECKLACE, SLOT_BODY, SLOT_BRACELET, SLOT_BELT);
 	public static final ArtifactRegistrate.SetEntry<ArtifactSet> SET_BERSERKER = REGISTRATE.regSet("berserker", ArtifactSet::new, 1, 5, SLOT_HEAD, SLOT_NECKLACE, SLOT_BODY, SLOT_BRACELET, SLOT_BELT);
+	public static final ArtifactRegistrate.SetEntry<ArtifactSet> SET_PERFECTION = REGISTRATE.regSet("perfection", ArtifactSet::new, 1, 5, SLOT_HEAD, SLOT_NECKLACE, SLOT_BODY, SLOT_BRACELET, SLOT_BELT);
+	public static final ArtifactRegistrate.SetEntry<ArtifactSet> SET_DAMOCLES = REGISTRATE.regSet("damocles", ArtifactSet::new, 1, 5, SLOT_HEAD);
 
 	public static final RegistryEntry<AttributeSetEffect> EFF_GAMBLER_3 = REGISTRATE.setEffect("gambler_3", () -> new AttributeSetEffect(
 			new AttributeSetEffect.AttrSetEntry(CRIT_RATE, ADDITION, -0.2, 0, true),
@@ -86,6 +87,14 @@ public class ArtifactRegistry {
 			new AttributeSetEffect.AttrSetEntry(CRIT_DMG, ADDITION, 0.04, 0.02, true)
 	));
 
+	public static final RegistryEntry<PerfectionAbsorptionEffect> EFF_PERFECTION_ABSORPTION = REGISTRATE.setEffect(
+			"perfection_absorption", () -> new PerfectionAbsorptionEffect(4, 2));
+
+	public static final RegistryEntry<PerfectionProtectionEffect> EFF_PERFECTION_PROTECTION = REGISTRATE.setEffect(
+			"perfection_protection", () -> new PerfectionProtectionEffect(0.2, 0.1));
+
+	public static final RegistryEntry<DamoclesSwordEffect> EFF_DAMOCLES = REGISTRATE.setEffect(
+			"damocles", () -> new DamoclesSwordEffect(1, 0.5));
 
 	@SuppressWarnings({"unchecked"})
 	public static void createRegistries(NewRegistryEvent event) {

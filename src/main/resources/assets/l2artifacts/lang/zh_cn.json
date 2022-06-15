@@ -69,5 +69,11 @@
   "set_effect.l2artifacts.berserker_3": "嗜血暴徒",
   "set_effect.l2artifacts.berserker_5": "狂暴之血",
   "set_effect.l2artifacts.gambler_3": "趋险的本性",
-  "set_effect.l2artifacts.gambler_5": "幸运女神的加护"
+  "set_effect.l2artifacts.gambler_5": "幸运女神的加护",
+  "set_effect.l2artifacts.perfection_absorption": "完美之心",
+  "set_effect.l2artifacts.perfection_absorption.desc": "满血时每秒增加1点伤害吸收，最多%s点",
+  "set_effect.l2artifacts.perfection_protection": "完美之人",
+  "set_effect.l2artifacts.perfection_protection.desc": "满血时收到的伤害减少%s%%",
+  "set_effect.l2artifacts.damocles": "达摩克利斯之剑",
+  "set_effect.l2artifacts.damocles.desc": "满血时近战伤害+%s%%，半血直接死亡"
 }

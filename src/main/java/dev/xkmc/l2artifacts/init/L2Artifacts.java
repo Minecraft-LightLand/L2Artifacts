@@ -1,5 +1,6 @@
 package dev.xkmc.l2artifacts.init;
 
+import dev.xkmc.l2artifacts.events.ArtifactEffectEvents;
 import dev.xkmc.l2artifacts.events.CommonEvents;
 import dev.xkmc.l2artifacts.events.CraftEvents;
 import dev.xkmc.l2artifacts.events.CritHandler;
@@ -48,6 +49,7 @@ public class L2Artifacts {
 		MinecraftForge.EVENT_BUS.register(CommonEvents.class);
 		MinecraftForge.EVENT_BUS.register(CraftEvents.class);
 		MinecraftForge.EVENT_BUS.register(CritHandler.class);
+		MinecraftForge.EVENT_BUS.register(ArtifactEffectEvents.class);
 	}
 
 	private static void registerModBusEvents(IEventBus bus) {

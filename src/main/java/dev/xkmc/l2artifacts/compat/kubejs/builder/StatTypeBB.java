@@ -23,16 +23,19 @@ public class StatTypeBB extends BuilderBase<ArtifactStatType> {
 		return KubeJSArtifactPlugin.STAT_TYPE;
 	}
 
-	public void setAttribute(String str){
+	public StatTypeBB setAttribute(String str){
 		attribute = new ResourceLocation(str);
+		return this;
 	}
 
-	public void setOperation(String str){
+	public StatTypeBB setOperation(String str){
 		operation = Enum.valueOf(AttributeModifier.Operation.class, str);
+		return this;
 	}
 
-	public void usePercent(boolean val){
+	public StatTypeBB usePercent(boolean val){
 		useMult = val;
+		return this;
 	}
 
 	@Override

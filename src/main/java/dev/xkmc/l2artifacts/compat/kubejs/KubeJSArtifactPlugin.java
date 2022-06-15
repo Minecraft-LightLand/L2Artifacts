@@ -3,6 +3,10 @@ package dev.xkmc.l2artifacts.compat.kubejs;
 import dev.latvian.mods.kubejs.KubeJSPlugin;
 import dev.latvian.mods.kubejs.RegistryObjectBuilderTypes;
 import dev.latvian.mods.kubejs.recipe.RegisterRecipeHandlersEvent;
+import dev.xkmc.l2artifacts.compat.kubejs.builder.ArtifactItemBB;
+import dev.xkmc.l2artifacts.compat.kubejs.builder.ArtifactSetBB;
+import dev.xkmc.l2artifacts.compat.kubejs.builder.AttributeSetEffectBB;
+import dev.xkmc.l2artifacts.compat.kubejs.builder.StatTypeBB;
 import dev.xkmc.l2artifacts.content.core.ArtifactSet;
 import dev.xkmc.l2artifacts.content.core.ArtifactStatType;
 import dev.xkmc.l2artifacts.content.effects.SetEffect;
@@ -22,8 +26,10 @@ public class KubeJSArtifactPlugin extends KubeJSPlugin {
 
 	@Override
 	public void init() {
-		
-
+		RegistryObjectBuilderTypes.ITEM.addType("artifact", ArtifactItemBB.class, ArtifactItemBB::new);
+		STAT_TYPE.addType("basic", StatTypeBB.class, StatTypeBB::new);
+		ARTIFACT_SET.addType("basic", ArtifactSetBB.class, ArtifactSetBB::new);
+		SET_EFFECT.addType("attribute", AttributeSetEffectBB.class, AttributeSetEffectBB::new);
 	}
 
 	@Override

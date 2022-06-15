@@ -1,0 +1,11 @@
+{
+  "_class": "dev.xkmc.l2artifacts.content.config.ArtifactSetConfig",
+  "map": {
+    "l2artifacts:damocles": [
+      {
+        "count": 1,
+        "effect": "l2artifacts:damocles"
+      }
+    ]
+  }
+}

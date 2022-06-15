@@ -13,7 +13,7 @@ import java.util.List;
 
 public class DamoclesSwordEffect extends SetEffect {
 
-	private double amplify_base, amplify_slope;
+	private final double amplify_base, amplify_slope;
 
 	public DamoclesSwordEffect(double amplify_base, double amplify_slope) {
 		super(0);

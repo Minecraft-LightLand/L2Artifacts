@@ -1,0 +1,15 @@
+{
+  "_class": "dev.xkmc.l2artifacts.content.config.ArtifactSetConfig",
+  "map": {
+    "l2artifacts:perfection": [
+      {
+        "count": 2,
+        "effect": "l2artifacts:perfection_protection"
+      },
+      {
+        "count": 4,
+        "effect": "l2artifacts:perfection_absorption"
+      }
+    ]
+  }
+}

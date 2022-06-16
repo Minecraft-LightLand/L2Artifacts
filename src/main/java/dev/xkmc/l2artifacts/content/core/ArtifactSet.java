@@ -42,12 +42,13 @@ public class ArtifactSet extends NamedEntry<ArtifactSet> {
 			List<SlotResult> list = CuriosApi.getCuriosHelper().findCurios(player, stack -> stack.getItem() instanceof BaseArtifact artifact && artifact.set.get() == this);
 			int rank = ModConfig.COMMON.maxRank.get();
 			int index = -1;
-			for (int i = 0; i < list.size(); i++) {
-				SlotResult result = list.get(i);
-				if (result.stack().getItem() instanceof BaseArtifact artifact) {
+			int count = 0;
+			for (SlotResult result : list) {
+				if (result.stack().getItem() instanceof BaseArtifact artifact && artifact.set.get() == this) {
 					rank = Math.min(rank, artifact.rank);
-					if (context != null && context.index() == result.slotContext().index())
-						index = i;
+					if (context != null && context.identifier().equals(result.slotContext().identifier()) && context.index() == result.slotContext().index())
+						index = count;
+					count++;
 				}
 			}
 			return Optional.of(new SetContext(list.size(), rank, index));
@@ -59,9 +60,11 @@ public class ArtifactSet extends NamedEntry<ArtifactSet> {
 		if (e instanceof Player player) {
 			List<SlotResult> list = CuriosApi.getCuriosHelper().findCurios(player, stack -> stack.getItem() instanceof BaseArtifact artifact && artifact.set.get() == this);
 			int rank = ModConfig.COMMON.maxRank.get();
+			int count = 0;
 			for (SlotResult result : list) {
-				if (result.stack().getItem() instanceof BaseArtifact artifact) {
+				if (result.stack().getItem() instanceof BaseArtifact artifact && artifact.set.get() == this) {
 					rank = Math.min(rank, artifact.rank);
+					count++;
 				}
 			}
 			return Optional.of(new SetContext(list.size(), rank, -1));

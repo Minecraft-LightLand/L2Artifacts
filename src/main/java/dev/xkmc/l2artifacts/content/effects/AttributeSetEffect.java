@@ -18,7 +18,7 @@ import static net.minecraft.world.item.ItemStack.ATTRIBUTE_MODIFIER_FORMAT;
 public class AttributeSetEffect extends SetEffect {
 
 	public record AttrSetEntry(Supplier<Attribute> attr, AttributeModifier.Operation op,
-							   double base, double slope, boolean useMult) {
+							   double base, double slope, boolean usePercent) {
 
 	}
 
@@ -51,8 +51,8 @@ public class AttributeSetEffect extends SetEffect {
 			double val = ent.base + ent.slope * (item.rank - 1);
 			String sign = val > 0 ? "attribute.modifier.plus." : "attribute.modifier.take.";
 			ans.add(new TranslatableComponent(
-					sign + (ent.useMult ? 1 : 0),
-					ATTRIBUTE_MODIFIER_FORMAT.format(Math.abs(ent.useMult ? val * 100 : val)),
+					sign + (ent.usePercent ? 1 : 0),
+					ATTRIBUTE_MODIFIER_FORMAT.format(Math.abs(ent.usePercent ? val * 100 : val)),
 					new TranslatableComponent(ent.attr.get().getDescriptionId())));
 		}
 		return ans;

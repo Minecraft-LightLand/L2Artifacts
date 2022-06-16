@@ -57,7 +57,6 @@ public class L2Artifacts {
 		bus.addListener(L2Artifacts::modifyAttributes);
 		bus.addListener(L2Artifacts::setup);
 		bus.addListener(L2Artifacts::gatherData);
-		bus.addListener(ModClient::clientSetup);
 		bus.addListener(L2Artifacts::sendMessage);
 	}
 

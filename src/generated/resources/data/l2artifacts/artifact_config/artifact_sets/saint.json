@@ -1,0 +1,15 @@
+{
+  "_class": "dev.xkmc.l2artifacts.content.config.ArtifactSetConfig",
+  "map": {
+    "l2artifacts:saint": [
+      {
+        "count": 3,
+        "effect": "l2artifacts:saint_reduction"
+      },
+      {
+        "count": 5,
+        "effect": "l2artifacts:saint_restoration"
+      }
+    ]
+  }
+}

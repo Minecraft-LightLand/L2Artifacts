@@ -32,7 +32,12 @@
 	"perfection_protection": "完美之人",
 	"perfection_protection.desc": "满血时收到的伤害减少%s%%",
 	"damocles": "达摩克利斯之剑",
-	"damocles.desc": "满血时近战伤害+%s%%，半血直接死亡"
-
+	"damocles.desc": "满血时近战伤害+%s%%，半血直接死亡",
+	"saint_reduction": "慈悲于怀",
+	"saint_reduction.desc": "造成的近战伤害减少%s%%，受到的伤害减少%s%%",
+	"saint_restoration": "救济的圣光",
+	"saint_restoration.desc": "主手不持有武器时，每%s秒回复自己或队友的血量",
+	"protection_resistance": "屹立不倒",
+	"protection_resistance.desc": "血量越低，伤害抗性越高"
   }
 }

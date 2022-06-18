@@ -61,8 +61,8 @@ public enum LangData {
 		pvd.add("l2artifacts.set.4", "When Equip 4 of this Set: ");
 		pvd.add("l2artifacts.set.5", "When Equip 5 of this Set: ");
 
-		pvd.add("set_effect.l2artifacts.protection_absorption.desc", "When at full health, gain %s points of absorption");
-		pvd.add("set_effect.l2artifacts.protection_protection.desc", "When at full health, reduce damage by %s%%");
+		pvd.add("set_effect.l2artifacts.perfection_absorption.desc", "When at full health, gain %s points of absorption");
+		pvd.add("set_effect.l2artifacts.perfection_protection.desc", "When at full health, reduce damage by %s%%");
 		pvd.add("set_effect.l2artifacts.damocles.desc", "When at full health, direct attack damage increase by %s%%. When below half health, die immediately.");
 		pvd.add("set_effect.l2artifacts.saint_reduction.desc", "Direct damage dealt reduce by %s%%, damage taken reduce b %s%%");
 		pvd.add("set_effect.l2artifacts.saint_restoration.desc", "When have empty main hand, restore health to oneself or allies every %s seconds.");

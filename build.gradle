@@ -146,8 +146,7 @@ dependencies {
     implementation fg.deobf('curse.maven:max-health-fix-492246:3764471')
     implementation fg.deobf('curse.maven:tool-stats-377109:3697308')
 
-    runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}")
-    compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}:api")
+    implementation fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}")
     implementation fg.deobf("top.theillusivec4.caelus:caelus-forge:${caelus_version}")
     implementation fg.deobf('curse.maven:curious-elytra-317716:3601975')
 

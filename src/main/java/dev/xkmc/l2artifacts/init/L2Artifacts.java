@@ -11,6 +11,8 @@ import dev.xkmc.l2artifacts.init.data.RecipeGen;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactRegistrate;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactRegistry;
 import dev.xkmc.l2library.init.events.AttackEventHandler;
+import dev.xkmc.l2library.menu.tabs.contents.AttributeEntry;
+import dev.xkmc.l2library.menu.tabs.contents.AttributeScreen;
 import dev.xkmc.l2library.repack.registrate.providers.ProviderType;
 import net.minecraft.world.entity.EntityType;
 import net.minecraftforge.api.distmarker.Dist;
@@ -76,6 +78,8 @@ public class L2Artifacts {
 
 	private static void setup(final FMLCommonSetupEvent event) {
 		event.enqueueWork(() -> {
+			AttributeEntry.add(ArtifactRegistry.CRIT_RATE, true,11000);
+			AttributeEntry.add(ArtifactRegistry.CRIT_DMG, true,12000);
 		});
 	}
 

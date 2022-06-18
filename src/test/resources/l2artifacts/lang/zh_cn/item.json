@@ -5,7 +5,9 @@
 	  "list": [
 		{
 		  "berserker": "狂战士的",
-		  "gambler": "赌徒的"
+		  "gambler": "赌徒的",
+		  "perfection": "完美之人的",
+		  "saint": "圣人的"
 		},
 		{
 		  "head": "帽子",
@@ -13,6 +15,22 @@
 		  "body": "胸针",
 		  "bracelet": "手环",
 		  "belt": "腰带"
+		},
+		{
+		  "1": "-常见级",
+		  "2": "-稀有级",
+		  "3": "-特质级",
+		  "4": "-传奇级",
+		  "5": "-神化级"
+		}
+	  ]
+	},
+	"singles": {
+	  "path": "item.l2artifacts",
+	  "list": [
+		{
+		  "damocles_head": "达摩克利斯之剑",
+		  "protection_head": "向死而生之冠"
 		},
 		{
 		  "1": "-常见级",

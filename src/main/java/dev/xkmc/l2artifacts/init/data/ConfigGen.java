@@ -121,12 +121,19 @@ public class ConfigGen extends ConfigDataProvider {
 					.add(3, ArtifactRegistry.EFF_BERSERKER_3.get())
 					.add(5, ArtifactRegistry.EFF_BERSERKER_5.get()));
 
+			addArtifactSet(map, ArtifactRegistry.SET_SAINT.get(), (c) -> c
+					.add(3, ArtifactRegistry.EFF_SAINT_REDUCTION.get())
+					.add(5, ArtifactRegistry.EFF_SAINT_RESTORATION.get()));
+
 			addArtifactSet(map, ArtifactRegistry.SET_PERFECTION.get(), (c) -> c
 					.add(2, ArtifactRegistry.EFF_PERFECTION_PROTECTION.get())
 					.add(4, ArtifactRegistry.EFF_PERFECTION_ABSORPTION.get()));
 
 			addArtifactSet(map, ArtifactRegistry.SET_DAMOCLES.get(), (c) -> c
 					.add(1, ArtifactRegistry.EFF_DAMOCLES.get()));
+
+			addArtifactSet(map, ArtifactRegistry.SET_PROTECTION.get(), (c) -> c
+					.add(1, ArtifactRegistry.EFF_PROTECTION_RESISTANCE.get()));
 		}
 	}
 

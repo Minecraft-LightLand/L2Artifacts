@@ -10,11 +10,11 @@ import net.minecraftforge.eventbus.api.Event;
 
 import java.util.List;
 
-public class PerfectionProtectionEffect extends SetEffect {
+public class PerfectionProtection extends SetEffect {
 
 	private final double reduce_base, reduce_slope;
 
-	public PerfectionProtectionEffect(double reduce_base, double reduce_slope) {
+	public PerfectionProtection(double reduce_base, double reduce_slope) {
 		super(0);
 		this.reduce_base = reduce_base;
 		this.reduce_slope = reduce_slope;

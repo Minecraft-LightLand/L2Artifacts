@@ -19,13 +19,13 @@ public class ArtifactStatType extends NamedEntry<ArtifactStatType> {
 
 	private final Supplier<Attribute> attr;
 	private final AttributeModifier.Operation op;
-	private final boolean useMult;
+	private final boolean usePercent;
 
 	public ArtifactStatType(Supplier<Attribute> attr, AttributeModifier.Operation op, boolean useMult) {
 		super(() -> ArtifactRegistry.STAT_TYPE);
 		this.attr = attr;
 		this.op = op;
-		this.useMult = useMult;
+		this.usePercent = useMult;
 	}
 
 	public void getModifier(ImmutableMultimap.Builder<Attribute, AttributeModifier> builder, StatEntry entry) {
@@ -49,8 +49,8 @@ public class ArtifactStatType extends NamedEntry<ArtifactStatType> {
 
 	public Component getTooltip(double val) {
 		return new TranslatableComponent(
-				"attribute.modifier.plus." + (useMult ? 1 : 0),
-				ATTRIBUTE_MODIFIER_FORMAT.format(useMult ? val * 100 : val),
+				"attribute.modifier.plus." + (usePercent ? 1 : 0),
+				ATTRIBUTE_MODIFIER_FORMAT.format(usePercent ? val * 100 : val),
 				new TranslatableComponent(attr.get().getDescriptionId())).withStyle(ChatFormatting.BLUE);
 	}
 

@@ -5,18 +5,16 @@ import dev.xkmc.l2artifacts.content.core.BaseArtifact;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.entity.player.Player;
-import net.minecraftforge.event.entity.living.LivingHurtEvent;
-import net.minecraftforge.eventbus.api.Event;
 
 import java.util.List;
 
-public class PerfectionAbsorptionEffect extends SetEffect {
+public class PerfectionAbsorption extends SetEffect {
 
 	private final int period, max_base, max_slope;
 
-	public PerfectionAbsorptionEffect(int max_base, int max_slope) {
+	public PerfectionAbsorption(int max_base, int max_slope) {
 		super(0);
-		this.period = 20;
+		this.period = 100;
 		this.max_base = max_base;
 		this.max_slope = max_slope;
 	}

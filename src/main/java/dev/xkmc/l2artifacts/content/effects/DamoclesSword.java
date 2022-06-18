@@ -11,11 +11,11 @@ import net.minecraftforge.eventbus.api.Event;
 
 import java.util.List;
 
-public class DamoclesSwordEffect extends SetEffect {
+public class DamoclesSword extends SetEffect {
 
 	private final double amplify_base, amplify_slope;
 
-	public DamoclesSwordEffect(double amplify_base, double amplify_slope) {
+	public DamoclesSword(double amplify_base, double amplify_slope) {
 		super(0);
 		this.amplify_base = amplify_base;
 		this.amplify_slope = amplify_slope;

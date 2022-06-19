@@ -6,6 +6,7 @@ import dev.xkmc.l2artifacts.content.config.StatTypeConfig;
 import dev.xkmc.l2artifacts.content.core.ArtifactSet;
 import dev.xkmc.l2artifacts.content.core.ArtifactSlot;
 import dev.xkmc.l2artifacts.content.core.ArtifactStatType;
+import dev.xkmc.l2artifacts.init.registrate.ArtifactItemRegistry;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactRegistry;
 import dev.xkmc.l2library.network.BaseConfig;
 import dev.xkmc.l2library.network.ConfigDataProvider;
@@ -113,27 +114,27 @@ public class ConfigGen extends ConfigDataProvider {
 
 		// Set Effect Config
 		{
-			addArtifactSet(map, ArtifactRegistry.SET_GAMBLER.get(), (c) -> c
-					.add(3, ArtifactRegistry.EFF_GAMBLER_3.get())
-					.add(5, ArtifactRegistry.EFF_GAMBLER_5.get()));
+			addArtifactSet(map, ArtifactItemRegistry.SET_GAMBLER.get(), (c) -> c
+					.add(3, ArtifactItemRegistry.EFF_GAMBLER_3.get())
+					.add(5, ArtifactItemRegistry.EFF_GAMBLER_5.get()));
 
-			addArtifactSet(map, ArtifactRegistry.SET_BERSERKER.get(), (c) -> c
-					.add(3, ArtifactRegistry.EFF_BERSERKER_3.get())
-					.add(5, ArtifactRegistry.EFF_BERSERKER_5.get()));
+			addArtifactSet(map, ArtifactItemRegistry.SET_BERSERKER.get(), (c) -> c
+					.add(3, ArtifactItemRegistry.EFF_BERSERKER_3.get())
+					.add(5, ArtifactItemRegistry.EFF_BERSERKER_5.get()));
 
-			addArtifactSet(map, ArtifactRegistry.SET_SAINT.get(), (c) -> c
-					.add(3, ArtifactRegistry.EFF_SAINT_REDUCTION.get())
-					.add(5, ArtifactRegistry.EFF_SAINT_RESTORATION.get()));
+			addArtifactSet(map, ArtifactItemRegistry.SET_SAINT.get(), (c) -> c
+					.add(3, ArtifactItemRegistry.EFF_SAINT_REDUCTION.get())
+					.add(5, ArtifactItemRegistry.EFF_SAINT_RESTORATION.get()));
 
-			addArtifactSet(map, ArtifactRegistry.SET_PERFECTION.get(), (c) -> c
-					.add(2, ArtifactRegistry.EFF_PERFECTION_PROTECTION.get())
-					.add(4, ArtifactRegistry.EFF_PERFECTION_ABSORPTION.get()));
+			addArtifactSet(map, ArtifactItemRegistry.SET_PERFECTION.get(), (c) -> c
+					.add(2, ArtifactItemRegistry.EFF_PERFECTION_PROTECTION.get())
+					.add(4, ArtifactItemRegistry.EFF_PERFECTION_ABSORPTION.get()));
 
-			addArtifactSet(map, ArtifactRegistry.SET_DAMOCLES.get(), (c) -> c
-					.add(1, ArtifactRegistry.EFF_DAMOCLES.get()));
+			addArtifactSet(map, ArtifactItemRegistry.SET_DAMOCLES.get(), (c) -> c
+					.add(1, ArtifactItemRegistry.EFF_DAMOCLES.get()));
 
-			addArtifactSet(map, ArtifactRegistry.SET_PROTECTION.get(), (c) -> c
-					.add(1, ArtifactRegistry.EFF_PROTECTION_RESISTANCE.get()));
+			addArtifactSet(map, ArtifactItemRegistry.SET_PROTECTION.get(), (c) -> c
+					.add(1, ArtifactItemRegistry.EFF_PROTECTION_RESISTANCE.get()));
 		}
 	}
 

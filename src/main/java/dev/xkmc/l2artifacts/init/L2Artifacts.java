@@ -8,6 +8,7 @@ import dev.xkmc.l2artifacts.init.data.ConfigGen;
 import dev.xkmc.l2artifacts.init.data.LangData;
 import dev.xkmc.l2artifacts.init.data.ModConfig;
 import dev.xkmc.l2artifacts.init.data.RecipeGen;
+import dev.xkmc.l2artifacts.init.registrate.ArtifactItemRegistry;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactRegistrate;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactRegistry;
 import dev.xkmc.l2library.init.events.AttackEventHandler;
@@ -40,6 +41,8 @@ public class L2Artifacts {
 	public static final ArtifactRegistrate REGISTRATE = new ArtifactRegistrate();
 
 	private static void registerRegistrates(IEventBus bus) {
+		ArtifactRegistry.register();
+		ArtifactItemRegistry.register();
 		ModConfig.init();
 		NetworkManager.register();
 		REGISTRATE.addDataGenerator(ProviderType.LANG, LangData::genLang);

@@ -29,6 +29,7 @@
 	  "path": "item.l2artifacts",
 	  "list": [
 		{
+		  "artifact_experience": "古遗物经验",
 		  "damocles_head": "达摩克利斯之剑",
 		  "protection_head": "向死而生之冠"
 		},

@@ -15,9 +15,14 @@ import dev.xkmc.l2library.repack.registrate.util.entry.RegistryEntry;
 import dev.xkmc.l2library.repack.registrate.util.nullness.NonNullSupplier;
 import dev.xkmc.l2library.repack.registrate.util.nullness.NonnullType;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+import net.minecraftforge.registries.tags.ITagManager;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.Objects;
 
 public class ArtifactRegistrate extends LcyRegistrate {
 
@@ -31,7 +36,7 @@ public class ArtifactRegistrate extends LcyRegistrate {
 				.regItems().defaultLang().register();
 	}
 
-	public <T extends SetEffect> RegistryEntry<T> setEffect(String id, NonNullSupplier<T> sup){
+	public <T extends SetEffect> RegistryEntry<T> setEffect(String id, NonNullSupplier<T> sup) {
 		return generic(SetEffect.class, id, sup).defaultLang().register();
 
 	}
@@ -56,14 +61,19 @@ public class ArtifactRegistrate extends LcyRegistrate {
 		@SuppressWarnings({"rawtype", "unchecked"})
 		public SetBuilder<T, I> regItems() {
 			items = new ItemEntry[slots.length][max_rank - min_rank + 1];
+			ITagManager<Item> manager = Objects.requireNonNull(ForgeRegistries.ITEMS.tags());
+
 			for (int i = 0; i < slots.length; i++) {
 				RegistryEntry<ArtifactSlot> slot = slots[i];
 				String slot_name = slot.getId().getPath();
+				TagKey<Item> curios_tag = manager.createTagKey(new ResourceLocation("curios", slot_name));
+				TagKey<Item> slot_tag = manager.createTagKey(new ResourceLocation(L2Artifacts.MODID, slot_name));
 				for (int r = min_rank; r <= max_rank; r++) {
+					TagKey<Item> rank_tag = manager.createTagKey(new ResourceLocation(L2Artifacts.MODID, "rank_" + r));
 					String name = this.getName() + "_" + slot_name + "_" + r;
 					int rank = r;
 					items[i][r - min_rank] = L2Artifacts.REGISTRATE.item(name, p -> new BaseArtifact(p, asSupplier()::get, slot, rank))
-							.tag(ForgeRegistries.ITEMS.tags().createTagKey(new ResourceLocation("curios", slot_name))).register();
+							.tag(curios_tag, slot_tag, rank_tag).register();
 				}
 			}
 			return this;

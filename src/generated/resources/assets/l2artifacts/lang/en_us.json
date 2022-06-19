@@ -1,6 +1,11 @@
 {
   "attribute.name.crit_damage": "Crit Damage",
   "attribute.name.crit_rate": "Crit Rate",
+  "item.l2artifacts.artifact_experience_1": "Artifact Experience 1",
+  "item.l2artifacts.artifact_experience_2": "Artifact Experience 2",
+  "item.l2artifacts.artifact_experience_3": "Artifact Experience 3",
+  "item.l2artifacts.artifact_experience_4": "Artifact Experience 4",
+  "item.l2artifacts.artifact_experience_5": "Artifact Experience 5",
   "item.l2artifacts.berserker_belt_1": "Berserker Belt 1",
   "item.l2artifacts.berserker_belt_2": "Berserker Belt 2",
   "item.l2artifacts.berserker_belt_3": "Berserker Belt 3",

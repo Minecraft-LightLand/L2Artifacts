@@ -129,7 +129,7 @@ dependencies {
     annotationProcessor "org.spongepowered:mixin:${mixin_version}:processor"
 
     implementation fg.deobf("dev.xkmc.l2library:l2library:${l2library_version}")
-    runtimeOnly fg.deobf('dev.xkmc.l2backpack:l2backpack:0.0.3')
+    runtimeOnly fg.deobf('dev.xkmc.l2backpack:l2backpack:0.0.4')
 
     implementation fg.deobf('curse.maven:enchantment-descriptions-250419:3754812')
     implementation fg.deobf('curse.maven:bookshelf-228525:3753798')

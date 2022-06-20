@@ -29,8 +29,8 @@ public class RecipeGen {
 			pvd.singleItem(DataIngredient.tag(rank_tag), output, 1, 1);
 			if (i >= 1) {
 				ItemEntry<?> input = ArtifactItemRegistry.RANKED_ITEMS[i - 1];
-				pvd.singleItemUnfinished(DataIngredient.items(input), output, 2, 1).save(pvd, "rank_up_" + i);
-				pvd.singleItemUnfinished(DataIngredient.items(output), input, 1, 2).save(pvd, "rank_down_" + i);
+				pvd.singleItemUnfinished(DataIngredient.items(input), output, 2, 1).save(pvd, new ResourceLocation(L2Artifacts.MODID, "rank_up_" + i));
+				pvd.singleItemUnfinished(DataIngredient.items(output), input, 1, 2).save(pvd, new ResourceLocation(L2Artifacts.MODID, "rank_down_" + i));
 			}
 		}
 

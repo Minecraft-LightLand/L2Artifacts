@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "l2artifacts:berserker_necklace_2"
+    ]
+  },
+  "criteria": {
+    "has_berserker_necklace_1": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "l2artifacts:berserker_necklace_1"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "l2artifacts:berserker_necklace_2"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_berserker_necklace_1",
+      "has_the_recipe"
+    ]
+  ]
+}

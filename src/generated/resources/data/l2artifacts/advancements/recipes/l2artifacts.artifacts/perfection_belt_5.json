@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "l2artifacts:perfection_belt_5"
+    ]
+  },
+  "criteria": {
+    "has_perfection_belt_4": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "l2artifacts:perfection_belt_4"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "l2artifacts:perfection_belt_5"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_perfection_belt_4",
+      "has_the_recipe"
+    ]
+  ]
+}

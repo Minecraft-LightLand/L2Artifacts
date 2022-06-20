@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:rank_down_3"
+    ]
+  },
+  "criteria": {
+    "has_artifact_experience_4": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "l2artifacts:artifact_experience_4"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:rank_down_3"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_artifact_experience_4",
+      "has_the_recipe"
+    ]
+  ]
+}

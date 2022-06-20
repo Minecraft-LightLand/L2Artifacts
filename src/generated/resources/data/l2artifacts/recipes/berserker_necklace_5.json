@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CCC",
+    "BAB",
+    "CCC"
+  ],
+  "key": {
+    "A": {
+      "item": "l2artifacts:artifact_experience_5"
+    },
+    "B": {
+      "item": "l2artifacts:berserker_necklace_4"
+    },
+    "C": {
+      "item": "l2artifacts:artifact_experience_4"
+    }
+  },
+  "result": {
+    "item": "l2artifacts:berserker_necklace_5"
+  }
+}

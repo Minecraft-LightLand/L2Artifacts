@@ -23,6 +23,8 @@ import net.minecraftforge.registries.RegistryObject;
 import net.minecraftforge.registries.tags.ITagManager;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class ArtifactRegistrate extends LcyRegistrate {
@@ -31,10 +33,14 @@ public class ArtifactRegistrate extends LcyRegistrate {
 		super(L2Artifacts.MODID);
 	}
 
+	public List<SetEntry<?>> SET_LIST = new ArrayList<>();
+
 	@SafeVarargs
 	public final <T extends ArtifactSet> SetEntry<T> regSet(String id, NonNullSupplier<T> sup, int min_rank, int max_rank, RegistryEntry<ArtifactSlot>... slots) {
-		return (SetEntry<T>) this.entry(id, (cb) -> new SetBuilder<>(this, id, cb, sup, min_rank, max_rank, slots))
+		SetEntry<T> ans = (SetEntry<T>) this.entry(id, (cb) -> new SetBuilder<>(this, id, cb, sup, min_rank, max_rank, slots))
 				.regItems().defaultLang().register();
+		SET_LIST.add(ans);
+		return ans;
 	}
 
 	public <T extends SetEffect> RegistryEntry<T> setEffect(String id, NonNullSupplier<T> sup) {

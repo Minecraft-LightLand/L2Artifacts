@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "l2artifacts:saint_belt_2"
+    ]
+  },
+  "criteria": {
+    "has_saint_belt_1": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "l2artifacts:saint_belt_1"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "l2artifacts:saint_belt_2"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_saint_belt_1",
+      "has_the_recipe"
+    ]
+  ]
+}

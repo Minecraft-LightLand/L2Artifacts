@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CCC",
+    "BAB",
+    "CCC"
+  ],
+  "key": {
+    "A": {
+      "item": "l2artifacts:artifact_experience_3"
+    },
+    "B": {
+      "item": "l2artifacts:gambler_necklace_2"
+    },
+    "C": {
+      "item": "l2artifacts:artifact_experience_2"
+    }
+  },
+  "result": {
+    "item": "l2artifacts:gambler_necklace_3"
+  }
+}

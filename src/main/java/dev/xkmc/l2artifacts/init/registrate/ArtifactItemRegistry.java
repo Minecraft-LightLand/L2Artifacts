@@ -6,9 +6,11 @@ import dev.xkmc.l2artifacts.content.misc.ExpItem;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
 import dev.xkmc.l2library.repack.registrate.util.entry.ItemEntry;
 import dev.xkmc.l2library.repack.registrate.util.entry.RegistryEntry;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.client.model.generators.ModelFile;
 
 import static dev.xkmc.l2artifacts.init.L2Artifacts.REGISTRATE;
 import static dev.xkmc.l2artifacts.init.registrate.ArtifactRegistry.*;
@@ -32,6 +34,9 @@ public class ArtifactItemRegistry {
 		for (int i = 0; i < n; i++) {
 			int r = i + 1;
 			RANKED_ITEMS[i] = REGISTRATE.item("artifact_experience_" + r, p -> new ExpItem(p, r))
+					.model((ctx, pvd) -> pvd.getBuilder(ctx.getName()).parent(new ModelFile.UncheckedModelFile("item/generated"))
+							.texture("layer0", new ResourceLocation(L2Artifacts.MODID, "item/artifact_experience"))
+							.texture("layer1", new ResourceLocation(L2Artifacts.MODID, "item/sets_ranks_" + r)))
 					.defaultLang().register();
 		}
 	}

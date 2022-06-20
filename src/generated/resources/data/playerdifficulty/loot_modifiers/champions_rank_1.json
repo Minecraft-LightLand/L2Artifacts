@@ -1,0 +1,269 @@
+{
+  "conditions": [
+    {
+      "condition": "champions:champion_properties",
+      "tier": 1,
+      "entity": "this"
+    }
+  ],
+  "table": {
+    "pools": [
+      {
+        "rolls": 1.0,
+        "bonus_rolls": 0.0,
+        "entries": [
+          {
+            "type": "minecraft:item",
+            "functions": [
+              {
+                "function": "minecraft:set_count",
+                "count": 1.0,
+                "add": false
+              }
+            ],
+            "name": "l2artifacts:berserker_head_1"
+          },
+          {
+            "type": "minecraft:item",
+            "functions": [
+              {
+                "function": "minecraft:set_count",
+                "count": 1.0,
+                "add": false
+              }
+            ],
+            "name": "l2artifacts:berserker_necklace_1"
+          },
+          {
+            "type": "minecraft:item",
+            "functions": [
+              {
+                "function": "minecraft:set_count",
+                "count": 1.0,
+                "add": false
+              }
+            ],
+            "name": "l2artifacts:berserker_body_1"
+          },
+          {
+            "type": "minecraft:item",
+            "functions": [
+              {
+                "function": "minecraft:set_count",
+                "count": 1.0,
+                "add": false
+              }
+            ],
+            "name": "l2artifacts:berserker_bracelet_1"
+          },
+          {
+            "type": "minecraft:item",
+            "functions": [
+              {
+                "function": "minecraft:set_count",
+                "count": 1.0,
+                "add": false
+              }
+            ],
+            "name": "l2artifacts:berserker_belt_1"
+          },
+          {
+            "type": "minecraft:item",
+            "functions": [
+              {
+                "function": "minecraft:set_count",
+                "count": 1.0,
+                "add": false
+              }
+            ],
+            "name": "l2artifacts:gambler_head_1"
+          },
+          {
+            "type": "minecraft:item",
+            "functions": [
+              {
+                "function": "minecraft:set_count",
+                "count": 1.0,
+                "add": false
+              }
+            ],
+            "name": "l2artifacts:gambler_necklace_1"
+          },
+          {
+            "type": "minecraft:item",
+            "functions": [
+              {
+                "function": "minecraft:set_count",
+                "count": 1.0,
+                "add": false
+              }
+            ],
+            "name": "l2artifacts:gambler_body_1"
+          },
+          {
+            "type": "minecraft:item",
+            "functions": [
+              {
+                "function": "minecraft:set_count",
+                "count": 1.0,
+                "add": false
+              }
+            ],
+            "name": "l2artifacts:gambler_bracelet_1"
+          },
+          {
+            "type": "minecraft:item",
+            "functions": [
+              {
+                "function": "minecraft:set_count",
+                "count": 1.0,
+                "add": false
+              }
+            ],
+            "name": "l2artifacts:gambler_belt_1"
+          },
+          {
+            "type": "minecraft:item",
+            "functions": [
+              {
+                "function": "minecraft:set_count",
+                "count": 1.0,
+                "add": false
+              }
+            ],
+            "name": "l2artifacts:perfection_head_1"
+          },
+          {
+            "type": "minecraft:item",
+            "functions": [
+              {
+                "function": "minecraft:set_count",
+                "count": 1.0,
+                "add": false
+              }
+            ],
+            "name": "l2artifacts:perfection_necklace_1"
+          },
+          {
+            "type": "minecraft:item",
+            "functions": [
+              {
+                "function": "minecraft:set_count",
+                "count": 1.0,
+                "add": false
+              }
+            ],
+            "name": "l2artifacts:perfection_body_1"
+          },
+          {
+            "type": "minecraft:item",
+            "functions": [
+              {
+                "function": "minecraft:set_count",
+                "count": 1.0,
+                "add": false
+              }
+            ],
+            "name": "l2artifacts:perfection_bracelet_1"
+          },
+          {
+            "type": "minecraft:item",
+            "functions": [
+              {
+                "function": "minecraft:set_count",
+                "count": 1.0,
+                "add": false
+              }
+            ],
+            "name": "l2artifacts:perfection_belt_1"
+          },
+          {
+            "type": "minecraft:item",
+            "functions": [
+              {
+                "function": "minecraft:set_count",
+                "count": 1.0,
+                "add": false
+              }
+            ],
+            "name": "l2artifacts:saint_head_1"
+          },
+          {
+            "type": "minecraft:item",
+            "functions": [
+              {
+                "function": "minecraft:set_count",
+                "count": 1.0,
+                "add": false
+              }
+            ],
+            "name": "l2artifacts:saint_necklace_1"
+          },
+          {
+            "type": "minecraft:item",
+            "functions": [
+              {
+                "function": "minecraft:set_count",
+                "count": 1.0,
+                "add": false
+              }
+            ],
+            "name": "l2artifacts:saint_body_1"
+          },
+          {
+            "type": "minecraft:item",
+            "functions": [
+              {
+                "function": "minecraft:set_count",
+                "count": 1.0,
+                "add": false
+              }
+            ],
+            "name": "l2artifacts:saint_bracelet_1"
+          },
+          {
+            "type": "minecraft:item",
+            "functions": [
+              {
+                "function": "minecraft:set_count",
+                "count": 1.0,
+                "add": false
+              }
+            ],
+            "name": "l2artifacts:saint_belt_1"
+          },
+          {
+            "type": "minecraft:item",
+            "functions": [
+              {
+                "function": "minecraft:set_count",
+                "count": 1.0,
+                "add": false
+              }
+            ],
+            "name": "l2artifacts:damocles_head_1"
+          },
+          {
+            "type": "minecraft:item",
+            "functions": [
+              {
+                "function": "minecraft:set_count",
+                "count": 1.0,
+                "add": false
+              }
+            ],
+            "name": "l2artifacts:protection_head_1"
+          }
+        ],
+        "conditions": [
+          {
+            "condition": "minecraft:random_chance_with_looting",
+            "chance": 0.2,
+            "looting_multiplier": 0.05
+          }
+        ]
+      }
+    ]
+  },
+  "type": "playerdifficulty:main"
+}

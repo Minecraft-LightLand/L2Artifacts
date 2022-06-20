@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "entries": [
+    "playerdifficulty:champions_rank_4",
+    "playerdifficulty:champions_rank_2",
+    "playerdifficulty:champions_rank_3",
+    "playerdifficulty:champions_rank_1"
+  ]
+}

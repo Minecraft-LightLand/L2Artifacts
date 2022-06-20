@@ -136,7 +136,7 @@ dependencies {
     runtimeOnly fg.deobf('curse.maven:enchantment-descriptions-250419:3754812')
     implementation fg.deobf('curse.maven:bookshelf-228525:3753798')
 
-    implementation fg.deobf('curse.maven:champions-307152:3783685')
+    implementation fg.deobf('curse.maven:champions-307152:3840878')
     implementation fg.deobf('curse.maven:placebo-283644:3781199')
     implementation fg.deobf('curse.maven:apotheosis-313970:3781524')
 

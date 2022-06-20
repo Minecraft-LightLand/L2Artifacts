@@ -4,10 +4,7 @@ import dev.xkmc.l2artifacts.events.ArtifactEffectEvents;
 import dev.xkmc.l2artifacts.events.CommonEvents;
 import dev.xkmc.l2artifacts.events.CraftEvents;
 import dev.xkmc.l2artifacts.events.CritHandler;
-import dev.xkmc.l2artifacts.init.data.ConfigGen;
-import dev.xkmc.l2artifacts.init.data.LangData;
-import dev.xkmc.l2artifacts.init.data.ModConfig;
-import dev.xkmc.l2artifacts.init.data.RecipeGen;
+import dev.xkmc.l2artifacts.init.data.*;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactItemRegistry;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactRegistrate;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactRegistry;
@@ -88,6 +85,7 @@ public class L2Artifacts {
 
 	public static void gatherData(GatherDataEvent event) {
 		event.getGenerator().addProvider(new ConfigGen(event.getGenerator()));
+		event.getGenerator().addProvider(new ArtifactGLMProvider(event.getGenerator()));
 	}
 
 	private static void sendMessage(final InterModEnqueueEvent event) {

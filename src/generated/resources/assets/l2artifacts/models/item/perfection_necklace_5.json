@@ -1,6 +1,7 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "l2artifacts:item/perfection_necklace_5"
+    "layer0": "l2artifacts:item/perfection_necklace",
+    "layer1": "l2artifacts:item/sets_ranks_5"
   }
 }

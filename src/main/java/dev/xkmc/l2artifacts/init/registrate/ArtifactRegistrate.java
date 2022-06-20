@@ -17,6 +17,7 @@ import dev.xkmc.l2library.repack.registrate.util.nullness.NonnullType;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
+import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.minecraftforge.registries.tags.ITagManager;
@@ -73,6 +74,9 @@ public class ArtifactRegistrate extends LcyRegistrate {
 					String name = this.getName() + "_" + slot_name + "_" + r;
 					int rank = r;
 					items[i][r - min_rank] = L2Artifacts.REGISTRATE.item(name, p -> new BaseArtifact(p, asSupplier()::get, slot, rank))
+							.model((ctx, pvd) -> pvd.getBuilder(name).parent(new ModelFile.UncheckedModelFile("item/generated"))
+									.texture("layer0", new ResourceLocation(L2Artifacts.MODID, "item/" + getName() + "_" + slot_name))
+									.texture("layer1", new ResourceLocation(L2Artifacts.MODID, "item/sets_ranks_" + rank)))
 							.tag(curios_tag, slot_tag, rank_tag).register();
 				}
 			}

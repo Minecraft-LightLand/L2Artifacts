@@ -1,6 +1,7 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "l2artifacts:item/gambler_necklace_4"
+    "layer0": "l2artifacts:item/gambler_necklace",
+    "layer1": "l2artifacts:item/sets_ranks_4"
   }
 }

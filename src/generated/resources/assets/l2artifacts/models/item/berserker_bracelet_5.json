@@ -1,6 +1,7 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "l2artifacts:item/berserker_bracelet_5"
+    "layer0": "l2artifacts:item/berserker_bracelet",
+    "layer1": "l2artifacts:item/sets_ranks_5"
   }
 }

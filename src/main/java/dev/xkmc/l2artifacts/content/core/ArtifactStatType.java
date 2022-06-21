@@ -6,7 +6,10 @@ import dev.xkmc.l2artifacts.init.registrate.ArtifactTypeRegistry;
 import dev.xkmc.l2library.base.NamedEntry;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.network.chat.contents.TranslatableContents;
+import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 
@@ -32,26 +35,26 @@ public class ArtifactStatType extends NamedEntry<ArtifactStatType> {
 		builder.put(attr.get(), new AttributeModifier(entry.id, entry.name, entry.value, op));
 	}
 
-	public double getInitialValue(int rank, Random random) {
+	public double getInitialValue(int rank, RandomSource random) {
 		StatTypeConfig.Entry entry = StatTypeConfig.getInstance().stats.get(this);
-		return random.nextDouble(entry.base_low, entry.base_high) * rank;
+		return Mth.nextDouble(random, entry.base_low, entry.base_high) * rank;
 	}
 
-	public double getMainValue(int rank, Random random) {
+	public double getMainValue(int rank, RandomSource random) {
 		StatTypeConfig.Entry entry = StatTypeConfig.getInstance().stats.get(this);
-		return random.nextDouble(entry.main_low, entry.main_high) * rank;
+		return Mth.nextDouble(random, entry.main_low, entry.main_high) * rank;
 	}
 
-	public double getSubValue(int rank, Random random) {
+	public double getSubValue(int rank, RandomSource random) {
 		StatTypeConfig.Entry entry = StatTypeConfig.getInstance().stats.get(this);
-		return random.nextDouble(entry.sub_low, entry.sub_high) * rank;
+		return Mth.nextDouble(random, entry.sub_low, entry.sub_high) * rank;
 	}
 
 	public Component getTooltip(double val) {
-		return new TranslatableComponent(
+		return MutableComponent.create(new TranslatableContents(
 				"attribute.modifier.plus." + (usePercent ? 1 : 0),
 				ATTRIBUTE_MODIFIER_FORMAT.format(usePercent ? val * 100 : val),
-				new TranslatableComponent(attr.get().getDescriptionId())).withStyle(ChatFormatting.BLUE);
+				new TranslatableContents(attr.get().getDescriptionId()))).withStyle(ChatFormatting.BLUE);
 	}
 
 }

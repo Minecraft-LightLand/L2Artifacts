@@ -130,7 +130,7 @@ public class ArtifactSet extends NamedEntry<ArtifactSet> {
 							ChatFormatting.GRAY : ChatFormatting.GREEN;
 					ChatFormatting color_desc = ctx.count() < ent.count || ctx.min_rank() < artifact.rank ?
 							ChatFormatting.DARK_GRAY : ChatFormatting.DARK_GREEN;
-					ans.add(getCountDesc(ent.count).withStyle(color_count).append(ent.effect.getDesc().withStyle(color_title)));
+					ans.add(getCountDesc(ent.count).withStyle(color_count).append(MutableComponent.create(ent.effect.getDesc()).withStyle(color_title)));
 					List<MutableComponent> desc = ent.effect.getDetailedDescription(artifact);
 					for (MutableComponent comp : desc) {
 						ans.add(comp.withStyle(color_desc));

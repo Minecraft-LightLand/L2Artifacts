@@ -1,6 +1,7 @@
 package dev.xkmc.l2artifacts.content.core;
 
 import dev.xkmc.l2artifacts.init.data.ModConfig;
+import net.minecraft.util.RandomSource;
 
 import javax.annotation.Nullable;
 import java.util.Random;
@@ -33,7 +34,7 @@ public class ArtifactUpgradeManager {
 		return rank * ModConfig.COMMON.maxLevelPerRank.get();
 	}
 
-	public static void onUpgrade(ArtifactStats stats, int lv, Random random) {
+	public static void onUpgrade(ArtifactStats stats, int lv, RandomSource random) {
 		int gate = ModConfig.COMMON.levelPerSubStat.get();
 		stats.add(stats.main_stat.type, stats.main_stat.type.getMainValue(stats.rank, random));
 		if (lv % gate == 0 && stats.sub_stats.size() > 0) {

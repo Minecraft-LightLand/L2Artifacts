@@ -3,7 +3,7 @@ package dev.xkmc.l2artifacts.content.effects;
 import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
 import dev.xkmc.l2artifacts.content.core.BaseArtifact;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.contents.TranslatableContents;
 import net.minecraft.world.entity.player.Player;
 
 import java.util.List;
@@ -48,7 +48,7 @@ public class SaintRestoration extends SetEffect {
 	@Override
 	public List<MutableComponent> getDetailedDescription(BaseArtifact item) {
 		double period = (base - (item.rank - 1) * slope) / 20d;
-		return List.of(new TranslatableComponent(getDescriptionId() + ".desc", ATTRIBUTE_MODIFIER_FORMAT.format(period)));
+		return List.of(MutableComponent.create(new TranslatableContents(getDescriptionId() + ".desc", ATTRIBUTE_MODIFIER_FORMAT.format(period))));
 	}
 
 }

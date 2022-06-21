@@ -4,7 +4,7 @@ import dev.xkmc.l2artifacts.init.L2Artifacts;
 import dev.xkmc.l2library.repack.registrate.providers.RegistrateLangProvider;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.contents.TranslatableContents;
 
 import javax.annotation.Nullable;
 import java.util.Locale;
@@ -34,14 +34,14 @@ public enum LangData {
 		return name.toLowerCase(Locale.ROOT);
 	}
 
-	public static TranslatableComponent getTranslate(String s) {
-		return new TranslatableComponent(L2Artifacts.MODID + "." + s);
+	public static MutableComponent getTranslate(String s) {
+		return MutableComponent.create(new TranslatableContents(L2Artifacts.MODID + "." + s));
 	}
 
 	public MutableComponent get(Object... args) {
 		if (args.length != arg)
 			throw new IllegalArgumentException("for " + name() + ": expect " + arg + " parameters, got " + args.length);
-		TranslatableComponent ans = new TranslatableComponent(key, args);
+		MutableComponent ans = MutableComponent.create(new TranslatableContents(key, args));
 		if (format != null) {
 			return ans.withStyle(format);
 		}

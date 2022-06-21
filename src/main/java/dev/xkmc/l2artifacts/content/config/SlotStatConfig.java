@@ -3,7 +3,7 @@ package dev.xkmc.l2artifacts.content.config;
 import dev.xkmc.l2artifacts.content.core.ArtifactSlot;
 import dev.xkmc.l2artifacts.content.core.ArtifactStatType;
 import dev.xkmc.l2artifacts.init.NetworkManager;
-import dev.xkmc.l2library.network.BaseConfig;
+import dev.xkmc.l2library.serial.network.BaseConfig;
 import dev.xkmc.l2library.serial.SerialClass;
 
 import java.util.ArrayList;

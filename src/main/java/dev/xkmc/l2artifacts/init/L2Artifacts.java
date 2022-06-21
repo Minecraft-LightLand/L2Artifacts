@@ -4,12 +4,15 @@ import dev.xkmc.l2artifacts.events.ArtifactEffectEvents;
 import dev.xkmc.l2artifacts.events.CommonEvents;
 import dev.xkmc.l2artifacts.events.CraftEvents;
 import dev.xkmc.l2artifacts.events.CritHandler;
-import dev.xkmc.l2artifacts.init.data.*;
+import dev.xkmc.l2artifacts.init.data.ConfigGen;
+import dev.xkmc.l2artifacts.init.data.LangData;
+import dev.xkmc.l2artifacts.init.data.ModConfig;
+import dev.xkmc.l2artifacts.init.data.RecipeGen;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactItemRegistry;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactRegistrate;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactTypeRegistry;
+import dev.xkmc.l2library.base.tabs.contents.AttributeEntry;
 import dev.xkmc.l2library.init.events.AttackEventHandler;
-import dev.xkmc.l2library.menu.tabs.contents.AttributeEntry;
 import dev.xkmc.l2library.repack.registrate.providers.ProviderType;
 import net.minecraft.world.entity.EntityType;
 import net.minecraftforge.api.distmarker.Dist;
@@ -82,8 +85,8 @@ public class L2Artifacts {
 	}
 
 	public static void gatherData(GatherDataEvent event) {
-		event.getGenerator().addProvider(new ConfigGen(event.getGenerator()));
-		event.getGenerator().addProvider(new ArtifactGLMProvider(event.getGenerator()));
+		event.getGenerator().addProvider(event.includeServer(), new ConfigGen(event.getGenerator()));
+		//event.getGenerator().addProvider(event.includeServer(), new ArtifactGLMProvider(event.getGenerator()));
 	}
 
 	private static void sendMessage(final InterModEnqueueEvent event) {

@@ -3,7 +3,7 @@ package dev.xkmc.l2artifacts.content.effects;
 import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
 import dev.xkmc.l2artifacts.content.core.BaseArtifact;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.contents.TranslatableContents;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.CriticalHitEvent;
@@ -25,7 +25,7 @@ public class SaintReduction extends SetEffect {
 	public List<MutableComponent> getDetailedDescription(BaseArtifact item) {
 		int damage = (int) Math.round(100 * (1 - base));
 		int reduction = (int) Math.round(100 * (1 - base - slope * item.rank));
-		return List.of(new TranslatableComponent(getDescriptionId() + ".desc", damage, reduction));
+		return List.of(MutableComponent.create(new TranslatableContents(getDescriptionId() + ".desc", damage, reduction)));
 	}
 
 	@Override

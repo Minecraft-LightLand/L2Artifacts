@@ -3,9 +3,9 @@ package dev.xkmc.l2artifacts.content.config;
 import dev.xkmc.l2artifacts.content.core.ArtifactSet;
 import dev.xkmc.l2artifacts.content.effects.SetEffect;
 import dev.xkmc.l2artifacts.init.NetworkManager;
-import dev.xkmc.l2library.network.BaseConfig;
 import dev.xkmc.l2library.serial.SerialClass;
-import dev.xkmc.l2library.util.MathHelper;
+import dev.xkmc.l2library.serial.network.BaseConfig;
+import dev.xkmc.l2library.util.math.MathHelper;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -75,7 +75,7 @@ public class ArtifactSetConfig extends BaseConfig {
 			str = set.getID() + "_" + effect.getID();
 			id = new UUID[effect.ids];
 			for (int i = 0; i < effect.ids; i++)
-				id[i] = MathHelper.getUUIDfromString(str + "_" + i);
+				id[i] = MathHelper.getUUIDFromString(str + "_" + i);
 		}
 
 	}

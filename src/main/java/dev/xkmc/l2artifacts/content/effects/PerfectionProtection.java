@@ -3,7 +3,7 @@ package dev.xkmc.l2artifacts.content.effects;
 import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
 import dev.xkmc.l2artifacts.content.core.BaseArtifact;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.contents.TranslatableContents;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.eventbus.api.Event;
@@ -23,7 +23,7 @@ public class PerfectionProtection extends SetEffect {
 	@Override
 	public List<MutableComponent> getDetailedDescription(BaseArtifact item) {
 		int reduce = (int) Math.round((reduce_base + (item.rank - 1) * reduce_slope) * 100);
-		return List.of(new TranslatableComponent(getDescriptionId() + ".desc", reduce));
+		return List.of(MutableComponent.create(new TranslatableContents(getDescriptionId() + ".desc", reduce)));
 	}
 
 	@Override

@@ -5,7 +5,7 @@ import dev.xkmc.l2artifacts.content.core.BaseArtifact;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactTypeRegistry;
 import dev.xkmc.l2library.base.NamedEntry;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.contents.TranslatableContents;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.eventbus.api.Event;
 
@@ -33,7 +33,7 @@ public abstract class SetEffect extends NamedEntry<SetEffect> {
 	}
 
 	public List<MutableComponent> getDetailedDescription(BaseArtifact item) {
-		return List.of(new TranslatableComponent(getDescriptionId() + ".desc"));
+		return List.of(MutableComponent.create(new TranslatableContents(getDescriptionId() + ".desc")));
 	}
 
 	public <T extends Event> void propagateEvent(Player player, ArtifactSetConfig.Entry ent, int rank, boolean b, T event) {

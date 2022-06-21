@@ -6,6 +6,7 @@ import dev.xkmc.l2library.util.Proxy;
 import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
@@ -30,7 +31,7 @@ public class BaseArtifact extends Item {
 		return rank <= 2 ? Rarity.UNCOMMON : rank <= 4 ? Rarity.RARE : Rarity.EPIC;
 	}
 
-	public static void upgrade(ItemStack stack, int exp, Random random) {
+	public static void upgrade(ItemStack stack, int exp, RandomSource random) {
 		if (stack.getTag() != null && stack.getTag().contains(KEY)) {
 			ArtifactStats stats = TagCodec.fromTag(stack.getTag().getCompound(KEY), ArtifactStats.class);
 			stats.addExp(exp, random);

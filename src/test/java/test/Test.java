@@ -15,7 +15,6 @@ public class Test {
 	}
 
 	private static void test(){
-		Class<? extends List<?>> cls = List.class;
 	}
 
 }

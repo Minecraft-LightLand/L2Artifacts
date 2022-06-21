@@ -3,8 +3,8 @@ package dev.xkmc.l2artifacts.init;
 import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
 import dev.xkmc.l2artifacts.content.config.SlotStatConfig;
 import dev.xkmc.l2artifacts.content.config.StatTypeConfig;
-import dev.xkmc.l2library.network.BaseConfig;
-import dev.xkmc.l2library.network.PacketHandlerWithConfig;
+import dev.xkmc.l2library.serial.network.BaseConfig;
+import dev.xkmc.l2library.serial.network.PacketHandlerWithConfig;
 import net.minecraft.resources.ResourceLocation;
 
 import java.util.Map;

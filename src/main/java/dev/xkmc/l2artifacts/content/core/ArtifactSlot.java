@@ -3,6 +3,7 @@ package dev.xkmc.l2artifacts.content.core;
 import dev.xkmc.l2artifacts.content.config.SlotStatConfig;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactTypeRegistry;
 import dev.xkmc.l2library.base.NamedEntry;
+import net.minecraft.util.RandomSource;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +15,7 @@ public class ArtifactSlot extends NamedEntry<ArtifactSlot> {
 		super(ArtifactTypeRegistry.SLOT);
 	}
 
-	public void generate(ArtifactStats stat, Random random) {
+	public void generate(ArtifactStats stat, RandomSource random) {
 		List<ArtifactStatType> main_list = new ArrayList<>(SlotStatConfig.getInstance().available_main_stats.get(this));
 		List<ArtifactStatType> sub_list = new ArrayList<>(SlotStatConfig.getInstance().available_sub_stats.get(this));
 

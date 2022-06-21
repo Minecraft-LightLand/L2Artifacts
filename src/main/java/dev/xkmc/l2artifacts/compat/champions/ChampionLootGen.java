@@ -1,5 +1,5 @@
 package dev.xkmc.l2artifacts.compat.champions;
-
+/*
 import dev.xkmc.l2artifacts.init.data.ArtifactGLMProvider;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactItemRegistry;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactRegistrate;
@@ -42,3 +42,4 @@ public class ChampionLootGen {
 	}
 
 }
+*/

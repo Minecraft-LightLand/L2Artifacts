@@ -3,7 +3,7 @@ package dev.xkmc.l2artifacts.content.effects;
 import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
 import dev.xkmc.l2artifacts.content.core.BaseArtifact;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.contents.TranslatableContents;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -50,10 +50,10 @@ public class AttributeSetEffect extends SetEffect {
 		for (AttrSetEntry ent : entries) {
 			double val = ent.base + ent.slope * (item.rank - 1);
 			String sign = val > 0 ? "attribute.modifier.plus." : "attribute.modifier.take.";
-			ans.add(new TranslatableComponent(
+			ans.add(MutableComponent.create(new TranslatableContents(
 					sign + (ent.usePercent ? 1 : 0),
 					ATTRIBUTE_MODIFIER_FORMAT.format(Math.abs(ent.usePercent ? val * 100 : val)),
-					new TranslatableComponent(ent.attr.get().getDescriptionId())));
+					new TranslatableContents(ent.attr.get().getDescriptionId()))));
 		}
 		return ans;
 	}

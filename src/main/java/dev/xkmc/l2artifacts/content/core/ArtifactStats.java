@@ -3,6 +3,7 @@ package dev.xkmc.l2artifacts.content.core;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import dev.xkmc.l2library.serial.SerialClass;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 
@@ -33,7 +34,7 @@ public class ArtifactStats {
 
 	}
 
-	public ArtifactStats(ArtifactSlot slot, int rank, Random random) {
+	public ArtifactStats(ArtifactSlot slot, int rank, RandomSource random) {
 		this.slot = slot;
 		this.rank = rank;
 		slot.generate(this, random);
@@ -77,7 +78,7 @@ public class ArtifactStats {
 		return builder.build();
 	}
 
-	public void addExp(int exp, Random random) {
+	public void addExp(int exp, RandomSource random) {
 		this.exp += exp;
 		int max_level = ArtifactUpgradeManager.getMaxLevel(rank);
 		while (true) {

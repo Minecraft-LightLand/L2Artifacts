@@ -10,7 +10,7 @@ import dev.xkmc.l2artifacts.compat.kubejs.builder.StatTypeBB;
 import dev.xkmc.l2artifacts.content.core.ArtifactSet;
 import dev.xkmc.l2artifacts.content.core.ArtifactStatType;
 import dev.xkmc.l2artifacts.content.effects.SetEffect;
-import dev.xkmc.l2artifacts.init.registrate.ArtifactRegistry;
+import dev.xkmc.l2artifacts.init.registrate.ArtifactTypeRegistry;
 
 public class KubeJSArtifactPlugin extends KubeJSPlugin {
 
@@ -19,9 +19,9 @@ public class KubeJSArtifactPlugin extends KubeJSPlugin {
 	public static final RegistryObjectBuilderTypes<ArtifactStatType> STAT_TYPE;
 
 	static {
-		ARTIFACT_SET = RegistryObjectBuilderTypes.add(ArtifactRegistry.SET.getRegistryKey(), ArtifactSet.class);
-		SET_EFFECT = RegistryObjectBuilderTypes.add(ArtifactRegistry.SET_EFFECT.getRegistryKey(), SetEffect.class);
-		STAT_TYPE = RegistryObjectBuilderTypes.add(ArtifactRegistry.STAT_TYPE.getRegistryKey(), ArtifactStatType.class);
+		ARTIFACT_SET = RegistryObjectBuilderTypes.add(ArtifactTypeRegistry.SET.key(), ArtifactSet.class);
+		SET_EFFECT = RegistryObjectBuilderTypes.add(ArtifactTypeRegistry.SET_EFFECT.key(), SetEffect.class);
+		STAT_TYPE = RegistryObjectBuilderTypes.add(ArtifactTypeRegistry.STAT_TYPE.key(), ArtifactStatType.class);
 	}
 
 	@Override

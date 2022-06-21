@@ -7,10 +7,9 @@ import dev.xkmc.l2artifacts.events.CritHandler;
 import dev.xkmc.l2artifacts.init.data.*;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactItemRegistry;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactRegistrate;
-import dev.xkmc.l2artifacts.init.registrate.ArtifactRegistry;
+import dev.xkmc.l2artifacts.init.registrate.ArtifactTypeRegistry;
 import dev.xkmc.l2library.init.events.AttackEventHandler;
 import dev.xkmc.l2library.menu.tabs.contents.AttributeEntry;
-import dev.xkmc.l2library.menu.tabs.contents.AttributeScreen;
 import dev.xkmc.l2library.repack.registrate.providers.ProviderType;
 import net.minecraft.world.entity.EntityType;
 import net.minecraftforge.api.distmarker.Dist;
@@ -38,7 +37,7 @@ public class L2Artifacts {
 	public static final ArtifactRegistrate REGISTRATE = new ArtifactRegistrate();
 
 	private static void registerRegistrates(IEventBus bus) {
-		ArtifactRegistry.register();
+		ArtifactTypeRegistry.register();
 		ArtifactItemRegistry.register();
 		ModConfig.init();
 		NetworkManager.register();
@@ -55,7 +54,6 @@ public class L2Artifacts {
 	}
 
 	private static void registerModBusEvents(IEventBus bus) {
-		bus.addListener(ArtifactRegistry::createRegistries);
 		bus.addListener(L2Artifacts::modifyAttributes);
 		bus.addListener(L2Artifacts::setup);
 		bus.addListener(L2Artifacts::gatherData);
@@ -72,14 +70,14 @@ public class L2Artifacts {
 	}
 
 	private static void modifyAttributes(EntityAttributeModificationEvent event) {
-		event.add(EntityType.PLAYER, ArtifactRegistry.CRIT_RATE.get());
-		event.add(EntityType.PLAYER, ArtifactRegistry.CRIT_DMG.get());
+		event.add(EntityType.PLAYER, ArtifactTypeRegistry.CRIT_RATE.get());
+		event.add(EntityType.PLAYER, ArtifactTypeRegistry.CRIT_DMG.get());
 	}
 
 	private static void setup(final FMLCommonSetupEvent event) {
 		event.enqueueWork(() -> {
-			AttributeEntry.add(ArtifactRegistry.CRIT_RATE, true,11000);
-			AttributeEntry.add(ArtifactRegistry.CRIT_DMG, true,12000);
+			AttributeEntry.add(ArtifactTypeRegistry.CRIT_RATE, true, 11000);
+			AttributeEntry.add(ArtifactTypeRegistry.CRIT_DMG, true, 12000);
 		});
 	}
 

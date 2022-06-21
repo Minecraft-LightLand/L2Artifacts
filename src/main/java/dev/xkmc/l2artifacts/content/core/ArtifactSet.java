@@ -3,7 +3,7 @@ package dev.xkmc.l2artifacts.content.core;
 import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
 import dev.xkmc.l2artifacts.init.data.LangData;
 import dev.xkmc.l2artifacts.init.data.ModConfig;
-import dev.xkmc.l2artifacts.init.registrate.ArtifactRegistry;
+import dev.xkmc.l2artifacts.init.registrate.ArtifactTypeRegistry;
 import dev.xkmc.l2library.base.NamedEntry;
 import dev.xkmc.l2library.util.Proxy;
 import net.minecraft.ChatFormatting;
@@ -33,7 +33,7 @@ public class ArtifactSet extends NamedEntry<ArtifactSet> {
 	}
 
 	public ArtifactSet() {
-		super(() -> ArtifactRegistry.SET);
+		super(ArtifactTypeRegistry.SET);
 	}
 
 	public Optional<SetContext> getCountAndIndex(@Nullable SlotContext context) {

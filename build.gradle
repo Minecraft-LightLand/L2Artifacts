@@ -129,8 +129,8 @@ dependencies {
     annotationProcessor "org.spongepowered:mixin:${mixin_version}:processor"
 
     implementation fg.deobf("dev.xkmc.l2library:l2library:${l2library_version}")
-    runtimeOnly fg.deobf('dev.xkmc.l2backpack:l2backpack:0.0.5')
-    implementation fg.deobf('dev.xkmc.playerdifficulty:playerdifficulty:0.0.7')
+    runtimeOnly fg.deobf('dev.xkmc.l2backpack:l2backpack:0.1.0')
+    implementation fg.deobf('dev.xkmc.playerdifficulty:playerdifficulty:0.1.0')
     runtimeOnly fg.deobf('dev.local.twilightforest:twilightforest:4.1.1102')
 
     runtimeOnly fg.deobf('curse.maven:enchantment-descriptions-250419:3754812')

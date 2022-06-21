@@ -3,23 +3,16 @@ package dev.xkmc.l2artifacts.init.registrate;
 import dev.xkmc.l2artifacts.content.core.ArtifactSet;
 import dev.xkmc.l2artifacts.content.core.ArtifactSlot;
 import dev.xkmc.l2artifacts.content.core.ArtifactStatType;
-import dev.xkmc.l2artifacts.content.effects.*;
-import dev.xkmc.l2artifacts.init.L2Artifacts;
+import dev.xkmc.l2artifacts.content.effects.SetEffect;
+import dev.xkmc.l2library.base.L2Registrate;
 import dev.xkmc.l2library.repack.registrate.util.entry.RegistryEntry;
 import dev.xkmc.l2library.repack.registrate.util.nullness.NonNullSupplier;
-import dev.xkmc.l2library.serial.handler.RLClassHandler;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.attributes.RangedAttribute;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.ForgeMod;
-import net.minecraftforge.registries.IForgeRegistry;
-import net.minecraftforge.registries.IForgeRegistryEntry;
-import net.minecraftforge.registries.NewRegistryEvent;
-import net.minecraftforge.registries.RegistryBuilder;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.function.Supplier;
 
@@ -27,12 +20,12 @@ import static dev.xkmc.l2artifacts.init.L2Artifacts.REGISTRATE;
 import static net.minecraft.world.entity.ai.attributes.AttributeModifier.Operation.ADDITION;
 import static net.minecraft.world.entity.ai.attributes.AttributeModifier.Operation.MULTIPLY_TOTAL;
 
-public class ArtifactRegistry {
+public class ArtifactTypeRegistry {
 
-	public static IForgeRegistry<ArtifactSlot> SLOT;
-	public static IForgeRegistry<ArtifactStatType> STAT_TYPE;
-	public static IForgeRegistry<ArtifactSet> SET;
-	public static IForgeRegistry<SetEffect> SET_EFFECT;
+	public static L2Registrate.RegistryInstance<ArtifactSlot> SLOT = REGISTRATE.newRegistry("slot", ArtifactSlot.class);
+	public static L2Registrate.RegistryInstance<ArtifactStatType> STAT_TYPE = REGISTRATE.newRegistry("stat_type", ArtifactStatType.class);
+	public static L2Registrate.RegistryInstance<ArtifactSet> SET = REGISTRATE.newRegistry("set", ArtifactSet.class);
+	public static L2Registrate.RegistryInstance<SetEffect> SET_EFFECT = REGISTRATE.newRegistry("set_effect", SetEffect.class);
 
 	public static RegistryEntry<ArtifactSlot> SLOT_HEAD = regSlot("head", ArtifactSlot::new);
 	public static RegistryEntry<ArtifactSlot> SLOT_NECKLACE = regSlot("necklace", ArtifactSlot::new);
@@ -40,8 +33,8 @@ public class ArtifactRegistry {
 	public static RegistryEntry<ArtifactSlot> SLOT_BODY = regSlot("body", ArtifactSlot::new);
 	public static RegistryEntry<ArtifactSlot> SLOT_BELT = regSlot("belt", ArtifactSlot::new);
 
-	public static RegistryEntry<Attribute> CRIT_RATE = REGISTRATE.simple("crit_rate", Attribute.class, () -> new RangedAttribute("attribute.name.crit_rate", 0.05, 0, 1).setSyncable(true));
-	public static RegistryEntry<Attribute> CRIT_DMG = REGISTRATE.simple("crit_damage", Attribute.class, () -> new RangedAttribute("attribute.name.crit_damage", 0.50, 0, 1000).setSyncable(true));
+	public static RegistryEntry<Attribute> CRIT_RATE = REGISTRATE.simple("crit_rate", ForgeRegistries.ATTRIBUTES.getRegistryKey(), () -> new RangedAttribute("attribute.name.crit_rate", 0, 0, 1).setSyncable(true));
+	public static RegistryEntry<Attribute> CRIT_DMG = REGISTRATE.simple("crit_damage", ForgeRegistries.ATTRIBUTES.getRegistryKey(), () -> new RangedAttribute("attribute.name.crit_damage", 0, 0, 1000).setSyncable(true));
 
 	public static RegistryEntry<ArtifactStatType> HEALTH_ADD = regStat("health_add", () -> Attributes.MAX_HEALTH, ADDITION, false);
 	public static RegistryEntry<ArtifactStatType> ARMOR_ADD = regStat("armor_add", () -> Attributes.ARMOR, ADDITION, false);
@@ -54,41 +47,16 @@ public class ArtifactRegistry {
 	public static RegistryEntry<ArtifactStatType> SPEED_MULT = regStat("speed_mult", () -> Attributes.MOVEMENT_SPEED, MULTIPLY_TOTAL, true);
 	public static RegistryEntry<ArtifactStatType> ATK_SPEED_MULT = regStat("attack_speed_mult", () -> Attributes.ATTACK_SPEED, MULTIPLY_TOTAL, true);
 
-	public static void register(){
+	public static void register() {
 
-	}
-
-	@SuppressWarnings({"unchecked"})
-	public static void createRegistries(NewRegistryEvent event) {
-		event.create(new RegistryBuilder<ArtifactSlot>()
-				.setName(new ResourceLocation(L2Artifacts.MODID, "slot"))
-				.setType(ArtifactSlot.class), e -> SLOT = regSerializer(e));
-
-		event.create(new RegistryBuilder<ArtifactStatType>()
-				.setName(new ResourceLocation(L2Artifacts.MODID, "stat_type"))
-				.setType(ArtifactStatType.class), e -> STAT_TYPE = regSerializer(e));
-
-		event.create(new RegistryBuilder<ArtifactSet>()
-				.setName(new ResourceLocation(L2Artifacts.MODID, "set"))
-				.setType(ArtifactSet.class), e -> SET = regSerializer(e));
-
-		event.create(new RegistryBuilder<SetEffect>()
-				.setName(new ResourceLocation(L2Artifacts.MODID, "set_effect"))
-				.setType(SetEffect.class), e -> SET_EFFECT = regSerializer(e));
-	}
-
-	@SuppressWarnings({"rawtypes"})
-	private static <T extends IForgeRegistryEntry<T>> IForgeRegistry regSerializer(IForgeRegistry<T> r) {
-		new RLClassHandler<>(r.getRegistrySuperType(), () -> r);
-		return r;
 	}
 
 	private static RegistryEntry<ArtifactSlot> regSlot(String id, NonNullSupplier<ArtifactSlot> slot) {
-		return REGISTRATE.generic(ArtifactSlot.class, id, slot).defaultLang().register();
+		return REGISTRATE.generic(SLOT, id, slot).defaultLang().register();
 	}
 
-	private static RegistryEntry<ArtifactStatType> regStat(String id, Supplier<Attribute> attr, AttributeModifier.Operation op, boolean useMult) {
-		return REGISTRATE.generic(ArtifactStatType.class, id, () -> new ArtifactStatType(attr, op, useMult)).defaultLang().register();
+	private static RegistryEntry<ArtifactStatType> regStat(String id, Supplier<Attribute> attr, AttributeModifier.Operation op, boolean usePercent) {
+		return REGISTRATE.generic(STAT_TYPE, id, () -> new ArtifactStatType(attr, op, usePercent)).defaultLang().register();
 	}
 
 }

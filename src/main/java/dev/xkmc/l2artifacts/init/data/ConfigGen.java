@@ -7,7 +7,7 @@ import dev.xkmc.l2artifacts.content.core.ArtifactSet;
 import dev.xkmc.l2artifacts.content.core.ArtifactSlot;
 import dev.xkmc.l2artifacts.content.core.ArtifactStatType;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactItemRegistry;
-import dev.xkmc.l2artifacts.init.registrate.ArtifactRegistry;
+import dev.xkmc.l2artifacts.init.registrate.ArtifactTypeRegistry;
 import dev.xkmc.l2library.network.BaseConfig;
 import dev.xkmc.l2library.network.ConfigDataProvider;
 import net.minecraft.data.DataGenerator;
@@ -30,86 +30,86 @@ public class ConfigGen extends ConfigDataProvider {
 		{
 			ArrayList<ArtifactStatType> all = new ArrayList<>();
 			{
-				all.add(ArtifactRegistry.HEALTH_ADD.get());
-				all.add(ArtifactRegistry.ARMOR_ADD.get());
-				all.add(ArtifactRegistry.TOUGH_ADD.get());
-				all.add(ArtifactRegistry.ATK_ADD.get());
-				all.add(ArtifactRegistry.ATK_MULT.get());
-				all.add(ArtifactRegistry.CR_ADD.get());
-				all.add(ArtifactRegistry.CD_ADD.get());
-				all.add(ArtifactRegistry.REACH_ADD.get());
-				all.add(ArtifactRegistry.ATK_SPEED_MULT.get());
-				all.add(ArtifactRegistry.SPEED_MULT.get());
+				all.add(ArtifactTypeRegistry.HEALTH_ADD.get());
+				all.add(ArtifactTypeRegistry.ARMOR_ADD.get());
+				all.add(ArtifactTypeRegistry.TOUGH_ADD.get());
+				all.add(ArtifactTypeRegistry.ATK_ADD.get());
+				all.add(ArtifactTypeRegistry.ATK_MULT.get());
+				all.add(ArtifactTypeRegistry.CR_ADD.get());
+				all.add(ArtifactTypeRegistry.CD_ADD.get());
+				all.add(ArtifactTypeRegistry.REACH_ADD.get());
+				all.add(ArtifactTypeRegistry.ATK_SPEED_MULT.get());
+				all.add(ArtifactTypeRegistry.SPEED_MULT.get());
 			}
 			{
 				ArrayList<ArtifactStatType> list = new ArrayList<>();
-				list.add(ArtifactRegistry.HEALTH_ADD.get());
-				list.add(ArtifactRegistry.ARMOR_ADD.get());
+				list.add(ArtifactTypeRegistry.HEALTH_ADD.get());
+				list.add(ArtifactTypeRegistry.ARMOR_ADD.get());
 
-				list.add(ArtifactRegistry.TOUGH_ADD.get());
-				addSlotStat(map, ArtifactRegistry.SLOT_BODY.get(), list, all);
+				list.add(ArtifactTypeRegistry.TOUGH_ADD.get());
+				addSlotStat(map, ArtifactTypeRegistry.SLOT_BODY.get(), list, all);
 			}
 			{
 				ArrayList<ArtifactStatType> list = new ArrayList<>();
-				list.add(ArtifactRegistry.ATK_ADD.get());
-				list.add(ArtifactRegistry.ATK_MULT.get());
+				list.add(ArtifactTypeRegistry.ATK_ADD.get());
+				list.add(ArtifactTypeRegistry.ATK_MULT.get());
 
-				list.add(ArtifactRegistry.REACH_ADD.get());
-				addSlotStat(map, ArtifactRegistry.SLOT_BRACELET.get(), list, all);
+				list.add(ArtifactTypeRegistry.REACH_ADD.get());
+				addSlotStat(map, ArtifactTypeRegistry.SLOT_BRACELET.get(), list, all);
 			}
 			{
 				ArrayList<ArtifactStatType> list = new ArrayList<>();
-				list.add(ArtifactRegistry.HEALTH_ADD.get());
-				list.add(ArtifactRegistry.ARMOR_ADD.get());
-				list.add(ArtifactRegistry.ATK_ADD.get());
-				list.add(ArtifactRegistry.ATK_MULT.get());
+				list.add(ArtifactTypeRegistry.HEALTH_ADD.get());
+				list.add(ArtifactTypeRegistry.ARMOR_ADD.get());
+				list.add(ArtifactTypeRegistry.ATK_ADD.get());
+				list.add(ArtifactTypeRegistry.ATK_MULT.get());
 
-				list.add(ArtifactRegistry.CR_ADD.get());
-				list.add(ArtifactRegistry.CD_ADD.get());
-				addSlotStat(map, ArtifactRegistry.SLOT_NECKLACE.get(), list, all);
+				list.add(ArtifactTypeRegistry.CR_ADD.get());
+				list.add(ArtifactTypeRegistry.CD_ADD.get());
+				addSlotStat(map, ArtifactTypeRegistry.SLOT_NECKLACE.get(), list, all);
 			}
 			{
 				ArrayList<ArtifactStatType> list = new ArrayList<>();
-				list.add(ArtifactRegistry.HEALTH_ADD.get());
-				list.add(ArtifactRegistry.ARMOR_ADD.get());
-				list.add(ArtifactRegistry.ATK_ADD.get());
-				list.add(ArtifactRegistry.ATK_MULT.get());
+				list.add(ArtifactTypeRegistry.HEALTH_ADD.get());
+				list.add(ArtifactTypeRegistry.ARMOR_ADD.get());
+				list.add(ArtifactTypeRegistry.ATK_ADD.get());
+				list.add(ArtifactTypeRegistry.ATK_MULT.get());
 
-				list.add(ArtifactRegistry.ATK_SPEED_MULT.get());
-				list.add(ArtifactRegistry.SPEED_MULT.get());
-				addSlotStat(map, ArtifactRegistry.SLOT_BELT.get(), list, all);
+				list.add(ArtifactTypeRegistry.ATK_SPEED_MULT.get());
+				list.add(ArtifactTypeRegistry.SPEED_MULT.get());
+				addSlotStat(map, ArtifactTypeRegistry.SLOT_BELT.get(), list, all);
 			}
 			{
 				ArrayList<ArtifactStatType> list = new ArrayList<>();
-				list.add(ArtifactRegistry.HEALTH_ADD.get());
-				list.add(ArtifactRegistry.ARMOR_ADD.get());
-				list.add(ArtifactRegistry.ATK_ADD.get());
-				list.add(ArtifactRegistry.ATK_MULT.get());
+				list.add(ArtifactTypeRegistry.HEALTH_ADD.get());
+				list.add(ArtifactTypeRegistry.ARMOR_ADD.get());
+				list.add(ArtifactTypeRegistry.ATK_ADD.get());
+				list.add(ArtifactTypeRegistry.ATK_MULT.get());
 
-				list.add(ArtifactRegistry.TOUGH_ADD.get());
-				list.add(ArtifactRegistry.REACH_ADD.get());
+				list.add(ArtifactTypeRegistry.TOUGH_ADD.get());
+				list.add(ArtifactTypeRegistry.REACH_ADD.get());
 
-				list.add(ArtifactRegistry.CR_ADD.get());
-				list.add(ArtifactRegistry.CD_ADD.get());
-				list.add(ArtifactRegistry.ATK_SPEED_MULT.get());
-				list.add(ArtifactRegistry.SPEED_MULT.get());
+				list.add(ArtifactTypeRegistry.CR_ADD.get());
+				list.add(ArtifactTypeRegistry.CD_ADD.get());
+				list.add(ArtifactTypeRegistry.ATK_SPEED_MULT.get());
+				list.add(ArtifactTypeRegistry.SPEED_MULT.get());
 
-				addSlotStat(map, ArtifactRegistry.SLOT_HEAD.get(), list, all);
+				addSlotStat(map, ArtifactTypeRegistry.SLOT_HEAD.get(), list, all);
 			}
 		}
 
 		// Stat Type Config
 		{
-			addStatType(map, ArtifactRegistry.HEALTH_ADD.get(), 1);
-			addStatType(map, ArtifactRegistry.ARMOR_ADD.get(), 1);
-			addStatType(map, ArtifactRegistry.TOUGH_ADD.get(), 1);
-			addStatType(map, ArtifactRegistry.ATK_ADD.get(), 1);
-			addStatType(map, ArtifactRegistry.ATK_MULT.get(), 0.02);
-			addStatType(map, ArtifactRegistry.CR_ADD.get(), 0.01);
-			addStatType(map, ArtifactRegistry.CD_ADD.get(), 0.02);
-			addStatType(map, ArtifactRegistry.REACH_ADD.get(), 0.02);
-			addStatType(map, ArtifactRegistry.SPEED_MULT.get(), 0.02);
-			addStatType(map, ArtifactRegistry.ATK_SPEED_MULT.get(), 0.02);
+			addStatType(map, ArtifactTypeRegistry.HEALTH_ADD.get(), 1);
+			addStatType(map, ArtifactTypeRegistry.ARMOR_ADD.get(), 1);
+			addStatType(map, ArtifactTypeRegistry.TOUGH_ADD.get(), 1);
+			addStatType(map, ArtifactTypeRegistry.ATK_ADD.get(), 1);
+			addStatType(map, ArtifactTypeRegistry.ATK_MULT.get(), 0.02);
+			addStatType(map, ArtifactTypeRegistry.CR_ADD.get(), 0.01);
+			addStatType(map, ArtifactTypeRegistry.CD_ADD.get(), 0.02);
+			addStatType(map, ArtifactTypeRegistry.REACH_ADD.get(), 0.02);
+			addStatType(map, ArtifactTypeRegistry.SPEED_MULT.get(), 0.02);
+			addStatType(map, ArtifactTypeRegistry.ATK_SPEED_MULT.get(), 0.02);
 		}
 
 		// Set Effect Config

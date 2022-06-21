@@ -2,7 +2,7 @@ package dev.xkmc.l2artifacts.content.core;
 
 import com.google.common.collect.ImmutableMultimap;
 import dev.xkmc.l2artifacts.content.config.StatTypeConfig;
-import dev.xkmc.l2artifacts.init.registrate.ArtifactRegistry;
+import dev.xkmc.l2artifacts.init.registrate.ArtifactTypeRegistry;
 import dev.xkmc.l2library.base.NamedEntry;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -22,7 +22,7 @@ public class ArtifactStatType extends NamedEntry<ArtifactStatType> {
 	private final boolean usePercent;
 
 	public ArtifactStatType(Supplier<Attribute> attr, AttributeModifier.Operation op, boolean useMult) {
-		super(() -> ArtifactRegistry.STAT_TYPE);
+		super(ArtifactTypeRegistry.STAT_TYPE);
 		this.attr = attr;
 		this.op = op;
 		this.usePercent = useMult;

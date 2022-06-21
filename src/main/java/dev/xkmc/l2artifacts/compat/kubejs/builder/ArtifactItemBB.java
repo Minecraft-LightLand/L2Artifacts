@@ -3,7 +3,7 @@ package dev.xkmc.l2artifacts.compat.kubejs.builder;
 import dev.latvian.mods.kubejs.BuilderBase;
 import dev.latvian.mods.kubejs.RegistryObjectBuilderTypes;
 import dev.xkmc.l2artifacts.content.core.BaseArtifact;
-import dev.xkmc.l2artifacts.init.registrate.ArtifactRegistry;
+import dev.xkmc.l2artifacts.init.registrate.ArtifactTypeRegistry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 
@@ -43,8 +43,8 @@ public class ArtifactItemBB extends BuilderBase<Item> {
 		Objects.requireNonNull(slot);
 		Objects.requireNonNull(set);
 		return new BaseArtifact(new Item.Properties(),
-				() -> ArtifactRegistry.SET.getValue(set),
-				() -> ArtifactRegistry.SLOT.getValue(slot),
+				() -> ArtifactTypeRegistry.SET.get().getValue(set),
+				() -> ArtifactTypeRegistry.SLOT.get().getValue(slot),
 				rank);
 	}
 

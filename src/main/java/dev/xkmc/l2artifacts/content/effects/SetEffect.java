@@ -2,7 +2,7 @@ package dev.xkmc.l2artifacts.content.effects;
 
 import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
 import dev.xkmc.l2artifacts.content.core.BaseArtifact;
-import dev.xkmc.l2artifacts.init.registrate.ArtifactRegistry;
+import dev.xkmc.l2artifacts.init.registrate.ArtifactTypeRegistry;
 import dev.xkmc.l2library.base.NamedEntry;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.TranslatableComponent;
@@ -16,7 +16,7 @@ public abstract class SetEffect extends NamedEntry<SetEffect> {
 	public final int ids;
 
 	public SetEffect(int ids) {
-		super(() -> ArtifactRegistry.SET_EFFECT);
+		super(ArtifactTypeRegistry.SET_EFFECT);
 		this.ids = ids;
 	}
 

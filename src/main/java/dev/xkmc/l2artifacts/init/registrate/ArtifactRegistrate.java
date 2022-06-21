@@ -5,7 +5,7 @@ import dev.xkmc.l2artifacts.content.core.ArtifactSlot;
 import dev.xkmc.l2artifacts.content.core.BaseArtifact;
 import dev.xkmc.l2artifacts.content.effects.SetEffect;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
-import dev.xkmc.l2library.base.LcyRegistrate;
+import dev.xkmc.l2library.base.L2Registrate;
 import dev.xkmc.l2library.base.NamedEntry;
 import dev.xkmc.l2library.repack.registrate.AbstractRegistrate;
 import dev.xkmc.l2library.repack.registrate.builders.AbstractBuilder;
@@ -27,7 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class ArtifactRegistrate extends LcyRegistrate {
+public class ArtifactRegistrate extends L2Registrate {
 
 	public ArtifactRegistrate() {
 		super(L2Artifacts.MODID);
@@ -44,7 +44,7 @@ public class ArtifactRegistrate extends LcyRegistrate {
 	}
 
 	public <T extends SetEffect> RegistryEntry<T> setEffect(String id, NonNullSupplier<T> sup) {
-		return generic(SetEffect.class, id, sup).defaultLang().register();
+		return generic(ArtifactTypeRegistry.SET_EFFECT, id, sup).defaultLang().register();
 
 	}
 
@@ -58,7 +58,7 @@ public class ArtifactRegistrate extends LcyRegistrate {
 
 		@SafeVarargs
 		SetBuilder(ArtifactRegistrate parent, String name, BuilderCallback callback, NonNullSupplier<T> sup, int min_rank, int max_rank, RegistryEntry<ArtifactSlot>... slots) {
-			super(parent, parent, name, callback, ArtifactSet.class);
+			super(parent, parent, name, callback, ArtifactTypeRegistry.SET.key());
 			this.sup = sup;
 			this.min_rank = min_rank;
 			this.max_rank = max_rank;

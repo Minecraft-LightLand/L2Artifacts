@@ -54,7 +54,7 @@ public class ArtifactStatType extends NamedEntry<ArtifactStatType> {
 		return MutableComponent.create(new TranslatableContents(
 				"attribute.modifier.plus." + (usePercent ? 1 : 0),
 				ATTRIBUTE_MODIFIER_FORMAT.format(usePercent ? val * 100 : val),
-				new TranslatableContents(attr.get().getDescriptionId()))).withStyle(ChatFormatting.BLUE);
+				MutableComponent.create(new TranslatableContents(attr.get().getDescriptionId())))).withStyle(ChatFormatting.BLUE);
 	}
 
 }

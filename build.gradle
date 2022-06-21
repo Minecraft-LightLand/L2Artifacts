@@ -142,20 +142,17 @@ dependencies {
     runtimeOnly fg.deobf('curse.maven:badpackets-615134:3773642')
     runtimeOnly fg.deobf('curse.maven:attributefix-280510:3823732')
     runtimeOnly fg.deobf('curse.maven:max-health-fix-492246:3824024')
+    runtimeOnly fg.deobf('curse.maven:bookshelf-228525:3832973')
+    runtimeOnly fg.deobf('curse.maven:enchantment-descriptions-250419:3829145')
+    runtimeOnly fg.deobf('curse.maven:tool-stats-377109:3824173')
 
     /*
     implementation fg.deobf('dev.xkmc.playerdifficulty:playerdifficulty:0.1.0')
-    runtimeOnly fg.deobf('dev.local.twilightforest:twilightforest:4.1.1102')
-
-    runtimeOnly fg.deobf('curse.maven:bookshelf-228525:3753798')
-    runtimeOnly fg.deobf('curse.maven:enchantment-descriptions-250419:3754812')
-    runtimeOnly fg.deobf('curse.maven:tool-stats-377109:3697308')
-    runtimeOnly fg.deobf('curse.maven:curious-elytra-317716:3601975')
-
     implementation fg.deobf('curse.maven:champions-307152:3840878')
+    runtimeOnly fg.deobf('dev.local.twilightforest:twilightforest:4.1.1102')
+    runtimeOnly fg.deobf('curse.maven:curious-elytra-317716:3601975')
     implementation fg.deobf('curse.maven:placebo-283644:3781199')
     implementation fg.deobf('curse.maven:apotheosis-313970:3781524')
-
     */
 
 }

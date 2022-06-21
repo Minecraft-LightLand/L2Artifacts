@@ -53,7 +53,7 @@ public class AttributeSetEffect extends SetEffect {
 			ans.add(MutableComponent.create(new TranslatableContents(
 					sign + (ent.usePercent ? 1 : 0),
 					ATTRIBUTE_MODIFIER_FORMAT.format(Math.abs(ent.usePercent ? val * 100 : val)),
-					new TranslatableContents(ent.attr.get().getDescriptionId()))));
+					MutableComponent.create(new TranslatableContents(ent.attr.get().getDescriptionId())))));
 		}
 		return ans;
 	}

@@ -1,0 +1,15 @@
+{
+  "_class": "dev.xkmc.l2artifacts.content.config.ArtifactSetConfig",
+  "map": {
+    "l2artifacts:archer": [
+      {
+        "count": 3,
+        "effect": "l2artifacts:archer_3"
+      },
+      {
+        "count": 5,
+        "effect": "l2artifacts:archer_5"
+      }
+    ]
+  }
+}

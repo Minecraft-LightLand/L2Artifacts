@@ -126,6 +126,10 @@ public class ConfigGen extends ConfigDataProvider {
 					.add(3, ArtifactItemRegistry.EFF_SAINT_REDUCTION.get())
 					.add(5, ArtifactItemRegistry.EFF_SAINT_RESTORATION.get()));
 
+			addArtifactSet(map, ArtifactItemRegistry.SET_ARCHER.get(), (c) -> c
+					.add(3, ArtifactItemRegistry.EFF_ARCHER_3.get())
+					.add(5, ArtifactItemRegistry.EFF_ARCHER_5.get()));
+
 			addArtifactSet(map, ArtifactItemRegistry.SET_PERFECTION.get(), (c) -> c
 					.add(2, ArtifactItemRegistry.EFF_PERFECTION_PROTECTION.get())
 					.add(4, ArtifactItemRegistry.EFF_PERFECTION_ABSORPTION.get()));

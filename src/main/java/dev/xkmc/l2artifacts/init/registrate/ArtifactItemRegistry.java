@@ -44,6 +44,7 @@ public class ArtifactItemRegistry {
 	public static final ArtifactRegistrate.SetEntry<ArtifactSet> SET_GAMBLER = REGISTRATE.regSet("gambler", ArtifactSet::new, 1, 5, SLOT_HEAD, SLOT_NECKLACE, SLOT_BODY, SLOT_BRACELET, SLOT_BELT);
 	public static final ArtifactRegistrate.SetEntry<ArtifactSet> SET_BERSERKER = REGISTRATE.regSet("berserker", ArtifactSet::new, 1, 5, SLOT_HEAD, SLOT_NECKLACE, SLOT_BODY, SLOT_BRACELET, SLOT_BELT);
 	public static final ArtifactRegistrate.SetEntry<ArtifactSet> SET_SAINT = REGISTRATE.regSet("saint", ArtifactSet::new, 1, 5, SLOT_HEAD, SLOT_NECKLACE, SLOT_BODY, SLOT_BRACELET, SLOT_BELT);
+	public static final ArtifactRegistrate.SetEntry<ArtifactSet> SET_ARCHER = REGISTRATE.regSet("archer", ArtifactSet::new, 1, 5, SLOT_HEAD, SLOT_NECKLACE, SLOT_BODY, SLOT_BRACELET, SLOT_BELT);
 
 	public static final ArtifactRegistrate.SetEntry<ArtifactSet> SET_PERFECTION = REGISTRATE.regSet("perfection", ArtifactSet::new, 1, 5, SLOT_HEAD, SLOT_NECKLACE, SLOT_BODY, SLOT_BRACELET, SLOT_BELT);
 
@@ -70,6 +71,16 @@ public class ArtifactItemRegistry {
 			new AttributeSetEffect.AttrSetEntry(() -> Attributes.MOVEMENT_SPEED, MULTIPLY_TOTAL, 0.04, 0.02, true),
 			new AttributeSetEffect.AttrSetEntry(() -> Attributes.ATTACK_SPEED, MULTIPLY_TOTAL, 0.04, 0.02, true),
 			new AttributeSetEffect.AttrSetEntry(CRIT_DMG, ADDITION, 0.04, 0.02, true)
+	));
+
+	public static final RegistryEntry<AttributeSetEffect> EFF_ARCHER_3 = REGISTRATE.setEffect("archer_3", () -> new AttributeSetEffect(
+			new AttributeSetEffect.AttrSetEntry(() -> Attributes.ATTACK_DAMAGE, MULTIPLY_TOTAL, -0.4, 0, true),
+			new AttributeSetEffect.AttrSetEntry(CRIT_DMG, ADDITION, 0.4, 0.1, true)
+	));
+
+	public static final RegistryEntry<AttributeSetEffect> EFF_ARCHER_5 = REGISTRATE.setEffect("archer_5", () -> new AttributeSetEffect(
+			new AttributeSetEffect.AttrSetEntry(() -> Attributes.ATTACK_SPEED, MULTIPLY_TOTAL, -0.4, 0, true),
+			new AttributeSetEffect.AttrSetEntry(CRIT_RATE, ADDITION, 0.2, 0.05, true)
 	));
 
 	public static final RegistryEntry<PerfectionAbsorption> EFF_PERFECTION_ABSORPTION = REGISTRATE.setEffect(

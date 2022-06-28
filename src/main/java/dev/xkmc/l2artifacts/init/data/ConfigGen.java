@@ -40,6 +40,7 @@ public class ConfigGen extends ConfigDataProvider {
 				all.add(ArtifactTypeRegistry.REACH_ADD.get());
 				all.add(ArtifactTypeRegistry.ATK_SPEED_MULT.get());
 				all.add(ArtifactTypeRegistry.SPEED_MULT.get());
+				all.add(ArtifactTypeRegistry.BOW_ADD.get());
 			}
 			{
 				ArrayList<ArtifactStatType> list = new ArrayList<>();
@@ -53,6 +54,7 @@ public class ConfigGen extends ConfigDataProvider {
 				ArrayList<ArtifactStatType> list = new ArrayList<>();
 				list.add(ArtifactTypeRegistry.ATK_ADD.get());
 				list.add(ArtifactTypeRegistry.ATK_MULT.get());
+				list.add(ArtifactTypeRegistry.BOW_ADD.get());
 
 				list.add(ArtifactTypeRegistry.REACH_ADD.get());
 				addSlotStat(map, ArtifactTypeRegistry.SLOT_BRACELET.get(), list, all);
@@ -63,6 +65,7 @@ public class ConfigGen extends ConfigDataProvider {
 				list.add(ArtifactTypeRegistry.ARMOR_ADD.get());
 				list.add(ArtifactTypeRegistry.ATK_ADD.get());
 				list.add(ArtifactTypeRegistry.ATK_MULT.get());
+				list.add(ArtifactTypeRegistry.BOW_ADD.get());
 
 				list.add(ArtifactTypeRegistry.CR_ADD.get());
 				list.add(ArtifactTypeRegistry.CD_ADD.get());
@@ -74,6 +77,7 @@ public class ConfigGen extends ConfigDataProvider {
 				list.add(ArtifactTypeRegistry.ARMOR_ADD.get());
 				list.add(ArtifactTypeRegistry.ATK_ADD.get());
 				list.add(ArtifactTypeRegistry.ATK_MULT.get());
+				list.add(ArtifactTypeRegistry.BOW_ADD.get());
 
 				list.add(ArtifactTypeRegistry.ATK_SPEED_MULT.get());
 				list.add(ArtifactTypeRegistry.SPEED_MULT.get());
@@ -85,6 +89,7 @@ public class ConfigGen extends ConfigDataProvider {
 				list.add(ArtifactTypeRegistry.ARMOR_ADD.get());
 				list.add(ArtifactTypeRegistry.ATK_ADD.get());
 				list.add(ArtifactTypeRegistry.ATK_MULT.get());
+				list.add(ArtifactTypeRegistry.BOW_ADD.get());
 
 				list.add(ArtifactTypeRegistry.TOUGH_ADD.get());
 				list.add(ArtifactTypeRegistry.REACH_ADD.get());
@@ -110,6 +115,7 @@ public class ConfigGen extends ConfigDataProvider {
 			addStatType(map, ArtifactTypeRegistry.REACH_ADD.get(), 0.02);
 			addStatType(map, ArtifactTypeRegistry.SPEED_MULT.get(), 0.02);
 			addStatType(map, ArtifactTypeRegistry.ATK_SPEED_MULT.get(), 0.02);
+			addStatType(map, ArtifactTypeRegistry.BOW_ADD.get(), 0.02);
 		}
 
 		// Set Effect Config

@@ -55,6 +55,7 @@ public enum LangData {
 		pvd.add("itemGroup." + L2Artifacts.MODID + ".artifacts", "Artifacts");
 		pvd.add("attribute.name.crit_rate", "Crit Rate");
 		pvd.add("attribute.name.crit_damage", "Crit Damage");
+		pvd.add("attribute.name.bow_strength", "Bow Strength");
 		pvd.add("l2artifacts.set.1", "When Equip: ");
 		pvd.add("l2artifacts.set.2", "When Equip 2 of this Set: ");
 		pvd.add("l2artifacts.set.3", "When Equip 3 of this Set: ");

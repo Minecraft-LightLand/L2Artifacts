@@ -10,25 +10,14 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.UUID;
 import java.util.function.Consumer;
 
 @SerialClass
 public class ArtifactSetConfig extends BaseConfig {
 
-	public static ArtifactSetConfig cache;
-
 	public static ArtifactSetConfig getInstance() {
-		if (cache != null) return cache;
-		List<ArtifactSetConfig> configs = NetworkManager.getConfigs("artifact_sets").map(e -> (ArtifactSetConfig) e.getValue()).toList();
-		HashMap<ArtifactSet, ArrayList<Entry>> map = BaseConfig.collectMap(configs, e -> e.map, ArrayList::new, ArrayList::addAll);
-		map.values().forEach(e -> e.sort(null));
-		ArtifactSetConfig ans = new ArtifactSetConfig();
-		map.forEach((k, v) -> v.forEach(e -> e.validate(k)));
-		ans.map = map;
-		cache = ans;
-		return ans;
+		return NetworkManager.ARTIFACT_SETS.getMerged();
 	}
 
 	public static ArtifactSetConfig construct(ArtifactSet set, Consumer<SetBuilder> builder) {

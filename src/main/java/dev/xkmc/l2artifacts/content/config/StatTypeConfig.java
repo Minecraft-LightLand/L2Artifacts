@@ -6,24 +6,15 @@ import dev.xkmc.l2library.serial.network.BaseConfig;
 import dev.xkmc.l2library.serial.SerialClass;
 
 import java.util.HashMap;
-import java.util.List;
 
 @SerialClass
 public class StatTypeConfig extends BaseConfig {
 
-	public static StatTypeConfig cache;
-
 	public static StatTypeConfig getInstance() {
-		if (cache != null) return cache;
-		List<StatTypeConfig> configs = NetworkManager.getConfigs("stat_types").map(e -> (StatTypeConfig) e.getValue()).toList();
-		HashMap<ArtifactStatType, Entry> main = BaseConfig.collectMap(configs, e -> e.stats, StatTypeConfig::getEmpty, Entry::set);
-		StatTypeConfig ans = new StatTypeConfig();
-		ans.stats = main;
-		cache = ans;
-		return ans;
+		return NetworkManager.STAT_TYPES.getMerged();
 	}
 
-	private static Entry getEmpty() {
+	public static Entry getEmpty() {
 		Entry ans = new Entry();
 		ans.count = 0;
 		return ans;

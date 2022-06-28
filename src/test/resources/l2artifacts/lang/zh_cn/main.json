@@ -3,6 +3,7 @@
   "curios.modifiers.bracelet": "佩戴手环时:",
   "attribute.name.crit_rate": "暴击率",
   "attribute.name.crit_damage": "暴击伤害",
+  "attribute.name.bow_strength": "弓箭伤害",
   "generic.attack_range": "攻击距离",
   "itemGroup.l2artifacts.artifacts": "古遗物",
   "l2artifacts": {

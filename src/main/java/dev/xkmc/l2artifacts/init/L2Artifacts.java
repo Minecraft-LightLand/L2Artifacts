@@ -75,12 +75,14 @@ public class L2Artifacts {
 	private static void modifyAttributes(EntityAttributeModificationEvent event) {
 		event.add(EntityType.PLAYER, ArtifactTypeRegistry.CRIT_RATE.get());
 		event.add(EntityType.PLAYER, ArtifactTypeRegistry.CRIT_DMG.get());
+		event.add(EntityType.PLAYER, ArtifactTypeRegistry.BOW_STRENGTH.get());
 	}
 
 	private static void setup(final FMLCommonSetupEvent event) {
 		event.enqueueWork(() -> {
 			AttributeEntry.add(ArtifactTypeRegistry.CRIT_RATE, true, 11000);
 			AttributeEntry.add(ArtifactTypeRegistry.CRIT_DMG, true, 12000);
+			AttributeEntry.add(ArtifactTypeRegistry.BOW_STRENGTH, true, 13000);
 		});
 	}
 

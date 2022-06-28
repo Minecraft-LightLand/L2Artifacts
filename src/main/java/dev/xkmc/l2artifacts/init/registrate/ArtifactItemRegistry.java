@@ -75,7 +75,7 @@ public class ArtifactItemRegistry {
 
 	public static final RegistryEntry<AttributeSetEffect> EFF_ARCHER_3 = REGISTRATE.setEffect("archer_3", () -> new AttributeSetEffect(
 			new AttributeSetEffect.AttrSetEntry(() -> Attributes.ATTACK_DAMAGE, MULTIPLY_TOTAL, -0.4, 0, true),
-			new AttributeSetEffect.AttrSetEntry(CRIT_DMG, ADDITION, 0.4, 0.1, true)
+			new AttributeSetEffect.AttrSetEntry(BOW_STRENGTH, ADDITION, 0.4, 0.1, true)
 	));
 
 	public static final RegistryEntry<AttributeSetEffect> EFF_ARCHER_5 = REGISTRATE.setEffect("archer_5", () -> new AttributeSetEffect(

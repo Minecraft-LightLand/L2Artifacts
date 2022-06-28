@@ -1,4 +1,5 @@
 {
+  "attribute.name.bow_strength": "Bow Strength",
   "attribute.name.crit_damage": "Crit Damage",
   "attribute.name.crit_rate": "Crit Rate",
   "item.l2artifacts.archer_belt_1": "Archer Belt 1",
@@ -188,6 +189,7 @@
   "stat_type.l2artifacts.attack_add": "Attack Add",
   "stat_type.l2artifacts.attack_mult": "Attack Mult",
   "stat_type.l2artifacts.attack_speed_mult": "Attack Speed Mult",
+  "stat_type.l2artifacts.bow_strength_add": "Bow Strength Add",
   "stat_type.l2artifacts.crit_damage_add": "Crit Damage Add",
   "stat_type.l2artifacts.crit_rate_add": "Crit Rate Add",
   "stat_type.l2artifacts.health_add": "Health Add",

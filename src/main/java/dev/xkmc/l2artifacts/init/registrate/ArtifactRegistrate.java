@@ -10,6 +10,7 @@ import dev.xkmc.l2library.base.NamedEntry;
 import dev.xkmc.l2library.repack.registrate.AbstractRegistrate;
 import dev.xkmc.l2library.repack.registrate.builders.AbstractBuilder;
 import dev.xkmc.l2library.repack.registrate.builders.BuilderCallback;
+import dev.xkmc.l2library.repack.registrate.providers.RegistrateLangProvider;
 import dev.xkmc.l2library.repack.registrate.util.entry.ItemEntry;
 import dev.xkmc.l2library.repack.registrate.util.entry.RegistryEntry;
 import dev.xkmc.l2library.repack.registrate.util.nullness.NonNullSupplier;
@@ -101,7 +102,7 @@ public class ArtifactRegistrate extends L2Registrate {
 		}
 
 		public SetBuilder<T, I> defaultLang() {
-			return this.lang(NamedEntry::getDescriptionId);
+			return this.lang(NamedEntry::getDescriptionId, RegistrateLangProvider.toEnglishName(this.getName()));
 		}
 	}
 

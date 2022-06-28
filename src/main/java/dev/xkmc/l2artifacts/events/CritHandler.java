@@ -30,9 +30,11 @@ public class CritHandler implements AttackEventHandler.AttackListener {
 			if (arrow.getOwner() instanceof Player player) {
 				double cr = player.getAttributeValue(ArtifactTypeRegistry.CRIT_RATE.get());
 				double cd = player.getAttributeValue(ArtifactTypeRegistry.CRIT_DMG.get());
+				double strength = player.getAttributeValue(ArtifactTypeRegistry.BOW_STRENGTH.get());
 				if (player.getRandom().nextDouble() < cr) {
-					arrow.setBaseDamage((float) (arrow.getBaseDamage() * (1 + cd)));
+					strength *= (1 + cd);
 				}
+				arrow.setBaseDamage((float) (arrow.getBaseDamage() * strength));
 			}
 		}
 	}

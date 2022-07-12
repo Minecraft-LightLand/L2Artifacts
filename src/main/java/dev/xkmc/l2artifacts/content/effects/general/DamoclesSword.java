@@ -1,13 +1,13 @@
-package dev.xkmc.l2artifacts.content.effects;
+package dev.xkmc.l2artifacts.content.effects.general;
 
 import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
 import dev.xkmc.l2artifacts.content.core.BaseArtifact;
+import dev.xkmc.l2artifacts.content.effects.SetEffect;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.contents.TranslatableContents;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.entity.player.CriticalHitEvent;
-import net.minecraftforge.eventbus.api.Event;
 
 import java.util.List;
 
@@ -38,13 +38,10 @@ public class DamoclesSword extends SetEffect {
 	}
 
 	@Override
-	public <T extends Event> void propagateEvent(Player player, ArtifactSetConfig.Entry ent, int rank, boolean enabled, T event) {
-		if (!enabled) return;
+	public void playerAttackModifyEvent(Player player, ArtifactSetConfig.Entry ent, int rank, CriticalHitEvent crit) {
 		if (player.getHealth() < player.getMaxHealth()) return;
-		if (event instanceof CriticalHitEvent crit) {
-			double amplify = 1 + amplify_base + (rank - 1) * amplify_slope;
-			crit.setDamageModifier((float) (crit.getDamageModifier() * amplify));
-		}
+		double amplify = 1 + amplify_base + (rank - 1) * amplify_slope;
+		crit.setDamageModifier((float) (crit.getDamageModifier() * amplify));
 	}
 
 }

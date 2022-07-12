@@ -1,6 +1,7 @@
 package dev.xkmc.l2artifacts.content.core;
 
 import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
+import dev.xkmc.l2artifacts.events.EventConsumer;
 import dev.xkmc.l2artifacts.init.data.LangData;
 import dev.xkmc.l2artifacts.init.data.ModConfig;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactTypeRegistry;
@@ -100,7 +101,7 @@ public class ArtifactSet extends NamedEntry<ArtifactSet> {
 		}
 	}
 
-	public <T extends Event> void propagateEvent(SlotContext context, T event) {
+	public <T> void propagateEvent(SlotContext context, T event, EventConsumer<T> cons) {
 		LivingEntity e = context.entity();
 		if (e instanceof Player player) {
 			Optional<SetContext> result = getCountAndIndex(context);
@@ -108,7 +109,9 @@ public class ArtifactSet extends NamedEntry<ArtifactSet> {
 				ArtifactSetConfig config = ArtifactSetConfig.getInstance();
 				ArrayList<ArtifactSetConfig.Entry> list = config.map.get(this);
 				for (ArtifactSetConfig.Entry ent : list) {
-					ent.effect.propagateEvent(player, ent, result.get().min_rank(), result.get().count() >= ent.count, event);
+					if (result.get().count() >= ent.count) {
+						cons.apply(ent.effect, player, ent, result.get().min_rank(), event);
+					}
 				}
 			}
 		}

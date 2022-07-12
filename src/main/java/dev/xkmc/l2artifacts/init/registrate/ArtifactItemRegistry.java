@@ -2,6 +2,7 @@ package dev.xkmc.l2artifacts.init.registrate;
 
 import dev.xkmc.l2artifacts.content.core.ArtifactSet;
 import dev.xkmc.l2artifacts.content.effects.*;
+import dev.xkmc.l2artifacts.content.effects.general.*;
 import dev.xkmc.l2artifacts.content.misc.ExpItem;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
 import dev.xkmc.l2library.repack.registrate.util.entry.ItemEntry;

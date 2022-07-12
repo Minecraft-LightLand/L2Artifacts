@@ -1,7 +1,8 @@
-package dev.xkmc.l2artifacts.content.effects;
+package dev.xkmc.l2artifacts.content.effects.general;
 
 import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
 import dev.xkmc.l2artifacts.content.core.BaseArtifact;
+import dev.xkmc.l2artifacts.content.effects.SetEffect;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.contents.TranslatableContents;
 import net.minecraft.world.entity.player.Player;

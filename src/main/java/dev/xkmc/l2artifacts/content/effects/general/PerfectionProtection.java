@@ -1,12 +1,12 @@
-package dev.xkmc.l2artifacts.content.effects;
+package dev.xkmc.l2artifacts.content.effects.general;
 
 import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
 import dev.xkmc.l2artifacts.content.core.BaseArtifact;
+import dev.xkmc.l2artifacts.content.effects.SetEffect;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.contents.TranslatableContents;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
-import net.minecraftforge.eventbus.api.Event;
 
 import java.util.List;
 
@@ -27,13 +27,10 @@ public class PerfectionProtection extends SetEffect {
 	}
 
 	@Override
-	public <T extends Event> void propagateEvent(Player player, ArtifactSetConfig.Entry ent, int rank, boolean enabled, T event) {
-		if (!enabled) return;
+	public void playerHurtEvent(Player player, ArtifactSetConfig.Entry ent, int rank, LivingHurtEvent hurt) {
 		if (player.getHealth() < player.getMaxHealth()) return;
-		if (event instanceof LivingHurtEvent hurt) {
-			if (!hurt.getSource().isBypassMagic()) {
-				hurt.setAmount((float) (hurt.getAmount() * (1 - reduce_base - reduce_slope * (rank - 1))));
-			}
+		if (!hurt.getSource().isBypassMagic()) {
+			hurt.setAmount((float) (hurt.getAmount() * (1 - reduce_base - reduce_slope * (rank - 1))));
 		}
 	}
 

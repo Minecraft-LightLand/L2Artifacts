@@ -3,7 +3,7 @@ package dev.xkmc.l2artifacts.init.data;
 import dev.xkmc.l2artifacts.content.core.BaseArtifact;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactItemRegistry;
-import dev.xkmc.l2artifacts.init.registrate.ArtifactRegistrate;
+import dev.xkmc.l2artifacts.init.registrate.entries.SetEntry;
 import dev.xkmc.l2library.repack.registrate.providers.RegistrateRecipeProvider;
 import dev.xkmc.l2library.repack.registrate.util.DataIngredient;
 import dev.xkmc.l2library.repack.registrate.util.entry.ItemEntry;
@@ -35,7 +35,7 @@ public class RecipeGen {
 		}
 
 		// rank up recipes
-		for (ArtifactRegistrate.SetEntry<?> set : L2Artifacts.REGISTRATE.SET_LIST) {
+		for (SetEntry<?> set : L2Artifacts.REGISTRATE.SET_LIST) {
 			ItemEntry<BaseArtifact>[][] items = set.items;
 			for (ItemEntry<BaseArtifact>[] slot : items) {
 				int n = slot.length;

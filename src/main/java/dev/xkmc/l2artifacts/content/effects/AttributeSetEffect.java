@@ -2,6 +2,7 @@ package dev.xkmc.l2artifacts.content.effects;
 
 import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
 import dev.xkmc.l2artifacts.content.core.BaseArtifact;
+import dev.xkmc.l2artifacts.init.registrate.entries.LinearFuncEntry;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.contents.TranslatableContents;
 import net.minecraft.world.entity.ai.attributes.Attribute;
@@ -18,7 +19,11 @@ import static net.minecraft.world.item.ItemStack.ATTRIBUTE_MODIFIER_FORMAT;
 public class AttributeSetEffect extends SetEffect {
 
 	public record AttrSetEntry(Supplier<Attribute> attr, AttributeModifier.Operation op,
-							   double base, double slope, boolean usePercent) {
+							   LinearFuncEntry func, boolean usePercent) {
+
+		public double getValue(int rank) {
+			return func().getFromRank(rank);
+		}
 
 	}
 
@@ -33,7 +38,7 @@ public class AttributeSetEffect extends SetEffect {
 	public void update(Player player, ArtifactSetConfig.Entry ent, int rank, boolean enabled) {
 		for (int i = 0; i < entries.length; i++) {
 			AttrSetEntry entry = entries[i];
-			double val = entry.base + entry.slope * (rank - 1);
+			double val = entry.getValue(rank);
 			AttributeInstance ins = player.getAttribute(entry.attr().get());
 			if (ins == null)
 				continue;
@@ -48,7 +53,7 @@ public class AttributeSetEffect extends SetEffect {
 	public List<MutableComponent> getDetailedDescription(BaseArtifact item) {
 		List<MutableComponent> ans = new ArrayList<>();
 		for (AttrSetEntry ent : entries) {
-			double val = ent.base + ent.slope * (item.rank - 1);
+			double val = ent.getValue(item.rank);
 			String sign = val > 0 ? "attribute.modifier.plus." : "attribute.modifier.take.";
 			ans.add(MutableComponent.create(new TranslatableContents(
 					sign + (ent.usePercent ? 1 : 0),

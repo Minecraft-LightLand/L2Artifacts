@@ -30,12 +30,12 @@ public class ArtifactEffectEvents {
 
 	@SubscribeEvent(priority = EventPriority.LOW)
 	public static void onAttackEvent(CriticalHitEvent event) {
-		postEvent(event.getEntityLiving(), event, SetEffect::playerAttackModifyEvent);
+		postEvent(event.getEntity(), event, SetEffect::playerAttackModifyEvent);
 	}
 
 	@SubscribeEvent(priority = EventPriority.LOW)
 	public static void onHurtEventPost(LivingHurtEvent event) {
-		postEvent(event.getEntityLiving(), event, SetEffect::playerHurtEvent);
+		postEvent(event.getEntity(), event, SetEffect::playerHurtEvent);
 	}
 
 	@SubscribeEvent

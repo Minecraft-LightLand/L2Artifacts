@@ -1,7 +1,7 @@
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
 
-package dev.xkmc.l2artifacts.compat.kubejs;
+package dev.xkmc.l2artifacts.init.registrate.entries;
 
 import net.minecraft.MethodsReturnNonnullByDefault;
 

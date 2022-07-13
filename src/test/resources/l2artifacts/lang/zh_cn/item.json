@@ -8,7 +8,9 @@
 		  "gambler": "赌徒的",
 		  "perfection": "完美之人的",
 		  "saint": "圣人的",
-		  "archer": "神射手的"
+		  "archer": "神射手的",
+		  "physical": "愚勇之人的",
+		  "wrath": "厄运"
 		},
 		{
 		  "head": "帽子",
@@ -16,6 +18,47 @@
 		  "body": "胸针",
 		  "bracelet": "手环",
 		  "belt": "腰带"
+		},
+		{
+		  "1": "-常见级",
+		  "2": "-稀有级",
+		  "3": "-特质级",
+		  "4": "-传奇级",
+		  "5": "-神化级"
+		}
+	  ]
+	},
+	"set_froze": {
+	  "path": "item.l2artifacts",
+	  "list": [
+		{
+		  "froze": "冰封"
+		},
+		{
+		  "head": "之冠",
+		  "necklace": "之血",
+		  "body": "之心",
+		  "bracelet": "护手",
+		  "belt": "腰带"
+		},
+		{
+		  "1": "-常见级",
+		  "2": "-稀有级",
+		  "3": "-特质级",
+		  "4": "-传奇级",
+		  "5": "-神化级"
+		}
+	  ]
+	},
+	"set_executor": {
+	  "path": "item.l2artifacts",
+	  "list": [
+		{
+		  "executor_head": "执行者之冠",
+		  "executor_necklace": "老式照片吊坠",
+		  "executor_body": "残破的契约",
+		  "executor_bracelet": "执行者护腕",
+		  "executor_belt": "执行者腰带"
 		},
 		{
 		  "1": "-常见级",

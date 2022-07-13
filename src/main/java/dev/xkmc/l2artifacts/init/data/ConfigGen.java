@@ -1,13 +1,16 @@
 package dev.xkmc.l2artifacts.init.data;
 
 import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
+import dev.xkmc.l2artifacts.content.config.LinearFuncConfig;
 import dev.xkmc.l2artifacts.content.config.SlotStatConfig;
 import dev.xkmc.l2artifacts.content.config.StatTypeConfig;
 import dev.xkmc.l2artifacts.content.core.ArtifactSet;
 import dev.xkmc.l2artifacts.content.core.ArtifactSlot;
 import dev.xkmc.l2artifacts.content.core.ArtifactStatType;
+import dev.xkmc.l2artifacts.init.L2Artifacts;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactItemRegistry;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactTypeRegistry;
+import dev.xkmc.l2artifacts.init.registrate.entries.LinearFuncEntry;
 import dev.xkmc.l2library.serial.network.BaseConfig;
 import dev.xkmc.l2library.serial.network.ConfigDataProvider;
 import net.minecraft.data.DataGenerator;
@@ -145,10 +148,37 @@ public class ConfigGen extends ConfigDataProvider {
 
 			addArtifactSet(map, ArtifactItemRegistry.SET_PROTECTION.get(), (c) -> c
 					.add(1, ArtifactItemRegistry.EFF_PROTECTION_RESISTANCE.get()));
+
+			addArtifactSet(map, ArtifactItemRegistry.SET_FROZE.get(), (c) -> c
+					.add(3, ArtifactItemRegistry.EFF_FROZE_SLOW.get())
+					.add(5, ArtifactItemRegistry.EFF_FROZE_BREAK.get()));
+
+			addArtifactSet(map, ArtifactItemRegistry.SET_EXECUTOR.get(), (c) -> c
+					.add(3, ArtifactItemRegistry.EFF_EXECUTOR_SELF_HURT.get())
+					.add(5, ArtifactItemRegistry.EFF_EXECUTOR_LIMIT.get()));
+
+			addArtifactSet(map, ArtifactItemRegistry.SET_PHYSICAL.get(), (c) -> c
+					.add(3, ArtifactItemRegistry.EFF_PHYSICAL_DAMAGE.get())
+					.add(5, ArtifactItemRegistry.EFF_PHYSICAL_ARMOR.get()));
+
+			addArtifactSet(map, ArtifactItemRegistry.SET_WRATH.get(), (c) -> c
+					.add(1, ArtifactItemRegistry.EFF_WRATH_POISON.get())
+					.add(3, ArtifactItemRegistry.EFF_WRATH_SLOW.get())
+					.add(5, ArtifactItemRegistry.EFF_WRATH_FIRE.get()));
+
+		}
+
+		// linear function handle
+		{
+			LinearFuncConfig config = new LinearFuncConfig();
+			for (LinearFuncEntry entry : L2Artifacts.REGISTRATE.LINEAR_LIST) {
+				config.map.put(entry.get(), new LinearFuncConfig.Entry(entry.base, entry.slope));
+			}
+			map.put(L2Artifacts.MODID + "/artifact_config/linear/default", config);
 		}
 	}
 
-	private static void addSlotStat(Map<String, BaseConfig> map, ArtifactSlot slot, ArrayList<ArtifactStatType> main, ArrayList<ArtifactStatType> sub) {
+	public static void addSlotStat(Map<String, BaseConfig> map, ArtifactSlot slot, ArrayList<ArtifactStatType> main, ArrayList<ArtifactStatType> sub) {
 		SlotStatConfig config = new SlotStatConfig();
 		ResourceLocation rl = Objects.requireNonNull(slot.getRegistryName());
 		config.available_main_stats.put(slot, main);

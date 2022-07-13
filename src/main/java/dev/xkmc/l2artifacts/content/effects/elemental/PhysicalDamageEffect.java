@@ -3,11 +3,10 @@ package dev.xkmc.l2artifacts.content.effects.elemental;
 import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
 import dev.xkmc.l2artifacts.content.core.BaseArtifact;
 import dev.xkmc.l2artifacts.content.effects.AttributeSetEffect;
+import dev.xkmc.l2artifacts.init.registrate.entries.LinearFuncEntry;
 import dev.xkmc.l2library.init.events.attack.AttackCache;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.world.entity.ai.attributes.AttributeModifier;
-import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
@@ -15,16 +14,17 @@ import java.util.List;
 
 public class PhysicalDamageEffect extends AttributeSetEffect {
 
-	public static final double FACTOR = 0.5;//TODO config
+	private final LinearFuncEntry factor;
 
-	public PhysicalDamageEffect() {
-		super(new AttrSetEntry(() -> Attributes.ATTACK_DAMAGE, AttributeModifier.Operation.MULTIPLY_TOTAL, 0.2, 0.1, true));
+	public PhysicalDamageEffect(AttrSetEntry entry, LinearFuncEntry factor) {
+		super(entry);
+		this.factor = factor;
 	}
 
 	@Override
 	public List<MutableComponent> getDetailedDescription(BaseArtifact item) {
 		var ans = super.getDetailedDescription(item);
-		ans.add(Component.translatable(getDescriptionId() + ".desc", FACTOR));
+		ans.add(Component.translatable(getDescriptionId() + ".desc", factor.getFromRank(item.rank)));
 		return ans;
 	}
 
@@ -33,7 +33,7 @@ public class PhysicalDamageEffect extends AttributeSetEffect {
 		LivingHurtEvent hurt = event.getLivingHurtEvent();
 		assert hurt != null;
 		if (hurt.getSource().isMagic()) {
-			event.setDamageModified((float) (event.getDamageModified() * FACTOR));
+			event.setDamageModified((float) (event.getDamageModified() * factor.getFromRank(rank)));
 		}
 	}
 }

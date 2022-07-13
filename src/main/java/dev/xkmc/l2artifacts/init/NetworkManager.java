@@ -1,19 +1,24 @@
 package dev.xkmc.l2artifacts.init;
 
 import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
+import dev.xkmc.l2artifacts.content.config.LinearFuncConfig;
 import dev.xkmc.l2artifacts.content.config.SlotStatConfig;
 import dev.xkmc.l2artifacts.content.config.StatTypeConfig;
 import dev.xkmc.l2artifacts.content.core.ArtifactSet;
 import dev.xkmc.l2artifacts.content.core.ArtifactSlot;
 import dev.xkmc.l2artifacts.content.core.ArtifactStatType;
+import dev.xkmc.l2library.serial.config.ConfigMerger;
 import dev.xkmc.l2library.serial.network.BaseConfig;
 import dev.xkmc.l2library.serial.network.PacketHandlerWithConfig;
 import net.minecraft.resources.ResourceLocation;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
 
 public enum NetworkManager {
-	ARTIFACT_SETS, SLOT_STATS, STAT_TYPES;
+	ARTIFACT_SETS, SLOT_STATS, STAT_TYPES, LINEAR;
 
 	public String getID() {
 		return name().toLowerCase(Locale.ROOT);
@@ -38,15 +43,7 @@ public enum NetworkManager {
 			return ans;
 		});
 
-		HANDLER.addCachedConfig(SLOT_STATS.getID(), s -> {
-			List<SlotStatConfig> configs = s.map(e -> (SlotStatConfig) e.getValue()).toList();
-			HashMap<ArtifactSlot, ArrayList<ArtifactStatType>> main = BaseConfig.collectMap(configs, e -> e.available_main_stats, ArrayList::new, ArrayList::addAll);
-			HashMap<ArtifactSlot, ArrayList<ArtifactStatType>> sub = BaseConfig.collectMap(configs, e -> e.available_sub_stats, ArrayList::new, ArrayList::addAll);
-			SlotStatConfig ans = new SlotStatConfig();
-			ans.available_main_stats = main;
-			ans.available_sub_stats = sub;
-			return ans;
-		});
+		HANDLER.addCachedConfig(SLOT_STATS.getID(), new ConfigMerger<>(SlotStatConfig.class));
 
 		HANDLER.addCachedConfig(STAT_TYPES.getID(), s -> {
 			List<StatTypeConfig> configs = s.map(e -> (StatTypeConfig) e.getValue()).toList();
@@ -55,6 +52,8 @@ public enum NetworkManager {
 			ans.stats = main;
 			return ans;
 		});
+
+		HANDLER.addCachedConfig(LINEAR.getID(), new ConfigMerger<>(LinearFuncConfig.class));
 	}
 
 }

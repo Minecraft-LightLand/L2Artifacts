@@ -133,10 +133,6 @@ dependencies {
     implementation fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}")
     implementation fg.deobf("mezz.jei:jei-${jei_minecraft_version}:${jei_version}")
 
-    implementation fg.deobf("dev.latvian.mods:kubejs-forge:${kubejs_version}")
-    implementation fg.deobf("dev.latvian.mods:rhino-forge:${rhino_version}")
-    implementation fg.deobf("dev.architectury:architectury-forge:${architectury_version}")
-
     runtimeOnly fg.deobf("top.theillusivec4.caelus:caelus-forge:${caelus_version}")
     runtimeOnly fg.deobf('curse.maven:wthit-forge-455982:3838350')
     runtimeOnly fg.deobf('curse.maven:badpackets-615134:3773642')
@@ -147,6 +143,10 @@ dependencies {
     runtimeOnly fg.deobf('curse.maven:tool-stats-377109:3824173')
 
     /*
+    implementation fg.deobf("dev.latvian.mods:kubejs-forge:${kubejs_version}")
+    implementation fg.deobf("dev.latvian.mods:rhino-forge:${rhino_version}")
+    implementation fg.deobf("dev.architectury:architectury-forge:${architectury_version}")
+
     implementation fg.deobf('dev.xkmc.playerdifficulty:playerdifficulty:0.1.0')
     implementation fg.deobf('curse.maven:champions-307152:3840878')
     runtimeOnly fg.deobf('dev.local.twilightforest:twilightforest:4.1.1102')

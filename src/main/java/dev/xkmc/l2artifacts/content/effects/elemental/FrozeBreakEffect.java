@@ -31,7 +31,7 @@ public class FrozeBreakEffect extends SetEffect {
 	@Override
 	public List<MutableComponent> getDetailedDescription(BaseArtifact item) {
 		double amount = (this.factor.getFromRank(item.rank) - 1) * 100;
-		return List.of(Component.translatable(getDescriptionId() + ".desc", amount));
+		return List.of(Component.translatable(getDescriptionId() + ".desc", (int) amount));
 	}
 
 }

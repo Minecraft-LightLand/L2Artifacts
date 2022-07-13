@@ -24,7 +24,8 @@ public class PhysicalDamageEffect extends AttributeSetEffect {
 	@Override
 	public List<MutableComponent> getDetailedDescription(BaseArtifact item) {
 		var ans = super.getDetailedDescription(item);
-		ans.add(Component.translatable(getDescriptionId() + ".desc", factor.getFromRank(item.rank) * 100));
+		double val = factor.getFromRank(item.rank) * 100;
+		ans.add(Component.translatable(getDescriptionId() + ".desc", (int) val));
 		return ans;
 	}
 

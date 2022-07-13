@@ -22,7 +22,7 @@ public class ExecutorLimitEffect extends SetEffect {
 
 	@Override
 	public void playerHurtEvent(Player player, ArtifactSetConfig.Entry ent, int rank, LivingHurtEvent event) {
-		if (event.getSource().getEntity() == player) {
+		if (event.getSource().getEntity() == player && !event.getSource().isBypassInvul()) {
 			event.setAmount((float) (Math.min(player.getMaxHealth(), event.getAmount()) * factor.getFromRank(rank)));
 		}
 	}
@@ -30,7 +30,7 @@ public class ExecutorLimitEffect extends SetEffect {
 	@Override
 	public List<MutableComponent> getDetailedDescription(BaseArtifact item) {
 		double amount = this.factor.getFromRank(item.rank) * 100;
-		return List.of(Component.translatable(getDescriptionId() + ".desc", amount));
+		return List.of(Component.translatable(getDescriptionId() + ".desc", (int) amount));
 	}
 
 }

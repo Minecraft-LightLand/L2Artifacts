@@ -38,7 +38,7 @@ public class FrozeSlowEffect extends SetEffect {
 		double dmg = (this.factor.getFromRank(item.rank) - 1) * 100;
 		double period = this.period.getFromRank(item.rank) / 20;
 		Component level = Component.translatable("potion.potency." + this.level.getFromRank(item.rank));
-		return List.of(Component.translatable(getDescriptionId() + ".desc", dmg, level, period));
+		return List.of(Component.translatable(getDescriptionId() + ".desc", (int) dmg, level, period));
 	}
 
 	@Override

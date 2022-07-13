@@ -4,6 +4,7 @@ import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
 import dev.xkmc.l2artifacts.content.core.BaseArtifact;
 import dev.xkmc.l2artifacts.content.effects.SetEffect;
 import dev.xkmc.l2artifacts.init.registrate.entries.LinearFuncEntry;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.contents.TranslatableContents;
 import net.minecraft.world.damagesource.DamageSource;
@@ -34,7 +35,7 @@ public class DamoclesSword extends SetEffect {
 	public List<MutableComponent> getDetailedDescription(BaseArtifact item) {
 		double amplify = this.amplify.getFromRank(item.rank);
 		int amount = (int) Math.round(amplify * 100);
-		return List.of(MutableComponent.create(new TranslatableContents(getDescriptionId() + ".desc", amount)));
+		return List.of(Component.translatable(getDescriptionId() + ".desc", amount));
 	}
 
 	@Override

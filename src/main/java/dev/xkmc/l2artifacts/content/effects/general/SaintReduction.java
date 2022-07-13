@@ -4,6 +4,7 @@ import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
 import dev.xkmc.l2artifacts.content.core.BaseArtifact;
 import dev.xkmc.l2artifacts.content.effects.SetEffect;
 import dev.xkmc.l2artifacts.init.registrate.entries.LinearFuncEntry;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.contents.TranslatableContents;
 import net.minecraft.world.entity.player.Player;
@@ -26,7 +27,7 @@ public class SaintReduction extends SetEffect {
 	public List<MutableComponent> getDetailedDescription(BaseArtifact item) {
 		int damage = (int) Math.round(100 * (1 - atk.getFromRank(item.rank)));
 		int reduction = (int) Math.round(100 * (1 - def.getFromRank(item.rank)));
-		return List.of(MutableComponent.create(new TranslatableContents(getDescriptionId() + ".desc", damage, reduction)));
+		return List.of(Component.translatable(getDescriptionId() + ".desc", damage, reduction));
 	}
 
 	@Override

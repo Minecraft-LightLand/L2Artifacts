@@ -78,13 +78,13 @@ public class ArtifactItemRegistry {
 			EFF_GAMBLER_3 = REGISTRATE.setEffect("gambler_3", () -> new AttributeSetEffect(
 					new AttributeSetEffect.AttrSetEntry(CRIT_RATE, ADDITION, cr3, true),
 					new AttributeSetEffect.AttrSetEntry(CRIT_DMG, ADDITION, cd3, true)
-			));
+			)).lang("Pursuit of Bets").register();
 
 			EFF_GAMBLER_5 = REGISTRATE.setEffect("gambler_5", () -> new AttributeSetEffect(
 					new AttributeSetEffect.AttrSetEntry(CRIT_RATE, ADDITION, cr5, true),
 					new AttributeSetEffect.AttrSetEntry(CRIT_DMG, ADDITION, cd5, true),
 					new AttributeSetEffect.AttrSetEntry(() -> Attributes.LUCK, ADDITION, luck, false)
-			));
+			)).lang("Bless of Luck").register();
 		}
 
 		// berserker set
@@ -98,13 +98,13 @@ public class ArtifactItemRegistry {
 			EFF_BERSERKER_3 = REGISTRATE.setEffect("berserker_3", () -> new AttributeSetEffect(
 					new AttributeSetEffect.AttrSetEntry(() -> Attributes.ARMOR, ADDITION, ar3, false),
 					new AttributeSetEffect.AttrSetEntry(() -> Attributes.ATTACK_DAMAGE, MULTIPLY_TOTAL, atk3, true)
-			));
+			)).lang("Unpolished Bruteforce").register();
 
 			EFF_BERSERKER_5 = REGISTRATE.setEffect("berserker_5", () -> new AttributeSetEffect(
 					new AttributeSetEffect.AttrSetEntry(() -> Attributes.MOVEMENT_SPEED, MULTIPLY_TOTAL, speed, true),
 					new AttributeSetEffect.AttrSetEntry(() -> Attributes.ATTACK_SPEED, MULTIPLY_TOTAL, haste, true),
 					new AttributeSetEffect.AttrSetEntry(CRIT_DMG, ADDITION, cd5, true)
-			));
+			)).lang("Subconscious Fight").register();
 		}
 
 		// archer set
@@ -118,12 +118,12 @@ public class ArtifactItemRegistry {
 			EFF_ARCHER_3 = REGISTRATE.setEffect("archer_3", () -> new AttributeSetEffect(
 					new AttributeSetEffect.AttrSetEntry(() -> Attributes.ATTACK_DAMAGE, MULTIPLY_TOTAL, atk3, true),
 					new AttributeSetEffect.AttrSetEntry(BOW_STRENGTH, ADDITION, bow3, true)
-			));
+			)).lang("Specialty of Archer").register();
 
 			EFF_ARCHER_5 = REGISTRATE.setEffect("archer_5", () -> new AttributeSetEffect(
 					new AttributeSetEffect.AttrSetEntry(() -> Attributes.ATTACK_SPEED, MULTIPLY_TOTAL, haste, true),
 					new AttributeSetEffect.AttrSetEntry(CRIT_RATE, ADDITION, cr5, true)
-			));
+			)).lang("Focus of Archer").register();
 		}
 
 	}
@@ -150,8 +150,14 @@ public class ArtifactItemRegistry {
 			LinearFuncEntry period = REGISTRATE.regLinear("perfection_absorption_period", 100, 0);
 			LinearFuncEntry max = REGISTRATE.regLinear("perfection_absorption_max", 4, 2);
 			LinearFuncEntry def = REGISTRATE.regLinear("perfection_protection", 0.2, 0.1);
-			EFF_PERFECTION_ABSORPTION = REGISTRATE.setEffect("perfection_absorption", () -> new PerfectionAbsorption(period, max));
-			EFF_PERFECTION_PROTECTION = REGISTRATE.setEffect("perfection_protection", () -> new PerfectionProtection(def));
+			EFF_PERFECTION_ABSORPTION = REGISTRATE.setEffect("perfection_absorption", () -> new PerfectionAbsorption(period, max))
+					.desc("Heart of Perfection",
+							"When at full health, every %s seconds gain 1 point of absorption, maximum %s points."
+					).register();
+			EFF_PERFECTION_PROTECTION = REGISTRATE.setEffect("perfection_protection", () -> new PerfectionProtection(def))
+					.desc("Eternity of Perfection",
+							"When at full health, reduce damage by %s%%"
+					).register();
 		}
 
 		// saint
@@ -160,8 +166,14 @@ public class ArtifactItemRegistry {
 			LinearFuncEntry def = REGISTRATE.regLinear("saint_reduction_def", 0.25, 0.05);
 			LinearFuncEntry period = REGISTRATE.regLinear("saint_restoration", 100, -10);
 
-			EFF_SAINT_REDUCTION = REGISTRATE.setEffect("saint_reduction", () -> new SaintReduction(atk, def));
-			EFF_SAINT_RESTORATION = REGISTRATE.setEffect("saint_restoration", () -> new SaintRestoration(period));
+			EFF_SAINT_REDUCTION = REGISTRATE.setEffect("saint_reduction", () -> new SaintReduction(atk, def))
+					.desc("Sympathy of Saint",
+							"Direct damage dealt reduce to %s%%, damage taken reduce to %s%%"
+					).register();
+			EFF_SAINT_RESTORATION = REGISTRATE.setEffect("saint_restoration", () -> new SaintRestoration(period))
+					.desc("Bless of Holiness",
+							"When have empty main hand, restore health to oneself or allies every %s seconds."
+					).register();
 		}
 
 		//froze
@@ -170,8 +182,14 @@ public class ArtifactItemRegistry {
 			LinearFuncEntry period = REGISTRATE.regLinear("froze_slow_period", 80, 40);
 			LinearFuncEntry level = REGISTRATE.regLinear("froze_slow_level", 0, 1);
 			LinearFuncEntry factor = REGISTRATE.regLinear("froze_break", 0.2, 0.1);
-			EFF_FROZE_SLOW = REGISTRATE.setEffect("froze_slow", () -> new FrozeSlowEffect(damage, period, level));
-			EFF_FROZE_BREAK = REGISTRATE.setEffect("froze_break", () -> new FrozeBreakEffect(factor));
+			EFF_FROZE_SLOW = REGISTRATE.setEffect("froze_slow", () -> new FrozeSlowEffect(damage, period, level))
+					.desc("Frozen Blade",
+							"Take %s%% more fire damage. When not on fire, apply level %s slow effect on attack target for %s seconds"
+					).register();
+			EFF_FROZE_BREAK = REGISTRATE.setEffect("froze_break", () -> new FrozeBreakEffect(factor))
+					.desc("Ice Breaker",
+							"Attacks targetting slowed enemy will have %s%% more damage"
+					).register();
 		}
 
 		//executor
@@ -183,8 +201,13 @@ public class ArtifactItemRegistry {
 			EFF_EXECUTOR_SELF_HURT = REGISTRATE.setEffect("executor_self_hurt", () -> new ExecutorSelfHurtEffect(
 					new AttributeSetEffect.AttrSetEntry(() -> Attributes.ATTACK_DAMAGE,
 							AttributeModifier.Operation.MULTIPLY_TOTAL, atk, true),
-					hurt));
-			EFF_EXECUTOR_LIMIT = REGISTRATE.setEffect("executor_limit", () -> new ExecutorLimitEffect(factor));
+					hurt)).desc("Brutal Execution",
+					"When kill enemies, deal real damage to oneself equal to %s%% of enemies' max health."
+			).register();
+			EFF_EXECUTOR_LIMIT = REGISTRATE.setEffect("executor_limit", () -> new ExecutorLimitEffect(factor))
+					.desc("Cold Hearted",
+							"The damage dealt to oneself will be capped to one's max health, and then reduced to %s%%"
+					).register();
 		}
 
 		// physical
@@ -196,27 +219,45 @@ public class ArtifactItemRegistry {
 			EFF_PHYSICAL_DAMAGE = REGISTRATE.setEffect("physical_damage", () -> new PhysicalDamageEffect(
 					new AttributeSetEffect.AttrSetEntry(() -> Attributes.ATTACK_DAMAGE,
 							AttributeModifier.Operation.MULTIPLY_TOTAL, atk, true),
-					factor));
+					factor)).desc("Barbaric Attack",
+					"Magical damage dealt will be reduced to %s%%"
+			).register();
 			EFF_PHYSICAL_ARMOR = REGISTRATE.setEffect("physical_armor", () -> new AttributeSetEffect(
 					new AttributeSetEffect.AttrSetEntry(() -> Attributes.ARMOR,
 							ADDITION, armor, false)
-			));
+			)).lang("Survival Instinct").register();
 		}
 
 		// wrath
 		{
 			LinearFuncEntry dec = REGISTRATE.regLinear("wrath_decrease", 0.8, 0);
 			LinearFuncEntry inc = REGISTRATE.regLinear("wrath_increase", 1.2, 0.1);
-			EFF_WRATH_POISON = REGISTRATE.setEffect("wrath_poison", () -> new WrathEffect(e -> e.hasEffect(MobEffects.POISON), dec, inc));
-			EFF_WRATH_SLOW = REGISTRATE.setEffect("wrath_slow", () -> new WrathEffect(e -> e.hasEffect(MobEffects.MOVEMENT_SLOWDOWN), dec, inc));
-			EFF_WRATH_FIRE = REGISTRATE.setEffect("wrath_fire", () -> new WrathEffect(Entity::isOnFire, dec, inc));
+			EFF_WRATH_POISON = REGISTRATE.setEffect("wrath_poison", () -> new WrathEffect(e -> e.hasEffect(MobEffects.POISON), dec, inc))
+					.desc("Bad Day Encounters Bad Luck",
+							"When target is poisoned, increase damage to %s%%. Otherwise, decrease damage to %s%%."
+					).register();
+			EFF_WRATH_SLOW = REGISTRATE.setEffect("wrath_slow", () -> new WrathEffect(e -> e.hasEffect(MobEffects.MOVEMENT_SLOWDOWN), dec, inc))
+					.desc("Snow Storm Encounters Blitz Winter",
+							"When target is slowed, increase damage to %s%%. Otherwise, decrease damage to %s%%."
+					).register();
+			EFF_WRATH_FIRE = REGISTRATE.setEffect("wrath_fire", () -> new WrathEffect(Entity::isOnFire, dec, inc))
+					.desc("Emergency Encounters Unwanted Fight",
+							"When target is on fire, increase damage to %s%%. Otherwise, decrease damage to %s%%."
+					).register();
+
 		}
 
 		// singles
 		{
 			LinearFuncEntry amplify = REGISTRATE.regLinear("damocles", 1, 0.5);
-			EFF_DAMOCLES = REGISTRATE.setEffect("damocles", () -> new DamoclesSword(amplify));
-			EFF_PROTECTION_RESISTANCE = REGISTRATE.setEffect("protection_resistance", ProtectionResistance::new);
+			EFF_DAMOCLES = REGISTRATE.setEffect("damocles", () -> new DamoclesSword(amplify))
+					.desc("Sword of Damocles",
+							"When at full health, direct attack damage increase by %s%%. When below half health, die immediately."
+					).register();
+			EFF_PROTECTION_RESISTANCE = REGISTRATE.setEffect("protection_resistance", ProtectionResistance::new)
+					.desc("Crown of Never Falling Soldier",
+							"Damage taken reduced when health is low."
+					).register();
 		}
 	}
 

@@ -5,10 +5,7 @@ import dev.xkmc.l2artifacts.content.core.ArtifactSlot;
 import dev.xkmc.l2artifacts.content.core.LinearFuncHandle;
 import dev.xkmc.l2artifacts.content.effects.SetEffect;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
-import dev.xkmc.l2artifacts.init.registrate.entries.LinearFuncBuilder;
-import dev.xkmc.l2artifacts.init.registrate.entries.LinearFuncEntry;
-import dev.xkmc.l2artifacts.init.registrate.entries.SetBuilder;
-import dev.xkmc.l2artifacts.init.registrate.entries.SetEntry;
+import dev.xkmc.l2artifacts.init.registrate.entries.*;
 import dev.xkmc.l2library.base.L2Registrate;
 import dev.xkmc.l2library.repack.registrate.util.entry.RegistryEntry;
 import dev.xkmc.l2library.repack.registrate.util.nullness.NonNullSupplier;
@@ -35,9 +32,8 @@ public class ArtifactRegistrate extends L2Registrate {
 		return (LinearFuncEntry) this.entry(id, cb -> new LinearFuncBuilder<>(this, this, id, cb, LinearFuncHandle::new, base, slope)).register();
 	}
 
-	public <T extends SetEffect> RegistryEntry<T> setEffect(String id, NonNullSupplier<T> sup) {
-		return generic(ArtifactTypeRegistry.SET_EFFECT, id, sup).defaultLang().register();
-
+	public <T extends SetEffect> SetEffectBuilder<T, ArtifactRegistrate> setEffect(String id, NonNullSupplier<T> sup) {
+		return this.entry(id, cb -> new SetEffectBuilder<>(this, this, id, cb, sup));
 	}
 
 }

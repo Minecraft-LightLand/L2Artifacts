@@ -1,0 +1,15 @@
+{
+  "_class": "dev.xkmc.l2artifacts.content.config.ArtifactSetConfig",
+  "map": {
+    "l2artifacts:executor": [
+      {
+        "count": 3,
+        "effect": "l2artifacts:executor_self_hurt"
+      },
+      {
+        "count": 5,
+        "effect": "l2artifacts:executor_limit"
+      }
+    ]
+  }
+}

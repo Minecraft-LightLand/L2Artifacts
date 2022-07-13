@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "A": {
+      "item": "l2artifacts:artifact_experience_5"
+    },
+    "B": {
+      "item": "l2artifacts:froze_belt_4"
+    },
+    "C": {
+      "item": "l2artifacts:artifact_experience_4"
+    }
+  },
+  "pattern": [
+    "CCC",
+    "BAB",
+    "CCC"
+  ],
+  "result": {
+    "item": "l2artifacts:froze_belt_5"
+  }
+}

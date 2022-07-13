@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "l2artifacts:wrath_head_3"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_wrath_head_2": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "l2artifacts:wrath_head_2"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_wrath_head_2",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "l2artifacts:wrath_head_3"
+    ]
+  }
+}

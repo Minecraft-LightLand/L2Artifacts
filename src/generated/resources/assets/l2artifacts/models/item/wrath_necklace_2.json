@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "l2artifacts:item/wrath_necklace",
+    "layer1": "l2artifacts:item/sets_ranks_2"
+  }
+}

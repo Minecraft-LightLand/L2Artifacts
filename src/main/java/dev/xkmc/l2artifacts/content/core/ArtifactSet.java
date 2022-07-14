@@ -8,12 +8,12 @@ import dev.xkmc.l2artifacts.init.registrate.ArtifactTypeRegistry;
 import dev.xkmc.l2library.base.NamedEntry;
 import dev.xkmc.l2library.util.Proxy;
 import net.minecraft.ChatFormatting;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
-import net.minecraftforge.eventbus.api.Event;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.SlotResult;
@@ -136,7 +136,8 @@ public class ArtifactSet extends NamedEntry<ArtifactSet> {
 					ans.add(getCountDesc(ent.count).withStyle(color_count).append(ent.effect.getDesc().withStyle(color_title)));
 					List<MutableComponent> desc = ent.effect.getDetailedDescription(artifact);
 					for (MutableComponent comp : desc) {
-						ans.add(comp.withStyle(color_desc));
+						if (Screen.hasShiftDown())
+							ans.add(comp.withStyle(color_desc));
 					}
 				}
 			}

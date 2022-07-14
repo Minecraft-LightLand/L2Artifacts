@@ -30,7 +30,7 @@ public class ExecutorLimitEffect extends SetEffect {
 	@Override
 	public List<MutableComponent> getDetailedDescription(BaseArtifact item) {
 		double amount = this.factor.getFromRank(item.rank) * 100;
-		return List.of(Component.translatable(getDescriptionId() + ".desc", (int) amount));
+		return List.of(Component.translatable(getDescriptionId() + ".desc", (int) Math.round(amount)));
 	}
 
 }

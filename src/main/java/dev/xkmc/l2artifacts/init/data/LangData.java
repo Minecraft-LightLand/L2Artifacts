@@ -16,7 +16,9 @@ public enum LangData {
 	UPGRADE("tooltip.upgrade", "Right Click to Reveal Upgrade Result", 0, ChatFormatting.GOLD),
 	MAIN_STAT("tooltip.main_stat", "Main Stats", 0, ChatFormatting.GRAY),
 	SUB_STAT("tooltip.sub_stat", "Sub Stats", 0, ChatFormatting.GRAY),
-	EXP_CONVERSION("tooltip.exp_conversion", "Exp as fodder: %s", 1, ChatFormatting.DARK_GRAY);
+	EXP_CONVERSION("tooltip.exp_conversion", "Exp as fodder: %s", 1, ChatFormatting.DARK_GRAY),
+	SHIFT_TEXT("tooltip.shift", "Hold Shift for details", 0, null),
+	CTRL_TEXT("tooltip.ctrl", "Hold Ctrl for lore", 0, null);
 
 	private final String key, def;
 	private final int arg;

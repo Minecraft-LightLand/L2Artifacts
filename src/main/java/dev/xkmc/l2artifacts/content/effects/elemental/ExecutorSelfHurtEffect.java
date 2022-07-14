@@ -25,7 +25,7 @@ public class ExecutorSelfHurtEffect extends AttributeSetEffect {
 	public List<MutableComponent> getDetailedDescription(BaseArtifact item) {
 		var ans = super.getDetailedDescription(item);
 		double val = factor.getFromRank(item.rank) * 100;
-		ans.add(Component.translatable(getDescriptionId() + ".desc", (int) val));
+		ans.add(Component.translatable(getDescriptionId() + ".desc", (int) Math.round(val)));
 		return ans;
 	}
 

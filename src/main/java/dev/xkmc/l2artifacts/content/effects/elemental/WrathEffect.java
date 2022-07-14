@@ -36,7 +36,7 @@ public class WrathEffect extends SetEffect {
 	public List<MutableComponent> getDetailedDescription(BaseArtifact item) {
 		double inc = this.inc.getFromRank(item.rank) * 100;
 		double dec = this.dec.getFromRank(item.rank) * 100;
-		return List.of(Component.translatable(getDescriptionId() + ".desc", (int) inc, (int) dec));
+		return List.of(Component.translatable(getDescriptionId() + ".desc", (int) Math.round(inc), (int) Math.round(dec)));
 	}
 
 }

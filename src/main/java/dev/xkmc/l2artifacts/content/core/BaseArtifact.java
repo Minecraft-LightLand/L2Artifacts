@@ -4,6 +4,7 @@ import dev.xkmc.l2artifacts.init.data.LangData;
 import dev.xkmc.l2library.serial.codec.TagCodec;
 import dev.xkmc.l2library.util.Proxy;
 import net.minecraft.ChatFormatting;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.RandomSource;
@@ -20,7 +21,6 @@ import top.theillusivec4.curios.api.CuriosApi;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Random;
 import java.util.function.Supplier;
 
 public class BaseArtifact extends Item {
@@ -91,11 +91,12 @@ public class BaseArtifact extends Item {
 					boolean max = stats.level == ArtifactUpgradeManager.getMaxLevel(stats.rank);
 					list.add(LangData.ARTIFACT_LEVEL.get(stats.level).withStyle(max ? ChatFormatting.GOLD : ChatFormatting.WHITE));
 					if (stats.level < ArtifactUpgradeManager.getMaxLevel(stats.rank)) {
-						list.add(LangData.ARTIFACT_EXP.get(stats.exp, ArtifactUpgradeManager.getExpForLevel(stats.rank, stats.level)));
+						if (Screen.hasShiftDown())
+							list.add(LangData.ARTIFACT_EXP.get(stats.exp, ArtifactUpgradeManager.getExpForLevel(stats.rank, stats.level)));
 					}
 					if (stats.level > stats.old_level) {
 						list.add(LangData.UPGRADE.get());
-					} else {
+					} else if (!Screen.hasShiftDown()) {
 						list.add(LangData.MAIN_STAT.get());
 						list.add(stats.main_stat.getTooltip());
 						if (stats.sub_stats.size() > 0) {
@@ -108,8 +109,12 @@ public class BaseArtifact extends Item {
 				});
 			}
 			list.addAll(set.get().getAllDescs(stack, flag));
-			list.add(LangData.EXP_CONVERSION.get(ArtifactUpgradeManager.getExpForConversion(rank, getStats(stack).orElse(null))));
+			if (Screen.hasShiftDown())
+				list.add(LangData.EXP_CONVERSION.get(ArtifactUpgradeManager.getExpForConversion(rank, getStats(stack).orElse(null))));
 		}
 		super.appendHoverText(stack, level, list, flag);
+		if (!Screen.hasShiftDown()) {
+			list.add(LangData.SHIFT_TEXT.get());
+		}
 	}
 }

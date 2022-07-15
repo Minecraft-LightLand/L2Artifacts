@@ -36,6 +36,7 @@ public enum LangData {
 	UPGRADE_STAT("tooltip.enhance.stat", "Next upgraded sub stat will be %s.", 1, null),
 	UPGRADE_MAIN("tooltip.enhance.main", "Next %s upgraded main stat will be maximized.", 1, null),
 	UPGRADE_SUB("tooltip.enhance.sub", "Next %s upgraded sub stat will be maximized.", 1, null),
+	ALL_SET_EFFECTS("set.all_set_effects","Set %s: %s piece(s)",2,null)
 	;
 
 	private final String key, def;
@@ -81,6 +82,7 @@ public enum LangData {
 		pvd.add("l2artifacts.set.3", "When Equip 3 of this Set: ");
 		pvd.add("l2artifacts.set.4", "When Equip 4 of this Set: ");
 		pvd.add("l2artifacts.set.5", "When Equip 5 of this Set: ");
+		pvd.add("menu.tabs.set_effects", "Activated Set Effects");
 
 	}
 

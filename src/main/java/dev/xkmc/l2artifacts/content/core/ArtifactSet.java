@@ -1,5 +1,6 @@
 package dev.xkmc.l2artifacts.content.core;
 
+import dev.xkmc.l2artifacts.content.client.DarkTextColorRanks;
 import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
 import dev.xkmc.l2artifacts.events.EventConsumer;
 import dev.xkmc.l2artifacts.init.data.LangData;
@@ -24,7 +25,7 @@ import java.util.Optional;
 
 public class ArtifactSet extends NamedEntry<ArtifactSet> {
 
-	public record SetContext(int count, int min_rank, int current_index) {
+	public record SetContext(int count, int[] ranks, int current_index) {
 
 	}
 
@@ -40,16 +41,19 @@ public class ArtifactSet extends NamedEntry<ArtifactSet> {
 		LivingEntity e = context == null ? Proxy.getPlayer() : context.entity();
 		if (e instanceof Player player) {
 			List<SlotResult> list = CuriosApi.getCuriosHelper().findCurios(player, stack -> stack.getItem() instanceof BaseArtifact artifact && artifact.set.get() == this);
-			int rank = ModConfig.COMMON.maxRank.get();
+			int[] rank = new int[ModConfig.COMMON.maxRank.get() + 1];
 			int index = -1;
 			int count = 0;
 			for (SlotResult result : list) {
 				if (result.stack().getItem() instanceof BaseArtifact artifact && artifact.set.get() == this) {
-					rank = Math.min(rank, artifact.rank);
+					rank[artifact.rank]++;
 					if (context != null && context.identifier().equals(result.slotContext().identifier()) && context.index() == result.slotContext().index())
 						index = count;
 					count++;
 				}
+			}
+			for (int i = rank.length - 2; i >= 0; i--) {
+				rank[i] += rank[i + 1];
 			}
 			return Optional.of(new SetContext(list.size(), rank, index));
 		}
@@ -59,13 +63,16 @@ public class ArtifactSet extends NamedEntry<ArtifactSet> {
 	public Optional<SetContext> getSetCount(LivingEntity e) {
 		if (e instanceof Player player) {
 			List<SlotResult> list = CuriosApi.getCuriosHelper().findCurios(player, stack -> stack.getItem() instanceof BaseArtifact artifact && artifact.set.get() == this);
-			int rank = ModConfig.COMMON.maxRank.get();
+			int[] rank = new int[ModConfig.COMMON.maxRank.get() + 1];
 			int count = 0;
 			for (SlotResult result : list) {
 				if (result.stack().getItem() instanceof BaseArtifact artifact && artifact.set.get() == this) {
-					rank = Math.min(rank, artifact.rank);
+					rank[artifact.rank]++;
 					count++;
 				}
+			}
+			for (int i = rank.length - 2; i >= 0; i--) {
+				rank[i] += rank[i + 1];
 			}
 			return Optional.of(new SetContext(list.size(), rank, -1));
 		}
@@ -80,7 +87,7 @@ public class ArtifactSet extends NamedEntry<ArtifactSet> {
 				ArtifactSetConfig config = ArtifactSetConfig.getInstance();
 				ArrayList<ArtifactSetConfig.Entry> list = config.map.get(this);
 				for (ArtifactSetConfig.Entry ent : list) {
-					ent.effect.update(player, ent, result.get().min_rank(), result.get().count() >= ent.count);
+					ent.effect.update(player, ent, result.get().ranks()[ent.count], result.get().count() >= ent.count);
 				}
 			}
 		}
@@ -94,7 +101,7 @@ public class ArtifactSet extends NamedEntry<ArtifactSet> {
 				ArtifactSetConfig config = ArtifactSetConfig.getInstance();
 				ArrayList<ArtifactSetConfig.Entry> list = config.map.get(this);
 				for (ArtifactSetConfig.Entry ent : list) {
-					ent.effect.tick(player, ent, result.get().min_rank(), result.get().count() >= ent.count);
+					ent.effect.tick(player, ent, result.get().ranks()[ent.count], result.get().count() >= ent.count);
 				}
 			}
 		}
@@ -109,7 +116,7 @@ public class ArtifactSet extends NamedEntry<ArtifactSet> {
 				ArrayList<ArtifactSetConfig.Entry> list = config.map.get(this);
 				for (ArtifactSetConfig.Entry ent : list) {
 					if (result.get().count() >= ent.count) {
-						cons.apply(ent.effect, player, ent, result.get().min_rank(), event);
+						cons.apply(ent.effect, player, ent, result.get().ranks()[ent.count], event);
 					}
 				}
 			}
@@ -130,12 +137,12 @@ public class ArtifactSet extends NamedEntry<ArtifactSet> {
 					for (ArtifactSetConfig.Entry ent : list) {
 						ChatFormatting color_count = ctx.count() < ent.count ?
 								ChatFormatting.GRAY : ChatFormatting.GREEN;
-						ChatFormatting color_title = ctx.count() < ent.count || ctx.min_rank() < artifact.rank ?
+						ChatFormatting color_title = ctx.count() < ent.count || ctx.ranks()[ent.count] < artifact.rank ?
 								ChatFormatting.GRAY : ChatFormatting.GREEN;
-						ChatFormatting color_desc = ctx.count() < ent.count || ctx.min_rank() < artifact.rank ?
+						ChatFormatting color_desc = ctx.count() < ent.count || ctx.ranks()[ent.count] < artifact.rank ?
 								ChatFormatting.DARK_GRAY : ChatFormatting.DARK_GREEN;
 						ans.add(getCountDesc(ent.count).withStyle(color_count).append(ent.effect.getDesc().withStyle(color_title)));
-						List<MutableComponent> desc = ent.effect.getDetailedDescription(artifact);
+						List<MutableComponent> desc = ent.effect.getDetailedDescription(artifact.rank);
 						for (MutableComponent comp : desc) {
 							ans.add(comp.withStyle(color_desc));
 						}
@@ -144,6 +151,23 @@ public class ArtifactSet extends NamedEntry<ArtifactSet> {
 			}
 		}
 		return ans;
+	}
+
+	public void addComponents(List<MutableComponent> ans, SetContext ctx) {
+		ans.add(LangData.ALL_SET_EFFECTS.get(getDesc(), ctx.count()));
+		ArtifactSetConfig config = ArtifactSetConfig.getInstance();
+		ArrayList<ArtifactSetConfig.Entry> list = config.map.get(this);
+		for (ArtifactSetConfig.Entry ent : list) {
+			if (ctx.count() >= ent.count) {
+				int rank = ctx.ranks[ent.count];
+				ans.add(getCountDesc(ent.count).append(ent.effect.getDesc()).withStyle(DarkTextColorRanks.getDark(rank)));
+				List<MutableComponent> desc = ent.effect.getDetailedDescription(rank);
+				for (MutableComponent comp : desc) {
+					ans.add(comp.withStyle(DarkTextColorRanks.getLight(rank)));
+				}
+			}
+
+		}
 	}
 
 }

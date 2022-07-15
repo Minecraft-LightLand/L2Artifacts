@@ -1,7 +1,6 @@
 package dev.xkmc.l2artifacts.content.effects.elemental;
 
 import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
-import dev.xkmc.l2artifacts.content.core.BaseArtifact;
 import dev.xkmc.l2artifacts.content.effects.SetEffect;
 import dev.xkmc.l2artifacts.init.registrate.entries.LinearFuncEntry;
 import dev.xkmc.l2library.init.events.attack.AttackCache;
@@ -33,9 +32,9 @@ public class WrathEffect extends SetEffect {
 	}
 
 	@Override
-	public List<MutableComponent> getDetailedDescription(BaseArtifact item) {
-		double inc = this.inc.getFromRank(item.rank) * 100;
-		double dec = this.dec.getFromRank(item.rank) * 100;
+	public List<MutableComponent> getDetailedDescription(int rank) {
+		double inc = this.inc.getFromRank(rank) * 100;
+		double dec = this.dec.getFromRank(rank) * 100;
 		return List.of(Component.translatable(getDescriptionId() + ".desc", (int) Math.round(inc), (int) Math.round(dec)));
 	}
 

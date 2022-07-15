@@ -1,7 +1,6 @@
 package dev.xkmc.l2artifacts.content.effects.elemental;
 
 import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
-import dev.xkmc.l2artifacts.content.core.BaseArtifact;
 import dev.xkmc.l2artifacts.content.effects.AttributeSetEffect;
 import dev.xkmc.l2artifacts.init.registrate.entries.LinearFuncEntry;
 import dev.xkmc.l2library.init.events.attack.AttackCache;
@@ -22,9 +21,9 @@ public class PhysicalDamageEffect extends AttributeSetEffect {
 	}
 
 	@Override
-	public List<MutableComponent> getDetailedDescription(BaseArtifact item) {
-		var ans = super.getDetailedDescription(item);
-		double val = factor.getFromRank(item.rank) * 100;
+	public List<MutableComponent> getDetailedDescription(int rank) {
+		var ans = super.getDetailedDescription(rank);
+		double val = factor.getFromRank(rank) * 100;
 		ans.add(Component.translatable(getDescriptionId() + ".desc", (int) Math.round(val)));
 		return ans;
 	}

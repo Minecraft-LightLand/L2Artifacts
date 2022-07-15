@@ -1,7 +1,6 @@
 package dev.xkmc.l2artifacts.content.effects;
 
 import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
-import dev.xkmc.l2artifacts.content.core.BaseArtifact;
 import dev.xkmc.l2artifacts.init.registrate.entries.LinearFuncEntry;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.contents.TranslatableContents;
@@ -50,10 +49,10 @@ public class AttributeSetEffect extends SetEffect {
 	}
 
 	@Override
-	public List<MutableComponent> getDetailedDescription(BaseArtifact item) {
+	public List<MutableComponent> getDetailedDescription(int rank) {
 		List<MutableComponent> ans = new ArrayList<>();
 		for (AttrSetEntry ent : entries) {
-			double val = ent.getValue(item.rank);
+			double val = ent.getValue(rank);
 			String sign = val > 0 ? "attribute.modifier.plus." : "attribute.modifier.take.";
 			ans.add(MutableComponent.create(new TranslatableContents(
 					sign + (ent.usePercent ? 1 : 0),

@@ -1,7 +1,6 @@
 package dev.xkmc.l2artifacts.content.effects;
 
 import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
-import dev.xkmc.l2artifacts.content.core.BaseArtifact;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactTypeRegistry;
 import dev.xkmc.l2library.base.NamedEntry;
 import dev.xkmc.l2library.init.events.attack.AttackCache;
@@ -35,7 +34,7 @@ public abstract class SetEffect extends NamedEntry<SetEffect> {
 	public void tick(Player player, ArtifactSetConfig.Entry ent, int rank, boolean enabled) {
 	}
 
-	public List<MutableComponent> getDetailedDescription(BaseArtifact item) {
+	public List<MutableComponent> getDetailedDescription(int rank) {
 		return List.of(MutableComponent.create(new TranslatableContents(getDescriptionId() + ".desc")));
 	}
 

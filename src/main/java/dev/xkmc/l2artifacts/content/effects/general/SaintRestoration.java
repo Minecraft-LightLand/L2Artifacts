@@ -1,7 +1,6 @@
 package dev.xkmc.l2artifacts.content.effects.general;
 
 import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
-import dev.xkmc.l2artifacts.content.core.BaseArtifact;
 import dev.xkmc.l2artifacts.content.effects.SetEffect;
 import dev.xkmc.l2artifacts.init.registrate.entries.LinearFuncEntry;
 import net.minecraft.network.chat.Component;
@@ -47,8 +46,8 @@ public class SaintRestoration extends SetEffect {
 	}
 
 	@Override
-	public List<MutableComponent> getDetailedDescription(BaseArtifact item) {
-		double period = val.getFromRank(item.rank) / 20d;
+	public List<MutableComponent> getDetailedDescription(int rank) {
+		double period = val.getFromRank(rank) / 20d;
 		return List.of(Component.translatable(getDescriptionId() + ".desc", ATTRIBUTE_MODIFIER_FORMAT.format(period)));
 	}
 

@@ -1,7 +1,6 @@
 package dev.xkmc.l2artifacts.content.effects.general;
 
 import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
-import dev.xkmc.l2artifacts.content.core.BaseArtifact;
 import dev.xkmc.l2artifacts.content.effects.SetEffect;
 import dev.xkmc.l2artifacts.init.registrate.entries.LinearFuncEntry;
 import net.minecraft.network.chat.Component;
@@ -21,8 +20,8 @@ public class PerfectionProtection extends SetEffect {
 	}
 
 	@Override
-	public List<MutableComponent> getDetailedDescription(BaseArtifact item) {
-		int reduce = (int) Math.round(this.reduce.getFromRank(item.rank) * 100);
+	public List<MutableComponent> getDetailedDescription(int rank) {
+		int reduce = (int) Math.round(this.reduce.getFromRank(rank) * 100);
 		return List.of(Component.translatable(getDescriptionId() + ".desc", reduce));
 	}
 

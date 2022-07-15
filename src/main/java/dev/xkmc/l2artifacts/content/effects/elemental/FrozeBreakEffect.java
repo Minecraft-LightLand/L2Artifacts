@@ -1,7 +1,6 @@
 package dev.xkmc.l2artifacts.content.effects.elemental;
 
 import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
-import dev.xkmc.l2artifacts.content.core.BaseArtifact;
 import dev.xkmc.l2artifacts.content.effects.SetEffect;
 import dev.xkmc.l2artifacts.init.registrate.entries.LinearFuncEntry;
 import dev.xkmc.l2library.init.events.attack.AttackCache;
@@ -29,8 +28,8 @@ public class FrozeBreakEffect extends SetEffect {
 	}
 
 	@Override
-	public List<MutableComponent> getDetailedDescription(BaseArtifact item) {
-		double amount = (this.factor.getFromRank(item.rank) - 1) * 100;
+	public List<MutableComponent> getDetailedDescription(int rank) {
+		double amount = (this.factor.getFromRank(rank) - 1) * 100;
 		return List.of(Component.translatable(getDescriptionId() + ".desc", (int) Math.round(amount)));
 	}
 

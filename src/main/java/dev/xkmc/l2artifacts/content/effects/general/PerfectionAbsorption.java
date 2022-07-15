@@ -1,7 +1,6 @@
 package dev.xkmc.l2artifacts.content.effects.general;
 
 import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
-import dev.xkmc.l2artifacts.content.core.BaseArtifact;
 import dev.xkmc.l2artifacts.content.effects.SetEffect;
 import dev.xkmc.l2artifacts.init.registrate.entries.LinearFuncEntry;
 import net.minecraft.network.chat.Component;
@@ -36,9 +35,9 @@ public class PerfectionAbsorption extends SetEffect {
 	}
 
 	@Override
-	public List<MutableComponent> getDetailedDescription(BaseArtifact item) {
-		double period = this.period.getFromRank(item.rank) / 20;
-		int max = (int) this.max.getFromRank(item.rank);
+	public List<MutableComponent> getDetailedDescription(int rank) {
+		double period = this.period.getFromRank(rank) / 20;
+		int max = (int) this.max.getFromRank(rank);
 		return List.of(Component.translatable(getDescriptionId() + ".desc", period, max));
 	}
 

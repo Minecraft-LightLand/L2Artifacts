@@ -29,7 +29,7 @@ public class CraftEvents {
 			if (fodder.getItem() instanceof BaseArtifact) {
 				upgradeExp(event);
 			}
-			if (fodder.getItem() instanceof StatContainerItem) {
+			if (fodder.getItem() instanceof UpgradeEnhanceItem) {
 				upgradeEnhance(event);
 			}
 		}

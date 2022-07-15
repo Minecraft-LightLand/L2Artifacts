@@ -43,6 +43,7 @@ public class ArtifactUpgradeManager {
 			if (upgrade.stats.size() > 0) {
 				for (StatEntry entry : stats.sub_stats) {
 					if (entry.type == upgrade.stats.get(0)) {
+						upgrade.stats.remove(0);
 						substat = entry;
 						break;
 					}

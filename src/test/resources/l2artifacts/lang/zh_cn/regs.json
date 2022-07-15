@@ -1,16 +1,16 @@
 {
   "stat_type.l2artifacts": {
-	"armor_add": "+护甲",
-	"attack_add": "+近战伤害",
-	"attack_mult": "+%%近战攻击",
+	"armor_add": "+护甲值",
+	"attack_add": "+攻击伤害",
+	"attack_mult": "+%%攻击攻击",
 	"attack_speed_mult": "+%%攻击速度",
 	"bow_strength_add": "+弓箭伤害",
 	"crit_damage_add": "+暴击伤害",
 	"crit_rate_add": "+暴击率",
-	"health_add": "+血量",
+	"health_add": "+最大生命值",
 	"reach_add": "+攻击距离",
-	"speed_mult": "+%%移动速度",
-	"tough_add": "+韧性"
+	"speed_mult": "+%%速度",
+	"tough_add": "+盔甲韧性"
   },
   "set.l2artifacts": {
 	"archer": "弓箭手",

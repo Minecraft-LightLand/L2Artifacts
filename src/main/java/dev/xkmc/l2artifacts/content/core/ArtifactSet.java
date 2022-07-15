@@ -123,7 +123,7 @@ public class ArtifactSet extends NamedEntry<ArtifactSet> {
 			Optional<SetContext> opt = getSetCount(Proxy.getPlayer());
 			if (opt.isPresent()) {
 				SetContext ctx = opt.get();
-				ans.add(Component.translatable(getDescriptionId()).withStyle(ChatFormatting.YELLOW));
+				ans.add(LangData.SET.get(Component.translatable(getDescriptionId()).withStyle(ChatFormatting.YELLOW)));
 				if (show) {
 					ArtifactSetConfig config = ArtifactSetConfig.getInstance();
 					ArrayList<ArtifactSetConfig.Entry> list = config.map.get(this);

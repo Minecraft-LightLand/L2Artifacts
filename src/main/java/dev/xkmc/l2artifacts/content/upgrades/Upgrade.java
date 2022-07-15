@@ -24,7 +24,7 @@ public class Upgrade {
 			list.add(LangData.UPGRADE_SUB.get(sub));
 		}
 		for (ArtifactStatType stat : stats) {
-			list.add(LangData.UPGRADE_STAT.get(stat));
+			list.add(LangData.UPGRADE_STAT.get(stat.getDesc()));
 		}
 	}
 

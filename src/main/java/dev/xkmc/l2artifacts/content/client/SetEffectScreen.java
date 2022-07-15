@@ -3,11 +3,12 @@ package dev.xkmc.l2artifacts.content.client;
 import com.mojang.blaze3d.vertex.PoseStack;
 import dev.xkmc.l2artifacts.content.core.BaseArtifact;
 import dev.xkmc.l2artifacts.init.ModClient;
+import dev.xkmc.l2artifacts.util.TextWrapper;
 import dev.xkmc.l2library.base.tabs.contents.BaseTextScreen;
 import dev.xkmc.l2library.base.tabs.core.TabManager;
 import dev.xkmc.l2library.util.Proxy;
+import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -36,7 +37,7 @@ public class SetEffectScreen extends BaseTextScreen {
 		int x = leftPos + 8;
 		int y = topPos + 6;
 		List<SlotResult> slots = CuriosApi.getCuriosHelper().findCurios(player, stack -> stack.getItem() instanceof BaseArtifact);
-		List<MutableComponent> list = new ArrayList<>();
+		List<Component> list = new ArrayList<>();
 		for (SlotResult sr : slots) {
 			ItemStack stack = sr.stack();
 			BaseArtifact base = (BaseArtifact) stack.getItem();
@@ -47,7 +48,8 @@ public class SetEffectScreen extends BaseTextScreen {
 				base.set.get().addComponents(list, result);
 			});
 		}
-		for (MutableComponent comp : list) {
+		var lines = TextWrapper.wrapText(Minecraft.getInstance().font, list, imageWidth - 16);
+		for (var comp : lines) {
 			this.font.draw(pose, comp, x, y, 0);
 			y += 10;
 		}

@@ -29,6 +29,20 @@ public class ArtifactSet extends NamedEntry<ArtifactSet> {
 
 	}
 
+	private static int[] remapRanks(int[] rank) {
+		for (int i = rank.length - 2; i >= 0; i--) {
+			rank[i] += rank[i + 1];
+		}
+		// now rank[i] means how many items are equal or above this rank
+		int[] ranks = new int[6];
+		for (int i = 0; i <= 5; i++) {// count
+			for (int j = 0; j < rank.length; j++) // rank
+				if (rank[j] >= i)
+					ranks[i] = Math.max(ranks[rank[i]], j);
+		}
+		return ranks;
+	}
+
 	private MutableComponent getCountDesc(int count) {
 		return LangData.getTranslate("set." + count);
 	}
@@ -52,10 +66,8 @@ public class ArtifactSet extends NamedEntry<ArtifactSet> {
 					count++;
 				}
 			}
-			for (int i = rank.length - 2; i >= 0; i--) {
-				rank[i] += rank[i + 1];
-			}
-			return Optional.of(new SetContext(list.size(), rank, index));
+
+			return Optional.of(new SetContext(list.size(), remapRanks(rank), index));
 		}
 		return Optional.empty();
 	}
@@ -71,10 +83,7 @@ public class ArtifactSet extends NamedEntry<ArtifactSet> {
 					count++;
 				}
 			}
-			for (int i = rank.length - 2; i >= 0; i--) {
-				rank[i] += rank[i + 1];
-			}
-			return Optional.of(new SetContext(list.size(), rank, -1));
+			return Optional.of(new SetContext(list.size(), remapRanks(rank), -1));
 		}
 		return Optional.empty();
 	}
@@ -153,7 +162,7 @@ public class ArtifactSet extends NamedEntry<ArtifactSet> {
 		return ans;
 	}
 
-	public void addComponents(List<MutableComponent> ans, SetContext ctx) {
+	public void addComponents(List<Component> ans, SetContext ctx) {
 		ans.add(LangData.ALL_SET_EFFECTS.get(getDesc(), ctx.count()));
 		ArtifactSetConfig config = ArtifactSetConfig.getInstance();
 		ArrayList<ArtifactSetConfig.Entry> list = config.map.get(this);

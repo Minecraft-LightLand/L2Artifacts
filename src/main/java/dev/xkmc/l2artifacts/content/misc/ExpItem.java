@@ -1,6 +1,6 @@
 package dev.xkmc.l2artifacts.content.misc;
 
-import dev.xkmc.l2artifacts.content.core.ArtifactUpgradeManager;
+import dev.xkmc.l2artifacts.content.upgrades.ArtifactUpgradeManager;
 import dev.xkmc.l2artifacts.init.data.LangData;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;

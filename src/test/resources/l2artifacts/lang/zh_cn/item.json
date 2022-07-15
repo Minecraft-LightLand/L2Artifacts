@@ -74,6 +74,9 @@
 	  "list": [
 		{
 		  "artifact_experience": "古遗物经验",
+		  "stat_container": "词条容器",
+		  "boost_main": "主词条充能水晶",
+		  "boost_sub": "副词条充能水晶",
 		  "damocles_head": "达摩克利斯之剑",
 		  "protection_head": "向死而生之冠"
 		},

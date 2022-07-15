@@ -13,7 +13,6 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 
-import java.util.Random;
 import java.util.function.Supplier;
 
 import static net.minecraft.world.item.ItemStack.ATTRIBUTE_MODIFIER_FORMAT;
@@ -35,19 +34,19 @@ public class ArtifactStatType extends NamedEntry<ArtifactStatType> {
 		builder.put(attr.get(), new AttributeModifier(entry.id, entry.name, entry.value, op));
 	}
 
-	public double getInitialValue(int rank, RandomSource random) {
+	public double getInitialValue(int rank, RandomSource random, boolean max) {
 		StatTypeConfig.Entry entry = StatTypeConfig.getInstance().stats.get(this);
-		return Mth.nextDouble(random, entry.base_low, entry.base_high) * rank;
+		return (max ? entry.base_high : Mth.nextDouble(random, entry.base_low, entry.base_high)) * rank;
 	}
 
-	public double getMainValue(int rank, RandomSource random) {
+	public double getMainValue(int rank, RandomSource random, boolean max) {
 		StatTypeConfig.Entry entry = StatTypeConfig.getInstance().stats.get(this);
-		return Mth.nextDouble(random, entry.main_low, entry.main_high) * rank;
+		return (max ? entry.main_high : Mth.nextDouble(random, entry.main_low, entry.main_high)) * rank;
 	}
 
-	public double getSubValue(int rank, RandomSource random) {
+	public double getSubValue(int rank, RandomSource random, boolean max) {
 		StatTypeConfig.Entry entry = StatTypeConfig.getInstance().stats.get(this);
-		return Mth.nextDouble(random, entry.sub_low, entry.sub_high) * rank;
+		return (max ? entry.sub_high : Mth.nextDouble(random, entry.sub_low, entry.sub_high)) * rank;
 	}
 
 	public Component getTooltip(double val) {

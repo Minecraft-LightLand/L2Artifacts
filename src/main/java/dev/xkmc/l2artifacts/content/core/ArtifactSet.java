@@ -8,12 +8,11 @@ import dev.xkmc.l2artifacts.init.registrate.ArtifactTypeRegistry;
 import dev.xkmc.l2library.base.NamedEntry;
 import dev.xkmc.l2library.util.Proxy;
 import net.minecraft.ChatFormatting;
-import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.TooltipFlag;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.SlotResult;
@@ -117,27 +116,29 @@ public class ArtifactSet extends NamedEntry<ArtifactSet> {
 		}
 	}
 
-	public List<MutableComponent> getAllDescs(ItemStack stack, TooltipFlag flag) {
+	public List<MutableComponent> getAllDescs(ItemStack stack, boolean show) {
 		List<MutableComponent> ans = new ArrayList<>();
 		BaseArtifact artifact = (BaseArtifact) stack.getItem();
 		if (Proxy.getPlayer() != null) {
 			Optional<SetContext> opt = getSetCount(Proxy.getPlayer());
 			if (opt.isPresent()) {
 				SetContext ctx = opt.get();
-				ArtifactSetConfig config = ArtifactSetConfig.getInstance();
-				ArrayList<ArtifactSetConfig.Entry> list = config.map.get(this);
-				for (ArtifactSetConfig.Entry ent : list) {
-					ChatFormatting color_count = ctx.count() < ent.count ?
-							ChatFormatting.GRAY : ChatFormatting.GREEN;
-					ChatFormatting color_title = ctx.count() < ent.count || ctx.min_rank() < artifact.rank ?
-							ChatFormatting.GRAY : ChatFormatting.GREEN;
-					ChatFormatting color_desc = ctx.count() < ent.count || ctx.min_rank() < artifact.rank ?
-							ChatFormatting.DARK_GRAY : ChatFormatting.DARK_GREEN;
-					ans.add(getCountDesc(ent.count).withStyle(color_count).append(ent.effect.getDesc().withStyle(color_title)));
-					List<MutableComponent> desc = ent.effect.getDetailedDescription(artifact);
-					for (MutableComponent comp : desc) {
-						if (Screen.hasShiftDown())
+				ans.add(Component.translatable(getDescriptionId()).withStyle(ChatFormatting.YELLOW));
+				if (show) {
+					ArtifactSetConfig config = ArtifactSetConfig.getInstance();
+					ArrayList<ArtifactSetConfig.Entry> list = config.map.get(this);
+					for (ArtifactSetConfig.Entry ent : list) {
+						ChatFormatting color_count = ctx.count() < ent.count ?
+								ChatFormatting.GRAY : ChatFormatting.GREEN;
+						ChatFormatting color_title = ctx.count() < ent.count || ctx.min_rank() < artifact.rank ?
+								ChatFormatting.GRAY : ChatFormatting.GREEN;
+						ChatFormatting color_desc = ctx.count() < ent.count || ctx.min_rank() < artifact.rank ?
+								ChatFormatting.DARK_GRAY : ChatFormatting.DARK_GREEN;
+						ans.add(getCountDesc(ent.count).withStyle(color_count).append(ent.effect.getDesc().withStyle(color_title)));
+						List<MutableComponent> desc = ent.effect.getDetailedDescription(artifact);
+						for (MutableComponent comp : desc) {
 							ans.add(comp.withStyle(color_desc));
+						}
 					}
 				}
 			}

@@ -2,6 +2,8 @@ package dev.xkmc.l2artifacts.content.core;
 
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
+import dev.xkmc.l2artifacts.content.upgrades.ArtifactUpgradeManager;
+import dev.xkmc.l2artifacts.content.upgrades.Upgrade;
 import dev.xkmc.l2library.serial.SerialClass;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.ai.attributes.Attribute;
@@ -10,7 +12,6 @@ import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
 
 @SerialClass
 public class ArtifactStats {
@@ -34,10 +35,10 @@ public class ArtifactStats {
 
 	}
 
-	public ArtifactStats(ArtifactSlot slot, int rank, RandomSource random) {
+	public ArtifactStats(ArtifactSlot slot, int rank, Upgrade upgrade, RandomSource random) {
 		this.slot = slot;
 		this.rank = rank;
-		slot.generate(this, random);
+		slot.generate(this, upgrade, random);
 	}
 
 	@SerialClass.OnInject

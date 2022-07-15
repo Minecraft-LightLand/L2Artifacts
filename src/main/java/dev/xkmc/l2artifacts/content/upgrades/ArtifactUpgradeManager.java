@@ -1,10 +1,11 @@
-package dev.xkmc.l2artifacts.content.core;
+package dev.xkmc.l2artifacts.content.upgrades;
 
+import dev.xkmc.l2artifacts.content.core.ArtifactStats;
+import dev.xkmc.l2artifacts.content.core.StatEntry;
 import dev.xkmc.l2artifacts.init.data.ModConfig;
 import net.minecraft.util.RandomSource;
 
 import javax.annotation.Nullable;
-import java.util.Random;
 
 public class ArtifactUpgradeManager {
 
@@ -34,12 +35,23 @@ public class ArtifactUpgradeManager {
 		return rank * ModConfig.COMMON.maxLevelPerRank.get();
 	}
 
-	public static void onUpgrade(ArtifactStats stats, int lv, RandomSource random) {
+	public static void onUpgrade(ArtifactStats stats, int lv, Upgrade upgrade, RandomSource random) {
 		int gate = ModConfig.COMMON.levelPerSubStat.get();
-		stats.add(stats.main_stat.type, stats.main_stat.type.getMainValue(stats.rank, random));
+		stats.add(stats.main_stat.type, stats.main_stat.type.getMainValue(stats.rank, random, upgrade.removeMain()));
 		if (lv % gate == 0 && stats.sub_stats.size() > 0) {
-			StatEntry substat = stats.sub_stats.get(random.nextInt(stats.sub_stats.size()));
-			stats.add(substat.type, substat.type.getSubValue(stats.rank, random));
+			StatEntry substat = null;
+			if (upgrade.stats.size() > 0) {
+				for (StatEntry entry : stats.sub_stats) {
+					if (entry.type == upgrade.stats.get(0)) {
+						substat = entry;
+						break;
+					}
+				}
+			}
+			if (substat == null) {
+				substat = stats.sub_stats.get(random.nextInt(stats.sub_stats.size()));
+			}
+			stats.add(substat.type, substat.type.getSubValue(stats.rank, random, upgrade.removeSub()));
 		}
 	}
 }

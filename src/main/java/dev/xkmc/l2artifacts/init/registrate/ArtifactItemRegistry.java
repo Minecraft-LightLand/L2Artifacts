@@ -5,6 +5,9 @@ import dev.xkmc.l2artifacts.content.effects.AttributeSetEffect;
 import dev.xkmc.l2artifacts.content.effects.elemental.*;
 import dev.xkmc.l2artifacts.content.effects.general.*;
 import dev.xkmc.l2artifacts.content.misc.ExpItem;
+import dev.xkmc.l2artifacts.content.upgrades.StatContainerItem;
+import dev.xkmc.l2artifacts.content.upgrades.Upgrade;
+import dev.xkmc.l2artifacts.content.upgrades.UpgradeBoostItem;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
 import dev.xkmc.l2artifacts.init.registrate.entries.LinearFuncEntry;
 import dev.xkmc.l2artifacts.init.registrate.entries.SetEntry;
@@ -33,16 +36,45 @@ public class ArtifactItemRegistry {
 		REGISTRATE.creativeModeTab(() -> TAB_ARTIFACT);
 	}
 
-	public static final ItemEntry<ExpItem>[] RANKED_ITEMS;
+	public static final ItemEntry<ExpItem>[] ITEM_EXP;
+	public static final ItemEntry<StatContainerItem>[] ITEM_STAT;
+	public static final ItemEntry<UpgradeBoostItem>[] ITEM_BOOST_MAIN, ITEM_BOOST_SUB;
 
 	static {
 		int n = 5;
-		RANKED_ITEMS = new ItemEntry[n];
+		ITEM_EXP = new ItemEntry[n];
 		for (int i = 0; i < n; i++) {
 			int r = i + 1;
-			RANKED_ITEMS[i] = REGISTRATE.item("artifact_experience_" + r, p -> new ExpItem(p, r))
+			ITEM_EXP[i] = REGISTRATE.item("artifact_experience_" + r, p -> new ExpItem(p, r))
 					.model((ctx, pvd) -> pvd.getBuilder(ctx.getName()).parent(new ModelFile.UncheckedModelFile("item/generated"))
 							.texture("layer0", new ResourceLocation(L2Artifacts.MODID, "item/artifact_experience"))
+							.texture("layer1", new ResourceLocation(L2Artifacts.MODID, "item/sets_ranks_" + r)))
+					.defaultLang().register();
+		}
+		ITEM_STAT = new ItemEntry[n];
+		for (int i = 0; i < n; i++) {
+			int r = i + 1;
+			ITEM_STAT[i] = REGISTRATE.item("stat_container_" + r, p -> new StatContainerItem(p, r))
+					.model((ctx, pvd) -> pvd.getBuilder(ctx.getName()).parent(new ModelFile.UncheckedModelFile("item/generated"))
+							.texture("layer0", new ResourceLocation(L2Artifacts.MODID, "item/stat_container"))
+							.texture("layer1", new ResourceLocation(L2Artifacts.MODID, "item/sets_ranks_" + r)))
+					.defaultLang().register();
+		}
+		ITEM_BOOST_MAIN = new ItemEntry[n];
+		for (int i = 0; i < n; i++) {
+			int r = i + 1;
+			ITEM_BOOST_MAIN[i] = REGISTRATE.item("boost_main_" + r, p -> new UpgradeBoostItem(p, r, Upgrade.Type.BOOST_MAIN_STAT))
+					.model((ctx, pvd) -> pvd.getBuilder(ctx.getName()).parent(new ModelFile.UncheckedModelFile("item/generated"))
+							.texture("layer0", new ResourceLocation(L2Artifacts.MODID, "item/boost_main"))
+							.texture("layer1", new ResourceLocation(L2Artifacts.MODID, "item/sets_ranks_" + r)))
+					.defaultLang().register();
+		}
+		ITEM_BOOST_SUB = new ItemEntry[n];
+		for (int i = 0; i < n; i++) {
+			int r = i + 1;
+			ITEM_BOOST_SUB[i] = REGISTRATE.item("boost_sub_" + r, p -> new UpgradeBoostItem(p, r, Upgrade.Type.BOOST_SUB_STAT))
+					.model((ctx, pvd) -> pvd.getBuilder(ctx.getName()).parent(new ModelFile.UncheckedModelFile("item/generated"))
+							.texture("layer0", new ResourceLocation(L2Artifacts.MODID, "item/boost_sub"))
 							.texture("layer1", new ResourceLocation(L2Artifacts.MODID, "item/sets_ranks_" + r)))
 					.defaultLang().register();
 		}

@@ -1,6 +1,9 @@
 package dev.xkmc.l2artifacts.content.core;
 
+import dev.xkmc.l2artifacts.content.upgrades.ArtifactUpgradeManager;
+import dev.xkmc.l2artifacts.content.upgrades.Upgrade;
 import dev.xkmc.l2artifacts.init.data.LangData;
+import dev.xkmc.l2artifacts.util.ItemCompoundTag;
 import dev.xkmc.l2library.serial.codec.TagCodec;
 import dev.xkmc.l2library.util.Proxy;
 import net.minecraft.ChatFormatting;
@@ -25,23 +28,42 @@ import java.util.function.Supplier;
 
 public class BaseArtifact extends Item {
 
-	public static final String KEY = "ArtifactData";
+	public static final String KEY = "ArtifactData", UPGRADE = "Upgrade";
 
 	protected static Rarity getRarity(int rank) {
 		return rank <= 2 ? Rarity.UNCOMMON : rank <= 4 ? Rarity.RARE : Rarity.EPIC;
 	}
 
 	public static void upgrade(ItemStack stack, int exp, RandomSource random) {
-		if (stack.getTag() != null && stack.getTag().contains(KEY)) {
-			ArtifactStats stats = TagCodec.fromTag(stack.getTag().getCompound(KEY), ArtifactStats.class);
+		ItemCompoundTag tag = ItemCompoundTag.of(stack).getSubTag(KEY);
+		if (tag.isPresent()) {
+			ArtifactStats stats = TagCodec.fromTag(tag.getOrCreate(), ArtifactStats.class);
+			assert stats != null;
 			stats.addExp(exp, random);
-			stack.getTag().put(KEY, TagCodec.toTag(new CompoundTag(), stats));
+			CompoundTag newTag = TagCodec.toTag(new CompoundTag(), stats);
+			assert newTag != null;
+			tag.setTag(newTag);
 		}
 	}
 
 	public static Optional<ArtifactStats> getStats(ItemStack stack) {
 		return CuriosApi.getCuriosHelper().getCurio(stack).filter(e -> e instanceof ArtifactCurioCap)
 				.flatMap(e -> ((ArtifactCurioCap) e).getStats());
+	}
+
+	public static Optional<Upgrade> getUpgrade(ItemStack stack) {
+		ItemCompoundTag tag = ItemCompoundTag.of(stack).getSubTag(UPGRADE);
+		if (tag.isPresent()) {
+			return Optional.ofNullable(TagCodec.fromTag(tag.getOrCreate(), Upgrade.class));
+		}
+		return Optional.empty();
+	}
+
+	public static ItemStack setUpgrade(ItemStack stack, Upgrade upgrade) {
+		CompoundTag tag = TagCodec.toTag(new CompoundTag(), upgrade);
+		if (tag != null)
+			ItemCompoundTag.of(stack).getSubTag(UPGRADE).setTag(tag);
+		return stack;
 	}
 
 	public final Supplier<ArtifactSet> set;
@@ -58,10 +80,15 @@ public class BaseArtifact extends Item {
 	@Override
 	public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
 		ItemStack stack = player.getItemInHand(hand);
-		if (stack.getTag() == null || !stack.getTag().contains(KEY)) {
+		ItemCompoundTag tag = ItemCompoundTag.of(stack).getSubTag(KEY);
+		Upgrade upgrade = getUpgrade(stack).orElse(new Upgrade());
+		if (!tag.isPresent()) {
 			if (!level.isClientSide()) {
-				ArtifactStats stats = new ArtifactStats(slot.get(), rank, level.random);
-				stack.getOrCreateTag().put(KEY, TagCodec.toTag(new CompoundTag(), stats));
+				ArtifactStats stats = new ArtifactStats(slot.get(), rank, upgrade, level.random);
+				CompoundTag newTag = TagCodec.toTag(new CompoundTag(), stats);
+				assert newTag != null;
+				tag.setTag(newTag);
+				setUpgrade(stack, upgrade);
 			}
 			return InteractionResultHolder.success(stack);
 		} else {
@@ -69,11 +96,16 @@ public class BaseArtifact extends Item {
 			if (opt.isPresent()) {
 				ArtifactStats stats = opt.get();
 				if (stats.level > stats.old_level) {
-					for (int i = stats.old_level + 1; i <= stats.level; i++) {
-						ArtifactUpgradeManager.onUpgrade(stats, i, level.random);
+					if (!level.isClientSide()) {
+						for (int i = stats.old_level + 1; i <= stats.level; i++) {
+							ArtifactUpgradeManager.onUpgrade(stats, i, upgrade, level.random);
+						}
+						stats.old_level = stats.level;
+						CompoundTag newTag = TagCodec.toTag(new CompoundTag(), stats);
+						assert newTag != null;
+						tag.setTag(newTag);
+						setUpgrade(stack, upgrade);
 					}
-					stats.old_level = stats.level;
-					stack.getOrCreateTag().put(KEY, TagCodec.toTag(new CompoundTag(), stats));
 					return InteractionResultHolder.success(stack);
 				}
 			}
@@ -83,20 +115,23 @@ public class BaseArtifact extends Item {
 
 	@Override
 	public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> list, TooltipFlag flag) {
+		boolean shift = Screen.hasShiftDown();
+		boolean ctrl = Screen.hasControlDown();
 		if (Proxy.getPlayer() != null) {
-			if (stack.getTag() == null || !stack.getTag().contains(KEY)) {
+			ItemCompoundTag tag = ItemCompoundTag.of(stack).getSubTag(KEY);
+			if (!tag.isPresent()) {
 				list.add(LangData.RAW_ARTIFACT.get());
 			} else {
 				getStats(stack).ifPresent(stats -> {
 					boolean max = stats.level == ArtifactUpgradeManager.getMaxLevel(stats.rank);
 					list.add(LangData.ARTIFACT_LEVEL.get(stats.level).withStyle(max ? ChatFormatting.GOLD : ChatFormatting.WHITE));
 					if (stats.level < ArtifactUpgradeManager.getMaxLevel(stats.rank)) {
-						if (Screen.hasShiftDown())
+						if (shift && !ctrl)
 							list.add(LangData.ARTIFACT_EXP.get(stats.exp, ArtifactUpgradeManager.getExpForLevel(stats.rank, stats.level)));
 					}
 					if (stats.level > stats.old_level) {
 						list.add(LangData.UPGRADE.get());
-					} else if (!Screen.hasShiftDown()) {
+					} else if (!shift && !ctrl) {
 						list.add(LangData.MAIN_STAT.get());
 						list.add(stats.main_stat.getTooltip());
 						if (stats.sub_stats.size() > 0) {
@@ -108,13 +143,16 @@ public class BaseArtifact extends Item {
 					}
 				});
 			}
-			list.addAll(set.get().getAllDescs(stack, flag));
-			if (Screen.hasShiftDown())
+			if (!ctrl)
+				list.addAll(set.get().getAllDescs(stack, shift));
+			else if (!shift) getUpgrade(stack).ifPresent(e -> e.addTooltips(list));
+			if (shift && !ctrl)
 				list.add(LangData.EXP_CONVERSION.get(ArtifactUpgradeManager.getExpForConversion(rank, getStats(stack).orElse(null))));
 		}
 		super.appendHoverText(stack, level, list, flag);
-		if (!Screen.hasShiftDown()) {
+		if (!shift && !ctrl) {
 			list.add(LangData.SHIFT_TEXT.get());
+			list.add(LangData.CTRL_TEXT.get());
 		}
 	}
 }

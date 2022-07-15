@@ -5,7 +5,6 @@ import dev.xkmc.l2library.serial.SerialClass;
 import dev.xkmc.l2library.serial.config.CollectType;
 import dev.xkmc.l2library.serial.config.ConfigCollect;
 import dev.xkmc.l2library.serial.network.BaseConfig;
-import dev.xkmc.l2library.util.annotation.DataGenOnly;
 
 import java.util.HashMap;
 

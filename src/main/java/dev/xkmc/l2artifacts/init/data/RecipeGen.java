@@ -25,10 +25,10 @@ public class RecipeGen {
 		for (int i = 0; i < 5; i++) {
 			int rank = i + 1;
 			TagKey<Item> rank_tag = manager.createTagKey(new ResourceLocation(L2Artifacts.MODID, "rank_" + rank));
-			ItemEntry<?> output = ArtifactItemRegistry.RANKED_ITEMS[i];
+			ItemEntry<?> output = ArtifactItemRegistry.ITEM_EXP[i];
 			pvd.singleItem(DataIngredient.tag(rank_tag), output, 1, 1);
 			if (i >= 1) {
-				ItemEntry<?> input = ArtifactItemRegistry.RANKED_ITEMS[i - 1];
+				ItemEntry<?> input = ArtifactItemRegistry.ITEM_EXP[i - 1];
 				pvd.singleItemUnfinished(DataIngredient.items(input), output, 2, 1).save(pvd, new ResourceLocation(L2Artifacts.MODID, "rank_up_" + i));
 				pvd.singleItemUnfinished(DataIngredient.items(output), input, 1, 2).save(pvd, new ResourceLocation(L2Artifacts.MODID, "rank_down_" + i));
 			}
@@ -41,9 +41,9 @@ public class RecipeGen {
 				int n = slot.length;
 				for (int i = 1; i < n; i++) {
 					BaseArtifact input = slot[i - 1].get();
-					Item corner = ArtifactItemRegistry.RANKED_ITEMS[input.rank - 1].get();
+					Item corner = ArtifactItemRegistry.ITEM_EXP[input.rank - 1].get();
 					BaseArtifact output = slot[i].get();
-					Item center = ArtifactItemRegistry.RANKED_ITEMS[output.rank - 1].get();
+					Item center = ArtifactItemRegistry.ITEM_EXP[output.rank - 1].get();
 					craft(pvd, output, center, input, corner);
 				}
 			}

@@ -1,6 +1,6 @@
-// 1.19	2022-07-14T09:51:57.975201	Registrate Provider for l2artifacts [Recipes, Advancements, Loot tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
-8ef35404c68e623bf4e45a40d837df8d80f950f4 assets/l2artifacts/lang/en_ud.json
-8e478eb7105fe4ea063e1374104b81a41258f71d assets/l2artifacts/lang/en_us.json
+// 1.19	2022-07-15T18:37:57.796698	Registrate Provider for l2artifacts [Recipes, Advancements, Loot tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
+1eabc44dc5b604516479a60878bc79f1c3cc0b9c assets/l2artifacts/lang/en_ud.json
+cd1b61369aeb3ce0b7643aa70392821a60487318 assets/l2artifacts/lang/en_us.json
 15a8890ff59713a1491a8bb480cfed3ccdb810ba assets/l2artifacts/models/item/archer_belt_1.json
 b22fb6627e2ff8ef43731f21d7cae6cb10f1a194 assets/l2artifacts/models/item/archer_belt_2.json
 b201277bdd597835dfcd3dd1b34381b790eab94f assets/l2artifacts/models/item/archer_belt_3.json
@@ -56,6 +56,16 @@ df2cf06d6f9c74cc45ffef1042343360563c4539 assets/l2artifacts/models/item/berserke
 f67406a51faaf662f680b339361e281dedfda8a8 assets/l2artifacts/models/item/berserker_necklace_3.json
 2ad59d9a1668a344d379c22dfc74fcc0e78f5fe9 assets/l2artifacts/models/item/berserker_necklace_4.json
 14ffe0f26323c27503b04cdc15c5a22cec977c5b assets/l2artifacts/models/item/berserker_necklace_5.json
+8e324aa74dfd2a7245122e56b3cee5627caab5d1 assets/l2artifacts/models/item/boost_main_1.json
+318e60e015d3dd02c344639769169625126b38de assets/l2artifacts/models/item/boost_main_2.json
+652c670a13283b21dde0ad4ce514e3d98daeee0f assets/l2artifacts/models/item/boost_main_3.json
+608995dd96d50880c776c78c8ab6aca680b1b5cc assets/l2artifacts/models/item/boost_main_4.json
+7d2bfe693f9760f0a863cfa3f2b4c5f37d9b64f6 assets/l2artifacts/models/item/boost_main_5.json
+170fdd28cfb9974dd79138232163ea064c9c6e59 assets/l2artifacts/models/item/boost_sub_1.json
+3fd5e19c3627ca1964b4998a52f4c3f3a91cfd7a assets/l2artifacts/models/item/boost_sub_2.json
+bf0fed50501d74e5479c170d7d1adc6219562215 assets/l2artifacts/models/item/boost_sub_3.json
+f5cd599273adcbf457d082e13fee27a49a251147 assets/l2artifacts/models/item/boost_sub_4.json
+b197e2b4e6a63a278c41df324488b6358daf2116 assets/l2artifacts/models/item/boost_sub_5.json
 b5617d0a390c0a8f2e834494cf4e968a69c2ad1a assets/l2artifacts/models/item/damocles_head_1.json
 ffce791cff95960c6b63b23c3e2830873578b570 assets/l2artifacts/models/item/damocles_head_2.json
 5fc14a65f1be67e9a27b8e41899876ee1dc5c8c4 assets/l2artifacts/models/item/damocles_head_3.json
@@ -216,6 +226,11 @@ a9fe842536900d4e30a7ab22f72f359feb3012e2 assets/l2artifacts/models/item/saint_he
 687f07d3832b5dc0b0b13161347ec63fbea1f2a2 assets/l2artifacts/models/item/saint_necklace_3.json
 61cb32396d2a606f285c5091f5dc6820bb9abcf5 assets/l2artifacts/models/item/saint_necklace_4.json
 3de553862194957f84701621598f037d608b16ca assets/l2artifacts/models/item/saint_necklace_5.json
+f5af12b91c9f1fd079a1cc6cbc1eea2fd5abd54a assets/l2artifacts/models/item/stat_container_1.json
+6337b23962eaa11cf0f6d67fd222f749a5ed68a2 assets/l2artifacts/models/item/stat_container_2.json
+24b69e790e3f535ad6484826a6977c95e6251c16 assets/l2artifacts/models/item/stat_container_3.json
+5f83c3d2fdd814785a6afd591053831970ef1442 assets/l2artifacts/models/item/stat_container_4.json
+0dd5e58113a3840e506b5a29227407703ba79ecc assets/l2artifacts/models/item/stat_container_5.json
 2a902431dd9580bb47e8a5cce4a63d7769157864 assets/l2artifacts/models/item/wrath_belt_1.json
 79a7cd1fa2c519fe00b2acedeacc193cfaeae27b assets/l2artifacts/models/item/wrath_belt_2.json
 0fe772abbf6d92d1f08f7e84c4b957ef792d7128 assets/l2artifacts/models/item/wrath_belt_3.json

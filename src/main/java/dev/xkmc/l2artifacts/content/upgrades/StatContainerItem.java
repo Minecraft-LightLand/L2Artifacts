@@ -3,7 +3,7 @@ package dev.xkmc.l2artifacts.content.upgrades;
 import dev.xkmc.l2artifacts.content.core.ArtifactStatType;
 import dev.xkmc.l2artifacts.init.data.LangData;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactTypeRegistry;
-import dev.xkmc.l2artifacts.util.ItemCompoundTag;
+import dev.xkmc.l2library.util.nbt.ItemCompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;

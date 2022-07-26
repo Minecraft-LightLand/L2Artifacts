@@ -1,21 +1,21 @@
-package dev.xkmc.l2artifacts.content.effects.elemental;
+package dev.xkmc.l2artifacts.content.effects.v2;
 
 import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
 import dev.xkmc.l2artifacts.content.effects.AttributeSetEffect;
 import dev.xkmc.l2artifacts.init.registrate.entries.LinearFuncEntry;
+import dev.xkmc.l2library.init.events.attack.AttackCache;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.player.Player;
-import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
 import java.util.List;
 
-public class ExecutorSelfHurtEffect extends AttributeSetEffect {
+public class PhysicalDamageEffect extends AttributeSetEffect {
 
 	private final LinearFuncEntry factor;
 
-	public ExecutorSelfHurtEffect(AttrSetEntry entry, LinearFuncEntry factor) {
+	public PhysicalDamageEffect(AttrSetEntry entry, LinearFuncEntry factor) {
 		super(entry);
 		this.factor = factor;
 	}
@@ -29,8 +29,11 @@ public class ExecutorSelfHurtEffect extends AttributeSetEffect {
 	}
 
 	@Override
-	public void playerKillOpponentEvent(Player player, ArtifactSetConfig.Entry ent, int rank, LivingDeathEvent event) {
-		double damage = event.getEntity().getMaxHealth() * factor.getFromRank(rank);
-		player.hurt(DamageSource.playerAttack(player).bypassArmor().bypassMagic(), (float) damage);
+	public void playerHurtOpponentEvent(Player player, ArtifactSetConfig.Entry ent, int rank, AttackCache event) {
+		LivingHurtEvent hurt = event.getLivingHurtEvent();
+		assert hurt != null;
+		if (hurt.getSource().isMagic()) {
+			event.setDamageModified((float) (event.getDamageModified() * factor.getFromRank(rank)));
+		}
 	}
 }

@@ -2,8 +2,8 @@ package dev.xkmc.l2artifacts.init.registrate;
 
 import dev.xkmc.l2artifacts.content.core.ArtifactSet;
 import dev.xkmc.l2artifacts.content.effects.AttributeSetEffect;
-import dev.xkmc.l2artifacts.content.effects.elemental.*;
-import dev.xkmc.l2artifacts.content.effects.general.*;
+import dev.xkmc.l2artifacts.content.effects.v2.*;
+import dev.xkmc.l2artifacts.content.effects.v1.*;
 import dev.xkmc.l2artifacts.content.misc.ExpItem;
 import dev.xkmc.l2artifacts.content.upgrades.StatContainerItem;
 import dev.xkmc.l2artifacts.content.upgrades.Upgrade;
@@ -80,19 +80,25 @@ public class ArtifactItemRegistry {
 		}
 	}
 
+	// bland
 	public static final SetEntry<ArtifactSet> SET_GAMBLER = REGISTRATE.regSet("gambler", ArtifactSet::new, 1, 5, SLOT_HEAD, SLOT_NECKLACE, SLOT_BODY, SLOT_BRACELET, SLOT_BELT);
 	public static final SetEntry<ArtifactSet> SET_BERSERKER = REGISTRATE.regSet("berserker", ArtifactSet::new, 1, 5, SLOT_HEAD, SLOT_NECKLACE, SLOT_BODY, SLOT_BRACELET, SLOT_BELT);
-	public static final SetEntry<ArtifactSet> SET_SAINT = REGISTRATE.regSet("saint", ArtifactSet::new, 1, 5, SLOT_HEAD, SLOT_NECKLACE, SLOT_BODY, SLOT_BRACELET, SLOT_BELT);
 	public static final SetEntry<ArtifactSet> SET_ARCHER = REGISTRATE.regSet("archer", ArtifactSet::new, 1, 5, SLOT_HEAD, SLOT_NECKLACE, SLOT_BODY, SLOT_BRACELET, SLOT_BELT);
+
+	// v1
+	public static final SetEntry<ArtifactSet> SET_SAINT = REGISTRATE.regSet("saint", ArtifactSet::new, 1, 5, SLOT_HEAD, SLOT_NECKLACE, SLOT_BODY, SLOT_BRACELET, SLOT_BELT);
 	public static final SetEntry<ArtifactSet> SET_PERFECTION = REGISTRATE.regSet("perfection", ArtifactSet::new, 1, 5, SLOT_HEAD, SLOT_NECKLACE, SLOT_BODY, SLOT_BRACELET, SLOT_BELT);
+	public static final SetEntry<ArtifactSet> SET_DAMOCLES = REGISTRATE.regSet("damocles", ArtifactSet::new, 1, 5, SLOT_HEAD);
+	public static final SetEntry<ArtifactSet> SET_PROTECTION = REGISTRATE.regSet("protection", ArtifactSet::new, 1, 5, SLOT_HEAD);
+
+	// v2
 	public static final SetEntry<ArtifactSet> SET_FROZE = REGISTRATE.regSet("froze", ArtifactSet::new, 1, 5, SLOT_HEAD, SLOT_NECKLACE, SLOT_BODY, SLOT_BRACELET, SLOT_BELT);
 	public static final SetEntry<ArtifactSet> SET_EXECUTOR = REGISTRATE.regSet("executor", ArtifactSet::new, 1, 5, SLOT_HEAD, SLOT_NECKLACE, SLOT_BODY, SLOT_BRACELET, SLOT_BELT);
 	public static final SetEntry<ArtifactSet> SET_PHYSICAL = REGISTRATE.regSet("physical", ArtifactSet::new, 1, 5, SLOT_HEAD, SLOT_NECKLACE, SLOT_BODY, SLOT_BRACELET, SLOT_BELT);
 	public static final SetEntry<ArtifactSet> SET_WRATH = REGISTRATE.regSet("wrath", ArtifactSet::new, 1, 5, SLOT_HEAD, SLOT_NECKLACE, SLOT_BODY, SLOT_BRACELET, SLOT_BELT);
 
-	public static final SetEntry<ArtifactSet> SET_DAMOCLES = REGISTRATE.regSet("damocles", ArtifactSet::new, 1, 5, SLOT_HEAD);
-	public static final SetEntry<ArtifactSet> SET_PROTECTION = REGISTRATE.regSet("protection", ArtifactSet::new, 1, 5, SLOT_HEAD);
 
+	// v1
 	public static final RegistryEntry<AttributeSetEffect> EFF_GAMBLER_3, EFF_GAMBLER_5,
 			EFF_BERSERKER_3, EFF_BERSERKER_5,
 			EFF_ARCHER_3, EFF_ARCHER_5;
@@ -164,6 +170,10 @@ public class ArtifactItemRegistry {
 	public static final RegistryEntry<PerfectionProtection> EFF_PERFECTION_PROTECTION;
 	public static final RegistryEntry<SaintReduction> EFF_SAINT_REDUCTION;
 	public static final RegistryEntry<SaintRestoration> EFF_SAINT_RESTORATION;
+	public static final RegistryEntry<DamoclesSword> EFF_DAMOCLES;
+	public static final RegistryEntry<ProtectionResistance> EFF_PROTECTION_RESISTANCE;
+
+	// v2
 	public static final RegistryEntry<FrozeSlowEffect> EFF_FROZE_SLOW;
 	public static final RegistryEntry<FrozeBreakEffect> EFF_FROZE_BREAK;
 	public static final RegistryEntry<ExecutorSelfHurtEffect> EFF_EXECUTOR_SELF_HURT;
@@ -172,8 +182,8 @@ public class ArtifactItemRegistry {
 	public static final RegistryEntry<AttributeSetEffect> EFF_PHYSICAL_ARMOR;
 	public static final RegistryEntry<WrathEffect> EFF_WRATH_POISON, EFF_WRATH_SLOW, EFF_WRATH_FIRE;
 
-	public static final RegistryEntry<DamoclesSword> EFF_DAMOCLES;
-	public static final RegistryEntry<ProtectionResistance> EFF_PROTECTION_RESISTANCE;
+	// v3
+
 
 	static {
 

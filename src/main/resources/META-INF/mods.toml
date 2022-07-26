@@ -1,14 +1,15 @@
 modLoader="javafml"
 loaderVersion="[41,)"
-license="All rights reserved"
+license="LGPL v2.1"
 [[mods]]
 modId="l2artifacts"
 version="${file.jarVersion}" #mandatory
 displayName="L2 Artifacts" #mandatory
 logoFile="l2artifacts.png" #optional
-credits="Thanks for this example mod goes to Java" #optional
-authors="Love, Cheese and small house plants" #optional
+credits="Thanks to GenshinImpact for ideas" #optional
+authors="lcy0x1 and LightLand team" #optional
 description='''
+Genshin Impact style artifacts that helps to boost player stats.
 '''
 [[dependencies.l2artifacts]]
     modId="forge"
@@ -25,6 +26,6 @@ description='''
 [[dependencies.l2artifacts]]
     modId="l2library"
     mandatory=true
-    versionRange="[1.5.0,)"
+    versionRange="[1.5.2,)"
     ordering="AFTER"
     side="BOTH"

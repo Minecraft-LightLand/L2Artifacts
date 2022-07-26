@@ -1,4 +1,4 @@
-package dev.xkmc.l2artifacts.content.effects.general;
+package dev.xkmc.l2artifacts.content.effects.v1;
 
 import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
 import dev.xkmc.l2artifacts.content.effects.SetEffect;

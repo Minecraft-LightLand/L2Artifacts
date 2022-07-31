@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "l2artifacts:item/froze_body",
-    "layer1": "l2artifacts:item/sets_ranks_3"
+    "layer0": "l2artifacts:item/froze/body",
+    "layer1": "l2artifacts:item/rank/3"
   }
 }

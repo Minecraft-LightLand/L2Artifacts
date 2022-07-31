@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "l2artifacts:item/archer_belt",
-    "layer1": "l2artifacts:item/sets_ranks_2"
+    "layer0": "l2artifacts:item/archer/belt",
+    "layer1": "l2artifacts:item/rank/2"
   }
 }

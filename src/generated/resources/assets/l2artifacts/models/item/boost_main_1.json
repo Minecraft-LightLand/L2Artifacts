@@ -2,6 +2,6 @@
   "parent": "minecraft:item/generated",
   "textures": {
     "layer0": "l2artifacts:item/boost_main",
-    "layer1": "l2artifacts:item/sets_ranks_1"
+    "layer1": "l2artifacts:item/rank/1"
   }
 }

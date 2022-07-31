@@ -59,8 +59,8 @@ public class SetBuilder<T extends ArtifactSet, I extends BaseArtifact, P> extend
 				int rank = r;
 				items[i][r - min_rank] = L2Artifacts.REGISTRATE.item(name, p -> new BaseArtifact(p, asSupplier()::get, slot, rank))
 						.model((ctx, pvd) -> pvd.getBuilder(name).parent(new ModelFile.UncheckedModelFile("item/generated"))
-								.texture("layer0", new ResourceLocation(L2Artifacts.MODID, "item/" + getName() + "_" + slot_name))
-								.texture("layer1", new ResourceLocation(L2Artifacts.MODID, "item/sets_ranks_" + rank)))
+								.texture("layer0", new ResourceLocation(L2Artifacts.MODID, "item/" + getName() + "/" + slot_name))
+								.texture("layer1", new ResourceLocation(L2Artifacts.MODID, "item/rank/" + rank)))
 						.tag(curios_tag, slot_tag, rank_tag).register();
 			}
 		}

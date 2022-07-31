@@ -2,6 +2,6 @@
   "parent": "minecraft:item/generated",
   "textures": {
     "layer0": "l2artifacts:item/artifact_experience",
-    "layer1": "l2artifacts:item/sets_ranks_5"
+    "layer1": "l2artifacts:item/rank/5"
   }
 }

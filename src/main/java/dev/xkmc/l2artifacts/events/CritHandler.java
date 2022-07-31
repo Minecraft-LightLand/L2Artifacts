@@ -33,6 +33,12 @@ public class CritHandler implements AttackListener {
 			ArtifactEffectEvents.postEvent(player, cache, SetEffect::playerHurtOpponentEvent);
 	}
 
+	@Override
+	public void onDamage(AttackCache cache, ItemStack weapon) {
+		if (cache.getAttacker() instanceof Player player)
+			ArtifactEffectEvents.postEvent(player, cache, SetEffect::playerDamageOpponentEvent);
+	}
+
 	@SubscribeEvent
 	public static void onEntityJoin(EntityJoinLevelEvent event) {
 		if (event.getEntity() instanceof AbstractArrow arrow) {

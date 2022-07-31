@@ -48,7 +48,7 @@ public class ArtifactItemRegistry {
 			ITEM_EXP[i] = REGISTRATE.item("artifact_experience_" + r, p -> new ExpItem(p, r))
 					.model((ctx, pvd) -> pvd.getBuilder(ctx.getName()).parent(new ModelFile.UncheckedModelFile("item/generated"))
 							.texture("layer0", new ResourceLocation(L2Artifacts.MODID, "item/artifact_experience"))
-							.texture("layer1", new ResourceLocation(L2Artifacts.MODID, "item/sets_ranks_" + r)))
+							.texture("layer1", new ResourceLocation(L2Artifacts.MODID, "item/rank/" + r)))
 					.defaultLang().register();
 		}
 		ITEM_STAT = new ItemEntry[n];
@@ -57,7 +57,7 @@ public class ArtifactItemRegistry {
 			ITEM_STAT[i] = REGISTRATE.item("stat_container_" + r, p -> new StatContainerItem(p, r))
 					.model((ctx, pvd) -> pvd.getBuilder(ctx.getName()).parent(new ModelFile.UncheckedModelFile("item/generated"))
 							.texture("layer0", new ResourceLocation(L2Artifacts.MODID, "item/stat_container"))
-							.texture("layer1", new ResourceLocation(L2Artifacts.MODID, "item/sets_ranks_" + r)))
+							.texture("layer1", new ResourceLocation(L2Artifacts.MODID, "item/rank/" + r)))
 					.defaultLang().register();
 		}
 		ITEM_BOOST_MAIN = new ItemEntry[n];
@@ -66,7 +66,7 @@ public class ArtifactItemRegistry {
 			ITEM_BOOST_MAIN[i] = REGISTRATE.item("boost_main_" + r, p -> new UpgradeBoostItem(p, r, Upgrade.Type.BOOST_MAIN_STAT))
 					.model((ctx, pvd) -> pvd.getBuilder(ctx.getName()).parent(new ModelFile.UncheckedModelFile("item/generated"))
 							.texture("layer0", new ResourceLocation(L2Artifacts.MODID, "item/boost_main"))
-							.texture("layer1", new ResourceLocation(L2Artifacts.MODID, "item/sets_ranks_" + r)))
+							.texture("layer1", new ResourceLocation(L2Artifacts.MODID, "item/rank/" + r)))
 					.defaultLang().register();
 		}
 		ITEM_BOOST_SUB = new ItemEntry[n];
@@ -75,7 +75,7 @@ public class ArtifactItemRegistry {
 			ITEM_BOOST_SUB[i] = REGISTRATE.item("boost_sub_" + r, p -> new UpgradeBoostItem(p, r, Upgrade.Type.BOOST_SUB_STAT))
 					.model((ctx, pvd) -> pvd.getBuilder(ctx.getName()).parent(new ModelFile.UncheckedModelFile("item/generated"))
 							.texture("layer0", new ResourceLocation(L2Artifacts.MODID, "item/boost_sub"))
-							.texture("layer1", new ResourceLocation(L2Artifacts.MODID, "item/sets_ranks_" + r)))
+							.texture("layer1", new ResourceLocation(L2Artifacts.MODID, "item/rank/" + r)))
 					.defaultLang().register();
 		}
 	}

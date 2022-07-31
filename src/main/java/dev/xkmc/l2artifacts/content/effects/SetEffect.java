@@ -50,6 +50,10 @@ public abstract class SetEffect extends NamedEntry<SetEffect> {
 
 	}
 
+	public void playerDamageOpponentEvent(Player player, ArtifactSetConfig.Entry ent, int rank, AttackCache event) {
+
+	}
+
 	public void playerKillOpponentEvent(Player player, ArtifactSetConfig.Entry ent, int rank, LivingDeathEvent event) {
 
 	}

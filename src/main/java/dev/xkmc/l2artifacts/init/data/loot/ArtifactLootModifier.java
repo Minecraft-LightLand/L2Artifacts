@@ -6,6 +6,7 @@ import dev.xkmc.l2artifacts.init.registrate.ArtifactItemRegistry;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
@@ -25,7 +26,7 @@ public class ArtifactLootModifier extends LootModifier {
 	@Override
 	protected @NotNull ObjectArrayList<ItemStack> doApply(ObjectArrayList<ItemStack> list, LootContext context) {
 		Entity entity = context.getParam(LootContextParams.THIS_ENTITY);
-		if (entity instanceof LivingEntity le) {
+		if (entity instanceof LivingEntity le && entity instanceof Enemy) {
 			float health = le.getMaxHealth();
 			int rank = (int) Math.floor(health / 100);
 			if (rank > 5) rank = 5;

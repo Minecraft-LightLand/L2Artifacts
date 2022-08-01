@@ -1,4 +1,7 @@
 {
+  "item.l2artifacts": {
+	"select": "古遗物选择器（创造）"
+  },
   "-cartesian": {
 	"sets": {
 	  "path": "item.l2artifacts",
@@ -76,6 +79,7 @@
 	  "path": "item.l2artifacts",
 	  "list": [
 		{
+		  "random": "未鉴定古遗物",
 		  "artifact_experience": "古遗物经验",
 		  "stat_container": "词条容器",
 		  "boost_main": "主词条充能水晶",

@@ -8,6 +8,8 @@ import dev.xkmc.l2artifacts.content.effects.v1.*;
 import dev.xkmc.l2artifacts.content.effects.v2.*;
 import dev.xkmc.l2artifacts.content.effects.v3.*;
 import dev.xkmc.l2artifacts.content.misc.ExpItem;
+import dev.xkmc.l2artifacts.content.misc.RandomArtifactItem;
+import dev.xkmc.l2artifacts.content.misc.SelectArtifactItem;
 import dev.xkmc.l2artifacts.content.upgrades.StatContainerItem;
 import dev.xkmc.l2artifacts.content.upgrades.Upgrade;
 import dev.xkmc.l2artifacts.content.upgrades.UpgradeBoostItem;
@@ -39,12 +41,25 @@ public class ArtifactItemRegistry {
 		REGISTRATE.creativeModeTab(() -> TAB_ARTIFACT);
 	}
 
+	public static final ItemEntry<SelectArtifactItem> SELECT;
+	public static final ItemEntry<RandomArtifactItem>[] RANDOM;
 	public static final ItemEntry<ExpItem>[] ITEM_EXP;
 	public static final ItemEntry<StatContainerItem>[] ITEM_STAT;
 	public static final ItemEntry<UpgradeBoostItem>[] ITEM_BOOST_MAIN, ITEM_BOOST_SUB;
 
 	static {
+		SELECT = REGISTRATE.item("select", SelectArtifactItem::new)
+				.defaultModel().lang(e -> "Artifact Selector (Creative)").register();
 		int n = 5;
+		RANDOM = new ItemEntry[n];
+		for (int i = 0; i < n; i++) {
+			int r = i + 1;
+			RANDOM[i] = REGISTRATE.item("random_" + r, p -> new RandomArtifactItem(p, r))
+					.model((ctx, pvd) -> pvd.getBuilder(ctx.getName()).parent(new ModelFile.UncheckedModelFile("item/generated"))
+							.texture("layer0", new ResourceLocation(L2Artifacts.MODID, "item/random"))
+							.texture("layer1", new ResourceLocation(L2Artifacts.MODID, "item/rank/" + r)))
+					.lang(e -> "Random Artifact Lv." + e.rank).register();
+		}
 		ITEM_EXP = new ItemEntry[n];
 		for (int i = 0; i < n; i++) {
 			int r = i + 1;

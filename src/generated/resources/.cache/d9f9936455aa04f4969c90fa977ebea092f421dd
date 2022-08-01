@@ -1,6 +1,6 @@
-// 1.19.1	2022-08-01T17:49:33.209823	Registrate Provider for l2artifacts [Recipes, Advancements, Loot tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
-805f383c010287c64ae49ae627420a1fe908e882 assets/l2artifacts/lang/en_ud.json
-0da89d3c3d98d54e3a04b90297b925dee2a88a6f assets/l2artifacts/lang/en_us.json
+// 1.19.1	2022-08-01T22:44:42.491134	Registrate Provider for l2artifacts [Recipes, Advancements, Loot tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
+678cc2be26e445a6409c7fa6940f73507f86808f assets/l2artifacts/lang/en_ud.json
+afe4106baf53182a2d0d059e38beca1d385de5ce assets/l2artifacts/lang/en_us.json
 0ba0cd8b6c5452ffd4b333ec0f07ac3459a906d2 assets/l2artifacts/models/item/archer_belt_1.json
 9c4f20ad1a01199fca72d4c7bc927d191ab44c95 assets/l2artifacts/models/item/archer_belt_2.json
 afdb0780da2f3b8a710c5368e576f8c0d05fa606 assets/l2artifacts/models/item/archer_belt_3.json
@@ -256,6 +256,11 @@ a1e7d57de0ba166c8ec8095e879e024632be9006 assets/l2artifacts/models/item/physical
 42705f2eee5e4e90d5f19bc03f882a121c215a70 assets/l2artifacts/models/item/protection_head_3.json
 b57b416e6dcb14cecdd607040066d61c32e1c16f assets/l2artifacts/models/item/protection_head_4.json
 a7459101de62aa0bf0ee9a7db7f36828cab754f0 assets/l2artifacts/models/item/protection_head_5.json
+c92a067a6ee9fd1ead054c9fdb7881f7f7ad5018 assets/l2artifacts/models/item/random_1.json
+bf2743f236314ec0d2fb246d5a377addc75532d1 assets/l2artifacts/models/item/random_2.json
+40336be92047c6a6e8e4616583d2cae471a902c0 assets/l2artifacts/models/item/random_3.json
+19035f15b321354adf98ef161fe06e611f119962 assets/l2artifacts/models/item/random_4.json
+2668d0a92160a6b220ff89374c5913653b974d95 assets/l2artifacts/models/item/random_5.json
 04a1e2558cf6a7b43a51c609450f502cf7693c14 assets/l2artifacts/models/item/saint_belt_1.json
 b805c9d8adbaf3e7a20cc3d2d936a674d432a4f1 assets/l2artifacts/models/item/saint_belt_2.json
 eb84b832d591d369235a8362ecde878594db4b45 assets/l2artifacts/models/item/saint_belt_3.json
@@ -281,6 +286,7 @@ e0a76349c65f3ea37652990ad20ba25c607c3452 assets/l2artifacts/models/item/saint_ne
 b84e38a7c861232b950d8b51187ceb3c2f08369a assets/l2artifacts/models/item/saint_necklace_3.json
 9c47d93f4e10008ee84a4a0c90889e9413d9b05c assets/l2artifacts/models/item/saint_necklace_4.json
 2497c313568d9775b5b480fd6e5fe3d5b49c05fd assets/l2artifacts/models/item/saint_necklace_5.json
+26af54b544466fdc77c04fd31ac3b836ae172385 assets/l2artifacts/models/item/select.json
 a7ae62e16d793508faadc395d95ff66b05cfca3e assets/l2artifacts/models/item/stat_container_1.json
 c2955915b167c4154f5cf7538f2c6891267bd8f5 assets/l2artifacts/models/item/stat_container_2.json
 359be5e5e325805157f2fe41b5ac57f7117148e5 assets/l2artifacts/models/item/stat_container_3.json

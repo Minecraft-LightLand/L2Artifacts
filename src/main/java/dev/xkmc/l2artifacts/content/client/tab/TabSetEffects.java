@@ -1,4 +1,4 @@
-package dev.xkmc.l2artifacts.content.client;
+package dev.xkmc.l2artifacts.content.client.tab;
 
 import dev.xkmc.l2library.base.tabs.core.BaseTab;
 import dev.xkmc.l2library.base.tabs.core.TabManager;

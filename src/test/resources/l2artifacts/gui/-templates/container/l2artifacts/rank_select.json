@@ -1,0 +1,23 @@
+{
+    "side": [
+    ],
+    "comp": {
+        "set": {
+            "sprite": "slot",
+            "x": 16,
+            "y": 0
+        },
+        "slot": {
+            "sprite": "slot",
+            "x": 16,
+            "y": 31
+        },
+        "rank": {
+            "sprite": "slot",
+            "x": 16,
+            "y": 62,
+            "rx": 5,
+            "ry": 1
+        }
+    }
+}

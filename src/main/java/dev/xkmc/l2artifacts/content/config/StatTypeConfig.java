@@ -1,7 +1,7 @@
 package dev.xkmc.l2artifacts.content.config;
 
 import dev.xkmc.l2artifacts.content.core.ArtifactStatType;
-import dev.xkmc.l2artifacts.init.NetworkManager;
+import dev.xkmc.l2artifacts.network.NetworkManager;
 import dev.xkmc.l2library.serial.SerialClass;
 import dev.xkmc.l2library.serial.network.BaseConfig;
 

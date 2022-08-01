@@ -1,4 +1,4 @@
-package dev.xkmc.l2artifacts.init;
+package dev.xkmc.l2artifacts.network;
 
 import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
 import dev.xkmc.l2artifacts.content.config.LinearFuncConfig;
@@ -6,10 +6,12 @@ import dev.xkmc.l2artifacts.content.config.SlotStatConfig;
 import dev.xkmc.l2artifacts.content.config.StatTypeConfig;
 import dev.xkmc.l2artifacts.content.core.ArtifactSet;
 import dev.xkmc.l2artifacts.content.core.ArtifactStatType;
+import dev.xkmc.l2artifacts.init.L2Artifacts;
 import dev.xkmc.l2library.serial.config.ConfigMerger;
 import dev.xkmc.l2library.serial.network.BaseConfig;
 import dev.xkmc.l2library.serial.network.PacketHandlerWithConfig;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraftforge.network.NetworkDirection;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,7 +26,8 @@ public enum NetworkManager {
 	}
 
 	public static final PacketHandlerWithConfig HANDLER = new PacketHandlerWithConfig(
-			new ResourceLocation(L2Artifacts.MODID, "main"), 1, "artifact_config"
+			new ResourceLocation(L2Artifacts.MODID, "main"), 1, "artifact_config",
+			e -> e.create(ChooseArtifacttoServer.class, NetworkDirection.PLAY_TO_SERVER)
 	);
 
 	public <T extends BaseConfig> T getMerged() {

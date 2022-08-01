@@ -25,4 +25,5 @@ public class ExpItem extends Item {
 		list.add(LangData.EXP_CONVERSION.get(ArtifactUpgradeManager.getExpForConversion(rank, null)));
 		super.appendHoverText(stack, level, list, flag);
 	}
+
 }

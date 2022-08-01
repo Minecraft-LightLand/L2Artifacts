@@ -22,7 +22,7 @@ import java.util.Map;
 public class GUIGenerator {
 
     public static void main(String[] args) throws Exception {
-        new GUIGenerator("l2enchantments").gen();
+        new GUIGenerator("l2artifacts").gen();
     }
 
     private class Comp {
@@ -111,7 +111,7 @@ public class GUIGenerator {
         File f = new File(CONT);
         Item top = ITEM_MAP.get("top");
         Item middle = ITEM_MAP.get("middle");
-        Item bottom = ITEM_MAP.get("bottom");
+        Item bottom = ITEM_MAP.get("bottom_screen");
         for (File fi : f.listFiles()) {
             JsonObject e = readJsonFile(fi.getPath()).getAsJsonObject();
             JsonObject out = new JsonObject();

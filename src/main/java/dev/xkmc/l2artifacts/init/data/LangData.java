@@ -36,7 +36,10 @@ public enum LangData {
 	UPGRADE_STAT("tooltip.enhance.stat", "Next upgraded sub stat will be %s.", 1, null),
 	UPGRADE_MAIN("tooltip.enhance.main", "Next %s upgraded main stat will be maximized.", 1, null),
 	UPGRADE_SUB("tooltip.enhance.sub", "Next %s upgraded sub stat will be maximized.", 1, null),
-	ALL_SET_EFFECTS("set.all_set_effects","Set %s: %s piece(s)",2,null)
+	ALL_SET_EFFECTS("set.all_set_effects","Set %s: %s piece(s)",2,null),
+	TITLE_SELECT_SET("title.select_set","Select Artifact Set",0,null),
+	TITLE_SELECT_SLOT("title.select_slot","Select Artifact Slot",0,null),
+	TITLE_SELECT_RANK("title.select_rank","Select Artifact Rank",0,null)
 	;
 
 	private final String key, def;

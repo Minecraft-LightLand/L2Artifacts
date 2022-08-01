@@ -2,7 +2,7 @@ package dev.xkmc.l2artifacts.content.config;
 
 import dev.xkmc.l2artifacts.content.core.ArtifactSet;
 import dev.xkmc.l2artifacts.content.effects.SetEffect;
-import dev.xkmc.l2artifacts.init.NetworkManager;
+import dev.xkmc.l2artifacts.network.NetworkManager;
 import dev.xkmc.l2library.serial.SerialClass;
 import dev.xkmc.l2library.serial.network.BaseConfig;
 import dev.xkmc.l2library.util.math.MathHelper;

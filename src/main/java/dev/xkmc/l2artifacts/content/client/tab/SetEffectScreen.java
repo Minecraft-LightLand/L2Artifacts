@@ -1,4 +1,4 @@
-package dev.xkmc.l2artifacts.content.client;
+package dev.xkmc.l2artifacts.content.client.tab;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import dev.xkmc.l2artifacts.content.core.BaseArtifact;

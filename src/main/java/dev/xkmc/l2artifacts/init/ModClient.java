@@ -1,12 +1,10 @@
 package dev.xkmc.l2artifacts.init;
 
-import dev.xkmc.l2artifacts.content.client.TabSetEffects;
+import dev.xkmc.l2artifacts.content.client.tab.TabSetEffects;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactItemRegistry;
-import dev.xkmc.l2library.base.tabs.contents.TabInventory;
 import dev.xkmc.l2library.base.tabs.core.TabRegistry;
 import dev.xkmc.l2library.base.tabs.core.TabToken;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.item.Items;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;

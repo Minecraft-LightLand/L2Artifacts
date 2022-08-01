@@ -1,9 +1,7 @@
-package dev.xkmc.l2artifacts.init.data;
-/*
-import dev.xkmc.l2artifacts.compat.champions.ChampionLootGen;
+package dev.xkmc.l2artifacts.init.data.loot;
+
 import dev.xkmc.l2artifacts.init.L2Artifacts;
-import dev.xkmc.playerdifficulty.compat.CompatManager;
-import dev.xkmc.playerdifficulty.init.PlayerDifficulty;
+import dev.xkmc.l2library.util.data.LootTableTemplate;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.GlobalLootModifierProvider;
 
@@ -15,7 +13,6 @@ public class ArtifactGLMProvider extends GlobalLootModifierProvider {
 
 	@Override
 	protected void start() {
-		ChampionLootGen.onGLMGen(this);
+		this.add("health_based", new ArtifactLootModifier(LootTableTemplate.byPlayer().build()));
 	}
 }
-*/

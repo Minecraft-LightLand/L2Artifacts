@@ -9,6 +9,7 @@ import dev.xkmc.l2artifacts.init.data.ConfigGen;
 import dev.xkmc.l2artifacts.init.data.LangData;
 import dev.xkmc.l2artifacts.init.data.ModConfig;
 import dev.xkmc.l2artifacts.init.data.RecipeGen;
+import dev.xkmc.l2artifacts.init.data.loot.ArtifactGLMProvider;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactItemRegistry;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactRegistrate;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactTypeRegistry;
@@ -91,7 +92,7 @@ public class L2Artifacts {
 
 	public static void gatherData(GatherDataEvent event) {
 		event.getGenerator().addProvider(event.includeServer(), new ConfigGen(event.getGenerator()));
-		//event.getGenerator().addProvider(event.includeServer(), new ArtifactGLMProvider(event.getGenerator()));
+		event.getGenerator().addProvider(event.includeServer(), new ArtifactGLMProvider(event.getGenerator()));
 	}
 
 	private static void sendMessage(final InterModEnqueueEvent event) {

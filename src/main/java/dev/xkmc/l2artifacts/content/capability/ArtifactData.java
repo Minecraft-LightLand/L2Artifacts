@@ -1,9 +1,7 @@
 package dev.xkmc.l2artifacts.content.capability;
 
-import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
 import dev.xkmc.l2artifacts.content.effects.PersistentDataSetEffect;
 import dev.xkmc.l2artifacts.content.effects.SetEffect;
-import dev.xkmc.l2artifacts.content.effects.v3.SunBlockMask;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
 import dev.xkmc.l2library.capability.player.PlayerCapabilityHolder;
 import dev.xkmc.l2library.capability.player.PlayerCapabilityNetworkHandler;
@@ -34,12 +32,12 @@ public class ArtifactData extends PlayerCapabilityTemplate<ArtifactData> {
 	public HashMap<SetEffect, SetEffectData> data = new HashMap<>();
 
 	public <T extends SetEffectData> T getOrCreateData(PersistentDataSetEffect<T> setEffect) {
-		return Wrappers.cast(data.computeIfAbsent(setEffect, e->setEffect.getData()));
+		return Wrappers.cast(data.computeIfAbsent(setEffect, e -> setEffect.getData()));
 	}
 
 	@Override
 	public void tick() {
-		data.entrySet().removeIf(e->e.getValue().tick());
+		data.entrySet().removeIf(e -> e.getValue().tick());
 	}
 
 	public boolean hasData(PersistentDataSetEffect<?> eff) {

@@ -1,4 +1,4 @@
-// 1.19.1	2022-08-01T17:51:23.724876	Artifact Config
+// 1.19.1	2022-08-01T18:22:32.133097	Artifact Config
 4d33947e8153a827b725cdb2dae3c04910659773 data/l2artifacts/artifact_config/artifact_sets/archer.json
 c5825d240d8c4bfd12f544f277018ccceb844574 data/l2artifacts/artifact_config/artifact_sets/berserker.json
 ab35d2508b4cd3f6087b295ce6340cb5ef5d1674 data/l2artifacts/artifact_config/artifact_sets/damocles.json
@@ -15,7 +15,7 @@ bd4f096fe39557076d833b83ae029ca76dc5157f data/l2artifacts/artifact_config/artifa
 72d028f3718e2ec26ede2b9801ded317621177ef data/l2artifacts/artifact_config/artifact_sets/sun_block.json
 ae4fead8c48ca40ac40dbe5275b306f49240a0a1 data/l2artifacts/artifact_config/artifact_sets/vampire.json
 340e6da7fe3e4ae3862db48118dcb6ac1b4886e3 data/l2artifacts/artifact_config/artifact_sets/wrath.json
-43588fd4162df9a05e099d65c7336efc537b1abc data/l2artifacts/artifact_config/linear/default.json
+d802da6953b3a6abfdeb8f6d5ed6dcd490fcf9cb data/l2artifacts/artifact_config/linear/default.json
 5696cb49ecc62e0cabe3d6762f2b7380e1d57e14 data/l2artifacts/artifact_config/slot_stats/belt.json
 dadc0806dcd8b51d1c8f57e6f1791cafaa420bf3 data/l2artifacts/artifact_config/slot_stats/body.json
 9fec9a44c8a56c3cdfa49fe09fe97ef74c31b296 data/l2artifacts/artifact_config/slot_stats/bracelet.json

@@ -69,9 +69,25 @@
       "base": 80.0,
       "slope": 40.0
     },
-    "l2artifacts:fury_of_fallen": {
+    "l2artifacts:fury_of_fallen_1": {
+      "base": 0.1,
+      "slope": 0.02
+    },
+    "l2artifacts:fury_of_fallen_2": {
+      "base": 0.15,
+      "slope": 0.03
+    },
+    "l2artifacts:fury_of_fallen_3": {
       "base": 0.2,
-      "slope": 0.1
+      "slope": 0.04
+    },
+    "l2artifacts:fury_of_fallen_4": {
+      "base": 0.25,
+      "slope": 0.05
+    },
+    "l2artifacts:fury_of_fallen_5": {
+      "base": 0.3,
+      "slope": 0.06
     },
     "l2artifacts:gambler_3_crit_damage": {
       "base": 0.2,

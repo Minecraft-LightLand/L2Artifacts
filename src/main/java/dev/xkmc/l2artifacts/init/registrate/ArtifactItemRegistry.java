@@ -342,26 +342,30 @@ public class ArtifactItemRegistry {
 
 		// fallen
 		{
-			LinearFuncEntry atk = REGISTRATE.regLinear("fury_of_fallen", 0.2, 0.1);
+			LinearFuncEntry atk1 = REGISTRATE.regLinear("fury_of_fallen_1", 0.1, 0.02);
+			LinearFuncEntry atk2 = REGISTRATE.regLinear("fury_of_fallen_2", 0.15, 0.03);
+			LinearFuncEntry atk3 = REGISTRATE.regLinear("fury_of_fallen_3", 0.2, 0.04);
+			LinearFuncEntry atk4 = REGISTRATE.regLinear("fury_of_fallen_4", 0.25, 0.05);
+			LinearFuncEntry atk5 = REGISTRATE.regLinear("fury_of_fallen_5", 0.3, 0.06);
 			EFF_FALLEN_1 = REGISTRATE.setEffect("fury_of_fallen_1", () -> new ConditionalAttributeSetEffect(
 					player -> player.getHealth() <= player.getMaxHealth() * 0.5,
-					new AttrSetEntry(() -> Attributes.ATTACK_DAMAGE, MULTIPLY_TOTAL, atk, true)
+					new AttrSetEntry(() -> Attributes.ATTACK_DAMAGE, MULTIPLY_TOTAL, atk1, true)
 			)).desc("Furry of Fallen Lv.1", "When health is less than 50%:").register();
 			EFF_FALLEN_2 = REGISTRATE.setEffect("fury_of_fallen_2", () -> new ConditionalAttributeSetEffect(
 					player -> player.getHealth() <= player.getMaxHealth() * 0.4,
-					new AttrSetEntry(() -> Attributes.ATTACK_DAMAGE, MULTIPLY_TOTAL, atk, true)
+					new AttrSetEntry(() -> Attributes.ATTACK_DAMAGE, MULTIPLY_TOTAL, atk2, true)
 			)).desc("Furry of Fallen Lv.2", "When health is less than 40%:").register();
 			EFF_FALLEN_3 = REGISTRATE.setEffect("fury_of_fallen_3", () -> new ConditionalAttributeSetEffect(
 					player -> player.getHealth() <= player.getMaxHealth() * 0.3,
-					new AttrSetEntry(() -> Attributes.ATTACK_DAMAGE, MULTIPLY_TOTAL, atk, true)
+					new AttrSetEntry(() -> Attributes.ATTACK_DAMAGE, MULTIPLY_TOTAL, atk3, true)
 			)).desc("Furry of Fallen Lv.3", "When health is less than 30%:").register();
 			EFF_FALLEN_4 = REGISTRATE.setEffect("fury_of_fallen_4", () -> new ConditionalAttributeSetEffect(
 					player -> player.getHealth() <= player.getMaxHealth() * 0.2,
-					new AttrSetEntry(() -> Attributes.ATTACK_DAMAGE, MULTIPLY_TOTAL, atk, true)
+					new AttrSetEntry(() -> Attributes.ATTACK_DAMAGE, MULTIPLY_TOTAL, atk4, true)
 			)).desc("Furry of Fallen Lv.4", "When health is less than 20%:").register();
 			EFF_FALLEN_5 = REGISTRATE.setEffect("fury_of_fallen_5", () -> new ConditionalAttributeSetEffect(
 					player -> player.getHealth() <= player.getMaxHealth() * 0.1,
-					new AttrSetEntry(() -> Attributes.ATTACK_DAMAGE, MULTIPLY_TOTAL, atk, true)
+					new AttrSetEntry(() -> Attributes.ATTACK_DAMAGE, MULTIPLY_TOTAL, atk5, true)
 			)).desc("Furry of Fallen Lv.5", "When health is less than 10%:").register();
 		}
 

@@ -25,6 +25,7 @@ public class ArtifactLootModifier extends LootModifier {
 
 	@Override
 	protected @NotNull ObjectArrayList<ItemStack> doApply(ObjectArrayList<ItemStack> list, LootContext context) {
+		if (!context.hasParam(LootContextParams.THIS_ENTITY)) return list;
 		Entity entity = context.getParam(LootContextParams.THIS_ENTITY);
 		if (entity instanceof LivingEntity le && entity instanceof Enemy) {
 			float health = le.getMaxHealth();

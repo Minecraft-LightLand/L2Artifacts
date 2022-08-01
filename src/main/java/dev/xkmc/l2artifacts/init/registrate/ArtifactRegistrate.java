@@ -23,9 +23,9 @@ public class ArtifactRegistrate extends L2Registrate {
 	public List<LinearFuncEntry> LINEAR_LIST = new ArrayList<>();
 
 	@SafeVarargs
-	public final <T extends ArtifactSet> SetEntry<T> regSet(String id, NonNullSupplier<T> sup, int min_rank, int max_rank, RegistryEntry<ArtifactSlot>... slots) {
+	public final <T extends ArtifactSet> SetEntry<T> regSet(String id, NonNullSupplier<T> sup, int min_rank, int max_rank, String name, RegistryEntry<ArtifactSlot>... slots) {
 		return (SetEntry<T>) this.entry(id, (cb) -> new SetBuilder<>(this, this, id, cb, sup, min_rank, max_rank, slots))
-				.regItems().defaultLang().register();
+				.regItems().lang(name).register();
 	}
 
 	public final LinearFuncEntry regLinear(String id, double base, double slope) {

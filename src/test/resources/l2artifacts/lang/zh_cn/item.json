@@ -10,7 +10,10 @@
 		  "saint": "圣人的",
 		  "archer": "神射手的",
 		  "physical": "愚勇之人的",
-		  "wrath": "厄运"
+		  "wrath": "厄运",
+		  "vampire": "吸血鬼的",
+		  "gluttony": "暴食",
+		  "fury_of_fallen": "求生之人的"
 		},
 		{
 		  "head": "帽子",
@@ -78,7 +81,9 @@
 		  "boost_main": "主词条充能水晶",
 		  "boost_sub": "副词条充能水晶",
 		  "damocles_head": "达摩克利斯之剑",
-		  "protection_head": "向死而生之冠"
+		  "protection_head": "向死而生之冠",
+		  "photosynthesis_head": "翠绿之冠",
+		  "sun_block_head": "阳伞"
 		},
 		{
 		  "1": "-常见级",

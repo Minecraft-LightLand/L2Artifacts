@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "A": {
+      "item": "l2artifacts:artifact_experience_3"
+    },
+    "B": {
+      "item": "l2artifacts:gluttony_belt_2"
+    },
+    "C": {
+      "item": "l2artifacts:artifact_experience_2"
+    }
+  },
+  "pattern": [
+    "CCC",
+    "BAB",
+    "CCC"
+  ],
+  "result": {
+    "item": "l2artifacts:gluttony_belt_3"
+  }
+}

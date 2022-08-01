@@ -69,6 +69,10 @@
       "base": 80.0,
       "slope": 40.0
     },
+    "l2artifacts:fury_of_fallen": {
+      "base": 0.2,
+      "slope": 0.1
+    },
     "l2artifacts:gambler_3_crit_damage": {
       "base": 0.2,
       "slope": 0.1
@@ -89,6 +93,22 @@
       "base": 1.0,
       "slope": 0.5
     },
+    "l2artifacts:gluttony_attack": {
+      "base": 0.2,
+      "slope": 0.1
+    },
+    "l2artifacts:gluttony_eat": {
+      "base": 2.0,
+      "slope": 1.0
+    },
+    "l2artifacts:gluttony_speed": {
+      "base": 0.1,
+      "slope": 0.05
+    },
+    "l2artifacts:gluttony_swing": {
+      "base": 0.04,
+      "slope": 0.02
+    },
     "l2artifacts:perfection_absorption_max": {
       "base": 4.0,
       "slope": 2.0
@@ -100,6 +120,18 @@
     "l2artifacts:perfection_protection": {
       "base": 0.2,
       "slope": 0.1
+    },
+    "l2artifacts:photosynthesis_high": {
+      "base": 12.0,
+      "slope": -1.0
+    },
+    "l2artifacts:photosynthesis_low": {
+      "base": 5.0,
+      "slope": -1.0
+    },
+    "l2artifacts:photosynthesis_period": {
+      "base": 5.0,
+      "slope": -1.0
     },
     "l2artifacts:physical_armor": {
       "base": 4.0,
@@ -124,6 +156,18 @@
     "l2artifacts:saint_restoration": {
       "base": 100.0,
       "slope": -10.0
+    },
+    "l2artifacts:vampire_burn_low": {
+      "base": 3.0,
+      "slope": 1.0
+    },
+    "l2artifacts:vampire_heal_light": {
+      "base": 4.0,
+      "slope": 1.0
+    },
+    "l2artifacts:vampire_heal_ratio": {
+      "base": 0.2,
+      "slope": 0.1
     },
     "l2artifacts:wrath_decrease": {
       "base": 0.8,

@@ -23,7 +23,12 @@
 	"physical": "愚勇者",
 	"protection": "屹立之冠",
 	"saint": "圣人",
-	"wrath": "厄运"
+	"wrath": "厄运",
+	"photosynthesis": "翠绿之冠",
+	"sun_block": "阳伞",
+	"vampire": "吸血鬼",
+	"gluttony": "暴食者的终章",
+	"fury_of_fallen": "亡者之怒"
   },
   "set_effect.l2artifacts": {
 	"berserker_3": "嗜血暴徒",
@@ -47,6 +52,18 @@
 	"wrath_poison": "祸不单行",
 	"wrath_slow": "雪上加霜",
 	"wrath_fire": "风助火势",
+	"photosynthesis": "光合作用",
+	"sun_block": "阳伞",
+	"vampire_burn": "畏光",
+	"vampire_heal": "吸血",
+	"gluttony_fast": "饥荒",
+	"gluttony_eat": "暴食",
+	"fury_of_fallen_1": "生存本能",
+	"fury_of_fallen_2": "战逃反应",
+	"fury_of_fallen_3": "破釜沉舟",
+	"fury_of_fallen_4": "背水一战",
+	"fury_of_fallen_5": "亡者之怒",
+
 	"damocles.desc": "满血时，近战伤害+%s%%。半血以下即死。",
 	"protection_resistance.desc": "根据失去的血量比例获得减伤。",
 	"perfection_absorption.desc": "满血时每%s秒获得1点伤害吸收，上限%s点。",
@@ -60,6 +77,17 @@
 	"physical_damage.desc": "造成的魔法伤害下降至%s%%。",
 	"wrath_poison.desc": "如果目标中毒，造成%s%%伤害。否则造成%s%%伤害。",
 	"wrath_slow.desc": "如果目标被减速，造成%s%%伤害。否则造成%s%%伤害。",
-	"wrath_fire.desc": "如果目标着火，造成%s%%伤害。否则造成%s%%伤害。"
+	"wrath_fire.desc": "如果目标着火，造成%s%%伤害。否则造成%s%%伤害。",
+	"photosynthesis.desc": "每%s秒: 在阳光下且亮度不低于%s时，缓慢回复食物。亮度低于%s时，加速消耗食物",
+	"sun_block.desc": "遮挡阳光",
+	"vampire_burn.desc": "阳光下着火。亮度不高于%s时获得夜视效果。",
+	"vampire_heal.desc": "不在阳光下或亮度低于%s的时候对敌人造成伤害时，回复造成的伤害的%s%%生命值",
+	"gluttony_fast.desc": "处于饥饿状态下时：",
+	"gluttony_eat.desc": "杀死敌人时，回复%s食物和%s饱和",
+	"fury_of_fallen_1.desc": "生命值50%以下时：",
+	"fury_of_fallen_2.desc": "生命值40%以下时：",
+	"fury_of_fallen_3.desc": "生命值30%以下时：",
+	"fury_of_fallen_4.desc": "生命值20%以下时：",
+	"fury_of_fallen_5.desc": "生命值10%以下时："
   }
 }

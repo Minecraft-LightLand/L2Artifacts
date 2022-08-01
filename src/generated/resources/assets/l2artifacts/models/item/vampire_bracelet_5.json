@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "l2artifacts:item/vampire/bracelet",
+    "layer1": "l2artifacts:item/rank/5"
+  }
+}

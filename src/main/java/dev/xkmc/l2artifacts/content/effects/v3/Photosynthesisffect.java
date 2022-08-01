@@ -34,8 +34,9 @@ public class Photosynthesisffect extends SetEffect {
 		if (!enabled) return;
 		if (player.getLevel().isClientSide()) return;
 		if (player.tickCount % period.getFromRank(rank) != 0) return;
-		int light = PlayerLight.playerUnderSun(player);
-		if (light >= lightHigh.getFromRank(rank)) {
+		int sun = PlayerLight.playerUnderSun(player);
+		int light = PlayerLight.playerLight(player);
+		if (sun >= lightHigh.getFromRank(rank)) {
 			float sat = player.getFoodData().getSaturationLevel();
 			int food = player.getFoodData().getFoodLevel();
 			if (sat < food) {
@@ -43,8 +44,8 @@ public class Photosynthesisffect extends SetEffect {
 			} else {
 				player.getFoodData().setFoodLevel(Math.min(20, food + 1));
 			}
-		} else if (light <= lightLow.getFromRank(rank)) {
-			player.getFoodData().addExhaustion(1);
+		} else if (light < lightLow.getFromRank(rank)) {
+			player.getFoodData().addExhaustion(0.1f);
 		}
 	}
 }

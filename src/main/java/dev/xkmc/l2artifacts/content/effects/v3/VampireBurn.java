@@ -16,19 +16,17 @@ import java.util.List;
 
 public class VampireBurn extends SetEffect {
 
-	private final LinearFuncEntry lightLow, lightHigh;
+	private final LinearFuncEntry light;
 
-	public VampireBurn(LinearFuncEntry lightLow, LinearFuncEntry lightHigh) {
+	public VampireBurn(LinearFuncEntry lightLow) {
 		super(0);
-		this.lightLow = lightLow;
-		this.lightHigh = lightHigh;
+		this.light = lightLow;
 	}
 
 	@Override
 	public List<MutableComponent> getDetailedDescription(int rank) {
-		int lo = (int) Math.round(lightLow.getFromRank(rank));
-		int hi = (int) Math.round(lightHigh.getFromRank(rank));
-		return List.of(Component.translatable(getDescriptionId() + ".desc", hi, lo));
+		int lo = (int) Math.round(light.getFromRank(rank));
+		return List.of(Component.translatable(getDescriptionId() + ".desc", lo));
 	}
 
 	@Override
@@ -37,14 +35,12 @@ public class VampireBurn extends SetEffect {
 		if (player.getLevel().isClientSide()) return;
 		int light = PlayerLight.playerUnderSun(player);
 		Level level = player.getLevel();
-		if (light > lightHigh.getFromRank(rank) && level.canSeeSky(player.getOnPos()) && level.isDay() && !fireImmune(player)) {
+		if (light > this.light.getFromRank(rank) && level.canSeeSky(player.getOnPos()) && level.isDay() && !fireImmune(player)) {
 			if (player.getRemainingFireTicks() < 40) {
 				player.setRemainingFireTicks(60);
 			}
 		}
-		if (light <= lightHigh.getFromRank(rank)) {
-			EffectUtil.refreshEffect(player, new MobEffectInstance(MobEffects.MOVEMENT_SPEED), EffectUtil.AddReason.SELF, player);
-		} else if (light <= lightLow.getFromRank(rank)) {
+		if (light <= this.light.getFromRank(rank)) {
 			EffectUtil.refreshEffect(player, new MobEffectInstance(MobEffects.NIGHT_VISION), EffectUtil.AddReason.SELF, player);
 		}
 	}

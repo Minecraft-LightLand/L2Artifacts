@@ -1,9 +1,12 @@
 package dev.xkmc.l2artifacts.init.registrate;
 
 import dev.xkmc.l2artifacts.content.core.ArtifactSet;
+import dev.xkmc.l2artifacts.content.effects.AttrSetEntry;
 import dev.xkmc.l2artifacts.content.effects.AttributeSetEffect;
-import dev.xkmc.l2artifacts.content.effects.v2.*;
+import dev.xkmc.l2artifacts.content.effects.ConditionalAttributeSetEffect;
 import dev.xkmc.l2artifacts.content.effects.v1.*;
+import dev.xkmc.l2artifacts.content.effects.v2.*;
+import dev.xkmc.l2artifacts.content.effects.v3.*;
 import dev.xkmc.l2artifacts.content.misc.ExpItem;
 import dev.xkmc.l2artifacts.content.upgrades.StatContainerItem;
 import dev.xkmc.l2artifacts.content.upgrades.Upgrade;
@@ -81,21 +84,28 @@ public class ArtifactItemRegistry {
 	}
 
 	// bland
-	public static final SetEntry<ArtifactSet> SET_GAMBLER = REGISTRATE.regSet("gambler", ArtifactSet::new, 1, 5, SLOT_HEAD, SLOT_NECKLACE, SLOT_BODY, SLOT_BRACELET, SLOT_BELT);
-	public static final SetEntry<ArtifactSet> SET_BERSERKER = REGISTRATE.regSet("berserker", ArtifactSet::new, 1, 5, SLOT_HEAD, SLOT_NECKLACE, SLOT_BODY, SLOT_BRACELET, SLOT_BELT);
-	public static final SetEntry<ArtifactSet> SET_ARCHER = REGISTRATE.regSet("archer", ArtifactSet::new, 1, 5, SLOT_HEAD, SLOT_NECKLACE, SLOT_BODY, SLOT_BRACELET, SLOT_BELT);
+	public static final SetEntry<ArtifactSet> SET_GAMBLER = REGISTRATE.regSet("gambler", ArtifactSet::new, 1, 5, "Gambler Set", SLOT_HEAD, SLOT_NECKLACE, SLOT_BODY, SLOT_BRACELET, SLOT_BELT);
+	public static final SetEntry<ArtifactSet> SET_BERSERKER = REGISTRATE.regSet("berserker", ArtifactSet::new, 1, 5, "Berserker Set", SLOT_HEAD, SLOT_NECKLACE, SLOT_BODY, SLOT_BRACELET, SLOT_BELT);
+	public static final SetEntry<ArtifactSet> SET_ARCHER = REGISTRATE.regSet("archer", ArtifactSet::new, 1, 5, "Archer Set", SLOT_HEAD, SLOT_NECKLACE, SLOT_BODY, SLOT_BRACELET, SLOT_BELT);
 
 	// v1
-	public static final SetEntry<ArtifactSet> SET_SAINT = REGISTRATE.regSet("saint", ArtifactSet::new, 1, 5, SLOT_HEAD, SLOT_NECKLACE, SLOT_BODY, SLOT_BRACELET, SLOT_BELT);
-	public static final SetEntry<ArtifactSet> SET_PERFECTION = REGISTRATE.regSet("perfection", ArtifactSet::new, 1, 5, SLOT_HEAD, SLOT_NECKLACE, SLOT_BODY, SLOT_BRACELET, SLOT_BELT);
-	public static final SetEntry<ArtifactSet> SET_DAMOCLES = REGISTRATE.regSet("damocles", ArtifactSet::new, 1, 5, SLOT_HEAD);
-	public static final SetEntry<ArtifactSet> SET_PROTECTION = REGISTRATE.regSet("protection", ArtifactSet::new, 1, 5, SLOT_HEAD);
+	public static final SetEntry<ArtifactSet> SET_SAINT = REGISTRATE.regSet("saint", ArtifactSet::new, 1, 5, "Saint Set", SLOT_HEAD, SLOT_NECKLACE, SLOT_BODY, SLOT_BRACELET, SLOT_BELT);
+	public static final SetEntry<ArtifactSet> SET_PERFECTION = REGISTRATE.regSet("perfection", ArtifactSet::new, 1, 5, "Perfection Set", SLOT_HEAD, SLOT_NECKLACE, SLOT_BODY, SLOT_BRACELET, SLOT_BELT);
+	public static final SetEntry<ArtifactSet> SET_DAMOCLES = REGISTRATE.regSet("damocles", ArtifactSet::new, 1, 5, "Sword of Damocles", SLOT_HEAD);
+	public static final SetEntry<ArtifactSet> SET_PROTECTION = REGISTRATE.regSet("protection", ArtifactSet::new, 1, 5, "Never Falling Crown", SLOT_HEAD);
 
 	// v2
-	public static final SetEntry<ArtifactSet> SET_FROZE = REGISTRATE.regSet("froze", ArtifactSet::new, 1, 5, SLOT_HEAD, SLOT_NECKLACE, SLOT_BODY, SLOT_BRACELET, SLOT_BELT);
-	public static final SetEntry<ArtifactSet> SET_EXECUTOR = REGISTRATE.regSet("executor", ArtifactSet::new, 1, 5, SLOT_HEAD, SLOT_NECKLACE, SLOT_BODY, SLOT_BRACELET, SLOT_BELT);
-	public static final SetEntry<ArtifactSet> SET_PHYSICAL = REGISTRATE.regSet("physical", ArtifactSet::new, 1, 5, SLOT_HEAD, SLOT_NECKLACE, SLOT_BODY, SLOT_BRACELET, SLOT_BELT);
-	public static final SetEntry<ArtifactSet> SET_WRATH = REGISTRATE.regSet("wrath", ArtifactSet::new, 1, 5, SLOT_HEAD, SLOT_NECKLACE, SLOT_BODY, SLOT_BRACELET, SLOT_BELT);
+	public static final SetEntry<ArtifactSet> SET_FROZE = REGISTRATE.regSet("froze", ArtifactSet::new, 1, 5, "Frozen Set", SLOT_HEAD, SLOT_NECKLACE, SLOT_BODY, SLOT_BRACELET, SLOT_BELT);
+	public static final SetEntry<ArtifactSet> SET_EXECUTOR = REGISTRATE.regSet("executor", ArtifactSet::new, 1, 5, "Executor Set", SLOT_HEAD, SLOT_NECKLACE, SLOT_BODY, SLOT_BRACELET, SLOT_BELT);
+	public static final SetEntry<ArtifactSet> SET_PHYSICAL = REGISTRATE.regSet("physical", ArtifactSet::new, 1, 5, "Courage Set", SLOT_HEAD, SLOT_NECKLACE, SLOT_BODY, SLOT_BRACELET, SLOT_BELT);
+	public static final SetEntry<ArtifactSet> SET_WRATH = REGISTRATE.regSet("wrath", ArtifactSet::new, 1, 5, "Curse of Bad Luck", SLOT_HEAD, SLOT_NECKLACE, SLOT_BODY, SLOT_BRACELET, SLOT_BELT);
+
+	// v3
+	public static final SetEntry<ArtifactSet> SET_PHOTOSYN = REGISTRATE.regSet("photosynthesis", ArtifactSet::new, 1, 5, "Photosynthesis Hat", SLOT_HEAD);
+	public static final SetEntry<ArtifactSet> SET_VAMPIRE = REGISTRATE.regSet("vampire", ArtifactSet::new, 1, 5, "Vampire Set", SLOT_HEAD, SLOT_NECKLACE, SLOT_BODY, SLOT_BRACELET, SLOT_BELT);
+	public static final SetEntry<ArtifactSet> SET_SUN_BLOCK = REGISTRATE.regSet("sun_block", ArtifactSet::new, 1, 5, "Umbrella", SLOT_HEAD);
+	public static final SetEntry<ArtifactSet> SET_GLUTTONY = REGISTRATE.regSet("gluttony", ArtifactSet::new, 1, 5, "Gluttony Set", SLOT_HEAD, SLOT_NECKLACE, SLOT_BODY, SLOT_BRACELET, SLOT_BELT);
+	public static final SetEntry<ArtifactSet> SET_FALLEN = REGISTRATE.regSet("fury_of_fallen", ArtifactSet::new, 1, 5, "Fury of Fallen", SLOT_HEAD, SLOT_NECKLACE, SLOT_BODY, SLOT_BRACELET, SLOT_BELT);
 
 
 	// v1
@@ -114,14 +124,14 @@ public class ArtifactItemRegistry {
 			LinearFuncEntry luck = REGISTRATE.regLinear("gambler_5_luck", 1, 0.5);
 
 			EFF_GAMBLER_3 = REGISTRATE.setEffect("gambler_3", () -> new AttributeSetEffect(
-					new AttributeSetEffect.AttrSetEntry(CRIT_RATE, ADDITION, cr3, true),
-					new AttributeSetEffect.AttrSetEntry(CRIT_DMG, ADDITION, cd3, true)
+					new AttrSetEntry(CRIT_RATE, ADDITION, cr3, true),
+					new AttrSetEntry(CRIT_DMG, ADDITION, cd3, true)
 			)).lang("Pursuit of Bets").register();
 
 			EFF_GAMBLER_5 = REGISTRATE.setEffect("gambler_5", () -> new AttributeSetEffect(
-					new AttributeSetEffect.AttrSetEntry(CRIT_RATE, ADDITION, cr5, true),
-					new AttributeSetEffect.AttrSetEntry(CRIT_DMG, ADDITION, cd5, true),
-					new AttributeSetEffect.AttrSetEntry(() -> Attributes.LUCK, ADDITION, luck, false)
+					new AttrSetEntry(CRIT_RATE, ADDITION, cr5, true),
+					new AttrSetEntry(CRIT_DMG, ADDITION, cd5, true),
+					new AttrSetEntry(() -> Attributes.LUCK, ADDITION, luck, false)
 			)).lang("Bless of Luck").register();
 		}
 
@@ -134,14 +144,14 @@ public class ArtifactItemRegistry {
 			LinearFuncEntry cd5 = REGISTRATE.regLinear("berserker_5_crit_damage", 0.04, 0.02);
 
 			EFF_BERSERKER_3 = REGISTRATE.setEffect("berserker_3", () -> new AttributeSetEffect(
-					new AttributeSetEffect.AttrSetEntry(() -> Attributes.ARMOR, ADDITION, ar3, false),
-					new AttributeSetEffect.AttrSetEntry(() -> Attributes.ATTACK_DAMAGE, MULTIPLY_TOTAL, atk3, true)
+					new AttrSetEntry(() -> Attributes.ARMOR, ADDITION, ar3, false),
+					new AttrSetEntry(() -> Attributes.ATTACK_DAMAGE, MULTIPLY_TOTAL, atk3, true)
 			)).lang("Unpolished Bruteforce").register();
 
 			EFF_BERSERKER_5 = REGISTRATE.setEffect("berserker_5", () -> new AttributeSetEffect(
-					new AttributeSetEffect.AttrSetEntry(() -> Attributes.MOVEMENT_SPEED, MULTIPLY_TOTAL, speed, true),
-					new AttributeSetEffect.AttrSetEntry(() -> Attributes.ATTACK_SPEED, MULTIPLY_TOTAL, haste, true),
-					new AttributeSetEffect.AttrSetEntry(CRIT_DMG, ADDITION, cd5, true)
+					new AttrSetEntry(() -> Attributes.MOVEMENT_SPEED, MULTIPLY_TOTAL, speed, true),
+					new AttrSetEntry(() -> Attributes.ATTACK_SPEED, MULTIPLY_TOTAL, haste, true),
+					new AttrSetEntry(CRIT_DMG, ADDITION, cd5, true)
 			)).lang("Subconscious Fight").register();
 		}
 
@@ -154,13 +164,13 @@ public class ArtifactItemRegistry {
 			LinearFuncEntry cr5 = REGISTRATE.regLinear("archer_5_crit_rate", 0.4, 0.2);
 
 			EFF_ARCHER_3 = REGISTRATE.setEffect("archer_3", () -> new AttributeSetEffect(
-					new AttributeSetEffect.AttrSetEntry(() -> Attributes.ATTACK_DAMAGE, MULTIPLY_TOTAL, atk3, true),
-					new AttributeSetEffect.AttrSetEntry(BOW_STRENGTH, ADDITION, bow3, true)
+					new AttrSetEntry(() -> Attributes.ATTACK_DAMAGE, MULTIPLY_TOTAL, atk3, true),
+					new AttrSetEntry(BOW_STRENGTH, ADDITION, bow3, true)
 			)).lang("Specialty of Archer").register();
 
 			EFF_ARCHER_5 = REGISTRATE.setEffect("archer_5", () -> new AttributeSetEffect(
-					new AttributeSetEffect.AttrSetEntry(() -> Attributes.ATTACK_SPEED, MULTIPLY_TOTAL, haste, true),
-					new AttributeSetEffect.AttrSetEntry(CRIT_RATE, ADDITION, cr5, true)
+					new AttrSetEntry(() -> Attributes.ATTACK_SPEED, MULTIPLY_TOTAL, haste, true),
+					new AttrSetEntry(CRIT_RATE, ADDITION, cr5, true)
 			)).lang("Focus of Archer").register();
 		}
 
@@ -183,7 +193,13 @@ public class ArtifactItemRegistry {
 	public static final RegistryEntry<WrathEffect> EFF_WRATH_POISON, EFF_WRATH_SLOW, EFF_WRATH_FIRE;
 
 	// v3
-
+	public static final RegistryEntry<Photosynthesisffect> EFF_PHOTOSYN;
+	public static final RegistryEntry<VampireBurn> EFF_VAMPIRE_BURN;
+	public static final RegistryEntry<VampireHeal> EFF_VAMPIRE_HEAL;
+	public static final RegistryEntry<SunBlockMask> EFF_SUN_BLOCK;
+	public static final RegistryEntry<ConditionalAttributeSetEffect> EFF_GLUTTONY_FAST;
+	public static final RegistryEntry<GluttonyHeal> EFF_GLUTTONY_HEAL;
+	public static final RegistryEntry<ConditionalAttributeSetEffect> EFF_FALLEN_1, EFF_FALLEN_2, EFF_FALLEN_3, EFF_FALLEN_4, EFF_FALLEN_5;
 
 	static {
 
@@ -241,7 +257,7 @@ public class ArtifactItemRegistry {
 			LinearFuncEntry factor = REGISTRATE.regLinear("executor_limit", 0.3, -0.05);
 
 			EFF_EXECUTOR_SELF_HURT = REGISTRATE.setEffect("executor_self_hurt", () -> new ExecutorSelfHurtEffect(
-					new AttributeSetEffect.AttrSetEntry(() -> Attributes.ATTACK_DAMAGE,
+					new AttrSetEntry(() -> Attributes.ATTACK_DAMAGE,
 							AttributeModifier.Operation.MULTIPLY_TOTAL, atk, true),
 					hurt)).desc("Brutal Execution",
 					"When kill enemies, deal real damage to oneself equal to %s%% of enemies' max health."
@@ -259,13 +275,13 @@ public class ArtifactItemRegistry {
 			LinearFuncEntry factor = REGISTRATE.regLinear("physical_reduce_magic", 0.5, 0);
 
 			EFF_PHYSICAL_DAMAGE = REGISTRATE.setEffect("physical_damage", () -> new PhysicalDamageEffect(
-					new AttributeSetEffect.AttrSetEntry(() -> Attributes.ATTACK_DAMAGE,
+					new AttrSetEntry(() -> Attributes.ATTACK_DAMAGE,
 							AttributeModifier.Operation.MULTIPLY_TOTAL, atk, true),
 					factor)).desc("Barbaric Attack",
 					"Magical damage dealt will be reduced to %s%%"
 			).register();
 			EFF_PHYSICAL_ARMOR = REGISTRATE.setEffect("physical_armor", () -> new AttributeSetEffect(
-					new AttributeSetEffect.AttrSetEntry(() -> Attributes.ARMOR,
+					new AttrSetEntry(() -> Attributes.ARMOR,
 							ADDITION, armor, false)
 			)).lang("Survival Instinct").register();
 		}
@@ -289,6 +305,66 @@ public class ArtifactItemRegistry {
 
 		}
 
+		// vampire
+		{
+			LinearFuncEntry lo = REGISTRATE.regLinear("vampire_burn_low", 3, 1);
+			LinearFuncEntry light = REGISTRATE.regLinear("vampire_heal_light", 4, 1);
+			LinearFuncEntry amplify = REGISTRATE.regLinear("vampire_heal_ratio", 0.2, 0.1);
+			EFF_VAMPIRE_BURN = REGISTRATE.setEffect("vampire_burn", () -> new VampireBurn(lo))
+					.desc("Photophobic",
+							"When under direct sunlight, burn. " +
+									"Whe sunlight light level received is not higher than %s, get Night Vision."
+					).register();
+			EFF_VAMPIRE_HEAL = REGISTRATE.setEffect("vampire_heal", () -> new VampireHeal(light, amplify))
+					.desc("Blood Thurst",
+							"When sunlight light level received is not higher than %s, " +
+									"when dealing damage, heal %s%% of that damage."
+					).register();
+		}
+
+		// gluttony
+		{
+			LinearFuncEntry atk = REGISTRATE.regLinear("gluttony_attack", 0.2, 0.1);
+			LinearFuncEntry swi = REGISTRATE.regLinear("gluttony_swing", 0.04, 0.02);
+			LinearFuncEntry spe = REGISTRATE.regLinear("gluttony_speed", 0.1, 0.05);
+			EFF_GLUTTONY_FAST = REGISTRATE.setEffect("gluttony_fast", () -> new ConditionalAttributeSetEffect(
+					player -> player.hasEffect(MobEffects.HUNGER),
+					new AttrSetEntry(() -> Attributes.ATTACK_DAMAGE, MULTIPLY_TOTAL, atk, true),
+					new AttrSetEntry(() -> Attributes.ATTACK_SPEED, MULTIPLY_TOTAL, swi, true),
+					new AttrSetEntry(() -> Attributes.MOVEMENT_SPEED, MULTIPLY_TOTAL, spe, true)
+			)).desc("Hunger Strike", "When having Hunger effect:").register();
+
+			LinearFuncEntry eat = REGISTRATE.regLinear("gluttony_eat", 2, 1);
+			EFF_GLUTTONY_HEAL = REGISTRATE.setEffect("gluttony_eat", () -> new GluttonyHeal(eat))
+					.desc("Flesh Eater", "When kill entities, restore food level by %s and saturation by %s")
+					.register();
+		}
+
+		// fallen
+		{
+			LinearFuncEntry atk = REGISTRATE.regLinear("fury_of_fallen", 0.2, 0.1);
+			EFF_FALLEN_1 = REGISTRATE.setEffect("fury_of_fallen_1", () -> new ConditionalAttributeSetEffect(
+					player -> player.getHealth() <= player.getMaxHealth() * 0.5,
+					new AttrSetEntry(() -> Attributes.ATTACK_DAMAGE, MULTIPLY_TOTAL, atk, true)
+			)).desc("Furry of Fallen Lv.1", "When health is less than 50%:").register();
+			EFF_FALLEN_2 = REGISTRATE.setEffect("fury_of_fallen_2", () -> new ConditionalAttributeSetEffect(
+					player -> player.getHealth() <= player.getMaxHealth() * 0.4,
+					new AttrSetEntry(() -> Attributes.ATTACK_DAMAGE, MULTIPLY_TOTAL, atk, true)
+			)).desc("Furry of Fallen Lv.2", "When health is less than 40%:").register();
+			EFF_FALLEN_3 = REGISTRATE.setEffect("fury_of_fallen_3", () -> new ConditionalAttributeSetEffect(
+					player -> player.getHealth() <= player.getMaxHealth() * 0.3,
+					new AttrSetEntry(() -> Attributes.ATTACK_DAMAGE, MULTIPLY_TOTAL, atk, true)
+			)).desc("Furry of Fallen Lv.3", "When health is less than 30%:").register();
+			EFF_FALLEN_4 = REGISTRATE.setEffect("fury_of_fallen_4", () -> new ConditionalAttributeSetEffect(
+					player -> player.getHealth() <= player.getMaxHealth() * 0.2,
+					new AttrSetEntry(() -> Attributes.ATTACK_DAMAGE, MULTIPLY_TOTAL, atk, true)
+			)).desc("Furry of Fallen Lv.4", "When health is less than 20%:").register();
+			EFF_FALLEN_5 = REGISTRATE.setEffect("fury_of_fallen_5", () -> new ConditionalAttributeSetEffect(
+					player -> player.getHealth() <= player.getMaxHealth() * 0.1,
+					new AttrSetEntry(() -> Attributes.ATTACK_DAMAGE, MULTIPLY_TOTAL, atk, true)
+			)).desc("Furry of Fallen Lv.5", "When health is less than 10%:").register();
+		}
+
 		// singles
 		{
 			LinearFuncEntry amplify = REGISTRATE.regLinear("damocles", 1, 0.5);
@@ -300,6 +376,18 @@ public class ArtifactItemRegistry {
 					.desc("Crown of Never Falling Soldier",
 							"Damage taken reduced when health is low."
 					).register();
+
+			LinearFuncEntry period = REGISTRATE.regLinear("photosynthesis_period", 5, -1);
+			LinearFuncEntry lo = REGISTRATE.regLinear("photosynthesis_low", 5, -1);
+			LinearFuncEntry hi = REGISTRATE.regLinear("photosynthesis_high", 12, -1);
+			EFF_PHOTOSYN = REGISTRATE.setEffect("photosynthesis", () -> new Photosynthesisffect(period, lo, hi))
+					.desc("Flourishing Ring",
+							"Every %s seconds, when under sun with light level of %s or higher, restore food level. When in light level lower than %s, increase exhaustion"
+					).register();
+
+			EFF_SUN_BLOCK = REGISTRATE.setEffect("sun_block", SunBlockMask::new)
+					.desc("Sunlight Hat", "Block sunlight for the player").register();
+
 		}
 	}
 

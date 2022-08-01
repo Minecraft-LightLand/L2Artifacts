@@ -31,7 +31,7 @@ public class VampireHeal extends SetEffect {
 	public void playerDamageOpponentEvent(Player player, ArtifactSetConfig.Entry ent, int rank, AttackCache event) {
 		if (player.getLevel().isClientSide()) return;
 		int light = PlayerLight.playerUnderSun(player);
-		if (light < this.light.getFromRank(rank)) {
+		if (light <= this.light.getFromRank(rank)) {
 			player.heal((float) (event.getDamageDealt() * percent.getFromRank(rank)));
 		}
 	}

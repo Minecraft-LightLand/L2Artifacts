@@ -46,6 +46,23 @@
     "l2artifacts:wrath_necklace_2",
     "l2artifacts:wrath_body_2",
     "l2artifacts:wrath_bracelet_2",
-    "l2artifacts:wrath_belt_2"
+    "l2artifacts:wrath_belt_2",
+    "l2artifacts:photosynthesis_head_2",
+    "l2artifacts:vampire_head_2",
+    "l2artifacts:vampire_necklace_2",
+    "l2artifacts:vampire_body_2",
+    "l2artifacts:vampire_bracelet_2",
+    "l2artifacts:vampire_belt_2",
+    "l2artifacts:sun_block_head_2",
+    "l2artifacts:gluttony_head_2",
+    "l2artifacts:gluttony_necklace_2",
+    "l2artifacts:gluttony_body_2",
+    "l2artifacts:gluttony_bracelet_2",
+    "l2artifacts:gluttony_belt_2",
+    "l2artifacts:fury_of_fallen_head_2",
+    "l2artifacts:fury_of_fallen_necklace_2",
+    "l2artifacts:fury_of_fallen_body_2",
+    "l2artifacts:fury_of_fallen_bracelet_2",
+    "l2artifacts:fury_of_fallen_belt_2"
   ]
 }

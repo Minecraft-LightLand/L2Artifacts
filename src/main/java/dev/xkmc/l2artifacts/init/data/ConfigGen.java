@@ -123,6 +123,8 @@ public class ConfigGen extends ConfigDataProvider {
 
 		// Set Effect Config
 		{
+			// v0
+
 			addArtifactSet(map, ArtifactItemRegistry.SET_GAMBLER.get(), (c) -> c
 					.add(3, ArtifactItemRegistry.EFF_GAMBLER_3.get())
 					.add(5, ArtifactItemRegistry.EFF_GAMBLER_5.get()));
@@ -131,13 +133,15 @@ public class ConfigGen extends ConfigDataProvider {
 					.add(3, ArtifactItemRegistry.EFF_BERSERKER_3.get())
 					.add(5, ArtifactItemRegistry.EFF_BERSERKER_5.get()));
 
-			addArtifactSet(map, ArtifactItemRegistry.SET_SAINT.get(), (c) -> c
-					.add(3, ArtifactItemRegistry.EFF_SAINT_REDUCTION.get())
-					.add(5, ArtifactItemRegistry.EFF_SAINT_RESTORATION.get()));
-
 			addArtifactSet(map, ArtifactItemRegistry.SET_ARCHER.get(), (c) -> c
 					.add(3, ArtifactItemRegistry.EFF_ARCHER_3.get())
 					.add(5, ArtifactItemRegistry.EFF_ARCHER_5.get()));
+
+			// v1
+
+			addArtifactSet(map, ArtifactItemRegistry.SET_SAINT.get(), (c) -> c
+					.add(3, ArtifactItemRegistry.EFF_SAINT_REDUCTION.get())
+					.add(5, ArtifactItemRegistry.EFF_SAINT_RESTORATION.get()));
 
 			addArtifactSet(map, ArtifactItemRegistry.SET_PERFECTION.get(), (c) -> c
 					.add(2, ArtifactItemRegistry.EFF_PERFECTION_PROTECTION.get())
@@ -148,6 +152,8 @@ public class ConfigGen extends ConfigDataProvider {
 
 			addArtifactSet(map, ArtifactItemRegistry.SET_PROTECTION.get(), (c) -> c
 					.add(1, ArtifactItemRegistry.EFF_PROTECTION_RESISTANCE.get()));
+
+			// v2
 
 			addArtifactSet(map, ArtifactItemRegistry.SET_FROZE.get(), (c) -> c
 					.add(3, ArtifactItemRegistry.EFF_FROZE_SLOW.get())
@@ -165,6 +171,29 @@ public class ConfigGen extends ConfigDataProvider {
 					.add(1, ArtifactItemRegistry.EFF_WRATH_POISON.get())
 					.add(3, ArtifactItemRegistry.EFF_WRATH_SLOW.get())
 					.add(5, ArtifactItemRegistry.EFF_WRATH_FIRE.get()));
+
+			// v3
+
+			addArtifactSet(map, ArtifactItemRegistry.SET_PHOTOSYN.get(), (c) -> c
+					.add(1, ArtifactItemRegistry.EFF_PHOTOSYN.get()));
+
+			addArtifactSet(map, ArtifactItemRegistry.SET_VAMPIRE.get(), (c) -> c
+					.add(1, ArtifactItemRegistry.EFF_VAMPIRE_BURN.get())
+					.add(4, ArtifactItemRegistry.EFF_VAMPIRE_HEAL.get()));
+
+			addArtifactSet(map, ArtifactItemRegistry.SET_SUN_BLOCK.get(), (c) -> c
+					.add(1, ArtifactItemRegistry.EFF_SUN_BLOCK.get()));
+
+			addArtifactSet(map, ArtifactItemRegistry.SET_GLUTTONY.get(), (c) -> c
+					.add(3, ArtifactItemRegistry.EFF_GLUTTONY_FAST.get())
+					.add(5, ArtifactItemRegistry.EFF_GLUTTONY_HEAL.get()));
+
+			addArtifactSet(map, ArtifactItemRegistry.SET_FALLEN.get(), (c) -> c
+					.add(1, ArtifactItemRegistry.EFF_FALLEN_1.get())
+					.add(2, ArtifactItemRegistry.EFF_FALLEN_2.get())
+					.add(3, ArtifactItemRegistry.EFF_FALLEN_3.get())
+					.add(4, ArtifactItemRegistry.EFF_FALLEN_4.get())
+					.add(5, ArtifactItemRegistry.EFF_FALLEN_5.get()));
 
 		}
 

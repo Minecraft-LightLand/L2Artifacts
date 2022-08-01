@@ -1,5 +1,6 @@
 package dev.xkmc.l2artifacts.init;
 
+import dev.xkmc.l2artifacts.content.capability.ArtifactData;
 import dev.xkmc.l2artifacts.events.ArtifactEffectEvents;
 import dev.xkmc.l2artifacts.events.CommonEvents;
 import dev.xkmc.l2artifacts.events.CraftEvents;
@@ -46,6 +47,7 @@ public class L2Artifacts {
 		NetworkManager.register();
 		REGISTRATE.addDataGenerator(ProviderType.LANG, LangData::genLang);
 		REGISTRATE.addDataGenerator(ProviderType.RECIPE, RecipeGen::genRecipe);
+		ArtifactData.register();
 	}
 
 	private static void registerForgeEvents() {

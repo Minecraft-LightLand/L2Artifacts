@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "l2artifacts:item/fury_of_fallen/necklace",
+    "layer1": "l2artifacts:item/rank/2"
+  }
+}

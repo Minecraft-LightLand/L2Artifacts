@@ -78,7 +78,7 @@ public class SetBuilder<T extends ArtifactSet, I extends BaseArtifact, P> extend
 		return this.sup.get();
 	}
 
-	public SetBuilder<T, I, P> defaultLang() {
-		return this.lang(NamedEntry::getDescriptionId, RegistrateLangProvider.toEnglishName(this.getName()));
+	public SetBuilder<T, I, P> lang(String name) {
+		return this.lang(NamedEntry::getDescriptionId, RegistrateLangProvider.toEnglishName(name));
 	}
 }

@@ -61,7 +61,8 @@ public class SetBuilder<T extends ArtifactSet, I extends BaseArtifact, P> extend
 						.model((ctx, pvd) -> pvd.getBuilder(name).parent(new ModelFile.UncheckedModelFile("item/generated"))
 								.texture("layer0", new ResourceLocation(L2Artifacts.MODID, "item/" + getName() + "/" + slot_name))
 								.texture("layer1", new ResourceLocation(L2Artifacts.MODID, "item/rank/" + rank)))
-						.tag(curios_tag, slot_tag, rank_tag).register();
+						.tag(curios_tag, slot_tag, rank_tag).lang(RegistrateLangProvider
+								.toEnglishName(this.getName() + "_" + slot_name) + " Lv." + r).register();
 			}
 		}
 		return this;

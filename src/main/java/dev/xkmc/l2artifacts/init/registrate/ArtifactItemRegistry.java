@@ -49,7 +49,7 @@ public class ArtifactItemRegistry {
 
 	static {
 		SELECT = REGISTRATE.item("select", SelectArtifactItem::new)
-				.defaultModel().lang(e -> "Artifact Selector (Creative)").register();
+				.defaultModel().lang("Artifact Selector (Creative)").register();
 		int n = 5;
 		RANDOM = new ItemEntry[n];
 		for (int i = 0; i < n; i++) {
@@ -58,7 +58,7 @@ public class ArtifactItemRegistry {
 					.model((ctx, pvd) -> pvd.getBuilder(ctx.getName()).parent(new ModelFile.UncheckedModelFile("item/generated"))
 							.texture("layer0", new ResourceLocation(L2Artifacts.MODID, "item/random"))
 							.texture("layer1", new ResourceLocation(L2Artifacts.MODID, "item/rank/" + r)))
-					.lang(e -> "Random Artifact Lv." + e.rank).register();
+					.lang("Random Artifact Lv." + r).register();
 		}
 		ITEM_EXP = new ItemEntry[n];
 		for (int i = 0; i < n; i++) {
@@ -67,7 +67,7 @@ public class ArtifactItemRegistry {
 					.model((ctx, pvd) -> pvd.getBuilder(ctx.getName()).parent(new ModelFile.UncheckedModelFile("item/generated"))
 							.texture("layer0", new ResourceLocation(L2Artifacts.MODID, "item/artifact_experience"))
 							.texture("layer1", new ResourceLocation(L2Artifacts.MODID, "item/rank/" + r)))
-					.defaultLang().register();
+					.lang("Artifact Experience Lv." + r).register();
 		}
 		ITEM_STAT = new ItemEntry[n];
 		for (int i = 0; i < n; i++) {
@@ -76,7 +76,7 @@ public class ArtifactItemRegistry {
 					.model((ctx, pvd) -> pvd.getBuilder(ctx.getName()).parent(new ModelFile.UncheckedModelFile("item/generated"))
 							.texture("layer0", new ResourceLocation(L2Artifacts.MODID, "item/stat_container"))
 							.texture("layer1", new ResourceLocation(L2Artifacts.MODID, "item/rank/" + r)))
-					.defaultLang().register();
+					.lang("Stat Container Lv." + r).register();
 		}
 		ITEM_BOOST_MAIN = new ItemEntry[n];
 		for (int i = 0; i < n; i++) {
@@ -85,7 +85,7 @@ public class ArtifactItemRegistry {
 					.model((ctx, pvd) -> pvd.getBuilder(ctx.getName()).parent(new ModelFile.UncheckedModelFile("item/generated"))
 							.texture("layer0", new ResourceLocation(L2Artifacts.MODID, "item/boost_main"))
 							.texture("layer1", new ResourceLocation(L2Artifacts.MODID, "item/rank/" + r)))
-					.defaultLang().register();
+					.lang("Main Stat Booster Lv." + r).register();
 		}
 		ITEM_BOOST_SUB = new ItemEntry[n];
 		for (int i = 0; i < n; i++) {
@@ -94,7 +94,7 @@ public class ArtifactItemRegistry {
 					.model((ctx, pvd) -> pvd.getBuilder(ctx.getName()).parent(new ModelFile.UncheckedModelFile("item/generated"))
 							.texture("layer0", new ResourceLocation(L2Artifacts.MODID, "item/boost_sub"))
 							.texture("layer1", new ResourceLocation(L2Artifacts.MODID, "item/rank/" + r)))
-					.defaultLang().register();
+					.lang("Sub Stat Booster Lv." + r).register();
 		}
 	}
 

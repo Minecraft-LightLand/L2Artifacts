@@ -1,6 +1,6 @@
-// 1.19.1	2022-08-01T22:44:42.491134	Registrate Provider for l2artifacts [Recipes, Advancements, Loot tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
-678cc2be26e445a6409c7fa6940f73507f86808f assets/l2artifacts/lang/en_ud.json
-afe4106baf53182a2d0d059e38beca1d385de5ce assets/l2artifacts/lang/en_us.json
+// 1.19.1	2022-08-02T00:36:57.666112	Registrate Provider for l2artifacts [Recipes, Advancements, Loot tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
+f637ca9c300aa9139f8ccb5884716469b7fac5bd assets/l2artifacts/lang/en_ud.json
+c59f79c31c353d4e9ca43539ffc045835c39e184 assets/l2artifacts/lang/en_us.json
 0ba0cd8b6c5452ffd4b333ec0f07ac3459a906d2 assets/l2artifacts/models/item/archer_belt_1.json
 9c4f20ad1a01199fca72d4c7bc927d191ab44c95 assets/l2artifacts/models/item/archer_belt_2.json
 afdb0780da2f3b8a710c5368e576f8c0d05fa606 assets/l2artifacts/models/item/archer_belt_3.json

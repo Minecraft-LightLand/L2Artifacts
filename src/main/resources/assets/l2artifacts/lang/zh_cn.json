@@ -1,4 +1,5 @@
 {
+  "item.l2artifacts.select": "古遗物选择器（创造）",
   "item.l2artifacts.berserker_head_1": "狂战士的帽子-常见级",
   "item.l2artifacts.berserker_head_2": "狂战士的帽子-稀有级",
   "item.l2artifacts.berserker_head_3": "狂战士的帽子-特质级",
@@ -299,6 +300,11 @@
   "item.l2artifacts.executor_belt_3": "执行者腰带-特质级",
   "item.l2artifacts.executor_belt_4": "执行者腰带-传奇级",
   "item.l2artifacts.executor_belt_5": "执行者腰带-神化级",
+  "item.l2artifacts.random_1": "未鉴定古遗物-常见级",
+  "item.l2artifacts.random_2": "未鉴定古遗物-稀有级",
+  "item.l2artifacts.random_3": "未鉴定古遗物-特质级",
+  "item.l2artifacts.random_4": "未鉴定古遗物-传奇级",
+  "item.l2artifacts.random_5": "未鉴定古遗物-神化级",
   "item.l2artifacts.artifact_experience_1": "古遗物经验-常见级",
   "item.l2artifacts.artifact_experience_2": "古遗物经验-稀有级",
   "item.l2artifacts.artifact_experience_3": "古遗物经验-特质级",
@@ -454,5 +460,8 @@
   "l2artifacts.set.3": "三件套: ",
   "l2artifacts.set.4": "四件套: ",
   "l2artifacts.set.5": "五件套: ",
-  "l2artifacts.set.all_set_effects": "套装-%s: %s件"
+  "l2artifacts.set.all_set_effects": "套装-%s: %s件",
+  "l2artifacts.title.select_set": "选择套装",
+  "l2artifacts.title.select_slot": "选择部件",
+  "l2artifacts.title.select_rank": "选择品质"
 }

@@ -11,12 +11,12 @@ import net.minecraft.world.item.ItemStack;
 
 public class RankSelectScreen extends AbstractSelectScreen {
 
-	private static final SpriteManager MANAGER = new SpriteManager(L2Artifacts.MODID, "slot_select");
+	private static final SpriteManager MANAGER = new SpriteManager(L2Artifacts.MODID, "rank_select");
 
 	private final int set, slot;
 
 	protected RankSelectScreen(int set, int slot) {
-		super(LangData.TITLE_SELECT_SLOT.get(), MANAGER, "set", "slot");
+		super(LangData.TITLE_SELECT_SLOT.get(), MANAGER, "set", "slot", "rank");
 		this.set = set;
 		this.slot = slot;
 	}
@@ -31,8 +31,8 @@ public class RankSelectScreen extends AbstractSelectScreen {
 	@Override
 	protected ItemStack getStack(String comp, int x, int y) {
 		var setEntry = L2Artifacts.REGISTRATE.SET_LIST.get(set);
-		if (comp.equals("set")) return setEntry.items[slot][0].asStack();
-		if (comp.equals("slot")) return setEntry.items[slot][0].asStack();
+		if (comp.equals("set")) return setEntry.items[0][setEntry.items[0].length - 1].asStack();
+		if (comp.equals("slot")) return setEntry.items[slot][setEntry.items[slot].length - 1].asStack();
 		int n = setEntry.items[slot].length;
 		return x < n ? setEntry.items[slot][x].asStack() : ItemStack.EMPTY;
 	}
@@ -56,6 +56,7 @@ public class RankSelectScreen extends AbstractSelectScreen {
 		var setEntry = L2Artifacts.REGISTRATE.SET_LIST.get(set);
 		int n = setEntry.items[slot].length;
 		if (ind >= n) return false;
+		Minecraft.getInstance().setScreen(null);
 		NetworkManager.HANDLER.toServer(new ChooseArtifacttoServer(set, slot, ind));
 		return true;
 	}

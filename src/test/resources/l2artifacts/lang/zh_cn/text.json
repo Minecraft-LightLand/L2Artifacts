@@ -33,6 +33,11 @@
 	  "4": "四件套: ",
 	  "5": "五件套: ",
 	  "all_set_effects": "套装-%s: %s件"
+	},
+	"title": {
+	  "select_set": "选择套装",
+	  "select_slot": "选择部件",
+	  "select_rank": "选择品质"
 	}
   }
 }

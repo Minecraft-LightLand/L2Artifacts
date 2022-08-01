@@ -27,9 +27,9 @@ public class SlotSelectScreen extends AbstractSelectScreen {
 	@Override
 	protected ItemStack getStack(String comp, int x, int y) {
 		var setEntry = L2Artifacts.REGISTRATE.SET_LIST.get(set);
-		if (comp.equals("set")) return setEntry.items[0][0].asStack();
+		if (comp.equals("set")) return setEntry.items[0][setEntry.items[0].length - 1].asStack();
 		int n = setEntry.items.length;
-		return x < n ? setEntry.items[x][0].asStack() : ItemStack.EMPTY;
+		return x < n ? setEntry.items[x][setEntry.items[x].length - 1].asStack() : ItemStack.EMPTY;
 	}
 
 

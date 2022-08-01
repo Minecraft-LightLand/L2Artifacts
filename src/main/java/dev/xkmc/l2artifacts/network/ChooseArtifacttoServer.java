@@ -43,7 +43,8 @@ public class ChooseArtifacttoServer extends SerialPacketBase {
 		if (slot >= slots.length) return;
 		var ranks = slots[slot];
 		if (rank >= ranks.length) return;
-		stack.shrink(1);
+		if (!player.getAbilities().instabuild)
+			stack.shrink(1);
 		ItemStack artifact = ranks[rank].asStack();
 		player.getInventory().placeItemBackInInventory(artifact);
 	}

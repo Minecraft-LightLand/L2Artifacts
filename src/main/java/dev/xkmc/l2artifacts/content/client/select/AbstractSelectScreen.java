@@ -15,16 +15,24 @@ public abstract class AbstractSelectScreen extends Screen {
 
 	public final SpriteManager manager;
 	public final String[] slots;
-	private final int imageWidth, imageHeight, leftPos, topPos;
+
+	private int imageWidth, imageHeight, leftPos, topPos;
+
+	private ItemStack hovered = null;
 
 	protected AbstractSelectScreen(Component title, SpriteManager manager, String... slots) {
 		super(title);
 		this.manager = manager;
 		this.slots = slots;
-		imageWidth = 176;
-		imageHeight = manager.getHeight();
-		leftPos = (this.width - imageWidth) / 2;
-		topPos = (this.height - imageHeight) / 2;
+
+	}
+
+	@Override
+	protected void init() {
+		this.imageWidth = 176;
+		this.imageHeight = manager.getHeight();
+		this.leftPos = (this.width - imageWidth) / 2;
+		this.topPos = (this.height - imageHeight) / 2;
 	}
 
 	public void render(PoseStack pose, int mx, int my, float pTick) {
@@ -36,10 +44,17 @@ public abstract class AbstractSelectScreen extends Screen {
 		posestack.translate(leftPos, topPos, 0.0D);
 		RenderSystem.applyModelViewMatrix();
 		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
+		hovered = null;
 		for (String c : slots) {
-			renderSlotComp(posestack, c, mx, my);
+			renderSlotComp(pose, c, mx, my);
 		}
 		this.renderLabels(pose, mx, my);
+		if (hovered != null && !hovered.isEmpty()) {
+			pose.pushPose();
+			pose.translate(-leftPos, -topPos, 0);
+			this.renderTooltip(pose, hovered, mx, my);
+			pose.popPose();
+		}
 		posestack.popPose();
 		RenderSystem.applyModelViewMatrix();
 		RenderSystem.enableDepthTest();
@@ -49,16 +64,18 @@ public abstract class AbstractSelectScreen extends Screen {
 
 	protected abstract ItemStack getStack(String comp, int x, int y);
 
-	private void renderSlotComp(PoseStack stack, String name, int mx, int my) {
+	private void renderSlotComp(PoseStack pose, String name, int mx, int my) {
 		var comp = manager.getComp(name);
 		for (int i = 0; i < comp.rx; i++) {
 			for (int j = 0; j < comp.ry; j++) {
 				RenderSystem.setShader(GameRenderer::getPositionTexShader);
-				this.renderSlot(i, j, getStack(name, i, j));
+				int sx = comp.x + comp.w * i;
+				int sy = comp.y + comp.h * j;
+				ItemStack stack = getStack(name, i, j);
+				this.renderSlot(sx, sy, stack);
 				if (this.isHovering(name, i, j, mx, my)) {
-					int sx = comp.x + comp.w * i;
-					int sy = comp.y + comp.h * j;
-					AbstractContainerScreen.renderSlotHighlight(stack, sx, sy, this.getBlitOffset(), -2130706433);
+					AbstractContainerScreen.renderSlotHighlight(pose, sx, sy, this.getBlitOffset(), -2130706433);
+					hovered = stack;
 				}
 			}
 		}
@@ -95,6 +112,7 @@ public abstract class AbstractSelectScreen extends Screen {
 		my -= j;
 		return mx >= (x - 1) && mx < (x + w + 1) && my >= (y - 1) && my < (y + h + 1);
 	}
+
 
 	@Nullable
 	protected SlotResult findSlot(double mx, double my) {

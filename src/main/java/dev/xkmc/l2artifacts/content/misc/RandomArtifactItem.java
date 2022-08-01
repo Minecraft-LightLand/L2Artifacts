@@ -23,11 +23,11 @@ public class RandomArtifactItem extends Item {
 	public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
 		ItemStack itemstack = player.getItemInHand(hand);
 		player.awardStat(Stats.ITEM_USED.get(this));
-		if (!player.getAbilities().instabuild) {
-			itemstack.shrink(1);
-		}
 		if (!level.isClientSide) {
 			player.getInventory().placeItemBackInInventory(getRandomArtifact(rank, player.getRandom()));
+		}
+		if (!player.getAbilities().instabuild) {
+			itemstack.shrink(1);
 		}
 		return InteractionResultHolder.sidedSuccess(itemstack, level.isClientSide());
 	}

@@ -24,7 +24,8 @@ public class SetSelectScreen extends AbstractSelectScreen {
 	protected ItemStack getStack(String comp, int x, int y) {
 		int ind = x + y * 9;
 		if (ind >= L2Artifacts.REGISTRATE.SET_LIST.size()) return ItemStack.EMPTY;
-		return L2Artifacts.REGISTRATE.SET_LIST.get(ind).items[0][0].asStack();
+		var arr = L2Artifacts.REGISTRATE.SET_LIST.get(ind).items[0];
+		return arr[arr.length - 1].asStack();
 	}
 
 	@Override

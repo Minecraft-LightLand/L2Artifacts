@@ -1,28 +1,11 @@
-1. Event Propagation
-2. Artifact Tick reduce loop iteration
-3. BaseArtifact Item builder for KubeJS
-
-
-As in you have x item that you want to let users register during a KubeJS event?
-
-You’d start by making a KubeJSPlugin class (a class that extends KubeJSPlugin).
-
-https://github.com/KubeJS-Mods/KubeJS-Thermal/blob/42ae39fb55a194808e2162c4a71c61a3945780db/src/main/java/dev/latvian/mods/kubejs/thermal/KubeJSThermalPlugin.java#L10
-
-You’d then make a text file in your resource folder named kubejs.plugins.txt that gives the location of the plug-in class.
-
-(Example from KubeJS Thermal)
-
- https://github.com/KubeJS-Mods/KubeJS-Thermal/blob/42ae39fb55a194808e2162c4a71c61a3945780db/src/main/resources/kubejs.plugins.txt#L1
-
-Then you need to make a "builder class" for the registry type you want to support.
-
-This is just a class that extends BuilderBase:
-
-https://github.com/KubeJS-Mods/KubeJS/blob/ab13a2bfdd5af14f7b94722ec401f8f2e52f568d/common/src/main/java/dev/latvian/mods/kubejs/BuilderBase.java#L26
-
-Then inside the init function you can do things like this:
-
-https://github.com/KubeJS-Mods/KubeJS/blob/ab13a2bfdd5af14f7b94722ec401f8f2e52f568d/common/src/main/java/dev/latvian/mods/kubejs/BuiltinKubeJSPlugin.java#L170
-
-Where you register your Builder class for that registry type.
+添加一个新的套装需要做的事：
+在content.effects.<...>中创建套装效果类（SetEffect）
+在init.registrate.ArtifactItemRegistry中注册套装效果，并提供效果描述文本和名字
+在init.registrate.ArtifactItemRegistry中注册套装，并指定星级范围和可用套装部位，以及套装名（自动注册套装物品）
+在init.data.ConfigGen中将套装和套装效果配对，并设定套装数量要求
+添加套装物品贴图，路径为：main/resources/assets/l2artifacts/textures/item/<套装名>/<部位名>.png
+运行runData以生成配置文件和物品模型文件，以及自动生成的合成表
+在test/resources/l2artifacts/lang/zh_cn/item.json语言文件中提供套装物品中文名
+在test/resources/l2artifacts/lang/zh_cn/regs.json语言文件中提供套装效果中文名和套装效果中文描述
+运行ResourceGenerator以整理并生成中文翻译文件
+运行runClient打开游戏测试套装效果

@@ -1,5 +1,6 @@
 package dev.xkmc.l2artifacts.init.registrate.entries;
 
+import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
 import dev.xkmc.l2artifacts.content.core.ArtifactSet;
 import dev.xkmc.l2artifacts.content.core.ArtifactSlot;
 import dev.xkmc.l2artifacts.content.core.BaseArtifact;
@@ -25,26 +26,39 @@ import net.minecraftforge.registries.tags.ITagManager;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
+import java.util.function.Consumer;
 
 public class SetBuilder<T extends ArtifactSet, I extends BaseArtifact, P> extends AbstractBuilder<ArtifactSet, T, P, SetBuilder<T, I, P>> {
 
 	private final NonNullSupplier<T> sup;
 	private final int min_rank, max_rank;
-	private final RegistryEntry<ArtifactSlot>[] slots;
 
+	private RegistryEntry<ArtifactSlot>[] slots;
 	private ItemEntry<BaseArtifact>[][] items;
+	private Consumer<ArtifactSetConfig.SetBuilder> builder;
 
-	@SafeVarargs
-	public SetBuilder(ArtifactRegistrate owner, P parent, String name, BuilderCallback callback, NonNullSupplier<T> sup, int min_rank, int max_rank, RegistryEntry<ArtifactSlot>... slots) {
+	public SetBuilder(ArtifactRegistrate owner, P parent, String name, BuilderCallback callback, NonNullSupplier<T> sup, int min_rank, int max_rank) {
 		super(owner, parent, name, callback, ArtifactTypeRegistry.SET.key());
 		this.sup = sup;
 		this.min_rank = min_rank;
 		this.max_rank = max_rank;
+
+	}
+
+	@SafeVarargs
+	public final SetBuilder<T, I, P> setSlots(RegistryEntry<ArtifactSlot>... slots) {
 		this.slots = slots;
+		return this;
+	}
+
+	public SetBuilder<T, I, P> buildConfig(Consumer<ArtifactSetConfig.SetBuilder> builder) {
+		this.builder = builder;
+		return this;
 	}
 
 	@SuppressWarnings({"rawtype", "unchecked"})
 	public SetBuilder<T, I, P> regItems() {
+		if (slots == null) throw new IllegalStateException("call setSlots() first");
 		items = new ItemEntry[slots.length][max_rank - min_rank + 1];
 		ITagManager<Item> manager = Objects.requireNonNull(ForgeRegistries.ITEMS.tags());
 
@@ -70,7 +84,10 @@ public class SetBuilder<T extends ArtifactSet, I extends BaseArtifact, P> extend
 
 	@Override
 	protected RegistryEntry<T> createEntryWrapper(RegistryObject<T> delegate) {
-		return new SetEntry<>(Wrappers.cast(this.getOwner()), delegate, items);
+		if (slots == null) throw new IllegalStateException("call setSlots() first");
+		if (builder == null) throw new IllegalStateException("call buildConfig() first");
+		if (items == null) throw new IllegalStateException("call regItems() first");
+		return new SetEntry<>(Wrappers.cast(this.getOwner()), delegate, items, builder);
 	}
 
 	@NonnullType

@@ -68,7 +68,6 @@ public abstract class SetEffect extends NamedEntry<SetEffect> {
 	 * 当玩家对怪物造成确实伤害时触发。此时已处理过怪物减伤判定。
 	 */
 	public void playerDamageOpponentEvent(Player player, ArtifactSetConfig.Entry ent, int rank, AttackCache event) {
-
 	}
 
 	/**

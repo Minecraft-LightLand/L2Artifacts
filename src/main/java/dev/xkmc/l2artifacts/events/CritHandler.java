@@ -34,7 +34,7 @@ public class CritHandler implements AttackListener {
 	}
 
 	@Override
-	public void onDamage(AttackCache cache, ItemStack weapon) {
+	public void onDamageFinalized(AttackCache cache, ItemStack weapon) {
 		if (cache.getAttacker() instanceof Player player)
 			ArtifactEffectEvents.postEvent(player, cache, SetEffect::playerDamageOpponentEvent);
 	}

@@ -8,13 +8,18 @@ public class SetEffectData {
 	@SerialClass.SerialField
 	public int life, rank;
 
-	public Runnable onRemove;
+	@SerialClass.SerialField
+	public boolean hasRemove;
+
+	private Runnable onRemove;
 
 	public boolean tick() {
 		if (life > 0)
 			life--;
 		if (life == 0) {
-			remove();
+			if (!remove()) {
+				life = 1;
+			}
 		}
 		return life <= 0;
 	}
@@ -24,9 +29,15 @@ public class SetEffectData {
 		this.rank = rank;
 	}
 
-	protected void remove() {
-		if (onRemove != null) {
-			onRemove.run();
-		}
+	public void setRemoveCallback(Runnable run) {
+		hasRemove = true;
+		onRemove = run;
+	}
+
+	protected boolean remove() {
+		if (!hasRemove) return true;
+		if (onRemove == null) return false;
+		onRemove.run();
+		return true;
 	}
 }

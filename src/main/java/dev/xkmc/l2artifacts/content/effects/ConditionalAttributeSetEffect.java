@@ -44,7 +44,7 @@ public class ConditionalAttributeSetEffect extends PersistentDataSetEffect<SetEf
 			double val = entry.getValue(rank);
 			ins.addTransientModifier(new AttributeModifier(id, ent.getName(), val, entry.op()));
 		}
-		data.onRemove = () -> onRemove(player, ent);
+		data.setRemoveCallback(() -> onRemove(player, ent));
 	}
 
 	private void onRemove(Player player, ArtifactSetConfig.Entry ent) {

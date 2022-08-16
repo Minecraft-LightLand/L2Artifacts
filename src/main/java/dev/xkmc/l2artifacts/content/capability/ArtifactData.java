@@ -13,6 +13,7 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.common.capabilities.CapabilityToken;
 
+import javax.annotation.Nullable;
 import java.util.HashMap;
 
 @SerialClass
@@ -33,6 +34,11 @@ public class ArtifactData extends PlayerCapabilityTemplate<ArtifactData> {
 
 	public <T extends SetEffectData> T getOrCreateData(PersistentDataSetEffect<T> setEffect) {
 		return Wrappers.cast(data.computeIfAbsent(setEffect, e -> setEffect.getData()));
+	}
+
+	@Nullable
+	public <T extends SetEffectData> T getData(PersistentDataSetEffect<T> setEffect) {
+		return Wrappers.cast(data.get(setEffect));
 	}
 
 	@Override

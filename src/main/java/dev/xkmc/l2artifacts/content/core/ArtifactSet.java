@@ -34,11 +34,14 @@ public class ArtifactSet extends NamedEntry<ArtifactSet> {
 			rank[i] += rank[i + 1];
 		}
 		// now rank[i] means how many items are equal or above this rank
+		// ranks[i] means the maximum rank for count of i
 		int[] ranks = new int[6];
-		for (int i = 0; i <= 5; i++) {// count
-			for (int j = 0; j < rank.length; j++) // rank
-				if (rank[j] >= i)
-					ranks[i] = Math.max(ranks[rank[i]], j);
+		for (int i = 0; i <= 5; i++) { // count
+			for (int j = 0; j < rank.length; j++) { // rank
+				if (rank[j] >= i) {
+					ranks[i] = Math.max(ranks[i], j);
+				}
+			}
 		}
 		return ranks;
 	}

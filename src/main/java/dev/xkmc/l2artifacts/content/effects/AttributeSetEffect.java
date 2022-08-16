@@ -31,7 +31,7 @@ public class AttributeSetEffect extends SetEffect {
 				continue;
 			ins.removeModifier(ent.id[i]);
 			if (enabled) {
-				ins.addTransientModifier(new AttributeModifier(ent.id[i], ent.str, val, entry.op()));
+				ins.addTransientModifier(new AttributeModifier(ent.id[i], ent.getName(), val, entry.op()));
 			}
 		}
 	}

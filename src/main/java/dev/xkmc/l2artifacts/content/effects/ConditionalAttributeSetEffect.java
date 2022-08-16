@@ -42,7 +42,7 @@ public class ConditionalAttributeSetEffect extends PersistentDataSetEffect<SetEf
 			UUID id = ent.id[i];
 			if (ins.getModifier(id) != null) continue;
 			double val = entry.getValue(rank);
-			ins.addTransientModifier(new AttributeModifier(id, ent.str, val, entry.op()));
+			ins.addTransientModifier(new AttributeModifier(id, ent.getName(), val, entry.op()));
 		}
 		data.onRemove = () -> onRemove(player, ent);
 	}

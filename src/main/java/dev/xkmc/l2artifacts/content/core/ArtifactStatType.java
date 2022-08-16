@@ -31,7 +31,7 @@ public class ArtifactStatType extends NamedEntry<ArtifactStatType> {
 	}
 
 	public void getModifier(ImmutableMultimap.Builder<Attribute, AttributeModifier> builder, StatEntry entry) {
-		builder.put(attr.get(), new AttributeModifier(entry.id, entry.name, entry.value, op));
+		builder.put(attr.get(), new AttributeModifier(entry.id, entry.getName(), entry.value, op));
 	}
 
 	public double getInitialValue(int rank, RandomSource random, boolean max) {

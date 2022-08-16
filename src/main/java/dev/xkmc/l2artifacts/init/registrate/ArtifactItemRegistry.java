@@ -30,8 +30,7 @@ import net.minecraftforge.client.model.generators.ModelFile;
 
 import static dev.xkmc.l2artifacts.init.L2Artifacts.REGISTRATE;
 import static dev.xkmc.l2artifacts.init.registrate.ArtifactTypeRegistry.*;
-import static net.minecraft.world.entity.ai.attributes.AttributeModifier.Operation.ADDITION;
-import static net.minecraft.world.entity.ai.attributes.AttributeModifier.Operation.MULTIPLY_TOTAL;
+import static net.minecraft.world.entity.ai.attributes.AttributeModifier.Operation.*;
 
 @SuppressWarnings({"raw_type", "unchecked"})
 public class ArtifactItemRegistry {
@@ -178,12 +177,12 @@ public class ArtifactItemRegistry {
 
 				EFF_BERSERKER_3 = REGISTRATE.setEffect("berserker_3", () -> new AttributeSetEffect(
 						new AttrSetEntry(() -> Attributes.ARMOR, ADDITION, ar3, false),
-						new AttrSetEntry(() -> Attributes.ATTACK_DAMAGE, MULTIPLY_TOTAL, atk3, true)
+						new AttrSetEntry(() -> Attributes.ATTACK_DAMAGE, MULTIPLY_BASE, atk3, true)
 				)).lang("Unpolished Bruteforce").register();
 
 				EFF_BERSERKER_5 = REGISTRATE.setEffect("berserker_5", () -> new AttributeSetEffect(
-						new AttrSetEntry(() -> Attributes.MOVEMENT_SPEED, MULTIPLY_TOTAL, speed, true),
-						new AttrSetEntry(() -> Attributes.ATTACK_SPEED, MULTIPLY_TOTAL, haste, true),
+						new AttrSetEntry(() -> Attributes.MOVEMENT_SPEED, MULTIPLY_BASE, speed, true),
+						new AttrSetEntry(() -> Attributes.ATTACK_SPEED, MULTIPLY_BASE, haste, true),
 						new AttrSetEntry(CRIT_DMG, ADDITION, cd5, true)
 				)).lang("Subconscious Fight").register();
 
@@ -204,12 +203,12 @@ public class ArtifactItemRegistry {
 				LinearFuncEntry cr5 = REGISTRATE.regLinear("archer_5_crit_rate", 0.4, 0.2);
 
 				EFF_ARCHER_3 = REGISTRATE.setEffect("archer_3", () -> new AttributeSetEffect(
-						new AttrSetEntry(() -> Attributes.ATTACK_DAMAGE, MULTIPLY_TOTAL, atk3, true),
+						new AttrSetEntry(() -> Attributes.ATTACK_DAMAGE, MULTIPLY_BASE, atk3, true),
 						new AttrSetEntry(BOW_STRENGTH, ADDITION, bow3, true)
 				)).lang("Specialty of Archer").register();
 
 				EFF_ARCHER_5 = REGISTRATE.setEffect("archer_5", () -> new AttributeSetEffect(
-						new AttrSetEntry(() -> Attributes.ATTACK_SPEED, MULTIPLY_TOTAL, haste, true),
+						new AttrSetEntry(() -> Attributes.ATTACK_SPEED, MULTIPLY_BASE, haste, true),
 						new AttrSetEntry(CRIT_RATE, ADDITION, cr5, true)
 				)).lang("Focus of Archer").register();
 
@@ -330,7 +329,7 @@ public class ArtifactItemRegistry {
 				LinearFuncEntry factor = REGISTRATE.regLinear("executor_limit", 0.3, -0.05);
 
 				EFF_EXECUTOR_SELF_HURT = REGISTRATE.setEffect("executor_self_hurt", () -> new ExecutorSelfHurtEffect(
-						new AttrSetEntry(() -> Attributes.ATTACK_DAMAGE, MULTIPLY_TOTAL, atk, true),
+						new AttrSetEntry(() -> Attributes.ATTACK_DAMAGE, MULTIPLY_BASE, atk, true),
 						hurt)).desc("Brutal Execution",
 						"When kill enemies, deal real damage to oneself equal to %s%% of enemies' max health."
 				).register();
@@ -355,7 +354,7 @@ public class ArtifactItemRegistry {
 
 				EFF_PHYSICAL_DAMAGE = REGISTRATE.setEffect("physical_damage", () -> new PhysicalDamageEffect(
 						new AttrSetEntry(() -> Attributes.ATTACK_DAMAGE,
-								AttributeModifier.Operation.MULTIPLY_TOTAL, atk, true),
+								AttributeModifier.Operation.MULTIPLY_BASE, atk, true),
 						factor)).desc("Barbaric Attack",
 						"Magical damage dealt will be reduced to %s%%"
 				).register();
@@ -459,9 +458,9 @@ public class ArtifactItemRegistry {
 				LinearFuncEntry spe = REGISTRATE.regLinear("gluttony_speed", 0.1, 0.05);
 				EFF_GLUTTONY_FAST = REGISTRATE.setEffect("gluttony_fast", () -> new ConditionalAttributeSetEffect(
 						player -> player.hasEffect(MobEffects.HUNGER),
-						new AttrSetEntry(() -> Attributes.ATTACK_DAMAGE, MULTIPLY_TOTAL, atk, true),
-						new AttrSetEntry(() -> Attributes.ATTACK_SPEED, MULTIPLY_TOTAL, swi, true),
-						new AttrSetEntry(() -> Attributes.MOVEMENT_SPEED, MULTIPLY_TOTAL, spe, true)
+						new AttrSetEntry(() -> Attributes.ATTACK_DAMAGE, MULTIPLY_BASE, atk, true),
+						new AttrSetEntry(() -> Attributes.ATTACK_SPEED, MULTIPLY_BASE, swi, true),
+						new AttrSetEntry(() -> Attributes.MOVEMENT_SPEED, MULTIPLY_BASE, spe, true)
 				)).desc("Hunger Strike", "When having Hunger effect:").register();
 
 				LinearFuncEntry eat = REGISTRATE.regLinear("gluttony_eat", 2, 1);
@@ -479,30 +478,30 @@ public class ArtifactItemRegistry {
 
 			// fallen
 			{
-				LinearFuncEntry atk1 = REGISTRATE.regLinear("fury_of_fallen_1", 0.1, 0.02);
-				LinearFuncEntry atk2 = REGISTRATE.regLinear("fury_of_fallen_2", 0.15, 0.03);
-				LinearFuncEntry atk3 = REGISTRATE.regLinear("fury_of_fallen_3", 0.2, 0.04);
-				LinearFuncEntry atk4 = REGISTRATE.regLinear("fury_of_fallen_4", 0.25, 0.05);
-				LinearFuncEntry atk5 = REGISTRATE.regLinear("fury_of_fallen_5", 0.3, 0.06);
+				LinearFuncEntry atk1 = REGISTRATE.regLinear("fury_of_fallen_1", 0.1, 0.05);
+				LinearFuncEntry atk2 = REGISTRATE.regLinear("fury_of_fallen_2", 0.2, 0.10);
+				LinearFuncEntry atk3 = REGISTRATE.regLinear("fury_of_fallen_3", 0.3, 0.15);
+				LinearFuncEntry atk4 = REGISTRATE.regLinear("fury_of_fallen_4", 0.4, 0.20);
+				LinearFuncEntry atk5 = REGISTRATE.regLinear("fury_of_fallen_5", 0.5, 0.25);
 				EFF_FALLEN_1 = REGISTRATE.setEffect("fury_of_fallen_1", () -> new ConditionalAttributeSetEffect(
 						player -> player.getHealth() <= player.getMaxHealth() * 0.5,
-						new AttrSetEntry(() -> Attributes.ATTACK_DAMAGE, MULTIPLY_TOTAL, atk1, true)
+						new AttrSetEntry(() -> Attributes.ATTACK_DAMAGE, MULTIPLY_BASE, atk1, true)
 				)).desc("Furry of Fallen Lv.1", "When health is less than 50%:").register();
 				EFF_FALLEN_2 = REGISTRATE.setEffect("fury_of_fallen_2", () -> new ConditionalAttributeSetEffect(
 						player -> player.getHealth() <= player.getMaxHealth() * 0.4,
-						new AttrSetEntry(() -> Attributes.ATTACK_DAMAGE, MULTIPLY_TOTAL, atk2, true)
+						new AttrSetEntry(() -> Attributes.ATTACK_DAMAGE, MULTIPLY_BASE, atk2, true)
 				)).desc("Furry of Fallen Lv.2", "When health is less than 40%:").register();
 				EFF_FALLEN_3 = REGISTRATE.setEffect("fury_of_fallen_3", () -> new ConditionalAttributeSetEffect(
 						player -> player.getHealth() <= player.getMaxHealth() * 0.3,
-						new AttrSetEntry(() -> Attributes.ATTACK_DAMAGE, MULTIPLY_TOTAL, atk3, true)
+						new AttrSetEntry(() -> Attributes.ATTACK_DAMAGE, MULTIPLY_BASE, atk3, true)
 				)).desc("Furry of Fallen Lv.3", "When health is less than 30%:").register();
 				EFF_FALLEN_4 = REGISTRATE.setEffect("fury_of_fallen_4", () -> new ConditionalAttributeSetEffect(
 						player -> player.getHealth() <= player.getMaxHealth() * 0.2,
-						new AttrSetEntry(() -> Attributes.ATTACK_DAMAGE, MULTIPLY_TOTAL, atk4, true)
+						new AttrSetEntry(() -> Attributes.ATTACK_DAMAGE, MULTIPLY_BASE, atk4, true)
 				)).desc("Furry of Fallen Lv.4", "When health is less than 20%:").register();
 				EFF_FALLEN_5 = REGISTRATE.setEffect("fury_of_fallen_5", () -> new ConditionalAttributeSetEffect(
 						player -> player.getHealth() <= player.getMaxHealth() * 0.1,
-						new AttrSetEntry(() -> Attributes.ATTACK_DAMAGE, MULTIPLY_TOTAL, atk5, true)
+						new AttrSetEntry(() -> Attributes.ATTACK_DAMAGE, MULTIPLY_BASE, atk5, true)
 				)).desc("Furry of Fallen Lv.5", "When health is less than 10%:").register();
 
 				SET_FALLEN = Wrappers.cast(REGISTRATE.regSet("fury_of_fallen", ArtifactSet::new, 1, 5, "Fury of Fallen")

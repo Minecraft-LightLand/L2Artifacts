@@ -1,4 +1,4 @@
-package dev.xkmc.l2artifacts.content.effects;
+package dev.xkmc.l2artifacts.content.effects.attribute;
 
 import dev.xkmc.l2artifacts.init.registrate.entries.LinearFuncEntry;
 import net.minecraft.world.entity.ai.attributes.Attribute;

@@ -56,7 +56,7 @@ public class ImmobileEffect extends PersistentDataSetEffect<ImmobileData> {
 	}
 
 	@Override
-	public ImmobileData getData() {
+	public ImmobileData getData(ArtifactSetConfig.Entry ent) {
 		return new ImmobileData();
 	}
 

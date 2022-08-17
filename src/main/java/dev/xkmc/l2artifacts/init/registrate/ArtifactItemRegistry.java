@@ -1,9 +1,9 @@
 package dev.xkmc.l2artifacts.init.registrate;
 
 import dev.xkmc.l2artifacts.content.core.ArtifactSet;
-import dev.xkmc.l2artifacts.content.effects.AttrSetEntry;
-import dev.xkmc.l2artifacts.content.effects.AttributeSetEffect;
-import dev.xkmc.l2artifacts.content.effects.ConditionalAttributeSetEffect;
+import dev.xkmc.l2artifacts.content.effects.attribute.AttrSetEntry;
+import dev.xkmc.l2artifacts.content.effects.attribute.AttributeSetEffect;
+import dev.xkmc.l2artifacts.content.effects.attribute.SimpleCASetEffect;
 import dev.xkmc.l2artifacts.content.effects.v1.*;
 import dev.xkmc.l2artifacts.content.effects.v2.*;
 import dev.xkmc.l2artifacts.content.effects.v3.*;
@@ -132,9 +132,9 @@ public class ArtifactItemRegistry {
 	public static final RegistryEntry<VampireBurn> EFF_VAMPIRE_BURN;
 	public static final RegistryEntry<VampireHeal> EFF_VAMPIRE_HEAL;
 	public static final RegistryEntry<SunBlockMask> EFF_SUN_BLOCK;
-	public static final RegistryEntry<ConditionalAttributeSetEffect> EFF_GLUTTONY_FAST;
+	public static final RegistryEntry<SimpleCASetEffect> EFF_GLUTTONY_FAST;
 	public static final RegistryEntry<GluttonyHeal> EFF_GLUTTONY_HEAL;
-	public static final RegistryEntry<ConditionalAttributeSetEffect> EFF_FALLEN_1, EFF_FALLEN_2, EFF_FALLEN_3, EFF_FALLEN_4, EFF_FALLEN_5;
+	public static final RegistryEntry<SimpleCASetEffect> EFF_FALLEN_1, EFF_FALLEN_2, EFF_FALLEN_3, EFF_FALLEN_4, EFF_FALLEN_5;
 
 
 	static {
@@ -457,7 +457,7 @@ public class ArtifactItemRegistry {
 				LinearFuncEntry atk = REGISTRATE.regLinear("gluttony_attack", 0.2, 0.1);
 				LinearFuncEntry swi = REGISTRATE.regLinear("gluttony_swing", 0.04, 0.02);
 				LinearFuncEntry spe = REGISTRATE.regLinear("gluttony_speed", 0.1, 0.05);
-				EFF_GLUTTONY_FAST = REGISTRATE.setEffect("gluttony_fast", () -> new ConditionalAttributeSetEffect(
+				EFF_GLUTTONY_FAST = REGISTRATE.setEffect("gluttony_fast", () -> new SimpleCASetEffect(
 						player -> player.hasEffect(MobEffects.HUNGER),
 						new AttrSetEntry(() -> Attributes.ATTACK_DAMAGE, MULTIPLY_BASE, atk, true),
 						new AttrSetEntry(() -> Attributes.ATTACK_SPEED, MULTIPLY_BASE, swi, true),
@@ -484,23 +484,23 @@ public class ArtifactItemRegistry {
 				LinearFuncEntry atk3 = REGISTRATE.regLinear("fury_of_fallen_3", 0.3, 0.15);
 				LinearFuncEntry atk4 = REGISTRATE.regLinear("fury_of_fallen_4", 0.4, 0.20);
 				LinearFuncEntry atk5 = REGISTRATE.regLinear("fury_of_fallen_5", 0.5, 0.25);
-				EFF_FALLEN_1 = REGISTRATE.setEffect("fury_of_fallen_1", () -> new ConditionalAttributeSetEffect(
+				EFF_FALLEN_1 = REGISTRATE.setEffect("fury_of_fallen_1", () -> new SimpleCASetEffect(
 						player -> player.getHealth() <= player.getMaxHealth() * 0.5,
 						new AttrSetEntry(() -> Attributes.ATTACK_DAMAGE, MULTIPLY_BASE, atk1, true)
 				)).desc("Furry of Fallen Lv.1", "When health is less than 50%:").register();
-				EFF_FALLEN_2 = REGISTRATE.setEffect("fury_of_fallen_2", () -> new ConditionalAttributeSetEffect(
+				EFF_FALLEN_2 = REGISTRATE.setEffect("fury_of_fallen_2", () -> new SimpleCASetEffect(
 						player -> player.getHealth() <= player.getMaxHealth() * 0.4,
 						new AttrSetEntry(() -> Attributes.ATTACK_DAMAGE, MULTIPLY_BASE, atk2, true)
 				)).desc("Furry of Fallen Lv.2", "When health is less than 40%:").register();
-				EFF_FALLEN_3 = REGISTRATE.setEffect("fury_of_fallen_3", () -> new ConditionalAttributeSetEffect(
+				EFF_FALLEN_3 = REGISTRATE.setEffect("fury_of_fallen_3", () -> new SimpleCASetEffect(
 						player -> player.getHealth() <= player.getMaxHealth() * 0.3,
 						new AttrSetEntry(() -> Attributes.ATTACK_DAMAGE, MULTIPLY_BASE, atk3, true)
 				)).desc("Furry of Fallen Lv.3", "When health is less than 30%:").register();
-				EFF_FALLEN_4 = REGISTRATE.setEffect("fury_of_fallen_4", () -> new ConditionalAttributeSetEffect(
+				EFF_FALLEN_4 = REGISTRATE.setEffect("fury_of_fallen_4", () -> new SimpleCASetEffect(
 						player -> player.getHealth() <= player.getMaxHealth() * 0.2,
 						new AttrSetEntry(() -> Attributes.ATTACK_DAMAGE, MULTIPLY_BASE, atk4, true)
 				)).desc("Furry of Fallen Lv.4", "When health is less than 20%:").register();
-				EFF_FALLEN_5 = REGISTRATE.setEffect("fury_of_fallen_5", () -> new ConditionalAttributeSetEffect(
+				EFF_FALLEN_5 = REGISTRATE.setEffect("fury_of_fallen_5", () -> new SimpleCASetEffect(
 						player -> player.getHealth() <= player.getMaxHealth() * 0.1,
 						new AttrSetEntry(() -> Attributes.ATTACK_DAMAGE, MULTIPLY_BASE, atk5, true)
 				)).desc("Furry of Fallen Lv.5", "When health is less than 10%:").register();

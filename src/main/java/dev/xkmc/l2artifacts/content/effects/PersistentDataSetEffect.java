@@ -14,7 +14,7 @@ public abstract class PersistentDataSetEffect<T extends SetEffectData> extends S
 	@Override
 	public void tick(Player player, ArtifactSetConfig.Entry ent, int rank, boolean enabled) {
 		if (!enabled) return;
-		T data = ArtifactData.HOLDER.get(player).getOrCreateData(this);
+		T data = ArtifactData.HOLDER.get(player).getOrCreateData(this, ent);
 		tickData(player, ent, rank, data);
 	}
 
@@ -22,6 +22,6 @@ public abstract class PersistentDataSetEffect<T extends SetEffectData> extends S
 		data.update(2, rank);
 	}
 
-	public abstract T getData();
+	public abstract T getData(ArtifactSetConfig.Entry ent);
 
 }

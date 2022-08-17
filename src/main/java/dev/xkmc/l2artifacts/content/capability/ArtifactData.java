@@ -1,5 +1,6 @@
 package dev.xkmc.l2artifacts.content.capability;
 
+import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
 import dev.xkmc.l2artifacts.content.effects.PersistentDataSetEffect;
 import dev.xkmc.l2artifacts.content.effects.SetEffect;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
@@ -32,8 +33,8 @@ public class ArtifactData extends PlayerCapabilityTemplate<ArtifactData> {
 	@SerialClass.SerialField
 	public HashMap<SetEffect, SetEffectData> data = new HashMap<>();
 
-	public <T extends SetEffectData> T getOrCreateData(PersistentDataSetEffect<T> setEffect) {
-		return Wrappers.cast(data.computeIfAbsent(setEffect, e -> setEffect.getData()));
+	public <T extends SetEffectData> T getOrCreateData(PersistentDataSetEffect<T> setEffect, ArtifactSetConfig.Entry ent) {
+		return Wrappers.cast(data.computeIfAbsent(setEffect, e -> setEffect.getData(ent)));
 	}
 
 	@Nullable
@@ -43,7 +44,7 @@ public class ArtifactData extends PlayerCapabilityTemplate<ArtifactData> {
 
 	@Override
 	public void tick() {
-		data.entrySet().removeIf(e -> e.getValue().tick());
+		data.entrySet().removeIf(e -> e.getValue().tick(player));
 	}
 
 	public boolean hasData(PersistentDataSetEffect<?> eff) {

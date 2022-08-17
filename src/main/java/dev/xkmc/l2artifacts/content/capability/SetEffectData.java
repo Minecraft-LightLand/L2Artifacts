@@ -24,6 +24,6 @@ public class SetEffectData {
 	}
 
 	protected void remove(Player player) {
-		return;
 	}
+
 }

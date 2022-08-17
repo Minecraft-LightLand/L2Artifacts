@@ -8,7 +8,7 @@ import net.minecraft.world.entity.player.Player;
 
 import java.util.function.Predicate;
 
-public class TimedCASetEffect extends AbstractCASetEffect<TimedCAData> {
+public class TimedCASetEffect extends AbstractConditionalAttributeSetEffect<TimedCAData> {
 
 	private final Predicate<Player> pred;
 

@@ -30,6 +30,8 @@ public class TimedCASetEffect extends AbstractConditionalAttributeSetEffect<Time
 			data.time++;
 			if (data.time > period.getFromRank(rank)) {
 				addAttributes(player, ent, rank, data); // efficient operation, perform every tick
+			} else {
+				data.remove(player); // efficient operation, perform every tick
 			}
 		}
 	}

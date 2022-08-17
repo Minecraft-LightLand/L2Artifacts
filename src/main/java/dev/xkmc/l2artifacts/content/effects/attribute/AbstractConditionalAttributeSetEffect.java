@@ -36,9 +36,6 @@ public abstract class AbstractConditionalAttributeSetEffect<T extends AttributeS
 		}
 	}
 
-	@Override
-	protected abstract void tickData(Player player, ArtifactSetConfig.Entry ent, int rank, T data);
-
 	protected abstract T getData();
 
 	@Override

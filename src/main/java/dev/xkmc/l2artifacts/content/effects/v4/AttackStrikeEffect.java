@@ -25,10 +25,6 @@ public class AttackStrikeEffect extends AbstractConditionalAttributeSetEffect<At
 	}
 
 	@Override
-	protected void tickData(Player player, ArtifactSetConfig.Entry ent, int rank, AttackStrikeData data) {
-	}
-
-	@Override
 	public void playerHurtOpponentEvent(Player player, ArtifactSetConfig.Entry ent, int rank, AttackCache event) {
 		if (event.getStrength() > 0.99) {
 			AttackStrikeData data = ArtifactData.HOLDER.get(player).getOrCreateData(this, ent);

@@ -1,5 +1,6 @@
 package dev.xkmc.l2artifacts.content.effects.persistent;
 
+import dev.xkmc.l2artifacts.content.capability.ArtifactData;
 import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
 import dev.xkmc.l2artifacts.content.effects.PersistentDataSetEffect;
 import dev.xkmc.l2artifacts.init.registrate.entries.LinearFuncEntry;
@@ -15,7 +16,9 @@ public abstract class AbstractConditionalPersistentSetEffect<T extends PeriodicD
 	}
 
 	@Override
-	protected void tickData(Player player, ArtifactSetConfig.Entry ent, int rank, T data) {
+	public void tick(Player player, ArtifactSetConfig.Entry ent, int rank, boolean enabled) {
+		if (!enabled) return;
+		T data = ArtifactData.HOLDER.get(player).getOrCreateData(this, ent);
 		data.update(2, rank);
 		if (!test(player, ent, rank, data)) {
 			data.tick_count = 0;

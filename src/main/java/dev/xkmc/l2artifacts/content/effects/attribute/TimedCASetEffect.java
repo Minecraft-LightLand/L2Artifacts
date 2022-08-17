@@ -1,5 +1,6 @@
 package dev.xkmc.l2artifacts.content.effects.attribute;
 
+import dev.xkmc.l2artifacts.content.capability.ArtifactData;
 import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
 import dev.xkmc.l2artifacts.init.registrate.entries.LinearFuncEntry;
 import net.minecraft.network.chat.Component;
@@ -19,9 +20,10 @@ public class TimedCASetEffect extends AbstractConditionalAttributeSetEffect<Time
 		this.pred = pred;
 		this.period = period;
 	}
-
 	@Override
-	protected void tickData(Player player, ArtifactSetConfig.Entry ent, int rank, TimedCAData data) {
+	public void tick(Player player, ArtifactSetConfig.Entry ent, int rank, boolean enabled) {
+		if (!enabled) return;
+		TimedCAData data = ArtifactData.HOLDER.get(player).getOrCreateData(this, ent);
 		data.update(2, rank);
 		if (!pred.test(player)) {
 			data.time = 0;

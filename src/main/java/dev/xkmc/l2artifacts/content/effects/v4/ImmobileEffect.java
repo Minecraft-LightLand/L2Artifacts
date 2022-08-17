@@ -24,8 +24,11 @@ public class ImmobileEffect extends PersistentDataSetEffect<ImmobileData> {
 		this.threshold = threshold;
 	}
 
+
 	@Override
-	protected void tickData(Player player, ArtifactSetConfig.Entry ent, int rank, ImmobileData data) {
+	public void tick(Player player, ArtifactSetConfig.Entry ent, int rank, boolean enabled) {
+		if (!enabled) return;
+		ImmobileData data = ArtifactData.HOLDER.get(player).getOrCreateData(this, ent);
 		data.update(2, rank);
 		double x = player.getX();
 		double y = player.getY();

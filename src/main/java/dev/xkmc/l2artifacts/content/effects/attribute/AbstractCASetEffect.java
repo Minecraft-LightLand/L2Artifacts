@@ -1,8 +1,8 @@
 package dev.xkmc.l2artifacts.content.effects.attribute;
 
-import dev.xkmc.l2artifacts.content.capability.AttributeSetData;
 import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
 import dev.xkmc.l2artifacts.content.effects.PersistentDataSetEffect;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.contents.TranslatableContents;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
@@ -23,8 +23,6 @@ public abstract class AbstractCASetEffect<T extends AttributeSetData> extends Pe
 		super(entries.length);
 		this.entries = entries;
 	}
-
-	protected abstract boolean test(Player player, ArtifactSetConfig.Entry ent, int rank, T data);
 
 	protected void addAttributes(Player player, ArtifactSetConfig.Entry ent, int rank, T data) {
 		for (int i = 0; i < entries.length; i++) {
@@ -54,10 +52,14 @@ public abstract class AbstractCASetEffect<T extends AttributeSetData> extends Pe
 		return ans;
 	}
 
+	protected MutableComponent getConditionText(int rank) {
+		return Component.translatable(getDescriptionId() + ".desc");
+	}
+
 	@Override
 	public List<MutableComponent> getDetailedDescription(int rank) {
 		List<MutableComponent> ans = new ArrayList<>();
-		ans.add(MutableComponent.create(new TranslatableContents(getDescriptionId() + ".desc")));
+		ans.add(getConditionText(rank));
 		for (AttrSetEntry ent : entries) {
 			double val = ent.getValue(rank);
 			String sign = val > 0 ? "attribute.modifier.plus." : "attribute.modifier.take.";

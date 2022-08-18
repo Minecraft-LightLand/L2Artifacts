@@ -531,9 +531,11 @@ public class ArtifactItemRegistry {
 
 
 		}
+
 		//v4
 		{
-			{//ancient
+			//ancient
+			{
 				LinearFuncEntry threshold = REGISTRATE.regLinear("ancient_threshold", 20, 0);
 				LinearFuncEntry speed = REGISTRATE.regLinear("ancient_speed", 0.2, 0.1);
 				LinearFuncEntry period = REGISTRATE.regLinear("ancient_heal_period", 60, 0);
@@ -541,20 +543,22 @@ public class ArtifactItemRegistry {
 				LinearFuncEntry duration = REGISTRATE.regLinear("ancient_strike_duration", 40, 20);
 				LinearFuncEntry count = REGISTRATE.regLinear("ancient_strike_count", 3, 0);
 				LinearFuncEntry attack = REGISTRATE.regLinear("ancient_attack", 0.2, 0.1);
-				LinearFuncEntry protection = REGISTRATE.regLinear("ancient_protection", 0.9, 0.05);
+				LinearFuncEntry protection = REGISTRATE.regLinear("ancient_protection", 0.8, -0.1);
+				LinearFuncEntry speed5 = REGISTRATE.regLinear("ancient_speed_5", 0.2, 0.1);
+				LinearFuncEntry attack5 = REGISTRATE.regLinear("ancient_attack_5", 0.2, 0.1);
 
 				EFF_ANCIENT_1 = REGISTRATE.setEffect("ancient_scroll_1", () -> new TimedCASetEffect(Entity::isSprinting, threshold,
 								new AttrSetEntry(() -> Attributes.MOVEMENT_SPEED, MULTIPLY_BASE, speed, true)))
 						.desc("ancient_scroll_1",
 								"ancient_scroll_1"
 						).register();
-				EFF_ANCIENT_2 = REGISTRATE.setEffect("ancient_scroll_2", () -> new SimpleCPSetEffect(threshold,
+				EFF_ANCIENT_2 = REGISTRATE.setEffect("ancient_scroll_2", () -> new SimpleCPSetEffect(period,
 								e -> !e.isSprinting(), (e, rank) -> e.heal((float) heal.getFromRank(rank))))
 						.desc("ancient_scroll_2",
 								"ancient_scroll_2"
 						).register();
 				EFF_ANCIENT_3 = REGISTRATE.setEffect("ancient_scroll_3", () -> new AttackStrikeEffect(duration, count,
-								new AttrSetEntry(() -> Attributes.ATTACK_DAMAGE, MULTIPLY_BASE, speed, true)))
+								new AttrSetEntry(() -> Attributes.ATTACK_DAMAGE, MULTIPLY_BASE, attack, true)))
 						.desc("ancient_scroll_3",
 								"ancient_scroll_3"
 						).register();
@@ -563,8 +567,8 @@ public class ArtifactItemRegistry {
 								"ancient_scroll_4"
 						).register();
 				EFF_ANCIENT_5 = REGISTRATE.setEffect("ancient_scroll_5", () -> new TimedCASetEffect(Entity::isShiftKeyDown, threshold,
-								new AttrSetEntry(() -> Attributes.MOVEMENT_SPEED, MULTIPLY_BASE, speed, true),
-								new AttrSetEntry(() -> Attributes.ATTACK_DAMAGE, MULTIPLY_BASE, speed, true)
+								new AttrSetEntry(() -> Attributes.MOVEMENT_SPEED, MULTIPLY_BASE, speed5, true),
+								new AttrSetEntry(() -> Attributes.ATTACK_DAMAGE, MULTIPLY_BASE, attack5, true)
 						))
 						.desc("ancient_scroll_5",
 								"ancient_scroll_5"

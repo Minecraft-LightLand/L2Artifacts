@@ -7,21 +7,19 @@ import dev.xkmc.l2artifacts.content.effects.PersistentDataSetEffect;
 import dev.xkmc.l2artifacts.init.registrate.entries.LinearFuncEntry;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
 import java.util.List;
 
-public class Ancient4 extends PersistentDataSetEffect<AncientData4> {
+public class ImmobileEffect extends PersistentDataSetEffect<ImmobileData> {
 
 	private static final double TOLERANCE = 1e-3;
 
 	private final LinearFuncEntry protection, threshold;
 
-	public Ancient4(LinearFuncEntry protection, LinearFuncEntry threshold) {
+	public ImmobileEffect(LinearFuncEntry protection, LinearFuncEntry threshold) {
 		super(0);
 		this.protection = protection;
 		this.threshold = threshold;
@@ -31,7 +29,7 @@ public class Ancient4 extends PersistentDataSetEffect<AncientData4> {
 	@Override
 	public void tick(Player player, ArtifactSetConfig.Entry ent, int rank, boolean enabled) {
 		if (!enabled) return;
-		AncientData4 data = ArtifactData.HOLDER.get(player).getOrCreateData(this, ent);
+		ImmobileData data = ArtifactData.HOLDER.get(player).getOrCreateData(this, ent);
 		data.update(2, rank);
 		double x = player.getX();
 		double y = player.getY();
@@ -45,15 +43,6 @@ public class Ancient4 extends PersistentDataSetEffect<AncientData4> {
 			data.z = z;
 		}
 	}
-	@Override
-	public void playerHurtEvent(Player player, ArtifactSetConfig.Entry ent, int rank, LivingHurtEvent event) {
-		AncientData4 data = ArtifactData.HOLDER.get(player).getData(this);
-		if (data == null) return;
-		if (data.time >= threshold.getFromRank(rank)) {
-
-			event.setAmount((float) (event.getAmount() * protection.getFromRank(rank)));
-		}
-	}
 
 	@Override
 	public List<MutableComponent> getDetailedDescription(int rank) {
@@ -61,10 +50,18 @@ public class Ancient4 extends PersistentDataSetEffect<AncientData4> {
 		return List.of(Component.translatable(getDescriptionId() + ".desc", prot));
 	}
 
+	@Override
+	public void playerHurtEvent(Player player, ArtifactSetConfig.Entry ent, int rank, LivingHurtEvent event) {
+		ImmobileData data = ArtifactData.HOLDER.get(player).getData(this);
+		if (data == null) return;
+		if (data.time >= threshold.getFromRank(rank)) {
+			event.setAmount((float) (event.getAmount() * protection.getFromRank(rank)));
+		}
+	}
 
 	@Override
-	public AncientData4 getData(ArtifactSetConfig.Entry ent) {
-		return new AncientData4();
+	public ImmobileData getData(ArtifactSetConfig.Entry ent) {
+		return new ImmobileData();
 	}
 
 }

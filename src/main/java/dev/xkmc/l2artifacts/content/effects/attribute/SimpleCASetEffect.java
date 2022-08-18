@@ -7,7 +7,7 @@ import net.minecraft.world.entity.player.Player;
 
 import java.util.function.Predicate;
 
-public class SimpleCASetEffect extends AbstractCASetEffect<AttributeSetData> {
+public class SimpleCASetEffect extends AbstractConditionalAttributeSetEffect<AttributeSetData> {
 
 	private final Predicate<Player> pred;
 

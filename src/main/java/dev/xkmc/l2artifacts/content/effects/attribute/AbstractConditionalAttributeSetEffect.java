@@ -15,11 +15,11 @@ import java.util.UUID;
 
 import static net.minecraft.world.item.ItemStack.ATTRIBUTE_MODIFIER_FORMAT;
 
-public abstract class AbstractCASetEffect<T extends AttributeSetData> extends PersistentDataSetEffect<T> {
+public abstract class AbstractConditionalAttributeSetEffect<T extends AttributeSetData> extends PersistentDataSetEffect<T> {
 
 	private final AttrSetEntry[] entries;
 
-	public AbstractCASetEffect(AttrSetEntry... entries) {
+	public AbstractConditionalAttributeSetEffect(AttrSetEntry... entries) {
 		super(entries.length);
 		this.entries = entries;
 	}
@@ -35,7 +35,6 @@ public abstract class AbstractCASetEffect<T extends AttributeSetData> extends Pe
 			ins.addTransientModifier(new AttributeModifier(id, ent.getName(), val, entry.op()));
 		}
 	}
-
 
 	protected abstract T getData();
 

@@ -4,10 +4,13 @@ import dev.xkmc.l2artifacts.content.core.ArtifactSet;
 import dev.xkmc.l2artifacts.content.effects.attribute.AttrSetEntry;
 import dev.xkmc.l2artifacts.content.effects.attribute.AttributeSetEffect;
 import dev.xkmc.l2artifacts.content.effects.attribute.SimpleCASetEffect;
+import dev.xkmc.l2artifacts.content.effects.attribute.TimedCASetEffect;
+import dev.xkmc.l2artifacts.content.effects.persistent.SimpleCPSetEffect;
 import dev.xkmc.l2artifacts.content.effects.v1.*;
 import dev.xkmc.l2artifacts.content.effects.v2.*;
 import dev.xkmc.l2artifacts.content.effects.v3.*;
-import dev.xkmc.l2artifacts.content.effects.v4.*;
+import dev.xkmc.l2artifacts.content.effects.v4.AttackStrikeEffect;
+import dev.xkmc.l2artifacts.content.effects.v4.ImmobileEffect;
 import dev.xkmc.l2artifacts.content.misc.ExpItem;
 import dev.xkmc.l2artifacts.content.misc.RandomArtifactItem;
 import dev.xkmc.l2artifacts.content.misc.SelectArtifactItem;
@@ -140,11 +143,11 @@ public class ArtifactItemRegistry {
 	//v4
 	public static final SetEntry<ArtifactSet> SET_ANCIENT;
 
-	public static final RegistryEntry<Ancient1> EFF_ANCIENT_1;
-	public static final RegistryEntry<Ancient2> EFF_ANCIENT_2;
-	public static final RegistryEntry<Ancient3> EFF_ANCIENT_3;
-	public static final RegistryEntry<Ancient4> EFF_ANCIENT_4;
-	public static final RegistryEntry<Ancient5> EFF_ANCIENT_5;
+	public static final RegistryEntry<TimedCASetEffect> EFF_ANCIENT_1;
+	public static final RegistryEntry<SimpleCPSetEffect> EFF_ANCIENT_2;
+	public static final RegistryEntry<AttackStrikeEffect> EFF_ANCIENT_3;
+	public static final RegistryEntry<ImmobileEffect> EFF_ANCIENT_4;
+	public static final RegistryEntry<TimedCASetEffect> EFF_ANCIENT_5;
 
 
 	static {
@@ -527,40 +530,41 @@ public class ArtifactItemRegistry {
 			}
 
 
-
-
-
 		}
 		//v4
 		{
 			{//ancient
-				LinearFuncEntry level = REGISTRATE.regLinear("ancient_level", 0, 0.8);
-				LinearFuncEntry ancient_duration = REGISTRATE.regLinear("ancient_duration", 2, 0.8);
-				LinearFuncEntry level2 = REGISTRATE.regLinear("ancient_level2", 1, 0.8);
 				LinearFuncEntry threshold = REGISTRATE.regLinear("ancient_threshold", 20, 0);
+				LinearFuncEntry speed = REGISTRATE.regLinear("ancient_speed", 0.2, 0.1);
+				LinearFuncEntry period = REGISTRATE.regLinear("ancient_heal_period", 60, 0);
+				LinearFuncEntry heal = REGISTRATE.regLinear("ancient_heal", 2, 1);
+				LinearFuncEntry duration = REGISTRATE.regLinear("ancient_strike_duration", 40, 20);
+				LinearFuncEntry count = REGISTRATE.regLinear("ancient_strike_count", 3, 0);
+				LinearFuncEntry attack = REGISTRATE.regLinear("ancient_attack", 0.2, 0.1);
 				LinearFuncEntry protection = REGISTRATE.regLinear("ancient_protection", 0.9, 0.05);
 
-				EFF_ANCIENT_1 = REGISTRATE.setEffect("ancient_scroll_1", () -> new Ancient1(level2, threshold,
-								new AttrSetEntry(() -> Attributes.MOVEMENT_SPEED, MULTIPLY_BASE, level2, true)))
+				EFF_ANCIENT_1 = REGISTRATE.setEffect("ancient_scroll_1", () -> new TimedCASetEffect(Entity::isSprinting, threshold,
+								new AttrSetEntry(() -> Attributes.MOVEMENT_SPEED, MULTIPLY_BASE, speed, true)))
 						.desc("ancient_scroll_1",
 								"ancient_scroll_1"
 						).register();
-				EFF_ANCIENT_2 = REGISTRATE.setEffect("ancient_scroll_2", () -> new Ancient2(level2, threshold))
+				EFF_ANCIENT_2 = REGISTRATE.setEffect("ancient_scroll_2", () -> new SimpleCPSetEffect(threshold,
+								e -> !e.isSprinting(), (e, rank) -> e.heal((float) heal.getFromRank(rank))))
 						.desc("ancient_scroll_2",
 								"ancient_scroll_2"
 						).register();
-				EFF_ANCIENT_3 = REGISTRATE.setEffect("ancient_scroll_3", () -> new Ancient3(ancient_duration, threshold,
-								new AttrSetEntry(() -> Attributes.ATTACK_DAMAGE, MULTIPLY_BASE, level2, true)))
+				EFF_ANCIENT_3 = REGISTRATE.setEffect("ancient_scroll_3", () -> new AttackStrikeEffect(duration, count,
+								new AttrSetEntry(() -> Attributes.ATTACK_DAMAGE, MULTIPLY_BASE, speed, true)))
 						.desc("ancient_scroll_3",
 								"ancient_scroll_3"
 						).register();
-				EFF_ANCIENT_4 = REGISTRATE.setEffect("ancient_scroll_4", () -> new Ancient4(protection, threshold))
+				EFF_ANCIENT_4 = REGISTRATE.setEffect("ancient_scroll_4", () -> new ImmobileEffect(protection, threshold))
 						.desc("ancient_scroll_4",
 								"ancient_scroll_4"
 						).register();
-				EFF_ANCIENT_5 = REGISTRATE.setEffect("ancient_scroll_5", () -> new Ancient5(level, threshold,
-								new AttrSetEntry(() -> Attributes.MOVEMENT_SPEED, MULTIPLY_BASE, level2, true),
-								new AttrSetEntry(() -> Attributes.ATTACK_DAMAGE, MULTIPLY_BASE, level2, true)
+				EFF_ANCIENT_5 = REGISTRATE.setEffect("ancient_scroll_5", () -> new TimedCASetEffect(Entity::isShiftKeyDown, threshold,
+								new AttrSetEntry(() -> Attributes.MOVEMENT_SPEED, MULTIPLY_BASE, speed, true),
+								new AttrSetEntry(() -> Attributes.ATTACK_DAMAGE, MULTIPLY_BASE, speed, true)
 						))
 						.desc("ancient_scroll_5",
 								"ancient_scroll_5"
@@ -579,9 +583,7 @@ public class ArtifactItemRegistry {
 			}
 
 
-
 		}
-
 
 
 	}

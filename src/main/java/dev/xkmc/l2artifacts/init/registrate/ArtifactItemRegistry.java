@@ -550,30 +550,30 @@ public class ArtifactItemRegistry {
 
 				EFF_ANCIENT_1 = REGISTRATE.setEffect("ancient_scroll_1", () -> new TimedCASetEffect(Entity::isSprinting, threshold,
 								new AttrSetEntry(() -> Attributes.MOVEMENT_SPEED, MULTIPLY_BASE, speed, true)))
-						.desc("ancient_scroll_1",
+						.desc("Run lick wind",
 								"After sprinting for %s seconds:"
 						).register();
 				EFF_ANCIENT_2 = REGISTRATE.setEffect("ancient_scroll_2", () -> new SimpleCPSetEffect(period,
 						e -> !e.isSprinting(),
 						(e, rank) -> e.heal((float) heal.getFromRank(rank)),
 						(rank, id) -> Component.translatable(id, period.getFromRank(rank) / 20d, heal.getFromRank(rank))
-				)).desc("ancient_scroll_2",
+				)).desc("Recover like plant",
 						"Every %s seconds, heal %s health point"
 				).register();
 				EFF_ANCIENT_3 = REGISTRATE.setEffect("ancient_scroll_3", () -> new AttackStrikeEffect(duration, count,
 								new AttrSetEntry(() -> Attributes.ATTACK_DAMAGE, MULTIPLY_BASE, attack, true)))
-						.desc("ancient_scroll_3",
+						.desc("Plunder like fire",
 								"After attacking with full power for %s strikes with interval less than %s seconds:"
 						).register();
 				EFF_ANCIENT_4 = REGISTRATE.setEffect("ancient_scroll_4", () -> new ImmobileEffect(protection, threshold))
-						.desc("ancient_scroll_4",
+						.desc("Immovable as mountain",
 								"After stay still for %s seconds: Damage taken is reduced to %s%% of original"
 						).register();
 				EFF_ANCIENT_5 = REGISTRATE.setEffect("ancient_scroll_5", () -> new TimedCASetEffect(Entity::isShiftKeyDown, threshold,
 								new AttrSetEntry(() -> Attributes.MOVEMENT_SPEED, MULTIPLY_BASE, speed5, true),
 								new AttrSetEntry(() -> Attributes.ATTACK_DAMAGE, MULTIPLY_BASE, attack5, true)
 						))
-						.desc("ancient_scroll_5",
+						.desc("As dark as dark clouds",
 								"After sneaking for %s seconds:"
 						).register();
 

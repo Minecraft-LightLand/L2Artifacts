@@ -1,6 +1,6 @@
-// 1.19.2	2022-08-18T20:12:27.993356	Registrate Provider for l2artifacts [Recipes, Advancements, Loot tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
-23fff3a3612c199e20146a72efac17edd08f36ab assets/l2artifacts/lang/en_ud.json
-bff2d9da142b61b5456e7850a6ecc6625c90c3c1 assets/l2artifacts/lang/en_us.json
+// 1.19.2	2022-08-18T22:22:31.640977	Registrate Provider for l2artifacts [Recipes, Advancements, Loot tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
+e7b6fe1afe567bcbb12bb620714fc7cbb747297a assets/l2artifacts/lang/en_ud.json
+56163b1c29f90f37d3934c45d50dd136e6b18114 assets/l2artifacts/lang/en_us.json
 37536fbd90ba5d29f50f91b207a175d899daaaff assets/l2artifacts/models/item/ancient_scroll_belt_1.json
 b26f283acb17a33667cf4d62bf4c1e942cdb9bf6 assets/l2artifacts/models/item/ancient_scroll_belt_2.json
 8bbd30932ec04b3bad75d958dec62e2606bad8d6 assets/l2artifacts/models/item/ancient_scroll_belt_3.json

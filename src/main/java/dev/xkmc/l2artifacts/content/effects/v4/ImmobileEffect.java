@@ -2,7 +2,6 @@ package dev.xkmc.l2artifacts.content.effects.v4;
 
 import dev.xkmc.l2artifacts.content.capability.ArtifactData;
 import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
-import dev.xkmc.l2artifacts.content.core.LinearFuncHandle;
 import dev.xkmc.l2artifacts.content.effects.PersistentDataSetEffect;
 import dev.xkmc.l2artifacts.init.registrate.entries.LinearFuncEntry;
 import net.minecraft.network.chat.Component;
@@ -25,7 +24,6 @@ public class ImmobileEffect extends PersistentDataSetEffect<ImmobileData> {
 		this.threshold = threshold;
 	}
 
-
 	@Override
 	public void tick(Player player, ArtifactSetConfig.Entry ent, int rank, boolean enabled) {
 		if (!enabled) return;
@@ -47,7 +45,7 @@ public class ImmobileEffect extends PersistentDataSetEffect<ImmobileData> {
 	@Override
 	public List<MutableComponent> getDetailedDescription(int rank) {
 		int prot = (int) Math.round(protection.getFromRank(rank) * 100);
-		return List.of(Component.translatable(getDescriptionId() + ".desc", prot));
+		return List.of(Component.translatable(getDescriptionId() + ".desc", threshold.getFromRank(rank) / 20d, prot));
 	}
 
 	@Override

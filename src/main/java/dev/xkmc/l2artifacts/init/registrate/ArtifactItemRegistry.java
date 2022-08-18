@@ -23,6 +23,7 @@ import dev.xkmc.l2artifacts.init.registrate.entries.SetEntry;
 import dev.xkmc.l2library.repack.registrate.util.entry.ItemEntry;
 import dev.xkmc.l2library.repack.registrate.util.entry.RegistryEntry;
 import dev.xkmc.l2library.util.code.Wrappers;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
@@ -550,28 +551,30 @@ public class ArtifactItemRegistry {
 				EFF_ANCIENT_1 = REGISTRATE.setEffect("ancient_scroll_1", () -> new TimedCASetEffect(Entity::isSprinting, threshold,
 								new AttrSetEntry(() -> Attributes.MOVEMENT_SPEED, MULTIPLY_BASE, speed, true)))
 						.desc("ancient_scroll_1",
-								"ancient_scroll_1"
+								"After sprinting for %s seconds:"
 						).register();
 				EFF_ANCIENT_2 = REGISTRATE.setEffect("ancient_scroll_2", () -> new SimpleCPSetEffect(period,
-								e -> !e.isSprinting(), (e, rank) -> e.heal((float) heal.getFromRank(rank))))
-						.desc("ancient_scroll_2",
-								"ancient_scroll_2"
-						).register();
+						e -> !e.isSprinting(),
+						(e, rank) -> e.heal((float) heal.getFromRank(rank)),
+						(rank, id) -> Component.translatable(id, period.getFromRank(rank) / 20d, heal.getFromRank(rank))
+				)).desc("ancient_scroll_2",
+						"Every %s seconds, heal %s health point"
+				).register();
 				EFF_ANCIENT_3 = REGISTRATE.setEffect("ancient_scroll_3", () -> new AttackStrikeEffect(duration, count,
 								new AttrSetEntry(() -> Attributes.ATTACK_DAMAGE, MULTIPLY_BASE, attack, true)))
 						.desc("ancient_scroll_3",
-								"ancient_scroll_3"
+								"After attacking with full power for %s strikes with interval less than %s seconds:"
 						).register();
 				EFF_ANCIENT_4 = REGISTRATE.setEffect("ancient_scroll_4", () -> new ImmobileEffect(protection, threshold))
 						.desc("ancient_scroll_4",
-								"ancient_scroll_4"
+								"After stay still for %s seconds: Damage taken is reduced to %s%% of original"
 						).register();
 				EFF_ANCIENT_5 = REGISTRATE.setEffect("ancient_scroll_5", () -> new TimedCASetEffect(Entity::isShiftKeyDown, threshold,
 								new AttrSetEntry(() -> Attributes.MOVEMENT_SPEED, MULTIPLY_BASE, speed5, true),
 								new AttrSetEntry(() -> Attributes.ATTACK_DAMAGE, MULTIPLY_BASE, attack5, true)
 						))
 						.desc("ancient_scroll_5",
-								"ancient_scroll_5"
+								"After sneaking for %s seconds:"
 						).register();
 
 				SET_ANCIENT = Wrappers.cast(REGISTRATE.regSet("ancient_scroll", ArtifactSet::new, 1, 5, "AncientScroll Set")

@@ -6,6 +6,8 @@ import dev.xkmc.l2artifacts.content.effects.attribute.AbstractConditionalAttribu
 import dev.xkmc.l2artifacts.content.effects.attribute.AttrSetEntry;
 import dev.xkmc.l2artifacts.init.registrate.entries.LinearFuncEntry;
 import dev.xkmc.l2library.init.events.attack.AttackCache;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.entity.player.Player;
 
 public class AttackStrikeEffect extends AbstractConditionalAttributeSetEffect<AttackStrikeData> {
@@ -33,6 +35,13 @@ public class AttackStrikeEffect extends AbstractConditionalAttributeSetEffect<At
 			data.update((int) duration.getFromRank(rank), rank);
 			data.count++;
 		}
+	}
+
+	@Override
+	protected MutableComponent getConditionText(int rank) {
+		int c = (int) Math.round(count.getFromRank(rank));
+		double t = duration.getFromRank(rank) / 20d;
+		return Component.translatable(getDescriptionId() + ".desc", c, t);
 	}
 
 	@Override

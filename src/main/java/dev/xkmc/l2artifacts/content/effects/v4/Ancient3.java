@@ -2,13 +2,15 @@ package dev.xkmc.l2artifacts.content.effects.v4;
 
 import dev.xkmc.l2artifacts.content.capability.ArtifactData;
 import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
-import dev.xkmc.l2artifacts.content.effects.attribute.AbstractConditionalAttributeSetEffect;
+import dev.xkmc.l2artifacts.content.effects.attribute.AbstractCASetEffect;
 import dev.xkmc.l2artifacts.content.effects.attribute.AttrSetEntry;
 import dev.xkmc.l2artifacts.init.registrate.entries.LinearFuncEntry;
 import dev.xkmc.l2library.init.events.attack.AttackCache;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Player;
 
-public class Ancient3 extends AbstractConditionalAttributeSetEffect<AncientData3> {
+public class Ancient3 extends AbstractCASetEffect<AncientData3> {
 	private final LinearFuncEntry duration, count;
 
 	public Ancient3(LinearFuncEntry duration, LinearFuncEntry count, AttrSetEntry...entries) {
@@ -20,10 +22,13 @@ public class Ancient3 extends AbstractConditionalAttributeSetEffect<AncientData3
 	@Override
 	public void tick(Player player, ArtifactSetConfig.Entry ent, int rank, boolean enabled) {
 		if (!enabled) return;
-		AncientData3 data = ArtifactData.HOLDER.get(player).getOrCreateData(this,ent);
-		data.update(3, rank);
-		if (data != null && data.count >= count.getFromRank(rank))
-			addAttributes(player, ent, rank, data); // efficient operation, perform every tick
+		if(ArtifactData.HOLDER.get(player).hasData(this)){
+			AncientData3 data = ArtifactData.HOLDER.get(player).getOrCreateData(this,ent);
+			data.update(3, rank);
+			if ( data.count >= count.getFromRank(rank)){
+				addAttributes(player, ent, rank, data); // efficient operation, perform every tick
+			}
+		}
 	}
 
 	@Override
@@ -34,6 +39,7 @@ public class Ancient3 extends AbstractConditionalAttributeSetEffect<AncientData3
 			data.count++;
 		}
 	}
+
 
 	@Override
 	protected AncientData3 getData() {

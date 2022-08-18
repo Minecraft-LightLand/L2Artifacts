@@ -7,6 +7,8 @@ import dev.xkmc.l2artifacts.content.effects.PersistentDataSetEffect;
 import dev.xkmc.l2artifacts.init.registrate.entries.LinearFuncEntry;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
@@ -43,6 +45,15 @@ public class Ancient4 extends PersistentDataSetEffect<AncientData4> {
 			data.z = z;
 		}
 	}
+	@Override
+	public void playerHurtEvent(Player player, ArtifactSetConfig.Entry ent, int rank, LivingHurtEvent event) {
+		AncientData4 data = ArtifactData.HOLDER.get(player).getData(this);
+		if (data == null) return;
+		if (data.time >= threshold.getFromRank(rank)) {
+
+			event.setAmount((float) (event.getAmount() * protection.getFromRank(rank)));
+		}
+	}
 
 	@Override
 	public List<MutableComponent> getDetailedDescription(int rank) {
@@ -50,14 +61,6 @@ public class Ancient4 extends PersistentDataSetEffect<AncientData4> {
 		return List.of(Component.translatable(getDescriptionId() + ".desc", prot));
 	}
 
-	@Override
-	public void playerHurtEvent(Player player, ArtifactSetConfig.Entry ent, int rank, LivingHurtEvent event) {
-		AncientData4 data = ArtifactData.HOLDER.get(player).getData(this);
-		if (data == null) return;
-		if (data.time >= threshold.getFromRank(rank)) {
-			event.setAmount((float) (event.getAmount() * protection.getFromRank(rank)));
-		}
-	}
 
 	@Override
 	public AncientData4 getData(ArtifactSetConfig.Entry ent) {

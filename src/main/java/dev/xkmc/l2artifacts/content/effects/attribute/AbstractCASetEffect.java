@@ -15,11 +15,11 @@ import java.util.UUID;
 
 import static net.minecraft.world.item.ItemStack.ATTRIBUTE_MODIFIER_FORMAT;
 
-public abstract class AbstractConditionalAttributeSetEffect<T extends AttributeSetData> extends PersistentDataSetEffect<T> {
+public abstract class AbstractCASetEffect<T extends AttributeSetData> extends PersistentDataSetEffect<T> {
 
 	private final AttrSetEntry[] entries;
 
-	public AbstractConditionalAttributeSetEffect(AttrSetEntry... entries) {
+	public AbstractCASetEffect(AttrSetEntry... entries) {
 		super(entries.length);
 		this.entries = entries;
 	}

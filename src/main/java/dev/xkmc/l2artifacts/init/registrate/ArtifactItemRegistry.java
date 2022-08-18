@@ -7,6 +7,7 @@ import dev.xkmc.l2artifacts.content.effects.attribute.SimpleCASetEffect;
 import dev.xkmc.l2artifacts.content.effects.v1.*;
 import dev.xkmc.l2artifacts.content.effects.v2.*;
 import dev.xkmc.l2artifacts.content.effects.v3.*;
+import dev.xkmc.l2artifacts.content.effects.v4.*;
 import dev.xkmc.l2artifacts.content.misc.ExpItem;
 import dev.xkmc.l2artifacts.content.misc.RandomArtifactItem;
 import dev.xkmc.l2artifacts.content.misc.SelectArtifactItem;
@@ -135,6 +136,15 @@ public class ArtifactItemRegistry {
 	public static final RegistryEntry<SimpleCASetEffect> EFF_GLUTTONY_FAST;
 	public static final RegistryEntry<GluttonyHeal> EFF_GLUTTONY_HEAL;
 	public static final RegistryEntry<SimpleCASetEffect> EFF_FALLEN_1, EFF_FALLEN_2, EFF_FALLEN_3, EFF_FALLEN_4, EFF_FALLEN_5;
+
+	//v4
+	public static final SetEntry<ArtifactSet> SET_ANCIENT;
+
+	public static final RegistryEntry<Ancient1> EFF_ANCIENT_1;
+	public static final RegistryEntry<Ancient2> EFF_ANCIENT_2;
+	public static final RegistryEntry<Ancient3> EFF_ANCIENT_3;
+	public static final RegistryEntry<Ancient4> EFF_ANCIENT_4;
+	public static final RegistryEntry<Ancient5> EFF_ANCIENT_5;
 
 
 	static {
@@ -516,7 +526,64 @@ public class ArtifactItemRegistry {
 						.register());
 			}
 
+
+
+
+
 		}
+		//v4
+		{
+			{//ancient
+				LinearFuncEntry level = REGISTRATE.regLinear("ancient_level", 0, 0.8);
+				LinearFuncEntry ancient_duration = REGISTRATE.regLinear("ancient_duration", 2, 0.8);
+				LinearFuncEntry level2 = REGISTRATE.regLinear("ancient_level2", 1, 0.8);
+				LinearFuncEntry threshold = REGISTRATE.regLinear("ancient_threshold", 20, 0);
+				LinearFuncEntry protection = REGISTRATE.regLinear("ancient_protection", 0.9, 0.05);
+
+				EFF_ANCIENT_1 = REGISTRATE.setEffect("ancient_scroll_1", () -> new Ancient1(level2, threshold,
+								new AttrSetEntry(() -> Attributes.MOVEMENT_SPEED, MULTIPLY_BASE, level2, true)))
+						.desc("ancient_scroll_1",
+								"ancient_scroll_1"
+						).register();
+				EFF_ANCIENT_2 = REGISTRATE.setEffect("ancient_scroll_2", () -> new Ancient2(level2, threshold))
+						.desc("ancient_scroll_2",
+								"ancient_scroll_2"
+						).register();
+				EFF_ANCIENT_3 = REGISTRATE.setEffect("ancient_scroll_3", () -> new Ancient3(ancient_duration, threshold,
+								new AttrSetEntry(() -> Attributes.ATTACK_DAMAGE, MULTIPLY_BASE, level2, true)))
+						.desc("ancient_scroll_3",
+								"ancient_scroll_3"
+						).register();
+				EFF_ANCIENT_4 = REGISTRATE.setEffect("ancient_scroll_4", () -> new Ancient4(protection, threshold))
+						.desc("ancient_scroll_4",
+								"ancient_scroll_4"
+						).register();
+				EFF_ANCIENT_5 = REGISTRATE.setEffect("ancient_scroll_5", () -> new Ancient5(level, threshold,
+								new AttrSetEntry(() -> Attributes.MOVEMENT_SPEED, MULTIPLY_BASE, level2, true),
+								new AttrSetEntry(() -> Attributes.ATTACK_DAMAGE, MULTIPLY_BASE, level2, true)
+						))
+						.desc("ancient_scroll_5",
+								"ancient_scroll_5"
+						).register();
+
+				SET_ANCIENT = Wrappers.cast(REGISTRATE.regSet("ancient_scroll", ArtifactSet::new, 1, 5, "AncientScroll Set")
+						.setSlots(SLOT_HEAD, SLOT_NECKLACE, SLOT_BODY, SLOT_BRACELET, SLOT_BELT).regItems()
+						.buildConfig((c) -> c
+								.add(1, EFF_ANCIENT_1.get())
+								.add(2, EFF_ANCIENT_2.get())
+								.add(3, EFF_ANCIENT_3.get())
+								.add(4, EFF_ANCIENT_4.get())
+								.add(5, EFF_ANCIENT_5.get()))
+						.register());
+
+			}
+
+
+
+		}
+
+
+
 	}
 
 	public static void register() {

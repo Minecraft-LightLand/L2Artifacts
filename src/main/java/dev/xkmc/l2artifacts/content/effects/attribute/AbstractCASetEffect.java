@@ -15,11 +15,11 @@ import java.util.UUID;
 
 import static net.minecraft.world.item.ItemStack.ATTRIBUTE_MODIFIER_FORMAT;
 
-public abstract class AbstractCASetEffect<T extends AttributeSetData> extends PersistentDataSetEffect<T> {
+public abstract class AbstractConditionalAttributeSetEffect<T extends AttributeSetData> extends PersistentDataSetEffect<T> {
 
 	private final AttrSetEntry[] entries;
 
-	public AbstractCASetEffect(AttrSetEntry... entries) {
+	public AbstractConditionalAttributeSetEffect(AttrSetEntry... entries) {
 		super(entries.length);
 		this.entries = entries;
 	}
@@ -36,8 +36,6 @@ public abstract class AbstractCASetEffect<T extends AttributeSetData> extends Pe
 		}
 	}
 
-	@Override
-	protected abstract void tickData(Player player, ArtifactSetConfig.Entry ent, int rank, T data);
 
 	protected abstract T getData();
 

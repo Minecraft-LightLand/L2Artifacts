@@ -99,7 +99,7 @@ public abstract class ResourceOrganizer {
     protected void write(String name, String cont) throws Exception {
         File f = new File(name);
         check(f);
-        PrintStream ps = new PrintStream(f, "UTF-8");
+        PrintStream ps = new PrintStream(f, StandardCharsets.UTF_8);
         ps.println(cont);
         ps.close();
     }

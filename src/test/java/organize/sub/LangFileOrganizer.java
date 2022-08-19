@@ -32,7 +32,7 @@ public class LangFileOrganizer extends ResourceOrganizer {
 			JsonObject dst_json = new JsonObject();
 			for (File fj : fi.listFiles()) {
 				if (!fj.getName().endsWith(".json")) continue;
-				JsonObject json = new JsonParser().parse(new FileReader(fj.getPath())).getAsJsonObject();
+				JsonObject json = new JsonParser().parse(new FileReader(fj.getPath(),StandardCharsets.UTF_8)).getAsJsonObject();
 				inject("", json, dst_json);
 				if (json.has("-cartesian")) {
 					JsonObject block_list = json.get("-cartesian").getAsJsonObject();

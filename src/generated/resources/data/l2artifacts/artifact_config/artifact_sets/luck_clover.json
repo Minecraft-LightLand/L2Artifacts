@@ -1,0 +1,11 @@
+{
+  "_class": "dev.xkmc.l2artifacts.content.config.ArtifactSetConfig",
+  "map": {
+    "l2artifacts:luck_clover": [
+      {
+        "count": 4,
+        "effect": "l2artifacts:luck_clover_4"
+      }
+    ]
+  }
+}

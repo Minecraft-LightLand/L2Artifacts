@@ -37,7 +37,7 @@ public class TimedCASetEffect extends AbstractConditionalAttributeSetEffect<Time
 	}
 
 	protected MutableComponent getConditionText(int rank) {
-		double time = Math.round(period.getFromRank(rank) * 5) / 20d;
+		double time = Math.round(period.getFromRank(rank) ) / 20d;
 		return Component.translatable(getDescriptionId() + ".desc", time);
 	}
 

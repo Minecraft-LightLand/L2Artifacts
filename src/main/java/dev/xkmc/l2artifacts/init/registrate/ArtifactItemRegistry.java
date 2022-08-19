@@ -9,8 +9,10 @@ import dev.xkmc.l2artifacts.content.effects.persistent.SimpleCPSetEffect;
 import dev.xkmc.l2artifacts.content.effects.v1.*;
 import dev.xkmc.l2artifacts.content.effects.v2.*;
 import dev.xkmc.l2artifacts.content.effects.v3.*;
+import dev.xkmc.l2artifacts.content.effects.v4.AbyssAttackEffect;
 import dev.xkmc.l2artifacts.content.effects.v4.AttackStrikeEffect;
 import dev.xkmc.l2artifacts.content.effects.v4.ImmobileEffect;
+import dev.xkmc.l2artifacts.content.effects.v4.LuckAttackEffect;
 import dev.xkmc.l2artifacts.content.misc.ExpItem;
 import dev.xkmc.l2artifacts.content.misc.RandomArtifactItem;
 import dev.xkmc.l2artifacts.content.misc.SelectArtifactItem;
@@ -142,13 +144,24 @@ public class ArtifactItemRegistry {
 	public static final RegistryEntry<SimpleCASetEffect> EFF_FALLEN_1, EFF_FALLEN_2, EFF_FALLEN_3, EFF_FALLEN_4, EFF_FALLEN_5;
 
 	//v4
-	public static final SetEntry<ArtifactSet> SET_ANCIENT;
+	public static final SetEntry<ArtifactSet> SET_ANCIENT,SET_LUCKLOVER,SET_ABYSSMEDAL;
 
 	public static final RegistryEntry<TimedCASetEffect> EFF_ANCIENT_1;
 	public static final RegistryEntry<SimpleCPSetEffect> EFF_ANCIENT_2;
 	public static final RegistryEntry<AttackStrikeEffect> EFF_ANCIENT_3;
 	public static final RegistryEntry<ImmobileEffect> EFF_ANCIENT_4;
 	public static final RegistryEntry<TimedCASetEffect> EFF_ANCIENT_5;
+
+
+	public static final RegistryEntry<LuckAttackEffect> EFF_LUCKCLOVER_4;
+
+
+
+	public static final RegistryEntry<AttributeSetEffect> EFF_ABYSSMEDAL_3;
+	public static final RegistryEntry<AbyssAttackEffect> EFF_ABYSSMEDAL_5;
+
+
+
 
 
 	static {
@@ -586,6 +599,51 @@ public class ArtifactItemRegistry {
 								.add(4, EFF_ANCIENT_4.get())
 								.add(5, EFF_ANCIENT_5.get()))
 						.register());
+
+			}
+
+			{//Lucky clover
+				LinearFuncEntry luck_threshold = REGISTRATE.regLinear("luck_threshold", 20, 0);
+				LinearFuncEntry luck_count = REGISTRATE.regLinear("luck_count", 4, 0);
+				LinearFuncEntry luck_attack = REGISTRATE.regLinear("luck_attack", 1, 0);
+
+				EFF_LUCKCLOVER_4 = REGISTRATE.setEffect("luck_clover_4", () -> new LuckAttackEffect(luck_threshold, luck_count,
+								new AttrSetEntry(() -> Attributes.ATTACK_DAMAGE, MULTIPLY_BASE, luck_attack, true)))
+						.desc("Lucky number : 4",
+								"The %s consecutive attacks are all within %s second,"
+						).register();
+
+				SET_LUCKLOVER = Wrappers.cast(REGISTRATE.regSet("luck_clover", ArtifactSet::new, 4, 4, "LuckClover Set")
+						.setSlots( SLOT_NECKLACE, SLOT_BODY, SLOT_BRACELET,SLOT_BELT).regItems()
+						.buildConfig((c) -> c
+								.add(4, EFF_LUCKCLOVER_4.get()))
+						.register());
+
+			}
+			{//abyss eclipse medal
+				LinearFuncEntry abyss_level = REGISTRATE.regLinear("abyss_level", 0, 0.2);
+				LinearFuncEntry abyss_health = REGISTRATE.regLinear("abyss_health", 0.4, 0.2);
+				LinearFuncEntry abyss_duration = REGISTRATE.regLinear("abyss_duration", 80, 20);
+				LinearFuncEntry abyss_hurt= REGISTRATE.regLinear("abyss_hurt", 1.2, 0.2);
+
+				EFF_ABYSSMEDAL_3 = REGISTRATE.setEffect("abyss_medal_3", () -> new AttributeSetEffect(
+								new AttrSetEntry(() -> Attributes.MAX_HEALTH, MULTIPLY_BASE,abyss_health, true)))
+						.desc("Abyss strengthens your body",
+								"The abyss will give you the power of blood and flesh."
+						).register();
+				EFF_ABYSSMEDAL_5 = REGISTRATE.setEffect("abyss_medal_5", () -> new AbyssAttackEffect(abyss_duration,abyss_level,abyss_hurt,0))
+						.desc("Abyss eclipse",
+								"The power of the abyss is attached to your weapon and will bring %s second Lv%s Weakness and Wither to the enemy, but you will also receive %s%% damage."
+						).register();
+
+				SET_ABYSSMEDAL = Wrappers.cast(REGISTRATE.regSet("abyss_medal", ArtifactSet::new, 1, 5, "AbyssMedal Set")
+						.setSlots(SLOT_HEAD, SLOT_NECKLACE, SLOT_BODY, SLOT_BRACELET, SLOT_BELT).regItems()
+						.buildConfig((c) -> c
+								.add(3, EFF_ABYSSMEDAL_3.get())
+								.add(5, EFF_ABYSSMEDAL_5.get())
+						)
+						.register());
+
 
 			}
 

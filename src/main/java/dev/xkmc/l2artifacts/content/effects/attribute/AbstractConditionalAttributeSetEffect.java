@@ -67,5 +67,4 @@ public abstract class AbstractConditionalAttributeSetEffect<T extends AttributeS
 		}
 		return ans;
 	}
-
 }

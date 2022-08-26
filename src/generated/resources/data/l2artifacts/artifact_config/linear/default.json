@@ -181,6 +181,10 @@
       "base": 0.04,
       "slope": 0.02
     },
+    "l2artifacts:long_shooter_atk": {
+      "base": 0.8,
+      "slope": 0.4
+    },
     "l2artifacts:luck_attack": {
       "base": 1.0,
       "slope": 0.0

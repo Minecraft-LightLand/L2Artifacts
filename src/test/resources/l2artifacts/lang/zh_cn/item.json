@@ -97,6 +97,27 @@
 			  }
 		  ]
 	  },
+	  "set_long_shooter": {
+		  "path": "item.l2artifacts",
+		  "list": [
+			  {
+				  "long_shooter": "远射者"
+			  },
+			  {
+				  "head": "头巾",
+				  "necklace": "挂件",
+				  "bracelet": "护腕",
+				  "belt": "腰带"
+			  },
+			  {
+				  "1": "-常见级",
+				  "2": "-稀有级",
+				  "3": "-特质级",
+				  "4": "-传奇级",
+				  "5": "-神化级"
+			  }
+		  ]
+	  },
 	"set_executor": {
 	  "path": "item.l2artifacts",
 	  "list": [

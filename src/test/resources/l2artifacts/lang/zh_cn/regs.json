@@ -30,7 +30,8 @@
 	"gluttony": "暴食者的终章",
 	"fury_of_fallen": "亡者之怒",
 	"ancient_scroll": "古兵书残卷",
-	"abyss_medal": "深渊蚀章"
+	"abyss_medal": "深渊蚀章",
+	"long_shooter": "远射者"
   },
   "set_effect.l2artifacts": {
 	"berserker_3": "嗜血暴徒",
@@ -71,6 +72,8 @@
 	"ancient_scroll_4": "不动如山",
 	"abyss_medal_3": "虚空塑身",
 	"abyss_medal_5": "虚空残噬",
+	"long_shooter_3": "远射者的专注",
+	"long_shooter_4": "最后的先机",
 
 	"damocles.desc": "满血时，近战伤害+%s%%。半血以下即死。",
 	"protection_resistance.desc": "根据失去的血量比例获得减伤。",
@@ -103,6 +106,8 @@
 	  "ancient_scroll_2.desc": "非疾跑每%s恢复%s点血量。",
 	  "ancient_scroll_3.desc": "满蓄力攻击%s次，均间隔%s内：",
 	  "ancient_scroll_4.desc": "静止%s秒后，减伤%s%%。",
-	  "ancient_scroll_5.desc": "潜行%s秒："
+	  "ancient_scroll_5.desc": "潜行%s秒：",
+	  "long_shooter_3.desc": "附近8格内没有任何怪物时，弹射物伤害增加。",
+	  "long_shooter_4.desc": "套装三效果改为6格，当被接近时将依旧持续两秒，并获得两秒加速。"
   }
 }

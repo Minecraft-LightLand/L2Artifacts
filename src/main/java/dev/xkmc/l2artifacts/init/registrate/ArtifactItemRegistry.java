@@ -1,5 +1,6 @@
 package dev.xkmc.l2artifacts.init.registrate;
 
+import dev.xkmc.l2artifacts.content.capability.ArtifactData;
 import dev.xkmc.l2artifacts.content.core.ArtifactSet;
 import dev.xkmc.l2artifacts.content.effects.attribute.AttrSetEntry;
 import dev.xkmc.l2artifacts.content.effects.attribute.AttributeSetEffect;
@@ -9,10 +10,7 @@ import dev.xkmc.l2artifacts.content.effects.persistent.SimpleCPSetEffect;
 import dev.xkmc.l2artifacts.content.effects.v1.*;
 import dev.xkmc.l2artifacts.content.effects.v2.*;
 import dev.xkmc.l2artifacts.content.effects.v3.*;
-import dev.xkmc.l2artifacts.content.effects.v4.AbyssAttackEffect;
-import dev.xkmc.l2artifacts.content.effects.v4.AttackStrikeEffect;
-import dev.xkmc.l2artifacts.content.effects.v4.ImmobileEffect;
-import dev.xkmc.l2artifacts.content.effects.v4.LuckAttackEffect;
+import dev.xkmc.l2artifacts.content.effects.v4.*;
 import dev.xkmc.l2artifacts.content.misc.ExpItem;
 import dev.xkmc.l2artifacts.content.misc.RandomArtifactItem;
 import dev.xkmc.l2artifacts.content.misc.SelectArtifactItem;
@@ -29,11 +27,19 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntitySelector;
+import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.monster.Enemy;
+import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.entity.EntityTypeTest;
+import net.minecraft.world.phys.AABB;
 import net.minecraftforge.client.model.generators.ModelFile;
+import net.minecraftforge.common.extensions.IForgeEntity;
 
 import static dev.xkmc.l2artifacts.init.L2Artifacts.REGISTRATE;
 import static dev.xkmc.l2artifacts.init.registrate.ArtifactTypeRegistry.*;
@@ -144,7 +150,7 @@ public class ArtifactItemRegistry {
 	public static final RegistryEntry<SimpleCASetEffect> EFF_FALLEN_1, EFF_FALLEN_2, EFF_FALLEN_3, EFF_FALLEN_4, EFF_FALLEN_5;
 
 	//v4
-	public static final SetEntry<ArtifactSet> SET_ANCIENT,SET_LUCKLOVER,SET_ABYSSMEDAL;
+	public static final SetEntry<ArtifactSet> SET_ANCIENT,SET_LUCKLOVER,SET_ABYSSMEDAL,SET_LONGSHOOTER;
 
 	public static final RegistryEntry<TimedCASetEffect> EFF_ANCIENT_1;
 	public static final RegistryEntry<SimpleCPSetEffect> EFF_ANCIENT_2;
@@ -152,7 +158,8 @@ public class ArtifactItemRegistry {
 	public static final RegistryEntry<ImmobileEffect> EFF_ANCIENT_4;
 	public static final RegistryEntry<TimedCASetEffect> EFF_ANCIENT_5;
 
-
+	public static final RegistryEntry<LongShooterEffect>EFF_LONGSHOOTER_3;
+	public static final RegistryEntry<LongShooterPersistentEffect>EFF_LONGSHOOTER_4;
 	public static final RegistryEntry<LuckAttackEffect> EFF_LUCKCLOVER_4;
 
 
@@ -644,6 +651,28 @@ public class ArtifactItemRegistry {
 						)
 						.register());
 
+
+			}
+			{//Long range shooter
+				LinearFuncEntry long_shooter_atk = REGISTRATE.regLinear("long_shooter_atk", 0.8, 0.4);
+				EFF_LONGSHOOTER_3 = REGISTRATE.setEffect("long_shooter_3", () -> new LongShooterEffect(new AttrSetEntry(BOW_STRENGTH, MULTIPLY_BASE,long_shooter_atk, true)))
+						.desc("Focus of the long-range shooter",
+								"When there is no Monster in the nearby 8 cells:")
+						.register();
+
+				EFF_LONGSHOOTER_4 = REGISTRATE.setEffect("long_shooter_4", () -> new LongShooterPersistentEffect(new AttrSetEntry(BOW_STRENGTH, MULTIPLY_BASE,long_shooter_atk, true)))
+						.desc("Last chance",
+								"Set the effect of suit 3 to 6 squares, when approached, it still lasts for two seconds and gains two second acceleration"
+						).register();
+
+
+				SET_LONGSHOOTER = Wrappers.cast(REGISTRATE.regSet("long_shooter", ArtifactSet::new, 1, 5, "LongShooter Set")
+						.setSlots(SLOT_HEAD, SLOT_NECKLACE,SLOT_BRACELET, SLOT_BELT).regItems()
+						.buildConfig((c) -> c
+								.add(3, EFF_LONGSHOOTER_3.get())
+								.add(4, EFF_LONGSHOOTER_4.get())
+						)
+						.register());
 
 			}
 

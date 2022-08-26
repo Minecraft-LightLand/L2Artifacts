@@ -614,15 +614,15 @@ public class ArtifactItemRegistry {
 				LinearFuncEntry luck_count_3 = REGISTRATE.regLinear("luck_count_3", 3, 0);
 				LinearFuncEntry luck_count_4 = REGISTRATE.regLinear("luck_count_4", 4, 0);
 				LinearFuncEntry luck_rate = REGISTRATE.regLinear("luck_rate", 1, 0);
-				LinearFuncEntry luck_dmg = REGISTRATE.regLinear("luck_dmg", 0.4, 0.2);
+				LinearFuncEntry luck_dmg = REGISTRATE.regLinear("luck_dmg", 1, 0.2);
 
 				EFF_LUCKCLOVER_3 = REGISTRATE.setEffect("luck_clover_3", () -> new LuckAttackEffect(luck_threshold, luck_count_3,
-								new AttrSetEntry(CRIT_DMG, MULTIPLY_BASE, luck_dmg, true)))
+								new AttrSetEntry(CRIT_DMG,  ADDITION, luck_dmg, true)))
 						.desc("Lucky number : 3",
 								"The %s consecutive attacks are all within %s second:"
 						).register();
 				EFF_LUCKCLOVER_4 = REGISTRATE.setEffect("luck_clover_4", () -> new LuckAttackEffect(luck_threshold, luck_count_4,
-								new AttrSetEntry(CRIT_RATE, MULTIPLY_BASE, luck_rate, true)))
+								new AttrSetEntry(CRIT_RATE, ADDITION, luck_rate, true)))
 						.desc("Lucky number : 4",
 								"Must be critical hit! The %s consecutive attacks are all within %s second:"
 						).register();

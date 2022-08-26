@@ -97,6 +97,24 @@
 			  }
 		  ]
 	  },
+	  "set_luck_clover": {
+		  "path": "item.l2artifacts",
+		  "list": [
+			  {
+				  "luck_clover_necklace": "四叶草项链",
+				  "luck_clover_body": "四叶草别针",
+				  "luck_clover_bracelet": "四叶草手链",
+				  "luck_clover_belt": "四叶草腰带"
+			  },
+			  {
+				  "1": "-常见级",
+				  "2": "-稀有级",
+				  "3": "-特质级",
+				  "4": "-传奇级",
+				  "5": "-神化级"
+			  }
+		  ]
+	  },
 	  "set_long_shooter": {
 		  "path": "item.l2artifacts",
 		  "list": [

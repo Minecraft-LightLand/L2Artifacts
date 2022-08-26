@@ -160,7 +160,7 @@ public class ArtifactItemRegistry {
 
 	public static final RegistryEntry<LongShooterEffect>EFF_LONGSHOOTER_3;
 	public static final RegistryEntry<LongShooterPersistentEffect>EFF_LONGSHOOTER_4;
-	public static final RegistryEntry<LuckAttackEffect> EFF_LUCKCLOVER_4;
+	public static final RegistryEntry<LuckAttackEffect> EFF_LUCKCLOVER_3,EFF_LUCKCLOVER_4;
 
 
 
@@ -610,20 +610,29 @@ public class ArtifactItemRegistry {
 			}
 
 			{//Lucky clover
-				LinearFuncEntry luck_threshold = REGISTRATE.regLinear("luck_threshold", 20, 0);
-				LinearFuncEntry luck_count = REGISTRATE.regLinear("luck_count", 4, 0);
-				LinearFuncEntry luck_attack = REGISTRATE.regLinear("luck_attack", 1, 0);
+				LinearFuncEntry luck_threshold = REGISTRATE.regLinear("luck_threshold", 40, 0);
+				LinearFuncEntry luck_count_3 = REGISTRATE.regLinear("luck_count_3", 3, 0);
+				LinearFuncEntry luck_count_4 = REGISTRATE.regLinear("luck_count_4", 4, 0);
+				LinearFuncEntry luck_attack = REGISTRATE.regLinear("luck_attack", 1, 0.5);
+				LinearFuncEntry luck_attack_speed = REGISTRATE.regLinear("luck_attack_speed", 0.4, 0.2);
 
-				EFF_LUCKCLOVER_4 = REGISTRATE.setEffect("luck_clover_4", () -> new LuckAttackEffect(luck_threshold, luck_count,
+				EFF_LUCKCLOVER_3 = REGISTRATE.setEffect("luck_clover_3", () -> new LuckAttackEffect(luck_threshold, luck_count_3,
+								new AttrSetEntry(() -> Attributes.ATTACK_SPEED, MULTIPLY_BASE, luck_attack_speed, true)))
+						.desc("Lucky number : 3",
+								"The %s consecutive attacks are all within %s second:"
+						).register();
+				EFF_LUCKCLOVER_4 = REGISTRATE.setEffect("luck_clover_4", () -> new LuckAttackEffect(luck_threshold, luck_count_4,
 								new AttrSetEntry(() -> Attributes.ATTACK_DAMAGE, MULTIPLY_BASE, luck_attack, true)))
 						.desc("Lucky number : 4",
-								"The %s consecutive attacks are all within %s second,"
+								"The %s consecutive attacks are all within %s second:"
 						).register();
 
 				SET_LUCKLOVER = Wrappers.cast(REGISTRATE.regSet("luck_clover", ArtifactSet::new, 4, 4, "LuckClover Set")
 						.setSlots( SLOT_NECKLACE, SLOT_BODY, SLOT_BRACELET,SLOT_BELT).regItems()
 						.buildConfig((c) -> c
-								.add(4, EFF_LUCKCLOVER_4.get()))
+								.add(3, EFF_LUCKCLOVER_3.get())
+								.add(4, EFF_LUCKCLOVER_4.get())
+						)
 						.register());
 
 			}

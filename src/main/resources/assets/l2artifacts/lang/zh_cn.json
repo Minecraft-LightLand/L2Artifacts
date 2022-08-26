@@ -551,7 +551,7 @@
   "set_effect.l2artifacts.long_shooter_3.desc": "附近8格内没有任何怪物时，弹射物伤害增加。",
   "set_effect.l2artifacts.long_shooter_4.desc": "套装三效果改为6格，当被接近时将依旧持续两秒，并获得两秒加速。",
   "set_effect.l2artifacts.luck_clover_3.desc": "连击三次且均间隔两秒内：",
-  "set_effect.l2artifacts.luck_clover_4.desc": "连击四次且均间隔两秒内：",
+  "set_effect.l2artifacts.luck_clover_4.desc": "连击四次且均间隔两秒内，必定暴击！",
   "l2artifacts.tooltip.artifact_exp": "经验值: %s/%s",
   "l2artifacts.tooltip.artifact_level": "等级: %s",
   "l2artifacts.tooltip.main_stat": "主词条:",

@@ -185,20 +185,20 @@
       "base": 0.8,
       "slope": 0.4
     },
-    "l2artifacts:luck_attack": {
-      "base": 1.0,
-      "slope": 0.5
-    },
-    "l2artifacts:luck_attack_speed": {
-      "base": 0.4,
-      "slope": 0.2
-    },
     "l2artifacts:luck_count_3": {
       "base": 3.0,
       "slope": 0.0
     },
     "l2artifacts:luck_count_4": {
       "base": 4.0,
+      "slope": 0.0
+    },
+    "l2artifacts:luck_dmg": {
+      "base": 0.4,
+      "slope": 0.2
+    },
+    "l2artifacts:luck_rate": {
+      "base": 1.0,
       "slope": 0.0
     },
     "l2artifacts:luck_threshold": {

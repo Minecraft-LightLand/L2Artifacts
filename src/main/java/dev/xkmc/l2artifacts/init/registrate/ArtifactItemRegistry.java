@@ -613,18 +613,18 @@ public class ArtifactItemRegistry {
 				LinearFuncEntry luck_threshold = REGISTRATE.regLinear("luck_threshold", 40, 0);
 				LinearFuncEntry luck_count_3 = REGISTRATE.regLinear("luck_count_3", 3, 0);
 				LinearFuncEntry luck_count_4 = REGISTRATE.regLinear("luck_count_4", 4, 0);
-				LinearFuncEntry luck_attack = REGISTRATE.regLinear("luck_attack", 1, 0.5);
-				LinearFuncEntry luck_attack_speed = REGISTRATE.regLinear("luck_attack_speed", 0.4, 0.2);
+				LinearFuncEntry luck_rate = REGISTRATE.regLinear("luck_rate", 1, 0);
+				LinearFuncEntry luck_dmg = REGISTRATE.regLinear("luck_dmg", 0.4, 0.2);
 
 				EFF_LUCKCLOVER_3 = REGISTRATE.setEffect("luck_clover_3", () -> new LuckAttackEffect(luck_threshold, luck_count_3,
-								new AttrSetEntry(() -> Attributes.ATTACK_SPEED, MULTIPLY_BASE, luck_attack_speed, true)))
+								new AttrSetEntry(CRIT_DMG, MULTIPLY_BASE, luck_dmg, true)))
 						.desc("Lucky number : 3",
 								"The %s consecutive attacks are all within %s second:"
 						).register();
 				EFF_LUCKCLOVER_4 = REGISTRATE.setEffect("luck_clover_4", () -> new LuckAttackEffect(luck_threshold, luck_count_4,
-								new AttrSetEntry(() -> Attributes.ATTACK_DAMAGE, MULTIPLY_BASE, luck_attack, true)))
+								new AttrSetEntry(CRIT_RATE, MULTIPLY_BASE, luck_rate, true)))
 						.desc("Lucky number : 4",
-								"The %s consecutive attacks are all within %s second:"
+								"Must be critical hit! The %s consecutive attacks are all within %s second:"
 						).register();
 
 				SET_LUCKLOVER = Wrappers.cast(REGISTRATE.regSet("luck_clover", ArtifactSet::new, 4, 4, "LuckClover Set")

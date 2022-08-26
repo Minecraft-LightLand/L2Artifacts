@@ -522,7 +522,7 @@
   "set_effect.l2artifacts.luck_clover_3": "Lucky number : 3",
   "set_effect.l2artifacts.luck_clover_3.desc": "The %s consecutive attacks are all within %s second:",
   "set_effect.l2artifacts.luck_clover_4": "Lucky number : 4",
-  "set_effect.l2artifacts.luck_clover_4.desc": "The %s consecutive attacks are all within %s second:",
+  "set_effect.l2artifacts.luck_clover_4.desc": "Must be critical hit! The %s consecutive attacks are all within %s second:",
   "set_effect.l2artifacts.perfection_absorption": "Heart of Perfection",
   "set_effect.l2artifacts.perfection_absorption.desc": "When at full health, every %s seconds gain 1 point of absorption, maximum %s points.",
   "set_effect.l2artifacts.perfection_protection": "Eternity of Perfection",

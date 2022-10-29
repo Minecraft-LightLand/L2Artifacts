@@ -41,7 +41,7 @@ public class VampireBurn extends SetEffect {
 			}
 		}
 		if (light <= this.light.getFromRank(rank)) {
-			EffectUtil.refreshEffect(player, new MobEffectInstance(MobEffects.NIGHT_VISION, 40), EffectUtil.AddReason.SELF, player);
+			EffectUtil.refreshEffect(player, new MobEffectInstance(MobEffects.NIGHT_VISION, 400), EffectUtil.AddReason.SELF, player);
 		}
 	}
 

@@ -9,6 +9,8 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class SelectArtifactItem extends Item {
 
@@ -21,9 +23,14 @@ public class SelectArtifactItem extends Item {
 		ItemStack itemstack = player.getItemInHand(hand);
 		player.awardStat(Stats.ITEM_USED.get(this));
 		if (level.isClientSide) {
-			Minecraft.getInstance().setScreen(new SetSelectScreen());
+			openScreen();
 		}
 		return InteractionResultHolder.success(itemstack);
+	}
+
+	@OnlyIn(Dist.CLIENT)
+	private static void openScreen(){
+		Minecraft.getInstance().setScreen(new SetSelectScreen());
 	}
 
 }

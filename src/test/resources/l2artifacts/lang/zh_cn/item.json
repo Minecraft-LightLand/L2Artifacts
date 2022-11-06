@@ -56,6 +56,28 @@
 		}
 	  ]
 	},
+	  "set_ancient": {
+		  "path": "item.l2artifacts",
+		  "list": [
+			  {
+				  "ancient_scroll": "古兵书残卷"
+			  },
+			  {
+				  "head": "书套",
+				  "necklace": "书签",
+				  "body": "上部",
+				  "bracelet": "书绳",
+				  "belt": "下部"
+			  },
+			  {
+				  "1": "-常见级",
+				  "2": "-稀有级",
+				  "3": "-特质级",
+				  "4": "-传奇级",
+				  "5": "-神化级"
+			  }
+		  ]
+	  },
 	"set_executor": {
 	  "path": "item.l2artifacts",
 	  "list": [

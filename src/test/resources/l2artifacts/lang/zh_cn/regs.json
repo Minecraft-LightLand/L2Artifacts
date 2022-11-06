@@ -28,7 +28,8 @@
 	"sun_block": "阳伞",
 	"vampire": "吸血鬼",
 	"gluttony": "暴食者的终章",
-	"fury_of_fallen": "亡者之怒"
+	"fury_of_fallen": "亡者之怒",
+	"ancient_scroll": "古兵书残卷"
   },
   "set_effect.l2artifacts": {
 	"berserker_3": "嗜血暴徒",
@@ -63,6 +64,11 @@
 	"fury_of_fallen_3": "破釜沉舟",
 	"fury_of_fallen_4": "背水一战",
 	"fury_of_fallen_5": "亡者之怒",
+	"ancient_scroll_1": "其疾如风",
+	"ancient_scroll_2": "其徐如林",
+	"ancient_scroll_3": "侵略如火",
+	"ancient_scroll_4": "不动如山",
+	"ancient_scroll_5": "难知如阴",
 
 	"damocles.desc": "满血时，近战伤害+%s%%。半血以下即死。",
 	"protection_resistance.desc": "根据失去的血量比例获得减伤。",
@@ -88,6 +94,11 @@
 	"fury_of_fallen_2.desc": "生命值40%以下时：",
 	"fury_of_fallen_3.desc": "生命值30%以下时：",
 	"fury_of_fallen_4.desc": "生命值20%以下时：",
-	"fury_of_fallen_5.desc": "生命值10%以下时："
+	"fury_of_fallen_5.desc": "生命值10%以下时：",
+	  "ancient_scroll_1.desc": "疾跑%s秒：",
+	  "ancient_scroll_2.desc": "非疾跑每%s恢复%s点血量。",
+	  "ancient_scroll_3.desc": "满蓄力攻击%s次，均间隔%s内：",
+	  "ancient_scroll_4.desc": "静止%s秒后，减伤%s%%。",
+	  "ancient_scroll_5.desc": "潜行%s秒："
   }
 }

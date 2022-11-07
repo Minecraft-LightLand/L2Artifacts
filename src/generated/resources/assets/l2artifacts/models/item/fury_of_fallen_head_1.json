@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "l2artifacts:item/fury_of_fallen/head",
-    "layer1": "l2artifacts:item/rank/1"
+    "layer0": "l2artifacts:item/rank/1",
+    "layer1": "l2artifacts:item/fury_of_fallen/head"
   }
 }

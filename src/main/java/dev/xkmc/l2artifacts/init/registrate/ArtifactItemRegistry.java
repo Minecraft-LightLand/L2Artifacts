@@ -1,6 +1,5 @@
 package dev.xkmc.l2artifacts.init.registrate;
 
-import dev.xkmc.l2artifacts.content.capability.ArtifactData;
 import dev.xkmc.l2artifacts.content.core.ArtifactSet;
 import dev.xkmc.l2artifacts.content.effects.attribute.AttrSetEntry;
 import dev.xkmc.l2artifacts.content.effects.attribute.AttributeSetEffect;
@@ -27,19 +26,11 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntitySelector;
-import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.monster.Enemy;
-import net.minecraft.world.entity.monster.Monster;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.entity.EntityTypeTest;
-import net.minecraft.world.phys.AABB;
 import net.minecraftforge.client.model.generators.ModelFile;
-import net.minecraftforge.common.extensions.IForgeEntity;
 
 import static dev.xkmc.l2artifacts.init.L2Artifacts.REGISTRATE;
 import static dev.xkmc.l2artifacts.init.registrate.ArtifactTypeRegistry.*;
@@ -70,8 +61,8 @@ public class ArtifactItemRegistry {
 			int r = i + 1;
 			RANDOM[i] = REGISTRATE.item("random_" + r, p -> new RandomArtifactItem(p, r))
 					.model((ctx, pvd) -> pvd.getBuilder(ctx.getName()).parent(new ModelFile.UncheckedModelFile("item/generated"))
-							.texture("layer0", new ResourceLocation(L2Artifacts.MODID, "item/random"))
-							.texture("layer1", new ResourceLocation(L2Artifacts.MODID, "item/rank/" + r)))
+							.texture("layer0", new ResourceLocation(L2Artifacts.MODID, "item/rank/" + r))
+							.texture("layer1", new ResourceLocation(L2Artifacts.MODID, "item/random")))
 					.lang("Random Artifact Lv." + r).register();
 		}
 		ITEM_EXP = new ItemEntry[n];
@@ -79,8 +70,8 @@ public class ArtifactItemRegistry {
 			int r = i + 1;
 			ITEM_EXP[i] = REGISTRATE.item("artifact_experience_" + r, p -> new ExpItem(p, r))
 					.model((ctx, pvd) -> pvd.getBuilder(ctx.getName()).parent(new ModelFile.UncheckedModelFile("item/generated"))
-							.texture("layer0", new ResourceLocation(L2Artifacts.MODID, "item/artifact_experience"))
-							.texture("layer1", new ResourceLocation(L2Artifacts.MODID, "item/rank/" + r)))
+							.texture("layer0", new ResourceLocation(L2Artifacts.MODID, "item/rank/" + r))
+							.texture("layer1", new ResourceLocation(L2Artifacts.MODID, "item/artifact_experience")))
 					.lang("Artifact Experience Lv." + r).register();
 		}
 		ITEM_STAT = new ItemEntry[n];
@@ -88,8 +79,8 @@ public class ArtifactItemRegistry {
 			int r = i + 1;
 			ITEM_STAT[i] = REGISTRATE.item("stat_container_" + r, p -> new StatContainerItem(p, r))
 					.model((ctx, pvd) -> pvd.getBuilder(ctx.getName()).parent(new ModelFile.UncheckedModelFile("item/generated"))
-							.texture("layer0", new ResourceLocation(L2Artifacts.MODID, "item/stat_container"))
-							.texture("layer1", new ResourceLocation(L2Artifacts.MODID, "item/rank/" + r)))
+							.texture("layer0", new ResourceLocation(L2Artifacts.MODID, "item/rank/" + r))
+							.texture("layer1", new ResourceLocation(L2Artifacts.MODID, "item/stat_container")))
 					.lang("Stat Container Lv." + r).register();
 		}
 		ITEM_BOOST_MAIN = new ItemEntry[n];
@@ -97,8 +88,8 @@ public class ArtifactItemRegistry {
 			int r = i + 1;
 			ITEM_BOOST_MAIN[i] = REGISTRATE.item("boost_main_" + r, p -> new UpgradeBoostItem(p, r, Upgrade.Type.BOOST_MAIN_STAT))
 					.model((ctx, pvd) -> pvd.getBuilder(ctx.getName()).parent(new ModelFile.UncheckedModelFile("item/generated"))
-							.texture("layer0", new ResourceLocation(L2Artifacts.MODID, "item/boost_main"))
-							.texture("layer1", new ResourceLocation(L2Artifacts.MODID, "item/rank/" + r)))
+							.texture("layer0", new ResourceLocation(L2Artifacts.MODID, "item/rank/" + r))
+							.texture("layer1", new ResourceLocation(L2Artifacts.MODID, "item/boost_main")))
 					.lang("Main Stat Booster Lv." + r).register();
 		}
 		ITEM_BOOST_SUB = new ItemEntry[n];
@@ -106,8 +97,8 @@ public class ArtifactItemRegistry {
 			int r = i + 1;
 			ITEM_BOOST_SUB[i] = REGISTRATE.item("boost_sub_" + r, p -> new UpgradeBoostItem(p, r, Upgrade.Type.BOOST_SUB_STAT))
 					.model((ctx, pvd) -> pvd.getBuilder(ctx.getName()).parent(new ModelFile.UncheckedModelFile("item/generated"))
-							.texture("layer0", new ResourceLocation(L2Artifacts.MODID, "item/boost_sub"))
-							.texture("layer1", new ResourceLocation(L2Artifacts.MODID, "item/rank/" + r)))
+							.texture("layer0", new ResourceLocation(L2Artifacts.MODID, "item/rank/" + r))
+							.texture("layer1", new ResourceLocation(L2Artifacts.MODID, "item/boost_sub")))
 					.lang("Sub Stat Booster Lv." + r).register();
 		}
 	}
@@ -150,7 +141,7 @@ public class ArtifactItemRegistry {
 	public static final RegistryEntry<SimpleCASetEffect> EFF_FALLEN_1, EFF_FALLEN_2, EFF_FALLEN_3, EFF_FALLEN_4, EFF_FALLEN_5;
 
 	//v4
-	public static final SetEntry<ArtifactSet> SET_ANCIENT,SET_LUCKLOVER,SET_ABYSSMEDAL,SET_LONGSHOOTER;
+	public static final SetEntry<ArtifactSet> SET_ANCIENT, SET_LUCKLOVER, SET_ABYSSMEDAL, SET_LONGSHOOTER;
 
 	public static final RegistryEntry<TimedCASetEffect> EFF_ANCIENT_1;
 	public static final RegistryEntry<SimpleCPSetEffect> EFF_ANCIENT_2;
@@ -158,18 +149,12 @@ public class ArtifactItemRegistry {
 	public static final RegistryEntry<ImmobileEffect> EFF_ANCIENT_4;
 	public static final RegistryEntry<TimedCASetEffect> EFF_ANCIENT_5;
 
-	public static final RegistryEntry<LongShooterEffect>EFF_LONGSHOOTER_3;
-	public static final RegistryEntry<LongShooterPersistentEffect>EFF_LONGSHOOTER_4;
-	public static final RegistryEntry<LuckAttackEffect> EFF_LUCKCLOVER_3,EFF_LUCKCLOVER_4;
-
-
+	public static final RegistryEntry<LongShooterEffect> EFF_LONGSHOOTER_3;
+	public static final RegistryEntry<LongShooterPersistentEffect> EFF_LONGSHOOTER_4;
+	public static final RegistryEntry<LuckAttackEffect> EFF_LUCKCLOVER_3, EFF_LUCKCLOVER_4;
 
 	public static final RegistryEntry<AttributeSetEffect> EFF_ABYSSMEDAL_3;
 	public static final RegistryEntry<AbyssAttackEffect> EFF_ABYSSMEDAL_5;
-
-
-
-
 
 	static {
 
@@ -617,7 +602,7 @@ public class ArtifactItemRegistry {
 				LinearFuncEntry luck_dmg = REGISTRATE.regLinear("luck_dmg", 1, 0.2);
 
 				EFF_LUCKCLOVER_3 = REGISTRATE.setEffect("luck_clover_3", () -> new LuckAttackEffect(luck_threshold, luck_count_3,
-								new AttrSetEntry(CRIT_DMG,  ADDITION, luck_dmg, true)))
+								new AttrSetEntry(CRIT_DMG, ADDITION, luck_dmg, true)))
 						.desc("Lucky number : 3",
 								"The %s consecutive attacks are all within %s second:"
 						).register();
@@ -628,7 +613,7 @@ public class ArtifactItemRegistry {
 						).register();
 
 				SET_LUCKLOVER = Wrappers.cast(REGISTRATE.regSet("luck_clover", ArtifactSet::new, 4, 4, "LuckClover Set")
-						.setSlots( SLOT_NECKLACE, SLOT_BODY, SLOT_BRACELET,SLOT_BELT).regItems()
+						.setSlots(SLOT_NECKLACE, SLOT_BODY, SLOT_BRACELET, SLOT_BELT).regItems()
 						.buildConfig((c) -> c
 								.add(3, EFF_LUCKCLOVER_3.get())
 								.add(4, EFF_LUCKCLOVER_4.get())
@@ -640,14 +625,14 @@ public class ArtifactItemRegistry {
 				LinearFuncEntry abyss_level = REGISTRATE.regLinear("abyss_level", 0, 0.2);
 				LinearFuncEntry abyss_health = REGISTRATE.regLinear("abyss_health", 0.4, 0.2);
 				LinearFuncEntry abyss_duration = REGISTRATE.regLinear("abyss_duration", 80, 20);
-				LinearFuncEntry abyss_hurt= REGISTRATE.regLinear("abyss_hurt", 1.2, 0.2);
+				LinearFuncEntry abyss_hurt = REGISTRATE.regLinear("abyss_hurt", 1.2, 0.2);
 
 				EFF_ABYSSMEDAL_3 = REGISTRATE.setEffect("abyss_medal_3", () -> new AttributeSetEffect(
-								new AttrSetEntry(() -> Attributes.MAX_HEALTH, MULTIPLY_BASE,abyss_health, true)))
+								new AttrSetEntry(() -> Attributes.MAX_HEALTH, MULTIPLY_BASE, abyss_health, true)))
 						.desc("Abyss strengthens your body",
 								"The abyss will give you the power of blood and flesh."
 						).register();
-				EFF_ABYSSMEDAL_5 = REGISTRATE.setEffect("abyss_medal_5", () -> new AbyssAttackEffect(abyss_duration,abyss_level,abyss_hurt,0))
+				EFF_ABYSSMEDAL_5 = REGISTRATE.setEffect("abyss_medal_5", () -> new AbyssAttackEffect(abyss_duration, abyss_level, abyss_hurt, 0))
 						.desc("Abyss eclipse",
 								"The power of the abyss is attached to your weapon and will bring %s second Lv%s Weakness and Wither to the enemy, but you will also receive %s%% damage."
 						).register();
@@ -664,19 +649,19 @@ public class ArtifactItemRegistry {
 			}
 			{//Long range shooter
 				LinearFuncEntry long_shooter_atk = REGISTRATE.regLinear("long_shooter_atk", 0.8, 0.4);
-				EFF_LONGSHOOTER_3 = REGISTRATE.setEffect("long_shooter_3", () -> new LongShooterEffect(new AttrSetEntry(BOW_STRENGTH, MULTIPLY_BASE,long_shooter_atk, true)))
+				EFF_LONGSHOOTER_3 = REGISTRATE.setEffect("long_shooter_3", () -> new LongShooterEffect(new AttrSetEntry(BOW_STRENGTH, MULTIPLY_BASE, long_shooter_atk, true)))
 						.desc("Focus of the long-range shooter",
 								"When there is no Monster in the nearby 8 cells:")
 						.register();
 
-				EFF_LONGSHOOTER_4 = REGISTRATE.setEffect("long_shooter_4", () -> new LongShooterPersistentEffect(new AttrSetEntry(BOW_STRENGTH, MULTIPLY_BASE,long_shooter_atk, true)))
+				EFF_LONGSHOOTER_4 = REGISTRATE.setEffect("long_shooter_4", () -> new LongShooterPersistentEffect(new AttrSetEntry(BOW_STRENGTH, MULTIPLY_BASE, long_shooter_atk, true)))
 						.desc("Last chance",
 								"Set the effect of suit 3 to 6 squares, when approached, it still lasts for two seconds and gains two second acceleration"
 						).register();
 
 
 				SET_LONGSHOOTER = Wrappers.cast(REGISTRATE.regSet("long_shooter", ArtifactSet::new, 1, 5, "LongShooter Set")
-						.setSlots(SLOT_HEAD, SLOT_NECKLACE,SLOT_BRACELET, SLOT_BELT).regItems()
+						.setSlots(SLOT_HEAD, SLOT_NECKLACE, SLOT_BRACELET, SLOT_BELT).regItems()
 						.buildConfig((c) -> c
 								.add(3, EFF_LONGSHOOTER_3.get())
 								.add(4, EFF_LONGSHOOTER_4.get())

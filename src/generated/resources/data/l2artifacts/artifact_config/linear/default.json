@@ -194,11 +194,11 @@
       "slope": 0.0
     },
     "l2artifacts:luck_dmg": {
-      "base": 0.4,
+      "base": 1.0,
       "slope": 0.2
     },
     "l2artifacts:luck_rate": {
-      "base": 100.0,
+      "base": 1.0,
       "slope": 0.0
     },
     "l2artifacts:luck_threshold": {

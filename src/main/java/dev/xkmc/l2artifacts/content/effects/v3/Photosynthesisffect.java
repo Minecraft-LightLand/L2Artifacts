@@ -35,6 +35,7 @@ public class Photosynthesisffect extends SetEffect {
 		if (player.getLevel().isClientSide()) return;
 		if (player.tickCount % period.getFromRank(rank) != 0) return;
 		int sun = PlayerLight.playerUnderSun(player);
+
 		int light = PlayerLight.playerLight(player);
 		if (sun >= lightHigh.getFromRank(rank)) {
 			float sat = player.getFoodData().getSaturationLevel();

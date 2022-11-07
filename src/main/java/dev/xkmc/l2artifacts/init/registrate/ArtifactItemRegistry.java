@@ -1,5 +1,6 @@
 package dev.xkmc.l2artifacts.init.registrate;
 
+import dev.xkmc.l2artifacts.content.capability.ArtifactData;
 import dev.xkmc.l2artifacts.content.core.ArtifactSet;
 import dev.xkmc.l2artifacts.content.effects.attribute.AttrSetEntry;
 import dev.xkmc.l2artifacts.content.effects.attribute.AttributeSetEffect;
@@ -9,8 +10,7 @@ import dev.xkmc.l2artifacts.content.effects.persistent.SimpleCPSetEffect;
 import dev.xkmc.l2artifacts.content.effects.v1.*;
 import dev.xkmc.l2artifacts.content.effects.v2.*;
 import dev.xkmc.l2artifacts.content.effects.v3.*;
-import dev.xkmc.l2artifacts.content.effects.v4.AttackStrikeEffect;
-import dev.xkmc.l2artifacts.content.effects.v4.ImmobileEffect;
+import dev.xkmc.l2artifacts.content.effects.v4.*;
 import dev.xkmc.l2artifacts.content.misc.ExpItem;
 import dev.xkmc.l2artifacts.content.misc.RandomArtifactItem;
 import dev.xkmc.l2artifacts.content.misc.SelectArtifactItem;
@@ -27,11 +27,19 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntitySelector;
+import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.monster.Enemy;
+import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.entity.EntityTypeTest;
+import net.minecraft.world.phys.AABB;
 import net.minecraftforge.client.model.generators.ModelFile;
+import net.minecraftforge.common.extensions.IForgeEntity;
 
 import static dev.xkmc.l2artifacts.init.L2Artifacts.REGISTRATE;
 import static dev.xkmc.l2artifacts.init.registrate.ArtifactTypeRegistry.*;
@@ -142,13 +150,25 @@ public class ArtifactItemRegistry {
 	public static final RegistryEntry<SimpleCASetEffect> EFF_FALLEN_1, EFF_FALLEN_2, EFF_FALLEN_3, EFF_FALLEN_4, EFF_FALLEN_5;
 
 	//v4
-	public static final SetEntry<ArtifactSet> SET_ANCIENT;
+	public static final SetEntry<ArtifactSet> SET_ANCIENT,SET_LUCKLOVER,SET_ABYSSMEDAL,SET_LONGSHOOTER;
 
 	public static final RegistryEntry<TimedCASetEffect> EFF_ANCIENT_1;
 	public static final RegistryEntry<SimpleCPSetEffect> EFF_ANCIENT_2;
 	public static final RegistryEntry<AttackStrikeEffect> EFF_ANCIENT_3;
 	public static final RegistryEntry<ImmobileEffect> EFF_ANCIENT_4;
 	public static final RegistryEntry<TimedCASetEffect> EFF_ANCIENT_5;
+
+	public static final RegistryEntry<LongShooterEffect>EFF_LONGSHOOTER_3;
+	public static final RegistryEntry<LongShooterPersistentEffect>EFF_LONGSHOOTER_4;
+	public static final RegistryEntry<LuckAttackEffect> EFF_LUCKCLOVER_3,EFF_LUCKCLOVER_4;
+
+
+
+	public static final RegistryEntry<AttributeSetEffect> EFF_ABYSSMEDAL_3;
+	public static final RegistryEntry<AbyssAttackEffect> EFF_ABYSSMEDAL_5;
+
+
+
 
 
 	static {
@@ -585,6 +605,82 @@ public class ArtifactItemRegistry {
 								.add(3, EFF_ANCIENT_3.get())
 								.add(4, EFF_ANCIENT_4.get())
 								.add(5, EFF_ANCIENT_5.get()))
+						.register());
+
+			}
+
+			{//Lucky clover
+				LinearFuncEntry luck_threshold = REGISTRATE.regLinear("luck_threshold", 40, 0);
+				LinearFuncEntry luck_count_3 = REGISTRATE.regLinear("luck_count_3", 3, 0);
+				LinearFuncEntry luck_count_4 = REGISTRATE.regLinear("luck_count_4", 4, 0);
+				LinearFuncEntry luck_rate = REGISTRATE.regLinear("luck_rate", 1, 0);
+				LinearFuncEntry luck_dmg = REGISTRATE.regLinear("luck_dmg", 1, 0.2);
+
+				EFF_LUCKCLOVER_3 = REGISTRATE.setEffect("luck_clover_3", () -> new LuckAttackEffect(luck_threshold, luck_count_3,
+								new AttrSetEntry(CRIT_DMG,  ADDITION, luck_dmg, true)))
+						.desc("Lucky number : 3",
+								"The %s consecutive attacks are all within %s second:"
+						).register();
+				EFF_LUCKCLOVER_4 = REGISTRATE.setEffect("luck_clover_4", () -> new LuckAttackEffect(luck_threshold, luck_count_4,
+								new AttrSetEntry(CRIT_RATE, ADDITION, luck_rate, true)))
+						.desc("Lucky number : 4",
+								"Must be critical hit! The %s consecutive attacks are all within %s second:"
+						).register();
+
+				SET_LUCKLOVER = Wrappers.cast(REGISTRATE.regSet("luck_clover", ArtifactSet::new, 4, 4, "LuckClover Set")
+						.setSlots( SLOT_NECKLACE, SLOT_BODY, SLOT_BRACELET,SLOT_BELT).regItems()
+						.buildConfig((c) -> c
+								.add(3, EFF_LUCKCLOVER_3.get())
+								.add(4, EFF_LUCKCLOVER_4.get())
+						)
+						.register());
+
+			}
+			{//abyss eclipse medal
+				LinearFuncEntry abyss_level = REGISTRATE.regLinear("abyss_level", 0, 0.2);
+				LinearFuncEntry abyss_health = REGISTRATE.regLinear("abyss_health", 0.4, 0.2);
+				LinearFuncEntry abyss_duration = REGISTRATE.regLinear("abyss_duration", 80, 20);
+				LinearFuncEntry abyss_hurt= REGISTRATE.regLinear("abyss_hurt", 1.2, 0.2);
+
+				EFF_ABYSSMEDAL_3 = REGISTRATE.setEffect("abyss_medal_3", () -> new AttributeSetEffect(
+								new AttrSetEntry(() -> Attributes.MAX_HEALTH, MULTIPLY_BASE,abyss_health, true)))
+						.desc("Abyss strengthens your body",
+								"The abyss will give you the power of blood and flesh."
+						).register();
+				EFF_ABYSSMEDAL_5 = REGISTRATE.setEffect("abyss_medal_5", () -> new AbyssAttackEffect(abyss_duration,abyss_level,abyss_hurt,0))
+						.desc("Abyss eclipse",
+								"The power of the abyss is attached to your weapon and will bring %s second Lv%s Weakness and Wither to the enemy, but you will also receive %s%% damage."
+						).register();
+
+				SET_ABYSSMEDAL = Wrappers.cast(REGISTRATE.regSet("abyss_medal", ArtifactSet::new, 1, 5, "AbyssMedal Set")
+						.setSlots(SLOT_HEAD, SLOT_NECKLACE, SLOT_BODY, SLOT_BRACELET, SLOT_BELT).regItems()
+						.buildConfig((c) -> c
+								.add(3, EFF_ABYSSMEDAL_3.get())
+								.add(5, EFF_ABYSSMEDAL_5.get())
+						)
+						.register());
+
+
+			}
+			{//Long range shooter
+				LinearFuncEntry long_shooter_atk = REGISTRATE.regLinear("long_shooter_atk", 0.8, 0.4);
+				EFF_LONGSHOOTER_3 = REGISTRATE.setEffect("long_shooter_3", () -> new LongShooterEffect(new AttrSetEntry(BOW_STRENGTH, MULTIPLY_BASE,long_shooter_atk, true)))
+						.desc("Focus of the long-range shooter",
+								"When there is no Monster in the nearby 8 cells:")
+						.register();
+
+				EFF_LONGSHOOTER_4 = REGISTRATE.setEffect("long_shooter_4", () -> new LongShooterPersistentEffect(new AttrSetEntry(BOW_STRENGTH, MULTIPLY_BASE,long_shooter_atk, true)))
+						.desc("Last chance",
+								"Set the effect of suit 3 to 6 squares, when approached, it still lasts for two seconds and gains two second acceleration"
+						).register();
+
+
+				SET_LONGSHOOTER = Wrappers.cast(REGISTRATE.regSet("long_shooter", ArtifactSet::new, 1, 5, "LongShooter Set")
+						.setSlots(SLOT_HEAD, SLOT_NECKLACE,SLOT_BRACELET, SLOT_BELT).regItems()
+						.buildConfig((c) -> c
+								.add(3, EFF_LONGSHOOTER_3.get())
+								.add(4, EFF_LONGSHOOTER_4.get())
+						)
 						.register());
 
 			}

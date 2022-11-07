@@ -14,9 +14,7 @@ public class PlayerLight {
 			}
 		return entity.getLevel().getLightEngine().getRawBrightness(entity.getOnPos(), -64) - 64;
 	}
-
 	public static int playerLight(LivingEntity entity) {
 		return entity.getLevel().getLightEngine().getRawBrightness(entity.getOnPos(), 0);
 	}
-
 }

@@ -24,8 +24,20 @@ Genshin Impact style artifacts that helps to boost player stats.
     ordering="NONE"
     side="BOTH"
 [[dependencies.l2artifacts]]
+    modId="attributefix"
+    mandatory=true
+    versionRange="[17,)"
+    ordering="AFTER"
+    side="BOTH"
+[[dependencies.l2artifacts]]
+    modId="maxhealthfix"
+    mandatory=true
+    versionRange="[8,)"
+    ordering="AFTER"
+    side="BOTH"
+[[dependencies.l2artifacts]]
     modId="l2library"
     mandatory=true
-    versionRange="[1.8.0,)"
+    versionRange="[1.7.2,)"
     ordering="AFTER"
     side="BOTH"

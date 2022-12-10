@@ -30,11 +30,11 @@ public class ModConfig {
 			expConsumptionRankFactor = builder.comment("exponential experience requirement per rank")
 					.defineInRange("expConsumptionRankFactor", 2d, 1, 10);
 			expLevelFactor = builder.comment("exponential experience requirement per level")
-					.defineInRange("expLevelFactor", 1.2d, 1, 10);
+					.defineInRange("expLevelFactor", 1.05d, 1, 10);
 			baseExpConsumption = builder.comment("experience requirement for level 0 rank 1 artifact")
 					.defineInRange("baseExpConsumption", 100, 1, 10000);
 			expRetention = builder.comment("experience retained for using upgraded artifact to upgrade")
-					.defineInRange("expRetention", 0.8, 0, 1);
+					.defineInRange("expRetention", 0.9, 0, 1);
 			baseExpConversion = builder.comment("experience available for level 0 rank 1 artifact")
 					.defineInRange("baseExpConversion", 100, 1, 1000000);
 			expConversionRankFactor = builder.comment("exponential experience available per rank")

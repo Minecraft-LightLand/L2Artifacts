@@ -12,6 +12,8 @@ public class ModConfig {
 		public final ForgeConfigSpec.IntValue maxLevelPerRank;
 		public final ForgeConfigSpec.IntValue levelPerSubStat;
 
+		public final ForgeConfigSpec.IntValue healthRequirement;
+
 		public final ForgeConfigSpec.DoubleValue expConsumptionRankFactor;
 		public final ForgeConfigSpec.DoubleValue expLevelFactor;
 		public final ForgeConfigSpec.IntValue baseExpConsumption;
@@ -20,6 +22,8 @@ public class ModConfig {
 		public final ForgeConfigSpec.DoubleValue expConversionRankFactor;
 
 		Common(ForgeConfigSpec.Builder builder) {
+			healthRequirement = builder.comment("max health of mobs required per rank of drop")
+					.defineInRange("healthRequirement", 100, 1, 10000);
 			maxRank = builder.comment("maximum available rank")
 					.defineInRange("maxRank", 5, 1, 10);
 			maxLevelPerRank = builder.comment("maximum level per rank")

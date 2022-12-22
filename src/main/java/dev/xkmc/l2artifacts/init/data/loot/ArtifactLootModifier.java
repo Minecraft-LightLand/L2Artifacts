@@ -2,6 +2,7 @@ package dev.xkmc.l2artifacts.init.data.loot;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import dev.xkmc.l2artifacts.init.data.ModConfig;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactItemRegistry;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.minecraft.world.entity.Entity;
@@ -29,7 +30,7 @@ public class ArtifactLootModifier extends LootModifier {
 		Entity entity = context.getParam(LootContextParams.THIS_ENTITY);
 		if (entity instanceof LivingEntity le && entity instanceof Enemy) {
 			float health = le.getMaxHealth();
-			int rank = (int) Math.floor(health / 100);
+			int rank = (int) Math.floor(health / ModConfig.COMMON.healthRequirement.get());
 			if (rank > 5) rank = 5;
 			if (rank > 0) {
 				list.add(ArtifactItemRegistry.RANDOM[rank - 1].asStack());

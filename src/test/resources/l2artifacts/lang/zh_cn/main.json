@@ -6,5 +6,10 @@
   "attribute.name.bow_strength": "弓箭伤害",
   "generic.attack_range": "攻击距离",
   "itemGroup.l2artifacts.artifacts": "古遗物",
-  "menu.tabs.set_effects": "已启用套装效果"
+  "menu.tabs.set_effects": "已启用套装效果",
+  "slot.l2artifacts.belt": "腰带",
+  "slot.l2artifacts.body": "胸饰",
+  "slot.l2artifacts.bracelet": "手环",
+  "slot.l2artifacts.head": "头饰",
+  "slot.l2artifacts.necklace": "项链"
 }

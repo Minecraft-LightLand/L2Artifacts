@@ -1,5 +1,6 @@
 package dev.xkmc.l2artifacts.content.core;
 
+import dev.xkmc.l2artifacts.content.client.search.token.IArtifactFeature;
 import dev.xkmc.l2artifacts.content.client.tab.DarkTextColorRanks;
 import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
 import dev.xkmc.l2artifacts.events.EventConsumer;
@@ -23,7 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class ArtifactSet extends NamedEntry<ArtifactSet> {
+public class ArtifactSet extends NamedEntry<ArtifactSet> implements IArtifactFeature {
 
 	public record SetContext(int count, int[] ranks, int current_index) {
 

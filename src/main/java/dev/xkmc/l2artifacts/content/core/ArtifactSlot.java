@@ -1,5 +1,6 @@
 package dev.xkmc.l2artifacts.content.core;
 
+import dev.xkmc.l2artifacts.content.client.search.token.IArtifactFeature;
 import dev.xkmc.l2artifacts.content.config.SlotStatConfig;
 import dev.xkmc.l2artifacts.content.upgrades.Upgrade;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactTypeRegistry;
@@ -9,7 +10,7 @@ import net.minecraft.util.RandomSource;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ArtifactSlot extends NamedEntry<ArtifactSlot> {
+public class ArtifactSlot extends NamedEntry<ArtifactSlot> implements IArtifactFeature {
 
 	public ArtifactSlot() {
 		super(ArtifactTypeRegistry.SLOT);

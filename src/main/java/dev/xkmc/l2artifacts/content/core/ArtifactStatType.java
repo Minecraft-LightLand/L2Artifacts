@@ -1,6 +1,7 @@
 package dev.xkmc.l2artifacts.content.core;
 
 import com.google.common.collect.ImmutableMultimap;
+import dev.xkmc.l2artifacts.content.client.search.token.IArtifactFeature;
 import dev.xkmc.l2artifacts.content.config.StatTypeConfig;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactTypeRegistry;
 import dev.xkmc.l2library.base.NamedEntry;
@@ -17,7 +18,7 @@ import java.util.function.Supplier;
 
 import static net.minecraft.world.item.ItemStack.ATTRIBUTE_MODIFIER_FORMAT;
 
-public class ArtifactStatType extends NamedEntry<ArtifactStatType> {
+public class ArtifactStatType extends NamedEntry<ArtifactStatType> implements IArtifactFeature {
 
 	private final Supplier<Attribute> attr;
 	private final AttributeModifier.Operation op;

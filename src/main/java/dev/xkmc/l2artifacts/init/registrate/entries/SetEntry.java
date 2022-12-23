@@ -23,6 +23,7 @@ public class SetEntry<T extends ArtifactSet> extends RegistryEntry<T> {
 		this.items = items;
 		this.builder = builder;
 		owner.SET_LIST.add(this);
+		owner.SET_MAP.put(getId(), this);
 	}
 
 	public boolean hasRank(int rank) {

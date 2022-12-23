@@ -39,7 +39,13 @@ public enum LangData {
 	ALL_SET_EFFECTS("set.all_set_effects", "Set %s: %s piece(s)", 2, null),
 	TITLE_SELECT_SET("title.select_set", "Select Artifact Set", 0, null),
 	TITLE_SELECT_SLOT("title.select_slot", "Select Artifact Slot", 0, null),
-	TITLE_SELECT_RANK("title.select_rank", "Select Artifact Rank", 0, null);
+	TITLE_SELECT_RANK("title.select_rank", "Select Artifact Rank", 0, null),
+
+	FILTER_RANK("title.filter.rank", "Rank Filter", 0, null),
+	FILTER_SLOT("title.filter.slot", "Slot Filter", 0, null),
+	FILTER_SET("title.filter.set", "Set Filter", 0, null),
+	FILTER_STAT("title.filter.stat", "Stat Filter", 0, null),
+	;
 
 	private final String key, def;
 	private final int arg;

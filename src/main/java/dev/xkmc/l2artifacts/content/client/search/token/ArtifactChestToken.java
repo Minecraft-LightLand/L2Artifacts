@@ -4,6 +4,8 @@ import dev.xkmc.l2artifacts.content.core.ArtifactSet;
 import dev.xkmc.l2artifacts.content.core.ArtifactSlot;
 import dev.xkmc.l2artifacts.content.core.ArtifactStatType;
 import dev.xkmc.l2artifacts.content.core.BaseArtifact;
+import dev.xkmc.l2artifacts.content.misc.ArtifactChestItem;
+import dev.xkmc.l2artifacts.init.data.LangData;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactTypeRegistry;
 import dev.xkmc.l2library.serial.SerialClass;
 import dev.xkmc.l2library.util.code.GenericItemStack;
@@ -18,6 +20,12 @@ import java.util.stream.Stream;
 @SerialClass
 public class ArtifactChestToken implements IArtifactFilter {
 
+	public static ArtifactChestToken of(ItemStack stack) {
+		List<ItemStack> list = ArtifactChestItem.getContent(stack);
+		return new ArtifactChestToken(stack, list);
+	}
+
+	public final ItemStack stack;
 	public final List<ItemStack> list;
 	public final List<ArtifactFilter<?>> filters = new ArrayList<>();
 
@@ -34,18 +42,20 @@ public class ArtifactChestToken implements IArtifactFilter {
 	public final ArtifactFilter<ArtifactStatType> stat;
 
 	@Nullable
-	private List<ItemStack> cahce = null;
+	private List<GenericItemStack<BaseArtifact>> cahce = null;
 
-	public ArtifactChestToken(List<ItemStack> list) {
+	private ArtifactChestToken(ItemStack stack, List<ItemStack> list) {
 		this.list = list;
-		rank = addFilter(e -> new ArtifactFilter<>(e, RankToken.ALL_RANKS,
+		this.stack = stack;
+		rank = addFilter(e -> new ArtifactFilter<>(e, LangData.FILTER_RANK, RankToken.ALL_RANKS,
 				(item, rank) -> item.item().rank == rank.rank()));
-		set = addFilter(e -> new ArtifactFilter<>(e, ArtifactTypeRegistry.SET.get().getValues(),
+		set = addFilter(e -> new ArtifactFilter<>(e, LangData.FILTER_SET, ArtifactTypeRegistry.SET.get().getValues(),
 				(item, set) -> item.item().set.get() == set));
-		slot = addFilter(e -> new ArtifactFilter<>(set, ArtifactTypeRegistry.SLOT.get().getValues(),
+		slot = addFilter(e -> new ArtifactFilter<>(e, LangData.FILTER_SLOT, ArtifactTypeRegistry.SLOT.get().getValues(),
 				(item, slot) -> item.item().slot.get() == slot));
-		stat = addFilter(e -> new ArtifactFilter<>(e, ArtifactTypeRegistry.STAT_TYPE.get().getValues(), (item, type) ->
-				BaseArtifact.getStats(item.stack()).map(x -> x.map.containsKey(type)).orElse(false)));
+		stat = addFilter(e -> new ArtifactFilter<>(e, LangData.FILTER_STAT, ArtifactTypeRegistry.STAT_TYPE.get().getValues(),
+				(item, type) -> BaseArtifact.getStats(item.stack()).map(x -> x.map.containsKey(type)).orElse(false)));
+
 	}
 
 	private <T extends IArtifactFeature> ArtifactFilter<T> addFilter(Function<IArtifactFilter, ArtifactFilter<T>> gen) {
@@ -68,10 +78,13 @@ public class ArtifactChestToken implements IArtifactFilter {
 		return list.stream().map(e -> new GenericItemStack<>((BaseArtifact) e.getItem(), e));
 	}
 
-	public List<ItemStack> getFiltered() {
+	public List<GenericItemStack<BaseArtifact>> getFiltered() {
 		if (cahce != null) return cahce;
-		cahce = stat.getAvailableArtifacts().map(GenericItemStack::stack).toList();
+		cahce = stat.getAvailableArtifacts().toList();
 		return cahce;
 	}
 
+	public void save() {
+		ArtifactChestItem.setContent(stack, list);
+	}
 }

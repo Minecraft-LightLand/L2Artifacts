@@ -1,8 +1,10 @@
 package dev.xkmc.l2artifacts.content.client.search.token;
 
 import dev.xkmc.l2artifacts.content.core.BaseArtifact;
+import dev.xkmc.l2artifacts.init.data.LangData;
 import dev.xkmc.l2library.serial.SerialClass;
 import dev.xkmc.l2library.util.code.GenericItemStack;
+import net.minecraft.network.chat.Component;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -16,6 +18,7 @@ public class ArtifactFilter<T extends IArtifactFeature> implements IArtifactFilt
 	public final List<T> allEntries;
 	private final IArtifactFilter parent;
 	private final IArtifactPredicate<T> func;
+	private final LangData desc;
 
 	@SerialClass.SerialField
 	private final boolean[] selected;
@@ -23,10 +26,11 @@ public class ArtifactFilter<T extends IArtifactFeature> implements IArtifactFilt
 	@Nullable
 	private boolean[] availability;
 
-	public ArtifactFilter(IArtifactFilter parent, Collection<T> reg, IArtifactPredicate<T> func) {
+	public ArtifactFilter(IArtifactFilter parent, LangData desc, Collection<T> reg, IArtifactPredicate<T> func) {
 		this.parent = parent;
 		allEntries = new ArrayList<>(reg);
 		this.func = func;
+		this.desc = desc;
 		selected = new boolean[allEntries.size()];
 		for (int i = 0; i < allEntries.size(); i++) {
 			selected[i] = true;
@@ -75,4 +79,7 @@ public class ArtifactFilter<T extends IArtifactFeature> implements IArtifactFilt
 		return parent.getAvailableArtifacts().filter(this::isValid);
 	}
 
+	public Component getDescription() {
+		return desc.get();
+	}
 }

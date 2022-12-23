@@ -9,6 +9,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.contents.TranslatableContents;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.ai.attributes.Attribute;
@@ -18,7 +19,7 @@ import java.util.function.Supplier;
 
 import static net.minecraft.world.item.ItemStack.ATTRIBUTE_MODIFIER_FORMAT;
 
-public class ArtifactStatType extends NamedEntry<ArtifactStatType> implements IArtifactFeature {
+public class ArtifactStatType extends NamedEntry<ArtifactStatType> implements IArtifactFeature.Sprite {
 
 	private final Supplier<Attribute> attr;
 	private final AttributeModifier.Operation op;
@@ -55,6 +56,12 @@ public class ArtifactStatType extends NamedEntry<ArtifactStatType> implements IA
 				"attribute.modifier.plus." + (usePercent ? 1 : 0),
 				ATTRIBUTE_MODIFIER_FORMAT.format(usePercent ? val * 100 : val),
 				MutableComponent.create(new TranslatableContents(attr.get().getDescriptionId())))).withStyle(ChatFormatting.BLUE);
+	}
+
+	@Override
+	public ResourceLocation getIcon() {
+		ResourceLocation rl = getRegistryName();
+		return new ResourceLocation(rl.getNamespace(), "textures/stat_type/" + rl.getPath() + ".png");
 	}
 
 }

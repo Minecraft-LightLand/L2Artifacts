@@ -5,12 +5,14 @@ import dev.xkmc.l2artifacts.content.config.SlotStatConfig;
 import dev.xkmc.l2artifacts.content.upgrades.Upgrade;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactTypeRegistry;
 import dev.xkmc.l2library.base.NamedEntry;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.RandomSource;
+import top.theillusivec4.curios.api.CuriosApi;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ArtifactSlot extends NamedEntry<ArtifactSlot> implements IArtifactFeature {
+public class ArtifactSlot extends NamedEntry<ArtifactSlot> implements IArtifactFeature.Sprite {
 
 	public ArtifactSlot() {
 		super(ArtifactTypeRegistry.SLOT);
@@ -39,6 +41,11 @@ public class ArtifactSlot extends NamedEntry<ArtifactSlot> implements IArtifactF
 			sub_list.remove(sub);
 			stat.add(sub, sub.getSubValue(stat.rank, random, upgrade.removeSub()));
 		}
+	}
+
+	@Override
+	public ResourceLocation getIcon() {
+		return new ResourceLocation(CuriosApi.MODID, "textures/slot/empty_" + getRegistryName().getPath() + "_slot.png");
 	}
 
 }

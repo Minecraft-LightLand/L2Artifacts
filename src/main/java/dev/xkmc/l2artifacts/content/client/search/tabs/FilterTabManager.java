@@ -40,8 +40,8 @@ public class FilterTabManager {
 		int guiTop = screen.getGuiTop();
 		for (FilterTabToken<?> token : LIST) {
 			FilterTabBase<?> tab = token.create(this);
-			tab.x = guiLeft + token.index * 28;
-			tab.y = guiTop;
+			tab.x = guiLeft + FilterTabType.LEFT.getX(token.index);
+			tab.y = guiTop+ FilterTabType.LEFT.getY(token.index);
 			adder.accept(tab);
 			list.add(tab);
 		}

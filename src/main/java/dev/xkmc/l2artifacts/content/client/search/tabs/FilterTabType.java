@@ -9,7 +9,10 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 enum FilterTabType {
-	ABOVE(0, 0, 28, 32);
+	ABOVE(0, 0, 28, 32, 8),
+	BELOW(84, 0, 28, 32, 8),
+	LEFT(0, 64, 32, 28, 5),
+	RIGHT(96, 64, 32, 28, 5);
 
 	public static final int MAX_TABS = 8;
 	private final int textureX;
@@ -17,7 +20,7 @@ enum FilterTabType {
 	private final int width;
 	private final int height;
 
-	FilterTabType(int tx, int ty, int w, int h) {
+	FilterTabType(int tx, int ty, int w, int h, int max) {
 		this.textureX = tx;
 		this.textureY = ty;
 		this.width = w;
@@ -37,19 +40,48 @@ enum FilterTabType {
 
 		int ty = selected ? this.textureY + this.height : this.textureY;
 		int h = selected ? this.height : this.height - 4;
-		screen.blit(stack, x, y, tx, ty, this.width, h);
+		screen.blit(stack, x, y, tx, ty, this.width, this.height);
 	}
 
 	public void drawIcon(int x, int y, int index, ItemRenderer renderer, ItemStack stack) {
-		renderer.renderAndDecorateFakeItem(stack, x + 6, y + 9);
+		int i = x + this.getX(index);
+		int j = y + this.getY(index);
+		switch (this) {
+			case ABOVE -> {
+				i += 6;
+				j += 9;
+			}
+			case BELOW -> {
+				i += 6;
+				j += 6;
+			}
+			case LEFT -> {
+				i += 10;
+				j += 5;
+			}
+			case RIGHT -> {
+				i += 6;
+				j += 5;
+			}
+		}
+
+		renderer.renderAndDecorateFakeItem(stack, i, j);
 	}
 
-	public int getX(int index) {
-		return (this.width + 4) * index;
+	public int getX(int pIndex) {
+		return switch (this) {
+			case ABOVE, BELOW -> (this.width + 4) * pIndex;
+			case LEFT -> -this.width + 4;
+			case RIGHT -> 248;
+		};
 	}
 
-	public int getY(int index) {
-		return -this.height + 4;
+	public int getY(int pIndex) {
+		return switch (this) {
+			case ABOVE -> -this.height + 4;
+			case BELOW -> 136;
+			case LEFT, RIGHT -> this.height * pIndex;
+		};
 	}
 
 	public boolean isMouseOver(int p_97214_, int p_97215_, int p_97216_, double p_97217_, double p_97218_) {

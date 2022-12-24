@@ -1,5 +1,6 @@
 {
   "item.l2artifacts.select": "古遗物选择器（创造）",
+  "item.l2artifacts.filter": "古遗物多功能包",
   "item.l2artifacts.berserker_head_1": "狂战士的帽子-常见级",
   "item.l2artifacts.berserker_head_2": "狂战士的帽子-稀有级",
   "item.l2artifacts.berserker_head_3": "狂战士的帽子-特质级",
@@ -558,6 +559,7 @@
   "slot.l2artifacts.bracelet": "手环",
   "slot.l2artifacts.head": "头饰",
   "slot.l2artifacts.necklace": "项链",
+  "container.l2artifacts.filtered": "古遗物多功能包",
   "l2artifacts.tooltip.artifact_exp": "经验值: %s/%s",
   "l2artifacts.tooltip.artifact_level": "等级: %s",
   "l2artifacts.tooltip.main_stat": "主词条:",
@@ -576,6 +578,11 @@
   "l2artifacts.tooltip.stat_container.apply": "放铁砧右侧格子，把古遗物放铁砧左侧格子来使用: 下一次副词条强化将会强化当前词条。",
   "l2artifacts.tooltip.stat_container.capture": "放在铁砧左侧格子，把古遗物放在铁砧右侧格子使用: 提取古遗物主词条。",
   "l2artifacts.tooltip.stat_container.info": "词条: %s",
+  "l2artifacts.tooltip.rank.1": "常见级",
+  "l2artifacts.tooltip.rank.2": "稀有级",
+  "l2artifacts.tooltip.rank.3": "特质级",
+  "l2artifacts.tooltip.rank.4": "传奇级",
+  "l2artifacts.tooltip.rank.5": "神化级",
   "l2artifacts.set.1": "单件套: ",
   "l2artifacts.set.2": "两件套: ",
   "l2artifacts.set.3": "三件套: ",
@@ -584,5 +591,11 @@
   "l2artifacts.set.all_set_effects": "套装-%s: %s件",
   "l2artifacts.title.select_set": "选择套装",
   "l2artifacts.title.select_slot": "选择部件",
-  "l2artifacts.title.select_rank": "选择品质"
+  "l2artifacts.title.select_rank": "选择品质",
+  "l2artifacts.title.filter.rank": "品质筛选",
+  "l2artifacts.title.filter.set": "套装筛选",
+  "l2artifacts.title.filter.slot": "部位筛选",
+  "l2artifacts.title.filter.stat": "词条筛选",
+  "l2artifacts.title.tab.filter": "筛选器设置",
+  "l2artifacts.title.tab.filtered": "古遗物列表"
 }

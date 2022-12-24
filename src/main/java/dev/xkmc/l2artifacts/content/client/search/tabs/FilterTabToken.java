@@ -24,7 +24,7 @@ public class FilterTabToken<T extends FilterTabBase<T>> {
 	public FilterTabToken(int index, TabFactory<T> factory, Supplier<Item> item, Component component) {
 		this.index = index;
 		this.factory = factory;
-		this.type = FilterTabType.ABOVE;
+		this.type = FilterTabType.LEFT;
 
 		this.item = item;
 		this.title = component;

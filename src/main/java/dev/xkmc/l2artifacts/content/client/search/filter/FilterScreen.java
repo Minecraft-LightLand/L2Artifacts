@@ -44,9 +44,8 @@ public class FilterScreen extends Screen implements IFilterScreen {
 	}
 
 	public void render(PoseStack pose, int mx, int my, float pTick) {
-		var sr = renderBg(pose, pTick, mx, my);
+		renderBg(pose, pTick, mx, my);
 		RenderSystem.disableDepthTest();
-		super.render(pose, mx, my, pTick);
 		PoseStack posestack = RenderSystem.getModelViewStack();
 		posestack.pushPose();
 		posestack.translate(leftPos, topPos, 0.0D);
@@ -71,19 +70,20 @@ public class FilterScreen extends Screen implements IFilterScreen {
 			}
 		}
 		handle.flushText();
-		list.forEach(e -> e.draw(this));
+		list.forEach(e -> e.draw(this, pose));
 		if (hover != null) {
 			AbstractContainerScreen.renderSlotHighlight(pose, hover.x, hover.y, getBlitOffset(), -2130706433);
+			renderTooltip(pose, hover.item().getDesc(), mx - leftPos, my - topPos);
 		}
 		posestack.popPose();
 		RenderSystem.applyModelViewMatrix();
 		RenderSystem.enableDepthTest();
+		super.render(pose, mx, my, pTick);
 	}
 
-	private SpriteManager.ScreenRenderer renderBg(PoseStack stack, float pt, int mx, int my) {
+	private void renderBg(PoseStack stack, float pt, int mx, int my) {
 		SpriteManager.ScreenRenderer sr = MANAGER.new ScreenRenderer(this, leftPos, topPos, imageWidth, imageHeight);
 		sr.start(stack);
-		return sr;
 	}
 
 	private boolean isHovering(int x, int y, int w, int h, double mx, double my) {
@@ -155,9 +155,10 @@ public class FilterScreen extends Screen implements IFilterScreen {
 
 	private record FilterHover(IArtifactFeature item, int i, int j, int x, int y) {
 
-		private void draw(FilterScreen screen) {
+		private void draw(FilterScreen screen, PoseStack pose) {
 			if (item instanceof IArtifactFeature.Sprite icon) {
-				icon.getIcon();
+				RenderSystem.setShaderTexture(0, icon.getIcon());
+				blit(pose, this.x, this.y, 0, 0, 16, 16, 16, 16);
 			} else if (item instanceof IArtifactFeature.ItemIcon icon) {
 				screen.renderSlotItem(x, y, icon.getItemIcon().getDefaultInstance());
 			}

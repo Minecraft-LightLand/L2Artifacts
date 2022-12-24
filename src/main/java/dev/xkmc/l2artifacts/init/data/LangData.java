@@ -41,13 +41,19 @@ public enum LangData {
 	TITLE_SELECT_SLOT("title.select_slot", "Select Artifact Slot", 0, null),
 	TITLE_SELECT_RANK("title.select_rank", "Select Artifact Rank", 0, null),
 
-	TAB_FILTERED("title.tab.filtered", "Artifacts",0,null),
-	TAB_FILTER("title.tab.filter","Filter",0,null),
+	TAB_FILTERED("title.tab.filtered", "Artifacts", 0, null),
+	TAB_FILTER("title.tab.filter", "Filter", 0, null),
 
 	FILTER_RANK("title.filter.rank", "Rank Filter", 0, null),
 	FILTER_SLOT("title.filter.slot", "Slot Filter", 0, null),
 	FILTER_SET("title.filter.set", "Set Filter", 0, null),
 	FILTER_STAT("title.filter.stat", "Stat Filter", 0, null),
+
+	RANK_1("tooltip.rank.1", "Rank Lv.1", 0, null),
+	RANK_2("tooltip.rank.2", "Rank Lv.2", 0, null),
+	RANK_3("tooltip.rank.3", "Rank Lv.3", 0, null),
+	RANK_4("tooltip.rank.4", "Rank Lv.4", 0, null),
+	RANK_5("tooltip.rank.5", "Rank Lv.5", 0, null),
 	;
 
 	private final String key, def;

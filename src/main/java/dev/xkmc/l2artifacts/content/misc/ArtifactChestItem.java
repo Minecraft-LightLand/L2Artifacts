@@ -1,5 +1,6 @@
 package dev.xkmc.l2artifacts.content.misc;
 
+import dev.xkmc.l2artifacts.content.client.search.screen.ArtifactChestMenuPvd;
 import dev.xkmc.l2library.util.nbt.ItemCompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.server.level.ServerPlayer;
@@ -47,4 +48,8 @@ public class ArtifactChestItem extends Item {
 		return InteractionResultHolder.success(stack);
 	}
 
+	@Override
+	public boolean canFitInsideContainerItems() {
+		return false;
+	}
 }

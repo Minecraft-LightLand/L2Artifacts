@@ -1,6 +1,6 @@
-// 1.19.2	2022-11-07T00:11:30.255202	Registrate Provider for l2artifacts [Recipes, Advancements, Loot tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
-f71a7c603264ab216c0dd05bb519d9057123fb05 assets/l2artifacts/lang/en_ud.json
-b331a68d8e339b5ff5592c4423804116298f783c assets/l2artifacts/lang/en_us.json
+// 1.19.2	2022-12-23T16:38:25.044186	Registrate Provider for l2artifacts [Recipes, Advancements, Loot tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
+c4d1213c147c59894ea7c7a76c1349038d1ec0b0 assets/l2artifacts/lang/en_ud.json
+20cca85d24dc4963688e1db5a6674d48d57ef7ea assets/l2artifacts/lang/en_us.json
 b8bd2d2e5b588898d6036ad788cad930cd830bb3 assets/l2artifacts/models/item/abyss_medal_belt_1.json
 038d8f4126f0f6d17791e0ad6e9d675facf37600 assets/l2artifacts/models/item/abyss_medal_belt_2.json
 f809e0fce1741dccc2e144c6eda90888d93dd883 assets/l2artifacts/models/item/abyss_medal_belt_3.json
@@ -146,6 +146,7 @@ b9da385a3131f942d729d32e3033c6d5435eb1ba assets/l2artifacts/models/item/executor
 b9f9b353b78296153b4ca179b6f1b661a43b8df7 assets/l2artifacts/models/item/executor_necklace_3.json
 0837f27099d28aac6608765507122d00cd9be451 assets/l2artifacts/models/item/executor_necklace_4.json
 ecc95b51106740f683e1a8945d27edd9afbbf72a assets/l2artifacts/models/item/executor_necklace_5.json
+776998b0f835fb6b7db81c1ef563675f073f7233 assets/l2artifacts/models/item/filter.json
 067a3671cdfd580952db549c6dd01811540ab63e assets/l2artifacts/models/item/froze_belt_1.json
 dd0ddf125747a6461a21dba069c1e6bed2c0ea6c assets/l2artifacts/models/item/froze_belt_2.json
 f2769ad61d6ff12ff4fdb73da3f9884043338511 assets/l2artifacts/models/item/froze_belt_3.json

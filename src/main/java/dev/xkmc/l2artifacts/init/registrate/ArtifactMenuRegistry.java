@@ -22,5 +22,8 @@ public class ArtifactMenuRegistry {
 		return "container." + rl.getNamespace() + "." + rl.getPath();
 	}
 
+	public static void register() {
+
+	}
 
 }

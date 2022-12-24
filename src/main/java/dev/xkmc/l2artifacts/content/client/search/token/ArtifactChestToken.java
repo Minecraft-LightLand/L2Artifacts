@@ -13,6 +13,7 @@ import net.minecraft.world.item.ItemStack;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Stream;
@@ -43,6 +44,8 @@ public class ArtifactChestToken implements IArtifactFilter {
 
 	@Nullable
 	private List<GenericItemStack<BaseArtifact>> cahce = null;
+
+	private Comparator<GenericItemStack<BaseArtifact>> comparator;
 
 	private ArtifactChestToken(ItemStack stack, List<ItemStack> list) {
 		this.list = list;
@@ -78,9 +81,14 @@ public class ArtifactChestToken implements IArtifactFilter {
 		return list.stream().map(e -> new GenericItemStack<>((BaseArtifact) e.getItem(), e));
 	}
 
+	public void setComparator(Comparator<GenericItemStack<BaseArtifact>> comparator){
+		this.comparator = comparator;
+		cahce = null;
+	}
+
 	public List<GenericItemStack<BaseArtifact>> getFiltered() {
 		if (cahce != null) return cahce;
-		cahce = stat.getAvailableArtifacts().toList();
+		cahce = stat.getAvailableArtifacts().sorted(comparator).toList();
 		return cahce;
 	}
 

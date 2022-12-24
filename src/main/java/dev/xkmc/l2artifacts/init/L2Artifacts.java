@@ -11,6 +11,7 @@ import dev.xkmc.l2artifacts.init.data.ModConfig;
 import dev.xkmc.l2artifacts.init.data.RecipeGen;
 import dev.xkmc.l2artifacts.init.data.loot.ArtifactGLMProvider;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactItemRegistry;
+import dev.xkmc.l2artifacts.init.registrate.ArtifactMenuRegistry;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactRegistrate;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactTypeRegistry;
 import dev.xkmc.l2artifacts.network.NetworkManager;
@@ -48,6 +49,7 @@ public class L2Artifacts {
 	private static void registerRegistrates(IEventBus bus) {
 		ArtifactTypeRegistry.register();
 		ArtifactItemRegistry.register();
+		ArtifactMenuRegistry.register();
 		ModConfig.init();
 		NetworkManager.register();
 		REGISTRATE.addDataGenerator(ProviderType.LANG, LangData::genLang);

@@ -1,4 +1,4 @@
-package dev.xkmc.l2artifacts.content.client.search.screen;
+package dev.xkmc.l2artifacts.content.client.search.fitered;
 
 import dev.xkmc.l2artifacts.content.client.search.token.ArtifactChestToken;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactMenuRegistry;
@@ -24,7 +24,7 @@ public record ArtifactChestMenuPvd(ServerPlayer player,
 
 	@Override
 	public AbstractContainerMenu createMenu(int id, Inventory inventory, Player player) {
-		return new FilteredMenu(ArtifactMenuRegistry.MT_FILTER.get(), id, inventory, ArtifactChestToken.of(stack));
+		return new FilteredMenu(ArtifactMenuRegistry.MT_FILTER.get(), id, inventory, ArtifactChestToken.of(player, hand));
 	}
 
 	public void writeBuffer(FriendlyByteBuf buf) {

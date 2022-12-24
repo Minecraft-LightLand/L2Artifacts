@@ -41,6 +41,9 @@ public enum LangData {
 	TITLE_SELECT_SLOT("title.select_slot", "Select Artifact Slot", 0, null),
 	TITLE_SELECT_RANK("title.select_rank", "Select Artifact Rank", 0, null),
 
+	TAB_FILTERED("title.tab.filtered", "Artifacts",0,null),
+	TAB_FILTER("title.tab.filter","Filter",0,null),
+
 	FILTER_RANK("title.filter.rank", "Rank Filter", 0, null),
 	FILTER_SLOT("title.filter.slot", "Slot Filter", 0, null),
 	FILTER_SET("title.filter.set", "Set Filter", 0, null),

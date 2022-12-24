@@ -1,4 +1,4 @@
-package dev.xkmc.l2artifacts.content.client.search.screen;
+package dev.xkmc.l2artifacts.content.client.search.fitered;
 
 import dev.xkmc.l2artifacts.content.client.search.scroller.ScrollerMenu;
 import dev.xkmc.l2artifacts.content.client.search.token.ArtifactChestToken;
@@ -32,16 +32,17 @@ public class FilteredMenu extends BaseContainerMenu<FilteredMenu> implements Scr
 	private static final SpriteManager MANAGER = new SpriteManager(L2Artifacts.MODID, "filtered");
 
 	private static int getMaxSize() {
-		return 1000;
+		return 256;
 	}
 
 	public static FilteredMenu fromNetwork(MenuType<FilteredMenu> type, int wid, Inventory plInv, FriendlyByteBuf buf) {
-		int hand = buf.readInt();
-		ItemStack stack = plInv.player.getItemInHand(hand == 0 ? InteractionHand.MAIN_HAND : InteractionHand.OFF_HAND);
-		return new FilteredMenu(type, wid, plInv, ArtifactChestToken.of(stack));
+		int i = buf.readInt();
+		InteractionHand hand = i == 0 ? InteractionHand.MAIN_HAND : InteractionHand.OFF_HAND;
+		return new FilteredMenu(type, wid, plInv, ArtifactChestToken.of(plInv.player, hand));
 	}
 
-	private final ArtifactChestToken token;
+	public final ArtifactChestToken token;
+
 	private final Player player;
 
 	private ItemStack selected = ItemStack.EMPTY;
@@ -143,7 +144,7 @@ public class FilteredMenu extends BaseContainerMenu<FilteredMenu> implements Scr
 
 	@Override
 	public boolean stillValid(Player player) {
-		return player.getMainHandItem() == token.stack || player.getOffhandItem() == token.stack;
+		return player.getItemInHand(token.hand) == token.stack;
 	}
 
 }

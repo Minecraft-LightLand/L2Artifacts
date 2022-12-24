@@ -10,17 +10,17 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.network.NetworkEvent;
 
 @SerialClass
-public class ChooseArtifacttoServer extends SerialPacketBase {
+public class ChooseArtifactToServer extends SerialPacketBase {
 
 	@SerialClass.SerialField
 	public int set, slot, rank;
 
 	@Deprecated
-	public ChooseArtifacttoServer() {
+	public ChooseArtifactToServer() {
 
 	}
 
-	public ChooseArtifacttoServer(int set, int slot, int rank) {
+	public ChooseArtifactToServer(int set, int slot, int rank) {
 		this.set = set;
 		this.slot = slot;
 		this.rank = rank;

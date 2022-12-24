@@ -1,7 +1,8 @@
 package dev.xkmc.l2artifacts.content.misc;
 
-import dev.xkmc.l2artifacts.content.client.search.screen.ArtifactChestMenuPvd;
+import dev.xkmc.l2artifacts.content.client.search.fitered.ArtifactChestMenuPvd;
 import dev.xkmc.l2library.util.nbt.ItemCompoundTag;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
@@ -17,6 +18,7 @@ import java.util.List;
 public class ArtifactChestItem extends Item {
 
 	private static final String KEY_LIST = "artifact_list";
+	private static final String KEY_FILTER = "filter";
 
 	public static List<ItemStack> getContent(ItemStack stack) {
 		var list = ItemCompoundTag.of(stack).getSubList(KEY_LIST, Tag.TAG_COMPOUND).getOrCreate();
@@ -37,6 +39,14 @@ public class ArtifactChestItem extends Item {
 
 	public ArtifactChestItem(Properties properties) {
 		super(properties);
+	}
+
+	public static CompoundTag getFilter(ItemStack stack) {
+		return stack.getOrCreateTag().getCompound(KEY_FILTER);
+	}
+
+	public static void setFilter(ItemStack stack, CompoundTag filter) {
+		stack.getOrCreateTag().put(KEY_FILTER, filter);
 	}
 
 	@Override

@@ -1,7 +1,7 @@
 package dev.xkmc.l2artifacts.init.registrate;
 
-import dev.xkmc.l2artifacts.content.client.search.screen.FilteredMenu;
-import dev.xkmc.l2artifacts.content.client.search.screen.FilteredMenuScreen;
+import dev.xkmc.l2artifacts.content.client.search.fitered.FilteredMenu;
+import dev.xkmc.l2artifacts.content.client.search.fitered.FilteredMenuScreen;
 import dev.xkmc.l2library.repack.registrate.util.entry.MenuEntry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.MenuType;

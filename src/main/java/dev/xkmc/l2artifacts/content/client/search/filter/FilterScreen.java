@@ -1,19 +1,23 @@
-package dev.xkmc.l2artifacts.content.client.search.screen;
+package dev.xkmc.l2artifacts.content.client.search.filter;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
+import dev.xkmc.l2artifacts.content.client.search.tabs.FilterTabManager;
+import dev.xkmc.l2artifacts.content.client.search.tabs.IFilterScreen;
 import dev.xkmc.l2artifacts.content.client.search.token.ArtifactChestToken;
 import dev.xkmc.l2artifacts.content.client.search.token.IArtifactFeature;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
+import dev.xkmc.l2artifacts.init.data.LangData;
 import dev.xkmc.l2library.base.menu.SpriteManager;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
-import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 
 import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.List;
 
-public class BaseFilterScreen extends Screen {
+public class FilterScreen extends Screen implements IFilterScreen {
 
 	private static final SpriteManager MANAGER = new SpriteManager(L2Artifacts.MODID, "filter");
 
@@ -25,8 +29,8 @@ public class BaseFilterScreen extends Screen {
 	@Nullable
 	private FilterHover hover;
 
-	protected BaseFilterScreen(Component title, ArtifactChestToken token) {
-		super(title);
+	protected FilterScreen(ArtifactChestToken token) {
+		super(LangData.TAB_FILTER.get());
 		this.token = token;
 	}
 
@@ -36,10 +40,11 @@ public class BaseFilterScreen extends Screen {
 		this.imageHeight = MANAGER.getHeight();
 		this.leftPos = (this.width - imageWidth) / 2;
 		this.topPos = (this.height - imageHeight) / 2;
+		new FilterTabManager(this, token).init(this::addRenderableWidget, FilterTabManager.FILTER);
 	}
 
 	public void render(PoseStack pose, int mx, int my, float pTick) {
-		renderBg(pose, pTick, mx, my);
+		var sr = renderBg(pose, pTick, mx, my);
 		RenderSystem.disableDepthTest();
 		super.render(pose, mx, my, pTick);
 		PoseStack posestack = RenderSystem.getModelViewStack();
@@ -49,6 +54,7 @@ public class BaseFilterScreen extends Screen {
 		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
 		StackedRenderHandle handle = new StackedRenderHandle(this, pose);
 		hover = null;
+		List<FilterHover> list = new ArrayList<>();
 		for (int i = 0; i < token.filters.size(); i++) {
 			var filter = token.filters.get(i);
 			handle.drawText(filter.getDescription());
@@ -56,30 +62,28 @@ public class BaseFilterScreen extends Screen {
 			for (int j = 0; j < filter.allEntries.size(); j++) {
 				boolean selected = filter.getSelected(j);
 				var item = filter.allEntries.get(j);
-				if (handle.addCell(selected, !available[j], (x, y) -> {
-					if (item instanceof IArtifactFeature.Sprite icon) {
-						icon.getIcon();
-					} else if (item instanceof IArtifactFeature.ItemIcon icon) {
-						renderSlotItem(x, y, icon.getItemIcon().getDefaultInstance());
-					}
-					boolean hover = isHovering(x, y, 16, 16, mx, my);
-					if (hover) {
-						AbstractContainerScreen.renderSlotHighlight(pose, x, y, getBlitOffset(), -2130706433);
-					}
-					return hover;
-				})) {
-					hover = new FilterHover(i, j);
+				var entry = handle.addCell(selected, !available[j]);
+				var obj = new FilterHover(item, i, j, entry.x(), entry.y());
+				if (isHovering(entry.x(), entry.y(), 16, 16, mx, my)) {
+					hover = obj;
 				}
+				list.add(obj);
 			}
+		}
+		handle.flushText();
+		list.forEach(e -> e.draw(this));
+		if (hover != null) {
+			AbstractContainerScreen.renderSlotHighlight(pose, hover.x, hover.y, getBlitOffset(), -2130706433);
 		}
 		posestack.popPose();
 		RenderSystem.applyModelViewMatrix();
 		RenderSystem.enableDepthTest();
 	}
 
-	private void renderBg(PoseStack stack, float pt, int mx, int my) {
+	private SpriteManager.ScreenRenderer renderBg(PoseStack stack, float pt, int mx, int my) {
 		SpriteManager.ScreenRenderer sr = MANAGER.new ScreenRenderer(this, leftPos, topPos, imageWidth, imageHeight);
 		sr.start(stack);
+		return sr;
 	}
 
 	private boolean isHovering(int x, int y, int w, int h, double mx, double my) {
@@ -114,7 +118,50 @@ public class BaseFilterScreen extends Screen {
 		return false;
 	}
 
-	private record FilterHover(int i, int j) {
+	@Override
+	public boolean isPauseScreen() {
+		return false;
+	}
+
+	@Override
+	public int getGuiLeft() {
+		return leftPos;
+	}
+
+	@Override
+	public int getGuiTop() {
+		return topPos;
+	}
+
+	@Override
+	public int screenWidth() {
+		return width;
+	}
+
+	@Override
+	public int screenHeight() {
+		return height;
+	}
+
+	@Override
+	public int getXSize() {
+		return imageWidth;
+	}
+
+	@Override
+	public int getYSize() {
+		return imageHeight;
+	}
+
+	private record FilterHover(IArtifactFeature item, int i, int j, int x, int y) {
+
+		private void draw(FilterScreen screen) {
+			if (item instanceof IArtifactFeature.Sprite icon) {
+				icon.getIcon();
+			} else if (item instanceof IArtifactFeature.ItemIcon icon) {
+				screen.renderSlotItem(x, y, icon.getItemIcon().getDefaultInstance());
+			}
+		}
 
 	}
 

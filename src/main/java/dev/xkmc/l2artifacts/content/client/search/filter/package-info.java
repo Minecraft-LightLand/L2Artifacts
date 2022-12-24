@@ -1,7 +1,7 @@
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
 
-package dev.xkmc.l2artifacts.content.client.search.screen;
+package dev.xkmc.l2artifacts.content.client.search.filter;
 
 import net.minecraft.MethodsReturnNonnullByDefault;
 

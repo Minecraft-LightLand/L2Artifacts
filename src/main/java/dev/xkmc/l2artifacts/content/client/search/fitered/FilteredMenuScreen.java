@@ -1,21 +1,30 @@
-package dev.xkmc.l2artifacts.content.client.search.screen;
+package dev.xkmc.l2artifacts.content.client.search.fitered;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import dev.xkmc.l2artifacts.content.client.search.scroller.Scroller;
 import dev.xkmc.l2artifacts.content.client.search.scroller.ScrollerScreen;
+import dev.xkmc.l2artifacts.content.client.search.tabs.FilterTabManager;
+import dev.xkmc.l2artifacts.content.client.search.tabs.IFilterScreen;
 import dev.xkmc.l2library.base.menu.BaseContainerScreen;
 import dev.xkmc.l2library.base.menu.SpriteManager;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.Slot;
 
-public class FilteredMenuScreen extends BaseContainerScreen<FilteredMenu> implements ScrollerScreen {
+public class FilteredMenuScreen extends BaseContainerScreen<FilteredMenu> implements ScrollerScreen, IFilterScreen {
 
 	private final Scroller scroller;
 
 	public FilteredMenuScreen(FilteredMenu cont, Inventory plInv, Component title) {
 		super(cont, plInv, title);
-		scroller = new Scroller(this, cont.sprite, "slider_middle", "slider_light", "slider_dark");
+		scroller = new Scroller(this, cont.sprite,
+				"slider_middle", "slider_light", "slider_dark");
+	}
+
+	@Override
+	protected void init() {
+		super.init();
+		new FilterTabManager(this, menu.token).init(this::addRenderableWidget, FilterTabManager.FILTERED);
 	}
 
 	@Override
@@ -33,6 +42,16 @@ public class FilteredMenuScreen extends BaseContainerScreen<FilteredMenu> implem
 		} else if (i > menu.getScroll()) {
 			click(1);
 		}
+	}
+
+	@Override
+	public int screenWidth() {
+		return width;
+	}
+
+	@Override
+	public int screenHeight() {
+		return height;
 	}
 
 	@Override

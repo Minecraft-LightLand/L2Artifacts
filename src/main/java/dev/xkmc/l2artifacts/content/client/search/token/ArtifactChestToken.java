@@ -8,7 +8,10 @@ import dev.xkmc.l2artifacts.content.misc.ArtifactChestItem;
 import dev.xkmc.l2artifacts.init.data.LangData;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactTypeRegistry;
 import dev.xkmc.l2library.serial.SerialClass;
+import dev.xkmc.l2library.serial.codec.TagCodec;
 import dev.xkmc.l2library.util.code.GenericItemStack;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 
 import javax.annotation.Nullable;
@@ -21,12 +24,14 @@ import java.util.stream.Stream;
 @SerialClass
 public class ArtifactChestToken implements IArtifactFilter {
 
-	public static ArtifactChestToken of(ItemStack stack) {
+	public static ArtifactChestToken of(Player player, InteractionHand hand) {
+		ItemStack stack = player.getItemInHand(hand);
 		List<ItemStack> list = ArtifactChestItem.getContent(stack);
-		return new ArtifactChestToken(stack, list);
+		return new ArtifactChestToken(stack, list, hand);
 	}
 
 	public final ItemStack stack;
+	public final InteractionHand hand;
 	public final List<ItemStack> list;
 	public final List<ArtifactFilter<?>> filters = new ArrayList<>();
 
@@ -47,18 +52,19 @@ public class ArtifactChestToken implements IArtifactFilter {
 
 	private Comparator<GenericItemStack<BaseArtifact>> comparator;
 
-	private ArtifactChestToken(ItemStack stack, List<ItemStack> list) {
+	private ArtifactChestToken(ItemStack stack, List<ItemStack> list, InteractionHand hand) {
 		this.list = list;
 		this.stack = stack;
+		this.hand = hand;
 		rank = addFilter(e -> new ArtifactFilter<>(e, LangData.FILTER_RANK, RankToken.ALL_RANKS,
 				(item, rank) -> item.item().rank == rank.rank()));
-		set = addFilter(e -> new ArtifactFilter<>(e, LangData.FILTER_SET, ArtifactTypeRegistry.SET.get().getValues(),
-				(item, set) -> item.item().set.get() == set));
 		slot = addFilter(e -> new ArtifactFilter<>(e, LangData.FILTER_SLOT, ArtifactTypeRegistry.SLOT.get().getValues(),
 				(item, slot) -> item.item().slot.get() == slot));
+		set = addFilter(e -> new ArtifactFilter<>(e, LangData.FILTER_SET, ArtifactTypeRegistry.SET.get().getValues(),
+				(item, set) -> item.item().set.get() == set));
 		stat = addFilter(e -> new ArtifactFilter<>(e, LangData.FILTER_STAT, ArtifactTypeRegistry.STAT_TYPE.get().getValues(),
 				(item, type) -> BaseArtifact.getStats(item.stack()).map(x -> x.map.containsKey(type)).orElse(false)));
-
+		TagCodec.fromTag(ArtifactChestItem.getFilter(stack), ArtifactChestToken.class, this, e -> true);
 	}
 
 	private <T extends IArtifactFeature> ArtifactFilter<T> addFilter(Function<IArtifactFilter, ArtifactFilter<T>> gen) {

@@ -29,6 +29,7 @@ public class ArtifactChestToken implements IArtifactFilter {
 		List<ItemStack> list = ArtifactChestItem.getContent(stack);
 		ArtifactChestToken ans = new ArtifactChestToken(stack, list, hand);
 		TagCodec.fromTag(ArtifactChestItem.getFilter(stack), ArtifactChestToken.class, ans, e -> true);
+		ans.exp = ArtifactChestItem.getExp(stack);
 		return ans;
 	}
 
@@ -48,6 +49,8 @@ public class ArtifactChestToken implements IArtifactFilter {
 
 	@SerialClass.SerialField
 	public final ArtifactFilter<ArtifactStatType> stat;
+
+	public int exp = 0;
 
 	@Nullable
 	private List<GenericItemStack<BaseArtifact>> cahce = null;

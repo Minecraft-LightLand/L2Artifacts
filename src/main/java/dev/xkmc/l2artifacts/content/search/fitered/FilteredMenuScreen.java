@@ -11,4 +11,9 @@ public class FilteredMenuScreen extends AbstractScrollerScreen<FilteredMenu> {
 		super(cont, plInv, title, FilterTabManager.FILTERED);
 	}
 
+	@Override
+	public Component getTitle() {
+		return super.getTitle().copy().append(": " + menu.current_count.get() + "/" + menu.total_count.get());
+	}
+
 }

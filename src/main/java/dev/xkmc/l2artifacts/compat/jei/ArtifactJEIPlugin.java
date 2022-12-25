@@ -1,6 +1,8 @@
 package dev.xkmc.l2artifacts.compat.jei;
 
+import dev.xkmc.l2artifacts.content.search.common.AbstractScrollerScreen;
 import dev.xkmc.l2artifacts.content.search.fitered.FilteredMenuScreen;
+import dev.xkmc.l2artifacts.content.search.recycle.RecycleMenuScreen;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
@@ -24,24 +26,28 @@ public class ArtifactJEIPlugin implements IModPlugin {
 	@Override
 	public void registerGuiHandlers(IGuiHandlerRegistration registration) {
 		registration.addGuiScreenHandler(FilteredMenuScreen.class, ArtifactJEIPlugin::create);
+		registration.addGuiScreenHandler(RecycleMenuScreen.class, ArtifactJEIPlugin::create);
 	}
 
 
 	@Nullable
-	public static GuiProperties create(FilteredMenuScreen screen) {
+	public static GuiProperties create(AbstractScrollerScreen<?> screen) {
 		if (screen.width <= 0 || screen.height <= 0) {
 			return null;
 		}
 		IPlatformScreenHelper screenHelper = Services.PLATFORM.getScreenHelper();
 		int x = screenHelper.getGuiLeft(screen);
 		int y = screenHelper.getGuiTop(screen);
-		int width = screenHelper.getXSize(screen);
+		int width = screenHelper.getXSize(screen) + 32;
 		int height = screenHelper.getYSize(screen);
 		if (width <= 0 || height <= 0) {
 			return null;
 		}
+		if (screen instanceof RecycleMenuScreen) {
+			return null;
+		}
 		return new GuiProperties(screen.getClass(),
-				x, y, width + 32, height,
+				x, y, width, height,
 				screen.width, screen.height
 		);
 	}

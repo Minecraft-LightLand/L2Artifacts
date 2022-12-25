@@ -37,6 +37,7 @@ public enum LangData {
 	UPGRADE_MAIN("tooltip.enhance.main", "Next %s upgraded main stat will be maximized.", 1, null),
 	UPGRADE_SUB("tooltip.enhance.sub", "Next %s upgraded sub stat will be maximized.", 1, null),
 	ALL_SET_EFFECTS("set.all_set_effects", "Set %s: %s piece(s)", 2, null),
+
 	TITLE_SELECT_SET("title.select_set", "Select Artifact Set", 0, null),
 	TITLE_SELECT_SLOT("title.select_slot", "Select Artifact Slot", 0, null),
 	TITLE_SELECT_RANK("title.select_rank", "Select Artifact Rank", 0, null),
@@ -49,6 +50,12 @@ public enum LangData {
 	FILTER_SLOT("title.filter.slot", "Slot Filter", 0, null),
 	FILTER_SET("title.filter.set", "Set Filter", 0, null),
 	FILTER_STAT("title.filter.stat", "Stat Filter", 0, null),
+
+	TAB_INFO_TOTAL("title.info.total", "Total Count: %s", 1, null),
+	TAB_INFO_MATCHED("title.info.matched", "Matched: %s", 1, null),
+	TAB_INFO_EXP("title.info.experience", "Stored Exp: %s", 1, null),
+	TAB_INFO_SELECTED("title.info.selected", "Selected: %s", 1, null),
+	TAB_INFO_EXP_GAIN("title.info.exp_gain", "Exp to Gain: %s", 1, null),
 
 	RANK_1("tooltip.rank.1", "Rank Lv.1", 0, null),
 	RANK_2("tooltip.rank.2", "Rank Lv.2", 0, null),

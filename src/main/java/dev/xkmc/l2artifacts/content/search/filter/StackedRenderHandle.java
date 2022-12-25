@@ -12,13 +12,14 @@ import java.util.List;
 public class StackedRenderHandle {
 
 	private static final int TEXT_HEIGHT = 13;
-	private static final int TEXT_X_OFFSET = 8, TEXT_Y_OFFSET = 3;
+	private static final int TEXT_Y_OFFSET = 3;
 	private static final int SLOT_X_OFFSET = 7, SLOT_SIZE = 18, SPRITE_OFFSET = 176;
-	private static final int TEXT_COLOR = 4210752;
 
 	private final Screen scr;
 	private final Font font;
 	private final PoseStack stack;
+	private final int text_color;
+	private final int text_x_offset;
 
 	private int current_y = 3;
 	private int current_x = 0;
@@ -26,15 +27,21 @@ public class StackedRenderHandle {
 	private final List<TextEntry> textList = new ArrayList<>();
 
 	public StackedRenderHandle(Screen scr, PoseStack stack) {
+		this(scr, stack, 8, 4210752);
+	}
+
+	public StackedRenderHandle(Screen scr, PoseStack stack, int x_offset, int color) {
 		font = Minecraft.getInstance().font;
 		this.stack = stack;
 		this.scr = scr;
+		this.text_color = color;
+		this.text_x_offset = x_offset;
 	}
 
 	public void drawText(Component text) {
 		endCell();
 		int y = current_y + TEXT_Y_OFFSET;
-		textList.add(new TextEntry(stack, text, TEXT_X_OFFSET, y, TEXT_COLOR));
+		textList.add(new TextEntry(stack, text, text_x_offset, y, text_color));
 		current_y += TEXT_HEIGHT;
 	}
 

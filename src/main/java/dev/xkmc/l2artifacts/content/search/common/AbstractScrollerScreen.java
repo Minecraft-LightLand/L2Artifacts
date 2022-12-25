@@ -6,11 +6,16 @@ import dev.xkmc.l2artifacts.content.search.scroller.ScrollerScreen;
 import dev.xkmc.l2artifacts.content.search.tabs.FilterTabManager;
 import dev.xkmc.l2artifacts.content.search.tabs.FilterTabToken;
 import dev.xkmc.l2artifacts.content.search.tabs.IFilterScreen;
+import dev.xkmc.l2artifacts.init.data.LangData;
 import dev.xkmc.l2library.base.menu.BaseContainerScreen;
 import dev.xkmc.l2library.base.menu.SpriteManager;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.Slot;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 public class AbstractScrollerScreen<T extends AbstractScrollerMenu<T>>
 		extends BaseContainerScreen<T> implements ScrollerScreen, IFilterScreen {
@@ -50,11 +55,6 @@ public class AbstractScrollerScreen<T extends AbstractScrollerMenu<T>>
 	}
 
 	@Override
-	public Component getTitle() {
-		return super.getTitle().copy().append(": " + menu.token.getFiltered().size() + "/" + menu.token.list.size());
-	}
-
-	@Override
 	public void scrollTo(int i) {
 		if (i < menu.getScroll()) {
 			click((menu.getScroll() - i) * 100);
@@ -80,8 +80,8 @@ public class AbstractScrollerScreen<T extends AbstractScrollerMenu<T>>
 		int y = r.y + getGuiTop();
 		if (mx >= x && my >= y && mx < x + r.w * r.rx && my < y + r.h * r.ry) {
 			Slot slot = getSlotUnderMouse();
-			if (slot != null && slot.getContainerSlot() >= 2) {
-				click(slot.getContainerSlot());
+			if (slot != null && slot.getContainerSlot() >= menu.extra) {
+				click(slot.getContainerSlot()-menu.extra+2);
 			}
 		}
 		return scroller.mouseClicked(mx, my, btn) || super.mouseClicked(mx, my, btn);

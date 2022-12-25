@@ -8,6 +8,7 @@ import dev.xkmc.l2library.base.menu.SpriteManager;
 import dev.xkmc.l2library.util.code.GenericItemStack;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.DataSlot;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.ItemStack;
 
@@ -25,12 +26,16 @@ public abstract class AbstractScrollerMenu<T extends AbstractScrollerMenu<T>> ex
 	}
 
 	public final ArtifactChestToken token;
+	public final DataSlot total_count;
+	public final DataSlot current_count;
+	public final DataSlot experience;
 
 	protected final Player player;
 
-	private final int extra;
+	final int extra;
 
 	private int max_row, row = 0;
+
 
 	public AbstractScrollerMenu(MenuType<?> type, int wid, Inventory plInv, SpriteManager manager, int extra, ArtifactChestToken token) {
 		super(type, wid, plInv, manager, e -> new BaseContainer<>(36 + extra, e), false);
@@ -38,9 +43,12 @@ public abstract class AbstractScrollerMenu<T extends AbstractScrollerMenu<T>> ex
 		this.token.setComparator(COMPARATOR);
 		this.player = plInv.player;
 		this.extra = extra;
+		this.total_count = addDataSlot(DataSlot.standalone());
+		this.current_count = addDataSlot(DataSlot.standalone());
+		this.experience = addDataSlot(DataSlot.standalone());
 	}
 
-	protected final void reload() {
+	protected void reload(boolean changeContent) {
 		var list = token.getFiltered();
 		max_row = (int) Math.ceil(list.size() / 6.0);
 		if (row > getMaxScroll()) row = getMaxScroll();
@@ -50,6 +58,9 @@ public abstract class AbstractScrollerMenu<T extends AbstractScrollerMenu<T>> ex
 			ItemStack stack = index >= list.size() ? ItemStack.EMPTY : list.get(index).stack();
 			container.setItem(i + extra, stack);
 		}
+		total_count.set(token.list.size());
+		current_count.set(list.size());
+		experience.set(token.exp);
 	}
 
 	public final int getMaxScroll() {
@@ -66,12 +77,12 @@ public abstract class AbstractScrollerMenu<T extends AbstractScrollerMenu<T>> ex
 		pId %= 100;
 		if (pId == 0) {
 			row -= amount;
-			reload();
+			reload(false);
 			return true;
 		}
 		if (pId == 1) {
 			row += amount;
-			reload();
+			reload(false);
 			return true;
 		}
 		pId -= 2;

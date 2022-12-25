@@ -19,7 +19,7 @@ public abstract class FilterTabBase<T extends FilterTabBase<T>> extends Button {
 
 	@SuppressWarnings("unchecked")
 	public FilterTabBase(FilterTabToken<T> token, FilterTabManager manager, ItemStack stack, Component title) {
-		super(0, 0, 28, 32, title, b -> ((T) b).onTabClicked());
+		super(0, 0, 32, 28, title, b -> ((T) b).onTabClicked());
 		this.stack = stack;
 		this.token = token;
 		this.manager = manager;

@@ -36,7 +36,7 @@ public class FilteredMenu extends AbstractScrollerMenu<FilteredMenu> {
 				(e.getItem() instanceof BaseArtifact || e.getItem() instanceof RandomArtifactItem));
 		this.addSlot("output", e -> false);
 		this.addSlot("grid", e -> false, e -> e.setPickup(() -> false));
-		reload();
+		reload(true);
 	}
 
 	@Override
@@ -63,7 +63,7 @@ public class FilteredMenu extends AbstractScrollerMenu<FilteredMenu> {
 			token.save();
 			selected = ItemStack.EMPTY;
 			container.setItem(1, selected);
-			reload();
+			reload(true);
 		}
 		if (!selected.isEmpty() && cont.getItem(1).isEmpty()) {
 			removeSelected();
@@ -80,7 +80,7 @@ public class FilteredMenu extends AbstractScrollerMenu<FilteredMenu> {
 		token.update();
 		token.save();
 		selected = ItemStack.EMPTY;
-		reload();
+		reload(true);
 	}
 
 }

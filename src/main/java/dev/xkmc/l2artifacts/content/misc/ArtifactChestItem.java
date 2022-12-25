@@ -20,6 +20,7 @@ public class ArtifactChestItem extends Item {
 
 	private static final String KEY_LIST = "artifact_list";
 	private static final String KEY_FILTER = "filter";
+	private static final String KEY_EXP = "experience";
 
 	public static List<ItemStack> getContent(ItemStack stack) {
 		var list = ItemCompoundTag.of(stack).getSubList(KEY_LIST, Tag.TAG_COMPOUND).getOrCreate();
@@ -48,6 +49,14 @@ public class ArtifactChestItem extends Item {
 
 	public static void setFilter(ItemStack stack, CompoundTag filter) {
 		stack.getOrCreateTag().put(KEY_FILTER, filter);
+	}
+
+	public static int getExp(ItemStack stack) {
+		return stack.getOrCreateTag().getInt(KEY_EXP);
+	}
+
+	public static void setExp(ItemStack stack, int exp) {
+		stack.getOrCreateTag().putInt(KEY_EXP, exp);
 	}
 
 	@Override

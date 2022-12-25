@@ -24,14 +24,12 @@ public abstract class SetEffect extends NamedEntry<SetEffect> {
 
 	/**
 	 * when the set count changes. Entry contains an uuid if one needs to add it. for Attributes, it must be transient
-	 *
 	 */
 	public void update(Player player, ArtifactSetConfig.Entry ent, int rank, boolean enabled) {
 	}
 
 	/**
 	 * always ticks regardless if it's enabled or not
-	 *
 	 */
 	public void tick(Player player, ArtifactSetConfig.Entry ent, int rank, boolean enabled) {
 	}

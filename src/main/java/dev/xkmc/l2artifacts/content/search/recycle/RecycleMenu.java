@@ -20,7 +20,7 @@ public class RecycleMenu extends AbstractScrollerMenu<RecycleMenu> {
 	public static RecycleMenu fromNetwork(MenuType<RecycleMenu> type, int wid, Inventory plInv, FriendlyByteBuf buf) {
 		int i = buf.readInt();
 		InteractionHand hand = i == 0 ? InteractionHand.MAIN_HAND : InteractionHand.OFF_HAND;
-		return new RecycleMenu( wid, plInv, ArtifactChestToken.of(plInv.player, hand));
+		return new RecycleMenu(wid, plInv, ArtifactChestToken.of(plInv.player, hand));
 	}
 
 	public RecycleMenu(int wid, Inventory plInv, ArtifactChestToken token) {

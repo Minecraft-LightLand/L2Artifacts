@@ -37,7 +37,7 @@ public class RandomArtifactItem extends Item {
 	public static ItemStack getRandomArtifact(int rank, RandomSource random) {
 		var sets = L2Artifacts.REGISTRATE.SET_LIST.stream().filter(e -> e.hasRank(rank))
 				.flatMap(e -> Arrays.stream(e.items)).toList();
-		var arr= sets.get(random.nextInt(sets.size()));
-		return arr[rank-arr[0].get().rank].asStack();
+		var arr = sets.get(random.nextInt(sets.size()));
+		return arr[rank - arr[0].get().rank].asStack();
 	}
 }

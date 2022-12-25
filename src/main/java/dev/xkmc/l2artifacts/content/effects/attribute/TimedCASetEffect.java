@@ -20,6 +20,7 @@ public class TimedCASetEffect extends AbstractConditionalAttributeSetEffect<Time
 		this.pred = pred;
 		this.period = period;
 	}
+
 	@Override
 	public void tick(Player player, ArtifactSetConfig.Entry ent, int rank, boolean enabled) {
 		if (!enabled) return;
@@ -37,7 +38,7 @@ public class TimedCASetEffect extends AbstractConditionalAttributeSetEffect<Time
 	}
 
 	protected MutableComponent getConditionText(int rank) {
-		double time = Math.round(period.getFromRank(rank) ) / 20d;
+		double time = Math.round(period.getFromRank(rank)) / 20d;
 		return Component.translatable(getDescriptionId() + ".desc", time);
 	}
 

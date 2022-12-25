@@ -4,7 +4,7 @@ import dev.xkmc.l2artifacts.content.effects.attribute.AttributeSetData;
 import dev.xkmc.l2library.serial.SerialClass;
 
 public class LuckAttackData extends AttributeSetData {
-    @SerialClass.SerialField
-    public int count;
+	@SerialClass.SerialField
+	public int count;
 
 }

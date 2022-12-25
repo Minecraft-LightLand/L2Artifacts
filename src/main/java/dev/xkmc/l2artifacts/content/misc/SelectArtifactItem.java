@@ -29,7 +29,7 @@ public class SelectArtifactItem extends Item {
 	}
 
 	@OnlyIn(Dist.CLIENT)
-	private static void openScreen(){
+	private static void openScreen() {
 		Minecraft.getInstance().setScreen(new SetSelectScreen());
 	}
 

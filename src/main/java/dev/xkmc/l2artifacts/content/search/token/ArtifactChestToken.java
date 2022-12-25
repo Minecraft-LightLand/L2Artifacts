@@ -89,7 +89,7 @@ public class ArtifactChestToken implements IArtifactFilter {
 		return list.stream().map(e -> new GenericItemStack<>((BaseArtifact) e.getItem(), e));
 	}
 
-	public void setComparator(Comparator<GenericItemStack<BaseArtifact>> comparator){
+	public void setComparator(Comparator<GenericItemStack<BaseArtifact>> comparator) {
 		this.comparator = comparator;
 		cahce = null;
 	}

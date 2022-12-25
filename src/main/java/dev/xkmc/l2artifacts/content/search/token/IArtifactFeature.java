@@ -7,22 +7,22 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
 import javax.annotation.Nullable;
-import java.util.List;
 
 public interface IArtifactFeature {
 
 	MutableComponent getDesc();
 
 	@Nullable
-	default NonNullList<ItemStack> getTooltipItems(){
+	default NonNullList<ItemStack> getTooltipItems() {
 		return null;
 	}
 
-	interface Sprite extends IArtifactFeature{
+	interface Sprite extends IArtifactFeature {
 
 		ResourceLocation getIcon();
 	}
-	interface ItemIcon extends IArtifactFeature{
+
+	interface ItemIcon extends IArtifactFeature {
 
 		Item getItemIcon();
 

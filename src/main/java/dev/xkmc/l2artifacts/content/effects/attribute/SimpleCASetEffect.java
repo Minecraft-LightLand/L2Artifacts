@@ -1,4 +1,3 @@
-
 package dev.xkmc.l2artifacts.content.effects.attribute;
 
 import dev.xkmc.l2artifacts.content.capability.ArtifactData;

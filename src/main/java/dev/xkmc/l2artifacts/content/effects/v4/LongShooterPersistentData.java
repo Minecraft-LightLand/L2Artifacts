@@ -6,9 +6,8 @@ import dev.xkmc.l2library.serial.SerialClass;
 
 public class LongShooterPersistentData extends AttributeSetData {
 
-    @SerialClass.SerialField
-    public boolean old;//If the monster is scanned, it will be changed to false; if not, it will be true
-
+	@SerialClass.SerialField
+	public boolean old;//If the monster is scanned, it will be changed to false; if not, it will be true
 
 
 }

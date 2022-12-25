@@ -43,6 +43,7 @@ public enum LangData {
 
 	TAB_FILTERED("title.tab.filtered", "Artifacts", 0, null),
 	TAB_FILTER("title.tab.filter", "Filter", 0, null),
+	TAB_RECYCLE("title.tab.recycle", "Recycle", 0, null),
 
 	FILTER_RANK("title.filter.rank", "Rank Filter", 0, null),
 	FILTER_SLOT("title.filter.slot", "Slot Filter", 0, null),

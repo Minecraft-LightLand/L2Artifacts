@@ -1,6 +1,7 @@
 package dev.xkmc.l2artifacts.content.misc;
 
-import dev.xkmc.l2artifacts.content.client.search.fitered.ArtifactChestMenuPvd;
+import dev.xkmc.l2artifacts.content.search.common.ArtifactChestMenuPvd;
+import dev.xkmc.l2artifacts.content.search.fitered.FilteredMenu;
 import dev.xkmc.l2library.util.nbt.ItemCompoundTag;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
@@ -53,7 +54,7 @@ public class ArtifactChestItem extends Item {
 	public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
 		ItemStack stack = player.getItemInHand(hand);
 		if (!level.isClientSide()) {
-			new ArtifactChestMenuPvd((ServerPlayer) player, hand, stack).open();
+			new ArtifactChestMenuPvd(FilteredMenu::new, (ServerPlayer) player, hand, stack).open();
 		}
 		return InteractionResultHolder.success(stack);
 	}

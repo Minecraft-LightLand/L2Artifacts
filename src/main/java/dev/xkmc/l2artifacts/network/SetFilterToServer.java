@@ -1,11 +1,15 @@
 package dev.xkmc.l2artifacts.network;
 
-import dev.xkmc.l2artifacts.content.client.search.fitered.ArtifactChestMenuPvd;
-import dev.xkmc.l2artifacts.content.client.search.token.ArtifactChestToken;
 import dev.xkmc.l2artifacts.content.misc.ArtifactChestItem;
+import dev.xkmc.l2artifacts.content.search.common.ArtifactChestMenuPvd;
+import dev.xkmc.l2artifacts.content.search.fitered.FilteredMenu;
+import dev.xkmc.l2artifacts.content.search.recycle.RecycleMenu;
+import dev.xkmc.l2artifacts.content.search.token.ArtifactChestToken;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactItemRegistry;
 import dev.xkmc.l2library.serial.SerialClass;
+import dev.xkmc.l2library.serial.codec.TagCodec;
 import dev.xkmc.l2library.serial.network.SerialPacketBase;
+import dev.xkmc.l2library.util.Proxy;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
@@ -15,21 +19,46 @@ import net.minecraftforge.network.NetworkEvent;
 @SerialClass
 public class SetFilterToServer extends SerialPacketBase {
 
+	enum Type {
+		FILTER(FilteredMenu::new),
+		RECYCLE(RecycleMenu::new);
+
+		private final ArtifactChestMenuPvd.Factory factory;
+
+		Type(ArtifactChestMenuPvd.Factory factory) {
+			this.factory = factory;
+		}
+	}
+
+	public static SetFilterToServer openFilter(ArtifactChestToken token) {
+		return new SetFilterToServer(token, Type.FILTER);
+	}
+
+	public static SetFilterToServer openRecycle(ArtifactChestToken token) {
+		return new SetFilterToServer(token, Type.RECYCLE);
+	}
+
 	@SerialClass.SerialField
 	private InteractionHand hand;
 
 	@SerialClass.SerialField
 	private CompoundTag filter;
 
+	@SerialClass.SerialField
+	private Type type;
+
 	@Deprecated
 	public SetFilterToServer() {
 
 	}
 
-	public SetFilterToServer(ArtifactChestToken token) {
+	private SetFilterToServer(ArtifactChestToken token, Type type) {
 		hand = token.hand;
-		filter = ArtifactChestItem.getFilter(token.stack);
+		filter = TagCodec.toTag(new CompoundTag(), token);
+		ArtifactChestItem.setFilter(Proxy.getClientPlayer().getItemInHand(hand), filter);
+		this.type = type;
 	}
+
 
 	@Override
 	public void handle(NetworkEvent.Context context) {
@@ -38,7 +67,7 @@ public class SetFilterToServer extends SerialPacketBase {
 		ItemStack stack = player.getItemInHand(hand);
 		if (stack.getItem() != ArtifactItemRegistry.FILTER.get()) return;
 		ArtifactChestItem.setFilter(stack, filter);
-		new ArtifactChestMenuPvd(player, hand, stack).open();
+		new ArtifactChestMenuPvd(type.factory, player, hand, stack).open();
 	}
 
 }

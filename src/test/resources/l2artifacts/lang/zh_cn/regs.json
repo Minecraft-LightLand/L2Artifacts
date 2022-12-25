@@ -2,7 +2,7 @@
   "stat_type.l2artifacts": {
 	"armor_add": "+护甲值",
 	"attack_add": "+攻击伤害",
-	"attack_mult": "+%%攻击攻击",
+	"attack_mult": "+%%攻击伤害",
 	"attack_speed_mult": "+%%攻击速度",
 	"bow_strength_add": "+弓箭伤害",
 	"crit_damage_add": "+暴击伤害",

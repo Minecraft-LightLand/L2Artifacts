@@ -1,7 +1,9 @@
 package dev.xkmc.l2artifacts.init.registrate;
 
-import dev.xkmc.l2artifacts.content.client.search.fitered.FilteredMenu;
-import dev.xkmc.l2artifacts.content.client.search.fitered.FilteredMenuScreen;
+import dev.xkmc.l2artifacts.content.search.fitered.FilteredMenu;
+import dev.xkmc.l2artifacts.content.search.fitered.FilteredMenuScreen;
+import dev.xkmc.l2artifacts.content.search.recycle.RecycleMenu;
+import dev.xkmc.l2artifacts.content.search.recycle.RecycleMenuScreen;
 import dev.xkmc.l2library.repack.registrate.util.entry.MenuEntry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.MenuType;
@@ -14,6 +16,11 @@ public class ArtifactMenuRegistry {
 	public static final MenuEntry<FilteredMenu> MT_FILTER = REGISTRATE.menu("filtered",
 					FilteredMenu::fromNetwork,
 					() -> FilteredMenuScreen::new)
+			.lang(ArtifactMenuRegistry::getLangKey).register();
+
+	public static final MenuEntry<RecycleMenu> MT_RECYCLE = REGISTRATE.menu("recycle",
+					RecycleMenu::fromNetwork,
+					() -> RecycleMenuScreen::new)
 			.lang(ArtifactMenuRegistry::getLangKey).register();
 
 	public static String getLangKey(MenuType<?> menu) {

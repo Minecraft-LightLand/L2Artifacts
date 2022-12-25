@@ -8,8 +8,11 @@ import dev.xkmc.l2artifacts.init.data.LangData;
 import dev.xkmc.l2library.base.menu.SpriteManager;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.inventory.Slot;
 
 public class RecycleMenuScreen extends AbstractScrollerScreen<RecycleMenu> {
+
+	private boolean canDrag, dragging, enable;
 
 	public RecycleMenuScreen(RecycleMenu cont, Inventory plInv, Component title) {
 		super(cont, plInv, title, FilterTabManager.RECYCLE);
@@ -19,13 +22,70 @@ public class RecycleMenuScreen extends AbstractScrollerScreen<RecycleMenu> {
 	protected void renderBgExtra(PoseStack pose, SpriteManager.ScreenRenderer sr) {
 		for (int i = 0; i < 6; i++) {
 			for (int j = 0; j < 6; j++) {
-				int ind = i * 6 + j;
-				boolean sel = ((ind < 18 ? menu.sel_0.get() >> ind : menu.sel_1.get() >> (ind - 18)) & 1) != 0;
-				if (sel) {
+				if (isSelected(i * 6 + j)) {
 					sr.draw(pose, "grid", "toggle_slot_1", j * 18 - 1, i * 18 - 1);
 				}
 			}
 		}
+	}
+
+	private boolean isSelected(int ind) {
+		return ((ind < 18 ? menu.sel_0.get() >> ind : menu.sel_1.get() >> (ind - 18)) & 1) != 0;
+	}
+
+	private void forceSelect(int ind) {
+		if (ind < 18) menu.sel_0.set(menu.sel_0.get() ^ (1 << ind));
+		else menu.sel_1.set(menu.sel_1.get() ^ (1 << (ind - 18)));
+	}
+
+	@Override
+	public boolean mouseClicked(double mx, double my, int btn) {
+		SpriteManager.Rect r = menu.sprite.getComp("grid");
+		int x = r.x + getGuiLeft();
+		int y = r.y + getGuiTop();
+		if (mx >= x && my >= y && mx < x + r.w * r.rx && my < y + r.h * r.ry) {
+			Slot slot = getSlotUnderMouse();
+			if (slot != null && slot.getContainerSlot() >= menu.extra) {
+				enable = isSelected(slot.getContainerSlot() - menu.extra);
+				canDrag = true;
+			}
+		}
+		return super.mouseClicked(mx, my, btn);
+	}
+
+	@Override
+	protected boolean click(int btn) {
+		if (btn >= 2 && btn < 38) {
+			forceSelect(btn - 2);
+		}
+		return super.click(btn);
+	}
+
+	@Override
+	public boolean mouseReleased(double pMouseX, double pMouseY, int pButton) {
+		dragging = false;
+		canDrag = false;
+		return super.mouseReleased(pMouseX, pMouseY, pButton);
+	}
+
+	@Override
+	public boolean mouseDragged(double mx, double my, int btn, double dx, double dy) {
+		SpriteManager.Rect r = menu.sprite.getComp("grid");
+		int x = r.x + getGuiLeft();
+		int y = r.y + getGuiTop();
+		if (mx >= x && my >= y && mx < x + r.w * r.rx && my < y + r.h * r.ry) {
+			Slot slot = getSlotUnderMouse();
+			if (canDrag && slot != null && slot.getContainerSlot() >= menu.extra) {
+				int ind = slot.getContainerSlot() - menu.extra;
+				boolean selected = isSelected(ind);
+				dragging = true;
+				if (selected == enable) {
+					click(ind + 2);
+					return true;
+				}
+			}
+		}
+		return super.mouseDragged(mx, my, btn, dx, dy);
 	}
 
 	@Override
@@ -40,7 +100,9 @@ public class RecycleMenuScreen extends AbstractScrollerScreen<RecycleMenu> {
 		handle.drawText(LangData.TAB_INFO_EXP_GAIN.get(formatNumber(menu.to_gain.get())));
 		handle.flushText();
 		pPoseStack.popPose();
-		super.renderTooltip(pPoseStack, pX, pY);
+		if (!dragging) {
+			super.renderTooltip(pPoseStack, pX, pY);
+		}
 	}
 
 	private static final String[] SUFFIX = {"", "k", "M", "G", "T"};
@@ -48,13 +110,18 @@ public class RecycleMenuScreen extends AbstractScrollerScreen<RecycleMenu> {
 	private static String formatNumber(int number) {
 		int level = 0;
 		while (true) {
-			if (number < 10000 || level == SUFFIX.length - 1) {
+			if (number < 1000 || level == SUFFIX.length - 1) {
 				return number + SUFFIX[level];
+			}
+			if (number < 10000) {
+				int a = (int) Math.round(number * 1e-2);
+				int b = a / 10;
+				int c = a % 10;
+				return b + "." + c + SUFFIX[level + 1];
 			}
 			number = (int) Math.round(number * 1e-3);
 			level++;
 		}
 	}
-
 
 }

@@ -32,7 +32,7 @@ public abstract class AbstractScrollerMenu<T extends AbstractScrollerMenu<T>> ex
 
 	protected final Player player;
 
-	final int extra;
+	public final int extra;
 
 	private int max_row, row = 0;
 

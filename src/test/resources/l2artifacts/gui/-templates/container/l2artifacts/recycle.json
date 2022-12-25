@@ -4,7 +4,11 @@
 	"slider_dark",
 	"toggle_slot_0",
 	"toggle_slot_1",
-	"toggle_slot_2"
+	"toggle_slot_2",
+	"button_1",
+	"button_1p",
+	"button_2",
+	"button_2p"
   ],
   "comp": {
 	"grid": {

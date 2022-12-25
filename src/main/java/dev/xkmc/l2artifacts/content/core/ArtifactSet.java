@@ -11,6 +11,7 @@ import dev.xkmc.l2artifacts.init.registrate.ArtifactTypeRegistry;
 import dev.xkmc.l2library.base.NamedEntry;
 import dev.xkmc.l2library.util.Proxy;
 import net.minecraft.ChatFormatting;
+import net.minecraft.core.NonNullList;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.entity.LivingEntity;
@@ -191,4 +192,14 @@ public class ArtifactSet extends NamedEntry<ArtifactSet> implements IArtifactFea
 		return arr[0][arr[0].length - 1].get();
 	}
 
+	@Nullable
+	@Override
+	public NonNullList<ItemStack> getTooltipItems() {
+		var arr = L2Artifacts.REGISTRATE.SET_MAP.get(getRegistryName()).items;
+		NonNullList<ItemStack> ans = NonNullList.create();
+		for (var ar : arr) {
+			ans.add(ar[ar.length - 1].asStack());
+		}
+		return ans;
+	}
 }

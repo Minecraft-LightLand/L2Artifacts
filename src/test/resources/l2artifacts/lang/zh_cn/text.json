@@ -53,7 +53,15 @@
 	  },
 	  "tab": {
 		"filter": "筛选器设置",
-		"filtered": "古遗物列表"
+		"filtered": "古遗物列表",
+		"recycle": "批量经验转化"
+	  },
+	  "info": {
+		"exp_gain": "可获取经验: %s",
+		"experience": "储存经验: %s",
+		"matched": "匹配数量: %s",
+		"selected": "已选中: %s",
+		"total": "总数: %s"
 	  }
 	}
   }

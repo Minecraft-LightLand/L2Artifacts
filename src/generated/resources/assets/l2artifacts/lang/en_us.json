@@ -446,7 +446,7 @@
   "l2artifacts.title.select_slot": "Select Artifact Slot",
   "l2artifacts.title.tab.filter": "Filter",
   "l2artifacts.title.tab.filtered": "Artifacts",
-  "l2artifacts.title.tab.recycle": "Recycle",
+  "l2artifacts.title.tab.recycle": "Exp Conversion",
   "l2artifacts.tooltip.artifact_exp": "Exp: %s/%s",
   "l2artifacts.tooltip.artifact_level": "Level: %s",
   "l2artifacts.tooltip.boost.main": "Put it in Anvil right slot, put artifact of the same rank on the left slot, to ensure the next upgrade of main stat will be maximized",

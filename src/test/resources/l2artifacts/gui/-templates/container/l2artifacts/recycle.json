@@ -8,7 +8,8 @@
 	"button_1",
 	"button_1p",
 	"button_2",
-	"button_2p"
+	"button_2p",
+	"delete_on"
   ],
   "comp": {
 	"grid": {
@@ -27,6 +28,16 @@
 	  "sprite": "exchange_in",
 	  "x": 148,
 	  "y": 46
+	},
+	"output": {
+	  "sprite": "delete_off",
+	  "x": 151,
+	  "y": 80
+	},
+	"exchange_out": {
+	  "sprite": "exchange_out",
+	  "x": 148,
+	  "y": 60
 	},
 	"slider_top": {
 	  "sprite": "slider/_top",

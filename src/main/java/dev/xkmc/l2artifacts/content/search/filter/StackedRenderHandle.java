@@ -1,6 +1,8 @@
 package dev.xkmc.l2artifacts.content.search.filter;
 
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.datafixers.util.Pair;
+import dev.xkmc.l2library.base.menu.SpriteManager;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.screens.Screen;
@@ -13,11 +15,13 @@ public class StackedRenderHandle {
 
 	private static final int TEXT_HEIGHT = 13;
 	private static final int TEXT_Y_OFFSET = 3;
+	private static final int BTN_X_OFFSET = 3;
 	private static final int SLOT_X_OFFSET = 7, SLOT_SIZE = 18, SPRITE_OFFSET = 176;
 
 	private final Screen scr;
 	private final Font font;
 	private final PoseStack stack;
+	private final SpriteManager sm;
 	private final int text_color;
 	private final int text_x_offset;
 
@@ -26,14 +30,15 @@ public class StackedRenderHandle {
 
 	private final List<TextEntry> textList = new ArrayList<>();
 
-	public StackedRenderHandle(Screen scr, PoseStack stack) {
-		this(scr, stack, 8, 4210752);
+	public StackedRenderHandle(Screen scr, PoseStack stack, SpriteManager sm) {
+		this(scr, stack, 8, 4210752, sm);
 	}
 
-	public StackedRenderHandle(Screen scr, PoseStack stack, int x_offset, int color) {
-		font = Minecraft.getInstance().font;
+	public StackedRenderHandle(Screen scr, PoseStack stack, int x_offset, int color, SpriteManager sm) {
+		this.font = Minecraft.getInstance().font;
 		this.stack = stack;
 		this.scr = scr;
+		this.sm = sm;
 		this.text_color = color;
 		this.text_x_offset = x_offset;
 	}
@@ -43,6 +48,22 @@ public class StackedRenderHandle {
 		int y = current_y + TEXT_Y_OFFSET;
 		textList.add(new TextEntry(stack, text, text_x_offset, y, text_color));
 		current_y += TEXT_HEIGHT;
+	}
+
+	public Pair<CellEntry, CellEntry> drawTextWithButtons(Component text, boolean p1, boolean p2) {
+		endCell();
+		int y = current_y + TEXT_Y_OFFSET;
+		textList.add(new TextEntry(stack, text, text_x_offset, y, text_color));
+		int x_off = text_x_offset + font.width(text) + BTN_X_OFFSET;
+		SpriteManager.Rect r = sm.getSide(p1 ? "button_1" : "button_1p");
+		scr.blit(stack, x_off, y, r.x, r.y, r.w, r.h);
+		CellEntry c1 = new CellEntry(x_off, y);
+		x_off += r.w + BTN_X_OFFSET;
+		r = sm.getSide(p2 ? "button_2" : "button_2p");
+		scr.blit(stack, x_off, y, r.x, r.y, r.w, r.h);
+		CellEntry c2 = new CellEntry(x_off, y);
+		current_y += TEXT_HEIGHT;
+		return Pair.of(c1, c2);
 	}
 
 	public CellEntry addCell(boolean toggled, boolean disabled) {

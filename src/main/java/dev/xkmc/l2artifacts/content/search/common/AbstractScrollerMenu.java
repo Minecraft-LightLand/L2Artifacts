@@ -51,6 +51,7 @@ public abstract class AbstractScrollerMenu<T extends AbstractScrollerMenu<T>> ex
 	protected void reload(boolean changeContent) {
 		var list = token.getFiltered();
 		max_row = (int) Math.ceil(list.size() / 6.0);
+		if (row < 0) row = 0;
 		if (row > getMaxScroll()) row = getMaxScroll();
 		if (player.level.isClientSide()) return;
 		for (int i = 0; i < 36; i++) {

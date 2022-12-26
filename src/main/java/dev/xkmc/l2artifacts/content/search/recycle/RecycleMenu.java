@@ -59,7 +59,7 @@ public class RecycleMenu extends AbstractScrollerMenu<RecycleMenu> {
 		refreshSelected();
 	}
 
-	private void refreshSelected(){
+	private void refreshSelected() {
 		int val_0 = 0;
 		int val_1 = 0;
 		for (int i = 0; i < 6; i++) {
@@ -124,9 +124,37 @@ public class RecycleMenu extends AbstractScrollerMenu<RecycleMenu> {
 				}
 			}
 			addExp(exp);
+			select_count.set(0);
+			to_gain.set(0);
 			token.update();
 			token.save();
 			reload(true);
+			return true;
+		}
+		if (pId == 51) {
+			if (player.level.isClientSide)
+				return true;
+			var list = token.getFiltered();
+			int exp = 0;
+			for (int i = 0; i < list.size(); i++) {
+				selected[i] = true;
+				exp += getExp(i);
+			}
+			select_count.set(list.size());
+			to_gain.set(exp);
+			refreshSelected();
+			return true;
+		}
+		if (pId == 52) {
+			if (player.level.isClientSide)
+				return true;
+			var list = token.getFiltered();
+			for (int i = 0; i < list.size(); i++) {
+				selected[i] = false;
+			}
+			select_count.set(0);
+			to_gain.set(0);
+			refreshSelected();
 			return true;
 		}
 		return super.clickMenuButton(player, pId);

@@ -10,7 +10,6 @@ import dev.xkmc.l2artifacts.init.L2Artifacts;
 import dev.xkmc.l2artifacts.init.data.LangData;
 import dev.xkmc.l2library.base.menu.SpriteManager;
 import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.inventory.tooltip.BundleTooltip;
 import net.minecraft.world.inventory.tooltip.TooltipComponent;
@@ -23,15 +22,26 @@ import java.util.Optional;
 
 public class FilterScreen extends Screen implements IFilterScreen {
 
-	private static final SpriteManager MANAGER = new SpriteManager(L2Artifacts.MODID, "filter");
+	public static void renderHighlight(PoseStack pose, int x, int y, int w, int h, int offset, int c) {
+		RenderSystem.disableDepthTest();
+		RenderSystem.colorMask(true, true, true, false);
+		fillGradient(pose, x, y, x + w, y + h, c, c, offset);
+		RenderSystem.colorMask(true, true, true, true);
+		RenderSystem.enableDepthTest();
+	}
 
+	private static final SpriteManager MANAGER = new SpriteManager(L2Artifacts.MODID, "filter");
 
 	public final ArtifactChestToken token;
 
 	private int imageWidth, imageHeight, leftPos, topPos;
 
+	private boolean pressed = false;
+
 	@Nullable
 	private FilterHover hover;
+	@Nullable
+	private ButtonHover btnHover;
 
 	protected FilterScreen(ArtifactChestToken token) {
 		super(LangData.TAB_FILTER.get());
@@ -55,12 +65,24 @@ public class FilterScreen extends Screen implements IFilterScreen {
 		posestack.translate(leftPos, topPos, 0.0D);
 		RenderSystem.applyModelViewMatrix();
 		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-		StackedRenderHandle handle = new StackedRenderHandle(this, pose);
+		StackedRenderHandle handle = new StackedRenderHandle(this, pose, MANAGER);
 		hover = null;
+		var prevBtnHover = btnHover;
+		btnHover = null;
 		List<FilterHover> list = new ArrayList<>();
 		for (int i = 0; i < token.filters.size(); i++) {
 			var filter = token.filters.get(i);
-			handle.drawText(filter.getDescription());
+			boolean p = pressed && prevBtnHover != null && prevBtnHover.i() == i;
+			boolean pa = p && prevBtnHover.a();
+			boolean pb = p && !prevBtnHover.a();
+			var press =
+					handle.drawTextWithButtons(filter.getDescription(), pa, pb);
+			if (isHovering(press.getFirst().x(), press.getFirst().y(), 8, 8, mx, my)) {
+				btnHover = new ButtonHover(i, true, press.getFirst());
+			}
+			if (isHovering(press.getSecond().x(), press.getSecond().y(), 8, 8, mx, my)) {
+				btnHover = new ButtonHover(i, false, press.getSecond());
+			}
 			boolean[] available = filter.getAvailability();
 			for (int j = 0; j < filter.allEntries.size(); j++) {
 				boolean selected = filter.getSelected(j);
@@ -76,12 +98,16 @@ public class FilterScreen extends Screen implements IFilterScreen {
 		handle.flushText();
 		list.forEach(e -> e.draw(this, pose));
 		if (hover != null) {
-			AbstractContainerScreen.renderSlotHighlight(pose, hover.x, hover.y, getBlitOffset(), -2130706433);
+			renderHighlight(pose, hover.x, hover.y, 16, 16, getBlitOffset(), -2130706433);
 			List<Component> texts = new ArrayList<>();
 			texts.add(hover.item().getDesc());
 			Optional<TooltipComponent> comp = Optional.ofNullable(hover.item().getTooltipItems())
 					.map(l -> new BundleTooltip(l, 0));
 			renderTooltip(pose, texts, comp, mx - leftPos, my - topPos);
+		}
+		if (btnHover != null) {
+			var cell = btnHover.cell();
+			renderHighlight(pose, cell.x(), cell.y(), 8, 8, getBlitOffset(), -2130706433);
 		}
 		posestack.popPose();
 		RenderSystem.applyModelViewMatrix();
@@ -103,20 +129,20 @@ public class FilterScreen extends Screen implements IFilterScreen {
 	}
 
 	private void renderSlotItem(int x, int y, ItemStack stack) {
-		String s = null;
 		this.setBlitOffset(100);
 		this.itemRenderer.blitOffset = 100.0F;
 		RenderSystem.enableDepthTest();
 		assert this.minecraft != null;
 		assert this.minecraft.player != null;
 		this.itemRenderer.renderAndDecorateItem(this.minecraft.player, stack, x, y, x + y * this.imageWidth);
-		this.itemRenderer.renderGuiItemDecorations(this.font, stack, x, y, s);
+		this.itemRenderer.renderGuiItemDecorations(this.font, stack, x, y, null);
 		this.itemRenderer.blitOffset = 0.0F;
 		this.setBlitOffset(0);
 	}
 
 	@Override
 	public boolean mouseClicked(double mx, double my, int button) {
+		pressed = true;
 		if (super.mouseClicked(mx, my, button)) {
 			return true;
 		}
@@ -124,6 +150,21 @@ public class FilterScreen extends Screen implements IFilterScreen {
 			token.filters.get(hover.i).toggle(hover.j);
 		}
 		return false;
+	}
+
+	@Override
+	public boolean mouseReleased(double pMouseX, double pMouseY, int pButton) {
+		pressed = false;
+		if (btnHover != null) {
+			var filter = token.filters.get(btnHover.i());
+			for (int i = 0; i < filter.allEntries.size(); i++) {
+				if (filter.getSelected(i) != btnHover.a()) {
+					filter.toggle(i);
+				}
+			}
+			return true;
+		}
+		return super.mouseReleased(pMouseX, pMouseY, pButton);
 	}
 
 	@Override
@@ -171,6 +212,10 @@ public class FilterScreen extends Screen implements IFilterScreen {
 				screen.renderSlotItem(x, y, icon.getItemIcon().getDefaultInstance());
 			}
 		}
+
+	}
+
+	private record ButtonHover(int i, boolean a, StackedRenderHandle.CellEntry cell) {
 
 	}
 

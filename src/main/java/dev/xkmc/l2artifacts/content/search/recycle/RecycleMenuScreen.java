@@ -2,6 +2,7 @@ package dev.xkmc.l2artifacts.content.search.recycle;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import dev.xkmc.l2artifacts.content.search.common.AbstractScrollerScreen;
+import dev.xkmc.l2artifacts.content.search.filter.FilterScreen;
 import dev.xkmc.l2artifacts.content.search.filter.StackedRenderHandle;
 import dev.xkmc.l2artifacts.content.search.tabs.FilterTabManager;
 import dev.xkmc.l2artifacts.init.data.LangData;
@@ -12,14 +13,14 @@ import net.minecraft.world.inventory.Slot;
 
 public class RecycleMenuScreen extends AbstractScrollerScreen<RecycleMenu> {
 
-	private boolean canDrag, dragging, enable;
+	private boolean pressed, canDrag, dragging, enable, hover_a, hover_b;
 
 	public RecycleMenuScreen(RecycleMenu cont, Inventory plInv, Component title) {
 		super(cont, plInv, title, FilterTabManager.RECYCLE);
 	}
 
 	@Override
-	protected void renderBgExtra(PoseStack pose, SpriteManager.ScreenRenderer sr) {
+	protected void renderBgExtra(PoseStack pose, SpriteManager.ScreenRenderer sr, int mx, int my) {
 		for (int i = 0; i < 6; i++) {
 			for (int j = 0; j < 6; j++) {
 				if (isSelected(i * 6 + j)) {
@@ -27,6 +28,32 @@ public class RecycleMenuScreen extends AbstractScrollerScreen<RecycleMenu> {
 				}
 			}
 		}
+		var rect = menu.sprite.getComp("output");
+		if (isHovering(rect.x, rect.y, rect.w, rect.h, mx, my)) {
+			sr.draw(pose, "output", "delete_on");
+		}
+		pose.pushPose();
+		pose.translate(leftPos, topPos, 0);
+		int btn_x = titleLabelX + font.width(getTitle()) + 3;
+		int btn_y = titleLabelY;
+		boolean h1 = isHovering(btn_x, btn_y, 8, 8, mx, my);
+		boolean p1 = pressed && h1;
+		SpriteManager.Rect r = menu.sprite.getSide(p1 ? "button_1" : "button_1p");
+		blit(pose, btn_x, btn_y, r.x, r.y, r.w, r.h);
+		if (h1) {
+			FilterScreen.renderHighlight(pose, btn_x, btn_y, 8, 8, getBlitOffset(), -2130706433);
+		}
+		btn_x += r.w + 3;
+		boolean h2 = isHovering(btn_x, btn_y, 8, 8, mx, my);
+		boolean p2 = pressed && h2;
+		r = menu.sprite.getSide(p2 ? "button_2" : "button_2p");
+		blit(pose, btn_x, btn_y, r.x, r.y, r.w, r.h);
+		if (h2) {
+			FilterScreen.renderHighlight(pose, btn_x, btn_y, 8, 8, getBlitOffset(), -2130706433);
+		}
+		hover_a = h1;
+		hover_b = h2;
+		pose.popPose();
 	}
 
 	private boolean isSelected(int ind) {
@@ -41,6 +68,7 @@ public class RecycleMenuScreen extends AbstractScrollerScreen<RecycleMenu> {
 	@Override
 	public boolean mouseClicked(double mx, double my, int btn) {
 		SpriteManager.Rect r = menu.sprite.getComp("grid");
+		pressed = true;
 		int x = r.x + getGuiLeft();
 		int y = r.y + getGuiTop();
 		if (mx >= x && my >= y && mx < x + r.w * r.rx && my < y + r.h * r.ry) {
@@ -62,10 +90,23 @@ public class RecycleMenuScreen extends AbstractScrollerScreen<RecycleMenu> {
 	}
 
 	@Override
-	public boolean mouseReleased(double pMouseX, double pMouseY, int pButton) {
+	public boolean mouseReleased(double mx, double my, int pButton) {
 		dragging = false;
 		canDrag = false;
-		return super.mouseReleased(pMouseX, pMouseY, pButton);
+		pressed = false;
+		var rect = menu.sprite.getComp("output");
+		if (isHovering(rect.x, rect.y, rect.w, rect.h, mx, my)) {
+			click(50);
+		}
+		if (hover_a) {
+			click(51);
+			hover_a = false;
+		}
+		if (hover_b) {
+			click(52);
+			hover_b = false;
+		}
+		return super.mouseReleased(mx, my, pButton);
 	}
 
 	@Override
@@ -92,7 +133,7 @@ public class RecycleMenuScreen extends AbstractScrollerScreen<RecycleMenu> {
 	protected void renderTooltip(PoseStack pPoseStack, int pX, int pY) {
 		pPoseStack.pushPose();
 		pPoseStack.translate(0, topPos, 0);
-		var handle = new StackedRenderHandle(this, pPoseStack, 8, 0xFFFFFFFF);
+		var handle = new StackedRenderHandle(this, pPoseStack, 8, 0xFFFFFFFF, menu.sprite);
 		handle.drawText(LangData.TAB_INFO_TOTAL.get(menu.total_count.get()));
 		handle.drawText(LangData.TAB_INFO_MATCHED.get(menu.current_count.get()));
 		handle.drawText(LangData.TAB_INFO_EXP.get(formatNumber(menu.experience.get())));

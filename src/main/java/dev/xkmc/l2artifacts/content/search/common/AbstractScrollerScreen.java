@@ -37,10 +37,10 @@ public class AbstractScrollerScreen<T extends AbstractScrollerMenu<T>>
 		SpriteManager.ScreenRenderer sr = sm.getRenderer(this);
 		sr.start(pose);
 		scroller.render(pose, sr);
-		renderBgExtra(pose, sr);
+		renderBgExtra(pose, sr, mx, my);
 	}
 
-	protected void renderBgExtra(PoseStack pose, SpriteManager.ScreenRenderer sr) {
+	protected void renderBgExtra(PoseStack pose, SpriteManager.ScreenRenderer sr, int mx, int my) {
 	}
 
 	@Override

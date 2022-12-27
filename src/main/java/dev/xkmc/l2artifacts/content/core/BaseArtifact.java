@@ -150,7 +150,7 @@ public class BaseArtifact extends Item {
 			if (!ctrl)
 				list.addAll(set.get().getAllDescs(stack, shift));
 			else if (!shift) getUpgrade(stack).ifPresent(e -> e.addTooltips(list));
-			if (shift && !ctrl)
+			if (!shift && !ctrl)
 				list.add(LangData.EXP_CONVERSION.get(ArtifactUpgradeManager.getExpForConversion(rank, getStats(stack).orElse(null))));
 		}
 		super.appendHoverText(stack, level, list, flag);

@@ -13,15 +13,17 @@ import java.util.List;
 
 public class StackedRenderHandle {
 
-	private static final int TEXT_HEIGHT = 13;
-	private static final int TEXT_Y_OFFSET = 3;
+	private static final int TEXT_BASE_HEIGHT = 8;
 	private static final int BTN_X_OFFSET = 3;
 	private static final int SLOT_X_OFFSET = 7, SLOT_SIZE = 18, SPRITE_OFFSET = 176;
+
 
 	private final Screen scr;
 	private final Font font;
 	private final PoseStack stack;
 	private final SpriteManager sm;
+	private final int TEXT_Y_OFFSET;
+	private final int TEXT_HEIGHT;
 	private final int text_color;
 	private final int text_x_offset;
 
@@ -31,16 +33,26 @@ public class StackedRenderHandle {
 	private final List<TextEntry> textList = new ArrayList<>();
 
 	public StackedRenderHandle(Screen scr, PoseStack stack, SpriteManager sm) {
-		this(scr, stack, 8, 4210752, sm);
+		this(scr, stack, sm, 3);
+	}
+
+	public StackedRenderHandle(Screen scr, PoseStack stack, SpriteManager sm, int ty) {
+		this(scr, stack, 8, 4210752, sm, ty);
 	}
 
 	public StackedRenderHandle(Screen scr, PoseStack stack, int x_offset, int color, SpriteManager sm) {
+		this(scr, stack, x_offset, color, sm, 3);
+	}
+
+	public StackedRenderHandle(Screen scr, PoseStack stack, int x_offset, int color, SpriteManager sm, int ty) {
 		this.font = Minecraft.getInstance().font;
 		this.stack = stack;
 		this.scr = scr;
 		this.sm = sm;
 		this.text_color = color;
 		this.text_x_offset = x_offset;
+		this.TEXT_Y_OFFSET = ty;
+		this.TEXT_HEIGHT = TEXT_BASE_HEIGHT + ty + 2;
 	}
 
 	public void drawText(Component text) {
@@ -48,6 +60,35 @@ public class StackedRenderHandle {
 		int y = current_y + TEXT_Y_OFFSET;
 		textList.add(new TextEntry(stack, text, text_x_offset, y, text_color));
 		current_y += TEXT_HEIGHT;
+	}
+
+	public void drawTable(Component[][] table, int x_max) {
+		endCell();
+		int h = table.length;
+		int w = table[0].length;
+		int w1 = 0;
+		int ws = 0;
+		for (Component[] c : table) {
+			w1 = Math.max(w1, font.width(c[0]));
+			for (int i = 1; i < w; i++) {
+				ws = Math.max(ws, font.width(c[i]));
+			}
+		}
+		int sumw = w1 + ws * (w - 1);
+		int x0 = text_x_offset;
+		int x1 = x_max - text_x_offset;
+		float space = (x1 - x0 - sumw) * 1.0f / (w - 1);
+		for (Component[] c : table) {
+			int y = current_y + TEXT_Y_OFFSET;
+			float x_start = x0;
+			for (int i = 0; i < w; i++) {
+				float wi = i == 0 ? w1 : ws;
+				int x = Math.round(x_start);
+				textList.add(new TextEntry(stack, c[i], x, y, text_color));
+				x_start += wi + space;
+			}
+			current_y += TEXT_HEIGHT;
+		}
 	}
 
 	public Pair<CellEntry, CellEntry> drawTextWithButtons(Component text, boolean p1, boolean p2) {

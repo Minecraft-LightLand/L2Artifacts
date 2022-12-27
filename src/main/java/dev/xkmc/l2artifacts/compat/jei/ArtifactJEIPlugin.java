@@ -3,6 +3,7 @@ package dev.xkmc.l2artifacts.compat.jei;
 import dev.xkmc.l2artifacts.content.search.common.AbstractScrollerScreen;
 import dev.xkmc.l2artifacts.content.search.fitered.FilteredMenuScreen;
 import dev.xkmc.l2artifacts.content.search.recycle.RecycleMenuScreen;
+import dev.xkmc.l2artifacts.content.search.upgrade.UpgradeMenuScreen;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
@@ -27,6 +28,7 @@ public class ArtifactJEIPlugin implements IModPlugin {
 	public void registerGuiHandlers(IGuiHandlerRegistration registration) {
 		registration.addGuiScreenHandler(FilteredMenuScreen.class, ArtifactJEIPlugin::create);
 		registration.addGuiScreenHandler(RecycleMenuScreen.class, ArtifactJEIPlugin::create);
+		registration.addGuiScreenHandler(UpgradeMenuScreen.class, e->null);
 	}
 
 

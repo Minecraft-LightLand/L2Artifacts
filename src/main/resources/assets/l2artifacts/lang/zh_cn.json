@@ -561,6 +561,7 @@
   "slot.l2artifacts.necklace": "项链",
   "container.l2artifacts.filtered": "古遗物多功能包",
   "container.l2artifacts.recycle": "古遗物经验转化",
+  "container.l2artifacts.upgrade": "古遗物升级",
   "l2artifacts.tooltip.artifact_exp": "经验值: %s/%s",
   "l2artifacts.tooltip.artifact_level": "等级: %s",
   "l2artifacts.tooltip.main_stat": "主词条:",
@@ -600,9 +601,11 @@
   "l2artifacts.title.tab.filter": "筛选器设置",
   "l2artifacts.title.tab.filtered": "古遗物列表",
   "l2artifacts.title.tab.recycle": "批量经验转化",
+  "l2artifacts.title.tab.upgrade": "古遗物升级",
   "l2artifacts.title.info.exp_gain": "可获取经验: %s",
   "l2artifacts.title.info.experience": "储存经验: %s",
   "l2artifacts.title.info.matched": "匹配数量: %s",
   "l2artifacts.title.info.selected": "已选中: %s",
-  "l2artifacts.title.info.total": "总数: %s"
+  "l2artifacts.title.info.total": "总数: %s",
+  "l2artifacts.title.info.exp_cost": "古遗物经验消耗: %s"
 }

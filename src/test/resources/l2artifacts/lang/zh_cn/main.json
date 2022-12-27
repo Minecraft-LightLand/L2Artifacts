@@ -13,5 +13,6 @@
   "slot.l2artifacts.head": "头饰",
   "slot.l2artifacts.necklace": "项链",
   "container.l2artifacts.filtered": "古遗物多功能包",
-  "container.l2artifacts.recycle": "古遗物经验转化"
+  "container.l2artifacts.recycle": "古遗物经验转化",
+  "container.l2artifacts.upgrade": "古遗物升级"
 }

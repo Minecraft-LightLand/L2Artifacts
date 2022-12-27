@@ -14,7 +14,7 @@ import net.minecraft.world.item.ItemStack;
 
 import java.util.Comparator;
 
-public abstract class AbstractScrollerMenu<T extends AbstractScrollerMenu<T>> extends BaseContainerMenu<T> implements ScrollerMenu {
+public abstract class AbstractScrollerMenu<T extends AbstractScrollerMenu<T>> extends BaseContainerMenu<T> implements ScrollerMenu, IFilterMenu {
 
 	public static final Comparator<GenericItemStack<BaseArtifact>> COMPARATOR;
 

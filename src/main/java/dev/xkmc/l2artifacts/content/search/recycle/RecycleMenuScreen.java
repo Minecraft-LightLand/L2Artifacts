@@ -148,7 +148,7 @@ public class RecycleMenuScreen extends AbstractScrollerScreen<RecycleMenu> {
 
 	private static final String[] SUFFIX = {"", "k", "M", "G", "T"};
 
-	private static String formatNumber(int number) {
+	public static String formatNumber(int number) {
 		int level = 0;
 		while (true) {
 			if (number < 1000 || level == SUFFIX.length - 1) {

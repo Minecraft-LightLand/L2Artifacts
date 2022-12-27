@@ -21,7 +21,8 @@ import static net.minecraft.world.item.ItemStack.ATTRIBUTE_MODIFIER_FORMAT;
 
 public class ArtifactStatType extends NamedEntry<ArtifactStatType> implements IArtifactFeature.Sprite {
 
-	private final Supplier<Attribute> attr;
+	public final Supplier<Attribute> attr;
+
 	private final AttributeModifier.Operation op;
 	private final boolean usePercent;
 
@@ -49,6 +50,15 @@ public class ArtifactStatType extends NamedEntry<ArtifactStatType> implements IA
 	public double getSubValue(int rank, RandomSource random, boolean max) {
 		StatTypeConfig.Entry entry = StatTypeConfig.getInstance().stats.get(this);
 		return (max ? entry.sub_high : Mth.nextDouble(random, entry.sub_low, entry.sub_high)) * rank;
+	}
+
+	public MutableComponent getValueText(double val) {
+		var ans = Component.literal("+");
+		ans = ans.append(ATTRIBUTE_MODIFIER_FORMAT.format(usePercent ? val * 100 : val));
+		if (usePercent) {
+			ans = ans.append("%");
+		}
+		return ans;
 	}
 
 	public Component getTooltip(double val) {

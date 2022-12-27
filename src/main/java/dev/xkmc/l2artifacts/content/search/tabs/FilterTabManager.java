@@ -5,6 +5,7 @@ import dev.xkmc.l2artifacts.content.search.filter.FilterTab;
 import dev.xkmc.l2artifacts.content.search.fitered.FilteredTab;
 import dev.xkmc.l2artifacts.content.search.recycle.RecycleTab;
 import dev.xkmc.l2artifacts.content.search.token.ArtifactChestToken;
+import dev.xkmc.l2artifacts.content.search.upgrade.UpgradeTab;
 import dev.xkmc.l2artifacts.init.data.LangData;
 import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.screens.Screen;
@@ -19,8 +20,9 @@ public class FilterTabManager {
 	public static final FilterTabToken<FilteredTab> FILTERED = new FilterTabToken<>(0, FilteredTab::new, () -> Items.CHEST, LangData.TAB_FILTERED.get());
 	public static final FilterTabToken<FilterTab> FILTER = new FilterTabToken<>(1, FilterTab::new, () -> Items.HOPPER, LangData.TAB_FILTER.get());
 	public static final FilterTabToken<RecycleTab> RECYCLE = new FilterTabToken<>(2, RecycleTab::new, () -> Items.COMPOSTER, LangData.TAB_RECYCLE.get());
+	public static final FilterTabToken<UpgradeTab> UPGRADE = new FilterTabToken<>(3, UpgradeTab::new, () -> Items.ANVIL, LangData.TAB_UPGRADE.get());
 
-	public static final List<FilterTabToken<?>> LIST = List.of(FILTERED, FILTER, RECYCLE);
+	public static final List<FilterTabToken<?>> LIST = List.of(FILTERED, FILTER, RECYCLE, UPGRADE);
 
 	private final List<FilterTabBase<?>> list = new ArrayList<>();
 	private final IFilterScreen screen;

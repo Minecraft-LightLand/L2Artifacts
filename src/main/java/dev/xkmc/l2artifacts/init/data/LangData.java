@@ -44,6 +44,7 @@ public enum LangData {
 
 	TAB_FILTERED("title.tab.filtered", "Artifacts", 0, null),
 	TAB_FILTER("title.tab.filter", "Filter", 0, null),
+	TAB_SORT("title.tab.sort", "Sort", 0, null),
 	TAB_RECYCLE("title.tab.recycle", "Exp Conversion", 0, null),
 	TAB_UPGRADE("title.tab.upgrade", "Upgrade", 0, null),
 

@@ -28,7 +28,7 @@ public class ArtifactJEIPlugin implements IModPlugin {
 	public void registerGuiHandlers(IGuiHandlerRegistration registration) {
 		registration.addGuiScreenHandler(FilteredMenuScreen.class, ArtifactJEIPlugin::create);
 		registration.addGuiScreenHandler(RecycleMenuScreen.class, ArtifactJEIPlugin::create);
-		registration.addGuiScreenHandler(UpgradeMenuScreen.class, e->null);
+		registration.addGuiScreenHandler(UpgradeMenuScreen.class, e -> null);
 	}
 
 

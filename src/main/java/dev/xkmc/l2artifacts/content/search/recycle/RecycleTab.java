@@ -16,6 +16,6 @@ public class RecycleTab extends FilterTabBase<RecycleTab> {
 
 	@Override
 	public void onTabClicked() {
-		NetworkManager.HANDLER.toServer(SetFilterToServer.openRecycle(manager.token));
+		NetworkManager.HANDLER.toServer(new SetFilterToServer(manager.token, SetFilterToServer.Type.RECYCLE));
 	}
 }

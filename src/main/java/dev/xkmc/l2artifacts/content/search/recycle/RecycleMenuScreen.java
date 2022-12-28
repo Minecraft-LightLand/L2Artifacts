@@ -3,7 +3,7 @@ package dev.xkmc.l2artifacts.content.search.recycle;
 import com.mojang.blaze3d.vertex.PoseStack;
 import dev.xkmc.l2artifacts.content.search.common.AbstractScrollerScreen;
 import dev.xkmc.l2artifacts.content.search.filter.FilterScreen;
-import dev.xkmc.l2artifacts.content.search.filter.StackedRenderHandle;
+import dev.xkmc.l2artifacts.content.search.stacked.StackedRenderHandle;
 import dev.xkmc.l2artifacts.content.search.tabs.FilterTabManager;
 import dev.xkmc.l2artifacts.init.data.LangData;
 import dev.xkmc.l2library.base.menu.SpriteManager;

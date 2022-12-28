@@ -16,6 +16,6 @@ public class FilteredTab extends FilterTabBase<FilteredTab> {
 
 	@Override
 	public void onTabClicked() {
-		NetworkManager.HANDLER.toServer(SetFilterToServer.openFilter(manager.token));
+		NetworkManager.HANDLER.toServer(new SetFilterToServer(manager.token, SetFilterToServer.Type.FILTER));
 	}
 }

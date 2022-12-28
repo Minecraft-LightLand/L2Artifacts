@@ -1,6 +1,7 @@
-package dev.xkmc.l2artifacts.content.search.filter;
+package dev.xkmc.l2artifacts.content.search.sort;
 
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.Tesselator;
 import dev.xkmc.l2artifacts.content.search.common.StackedScreen;
 import dev.xkmc.l2artifacts.content.search.stacked.CellEntry;
 import dev.xkmc.l2artifacts.content.search.stacked.StackedRenderHandle;
@@ -9,18 +10,20 @@ import dev.xkmc.l2artifacts.content.search.token.ArtifactChestToken;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
 import dev.xkmc.l2artifacts.init.data.LangData;
 import dev.xkmc.l2library.base.menu.SpriteManager;
+import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.network.chat.Component;
 
 import javax.annotation.Nullable;
 
-public class FilterScreen extends StackedScreen {
+public class SortScreen extends StackedScreen {
 
 	private static final SpriteManager MANAGER = new SpriteManager(L2Artifacts.MODID, "filter");
 
 	@Nullable
 	private ButtonHover btnHover;
 
-	protected FilterScreen(ArtifactChestToken token) {
-		super(LangData.TAB_FILTER.get(), MANAGER, FilterTabManager.FILTER, token);
+	protected SortScreen(ArtifactChestToken token) {
+		super(LangData.TAB_SORT.get(), MANAGER, FilterTabManager.SORT, token);
 	}
 
 	private ButtonHover prevBtnHover;
@@ -39,44 +42,49 @@ public class FilterScreen extends StackedScreen {
 
 	protected void renderText(StackedRenderHandle handle, int i, int mx, int my) {
 		boolean p = pressed && prevBtnHover != null && prevBtnHover.i() == i;
-		boolean pa = p && prevBtnHover.a();
-		boolean pb = p && !prevBtnHover.a();
 		var btns = handle.drawTextWithButtons(token.filters.get(i).getDescription());
-		var ca = btns.addButton(pa ? "button_1" : "button_1p");
-		var cb = btns.addButton(pb ? "button_2" : "button_2p");
+		var ca = btns.addButton(p ? "button_1" : "button_1p");
+		btns.drawText(ca, Component.literal("" + token.filters.get(i).priority()));
 		if (isHovering(ca.x(), ca.y(), ca.w(), ca.h(), mx, my)) {
-			btnHover = new ButtonHover(i, true, ca);
+			btnHover = new ButtonHover(i, ca);
 		}
-		if (isHovering(cb.x(), cb.y(), cb.w(), cb.h(), mx, my)) {
-			btnHover = new ButtonHover(i, false, cb);
-		}
+	}
+
+	@Override
+	protected void renderItem(PoseStack pose, FilterHover hover) {
+		super.renderItem(pose, hover);
+		String s = token.filters.get(hover.i()).getPriority(hover.j()) + "";
+		pose.translate(0.0D, 0.0D, 300.0F);
+		MultiBufferSource.BufferSource buffer = MultiBufferSource.immediate(Tesselator.getInstance().getBuilder());
+		int tx = hover.x() + 19 - 2 - font.width(s);
+		int ty = hover.y() + 6 + 3;
+		font.drawInBatch(s, tx, ty, 16777215, true, pose.last().pose(),
+				buffer, false, 0, 15728880);
+		buffer.endBatch();
 	}
 
 	@Override
 	protected boolean isAvailable(int i, int j) {
-		return token.filters.get(i).getAvailability(j);
+		var filter = token.filters.get(i);
+		return filter.getSelected(j) && filter.getAvailability(j);
 	}
 
 	@Override
 	protected void clickHover(int i, int j) {
-		token.filters.get(i).toggle(j);
+		if (!isAvailable(i, j)) return;
+		token.filters.get(i).prioritize(j);
 	}
 
 	@Override
 	public boolean mouseReleased(double pMouseX, double pMouseY, int pButton) {
 		if (btnHover != null) {
-			var filter = token.filters.get(btnHover.i());
-			for (int i = 0; i < filter.allEntries.size(); i++) {
-				if (filter.getSelected(i) != btnHover.a()) {
-					filter.toggle(i);
-				}
-			}
+			token.prioritize(btnHover.i());
 			return true;
 		}
 		return super.mouseReleased(pMouseX, pMouseY, pButton);
 	}
 
-	private record ButtonHover(int i, boolean a, CellEntry cell) {
+	private record ButtonHover(int i, CellEntry cell) {
 
 	}
 

@@ -55,20 +55,16 @@ public class ArtifactChestToken implements IArtifactFilter {
 	@Nullable
 	private List<GenericItemStack<BaseArtifact>> cahce = null;
 
-	private Comparator<GenericItemStack<BaseArtifact>> comparator;
-
 	private ArtifactChestToken(ItemStack stack, List<ItemStack> list, InteractionHand hand) {
 		this.list = list;
 		this.stack = stack;
 		this.hand = hand;
-		rank = addFilter(e -> new ArtifactFilter<>(e, LangData.FILTER_RANK, RankToken.ALL_RANKS,
-				(item, rank) -> item.item().rank == rank.rank()));
-		slot = addFilter(e -> new ArtifactFilter<>(e, LangData.FILTER_SLOT, ArtifactTypeRegistry.SLOT.get().getValues(),
-				(item, slot) -> item.item().slot.get() == slot));
-		set = addFilter(e -> new ArtifactFilter<>(e, LangData.FILTER_SET, ArtifactTypeRegistry.SET.get().getValues(),
-				(item, set) -> item.item().set.get() == set));
-		stat = addFilter(e -> new ArtifactFilter<>(e, LangData.FILTER_STAT, ArtifactTypeRegistry.STAT_TYPE.get().getValues(),
-				(item, type) -> BaseArtifact.getStats(item.stack()).map(x -> x.map.containsKey(type)).orElse(false)));
+		rank = addFilter(e -> new RankFilter(e, LangData.FILTER_RANK));
+		slot = addFilter(e -> new SimpleArtifactFilter<>(e, LangData.FILTER_SLOT,
+				ArtifactTypeRegistry.SLOT.get().getValues(), i -> i.slot.get()));
+		set = addFilter(e -> new SimpleArtifactFilter<>(e, LangData.FILTER_SET,
+				ArtifactTypeRegistry.SET.get().getValues(), i -> i.set.get()));
+		stat = addFilter(e -> new AttributeFilter(e, LangData.FILTER_STAT, ArtifactTypeRegistry.STAT_TYPE.get().getValues()));
 		TagCodec.fromTag(ArtifactChestItem.getFilter(stack), ArtifactChestToken.class, this, e -> true);
 	}
 
@@ -86,24 +82,45 @@ public class ArtifactChestToken implements IArtifactFilter {
 		stat.clearCache();
 	}
 
+	public void prioritize(int ind) {
+		filters.get(ind).sort_priority = 0;
+		List<ArtifactFilter<?>> list = new ArrayList<>(filters);
+		list.sort(Comparator.comparingInt(e -> e.sort_priority));
+		for (int i = 0; i < list.size(); i++) {
+			list.get(i).sort_priority = i + 1;
+		}
+	}
+
+	@Override
+	public Comparator<GenericItemStack<BaseArtifact>> getComparator() {
+		var list = new ArrayList<>(filters);
+		list.sort(Comparator.comparingInt(e -> e.sort_priority));
+		Comparator<GenericItemStack<BaseArtifact>> ans = null;
+		assert list.size() > 0;
+		for (var e : list) {
+			if (ans == null) {
+				ans = e.getComparator();
+			} else {
+				ans = ans.thenComparing(e.getComparator());
+			}
+		}
+		return ans;
+	}
+
 	@Deprecated
 	@Override
 	public Stream<GenericItemStack<BaseArtifact>> getAvailableArtifacts() {
 		return list.stream().map(e -> new GenericItemStack<>((BaseArtifact) e.getItem(), e));
 	}
 
-	public void setComparator(Comparator<GenericItemStack<BaseArtifact>> comparator) {
-		this.comparator = comparator;
-		cahce = null;
-	}
-
 	public List<GenericItemStack<BaseArtifact>> getFiltered() {
 		if (cahce != null) return cahce;
-		cahce = stat.getAvailableArtifacts().sorted(comparator).toList();
+		cahce = stat.getAvailableArtifacts().sorted(getComparator()).toList();
 		return cahce;
 	}
 
 	public void save() {
 		ArtifactChestItem.setContent(stack, list);
 	}
+
 }

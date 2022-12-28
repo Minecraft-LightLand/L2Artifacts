@@ -11,7 +11,6 @@ import dev.xkmc.l2artifacts.init.registrate.ArtifactItemRegistry;
 import dev.xkmc.l2library.serial.SerialClass;
 import dev.xkmc.l2library.serial.codec.TagCodec;
 import dev.xkmc.l2library.serial.network.SerialPacketBase;
-import dev.xkmc.l2library.serial.network.SimplePacketBase;
 import dev.xkmc.l2library.util.Proxy;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerPlayer;
@@ -19,10 +18,12 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.network.NetworkEvent;
 
+import javax.annotation.Nullable;
+
 @SerialClass
 public class SetFilterToServer extends SerialPacketBase {
 
-	enum Type {
+	public enum Type {
 		FILTER(FilteredMenu::new),
 		RECYCLE(RecycleMenu::new),
 		UPGRADE(UpgradeMenu::new);
@@ -34,18 +35,6 @@ public class SetFilterToServer extends SerialPacketBase {
 		}
 	}
 
-	public static SetFilterToServer openFilter(ArtifactChestToken token) {
-		return new SetFilterToServer(token, Type.FILTER);
-	}
-
-	public static SetFilterToServer openRecycle(ArtifactChestToken token) {
-		return new SetFilterToServer(token, Type.RECYCLE);
-	}
-
-	public static SimplePacketBase openUpgrade(ArtifactChestToken token) {
-		return new SetFilterToServer(token, Type.UPGRADE);
-	}
-
 	@SerialClass.SerialField
 	private InteractionHand hand;
 
@@ -53,6 +42,7 @@ public class SetFilterToServer extends SerialPacketBase {
 	private CompoundTag filter;
 
 	@SerialClass.SerialField
+	@Nullable
 	private Type type;
 
 	@Deprecated
@@ -60,7 +50,7 @@ public class SetFilterToServer extends SerialPacketBase {
 
 	}
 
-	private SetFilterToServer(ArtifactChestToken token, Type type) {
+	public SetFilterToServer(ArtifactChestToken token, @Nullable Type type) {
 		hand = token.hand;
 		filter = TagCodec.toTag(new CompoundTag(), token);
 		ArtifactChestItem.setFilter(Proxy.getClientPlayer().getItemInHand(hand), filter);
@@ -75,6 +65,10 @@ public class SetFilterToServer extends SerialPacketBase {
 		ItemStack stack = player.getItemInHand(hand);
 		if (stack.getItem() != ArtifactItemRegistry.FILTER.get()) return;
 		ArtifactChestItem.setFilter(stack, filter);
+		if (type == null) {
+			player.closeContainer();
+			return;
+		}
 		if (player.containerMenu instanceof IFilterMenu) {
 			ItemStack carried = player.containerMenu.getCarried();
 			player.containerMenu.setCarried(ItemStack.EMPTY);

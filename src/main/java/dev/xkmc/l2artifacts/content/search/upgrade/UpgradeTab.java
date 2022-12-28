@@ -16,7 +16,7 @@ public class UpgradeTab extends FilterTabBase<UpgradeTab> {
 
 	@Override
 	public void onTabClicked() {
-		NetworkManager.HANDLER.toServer(SetFilterToServer.openUpgrade(manager.token));
+		NetworkManager.HANDLER.toServer(new SetFilterToServer(manager.token, SetFilterToServer.Type.UPGRADE));
 	}
 
 }

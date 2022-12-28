@@ -1,0 +1,25 @@
+package dev.xkmc.l2artifacts.content.search.token;
+
+import dev.xkmc.l2artifacts.content.core.BaseArtifact;
+import dev.xkmc.l2artifacts.init.data.LangData;
+import dev.xkmc.l2library.serial.SerialClass;
+import dev.xkmc.l2library.util.code.GenericItemStack;
+
+import java.util.Collection;
+import java.util.Comparator;
+
+@SerialClass
+public class SimpleArtifactFilter<T extends IArtifactFeature> extends ArtifactFilter<T> {
+
+	private final IArtifactExtractor<T> func;
+
+	public SimpleArtifactFilter(IArtifactFilter parent, LangData desc, Collection<T> reg, IArtifactExtractor<T> func) {
+		super(parent, desc, reg, (item, t) -> func.get(item.item()) == t);
+		this.func = func;
+	}
+
+	@Override
+	public Comparator<GenericItemStack<BaseArtifact>> getComparator() {
+		return Comparator.comparingInt(e -> item_priority[revMap.get(func.get(e.item()))]);
+	}
+}

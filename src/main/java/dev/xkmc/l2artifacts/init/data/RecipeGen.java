@@ -12,6 +12,7 @@ import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.tags.ITagManager;
 
@@ -33,6 +34,12 @@ public class RecipeGen {
 				pvd.singleItemUnfinished(DataIngredient.items(output), input, 1, 2).save(pvd, new ResourceLocation(L2Artifacts.MODID, "rank_down_" + i));
 			}
 		}
+
+		TagKey<Item> artifact = manager.createTagKey(new ResourceLocation(L2Artifacts.MODID, "artifact"));
+		unlock(pvd, new ShapedRecipeBuilder(ArtifactItemRegistry.FILTER.get(), 1)::unlockedBy, Items.ENDER_PEARL)
+				.pattern(" A ").pattern("LEL").pattern(" L ")
+				.define('E', Items.ENDER_PEARL).define('L', Items.LEATHER).define('A', artifact)
+				.save(pvd);
 
 		// rank up recipes
 		for (SetEntry<?> set : L2Artifacts.REGISTRATE.SET_LIST) {

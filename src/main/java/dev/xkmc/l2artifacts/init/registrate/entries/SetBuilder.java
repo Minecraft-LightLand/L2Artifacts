@@ -61,7 +61,7 @@ public class SetBuilder<T extends ArtifactSet, I extends BaseArtifact, P> extend
 		if (slots == null) throw new IllegalStateException("call setSlots() first");
 		items = new ItemEntry[slots.length][max_rank - min_rank + 1];
 		ITagManager<Item> manager = Objects.requireNonNull(ForgeRegistries.ITEMS.tags());
-
+		TagKey<Item> artifact = manager.createTagKey(new ResourceLocation(L2Artifacts.MODID, "artifact"));
 		for (int i = 0; i < slots.length; i++) {
 			RegistryEntry<ArtifactSlot> slot = slots[i];
 			String slot_name = slot.getId().getPath();
@@ -75,7 +75,7 @@ public class SetBuilder<T extends ArtifactSet, I extends BaseArtifact, P> extend
 						.model((ctx, pvd) -> pvd.getBuilder(name).parent(new ModelFile.UncheckedModelFile("item/generated"))
 								.texture("layer0", new ResourceLocation(L2Artifacts.MODID, "item/rank/" + rank))
 								.texture("layer1", new ResourceLocation(L2Artifacts.MODID, "item/" + getName() + "/" + slot_name)))
-						.tag(curios_tag, slot_tag, rank_tag).lang(RegistrateLangProvider
+						.tag(curios_tag, slot_tag, rank_tag, artifact).lang(RegistrateLangProvider
 								.toEnglishName(this.getName() + "_" + slot_name) + " Lv." + r).register();
 			}
 		}

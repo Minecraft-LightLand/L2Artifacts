@@ -1,4 +1,4 @@
-// 1.19.2	2022-12-28T18:15:57.781514	Registrate Provider for l2artifacts [Recipes, Advancements, Loot tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
+// 1.19.2	2022-12-28T22:00:36.476904	Registrate Provider for l2artifacts [Recipes, Advancements, Loot tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
 6fe9ce62081910cc187fcd62ecbfa66902d8be02 assets/l2artifacts/lang/en_ud.json
 6aa34fbb396d3faa2f66271d0c00a75d0468fc00 assets/l2artifacts/lang/en_us.json
 b8bd2d2e5b588898d6036ad788cad930cd830bb3 assets/l2artifacts/models/item/abyss_medal_belt_1.json
@@ -536,6 +536,7 @@ bca9d855be6e3b39ab7a12e5acad51c2c45878b1 data/l2artifacts/advancements/recipes/l
 50dac1bbe52ceede46c8b2f62d72cb066d13ae09 data/l2artifacts/advancements/recipes/l2artifacts.artifacts/executor_necklace_3.json
 652e0661ad4f9cf6e7091c000a67b4fa61bed0a2 data/l2artifacts/advancements/recipes/l2artifacts.artifacts/executor_necklace_4.json
 72fd12b1953692e97326fd73c3e2b2adb4fc6a03 data/l2artifacts/advancements/recipes/l2artifacts.artifacts/executor_necklace_5.json
+35b6542b15345451c2913144664fd03cd41d7258 data/l2artifacts/advancements/recipes/l2artifacts.artifacts/filter.json
 6cf9bca9a11a866a64d71b2f76d48159a116cb54 data/l2artifacts/advancements/recipes/l2artifacts.artifacts/froze_belt_2.json
 71e0d62830802e00af2ca669e057c684d22c9ec1 data/l2artifacts/advancements/recipes/l2artifacts.artifacts/froze_belt_3.json
 eefb209de0032ae7bc5afed393759b7a86b3557d data/l2artifacts/advancements/recipes/l2artifacts.artifacts/froze_belt_4.json
@@ -861,6 +862,7 @@ a7c620b42f41bd37f4e027004a33d5ff46cf079d data/l2artifacts/recipes/executor_neckl
 debf5ed8fc3c36a28c6b16f32a1778f7b814ebaa data/l2artifacts/recipes/executor_necklace_3.json
 c88b5799832061f0d3d9623a2ee8d44b8a3b34e6 data/l2artifacts/recipes/executor_necklace_4.json
 8829abb34f9c5417eb6dca4b64dc58cac7af78a4 data/l2artifacts/recipes/executor_necklace_5.json
+600788219e7b650d9cc7482f8268ef1864beb0bc data/l2artifacts/recipes/filter.json
 cf61c669d8ee8c604dcf1d6cc759c4c43a9d7460 data/l2artifacts/recipes/froze_belt_2.json
 3f0191d17104c9a7ab5363ccfa8b439782ddf8fc data/l2artifacts/recipes/froze_belt_3.json
 dcaa49add64eaee0aa6874a2a0ca620de4012499 data/l2artifacts/recipes/froze_belt_4.json
@@ -1077,13 +1079,14 @@ a582588b4b82d6ef32b2c283e7dd50d95cad95f0 data/l2artifacts/recipes/wrath_bracelet
 91f73b79670c206fc915858f34e5ecd8a071d811 data/l2artifacts/recipes/wrath_necklace_3.json
 e9c93538ffd93c130fdd59484d57a3e3e33fde59 data/l2artifacts/recipes/wrath_necklace_4.json
 0594014ffefee3c6ff224e74181d0bd189a3d665 data/l2artifacts/recipes/wrath_necklace_5.json
+9471efb98ddf1d8cb8daf9ff7ea67f4d641ed8fc data/l2artifacts/tags/items/artifact.json
 e70a1db8074bceef530417c5524fd07600846ff9 data/l2artifacts/tags/items/belt.json
 1fec908f213451b33b6430090cdd91bd9f2842ba data/l2artifacts/tags/items/body.json
 83f0952fe2044d19c73edbaff0cdd3bd351f265e data/l2artifacts/tags/items/bracelet.json
 c41ae9f0cb8a89dfcbf98e1473cce8b9f8dd8f62 data/l2artifacts/tags/items/head.json
 0d758cc02a435a25d851db3eb24b33edbb328a87 data/l2artifacts/tags/items/necklace.json
-1e3e406c067406bd9a7b4ad734743b4538702abe data/l2artifacts/tags/items/rank_1.json
-df1c370c2c74ca3a7de802413aca99be476db4d9 data/l2artifacts/tags/items/rank_2.json
-37057a05d1dc0d3e9f95660a3d44a09c73518445 data/l2artifacts/tags/items/rank_3.json
-68980daf8e984dd8123ef8300d916bdb159873dc data/l2artifacts/tags/items/rank_4.json
-d2fa253b29dc357b7682771eceec7487cf42bd9a data/l2artifacts/tags/items/rank_5.json
+840d25106b2614a0b0dbfea2b6cd8eb372dba7de data/l2artifacts/tags/items/rank_1.json
+90855e50e046fe6f2918dc9b42a2e3150077ce4e data/l2artifacts/tags/items/rank_2.json
+0adfc868e3a39ca272447917c0437e41f3f768f3 data/l2artifacts/tags/items/rank_3.json
+b3b5679598e04b07f19166a268448937c6f1c936 data/l2artifacts/tags/items/rank_4.json
+f78891683d7b5a25651ac2369df2a91e9eba21ad data/l2artifacts/tags/items/rank_5.json

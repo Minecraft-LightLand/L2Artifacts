@@ -25,13 +25,19 @@ import dev.xkmc.l2library.repack.registrate.util.entry.RegistryEntry;
 import dev.xkmc.l2library.util.code.Wrappers;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.client.model.generators.ModelFile;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.tags.ITagManager;
+
+import java.util.Objects;
 
 import static dev.xkmc.l2artifacts.init.L2Artifacts.REGISTRATE;
 import static dev.xkmc.l2artifacts.init.registrate.ArtifactTypeRegistry.*;
@@ -55,6 +61,7 @@ public class ArtifactItemRegistry {
 	public static final ItemEntry<UpgradeBoostItem>[] ITEM_BOOST_MAIN, ITEM_BOOST_SUB;
 
 	static {
+		ITagManager<Item> manager = Objects.requireNonNull(ForgeRegistries.ITEMS.tags());
 		SELECT = REGISTRATE.item("select", SelectArtifactItem::new)
 				.defaultModel().lang("Artifact Selector (Creative)").register();
 		FILTER = REGISTRATE.item("filter", ArtifactChestItem::new)
@@ -63,10 +70,13 @@ public class ArtifactItemRegistry {
 		RANDOM = new ItemEntry[n];
 		for (int i = 0; i < n; i++) {
 			int r = i + 1;
+			TagKey<Item> artifact = manager.createTagKey(new ResourceLocation(L2Artifacts.MODID, "artifact"));
+			TagKey<Item> rank_tag = manager.createTagKey(new ResourceLocation(L2Artifacts.MODID, "rank_" + r));
 			RANDOM[i] = REGISTRATE.item("random_" + r, p -> new RandomArtifactItem(p, r))
 					.model((ctx, pvd) -> pvd.getBuilder(ctx.getName()).parent(new ModelFile.UncheckedModelFile("item/generated"))
 							.texture("layer0", new ResourceLocation(L2Artifacts.MODID, "item/rank/" + r))
 							.texture("layer1", new ResourceLocation(L2Artifacts.MODID, "item/random")))
+					.tag(rank_tag, artifact)
 					.lang("Random Artifact Lv." + r).register();
 		}
 		ITEM_EXP = new ItemEntry[n];

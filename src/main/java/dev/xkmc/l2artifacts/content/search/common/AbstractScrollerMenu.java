@@ -1,9 +1,9 @@
 package dev.xkmc.l2artifacts.content.search.common;
 
-import dev.xkmc.l2artifacts.content.search.scroller.ScrollerMenu;
 import dev.xkmc.l2artifacts.content.search.token.ArtifactChestToken;
 import dev.xkmc.l2library.base.menu.BaseContainerMenu;
 import dev.xkmc.l2library.base.menu.SpriteManager;
+import dev.xkmc.l2library.base.menu.scroller.ScrollerMenu;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.DataSlot;

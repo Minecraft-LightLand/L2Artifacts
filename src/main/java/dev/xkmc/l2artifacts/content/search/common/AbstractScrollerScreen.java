@@ -1,13 +1,13 @@
 package dev.xkmc.l2artifacts.content.search.common;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import dev.xkmc.l2artifacts.content.search.scroller.Scroller;
-import dev.xkmc.l2artifacts.content.search.scroller.ScrollerScreen;
 import dev.xkmc.l2artifacts.content.search.tabs.FilterTabManager;
 import dev.xkmc.l2artifacts.content.search.tabs.FilterTabToken;
 import dev.xkmc.l2artifacts.content.search.tabs.IFilterScreen;
 import dev.xkmc.l2library.base.menu.BaseContainerScreen;
 import dev.xkmc.l2library.base.menu.SpriteManager;
+import dev.xkmc.l2library.base.menu.scroller.Scroller;
+import dev.xkmc.l2library.base.menu.scroller.ScrollerScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.Slot;

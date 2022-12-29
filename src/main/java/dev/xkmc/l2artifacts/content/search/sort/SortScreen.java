@@ -3,13 +3,13 @@ package dev.xkmc.l2artifacts.content.search.sort;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.Tesselator;
 import dev.xkmc.l2artifacts.content.search.common.StackedScreen;
-import dev.xkmc.l2artifacts.content.search.stacked.CellEntry;
-import dev.xkmc.l2artifacts.content.search.stacked.StackedRenderHandle;
 import dev.xkmc.l2artifacts.content.search.tabs.FilterTabManager;
 import dev.xkmc.l2artifacts.content.search.token.ArtifactChestToken;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
 import dev.xkmc.l2artifacts.init.data.LangData;
 import dev.xkmc.l2library.base.menu.SpriteManager;
+import dev.xkmc.l2library.base.menu.stacked.CellEntry;
+import dev.xkmc.l2library.base.menu.stacked.StackedRenderHandle;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.network.chat.Component;
 

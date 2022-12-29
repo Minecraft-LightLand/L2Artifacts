@@ -1,7 +1,7 @@
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
 
-package dev.xkmc.l2artifacts.content.search.stacked;
+package dev.xkmc.l2artifacts.compat;
 
 import net.minecraft.MethodsReturnNonnullByDefault;
 

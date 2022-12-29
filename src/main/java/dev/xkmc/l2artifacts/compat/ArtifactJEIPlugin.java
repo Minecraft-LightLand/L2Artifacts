@@ -1,4 +1,4 @@
-package dev.xkmc.l2artifacts.compat.jei;
+package dev.xkmc.l2artifacts.compat;
 
 import dev.xkmc.l2artifacts.content.search.fitered.FilteredMenuScreen;
 import dev.xkmc.l2artifacts.content.search.recycle.RecycleMenuScreen;

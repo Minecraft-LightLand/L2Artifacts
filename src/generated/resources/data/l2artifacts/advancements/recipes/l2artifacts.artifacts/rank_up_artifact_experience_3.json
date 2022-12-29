@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_artifact_experience_5": {
+    "has_artifact_experience_2": {
       "conditions": {
         "items": [
           {
             "items": [
-              "l2artifacts:artifact_experience_5"
+              "l2artifacts:artifact_experience_2"
             ]
           }
         ]
@@ -15,20 +15,20 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "l2artifacts:rank_down_4"
+        "recipe": "l2artifacts:rank_up_artifact_experience_3"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_artifact_experience_5",
+      "has_artifact_experience_2",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "l2artifacts:rank_down_4"
+      "l2artifacts:rank_up_artifact_experience_3"
     ]
   }
 }

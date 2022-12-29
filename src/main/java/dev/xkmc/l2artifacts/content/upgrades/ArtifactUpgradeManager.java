@@ -26,7 +26,7 @@ public class ArtifactUpgradeManager {
 		}
 		double used_exp = stat.exp;
 		for (int i = 0; i < stat.level; i++) {
-			used_exp += getExpForLevel(stat.rank, stat.level);
+			used_exp += getExpForLevel(stat.rank, i);
 		}
 		return (int) Math.round(base_exp + used_exp * retention);
 	}

@@ -1,6 +1,7 @@
 package dev.xkmc.l2artifacts.content.capability;
 
 import dev.xkmc.l2library.serial.SerialClass;
+import net.minecraft.world.entity.player.Player;
 
 @SerialClass
 public class SetEffectData {
@@ -8,13 +9,11 @@ public class SetEffectData {
 	@SerialClass.SerialField
 	public int life, rank;
 
-	public Runnable onRemove;
-
-	public boolean tick() {
+	public boolean tick(Player player) {
 		if (life > 0)
 			life--;
 		if (life == 0) {
-			remove();
+			remove(player);
 		}
 		return life <= 0;
 	}
@@ -24,9 +23,7 @@ public class SetEffectData {
 		this.rank = rank;
 	}
 
-	protected void remove() {
-		if (onRemove != null) {
-			onRemove.run();
-		}
+	protected void remove(Player player) {
 	}
+
 }

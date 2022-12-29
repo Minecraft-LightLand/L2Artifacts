@@ -2,17 +2,21 @@ package dev.xkmc.l2artifacts.content.core;
 
 import dev.xkmc.l2artifacts.content.client.tab.DarkTextColorRanks;
 import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
+import dev.xkmc.l2artifacts.content.search.token.IArtifactFeature;
 import dev.xkmc.l2artifacts.events.EventConsumer;
+import dev.xkmc.l2artifacts.init.L2Artifacts;
 import dev.xkmc.l2artifacts.init.data.LangData;
 import dev.xkmc.l2artifacts.init.data.ModConfig;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactTypeRegistry;
 import dev.xkmc.l2library.base.NamedEntry;
 import dev.xkmc.l2library.util.Proxy;
 import net.minecraft.ChatFormatting;
+import net.minecraft.core.NonNullList;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotContext;
@@ -23,7 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class ArtifactSet extends NamedEntry<ArtifactSet> {
+public class ArtifactSet extends NamedEntry<ArtifactSet> implements IArtifactFeature.ItemIcon {
 
 	public record SetContext(int count, int[] ranks, int current_index) {
 
@@ -34,11 +38,14 @@ public class ArtifactSet extends NamedEntry<ArtifactSet> {
 			rank[i] += rank[i + 1];
 		}
 		// now rank[i] means how many items are equal or above this rank
+		// ranks[i] means the maximum rank for count of i
 		int[] ranks = new int[6];
-		for (int i = 0; i <= 5; i++) {// count
-			for (int j = 0; j < rank.length; j++) // rank
-				if (rank[j] >= i)
-					ranks[i] = Math.max(ranks[rank[i]], j);
+		for (int i = 0; i <= 5; i++) { // count
+			for (int j = 0; j < rank.length; j++) { // rank
+				if (rank[j] >= i) {
+					ranks[i] = Math.max(ranks[i], j);
+				}
+			}
 		}
 		return ranks;
 	}
@@ -179,4 +186,20 @@ public class ArtifactSet extends NamedEntry<ArtifactSet> {
 		}
 	}
 
+	@Override
+	public Item getItemIcon() {
+		var arr = L2Artifacts.REGISTRATE.SET_MAP.get(getRegistryName()).items;
+		return arr[0][arr[0].length - 1].get();
+	}
+
+	@Nullable
+	@Override
+	public NonNullList<ItemStack> getTooltipItems() {
+		var arr = L2Artifacts.REGISTRATE.SET_MAP.get(getRegistryName()).items;
+		NonNullList<ItemStack> ans = NonNullList.create();
+		for (var ar : arr) {
+			ans.add(ar[ar.length - 1].asStack());
+		}
+		return ans;
+	}
 }

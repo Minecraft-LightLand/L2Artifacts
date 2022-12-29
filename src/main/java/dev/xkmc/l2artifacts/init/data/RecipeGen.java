@@ -1,6 +1,7 @@
 package dev.xkmc.l2artifacts.init.data;
 
 import dev.xkmc.l2artifacts.content.core.BaseArtifact;
+import dev.xkmc.l2artifacts.content.misc.ExpItem;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactItemRegistry;
 import dev.xkmc.l2artifacts.init.registrate.entries.SetEntry;
@@ -12,6 +13,7 @@ import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.tags.ITagManager;
 
@@ -20,6 +22,17 @@ import java.util.function.BiFunction;
 
 public class RecipeGen {
 
+	private static void craftCombine(RegistrateRecipeProvider pvd, ItemEntry<?>[] arr) {
+		for (int i = 1; i < 5; i++) {
+			ItemEntry<?> input = arr[i - 1];
+			ItemEntry<?> output = arr[i];
+			pvd.singleItemUnfinished(DataIngredient.items(input), output, 2, 1)
+					.save(pvd, new ResourceLocation(L2Artifacts.MODID, "rank_up_" + output.getId().getPath()));
+			pvd.singleItemUnfinished(DataIngredient.items(output), input, 1, 2)
+					.save(pvd, new ResourceLocation(L2Artifacts.MODID, "rank_down_" + output.getId().getPath()));
+		}
+	}
+
 	public static void genRecipe(RegistrateRecipeProvider pvd) {
 		ITagManager<Item> manager = Objects.requireNonNull(ForgeRegistries.ITEMS.tags());
 		for (int i = 0; i < 5; i++) {
@@ -27,12 +40,18 @@ public class RecipeGen {
 			TagKey<Item> rank_tag = manager.createTagKey(new ResourceLocation(L2Artifacts.MODID, "rank_" + rank));
 			ItemEntry<?> output = ArtifactItemRegistry.ITEM_EXP[i];
 			pvd.singleItem(DataIngredient.tag(rank_tag), output, 1, 1);
-			if (i >= 1) {
-				ItemEntry<?> input = ArtifactItemRegistry.ITEM_EXP[i - 1];
-				pvd.singleItemUnfinished(DataIngredient.items(input), output, 2, 1).save(pvd, new ResourceLocation(L2Artifacts.MODID, "rank_up_" + i));
-				pvd.singleItemUnfinished(DataIngredient.items(output), input, 1, 2).save(pvd, new ResourceLocation(L2Artifacts.MODID, "rank_down_" + i));
-			}
 		}
+
+		craftCombine(pvd, ArtifactItemRegistry.ITEM_EXP);
+		craftCombine(pvd, ArtifactItemRegistry.ITEM_STAT);
+		craftCombine(pvd, ArtifactItemRegistry.ITEM_BOOST_MAIN);
+		craftCombine(pvd, ArtifactItemRegistry.ITEM_BOOST_SUB);
+
+		TagKey<Item> artifact = manager.createTagKey(new ResourceLocation(L2Artifacts.MODID, "artifact"));
+		unlock(pvd, new ShapedRecipeBuilder(ArtifactItemRegistry.FILTER.get(), 1)::unlockedBy, Items.ENDER_PEARL)
+				.pattern(" A ").pattern("LEL").pattern(" L ")
+				.define('E', Items.ENDER_PEARL).define('L', Items.LEATHER).define('A', artifact)
+				.save(pvd);
 
 		// rank up recipes
 		for (SetEntry<?> set : L2Artifacts.REGISTRATE.SET_LIST) {

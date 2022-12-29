@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "l2artifacts:item/executor/head",
-    "layer1": "l2artifacts:item/rank/5"
+    "layer0": "l2artifacts:item/rank/5",
+    "layer1": "l2artifacts:item/executor/head"
   }
 }

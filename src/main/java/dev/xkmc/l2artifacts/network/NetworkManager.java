@@ -27,7 +27,8 @@ public enum NetworkManager {
 
 	public static final PacketHandlerWithConfig HANDLER = new PacketHandlerWithConfig(
 			new ResourceLocation(L2Artifacts.MODID, "main"), 1, "artifact_config",
-			e -> e.create(ChooseArtifacttoServer.class, NetworkDirection.PLAY_TO_SERVER)
+			e -> e.create(ChooseArtifactToServer.class, NetworkDirection.PLAY_TO_SERVER),
+			e -> e.create(SetFilterToServer.class, NetworkDirection.PLAY_TO_SERVER)
 	);
 
 	public <T extends BaseConfig> T getMerged() {

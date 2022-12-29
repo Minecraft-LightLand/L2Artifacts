@@ -9,5 +9,6 @@
             "rx": 9,
             "ry": 9
         }
-    }
+    },
+    "isContainer": false
 }

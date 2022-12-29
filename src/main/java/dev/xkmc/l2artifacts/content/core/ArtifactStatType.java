@@ -2,12 +2,14 @@ package dev.xkmc.l2artifacts.content.core;
 
 import com.google.common.collect.ImmutableMultimap;
 import dev.xkmc.l2artifacts.content.config.StatTypeConfig;
+import dev.xkmc.l2artifacts.content.search.token.IArtifactFeature;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactTypeRegistry;
 import dev.xkmc.l2library.base.NamedEntry;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.contents.TranslatableContents;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.ai.attributes.Attribute;
@@ -17,9 +19,10 @@ import java.util.function.Supplier;
 
 import static net.minecraft.world.item.ItemStack.ATTRIBUTE_MODIFIER_FORMAT;
 
-public class ArtifactStatType extends NamedEntry<ArtifactStatType> {
+public class ArtifactStatType extends NamedEntry<ArtifactStatType> implements IArtifactFeature.Sprite {
 
-	private final Supplier<Attribute> attr;
+	public final Supplier<Attribute> attr;
+
 	private final AttributeModifier.Operation op;
 	private final boolean usePercent;
 
@@ -31,7 +34,7 @@ public class ArtifactStatType extends NamedEntry<ArtifactStatType> {
 	}
 
 	public void getModifier(ImmutableMultimap.Builder<Attribute, AttributeModifier> builder, StatEntry entry) {
-		builder.put(attr.get(), new AttributeModifier(entry.id, entry.name, entry.value, op));
+		builder.put(attr.get(), new AttributeModifier(entry.id, entry.getName(), entry.value, op));
 	}
 
 	public double getInitialValue(int rank, RandomSource random, boolean max) {
@@ -49,11 +52,26 @@ public class ArtifactStatType extends NamedEntry<ArtifactStatType> {
 		return (max ? entry.sub_high : Mth.nextDouble(random, entry.sub_low, entry.sub_high)) * rank;
 	}
 
+	public MutableComponent getValueText(double val) {
+		var ans = Component.literal("+");
+		ans = ans.append(ATTRIBUTE_MODIFIER_FORMAT.format(usePercent ? val * 100 : val));
+		if (usePercent) {
+			ans = ans.append("%");
+		}
+		return ans;
+	}
+
 	public Component getTooltip(double val) {
 		return MutableComponent.create(new TranslatableContents(
 				"attribute.modifier.plus." + (usePercent ? 1 : 0),
 				ATTRIBUTE_MODIFIER_FORMAT.format(usePercent ? val * 100 : val),
 				MutableComponent.create(new TranslatableContents(attr.get().getDescriptionId())))).withStyle(ChatFormatting.BLUE);
+	}
+
+	@Override
+	public ResourceLocation getIcon() {
+		ResourceLocation rl = getRegistryName();
+		return new ResourceLocation(rl.getNamespace(), "textures/stat_type/" + rl.getPath() + ".png");
 	}
 
 }

@@ -1,5 +1,6 @@
 {
   "values": [
+    "l2artifacts:random_3",
     "l2artifacts:gambler_head_3",
     "l2artifacts:gambler_necklace_3",
     "l2artifacts:gambler_body_3",
@@ -63,6 +64,20 @@
     "l2artifacts:fury_of_fallen_necklace_3",
     "l2artifacts:fury_of_fallen_body_3",
     "l2artifacts:fury_of_fallen_bracelet_3",
-    "l2artifacts:fury_of_fallen_belt_3"
+    "l2artifacts:fury_of_fallen_belt_3",
+    "l2artifacts:ancient_scroll_head_3",
+    "l2artifacts:ancient_scroll_necklace_3",
+    "l2artifacts:ancient_scroll_body_3",
+    "l2artifacts:ancient_scroll_bracelet_3",
+    "l2artifacts:ancient_scroll_belt_3",
+    "l2artifacts:abyss_medal_head_3",
+    "l2artifacts:abyss_medal_necklace_3",
+    "l2artifacts:abyss_medal_body_3",
+    "l2artifacts:abyss_medal_bracelet_3",
+    "l2artifacts:abyss_medal_belt_3",
+    "l2artifacts:long_shooter_head_3",
+    "l2artifacts:long_shooter_necklace_3",
+    "l2artifacts:long_shooter_bracelet_3",
+    "l2artifacts:long_shooter_belt_3"
   ]
 }

@@ -19,5 +19,6 @@
             "rx": 5,
             "ry": 1
         }
-    }
+    },
+    "isContainer": false
 }

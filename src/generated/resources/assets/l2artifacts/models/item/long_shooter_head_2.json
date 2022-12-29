@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "l2artifacts:item/rank/2",
+    "layer1": "l2artifacts:item/long_shooter/head"
+  }
+}

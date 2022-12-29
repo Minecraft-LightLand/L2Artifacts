@@ -80,11 +80,15 @@ public class BaseArtifact extends Item {
 	@Override
 	public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
 		ItemStack stack = player.getItemInHand(hand);
+		return resolve(stack, level.isClientSide(), player.getRandom());
+	}
+
+	public InteractionResultHolder<ItemStack> resolve(ItemStack stack, boolean isClient, RandomSource random) {
 		ItemCompoundTag tag = ItemCompoundTag.of(stack).getSubTag(KEY);
 		Upgrade upgrade = getUpgrade(stack).orElse(new Upgrade());
 		if (!tag.isPresent()) {
-			if (!level.isClientSide()) {
-				ArtifactStats stats = new ArtifactStats(slot.get(), rank, upgrade, level.random);
+			if (!isClient) {
+				ArtifactStats stats = new ArtifactStats(slot.get(), rank, upgrade, random);
 				CompoundTag newTag = TagCodec.toTag(new CompoundTag(), stats);
 				assert newTag != null;
 				tag.setTag(newTag);
@@ -96,9 +100,9 @@ public class BaseArtifact extends Item {
 			if (opt.isPresent()) {
 				ArtifactStats stats = opt.get();
 				if (stats.level > stats.old_level) {
-					if (!level.isClientSide()) {
+					if (!isClient) {
 						for (int i = stats.old_level + 1; i <= stats.level; i++) {
-							ArtifactUpgradeManager.onUpgrade(stats, i, upgrade, level.random);
+							ArtifactUpgradeManager.onUpgrade(stats, i, upgrade, random);
 						}
 						stats.old_level = stats.level;
 						CompoundTag newTag = TagCodec.toTag(new CompoundTag(), stats);
@@ -146,7 +150,7 @@ public class BaseArtifact extends Item {
 			if (!ctrl)
 				list.addAll(set.get().getAllDescs(stack, shift));
 			else if (!shift) getUpgrade(stack).ifPresent(e -> e.addTooltips(list));
-			if (shift && !ctrl)
+			if (!shift && !ctrl)
 				list.add(LangData.EXP_CONVERSION.get(ArtifactUpgradeManager.getExpForConversion(rank, getStats(stack).orElse(null))));
 		}
 		super.appendHoverText(stack, level, list, flag);

@@ -3,6 +3,7 @@ package dev.xkmc.l2artifacts.content.config;
 import dev.xkmc.l2artifacts.content.core.ArtifactSet;
 import dev.xkmc.l2artifacts.content.effects.SetEffect;
 import dev.xkmc.l2artifacts.network.NetworkManager;
+import dev.xkmc.l2library.repack.registrate.providers.RegistrateLangProvider;
 import dev.xkmc.l2library.serial.SerialClass;
 import dev.xkmc.l2library.serial.network.BaseConfig;
 import dev.xkmc.l2library.util.math.MathHelper;
@@ -40,7 +41,7 @@ public class ArtifactSetConfig extends BaseConfig {
 		@SerialClass.SerialField
 		public SetEffect effect;
 
-		public String str;
+		private String name;
 		public UUID[] id;
 
 		@Deprecated
@@ -61,12 +62,16 @@ public class ArtifactSetConfig extends BaseConfig {
 		}
 
 		public void validate(ArtifactSet set) {
-			str = set.getID() + "_" + effect.getID();
+			String str = set.getID() + "_" + effect.getID();
+			name = RegistrateLangProvider.toEnglishName(effect.getRegistryName().getPath());
 			id = new UUID[effect.ids];
 			for (int i = 0; i < effect.ids; i++)
 				id[i] = MathHelper.getUUIDFromString(str + "_" + i);
 		}
 
+		public String getName() {
+			return name;
+		}
 	}
 
 	public interface SetBuilder {

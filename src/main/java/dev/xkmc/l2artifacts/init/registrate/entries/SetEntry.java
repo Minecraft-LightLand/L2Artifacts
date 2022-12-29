@@ -1,5 +1,6 @@
 package dev.xkmc.l2artifacts.init.registrate.entries;
 
+import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
 import dev.xkmc.l2artifacts.content.core.ArtifactSet;
 import dev.xkmc.l2artifacts.content.core.BaseArtifact;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactRegistrate;
@@ -8,14 +9,21 @@ import dev.xkmc.l2library.repack.registrate.util.entry.RegistryEntry;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.registries.RegistryObject;
 
+import java.util.function.Consumer;
+
 public class SetEntry<T extends ArtifactSet> extends RegistryEntry<T> {
 
 	public final ItemEntry<BaseArtifact>[][] items;
+	public final Consumer<ArtifactSetConfig.SetBuilder> builder;
 
-	public SetEntry(ArtifactRegistrate owner, RegistryObject<T> delegate, ItemEntry<BaseArtifact>[][] items) {
+	public SetEntry(ArtifactRegistrate owner, RegistryObject<T> delegate,
+					ItemEntry<BaseArtifact>[][] items,
+					Consumer<ArtifactSetConfig.SetBuilder> builder) {
 		super(owner, delegate);
 		this.items = items;
+		this.builder = builder;
 		owner.SET_LIST.add(this);
+		owner.SET_MAP.put(getId(), this);
 	}
 
 	public boolean hasRank(int rank) {

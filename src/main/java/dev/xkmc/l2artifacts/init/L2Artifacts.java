@@ -11,13 +11,16 @@ import dev.xkmc.l2artifacts.init.data.ModConfig;
 import dev.xkmc.l2artifacts.init.data.RecipeGen;
 import dev.xkmc.l2artifacts.init.data.loot.ArtifactGLMProvider;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactItemRegistry;
+import dev.xkmc.l2artifacts.init.registrate.ArtifactMenuRegistry;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactRegistrate;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactTypeRegistry;
 import dev.xkmc.l2artifacts.network.NetworkManager;
 import dev.xkmc.l2library.base.tabs.contents.AttributeEntry;
 import dev.xkmc.l2library.init.events.attack.AttackEventHandler;
 import dev.xkmc.l2library.repack.registrate.providers.ProviderType;
+import dev.xkmc.l2library.serial.handler.RLClassHandler;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.data.event.GatherDataEvent;
@@ -29,6 +32,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.registries.ForgeRegistries;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import top.theillusivec4.curios.api.SlotTypeMessage;
@@ -45,11 +49,13 @@ public class L2Artifacts {
 	private static void registerRegistrates(IEventBus bus) {
 		ArtifactTypeRegistry.register();
 		ArtifactItemRegistry.register();
+		ArtifactMenuRegistry.register();
 		ModConfig.init();
 		NetworkManager.register();
 		REGISTRATE.addDataGenerator(ProviderType.LANG, LangData::genLang);
 		REGISTRATE.addDataGenerator(ProviderType.RECIPE, RecipeGen::genRecipe);
 		ArtifactData.register();
+		new RLClassHandler<>(Attribute.class, () -> ForgeRegistries.ATTRIBUTES);
 	}
 
 	private static void registerForgeEvents() {

@@ -113,7 +113,6 @@ public abstract class AbstractSelectScreen extends Screen {
 		return mx >= (x - 1) && mx < (x + w + 1) && my >= (y - 1) && my < (y + h + 1);
 	}
 
-
 	@Nullable
 	protected SlotResult findSlot(double mx, double my) {
 		for (String c : slots) {

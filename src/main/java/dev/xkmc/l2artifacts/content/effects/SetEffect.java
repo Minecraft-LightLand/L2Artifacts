@@ -24,14 +24,12 @@ public abstract class SetEffect extends NamedEntry<SetEffect> {
 
 	/**
 	 * when the set count changes. Entry contains an uuid if one needs to add it. for Attributes, it must be transient
-	 * 古遗物等级或者数量改变时触发，包括移除
 	 */
 	public void update(Player player, ArtifactSetConfig.Entry ent, int rank, boolean enabled) {
 	}
 
 	/**
 	 * always ticks regardless if it's enabled or not
-	 * 每帧触发，即使没启动
 	 */
 	public void tick(Player player, ArtifactSetConfig.Entry ent, int rank, boolean enabled) {
 	}
@@ -68,7 +66,6 @@ public abstract class SetEffect extends NamedEntry<SetEffect> {
 	 * 当玩家对怪物造成确实伤害时触发。此时已处理过怪物减伤判定。
 	 */
 	public void playerDamageOpponentEvent(Player player, ArtifactSetConfig.Entry ent, int rank, AttackCache event) {
-
 	}
 
 	/**

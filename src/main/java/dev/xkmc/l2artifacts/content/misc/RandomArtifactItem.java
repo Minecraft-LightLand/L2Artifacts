@@ -10,6 +10,8 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 
+import java.util.Arrays;
+
 public class RandomArtifactItem extends Item {
 
 	public final int rank;
@@ -32,10 +34,10 @@ public class RandomArtifactItem extends Item {
 		return InteractionResultHolder.sidedSuccess(itemstack, level.isClientSide());
 	}
 
-	private static ItemStack getRandomArtifact(int rank, RandomSource random) {
-		var sets = L2Artifacts.REGISTRATE.SET_LIST.stream().filter(e -> e.hasRank(rank)).toList();
-		var set = sets.get(random.nextInt(sets.size()));
-		int slot = random.nextInt(set.items.length);
-		return set.getItem(slot, rank);
+	public static ItemStack getRandomArtifact(int rank, RandomSource random) {
+		var sets = L2Artifacts.REGISTRATE.SET_LIST.stream().filter(e -> e.hasRank(rank))
+				.flatMap(e -> Arrays.stream(e.items)).toList();
+		var arr = sets.get(random.nextInt(sets.size()));
+		return arr[rank - arr[0].get().rank].asStack();
 	}
 }

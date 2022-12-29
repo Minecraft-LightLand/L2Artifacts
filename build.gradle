@@ -3,10 +3,12 @@ buildscript {
         maven { url = 'https://maven.minecraftforge.net' }
         mavenCentral()
         maven { url = 'https://repo.spongepowered.org/repository/maven-public' }
+        maven { url = 'https://maven.parchmentmc.org' }
     }
     dependencies {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
         classpath "org.spongepowered:mixingradle:${mixingradle_version}"
+        classpath 'org.parchmentmc:librarian:1.+'
     }
 }
 
@@ -14,6 +16,7 @@ apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 apply plugin: 'org.spongepowered.mixin'
+apply plugin: 'org.parchmentmc.librarian.forgegradle'
 
 version = "${ll_version}"
 group = 'dev.xkmc.l2artifacts' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
@@ -23,7 +26,7 @@ java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
 println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
 minecraft {
-    mappings channel: 'official', version: "${minecraft_version}"
+    mappings channel: 'parchment', version: '2022.08.14-1.19.2'
     accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
     runs {
         client {
@@ -129,15 +132,15 @@ dependencies {
     annotationProcessor "org.spongepowered:mixin:${mixin_version}:processor"
 
     implementation fg.deobf("dev.xkmc.l2library:l2library:${l2library_version}")
-    runtimeOnly fg.deobf('dev.xkmc.l2backpack:l2backpack:1.4.0')
+    runtimeOnly fg.deobf('dev.xkmc.l2backpack:l2backpack:1.5.8')
     implementation fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}")
     implementation fg.deobf("mezz.jei:jei-${jei_minecraft_version}:${jei_version}")
 
     //runtimeOnly fg.deobf("top.theillusivec4.caelus:caelus-forge:${caelus_version}")
     runtimeOnly fg.deobf('curse.maven:wthit-forge-455982:3906013')
     runtimeOnly fg.deobf('curse.maven:badpackets-615134:3903799')
-    //runtimeOnly fg.deobf('curse.maven:attributefix-280510:3823732')
-    //runtimeOnly fg.deobf('curse.maven:max-health-fix-492246:3824024')
+    runtimeOnly fg.deobf('curse.maven:attributefix-280510:3943012')
+    runtimeOnly fg.deobf('curse.maven:max-health-fix-492246:3943055')
     //runtimeOnly fg.deobf('curse.maven:bookshelf-228525:3832973')
     //runtimeOnly fg.deobf('curse.maven:enchantment-descriptions-250419:3829145')
     //runtimeOnly fg.deobf('curse.maven:tool-stats-377109:3824173')
@@ -190,4 +193,8 @@ publishing {
             url "file://${project.projectDir}/mcmodsrepo"
         }
     }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8' // Use the UTF-8 charset for Java compilation
 }

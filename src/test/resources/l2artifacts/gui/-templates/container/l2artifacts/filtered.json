@@ -1,0 +1,53 @@
+{
+  "side": [
+	"slider_light",
+	"slider_dark"
+  ],
+  "comp": {
+	"grid": {
+	  "sprite": "slot",
+	  "x": 34,
+	  "y": 8,
+	  "rx": 6,
+	  "ry": 6
+	},
+	"input": {
+	  "sprite": "result_slot",
+	  "x": 151,
+	  "y": 26
+	},
+	"output": {
+	  "sprite": "result_slot",
+	  "x": 151,
+	  "y": 80
+	},
+	"exchange_in": {
+	  "sprite": "exchange_in",
+	  "x": 148,
+	  "y": 46
+	},
+	"exchange_out": {
+	  "sprite": "exchange_out",
+	  "x": 148,
+	  "y": 60
+	},
+	"slider_top": {
+	  "sprite": "slider/_top",
+	  "x": 18,
+	  "y": -1
+	},
+	"slider_middle": {
+	  "sprite": "slider/_middle",
+	  "x": 18,
+	  "y": 0,
+	  "rx": 1,
+	  "ry":106
+	},
+	"slider_bottom": {
+	  "sprite": "slider/_bottom",
+	  "x": 18,
+	  "y": 106
+	}
+  },
+  "isContainer": true
+}

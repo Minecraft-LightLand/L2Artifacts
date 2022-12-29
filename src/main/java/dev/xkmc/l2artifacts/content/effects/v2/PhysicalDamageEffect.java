@@ -1,8 +1,8 @@
 package dev.xkmc.l2artifacts.content.effects.v2;
 
 import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
-import dev.xkmc.l2artifacts.content.effects.AttrSetEntry;
-import dev.xkmc.l2artifacts.content.effects.AttributeSetEffect;
+import dev.xkmc.l2artifacts.content.effects.attribute.AttrSetEntry;
+import dev.xkmc.l2artifacts.content.effects.attribute.AttributeSetEffect;
 import dev.xkmc.l2artifacts.init.registrate.entries.LinearFuncEntry;
 import dev.xkmc.l2library.init.events.attack.AttackCache;
 import net.minecraft.network.chat.Component;

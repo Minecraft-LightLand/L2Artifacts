@@ -1,0 +1,19 @@
+{
+  "side": [
+	"upgrade_on"
+  ],
+  "comp": {
+	"input": {
+	  "sprite": "result_slot",
+	  "x": 88,
+	  "y": 0
+	},
+	"upgrade": {
+	  "sprite": "upgrade_off",
+	  "x": 124,
+	  "y": 0
+	}
+  },
+  "height": 220,
+  "isContainer": true
+}

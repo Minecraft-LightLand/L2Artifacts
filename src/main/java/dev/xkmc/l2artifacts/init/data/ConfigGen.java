@@ -8,9 +8,9 @@ import dev.xkmc.l2artifacts.content.core.ArtifactSet;
 import dev.xkmc.l2artifacts.content.core.ArtifactSlot;
 import dev.xkmc.l2artifacts.content.core.ArtifactStatType;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
-import dev.xkmc.l2artifacts.init.registrate.ArtifactItemRegistry;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactTypeRegistry;
 import dev.xkmc.l2artifacts.init.registrate.entries.LinearFuncEntry;
+import dev.xkmc.l2artifacts.init.registrate.entries.SetEntry;
 import dev.xkmc.l2library.serial.network.BaseConfig;
 import dev.xkmc.l2library.serial.network.ConfigDataProvider;
 import net.minecraft.data.DataGenerator;
@@ -107,104 +107,33 @@ public class ConfigGen extends ConfigDataProvider {
 		}
 
 		// Stat Type Config
-		{
-			addStatType(map, ArtifactTypeRegistry.HEALTH_ADD.get(), 1);
-			addStatType(map, ArtifactTypeRegistry.ARMOR_ADD.get(), 1);
-			addStatType(map, ArtifactTypeRegistry.TOUGH_ADD.get(), 1);
-			addStatType(map, ArtifactTypeRegistry.ATK_ADD.get(), 1);
-			addStatType(map, ArtifactTypeRegistry.ATK_MULT.get(), 0.02);
-			addStatType(map, ArtifactTypeRegistry.CR_ADD.get(), 0.01);
-			addStatType(map, ArtifactTypeRegistry.CD_ADD.get(), 0.02);
-			addStatType(map, ArtifactTypeRegistry.REACH_ADD.get(), 0.02);
-			addStatType(map, ArtifactTypeRegistry.SPEED_MULT.get(), 0.02);
-			addStatType(map, ArtifactTypeRegistry.ATK_SPEED_MULT.get(), 0.02);
-			addStatType(map, ArtifactTypeRegistry.BOW_ADD.get(), 0.02);
-		}
+
+		addStatType(map, ArtifactTypeRegistry.HEALTH_ADD.get(), 1);
+		addStatType(map, ArtifactTypeRegistry.ARMOR_ADD.get(), 1);
+		addStatType(map, ArtifactTypeRegistry.TOUGH_ADD.get(), 1);
+		addStatType(map, ArtifactTypeRegistry.ATK_ADD.get(), 1);
+		addStatType(map, ArtifactTypeRegistry.ATK_MULT.get(), 0.02);
+		addStatType(map, ArtifactTypeRegistry.CR_ADD.get(), 0.01);
+		addStatType(map, ArtifactTypeRegistry.CD_ADD.get(), 0.02);
+		addStatType(map, ArtifactTypeRegistry.REACH_ADD.get(), 0.02);
+		addStatType(map, ArtifactTypeRegistry.SPEED_MULT.get(), 0.02);
+		addStatType(map, ArtifactTypeRegistry.ATK_SPEED_MULT.get(), 0.02);
+		addStatType(map, ArtifactTypeRegistry.BOW_ADD.get(), 0.02);
 
 		// Set Effect Config
-		{
-			// v0
 
-			addArtifactSet(map, ArtifactItemRegistry.SET_GAMBLER.get(), (c) -> c
-					.add(3, ArtifactItemRegistry.EFF_GAMBLER_3.get())
-					.add(5, ArtifactItemRegistry.EFF_GAMBLER_5.get()));
-
-			addArtifactSet(map, ArtifactItemRegistry.SET_BERSERKER.get(), (c) -> c
-					.add(3, ArtifactItemRegistry.EFF_BERSERKER_3.get())
-					.add(5, ArtifactItemRegistry.EFF_BERSERKER_5.get()));
-
-			addArtifactSet(map, ArtifactItemRegistry.SET_ARCHER.get(), (c) -> c
-					.add(3, ArtifactItemRegistry.EFF_ARCHER_3.get())
-					.add(5, ArtifactItemRegistry.EFF_ARCHER_5.get()));
-
-			// v1
-
-			addArtifactSet(map, ArtifactItemRegistry.SET_SAINT.get(), (c) -> c
-					.add(3, ArtifactItemRegistry.EFF_SAINT_REDUCTION.get())
-					.add(5, ArtifactItemRegistry.EFF_SAINT_RESTORATION.get()));
-
-			addArtifactSet(map, ArtifactItemRegistry.SET_PERFECTION.get(), (c) -> c
-					.add(2, ArtifactItemRegistry.EFF_PERFECTION_PROTECTION.get())
-					.add(4, ArtifactItemRegistry.EFF_PERFECTION_ABSORPTION.get()));
-
-			addArtifactSet(map, ArtifactItemRegistry.SET_DAMOCLES.get(), (c) -> c
-					.add(1, ArtifactItemRegistry.EFF_DAMOCLES.get()));
-
-			addArtifactSet(map, ArtifactItemRegistry.SET_PROTECTION.get(), (c) -> c
-					.add(1, ArtifactItemRegistry.EFF_PROTECTION_RESISTANCE.get()));
-
-			// v2
-
-			addArtifactSet(map, ArtifactItemRegistry.SET_FROZE.get(), (c) -> c
-					.add(3, ArtifactItemRegistry.EFF_FROZE_SLOW.get())
-					.add(5, ArtifactItemRegistry.EFF_FROZE_BREAK.get()));
-
-			addArtifactSet(map, ArtifactItemRegistry.SET_EXECUTOR.get(), (c) -> c
-					.add(3, ArtifactItemRegistry.EFF_EXECUTOR_SELF_HURT.get())
-					.add(5, ArtifactItemRegistry.EFF_EXECUTOR_LIMIT.get()));
-
-			addArtifactSet(map, ArtifactItemRegistry.SET_PHYSICAL.get(), (c) -> c
-					.add(3, ArtifactItemRegistry.EFF_PHYSICAL_DAMAGE.get())
-					.add(5, ArtifactItemRegistry.EFF_PHYSICAL_ARMOR.get()));
-
-			addArtifactSet(map, ArtifactItemRegistry.SET_WRATH.get(), (c) -> c
-					.add(1, ArtifactItemRegistry.EFF_WRATH_POISON.get())
-					.add(3, ArtifactItemRegistry.EFF_WRATH_SLOW.get())
-					.add(5, ArtifactItemRegistry.EFF_WRATH_FIRE.get()));
-
-			// v3
-
-			addArtifactSet(map, ArtifactItemRegistry.SET_PHOTOSYN.get(), (c) -> c
-					.add(1, ArtifactItemRegistry.EFF_PHOTOSYN.get()));
-
-			addArtifactSet(map, ArtifactItemRegistry.SET_VAMPIRE.get(), (c) -> c
-					.add(1, ArtifactItemRegistry.EFF_VAMPIRE_BURN.get())
-					.add(4, ArtifactItemRegistry.EFF_VAMPIRE_HEAL.get()));
-
-			addArtifactSet(map, ArtifactItemRegistry.SET_SUN_BLOCK.get(), (c) -> c
-					.add(1, ArtifactItemRegistry.EFF_SUN_BLOCK.get()));
-
-			addArtifactSet(map, ArtifactItemRegistry.SET_GLUTTONY.get(), (c) -> c
-					.add(3, ArtifactItemRegistry.EFF_GLUTTONY_FAST.get())
-					.add(5, ArtifactItemRegistry.EFF_GLUTTONY_HEAL.get()));
-
-			addArtifactSet(map, ArtifactItemRegistry.SET_FALLEN.get(), (c) -> c
-					.add(1, ArtifactItemRegistry.EFF_FALLEN_1.get())
-					.add(2, ArtifactItemRegistry.EFF_FALLEN_2.get())
-					.add(3, ArtifactItemRegistry.EFF_FALLEN_3.get())
-					.add(4, ArtifactItemRegistry.EFF_FALLEN_4.get())
-					.add(5, ArtifactItemRegistry.EFF_FALLEN_5.get()));
-
+		for (SetEntry<?> set : L2Artifacts.REGISTRATE.SET_LIST) {
+			addArtifactSet(map, set.get(), set.builder);
 		}
 
 		// linear function handle
-		{
-			LinearFuncConfig config = new LinearFuncConfig();
-			for (LinearFuncEntry entry : L2Artifacts.REGISTRATE.LINEAR_LIST) {
-				config.map.put(entry.get(), new LinearFuncConfig.Entry(entry.base, entry.slope));
-			}
-			map.put(L2Artifacts.MODID + "/artifact_config/linear/default", config);
+
+		LinearFuncConfig config = new LinearFuncConfig();
+		for (LinearFuncEntry entry : L2Artifacts.REGISTRATE.LINEAR_LIST) {
+			config.map.put(entry.get(), new LinearFuncConfig.Entry(entry.base, entry.slope));
 		}
+		map.put(L2Artifacts.MODID + "/artifact_config/linear/default", config);
+
 	}
 
 	public static void addSlotStat(Map<String, BaseConfig> map, ArtifactSlot slot, ArrayList<ArtifactStatType> main, ArrayList<ArtifactStatType> sub) {

@@ -54,7 +54,7 @@ public class CraftEvents {
 				BaseArtifact.upgrade(new_stack, val, event.getPlayer().getRandom());
 				event.setOutput(new_stack);
 				event.setMaterialCost(1);
-				event.setCost((int) Math.ceil(Math.log(val) * artifact.rank));
+				event.setCost((int) Math.ceil(Math.log10(val) * artifact.rank));
 			}
 		}
 	}

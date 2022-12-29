@@ -55,7 +55,8 @@
 		"filter": "筛选器设置",
 		"filtered": "古遗物列表",
 		"recycle": "批量经验转化",
-		"upgrade": "古遗物升级"
+		"upgrade": "古遗物升级",
+		"sort": "排序设置"
 	  },
 	  "info": {
 		"exp_gain": "可获取经验: %s",

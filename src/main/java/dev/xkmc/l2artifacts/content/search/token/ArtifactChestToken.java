@@ -13,6 +13,7 @@ import dev.xkmc.l2library.util.code.GenericItemStack;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.registries.ForgeRegistry;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -60,10 +61,10 @@ public class ArtifactChestToken implements IArtifactFilter {
 		this.stack = stack;
 		this.hand = hand;
 		rank = addFilter(e -> new RankFilter(e, LangData.FILTER_RANK));
-		slot = addFilter(e -> new SimpleArtifactFilter<>(e, LangData.FILTER_SLOT,
-				ArtifactTypeRegistry.SLOT.get().getValues(), i -> i.slot.get()));
 		set = addFilter(e -> new SimpleArtifactFilter<>(e, LangData.FILTER_SET,
-				ArtifactTypeRegistry.SET.get().getValues(), i -> i.set.get()));
+				ArtifactTypeRegistry.SET.get(), i -> i.set.get()));
+		slot = addFilter(e -> new SimpleArtifactFilter<>(e, LangData.FILTER_SLOT,
+				ArtifactTypeRegistry.SLOT.get(), i -> i.slot.get()));
 		stat = addFilter(e -> new AttributeFilter(e, LangData.FILTER_STAT, ArtifactTypeRegistry.STAT_TYPE.get().getValues()));
 		TagCodec.fromTag(ArtifactChestItem.getFilter(stack), ArtifactChestToken.class, this, e -> true);
 	}

@@ -19,4 +19,8 @@ public interface IFilterScreen {
 	default Screen asScreen() {
 		return (Screen) this;
 	}
+
+	default void onSwitch() {
+	}
+
 }

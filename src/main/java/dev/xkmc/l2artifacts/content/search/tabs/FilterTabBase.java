@@ -2,6 +2,7 @@ package dev.xkmc.l2artifacts.content.search.tabs;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
+import dev.xkmc.l2artifacts.init.L2Artifacts;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.renderer.GameRenderer;
@@ -11,7 +12,7 @@ import net.minecraft.world.item.ItemStack;
 
 public abstract class FilterTabBase<T extends FilterTabBase<T>> extends Button {
 
-	private final static ResourceLocation TEXTURE = new ResourceLocation("textures/gui/advancements/tabs.png");
+	private final static ResourceLocation TEXTURE = new ResourceLocation(L2Artifacts.MODID, "textures/gui/tabs.png");
 
 	public final ItemStack stack;
 	public final FilterTabToken<T> token;

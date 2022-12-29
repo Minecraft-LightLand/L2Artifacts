@@ -602,6 +602,7 @@
   "l2artifacts.title.tab.filtered": "古遗物列表",
   "l2artifacts.title.tab.recycle": "批量经验转化",
   "l2artifacts.title.tab.upgrade": "古遗物升级",
+  "l2artifacts.title.tab.sort": "排序设置",
   "l2artifacts.title.info.exp_gain": "可获取经验: %s",
   "l2artifacts.title.info.experience": "储存经验: %s",
   "l2artifacts.title.info.matched": "匹配数量: %s",

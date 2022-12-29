@@ -19,6 +19,7 @@ public class FilterTab extends FilterTabBase<FilterTab> {
 
 	@Override
 	public void onTabClicked() {
+		manager.screen.onSwitch();
 		var token = ArtifactChestToken.of(Proxy.getClientPlayer(), manager.token.hand);
 		Minecraft.getInstance().setScreen(new FilterScreen(token));
 		NetworkManager.HANDLER.toServer(new SetFilterToServer(manager.token, null));

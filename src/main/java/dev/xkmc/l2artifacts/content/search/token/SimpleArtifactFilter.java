@@ -5,16 +5,25 @@ import dev.xkmc.l2artifacts.init.data.LangData;
 import dev.xkmc.l2library.serial.SerialClass;
 import dev.xkmc.l2library.util.code.GenericItemStack;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
 
 @SerialClass
 public class SimpleArtifactFilter<T extends IArtifactFeature> extends ArtifactFilter<T> {
 
+	private static <T> Collection<T> wrap(Iterable<T> in) {
+		ArrayList<T> ans = new ArrayList<>();
+		for (T t : in) {
+			ans.add(t);
+		}
+		return ans;
+	}
+
 	private final IArtifactExtractor<T> func;
 
-	public SimpleArtifactFilter(IArtifactFilter parent, LangData desc, Collection<T> reg, IArtifactExtractor<T> func) {
-		super(parent, desc, reg, (item, t) -> func.get(item.item()) == t);
+	public SimpleArtifactFilter(IArtifactFilter parent, LangData desc, Iterable<T> reg, IArtifactExtractor<T> func) {
+		super(parent, desc, wrap(reg), (item, t) -> func.get(item.item()) == t);
 		this.func = func;
 	}
 

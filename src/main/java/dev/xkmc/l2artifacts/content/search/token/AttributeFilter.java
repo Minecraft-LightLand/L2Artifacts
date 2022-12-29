@@ -7,6 +7,7 @@ import dev.xkmc.l2library.serial.SerialClass;
 import dev.xkmc.l2library.util.code.GenericItemStack;
 import it.unimi.dsi.fastutil.Pair;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
@@ -22,12 +23,13 @@ public class AttributeFilter extends ArtifactFilter<ArtifactStatType> {
 	public Comparator<GenericItemStack<BaseArtifact>> getComparator() {
 		Comparator<GenericItemStack<BaseArtifact>> ans = Comparator.comparingInt(e -> BaseArtifact.getStats(e.stack())
 				.map(x -> item_priority[revMap.get(x.main_stat.type)]).orElse(item_priority.length));
-		List<Pair<ArtifactStatType, Integer>> list = allEntries.stream().map(e -> Pair.of(e, revMap.get(e)))
-				.filter(e -> getSelected(e.second())).toList();
+		List<Pair<ArtifactStatType, Integer>> list = new ArrayList<>(allEntries.stream()
+				.map(e -> Pair.of(e, revMap.get(e)))
+				.filter(e -> getSelected(e.second())).toList());
 		list.sort(Comparator.comparingInt(e -> item_priority[e.second()]));
 		for (var p : list) {
 			ans = ans.thenComparingDouble(e -> BaseArtifact.getStats(e.stack())
-					.map(x -> x.map.get(p.left()).value).orElse(0d));
+					.map(x -> x.map.get(p.left())).map(s -> -s.value).orElse(0d));
 		}
 		return ans;
 	}

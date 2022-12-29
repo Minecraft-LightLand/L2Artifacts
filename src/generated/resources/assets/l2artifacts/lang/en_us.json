@@ -449,6 +449,7 @@
   "l2artifacts.title.tab.filter": "Filter",
   "l2artifacts.title.tab.filtered": "Artifacts",
   "l2artifacts.title.tab.recycle": "Exp Conversion",
+  "l2artifacts.title.tab.sort": "Sort",
   "l2artifacts.title.tab.upgrade": "Upgrade",
   "l2artifacts.tooltip.artifact_exp": "Exp: %s/%s",
   "l2artifacts.tooltip.artifact_level": "Level: %s",

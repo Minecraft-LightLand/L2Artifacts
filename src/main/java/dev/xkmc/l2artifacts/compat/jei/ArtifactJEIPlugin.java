@@ -1,16 +1,14 @@
 package dev.xkmc.l2artifacts.compat.jei;
 
-import dev.xkmc.l2artifacts.content.search.common.AbstractScrollerScreen;
 import dev.xkmc.l2artifacts.content.search.fitered.FilteredMenuScreen;
 import dev.xkmc.l2artifacts.content.search.recycle.RecycleMenuScreen;
+import dev.xkmc.l2artifacts.content.search.tabs.IFilterScreen;
 import dev.xkmc.l2artifacts.content.search.upgrade.UpgradeMenuScreen;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.registration.IGuiHandlerRegistration;
 import mezz.jei.common.gui.GuiProperties;
-import mezz.jei.common.platform.IPlatformScreenHelper;
-import mezz.jei.common.platform.Services;
 import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.Nullable;
 
@@ -27,30 +25,26 @@ public class ArtifactJEIPlugin implements IModPlugin {
 	@Override
 	public void registerGuiHandlers(IGuiHandlerRegistration registration) {
 		registration.addGuiScreenHandler(FilteredMenuScreen.class, ArtifactJEIPlugin::create);
-		registration.addGuiScreenHandler(RecycleMenuScreen.class, ArtifactJEIPlugin::create);
-		registration.addGuiScreenHandler(UpgradeMenuScreen.class, e -> null);
+		registration.addGuiScreenHandler(RecycleMenuScreen.class, e->null);
+		registration.addGuiScreenHandler(UpgradeMenuScreen.class, ArtifactJEIPlugin::create);
 	}
 
 
 	@Nullable
-	public static GuiProperties create(AbstractScrollerScreen<?> screen) {
-		if (screen.width <= 0 || screen.height <= 0) {
+	public static GuiProperties create(IFilterScreen screen) {
+		if (screen.screenWidth() <= 0 || screen.screenHeight() <= 0) {
 			return null;
 		}
-		IPlatformScreenHelper screenHelper = Services.PLATFORM.getScreenHelper();
-		int x = screenHelper.getGuiLeft(screen);
-		int y = screenHelper.getGuiTop(screen);
-		int width = screenHelper.getXSize(screen) + 32;
-		int height = screenHelper.getYSize(screen);
+		int x = screen.getGuiLeft();
+		int y = screen.getGuiTop();
+		int width = screen.getXSize() + 32;
+		int height = screen.getYSize();
 		if (width <= 0 || height <= 0) {
 			return null;
 		}
-		if (screen instanceof RecycleMenuScreen) {
-			return null;
-		}
-		return new GuiProperties(screen.getClass(),
+		return new GuiProperties(screen.asScreen().getClass(),
 				x, y, width, height,
-				screen.width, screen.height
+				screen.screenWidth(), screen.screenHeight()
 		);
 	}
 

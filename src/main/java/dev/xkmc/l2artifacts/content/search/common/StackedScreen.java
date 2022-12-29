@@ -2,6 +2,7 @@ package dev.xkmc.l2artifacts.content.search.common;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
+import dev.xkmc.l2artifacts.content.misc.ArtifactChestItem;
 import dev.xkmc.l2artifacts.content.search.stacked.StackedRenderHandle;
 import dev.xkmc.l2artifacts.content.search.tabs.FilterTabManager;
 import dev.xkmc.l2artifacts.content.search.tabs.FilterTabToken;
@@ -9,7 +10,10 @@ import dev.xkmc.l2artifacts.content.search.tabs.IFilterScreen;
 import dev.xkmc.l2artifacts.content.search.token.ArtifactChestToken;
 import dev.xkmc.l2artifacts.content.search.token.IArtifactFeature;
 import dev.xkmc.l2library.base.menu.SpriteManager;
+import dev.xkmc.l2library.serial.codec.TagCodec;
+import dev.xkmc.l2library.util.Proxy;
 import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.inventory.tooltip.BundleTooltip;
 import net.minecraft.world.inventory.tooltip.TooltipComponent;
@@ -146,6 +150,12 @@ public abstract class StackedScreen extends Screen implements IFilterScreen {
 	}
 
 	protected abstract void clickHover(int i, int j);
+
+	public void onSwitch() {
+		var filter = TagCodec.toTag(new CompoundTag(), token);
+		assert filter != null;
+		ArtifactChestItem.setFilter(Proxy.getClientPlayer().getItemInHand(token.hand), filter);
+	}
 
 	@Override
 	public boolean mouseClicked(double mx, double my, int button) {

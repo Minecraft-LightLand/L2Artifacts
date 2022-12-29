@@ -19,7 +19,7 @@ public class TextButtonHandle {
 
 	public CellEntry addButton(String btn) {
 		SpriteManager.Rect r = parent.sm.getSide(btn);
-		int y0 = y - r.h / 2;
+		int y0 = y - (r.h + 1) / 2;
 		parent.scr.blit(parent.stack, x, y0, r.x, r.y, r.w, r.h);
 		CellEntry c1 = new CellEntry(x, y0, r.w, r.h);
 		x += r.w + StackedRenderHandle.BTN_X_OFFSET;
@@ -27,8 +27,8 @@ public class TextButtonHandle {
 	}
 
 	public void drawText(CellEntry cell, Component text) {
-		int x0 = cell.x() + cell.w() / 2 - parent.font.width(text) / 2;
-		int y0 = cell.y() + cell.h() / 2 - StackedRenderHandle.TEXT_BASE_HEIGHT;
+		int x0 = cell.x() + (cell.w() - parent.font.width(text) + 1) / 2;
+		int y0 = cell.y() + (cell.h() + 1) / 2 - parent.font.lineHeight / 2;
 		parent.textList.add(new TextEntry(parent.stack, text, x0, y0, parent.text_color));
 	}
 

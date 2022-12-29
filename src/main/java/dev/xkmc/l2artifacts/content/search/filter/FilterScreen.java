@@ -64,9 +64,10 @@ public class FilterScreen extends StackedScreen {
 
 	@Override
 	public boolean mouseReleased(double pMouseX, double pMouseY, int pButton) {
+		pressed = false;
 		if (btnHover != null) {
 			var filter = token.filters.get(btnHover.i());
-			for (int i = 0; i < filter.allEntries.size(); i++) {
+			for (int i = filter.allEntries.size() - 1; i >= 0; i--) {
 				if (filter.getSelected(i) != btnHover.a()) {
 					filter.toggle(i);
 				}

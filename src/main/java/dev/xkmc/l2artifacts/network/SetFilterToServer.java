@@ -66,7 +66,7 @@ public class SetFilterToServer extends SerialPacketBase {
 		if (stack.getItem() != ArtifactItemRegistry.FILTER.get()) return;
 		ArtifactChestItem.setFilter(stack, filter);
 		if (type == null) {
-			player.closeContainer();
+			player.doCloseContainer();
 			return;
 		}
 		if (player.containerMenu instanceof IFilterMenu) {

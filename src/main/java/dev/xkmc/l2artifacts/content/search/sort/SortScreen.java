@@ -17,7 +17,7 @@ import javax.annotation.Nullable;
 
 public class SortScreen extends StackedScreen {
 
-	private static final SpriteManager MANAGER = new SpriteManager(L2Artifacts.MODID, "filter");
+	private static final SpriteManager MANAGER = new SpriteManager(L2Artifacts.MODID, "sort");
 
 	@Nullable
 	private ButtonHover btnHover;
@@ -43,7 +43,7 @@ public class SortScreen extends StackedScreen {
 	protected void renderText(StackedRenderHandle handle, int i, int mx, int my) {
 		boolean p = pressed && prevBtnHover != null && prevBtnHover.i() == i;
 		var btns = handle.drawTextWithButtons(token.filters.get(i).getDescription());
-		var ca = btns.addButton(p ? "button_1" : "button_1p");
+		var ca = btns.addButton(p ? "sort_1" : "sort_1p");
 		btns.drawText(ca, Component.literal("" + token.filters.get(i).priority()));
 		if (isHovering(ca.x(), ca.y(), ca.w(), ca.h(), mx, my)) {
 			btnHover = new ButtonHover(i, ca);
@@ -54,6 +54,7 @@ public class SortScreen extends StackedScreen {
 	protected void renderItem(PoseStack pose, FilterHover hover) {
 		super.renderItem(pose, hover);
 		String s = token.filters.get(hover.i()).getPriority(hover.j()) + "";
+		pose.pushPose();
 		pose.translate(0.0D, 0.0D, 300.0F);
 		MultiBufferSource.BufferSource buffer = MultiBufferSource.immediate(Tesselator.getInstance().getBuilder());
 		int tx = hover.x() + 19 - 2 - font.width(s);
@@ -61,12 +62,13 @@ public class SortScreen extends StackedScreen {
 		font.drawInBatch(s, tx, ty, 16777215, true, pose.last().pose(),
 				buffer, false, 0, 15728880);
 		buffer.endBatch();
+		pose.popPose();
 	}
 
 	@Override
 	protected boolean isAvailable(int i, int j) {
 		var filter = token.filters.get(i);
-		return filter.getSelected(j) && filter.getAvailability(j);
+		return filter.getSelected(j) || filter.getAvailability(j);
 	}
 
 	@Override
@@ -77,6 +79,7 @@ public class SortScreen extends StackedScreen {
 
 	@Override
 	public boolean mouseReleased(double pMouseX, double pMouseY, int pButton) {
+		pressed = false;
 		if (btnHover != null) {
 			token.prioritize(btnHover.i());
 			return true;

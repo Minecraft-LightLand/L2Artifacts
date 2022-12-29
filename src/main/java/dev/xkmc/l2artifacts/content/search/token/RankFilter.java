@@ -18,4 +18,14 @@ public class RankFilter extends ArtifactFilter<RankToken> {
 	public Comparator<GenericItemStack<BaseArtifact>> getComparator() {
 		return Comparator.comparingInt(e -> -e.item().rank);
 	}
+
+	@Override
+	public int getPriority(int j) {
+		return allEntries.size() - j;
+	}
+
+	@Override
+	public void prioritize(int ind) {
+	}
+
 }

@@ -20,15 +20,15 @@ public class FilterTabManager {
 
 	public static final FilterTabToken<FilteredTab> FILTERED = new FilterTabToken<>(0, FilteredTab::new, () -> Items.CHEST, LangData.TAB_FILTERED.get());
 	public static final FilterTabToken<FilterTab> FILTER = new FilterTabToken<>(1, FilterTab::new, () -> Items.HOPPER, LangData.TAB_FILTER.get());
-	public static final FilterTabToken<SortTab> SORT = new FilterTabToken<>(2, SortTab::new, () -> Items.COMPOSTER, LangData.TAB_SORT.get());
+	public static final FilterTabToken<SortTab> SORT = new FilterTabToken<>(2, SortTab::new, () -> Items.COMPARATOR, LangData.TAB_SORT.get());
 	public static final FilterTabToken<RecycleTab> RECYCLE = new FilterTabToken<>(3, RecycleTab::new, () -> Items.COMPOSTER, LangData.TAB_RECYCLE.get());
 	public static final FilterTabToken<UpgradeTab> UPGRADE = new FilterTabToken<>(4, UpgradeTab::new, () -> Items.ANVIL, LangData.TAB_UPGRADE.get());
 
-	public static final List<FilterTabToken<?>> LIST = List.of(FILTERED, FILTER, RECYCLE, UPGRADE);
+	public static final List<FilterTabToken<?>> LIST = List.of(FILTERED, FILTER, SORT, RECYCLE, UPGRADE);
 
 	private final List<FilterTabBase<?>> list = new ArrayList<>();
-	private final IFilterScreen screen;
 
+	public final IFilterScreen screen;
 	public final ArtifactChestToken token;
 
 	public int tabPage, maxPages;

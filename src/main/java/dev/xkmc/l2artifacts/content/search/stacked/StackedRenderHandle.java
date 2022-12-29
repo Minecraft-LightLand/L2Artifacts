@@ -51,7 +51,7 @@ public class StackedRenderHandle {
 		this.text_color = color;
 		this.text_x_offset = x_offset;
 		this.TEXT_Y_OFFSET = ty;
-		this.TEXT_HEIGHT = TEXT_BASE_HEIGHT + ty + 2;
+		this.TEXT_HEIGHT = font.lineHeight + ty + 1;
 	}
 
 	public void drawText(Component text) {
@@ -94,7 +94,7 @@ public class StackedRenderHandle {
 		int y = current_y + TEXT_Y_OFFSET;
 		textList.add(new TextEntry(stack, text, text_x_offset, y, text_color));
 		int x_off = text_x_offset + font.width(text) + BTN_X_OFFSET;
-		TextButtonHandle ans = new TextButtonHandle(this, x_off, current_y + TEXT_BASE_HEIGHT / 2);
+		TextButtonHandle ans = new TextButtonHandle(this, x_off, y + font.lineHeight / 2);
 		current_y += TEXT_HEIGHT;
 		return ans;
 	}

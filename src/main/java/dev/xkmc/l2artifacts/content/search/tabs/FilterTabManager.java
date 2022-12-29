@@ -1,6 +1,8 @@
 package dev.xkmc.l2artifacts.content.search.tabs;
 
 import com.mojang.blaze3d.vertex.PoseStack;
+import dev.xkmc.l2artifacts.content.search.augment.AugmentTab;
+import dev.xkmc.l2artifacts.content.search.dissolve.DissolveTab;
 import dev.xkmc.l2artifacts.content.search.filter.FilterTab;
 import dev.xkmc.l2artifacts.content.search.fitered.FilteredTab;
 import dev.xkmc.l2artifacts.content.search.recycle.RecycleTab;
@@ -8,6 +10,7 @@ import dev.xkmc.l2artifacts.content.search.sort.SortTab;
 import dev.xkmc.l2artifacts.content.search.token.ArtifactChestToken;
 import dev.xkmc.l2artifacts.content.search.upgrade.UpgradeTab;
 import dev.xkmc.l2artifacts.init.data.LangData;
+import dev.xkmc.l2artifacts.init.registrate.ArtifactItemRegistry;
 import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.world.item.Items;
@@ -23,8 +26,10 @@ public class FilterTabManager {
 	public static final FilterTabToken<SortTab> SORT = new FilterTabToken<>(2, SortTab::new, () -> Items.COMPARATOR, LangData.TAB_SORT.get());
 	public static final FilterTabToken<RecycleTab> RECYCLE = new FilterTabToken<>(3, RecycleTab::new, () -> Items.COMPOSTER, LangData.TAB_RECYCLE.get());
 	public static final FilterTabToken<UpgradeTab> UPGRADE = new FilterTabToken<>(4, UpgradeTab::new, () -> Items.ANVIL, LangData.TAB_UPGRADE.get());
+	public static final FilterTabToken<DissolveTab> DISSOLVE = new FilterTabToken<>(5, DissolveTab::new, () -> ArtifactItemRegistry.ITEM_STAT[4].get(), LangData.TAB_DISSOLVE.get());
+	public static final FilterTabToken<AugmentTab> AUGMENT = new FilterTabToken<>(6, AugmentTab::new, () -> ArtifactItemRegistry.ITEM_BOOST_MAIN[4].get(), LangData.TAB_AUGMENT.get());
 
-	public static final List<FilterTabToken<?>> LIST = List.of(FILTERED, FILTER, SORT, RECYCLE, UPGRADE);
+	public static final List<FilterTabToken<?>> LIST = List.of(FILTERED, FILTER, SORT, RECYCLE, UPGRADE, DISSOLVE, AUGMENT);
 
 	private final List<FilterTabBase<?>> list = new ArrayList<>();
 

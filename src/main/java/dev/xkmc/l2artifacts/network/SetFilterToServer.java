@@ -26,7 +26,7 @@ public class SetFilterToServer extends SerialPacketBase {
 	public enum Type {
 		FILTER(FilteredMenu::new),
 		RECYCLE(RecycleMenu::new),
-		UPGRADE(UpgradeMenu::new);
+		UPGRADE(UpgradeMenu::new);//TODO
 
 		private final ArtifactChestMenuPvd.Factory factory;
 

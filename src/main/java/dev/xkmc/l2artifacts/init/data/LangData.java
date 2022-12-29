@@ -47,6 +47,8 @@ public enum LangData {
 	TAB_SORT("title.tab.sort", "Sort", 0, null),
 	TAB_RECYCLE("title.tab.recycle", "Exp Conversion", 0, null),
 	TAB_UPGRADE("title.tab.upgrade", "Upgrade", 0, null),
+	TAB_DISSOLVE("title.tab.dissolve", "Dissolve", 0, null),
+	TAB_AUGMENT("title.tab.augment", "Augment", 0, null),
 
 	FILTER_RANK("title.filter.rank", "Rank Filter", 0, null),
 	FILTER_SLOT("title.filter.slot", "Slot Filter", 0, null),

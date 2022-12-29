@@ -1,5 +1,9 @@
 package dev.xkmc.l2artifacts.init.registrate;
 
+import dev.xkmc.l2artifacts.content.search.augment.AugmentMenu;
+import dev.xkmc.l2artifacts.content.search.augment.AugmentMenuScreen;
+import dev.xkmc.l2artifacts.content.search.dissolve.DissolveMenu;
+import dev.xkmc.l2artifacts.content.search.dissolve.DissolveMenuScreen;
 import dev.xkmc.l2artifacts.content.search.fitered.FilteredMenu;
 import dev.xkmc.l2artifacts.content.search.fitered.FilteredMenuScreen;
 import dev.xkmc.l2artifacts.content.search.recycle.RecycleMenu;
@@ -28,6 +32,16 @@ public class ArtifactMenuRegistry {
 	public static final MenuEntry<UpgradeMenu> MT_UPGRADE = REGISTRATE.menu("upgrade",
 					UpgradeMenu::fromNetwork,
 					() -> UpgradeMenuScreen::new)
+			.lang(ArtifactMenuRegistry::getLangKey).register();
+
+	public static final MenuEntry<DissolveMenu> MT_DISSOLVE = REGISTRATE.menu("dissolve",
+					DissolveMenu::fromNetwork,
+					() -> DissolveMenuScreen::new)
+			.lang(ArtifactMenuRegistry::getLangKey).register();
+
+	public static final MenuEntry<AugmentMenu> MT_AUGMENT = REGISTRATE.menu("augment",
+					AugmentMenu::fromNetwork,
+					() -> AugmentMenuScreen::new)
 			.lang(ArtifactMenuRegistry::getLangKey).register();
 
 	public static String getLangKey(MenuType<?> menu) {

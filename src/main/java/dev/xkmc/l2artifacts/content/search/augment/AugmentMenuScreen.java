@@ -8,6 +8,7 @@ import dev.xkmc.l2artifacts.content.search.filter.FilterScreen;
 import dev.xkmc.l2artifacts.content.search.recycle.RecycleMenuScreen;
 import dev.xkmc.l2artifacts.content.search.tabs.FilterTabManager;
 import dev.xkmc.l2artifacts.content.search.tabs.IFilterScreen;
+import dev.xkmc.l2artifacts.content.upgrades.StatContainerItem;
 import dev.xkmc.l2artifacts.init.data.LangData;
 import dev.xkmc.l2library.base.menu.BaseContainerScreen;
 import dev.xkmc.l2library.base.menu.stacked.StackedRenderHandle;
@@ -40,6 +41,7 @@ public class AugmentMenuScreen extends BaseContainerScreen<AugmentMenu> implemen
 	private static final int MAX_TIME = 60;
 	private static final ChatFormatting MAIN = ChatFormatting.DARK_GREEN;
 	private static final ChatFormatting SUB = ChatFormatting.DARK_BLUE;
+	private static final ChatFormatting LIT = ChatFormatting.DARK_RED;
 
 	private boolean pressed = false;
 
@@ -136,10 +138,17 @@ public class AugmentMenuScreen extends BaseContainerScreen<AugmentMenu> implemen
 				ArtifactStats stat = opt.get();
 				List<Component[]> table = new ArrayList<>();
 				table.add(addEntry(true, stat.main_stat,
-						old == null ? null : old.main_stat));
+						old == null ? null : old.main_stat, false, (menu.mask.get() & 2) > 0));
 				for (int i = 0; i < stat.sub_stats.size(); i++) {
+					int I = i;
+					boolean stat_exist = (menu.mask.get() & 1) > 0;
+					boolean lit_name = stat_exist &&
+							StatContainerItem.getType(menu.container.getItem(1))
+									.map(e -> e == stat.sub_stats.get(I).type).orElse(false);
+					boolean boost_sub = (menu.mask.get() & 4) > 0;
+					boolean lit_stat = boost_sub && (!stat_exist || lit_name);
 					table.add(addEntry(false, stat.sub_stats.get(i),
-							old == null ? null : old.sub_stats.get(i)));
+							old == null ? null : old.sub_stats.get(i), lit_name, lit_stat));
 				}
 				handle.drawTable(table.toArray(Component[][]::new), imageWidth);
 				current = stat;
@@ -151,10 +160,13 @@ public class AugmentMenuScreen extends BaseContainerScreen<AugmentMenu> implemen
 		pose.popPose();
 	}
 
-	private Component[] addEntry(boolean main, StatEntry entry, @Nullable StatEntry old) {
+	private Component[] addEntry(boolean main, StatEntry entry, @Nullable StatEntry old, boolean lit_name, boolean lit_stat) {
 		Component[] ans = new Component[3];
-		ans[0] = Component.translatable(entry.type.attr.get().getDescriptionId()).withStyle(main ? MAIN : SUB);
-		ans[1] = entry.type.getValueText(entry.value).withStyle(main ? MAIN : SUB);
+		if (Proxy.getClientPlayer().tickCount % 20 < 10) {
+			lit_name = lit_stat = false;
+		}
+		ans[0] = Component.translatable(entry.type.attr.get().getDescriptionId()).withStyle(lit_name ? LIT : main ? MAIN : SUB);
+		ans[1] = entry.type.getValueText(entry.value).withStyle(lit_stat ? LIT : main ? MAIN : SUB);
 		if (old != null) {
 			double diff = entry.value - old.value;
 			if (diff > 1e-3) {

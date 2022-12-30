@@ -42,7 +42,7 @@ public abstract class FilterTabBase<T extends FilterTabBase<T>> extends Button {
 			RenderSystem.defaultBlendFunc();
 			token.type.drawIcon(x, y, token.index, Minecraft.getInstance().getItemRenderer(), this.stack);
 		}
-		if (this.token.index == FilterTabManager.LIST.size() - 1) { // draw on last
+		if (this == manager.list.get(manager.list.size() - 1)) { // draw on last
 			manager.onToolTipRender(stack, mouseX, mouseY);
 		}
 	}

@@ -1,7 +1,8 @@
 {
   "item.l2artifacts": {
 	"select": "古遗物选择器（创造）",
-	"filter": "古遗物多功能包"
+	"filter": "古遗物多功能包",
+	"upgraded_pocket": "高级古遗物多功能包"
   },
   "-cartesian": {
 	"sets": {

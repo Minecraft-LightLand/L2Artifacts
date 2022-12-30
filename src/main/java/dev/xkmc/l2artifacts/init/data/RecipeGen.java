@@ -1,7 +1,6 @@
 package dev.xkmc.l2artifacts.init.data;
 
 import dev.xkmc.l2artifacts.content.core.BaseArtifact;
-import dev.xkmc.l2artifacts.content.misc.ExpItem;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactItemRegistry;
 import dev.xkmc.l2artifacts.init.registrate.entries.SetEntry;
@@ -10,10 +9,12 @@ import dev.xkmc.l2library.repack.registrate.util.DataIngredient;
 import dev.xkmc.l2library.repack.registrate.util.entry.ItemEntry;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
+import net.minecraft.data.recipes.UpgradeRecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.tags.ITagManager;
 
@@ -52,6 +53,11 @@ public class RecipeGen {
 				.pattern(" A ").pattern("LEL").pattern(" L ")
 				.define('E', Items.ENDER_PEARL).define('L', Items.LEATHER).define('A', artifact)
 				.save(pvd);
+
+		unlock(pvd, UpgradeRecipeBuilder.smithing(Ingredient.of(ArtifactItemRegistry.FILTER.get()),
+				Ingredient.of(Items.NETHERITE_INGOT),
+				ArtifactItemRegistry.UPGRADED_POCKET.get())::unlocks, Items.NETHERITE_INGOT)
+				.save(pvd, L2Artifacts.MODID + ":upgraded_pocket");
 
 		// rank up recipes
 		for (SetEntry<?> set : L2Artifacts.REGISTRATE.SET_LIST) {

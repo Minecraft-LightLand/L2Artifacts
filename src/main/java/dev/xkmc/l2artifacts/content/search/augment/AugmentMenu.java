@@ -3,10 +3,12 @@ package dev.xkmc.l2artifacts.content.search.augment;
 import dev.xkmc.l2artifacts.content.core.BaseArtifact;
 import dev.xkmc.l2artifacts.content.misc.ArtifactChestItem;
 import dev.xkmc.l2artifacts.content.search.common.IFilterMenu;
+import dev.xkmc.l2artifacts.content.search.dissolve.DissolveMenu;
 import dev.xkmc.l2artifacts.content.search.token.ArtifactChestToken;
 import dev.xkmc.l2artifacts.content.upgrades.ArtifactUpgradeManager;
 import dev.xkmc.l2artifacts.content.upgrades.StatContainerItem;
 import dev.xkmc.l2artifacts.content.upgrades.Upgrade;
+import dev.xkmc.l2artifacts.content.upgrades.UpgradeBoostItem;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
 import dev.xkmc.l2artifacts.init.data.ModConfig;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactItemRegistry;
@@ -74,6 +76,12 @@ public class AugmentMenu extends BaseContainerMenu<AugmentMenu> implements IFilt
 				stack = result.getObject();
 				cont.setItem(0, stack);
 			}
+			if (!cont.getItem(1).isEmpty() && ((StatContainerItem) cont.getItem(1).getItem()).rank != item.rank)
+				DissolveMenu.clearSlot(player, cont, 1);
+			if (!cont.getItem(2).isEmpty() && ((UpgradeBoostItem) cont.getItem(2).getItem()).rank != item.rank)
+				DissolveMenu.clearSlot(player, cont, 2);
+			if (!cont.getItem(3).isEmpty() && ((UpgradeBoostItem) cont.getItem(3).getItem()).rank != item.rank)
+				DissolveMenu.clearSlot(player, cont, 3);
 			var opt = BaseArtifact.getStats(stack);
 			if (opt.isPresent()) {
 				var stats = opt.get();
@@ -95,7 +103,8 @@ public class AugmentMenu extends BaseContainerMenu<AugmentMenu> implements IFilt
 				}
 			}
 		} else {
-			clearContainer(player, cont);
+			if (!cont.getItem(1).isEmpty() || !cont.getItem(2).isEmpty() || !cont.getItem(3).isEmpty())
+				clearContainer(player, cont);
 		}
 		exp_cost.set(ec);
 		player_cost.set(pc);

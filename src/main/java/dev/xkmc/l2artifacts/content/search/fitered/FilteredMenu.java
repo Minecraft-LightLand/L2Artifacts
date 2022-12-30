@@ -5,6 +5,8 @@ import dev.xkmc.l2artifacts.content.misc.RandomArtifactItem;
 import dev.xkmc.l2artifacts.content.search.common.AbstractScrollerMenu;
 import dev.xkmc.l2artifacts.content.search.token.ArtifactChestToken;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
+import dev.xkmc.l2artifacts.init.data.ModConfig;
+import dev.xkmc.l2artifacts.init.registrate.ArtifactItemRegistry;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactMenuRegistry;
 import dev.xkmc.l2library.base.menu.SpriteManager;
 import net.minecraft.network.FriendlyByteBuf;
@@ -17,10 +19,6 @@ import net.minecraft.world.item.ItemStack;
 public class FilteredMenu extends AbstractScrollerMenu<FilteredMenu> {
 
 	private static final SpriteManager MANAGER = new SpriteManager(L2Artifacts.MODID, "filtered");
-
-	private static int getMaxSize() {
-		return 256;
-	}
 
 	public static FilteredMenu fromNetwork(MenuType<FilteredMenu> type, int wid, Inventory plInv, FriendlyByteBuf buf) {
 		int i = buf.readInt();
@@ -37,6 +35,10 @@ public class FilteredMenu extends AbstractScrollerMenu<FilteredMenu> {
 		this.addSlot("output", e -> false);
 		this.addSlot("grid", e -> false, e -> e.setPickup(() -> false));
 		reload(true);
+	}
+
+	private int getMaxSize() {
+		return token.stack.getItem() == ArtifactItemRegistry.FILTER.get() ? ModConfig.COMMON.storageSmall.get() : ModConfig.COMMON.storageLarge.get();
 	}
 
 	@Override

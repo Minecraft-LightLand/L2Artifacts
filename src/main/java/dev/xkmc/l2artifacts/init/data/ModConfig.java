@@ -12,6 +12,9 @@ public class ModConfig {
 		public final ForgeConfigSpec.IntValue maxLevelPerRank;
 		public final ForgeConfigSpec.IntValue levelPerSubStat;
 
+		public final ForgeConfigSpec.IntValue storageSmall;
+		public final ForgeConfigSpec.IntValue storageLarge;
+
 		public final ForgeConfigSpec.IntValue healthRequirement;
 
 		public final ForgeConfigSpec.DoubleValue expConsumptionRankFactor;
@@ -30,6 +33,10 @@ public class ModConfig {
 					.defineInRange("maxLevelPerRank", 4, 1, 100);
 			levelPerSubStat = builder.comment("level per sub stats granted")
 					.defineInRange("levelPerSubStat", 4, 1, 100);
+			storageSmall = builder.comment("maximum available slots for artifact pocket")
+					.defineInRange("storageSmall", 256, 64, 1024);
+			storageLarge = builder.comment("maximum available slots for upgraded artifact pocket")
+					.defineInRange("storageLarge", 512, 64, 1024);
 
 			expConsumptionRankFactor = builder.comment("exponential experience requirement per rank")
 					.defineInRange("expConsumptionRankFactor", 2d, 1, 10);

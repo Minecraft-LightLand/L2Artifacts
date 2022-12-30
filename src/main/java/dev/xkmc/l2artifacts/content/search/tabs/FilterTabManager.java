@@ -29,9 +29,10 @@ public class FilterTabManager {
 	public static final FilterTabToken<DissolveTab> DISSOLVE = new FilterTabToken<>(5, DissolveTab::new, () -> ArtifactItemRegistry.ITEM_STAT[4].get(), LangData.TAB_DISSOLVE.get());
 	public static final FilterTabToken<AugmentTab> AUGMENT = new FilterTabToken<>(6, AugmentTab::new, () -> ArtifactItemRegistry.ITEM_BOOST_MAIN[4].get(), LangData.TAB_AUGMENT.get());
 
-	public static final List<FilterTabToken<?>> LIST = List.of(FILTERED, FILTER, SORT, RECYCLE, UPGRADE, DISSOLVE, AUGMENT);
+	private static final List<FilterTabToken<?>> LIST_0 = List.of(FILTERED, FILTER, SORT, RECYCLE, UPGRADE);
+	private static final List<FilterTabToken<?>> LIST_1 = List.of(FILTERED, FILTER, SORT, RECYCLE, UPGRADE, DISSOLVE, AUGMENT);
 
-	private final List<FilterTabBase<?>> list = new ArrayList<>();
+	protected final List<FilterTabBase<?>> list = new ArrayList<>();
 
 	public final IFilterScreen screen;
 	public final ArtifactChestToken token;
@@ -45,12 +46,13 @@ public class FilterTabManager {
 	}
 
 	public void init(Consumer<AbstractWidget> adder, FilterTabToken<?> selected) {
+		var token_list = token.stack.getItem() == ArtifactItemRegistry.FILTER.get() ? LIST_0 : LIST_1;
 		list.clear();
 		this.selected = selected;
 		int guiLeft = screen.getGuiLeft();
 		int guiTop = screen.getGuiTop();
 		int imgWidth = screen.getXSize();
-		for (FilterTabToken<?> token : LIST) {
+		for (FilterTabToken<?> token : token_list) {
 			FilterTabBase<?> tab = token.create(this);
 			tab.x = guiLeft + imgWidth + FilterTabType.RIGHT.getX(token.index);
 			tab.y = guiTop + FilterTabType.RIGHT.getY(token.index);

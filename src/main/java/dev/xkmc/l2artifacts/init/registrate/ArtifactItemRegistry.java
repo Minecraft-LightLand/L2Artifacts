@@ -54,7 +54,7 @@ public class ArtifactItemRegistry {
 	}
 
 	public static final ItemEntry<SelectArtifactItem> SELECT;
-	public static final ItemEntry<ArtifactChestItem> FILTER;
+	public static final ItemEntry<ArtifactChestItem> FILTER, UPGRADED_POCKET;
 	public static final ItemEntry<RandomArtifactItem>[] RANDOM;
 	public static final ItemEntry<ExpItem>[] ITEM_EXP;
 	public static final ItemEntry<StatContainerItem>[] ITEM_STAT;
@@ -66,6 +66,8 @@ public class ArtifactItemRegistry {
 				.defaultModel().lang("Artifact Selector (Creative)").register();
 		FILTER = REGISTRATE.item("filter", ArtifactChestItem::new)
 				.defaultModel().lang("Artifact Pocket").register();
+		UPGRADED_POCKET = REGISTRATE.item("upgraded_pocket", ArtifactChestItem::new)
+				.defaultModel().lang("Upgraded Artifact Pocket").register();
 		int n = 5;
 		RANDOM = new ItemEntry[n];
 		for (int i = 0; i < n; i++) {

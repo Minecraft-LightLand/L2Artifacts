@@ -100,7 +100,7 @@ public class DissolveMenu extends AbstractScrollerMenu<DissolveMenu> {
 		super.removed(player);
 	}
 
-	private void clearSlot(Player pPlayer, Container pContainer, int index) {
+	public static void clearSlot(Player pPlayer, Container pContainer, int index) {
 		if (!pPlayer.isAlive() || pPlayer instanceof ServerPlayer && ((ServerPlayer) pPlayer).hasDisconnected()) {
 			pPlayer.drop(pContainer.removeItemNoUpdate(index), false);
 		} else {

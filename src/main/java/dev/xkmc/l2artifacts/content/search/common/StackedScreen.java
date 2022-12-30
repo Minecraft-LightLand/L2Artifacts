@@ -2,6 +2,7 @@ package dev.xkmc.l2artifacts.content.search.common;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
+import dev.xkmc.l2artifacts.content.client.tooltip.ItemTooltip;
 import dev.xkmc.l2artifacts.content.misc.ArtifactChestItem;
 import dev.xkmc.l2artifacts.content.search.tabs.FilterTabManager;
 import dev.xkmc.l2artifacts.content.search.tabs.FilterTabToken;
@@ -114,7 +115,7 @@ public abstract class StackedScreen extends Screen implements IFilterScreen {
 			List<Component> texts = new ArrayList<>();
 			texts.add(hover.item().getDesc());
 			Optional<TooltipComponent> comp = Optional.ofNullable(hover.item().getTooltipItems())
-					.map(l -> new BundleTooltip(l, 0));
+					.map(ItemTooltip::new);
 			renderTooltip(pose, texts, comp, mx - leftPos, my - topPos);
 		}
 		renderPost(pose);

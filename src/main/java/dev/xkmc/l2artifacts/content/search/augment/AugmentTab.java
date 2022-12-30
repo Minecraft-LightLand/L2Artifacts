@@ -10,8 +10,8 @@ import net.minecraft.world.item.ItemStack;
 
 public class AugmentTab extends FilterTabBase<AugmentTab> {
 
-	public AugmentTab(FilterTabToken<AugmentTab> token, FilterTabManager manager, ItemStack stack, Component title) {
-		super(token, manager, stack, title);
+	public AugmentTab(int index, FilterTabToken<AugmentTab> token, FilterTabManager manager, ItemStack stack, Component title) {
+		super(index, token, manager, stack, title);
 	}
 
 	@Override

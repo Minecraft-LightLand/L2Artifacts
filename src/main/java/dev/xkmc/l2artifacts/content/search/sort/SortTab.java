@@ -13,8 +13,8 @@ import net.minecraft.world.item.ItemStack;
 
 public class SortTab extends FilterTabBase<SortTab> {
 
-	public SortTab(FilterTabToken<SortTab> token, FilterTabManager manager, ItemStack stack, Component title) {
-		super(token, manager, stack, title);
+	public SortTab(int index, FilterTabToken<SortTab> token, FilterTabManager manager, ItemStack stack, Component title) {
+		super(index, token, manager, stack, title);
 	}
 
 	@Override

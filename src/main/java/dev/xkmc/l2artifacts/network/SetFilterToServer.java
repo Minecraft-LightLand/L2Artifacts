@@ -9,7 +9,6 @@ import dev.xkmc.l2artifacts.content.search.fitered.FilteredMenu;
 import dev.xkmc.l2artifacts.content.search.recycle.RecycleMenu;
 import dev.xkmc.l2artifacts.content.search.token.ArtifactChestToken;
 import dev.xkmc.l2artifacts.content.search.upgrade.UpgradeMenu;
-import dev.xkmc.l2artifacts.init.registrate.ArtifactItemRegistry;
 import dev.xkmc.l2library.serial.SerialClass;
 import dev.xkmc.l2library.serial.codec.TagCodec;
 import dev.xkmc.l2library.serial.network.SerialPacketBase;
@@ -67,7 +66,8 @@ public class SetFilterToServer extends SerialPacketBase {
 		ServerPlayer player = context.getSender();
 		if (player == null) return;
 		ItemStack stack = player.getItemInHand(hand);
-		if (stack.getItem() != ArtifactItemRegistry.FILTER.get()) return;
+		if (!(stack.getItem() instanceof ArtifactChestItem))
+			return;
 		ArtifactChestItem.setFilter(stack, filter);
 		if (type == null) {
 			player.doCloseContainer();

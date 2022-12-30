@@ -14,13 +14,15 @@ public abstract class FilterTabBase<T extends FilterTabBase<T>> extends Button {
 
 	private final static ResourceLocation TEXTURE = new ResourceLocation(L2Artifacts.MODID, "textures/gui/tabs.png");
 
+	public final int index;
 	public final ItemStack stack;
 	public final FilterTabToken<T> token;
 	public final FilterTabManager manager;
 
 	@SuppressWarnings("unchecked")
-	public FilterTabBase(FilterTabToken<T> token, FilterTabManager manager, ItemStack stack, Component title) {
+	public FilterTabBase(int index, FilterTabToken<T> token, FilterTabManager manager, ItemStack stack, Component title) {
 		super(0, 0, 32, 28, title, b -> ((T) b).onTabClicked());
+		this.index = index;
 		this.stack = stack;
 		this.token = token;
 		this.manager = manager;
@@ -38,9 +40,9 @@ public abstract class FilterTabBase<T extends FilterTabBase<T>> extends Button {
 			RenderSystem.enableBlend();
 			RenderSystem.setShader(GameRenderer::getPositionTexShader);
 			RenderSystem.setShaderTexture(0, TEXTURE);
-			token.type.draw(stack, manager.getScreen(), x, y, manager.selected == token, token.index);
+			token.type.draw(stack, manager.getScreen(), x, y, manager.selected == token, index);
 			RenderSystem.defaultBlendFunc();
-			token.type.drawIcon(x, y, token.index, Minecraft.getInstance().getItemRenderer(), this.stack);
+			token.type.drawIcon(x, y, index, Minecraft.getInstance().getItemRenderer(), this.stack);
 		}
 		if (this == manager.list.get(manager.list.size() - 1)) { // draw on last
 			manager.onToolTipRender(stack, mouseX, mouseY);

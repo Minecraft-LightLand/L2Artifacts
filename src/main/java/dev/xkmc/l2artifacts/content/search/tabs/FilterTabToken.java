@@ -10,19 +10,17 @@ public class FilterTabToken<T extends FilterTabBase<T>> {
 
 	public interface TabFactory<T extends FilterTabBase<T>> {
 
-		T create(FilterTabToken<T> token, FilterTabManager manager, ItemStack stack, Component component);
+		T create(int index, FilterTabToken<T> token, FilterTabManager manager, ItemStack stack, Component component);
 
 	}
 
-	public final int index;
 	public final TabFactory<T> factory;
 	public final FilterTabType type;
 
 	private final Supplier<Item> item;
 	private final Component title;
 
-	public FilterTabToken(int index, TabFactory<T> factory, Supplier<Item> item, Component component) {
-		this.index = index;
+	public FilterTabToken(TabFactory<T> factory, Supplier<Item> item, Component component) {
 		this.factory = factory;
 		this.type = FilterTabType.RIGHT;
 
@@ -30,7 +28,7 @@ public class FilterTabToken<T extends FilterTabBase<T>> {
 		this.title = component;
 	}
 
-	public T create(FilterTabManager manager) {
-		return factory.create(this, manager, item.get().getDefaultInstance(), title);
+	public T create(int index, FilterTabManager manager) {
+		return factory.create(index, this, manager, item.get().getDefaultInstance(), title);
 	}
 }

@@ -13,8 +13,8 @@ import net.minecraft.world.item.ItemStack;
 
 public class FilterTab extends FilterTabBase<FilterTab> {
 
-	public FilterTab(FilterTabToken<FilterTab> token, FilterTabManager manager, ItemStack stack, Component title) {
-		super(token, manager, stack, title);
+	public FilterTab(int index, FilterTabToken<FilterTab> token, FilterTabManager manager, ItemStack stack, Component title) {
+		super(index, token, manager, stack, title);
 	}
 
 	@Override

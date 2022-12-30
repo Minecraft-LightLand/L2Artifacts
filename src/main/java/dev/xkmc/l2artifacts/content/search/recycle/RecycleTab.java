@@ -10,8 +10,8 @@ import net.minecraft.world.item.ItemStack;
 
 public class RecycleTab extends FilterTabBase<RecycleTab> {
 
-	public RecycleTab(FilterTabToken<RecycleTab> token, FilterTabManager manager, ItemStack stack, Component title) {
-		super(token, manager, stack, title);
+	public RecycleTab(int index, FilterTabToken<RecycleTab> token, FilterTabManager manager, ItemStack stack, Component title) {
+		super(index, token, manager, stack, title);
 	}
 
 	@Override

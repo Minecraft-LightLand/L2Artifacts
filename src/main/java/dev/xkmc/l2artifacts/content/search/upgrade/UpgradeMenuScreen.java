@@ -47,7 +47,7 @@ public class UpgradeMenuScreen extends BaseContainerScreen<UpgradeMenu> implemen
 	private ArtifactStats old = null, current = null;
 
 	public UpgradeMenuScreen(UpgradeMenu cont, Inventory plInv, Component title) {
-		super(cont, plInv, title);
+		super(cont, plInv, LangData.TAB_UPGRADE.get());
 	}
 
 	@Override

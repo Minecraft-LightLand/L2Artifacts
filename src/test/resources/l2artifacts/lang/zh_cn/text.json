@@ -56,7 +56,9 @@
 		"filtered": "古遗物列表",
 		"recycle": "批量经验转化",
 		"upgrade": "古遗物升级",
-		"sort": "排序设置"
+		"sort": "排序设置",
+		"augment": "定向强化",
+		"dissolve": "词条溶解"
 	  },
 	  "info": {
 		"exp_gain": "可获取经验: %s",

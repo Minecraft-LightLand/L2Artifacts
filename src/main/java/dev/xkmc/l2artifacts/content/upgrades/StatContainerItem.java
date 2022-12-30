@@ -4,6 +4,7 @@ import dev.xkmc.l2artifacts.content.core.ArtifactStatType;
 import dev.xkmc.l2artifacts.init.data.LangData;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactTypeRegistry;
 import dev.xkmc.l2library.util.nbt.ItemCompoundTag;
+import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -46,8 +47,13 @@ public class StatContainerItem extends UpgradeEnhanceItem {
 	@Override
 	public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> list, TooltipFlag flag) {
 		getType(stack).ifPresentOrElse(e -> {
-			list.add(LangData.STAT_INFO.get(e.getDesc()));
-			list.add(LangData.STAT_USE_INFO.get());
-		}, () -> list.add(LangData.STAT_CAPTURE_INFO.get()));
+			list.add(LangData.STAT_INFO.get(e.getDesc().withStyle(ChatFormatting.BLUE)).withStyle(ChatFormatting.DARK_GREEN));
+			list.add(LangData.STAT_USE_INFO.get().withStyle(ChatFormatting.GRAY));
+		}, () -> list.add(LangData.STAT_CAPTURE_INFO.get().withStyle(ChatFormatting.GRAY)));
+	}
+
+	@Override
+	public boolean isFoil(ItemStack pStack) {
+		return getType(pStack).isPresent();
 	}
 }

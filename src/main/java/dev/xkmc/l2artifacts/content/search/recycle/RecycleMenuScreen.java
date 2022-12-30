@@ -16,7 +16,7 @@ public class RecycleMenuScreen extends AbstractScrollerScreen<RecycleMenu> {
 	private boolean pressed, canDrag, dragging, enable, hover_a, hover_b;
 
 	public RecycleMenuScreen(RecycleMenu cont, Inventory plInv, Component title) {
-		super(cont, plInv, title, FilterTabManager.RECYCLE);
+		super(cont, plInv, LangData.TAB_RECYCLE.get(), FilterTabManager.RECYCLE);
 	}
 
 	@Override

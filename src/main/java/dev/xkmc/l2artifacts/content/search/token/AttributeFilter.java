@@ -22,7 +22,7 @@ public class AttributeFilter extends ArtifactFilter<ArtifactStatType> {
 	@Override
 	public Comparator<GenericItemStack<BaseArtifact>> getComparator() {
 		Comparator<GenericItemStack<BaseArtifact>> ans = Comparator.comparingInt(e -> BaseArtifact.getStats(e.stack())
-				.map(x -> item_priority[revMap.get(x.main_stat.type)]).orElse(item_priority.length));
+				.map(x -> -item_priority[revMap.get(x.main_stat.type)]).orElse(item_priority.length));
 		List<Pair<ArtifactStatType, Integer>> list = new ArrayList<>(allEntries.stream()
 				.map(e -> Pair.of(e, revMap.get(e)))
 				.filter(e -> getSelected(e.second())).toList());

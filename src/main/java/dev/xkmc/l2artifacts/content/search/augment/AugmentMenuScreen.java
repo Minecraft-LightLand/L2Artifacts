@@ -47,7 +47,7 @@ public class AugmentMenuScreen extends BaseContainerScreen<AugmentMenu> implemen
 	private ArtifactStats old = null, current = null;
 
 	public AugmentMenuScreen(AugmentMenu cont, Inventory plInv, Component title) {
-		super(cont, plInv, title);//TODO
+		super(cont, plInv, LangData.TAB_AUGMENT.get());
 	}
 
 	@Override
@@ -60,6 +60,25 @@ public class AugmentMenuScreen extends BaseContainerScreen<AugmentMenu> implemen
 	protected void renderBg(PoseStack pose, float pTick, int mx, int my) {
 		var sr = menu.sprite.getRenderer(this);
 		sr.start(pose);
+		int mask = menu.mask.get();
+		if ((mask & 1) > 0) {
+			sr.draw(pose, "in_0", "toggle_slot_1", -1, -1);
+		}
+		if ((mask & 2) > 0) {
+			sr.draw(pose, "in_1", "toggle_slot_1", -1, -1);
+		}
+		if ((mask & 4) > 0) {
+			sr.draw(pose, "in_2", "toggle_slot_1", -1, -1);
+		}
+		if (menu.container.getItem(1).isEmpty()) {
+			sr.draw(pose, "in_0", "altas_stat_container");
+		}
+		if (menu.container.getItem(2).isEmpty()) {
+			sr.draw(pose, "in_1", "altas_boost_main");
+		}
+		if (menu.container.getItem(3).isEmpty()) {
+			sr.draw(pose, "in_2", "altas_boost_sub");
+		}
 		var rect = menu.sprite.getComp("upgrade");
 		if (isHovering(rect.x, rect.y, rect.w, rect.h, mx, my)) {
 			if (pressed) {

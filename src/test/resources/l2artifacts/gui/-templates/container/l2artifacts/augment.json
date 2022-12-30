@@ -1,10 +1,12 @@
 {
   "side": [
 	"upgrade_on",
-	"button_1",
-	"button_1p",
-	"button_2",
-	"button_2p"
+	"toggle_slot_0",
+	"toggle_slot_1",
+	"toggle_slot_2",
+	"altas_stat_container",
+	"altas_boost_main",
+	"altas_boost_sub"
   ],
   "comp": {
 	"in_0": {

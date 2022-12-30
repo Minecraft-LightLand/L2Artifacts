@@ -16,7 +16,6 @@ public class DissolveTab extends FilterTabBase<DissolveTab> {
 
 	@Override
 	public void onTabClicked() {
-		//TODO
-		NetworkManager.HANDLER.toServer(new SetFilterToServer(manager.token, SetFilterToServer.Type.RECYCLE));
+		NetworkManager.HANDLER.toServer(new SetFilterToServer(manager.token, SetFilterToServer.Type.DISSOLVE));
 	}
 }

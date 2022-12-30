@@ -7,12 +7,18 @@
   "generic.attack_range": "攻击距离",
   "itemGroup.l2artifacts.artifacts": "古遗物",
   "menu.tabs.set_effects": "已启用套装效果",
-  "slot.l2artifacts.belt": "腰带",
-  "slot.l2artifacts.body": "胸饰",
-  "slot.l2artifacts.bracelet": "手环",
-  "slot.l2artifacts.head": "头饰",
-  "slot.l2artifacts.necklace": "项链",
-  "container.l2artifacts.filtered": "古遗物多功能包",
-  "container.l2artifacts.recycle": "古遗物经验转化",
-  "container.l2artifacts.upgrade": "古遗物升级"
+  "slot.l2artifacts": {
+	"belt": "腰带",
+	"body": "胸饰",
+	"bracelet": "手环",
+	"head": "头饰",
+	"necklace": "项链"
+  },
+  "container.l2artifacts": {
+	"filtered": "古遗物多功能包",
+	"recycle": "古遗物经验转化",
+	"upgrade": "古遗物升级",
+	"augment": "定向强化",
+	"dissolve": "词条溶解"
+  }
 }

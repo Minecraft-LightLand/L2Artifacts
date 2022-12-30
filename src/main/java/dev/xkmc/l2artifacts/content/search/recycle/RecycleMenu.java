@@ -99,14 +99,15 @@ public class RecycleMenu extends AbstractScrollerMenu<RecycleMenu> {
 
 	@Override
 	public void slotsChanged(Container cont) {
-		super.slotsChanged(cont);
-		if (player.getLevel().isClientSide()) return;
-		if (!cont.getItem(0).isEmpty()) {
-			ItemStack stack = cont.getItem(0).copy();
-			ExpItem item = (ExpItem) stack.getItem();
-			addExp(ArtifactUpgradeManager.getExpForConversion(item.rank, null) * stack.getCount());
-			cont.setItem(0, ItemStack.EMPTY);
+		if (!player.getLevel().isClientSide()) {
+			if (!cont.getItem(0).isEmpty()) {
+				ItemStack stack = cont.getItem(0).copy();
+				ExpItem item = (ExpItem) stack.getItem();
+				addExp(ArtifactUpgradeManager.getExpForConversion(item.rank, null) * stack.getCount());
+				cont.setItem(0, ItemStack.EMPTY);
+			}
 		}
+		super.slotsChanged(cont);
 	}
 
 	@Override

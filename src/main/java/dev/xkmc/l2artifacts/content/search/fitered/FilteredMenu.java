@@ -47,27 +47,28 @@ public class FilteredMenu extends AbstractScrollerMenu<FilteredMenu> {
 
 	@Override
 	public void slotsChanged(Container cont) {
-		super.slotsChanged(cont);
-		if (player.getLevel().isClientSide()) return;
-		if (!cont.getItem(0).isEmpty()) {
-			ItemStack stack = cont.getItem(0).copy();
-			if (stack.getItem() instanceof RandomArtifactItem item) {
-				for (int i = 0; i < stack.getCount(); i++) {
-					addItemToList(RandomArtifactItem.getRandomArtifact(item.rank, player.getRandom()));
+		if (!player.getLevel().isClientSide()) {
+			if (!cont.getItem(0).isEmpty()) {
+				ItemStack stack = cont.getItem(0).copy();
+				if (stack.getItem() instanceof RandomArtifactItem item) {
+					for (int i = 0; i < stack.getCount(); i++) {
+						addItemToList(RandomArtifactItem.getRandomArtifact(item.rank, player.getRandom()));
+					}
+				} else {
+					addItemToList(stack);
 				}
-			} else {
-				addItemToList(stack);
+				cont.setItem(0, ItemStack.EMPTY);
+				token.update();
+				token.save();
+				selected = ItemStack.EMPTY;
+				container.setItem(1, selected);
+				reload(true);
 			}
-			cont.setItem(0, ItemStack.EMPTY);
-			token.update();
-			token.save();
-			selected = ItemStack.EMPTY;
-			container.setItem(1, selected);
-			reload(true);
+			if (!selected.isEmpty() && cont.getItem(1).isEmpty()) {
+				removeSelected();
+			}
 		}
-		if (!selected.isEmpty() && cont.getItem(1).isEmpty()) {
-			removeSelected();
-		}
+		super.slotsChanged(cont);
 	}
 
 	private void addItemToList(ItemStack stack) {

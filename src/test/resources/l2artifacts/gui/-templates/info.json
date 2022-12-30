@@ -10,6 +10,15 @@
         "dx": 1,
         "dy": 1
     },
+    "altas": {
+        "ids": [
+            "_boost_main",
+            "_boost_sub",
+            "_stat_container"
+        ],
+        "w": 16,
+        "h": 16
+    },
     "button": {
         "ids": [
             "_1",

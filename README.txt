@@ -20,5 +20,4 @@
 - 测试：
   - 运行runClient打开游戏测试套装效果
 
-TODO Add Custom Tooltip
 TODO Add instructions on all pages

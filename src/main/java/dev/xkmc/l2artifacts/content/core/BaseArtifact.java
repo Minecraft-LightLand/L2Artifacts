@@ -26,13 +26,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Supplier;
 
-public class BaseArtifact extends Item {
+public class BaseArtifact extends RankedItem {
 
 	public static final String KEY = "ArtifactData", UPGRADE = "Upgrade";
-
-	protected static Rarity getRarity(int rank) {
-		return rank <= 2 ? Rarity.UNCOMMON : rank <= 4 ? Rarity.RARE : Rarity.EPIC;
-	}
 
 	public static void upgrade(ItemStack stack, int exp, RandomSource random) {
 		ItemCompoundTag tag = ItemCompoundTag.of(stack).getSubTag(KEY);
@@ -68,13 +64,11 @@ public class BaseArtifact extends Item {
 
 	public final Supplier<ArtifactSet> set;
 	public final Supplier<ArtifactSlot> slot;
-	public final int rank;
 
 	public BaseArtifact(Properties properties, Supplier<ArtifactSet> set, Supplier<ArtifactSlot> slot, int rank) {
-		super(properties.stacksTo(1).rarity(getRarity(rank)));
+		super(properties.stacksTo(1), rank);
 		this.set = set;
 		this.slot = slot;
-		this.rank = rank;
 	}
 
 	@Override

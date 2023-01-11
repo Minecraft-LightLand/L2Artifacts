@@ -1,9 +1,9 @@
 package dev.xkmc.l2artifacts.content.misc;
 
+import dev.xkmc.l2artifacts.content.core.RankedItem;
 import dev.xkmc.l2artifacts.content.upgrades.ArtifactUpgradeManager;
 import dev.xkmc.l2artifacts.init.data.LangData;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
@@ -11,13 +11,10 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class ExpItem extends Item {
-
-	public final int rank;
+public class ExpItem extends RankedItem {
 
 	public ExpItem(Properties properties, int rank) {
-		super(properties);
-		this.rank = rank;
+		super(properties, rank);
 	}
 
 	@Override

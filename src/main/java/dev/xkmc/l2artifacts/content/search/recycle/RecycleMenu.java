@@ -36,7 +36,7 @@ public class RecycleMenu extends AbstractScrollerMenu<RecycleMenu> {
 	protected boolean[] selected;
 
 	public RecycleMenu(int wid, Inventory plInv, ArtifactChestToken token) {
-		super(ArtifactMenuRegistry.MT_RECYCLE.get(), wid, plInv, MANAGER, 1, token);
+		super(ArtifactMenuRegistry.MT_RECYCLE.get(), wid, plInv, MANAGER, 1, token, true);
 		this.addSlot("input", e -> e.getItem() instanceof ExpItem);
 		this.addSlot("grid", e -> false, e -> e.setPickup(() -> false));
 		select_count = addDataSlot(DataSlot.standalone());

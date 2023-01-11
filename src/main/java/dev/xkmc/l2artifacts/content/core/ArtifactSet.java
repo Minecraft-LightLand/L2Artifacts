@@ -1,5 +1,6 @@
 package dev.xkmc.l2artifacts.content.core;
 
+import com.mojang.datafixers.util.Pair;
 import dev.xkmc.l2artifacts.content.client.tab.DarkTextColorRanks;
 import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
 import dev.xkmc.l2artifacts.content.search.token.IArtifactFeature;
@@ -51,7 +52,8 @@ public class ArtifactSet extends NamedEntry<ArtifactSet> implements IArtifactFea
 	}
 
 	private MutableComponent getCountDesc(int count) {
-		return LangData.getTranslate("set." + count);
+		int max = L2Artifacts.REGISTRATE.SET_MAP.get(getRegistryName()).items.length;
+		return LangData.getTranslate("set." + count, max);
 	}
 
 	public ArtifactSet() {
@@ -169,21 +171,25 @@ public class ArtifactSet extends NamedEntry<ArtifactSet> implements IArtifactFea
 		return ans;
 	}
 
-	public void addComponents(List<Component> ans, SetContext ctx) {
-		ans.add(LangData.ALL_SET_EFFECTS.get(getDesc(), ctx.count()));
+	public List<Pair<List<Component>, List<Component>>> addComponents(SetContext ctx) {
+		List<Pair<List<Component>, List<Component>>> ans = new ArrayList<>();
+		ans.add(Pair.of(List.of(LangData.ALL_SET_EFFECTS.get(getDesc(), ctx.count())), List.of()));
 		ArtifactSetConfig config = ArtifactSetConfig.getInstance();
 		ArrayList<ArtifactSetConfig.Entry> list = config.map.get(this);
 		for (ArtifactSetConfig.Entry ent : list) {
 			if (ctx.count() >= ent.count) {
 				int rank = ctx.ranks[ent.count];
-				ans.add(getCountDesc(ent.count).append(ent.effect.getDesc()).withStyle(DarkTextColorRanks.getDark(rank)));
-				List<MutableComponent> desc = ent.effect.getDetailedDescription(rank);
-				for (MutableComponent comp : desc) {
-					ans.add(comp.withStyle(DarkTextColorRanks.getLight(rank)));
-				}
+				List<Component> a = List.of(getCountDesc(ent.count), ent.effect.getDesc()
+						.withStyle(DarkTextColorRanks.getDark(rank)));
+				List<Component> b = new ArrayList<>();
+				b.add(getCountDesc(ent.count).append(ent.effect.getDesc()
+						.withStyle(DarkTextColorRanks.getLight(rank))));
+				b.addAll(ent.effect.getDetailedDescription(rank).stream()
+						.map(comp -> (Component) comp.withStyle(DarkTextColorRanks.getDark(rank))).toList());
+				ans.add(Pair.of(a, b));
 			}
-
 		}
+		return ans;
 	}
 
 	@Override

@@ -47,6 +47,8 @@ import static net.minecraft.world.entity.ai.attributes.AttributeModifier.Operati
 @SuppressWarnings({"raw_type", "unchecked"})
 public class ArtifactItemRegistry {
 
+	public static final String[] RANK_NAME = {" -Common-", " =Rare=", " >Epic<", " »Legendary«", " -»Godly«-"};
+
 	public static final Tab TAB_ARTIFACT = new Tab("artifacts");
 
 	static {
@@ -79,7 +81,7 @@ public class ArtifactItemRegistry {
 							.texture("layer0", new ResourceLocation(L2Artifacts.MODID, "item/rank/" + r))
 							.texture("layer1", new ResourceLocation(L2Artifacts.MODID, "item/random")))
 					.tag(rank_tag, artifact)
-					.lang("Random Artifact Lv." + r).register();
+					.lang("Random Artifact" + RANK_NAME[i]).register();
 		}
 		ITEM_EXP = new ItemEntry[n];
 		for (int i = 0; i < n; i++) {
@@ -88,7 +90,7 @@ public class ArtifactItemRegistry {
 					.model((ctx, pvd) -> pvd.getBuilder(ctx.getName()).parent(new ModelFile.UncheckedModelFile("item/generated"))
 							.texture("layer0", new ResourceLocation(L2Artifacts.MODID, "item/rank/" + r))
 							.texture("layer1", new ResourceLocation(L2Artifacts.MODID, "item/artifact_experience")))
-					.lang("Artifact Experience Lv." + r).register();
+					.lang("Artifact Experience" + RANK_NAME[i]).register();
 		}
 		ITEM_STAT = new ItemEntry[n];
 		for (int i = 0; i < n; i++) {
@@ -97,7 +99,7 @@ public class ArtifactItemRegistry {
 					.model((ctx, pvd) -> pvd.getBuilder(ctx.getName()).parent(new ModelFile.UncheckedModelFile("item/generated"))
 							.texture("layer0", new ResourceLocation(L2Artifacts.MODID, "item/rank/" + r))
 							.texture("layer1", new ResourceLocation(L2Artifacts.MODID, "item/stat_container")))
-					.lang("Stat Container Lv." + r).register();
+					.lang("Stat Container" + RANK_NAME[i]).register();
 		}
 		ITEM_BOOST_MAIN = new ItemEntry[n];
 		for (int i = 0; i < n; i++) {
@@ -106,7 +108,7 @@ public class ArtifactItemRegistry {
 					.model((ctx, pvd) -> pvd.getBuilder(ctx.getName()).parent(new ModelFile.UncheckedModelFile("item/generated"))
 							.texture("layer0", new ResourceLocation(L2Artifacts.MODID, "item/rank/" + r))
 							.texture("layer1", new ResourceLocation(L2Artifacts.MODID, "item/boost_main")))
-					.lang("Main Stat Booster Lv." + r).register();
+					.lang("Main Stat Booster" + RANK_NAME[i]).register();
 		}
 		ITEM_BOOST_SUB = new ItemEntry[n];
 		for (int i = 0; i < n; i++) {
@@ -115,7 +117,7 @@ public class ArtifactItemRegistry {
 					.model((ctx, pvd) -> pvd.getBuilder(ctx.getName()).parent(new ModelFile.UncheckedModelFile("item/generated"))
 							.texture("layer0", new ResourceLocation(L2Artifacts.MODID, "item/rank/" + r))
 							.texture("layer1", new ResourceLocation(L2Artifacts.MODID, "item/boost_sub")))
-					.lang("Sub Stat Booster Lv." + r).register();
+					.lang("Sub Stat Booster" + RANK_NAME[i]).register();
 		}
 	}
 
@@ -598,7 +600,7 @@ public class ArtifactItemRegistry {
 								"After sneaking for %s seconds:"
 						).register();
 
-				SET_ANCIENT = Wrappers.cast(REGISTRATE.regSet("ancient_scroll", ArtifactSet::new, 1, 5, "AncientScroll Set")
+				SET_ANCIENT = Wrappers.cast(REGISTRATE.regSet("ancient_scroll", ArtifactSet::new, 1, 5, "Ancient Scroll")
 						.setSlots(SLOT_HEAD, SLOT_NECKLACE, SLOT_BODY, SLOT_BRACELET, SLOT_BELT).regItems()
 						.buildConfig((c) -> c
 								.add(1, EFF_ANCIENT_1.get())
@@ -628,7 +630,7 @@ public class ArtifactItemRegistry {
 								"Must be critical hit! The %s consecutive attacks are all within %s second:"
 						).register();
 
-				SET_LUCKLOVER = Wrappers.cast(REGISTRATE.regSet("luck_clover", ArtifactSet::new, 4, 4, "LuckClover Set")
+				SET_LUCKLOVER = Wrappers.cast(REGISTRATE.regSet("luck_clover", ArtifactSet::new, 4, 4, "Luck Clover")
 						.setSlots(SLOT_NECKLACE, SLOT_BODY, SLOT_BRACELET, SLOT_BELT).regItems()
 						.buildConfig((c) -> c
 								.add(3, EFF_LUCKCLOVER_3.get())
@@ -653,7 +655,7 @@ public class ArtifactItemRegistry {
 								"The power of the abyss is attached to your weapon and will bring %s second Lv%s Weakness and Wither to the enemy, but you will also receive %s%% damage."
 						).register();
 
-				SET_ABYSSMEDAL = Wrappers.cast(REGISTRATE.regSet("abyss_medal", ArtifactSet::new, 1, 5, "AbyssMedal Set")
+				SET_ABYSSMEDAL = Wrappers.cast(REGISTRATE.regSet("abyss_medal", ArtifactSet::new, 1, 5, "Abyss Medal")
 						.setSlots(SLOT_HEAD, SLOT_NECKLACE, SLOT_BODY, SLOT_BRACELET, SLOT_BELT).regItems()
 						.buildConfig((c) -> c
 								.add(3, EFF_ABYSSMEDAL_3.get())
@@ -676,7 +678,7 @@ public class ArtifactItemRegistry {
 						).register();
 
 
-				SET_LONGSHOOTER = Wrappers.cast(REGISTRATE.regSet("long_shooter", ArtifactSet::new, 1, 5, "LongShooter Set")
+				SET_LONGSHOOTER = Wrappers.cast(REGISTRATE.regSet("long_shooter", ArtifactSet::new, 1, 5, "Long Shooter")
 						.setSlots(SLOT_HEAD, SLOT_NECKLACE, SLOT_BRACELET, SLOT_BELT).regItems()
 						.buildConfig((c) -> c
 								.add(3, EFF_LONGSHOOTER_3.get())

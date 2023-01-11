@@ -1,14 +1,11 @@
 package dev.xkmc.l2artifacts.content.upgrades;
 
-import net.minecraft.world.item.Item;
+import dev.xkmc.l2artifacts.content.core.RankedItem;
 
-public abstract class UpgradeEnhanceItem extends Item {
-
-	public final int rank;
+public abstract class UpgradeEnhanceItem extends RankedItem {
 
 	public UpgradeEnhanceItem(Properties props, int rank) {
-		super(props);
-		this.rank = rank;
+		super(props, rank);
 	}
 
 }

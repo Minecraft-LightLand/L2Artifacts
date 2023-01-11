@@ -24,8 +24,8 @@ public abstract class AbstractScrollerMenu<T extends AbstractScrollerMenu<T>> ex
 	private int max_row, row = 0;
 
 
-	public AbstractScrollerMenu(MenuType<?> type, int wid, Inventory plInv, SpriteManager manager, int extra, ArtifactChestToken token) {
-		super(type, wid, plInv, manager, e -> new BaseContainer<>(36 + extra, e), false);
+	public AbstractScrollerMenu(MenuType<?> type, int wid, Inventory plInv, SpriteManager manager, int extra, ArtifactChestToken token, boolean isVirtual) {
+		super(type, wid, plInv, manager, e -> new BaseContainer<>(36 + extra, e), isVirtual);
 		this.token = token;
 		this.player = plInv.player;
 		this.extra = extra;

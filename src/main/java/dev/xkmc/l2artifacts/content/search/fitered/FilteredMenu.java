@@ -29,7 +29,7 @@ public class FilteredMenu extends AbstractScrollerMenu<FilteredMenu> {
 	private ItemStack selected = ItemStack.EMPTY;
 
 	public FilteredMenu(int wid, Inventory plInv, ArtifactChestToken token) {
-		super(ArtifactMenuRegistry.MT_FILTER.get(), wid, plInv, MANAGER, 2, token);
+		super(ArtifactMenuRegistry.MT_FILTER.get(), wid, plInv, MANAGER, 2, token, false);
 		this.addSlot("input", e -> token.list.size() < getMaxSize() &&
 				(e.getItem() instanceof BaseArtifact || e.getItem() instanceof RandomArtifactItem));
 		this.addSlot("output", e -> false);

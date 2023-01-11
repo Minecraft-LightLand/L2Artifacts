@@ -36,7 +36,7 @@ public enum LangData {
 	UPGRADE_STAT("tooltip.enhance.stat", "Next upgraded sub stat will be %s.", 1, null),
 	UPGRADE_MAIN("tooltip.enhance.main", "Next %s upgraded main stat will be maximized.", 1, null),
 	UPGRADE_SUB("tooltip.enhance.sub", "Next %s upgraded sub stat will be maximized.", 1, null),
-	ALL_SET_EFFECTS("set.all_set_effects", "Set %s: %s piece(s)", 2, null),
+	ALL_SET_EFFECTS("set.all_set_effects", "%s: %s piece(s)", 2, null),
 
 	TITLE_SELECT_SET("title.select_set", "Select Artifact Set", 0, null),
 	TITLE_SELECT_SLOT("title.select_slot", "Select Artifact Slot", 0, null),
@@ -86,8 +86,8 @@ public enum LangData {
 		return name.toLowerCase(Locale.ROOT);
 	}
 
-	public static MutableComponent getTranslate(String s) {
-		return MutableComponent.create(new TranslatableContents(L2Artifacts.MODID + "." + s));
+	public static MutableComponent getTranslate(String s, Object... args) {
+		return MutableComponent.create(new TranslatableContents(L2Artifacts.MODID + "." + s, args));
 	}
 
 	public MutableComponent get(Object... args) {
@@ -109,10 +109,10 @@ public enum LangData {
 		pvd.add("attribute.name.crit_damage", "Crit Damage");
 		pvd.add("attribute.name.bow_strength", "Bow Strength");
 		pvd.add("l2artifacts.set.1", "When Equip: ");
-		pvd.add("l2artifacts.set.2", "When Equip 2 of this Set: ");
-		pvd.add("l2artifacts.set.3", "When Equip 3 of this Set: ");
-		pvd.add("l2artifacts.set.4", "When Equip 4 of this Set: ");
-		pvd.add("l2artifacts.set.5", "When Equip 5 of this Set: ");
+		pvd.add("l2artifacts.set.2", "(2/%s) Set Bonus: ");
+		pvd.add("l2artifacts.set.3", "(3/%s) Set Bonus: ");
+		pvd.add("l2artifacts.set.4", "(4/%s) Set Bonus: ");
+		pvd.add("l2artifacts.set.5", "(5/%s) Set Bonus: ");
 		pvd.add("menu.tabs.set_effects", "Activated Set Effects");
 
 	}

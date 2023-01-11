@@ -132,10 +132,11 @@ dependencies {
     annotationProcessor "org.spongepowered:mixin:${mixin_version}:processor"
 
     implementation fg.deobf("dev.xkmc.l2library:l2library:${l2library_version}")
-    runtimeOnly fg.deobf('dev.xkmc.l2backpack:l2backpack:1.6.1')
+    implementation fg.deobf("dev.xkmc.l2complements:l2complements:1.0.0")
     implementation fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}")
     implementation fg.deobf("mezz.jei:jei-${jei_minecraft_version}:${jei_version}")
 
+    runtimeOnly fg.deobf('dev.xkmc.l2backpack:l2backpack:1.6.1')
     //runtimeOnly fg.deobf("top.theillusivec4.caelus:caelus-forge:${caelus_version}")
     runtimeOnly fg.deobf('curse.maven:wthit-forge-455982:3906013')
     runtimeOnly fg.deobf('curse.maven:badpackets-615134:3903799')

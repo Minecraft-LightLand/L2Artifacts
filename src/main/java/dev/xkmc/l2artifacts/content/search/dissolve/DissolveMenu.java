@@ -8,11 +8,9 @@ import dev.xkmc.l2artifacts.init.L2Artifacts;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactMenuRegistry;
 import dev.xkmc.l2library.base.menu.SpriteManager;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.Container;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.DataSlot;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.ItemStack;
@@ -32,7 +30,7 @@ public class DissolveMenu extends AbstractScrollerMenu<DissolveMenu> {
 	private int selected = -1;
 
 	public DissolveMenu(int wid, Inventory plInv, ArtifactChestToken token) {
-		super(ArtifactMenuRegistry.MT_DISSOLVE.get(), wid, plInv, MANAGER, 2, token);
+		super(ArtifactMenuRegistry.MT_DISSOLVE.get(), wid, plInv, MANAGER, 2, token, false);
 		this.addSlot("input", e -> e.getItem() instanceof StatContainerItem && StatContainerItem.getType(e).isEmpty());
 		this.addSlot("output", e -> false);
 		this.addSlot("grid", e -> false, e -> e.setPickup(() -> false));
@@ -93,22 +91,8 @@ public class DissolveMenu extends AbstractScrollerMenu<DissolveMenu> {
 	}
 
 	@Override
-	public void removed(Player player) {
-		if (!player.level.isClientSide()) {
-			clearSlot(player, this.container, 0);
-		}
-		super.removed(player);
-	}
-
-	public static void clearSlot(Player pPlayer, Container pContainer, int index) {
-		if (!pPlayer.isAlive() || pPlayer instanceof ServerPlayer && ((ServerPlayer) pPlayer).hasDisconnected()) {
-			pPlayer.drop(pContainer.removeItemNoUpdate(index), false);
-		} else {
-			Inventory inventory = pPlayer.getInventory();
-			if (inventory.player instanceof ServerPlayer) {
-				inventory.placeItemBackInInventory(pContainer.removeItemNoUpdate(index));
-			}
-		}
+	protected boolean shouldClear(Container container, int slot) {
+		return slot == 0;
 	}
 
 }

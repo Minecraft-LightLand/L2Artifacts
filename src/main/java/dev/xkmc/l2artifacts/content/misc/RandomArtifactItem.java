@@ -1,24 +1,21 @@
 package dev.xkmc.l2artifacts.content.misc;
 
+import dev.xkmc.l2artifacts.content.core.RankedItem;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
 import net.minecraft.stats.Stats;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 
 import java.util.Arrays;
 
-public class RandomArtifactItem extends Item {
-
-	public final int rank;
+public class RandomArtifactItem extends RankedItem {
 
 	public RandomArtifactItem(Properties props, int rank) {
-		super(props);
-		this.rank = rank;
+		super(props, rank);
 	}
 
 	@Override

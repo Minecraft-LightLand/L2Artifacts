@@ -7,6 +7,7 @@ import dev.xkmc.l2artifacts.content.search.common.IFilterMenu;
 import dev.xkmc.l2artifacts.content.search.dissolve.DissolveMenu;
 import dev.xkmc.l2artifacts.content.search.fitered.FilteredMenu;
 import dev.xkmc.l2artifacts.content.search.recycle.RecycleMenu;
+import dev.xkmc.l2artifacts.content.search.shape.ShapeMenu;
 import dev.xkmc.l2artifacts.content.search.token.ArtifactChestToken;
 import dev.xkmc.l2artifacts.content.search.upgrade.UpgradeMenu;
 import dev.xkmc.l2library.serial.SerialClass;
@@ -29,7 +30,8 @@ public class SetFilterToServer extends SerialPacketBase {
 		RECYCLE(RecycleMenu::new),
 		UPGRADE(UpgradeMenu::new),
 		DISSOLVE(DissolveMenu::new),
-		AUGMENT(AugmentMenu::new);
+		AUGMENT(AugmentMenu::new),
+		SHAPE(ShapeMenu::new);
 
 		private final ArtifactChestMenuPvd.Factory factory;
 

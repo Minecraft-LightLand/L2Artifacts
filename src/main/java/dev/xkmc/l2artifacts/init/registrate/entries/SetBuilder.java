@@ -28,6 +28,8 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Objects;
 import java.util.function.Consumer;
 
+import static dev.xkmc.l2artifacts.init.registrate.ArtifactItemRegistry.RANK_NAME;
+
 public class SetBuilder<T extends ArtifactSet, I extends BaseArtifact, P> extends AbstractBuilder<ArtifactSet, T, P, SetBuilder<T, I, P>> {
 
 	private final NonNullSupplier<T> sup;
@@ -76,7 +78,7 @@ public class SetBuilder<T extends ArtifactSet, I extends BaseArtifact, P> extend
 								.texture("layer0", new ResourceLocation(L2Artifacts.MODID, "item/rank/" + rank))
 								.texture("layer1", new ResourceLocation(L2Artifacts.MODID, "item/" + getName() + "/" + slot_name)))
 						.tag(curios_tag, slot_tag, rank_tag, artifact).lang(RegistrateLangProvider
-								.toEnglishName(this.getName() + "_" + slot_name) + " Lv." + r).register();
+								.toEnglishName(this.getName() + "_" + slot_name) + RANK_NAME[r - 1]).register();
 			}
 		}
 		return this;
@@ -97,6 +99,6 @@ public class SetBuilder<T extends ArtifactSet, I extends BaseArtifact, P> extend
 	}
 
 	public SetBuilder<T, I, P> lang(String name) {
-		return this.lang(NamedEntry::getDescriptionId, RegistrateLangProvider.toEnglishName(name));
+		return this.lang(NamedEntry::getDescriptionId, name);
 	}
 }

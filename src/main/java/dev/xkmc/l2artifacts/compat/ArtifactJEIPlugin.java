@@ -9,10 +9,11 @@ import dev.xkmc.l2artifacts.content.search.upgrade.UpgradeMenuScreen;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
+import mezz.jei.api.gui.handlers.IGuiProperties;
 import mezz.jei.api.registration.IGuiHandlerRegistration;
-import mezz.jei.gui.GuiProperties;
 import net.minecraft.resources.ResourceLocation;
-import org.jetbrains.annotations.Nullable;
+
+import javax.annotation.Nullable;
 
 @JeiPlugin
 public class ArtifactJEIPlugin implements IModPlugin {
@@ -33,9 +34,8 @@ public class ArtifactJEIPlugin implements IModPlugin {
 		registration.addGuiScreenHandler(AugmentMenuScreen.class, ArtifactJEIPlugin::create);
 	}
 
-
 	@Nullable
-	public static GuiProperties create(IFilterScreen screen) {
+	public static IGuiProperties create(IFilterScreen screen) {
 		if (screen.screenWidth() <= 0 || screen.screenHeight() <= 0) {
 			return null;
 		}
@@ -51,6 +51,5 @@ public class ArtifactJEIPlugin implements IModPlugin {
 				screen.screenWidth(), screen.screenHeight()
 		);
 	}
-
 
 }

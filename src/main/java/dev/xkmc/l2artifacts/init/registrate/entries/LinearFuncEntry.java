@@ -1,8 +1,8 @@
 package dev.xkmc.l2artifacts.init.registrate.entries;
 
+import com.tterrag.registrate.util.entry.RegistryEntry;
 import dev.xkmc.l2artifacts.content.core.LinearFuncHandle;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactRegistrate;
-import dev.xkmc.l2library.repack.registrate.util.entry.RegistryEntry;
 import net.minecraftforge.registries.RegistryObject;
 
 public class LinearFuncEntry extends RegistryEntry<LinearFuncHandle> {

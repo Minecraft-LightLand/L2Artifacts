@@ -1,12 +1,12 @@
 package dev.xkmc.l2artifacts.content.effects.v4;
 
 
-import dev.xkmc.l2artifacts.content.capability.ArtifactData;
 import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
 import dev.xkmc.l2artifacts.content.effects.attribute.AbstractConditionalAttributeSetEffect;
 import dev.xkmc.l2artifacts.content.effects.attribute.AttrSetEntry;
 import dev.xkmc.l2artifacts.content.effects.attribute.AttributeSetData;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactItemRegistry;
+import dev.xkmc.l2library.capability.conditionals.ConditionalData;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.entity.EntitySelector;
@@ -28,8 +28,8 @@ public class LongShooterEffect extends AbstractConditionalAttributeSetEffect<Att
 		if (!enabled) return;
 		if (player.tickCount % 10 != 0) return;
 		if (player.getLevel().getEntities(EntityTypeTest.forClass(Monster.class), new AABB(player.getPosition(0), player.getPosition(0)).inflate(8), EntitySelector.NO_SPECTATORS).isEmpty()) {
-			if (!ArtifactData.HOLDER.get(player).hasData(ArtifactItemRegistry.EFF_LONGSHOOTER_4.get())) {
-				AttributeSetData data = ArtifactData.HOLDER.get(player).getOrCreateData(this, ent);
+			if (!ConditionalData.HOLDER.get(player).hasData(ArtifactItemRegistry.EFF_LONGSHOOTER_4.get().getKey())) {
+				AttributeSetData data = ConditionalData.HOLDER.get(player).getOrCreateData(this, ent);
 				data.update(11, rank);
 				addAttributes(player, ent, rank, data);
 			}

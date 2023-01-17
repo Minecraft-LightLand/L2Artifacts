@@ -1,9 +1,10 @@
 package dev.xkmc.l2artifacts.content.config;
 
+import com.tterrag.registrate.providers.RegistrateLangProvider;
 import dev.xkmc.l2artifacts.content.core.ArtifactSet;
 import dev.xkmc.l2artifacts.content.effects.SetEffect;
 import dev.xkmc.l2artifacts.network.NetworkManager;
-import dev.xkmc.l2library.repack.registrate.providers.RegistrateLangProvider;
+import dev.xkmc.l2library.capability.conditionals.Context;
 import dev.xkmc.l2library.serial.SerialClass;
 import dev.xkmc.l2library.serial.network.BaseConfig;
 import dev.xkmc.l2library.util.math.MathHelper;
@@ -33,7 +34,7 @@ public class ArtifactSetConfig extends BaseConfig {
 	public HashMap<ArtifactSet, ArrayList<Entry>> map = new HashMap<>();
 
 	@SerialClass
-	public static class Entry implements Comparable<Entry> {
+	public static class Entry implements Comparable<Entry>, Context {
 
 		@SerialClass.SerialField
 		public int count;

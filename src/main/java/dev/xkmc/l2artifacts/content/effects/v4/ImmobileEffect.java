@@ -1,9 +1,9 @@
 package dev.xkmc.l2artifacts.content.effects.v4;
 
-import dev.xkmc.l2artifacts.content.capability.ArtifactData;
 import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
 import dev.xkmc.l2artifacts.content.effects.PersistentDataSetEffect;
 import dev.xkmc.l2artifacts.init.registrate.entries.LinearFuncEntry;
+import dev.xkmc.l2library.capability.conditionals.ConditionalData;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.entity.player.Player;
@@ -27,7 +27,7 @@ public class ImmobileEffect extends PersistentDataSetEffect<ImmobileData> {
 	@Override
 	public void tick(Player player, ArtifactSetConfig.Entry ent, int rank, boolean enabled) {
 		if (!enabled) return;
-		ImmobileData data = ArtifactData.HOLDER.get(player).getOrCreateData(this, ent);
+		ImmobileData data = ConditionalData.HOLDER.get(player).getOrCreateData(this, ent);
 		data.update(2, rank);
 		double x = player.getX();
 		double y = player.getY();
@@ -50,7 +50,7 @@ public class ImmobileEffect extends PersistentDataSetEffect<ImmobileData> {
 
 	@Override
 	public void playerHurtEvent(Player player, ArtifactSetConfig.Entry ent, int rank, LivingHurtEvent event) {
-		ImmobileData data = ArtifactData.HOLDER.get(player).getData(this);
+		ImmobileData data = ConditionalData.HOLDER.get(player).getData(this.getKey());
 		if (data == null) return;
 		if (data.time >= threshold.getFromRank(rank)) {
 			event.setAmount((float) (event.getAmount() * protection.getFromRank(rank)));

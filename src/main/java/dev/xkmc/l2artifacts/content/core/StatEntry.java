@@ -1,6 +1,6 @@
 package dev.xkmc.l2artifacts.content.core;
 
-import dev.xkmc.l2library.repack.registrate.providers.RegistrateLangProvider;
+import com.tterrag.registrate.providers.RegistrateLangProvider;
 import dev.xkmc.l2library.serial.SerialClass;
 import dev.xkmc.l2library.util.math.MathHelper;
 import net.minecraft.network.chat.Component;

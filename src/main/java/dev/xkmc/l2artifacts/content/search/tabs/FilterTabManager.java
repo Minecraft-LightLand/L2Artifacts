@@ -55,8 +55,8 @@ public class FilterTabManager {
 		for (int i = 0; i < token_list.size(); i++) {
 			FilterTabToken<?> token = token_list.get(i);
 			FilterTabBase<?> tab = token.create(i, this);
-			tab.x = guiLeft + imgWidth + FilterTabType.RIGHT.getX(tab.index);
-			tab.y = guiTop + FilterTabType.RIGHT.getY(tab.index);
+			tab.setX(guiLeft + imgWidth + FilterTabType.RIGHT.getX(tab.index));
+			tab.setY(guiTop + FilterTabType.RIGHT.getY(tab.index));
 			adder.accept(tab);
 			list.add(tab);
 		}

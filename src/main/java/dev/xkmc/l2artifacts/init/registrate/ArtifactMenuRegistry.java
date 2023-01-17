@@ -1,5 +1,6 @@
 package dev.xkmc.l2artifacts.init.registrate;
 
+import com.tterrag.registrate.util.entry.MenuEntry;
 import dev.xkmc.l2artifacts.content.search.augment.AugmentMenu;
 import dev.xkmc.l2artifacts.content.search.augment.AugmentMenuScreen;
 import dev.xkmc.l2artifacts.content.search.dissolve.DissolveMenu;
@@ -10,7 +11,6 @@ import dev.xkmc.l2artifacts.content.search.recycle.RecycleMenu;
 import dev.xkmc.l2artifacts.content.search.recycle.RecycleMenuScreen;
 import dev.xkmc.l2artifacts.content.search.upgrade.UpgradeMenu;
 import dev.xkmc.l2artifacts.content.search.upgrade.UpgradeMenuScreen;
-import dev.xkmc.l2library.repack.registrate.util.entry.MenuEntry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraftforge.registries.ForgeRegistries;

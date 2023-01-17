@@ -1,5 +1,12 @@
 package dev.xkmc.l2artifacts.init.registrate.entries;
 
+import com.tterrag.registrate.builders.AbstractBuilder;
+import com.tterrag.registrate.builders.BuilderCallback;
+import com.tterrag.registrate.providers.RegistrateLangProvider;
+import com.tterrag.registrate.util.entry.ItemEntry;
+import com.tterrag.registrate.util.entry.RegistryEntry;
+import com.tterrag.registrate.util.nullness.NonNullSupplier;
+import com.tterrag.registrate.util.nullness.NonnullType;
 import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
 import dev.xkmc.l2artifacts.content.core.ArtifactSet;
 import dev.xkmc.l2artifacts.content.core.ArtifactSlot;
@@ -8,13 +15,6 @@ import dev.xkmc.l2artifacts.init.L2Artifacts;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactRegistrate;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactTypeRegistry;
 import dev.xkmc.l2library.base.NamedEntry;
-import dev.xkmc.l2library.repack.registrate.builders.AbstractBuilder;
-import dev.xkmc.l2library.repack.registrate.builders.BuilderCallback;
-import dev.xkmc.l2library.repack.registrate.providers.RegistrateLangProvider;
-import dev.xkmc.l2library.repack.registrate.util.entry.ItemEntry;
-import dev.xkmc.l2library.repack.registrate.util.entry.RegistryEntry;
-import dev.xkmc.l2library.repack.registrate.util.nullness.NonNullSupplier;
-import dev.xkmc.l2library.repack.registrate.util.nullness.NonnullType;
 import dev.xkmc.l2library.util.code.Wrappers;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;

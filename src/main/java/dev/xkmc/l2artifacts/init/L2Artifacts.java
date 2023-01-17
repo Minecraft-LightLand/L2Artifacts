@@ -1,6 +1,6 @@
 package dev.xkmc.l2artifacts.init;
 
-import dev.xkmc.l2artifacts.content.capability.ArtifactData;
+import com.tterrag.registrate.providers.ProviderType;
 import dev.xkmc.l2artifacts.events.ArtifactEffectEvents;
 import dev.xkmc.l2artifacts.events.CommonEvents;
 import dev.xkmc.l2artifacts.events.CraftEvents;
@@ -17,16 +17,13 @@ import dev.xkmc.l2artifacts.init.registrate.ArtifactTypeRegistry;
 import dev.xkmc.l2artifacts.network.NetworkManager;
 import dev.xkmc.l2library.base.tabs.contents.AttributeEntry;
 import dev.xkmc.l2library.init.events.attack.AttackEventHandler;
-import dev.xkmc.l2library.repack.registrate.providers.ProviderType;
 import dev.xkmc.l2library.serial.handler.RLClassHandler;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.attributes.Attribute;
-import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.event.entity.EntityAttributeModificationEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -54,7 +51,6 @@ public class L2Artifacts {
 		NetworkManager.register();
 		REGISTRATE.addDataGenerator(ProviderType.LANG, LangData::genLang);
 		REGISTRATE.addDataGenerator(ProviderType.RECIPE, RecipeGen::genRecipe);
-		ArtifactData.register();
 		new RLClassHandler<>(Attribute.class, () -> ForgeRegistries.ATTRIBUTES);
 	}
 

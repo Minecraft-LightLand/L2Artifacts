@@ -1,5 +1,6 @@
 package dev.xkmc.l2artifacts.init.registrate;
 
+import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import dev.xkmc.l2artifacts.content.core.ArtifactSet;
 import dev.xkmc.l2artifacts.content.core.BaseArtifact;
 import dev.xkmc.l2artifacts.content.core.LinearFuncHandle;
@@ -7,7 +8,6 @@ import dev.xkmc.l2artifacts.content.effects.SetEffect;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
 import dev.xkmc.l2artifacts.init.registrate.entries.*;
 import dev.xkmc.l2library.base.L2Registrate;
-import dev.xkmc.l2library.repack.registrate.util.nullness.NonNullSupplier;
 import net.minecraft.resources.ResourceLocation;
 
 import java.util.ArrayList;

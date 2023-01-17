@@ -22,7 +22,7 @@ public class ModClient {
 	@SubscribeEvent
 	public static void clientSetup(FMLClientSetupEvent event) {
 		event.enqueueWork(() -> {
-			TAB_SET_EFFECTS = TabRegistry.registerTab(TabSetEffects::new, () -> ArtifactItemRegistry.TAB_ARTIFACT.makeIcon().getItem(),
+			TAB_SET_EFFECTS = TabRegistry.registerTab(TabSetEffects::new, () -> ArtifactItemRegistry.SET_GAMBLER.items[0][0].get(),
 					Component.translatable("menu.tabs.set_effects"));
 		});
 	}

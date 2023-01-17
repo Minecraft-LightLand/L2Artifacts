@@ -8,7 +8,7 @@ import net.minecraftforge.common.data.GlobalLootModifierProvider;
 public class ArtifactGLMProvider extends GlobalLootModifierProvider {
 
 	public ArtifactGLMProvider(DataGenerator gen) {
-		super(gen, L2Artifacts.MODID);
+		super(gen.getPackOutput(), L2Artifacts.MODID);
 	}
 
 	@Override

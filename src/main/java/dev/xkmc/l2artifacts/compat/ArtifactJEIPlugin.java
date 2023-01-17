@@ -10,7 +10,7 @@ import dev.xkmc.l2artifacts.init.L2Artifacts;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.registration.IGuiHandlerRegistration;
-import mezz.jei.common.gui.GuiProperties;
+import mezz.jei.gui.GuiProperties;
 import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.Nullable;
 

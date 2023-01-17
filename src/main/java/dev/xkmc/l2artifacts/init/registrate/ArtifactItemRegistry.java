@@ -1,5 +1,7 @@
 package dev.xkmc.l2artifacts.init.registrate;
 
+import com.tterrag.registrate.util.entry.ItemEntry;
+import com.tterrag.registrate.util.entry.RegistryEntry;
 import dev.xkmc.l2artifacts.content.core.ArtifactSet;
 import dev.xkmc.l2artifacts.content.effects.attribute.AttrSetEntry;
 import dev.xkmc.l2artifacts.content.effects.attribute.AttributeSetEffect;
@@ -20,8 +22,6 @@ import dev.xkmc.l2artifacts.content.upgrades.UpgradeBoostItem;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
 import dev.xkmc.l2artifacts.init.registrate.entries.LinearFuncEntry;
 import dev.xkmc.l2artifacts.init.registrate.entries.SetEntry;
-import dev.xkmc.l2library.repack.registrate.util.entry.ItemEntry;
-import dev.xkmc.l2library.repack.registrate.util.entry.RegistryEntry;
 import dev.xkmc.l2library.util.code.Wrappers;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -30,9 +30,7 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.tags.ITagManager;
@@ -49,10 +47,8 @@ public class ArtifactItemRegistry {
 
 	public static final String[] RANK_NAME = {" -Common-", " =Rare=", " >Epic<", " »Legendary«", " -»Godly«-"};
 
-	public static final Tab TAB_ARTIFACT = new Tab("artifacts");
-
 	static {
-		REGISTRATE.creativeModeTab(() -> TAB_ARTIFACT);
+		REGISTRATE.creativeModeTab("artifacts", b -> b.icon(() -> ArtifactItemRegistry.SET_GAMBLER.items[0][0].asStack()));
 	}
 
 	public static final ItemEntry<SelectArtifactItem> SELECT;
@@ -696,18 +692,6 @@ public class ArtifactItemRegistry {
 
 	public static void register() {
 
-	}
-
-	public static class Tab extends CreativeModeTab {
-
-		public Tab(String label) {
-			super(L2Artifacts.MODID + "." + label);
-		}
-
-		@Override
-		public ItemStack makeIcon() {
-			return SET_GAMBLER.items[0][0].asStack();
-		}
 	}
 
 }

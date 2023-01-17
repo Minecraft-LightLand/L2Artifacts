@@ -1,13 +1,12 @@
 package dev.xkmc.l2artifacts.content.client.tooltip;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.math.Matrix4f;
 import net.minecraft.client.gui.Font;
-import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.world.item.ItemStack;
+import org.joml.Matrix4f;
 
 public record ClientItemTooltip(ItemTooltip items) implements ClientTooltipComponent {
 

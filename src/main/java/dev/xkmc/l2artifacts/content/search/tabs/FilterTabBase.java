@@ -10,6 +10,8 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 
+import java.util.function.Supplier;
+
 public abstract class FilterTabBase<T extends FilterTabBase<T>> extends Button {
 
 	private final static ResourceLocation TEXTURE = new ResourceLocation(L2Artifacts.MODID, "textures/gui/tabs.png");
@@ -21,7 +23,7 @@ public abstract class FilterTabBase<T extends FilterTabBase<T>> extends Button {
 
 	@SuppressWarnings("unchecked")
 	public FilterTabBase(int index, FilterTabToken<T> token, FilterTabManager manager, ItemStack stack, Component title) {
-		super(0, 0, 32, 28, title, b -> ((T) b).onTabClicked());
+		super(0, 0, 32, 28, title, b -> ((T) b).onTabClicked(), Supplier::get);
 		this.index = index;
 		this.stack = stack;
 		this.token = token;
@@ -40,9 +42,9 @@ public abstract class FilterTabBase<T extends FilterTabBase<T>> extends Button {
 			RenderSystem.enableBlend();
 			RenderSystem.setShader(GameRenderer::getPositionTexShader);
 			RenderSystem.setShaderTexture(0, TEXTURE);
-			token.type.draw(stack, manager.getScreen(), x, y, manager.selected == token, index);
+			token.type.draw(stack, manager.getScreen(), getX(), getY(), manager.selected == token, index);
 			RenderSystem.defaultBlendFunc();
-			token.type.drawIcon(x, y, index, Minecraft.getInstance().getItemRenderer(), this.stack);
+			token.type.drawIcon(getX(), getY(), index, Minecraft.getInstance().getItemRenderer(), this.stack);
 		}
 		if (this == manager.list.get(manager.list.size() - 1)) { // draw on last
 			manager.onToolTipRender(stack, mouseX, mouseY);

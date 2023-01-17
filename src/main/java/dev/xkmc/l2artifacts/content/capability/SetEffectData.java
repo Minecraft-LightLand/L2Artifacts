@@ -1,10 +1,12 @@
 package dev.xkmc.l2artifacts.content.capability;
 
+import dev.xkmc.l2library.capability.conditionals.ConditionalData;
+import dev.xkmc.l2library.capability.conditionals.ConditionalToken;
 import dev.xkmc.l2library.serial.SerialClass;
 import net.minecraft.world.entity.player.Player;
 
 @SerialClass
-public class SetEffectData {
+public class SetEffectData extends ConditionalToken {
 
 	@SerialClass.SerialField
 	public int life, rank;

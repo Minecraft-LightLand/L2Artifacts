@@ -8,6 +8,8 @@ import dev.xkmc.l2artifacts.content.search.fitered.FilteredMenu;
 import dev.xkmc.l2artifacts.content.search.fitered.FilteredMenuScreen;
 import dev.xkmc.l2artifacts.content.search.recycle.RecycleMenu;
 import dev.xkmc.l2artifacts.content.search.recycle.RecycleMenuScreen;
+import dev.xkmc.l2artifacts.content.search.shape.ShapeMenu;
+import dev.xkmc.l2artifacts.content.search.shape.ShapeMenuScreen;
 import dev.xkmc.l2artifacts.content.search.upgrade.UpgradeMenu;
 import dev.xkmc.l2artifacts.content.search.upgrade.UpgradeMenuScreen;
 import dev.xkmc.l2library.repack.registrate.util.entry.MenuEntry;
@@ -42,6 +44,11 @@ public class ArtifactMenuRegistry {
 	public static final MenuEntry<AugmentMenu> MT_AUGMENT = REGISTRATE.menu("augment",
 					AugmentMenu::fromNetwork,
 					() -> AugmentMenuScreen::new)
+			.lang(ArtifactMenuRegistry::getLangKey).register();
+
+	public static final MenuEntry<ShapeMenu> MT_SHAPE = REGISTRATE.menu("shape",
+					ShapeMenu::fromNetwork,
+					() -> ShapeMenuScreen::new)
 			.lang(ArtifactMenuRegistry::getLangKey).register();
 
 	public static String getLangKey(MenuType<?> menu) {

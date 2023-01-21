@@ -2,6 +2,7 @@ package dev.xkmc.l2artifacts.content.search.dissolve;
 
 import dev.xkmc.l2artifacts.content.core.BaseArtifact;
 import dev.xkmc.l2artifacts.content.search.common.AbstractScrollerMenu;
+import dev.xkmc.l2artifacts.content.search.common.IntDataSlot;
 import dev.xkmc.l2artifacts.content.search.token.ArtifactChestToken;
 import dev.xkmc.l2artifacts.content.upgrades.StatContainerItem;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
@@ -11,7 +12,6 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.Container;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.inventory.DataSlot;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.ItemStack;
 
@@ -25,16 +25,16 @@ public class DissolveMenu extends AbstractScrollerMenu<DissolveMenu> {
 		return new DissolveMenu(wid, plInv, ArtifactChestToken.of(plInv.player, hand));
 	}
 
-	protected final DataSlot select_index;
+	protected final IntDataSlot select_index;
 
 	private int selected = -1;
 
 	public DissolveMenu(int wid, Inventory plInv, ArtifactChestToken token) {
-		super(ArtifactMenuRegistry.MT_DISSOLVE.get(), wid, plInv, MANAGER, 2, token, false);
+		super(ArtifactMenuRegistry.MT_DISSOLVE.get(), wid, plInv, MANAGER, 2, token, true);
 		this.addSlot("input", e -> e.getItem() instanceof StatContainerItem && StatContainerItem.getType(e).isEmpty());
 		this.addSlot("output", e -> false);
 		this.addSlot("grid", e -> false, e -> e.setPickup(() -> false));
-		this.select_index = addDataSlot(DataSlot.standalone());
+		this.select_index = new IntDataSlot(this);
 		reload(true);
 	}
 

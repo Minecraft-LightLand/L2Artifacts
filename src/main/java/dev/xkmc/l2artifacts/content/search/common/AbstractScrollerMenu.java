@@ -4,18 +4,19 @@ import dev.xkmc.l2artifacts.content.search.token.ArtifactChestToken;
 import dev.xkmc.l2library.base.menu.BaseContainerMenu;
 import dev.xkmc.l2library.base.menu.SpriteManager;
 import dev.xkmc.l2library.base.menu.scroller.ScrollerMenu;
+import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.inventory.DataSlot;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.ItemStack;
 
-public abstract class AbstractScrollerMenu<T extends AbstractScrollerMenu<T>> extends BaseContainerMenu<T> implements ScrollerMenu, IFilterMenu {
+public abstract class AbstractScrollerMenu<T extends AbstractScrollerMenu<T>> extends BaseContainerMenu<T>
+		implements ScrollerMenu, IFilterMenu {
 
 	public final ArtifactChestToken token;
-	public final DataSlot total_count;
-	public final DataSlot current_count;
-	public final DataSlot experience;
+	public final IntDataSlot total_count;
+	public final IntDataSlot current_count;
+	public final IntDataSlot experience;
 
 	protected final Player player;
 
@@ -29,9 +30,9 @@ public abstract class AbstractScrollerMenu<T extends AbstractScrollerMenu<T>> ex
 		this.token = token;
 		this.player = plInv.player;
 		this.extra = extra;
-		this.total_count = addDataSlot(DataSlot.standalone());
-		this.current_count = addDataSlot(DataSlot.standalone());
-		this.experience = addDataSlot(DataSlot.standalone());
+		this.total_count = new IntDataSlot(this);
+		this.current_count = new IntDataSlot(this);
+		this.experience = new IntDataSlot(this);
 	}
 
 	protected void reload(boolean changeContent) {
@@ -90,4 +91,8 @@ public abstract class AbstractScrollerMenu<T extends AbstractScrollerMenu<T>> ex
 		return player.getItemInHand(token.hand) == token.stack;
 	}
 
+	@Override
+	protected boolean shouldClear(Container container, int slot) {
+		return slot < extra;
+	}
 }

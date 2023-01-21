@@ -3,6 +3,7 @@ package dev.xkmc.l2artifacts.content.search.upgrade;
 import dev.xkmc.l2artifacts.content.core.BaseArtifact;
 import dev.xkmc.l2artifacts.content.misc.ArtifactChestItem;
 import dev.xkmc.l2artifacts.content.search.common.IFilterMenu;
+import dev.xkmc.l2artifacts.content.search.common.IntDataSlot;
 import dev.xkmc.l2artifacts.content.search.token.ArtifactChestToken;
 import dev.xkmc.l2artifacts.content.upgrades.ArtifactUpgradeManager;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
@@ -31,18 +32,18 @@ public class UpgradeMenu extends BaseContainerMenu<UpgradeMenu> implements IFilt
 	public final ArtifactChestToken token;
 	public final Player player;
 
-	public final DataSlot experience;
-	public final DataSlot exp_cost;
-	public final DataSlot player_cost;
+	public final IntDataSlot experience;
+	public final IntDataSlot exp_cost;
+	public final IntDataSlot player_cost;
 
 	public UpgradeMenu(int wid, Inventory plInv, ArtifactChestToken token) {
 		super(ArtifactMenuRegistry.MT_UPGRADE.get(), wid, plInv, MANAGER, e -> new BaseContainer<>(1, e), true);
 		this.token = token;
 		this.player = plInv.player;
 		addSlot("input", e -> e.getItem() instanceof BaseArtifact);
-		this.experience = addDataSlot(DataSlot.standalone());
-		this.exp_cost = addDataSlot(DataSlot.standalone());
-		this.player_cost = addDataSlot(DataSlot.standalone());
+		this.experience = new IntDataSlot(this);
+		this.exp_cost = new IntDataSlot(this);
+		this.player_cost = new IntDataSlot(this);
 		experience.set(token.exp);
 	}
 

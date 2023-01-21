@@ -4,6 +4,7 @@ import dev.xkmc.l2artifacts.content.core.BaseArtifact;
 import dev.xkmc.l2artifacts.content.misc.ArtifactChestItem;
 import dev.xkmc.l2artifacts.content.misc.ExpItem;
 import dev.xkmc.l2artifacts.content.search.common.AbstractScrollerMenu;
+import dev.xkmc.l2artifacts.content.search.common.IntDataSlot;
 import dev.xkmc.l2artifacts.content.search.token.ArtifactChestToken;
 import dev.xkmc.l2artifacts.content.upgrades.ArtifactUpgradeManager;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
@@ -28,10 +29,10 @@ public class RecycleMenu extends AbstractScrollerMenu<RecycleMenu> {
 		return new RecycleMenu(wid, plInv, ArtifactChestToken.of(plInv.player, hand));
 	}
 
-	public final DataSlot select_count;
-	public final DataSlot to_gain;
+	public final IntDataSlot select_count;
+	public final IntDataSlot to_gain;
 
-	protected final DataSlot sel_0, sel_1;
+	protected final IntDataSlot sel_0, sel_1;
 
 	protected boolean[] selected;
 
@@ -39,10 +40,10 @@ public class RecycleMenu extends AbstractScrollerMenu<RecycleMenu> {
 		super(ArtifactMenuRegistry.MT_RECYCLE.get(), wid, plInv, MANAGER, 1, token, true);
 		this.addSlot("input", e -> e.getItem() instanceof ExpItem);
 		this.addSlot("grid", e -> false, e -> e.setPickup(() -> false));
-		select_count = addDataSlot(DataSlot.standalone());
-		to_gain = addDataSlot(DataSlot.standalone());
-		sel_0 = addDataSlot(DataSlot.standalone());
-		sel_1 = addDataSlot(DataSlot.standalone());
+		select_count = new IntDataSlot(this);
+		to_gain = new IntDataSlot(this);
+		sel_0 = new IntDataSlot(this);
+		sel_1 = new IntDataSlot(this);
 		reload(true);
 	}
 

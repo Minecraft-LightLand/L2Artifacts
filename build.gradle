@@ -136,6 +136,9 @@ dependencies {
     implementation fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}")
     implementation fg.deobf("mezz.jei:jei-${jei_minecraft_version}:${jei_version}")
 
+    compileOnly fg.deobf("vazkii.patchouli:Patchouli:${patchouli_version}:api")
+    runtimeOnly fg.deobf("vazkii.patchouli:Patchouli:${patchouli_version}")
+
     runtimeOnly fg.deobf('dev.xkmc.l2backpack:l2backpack:1.6.1')
     //runtimeOnly fg.deobf("top.theillusivec4.caelus:caelus-forge:${caelus_version}")
     runtimeOnly fg.deobf('curse.maven:wthit-forge-455982:3906013')

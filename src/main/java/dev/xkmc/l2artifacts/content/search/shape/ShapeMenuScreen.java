@@ -1,7 +1,9 @@
 package dev.xkmc.l2artifacts.content.search.shape;
 
 import com.mojang.blaze3d.vertex.PoseStack;
+import dev.xkmc.l2artifacts.content.search.tabs.FilterTabManager;
 import dev.xkmc.l2artifacts.content.search.tabs.IFilterScreen;
+import dev.xkmc.l2artifacts.init.data.LangData;
 import dev.xkmc.l2library.base.menu.BaseContainerScreen;
 import dev.xkmc.l2library.base.menu.SpriteManager;
 import net.minecraft.network.chat.Component;
@@ -12,7 +14,13 @@ import javax.annotation.Nullable;
 public class ShapeMenuScreen extends BaseContainerScreen<ShapeMenu> implements IFilterScreen {
 
 	public ShapeMenuScreen(ShapeMenu cont, Inventory plInv, Component title) {
-		super(cont, plInv, title);
+		super(cont, plInv, LangData.TAB_SHAPE.get());
+	}
+
+	@Override
+	protected final void init() {
+		super.init();
+		new FilterTabManager(this, menu.token).init(this::addRenderableWidget, FilterTabManager.SHAPE);
 	}
 
 	@Override
@@ -43,10 +51,10 @@ public class ShapeMenuScreen extends BaseContainerScreen<ShapeMenu> implements I
 
 	public void drawDisable(SpriteManager.ScreenRenderer sr, PoseStack pose, ShapeSlots slot, int i, @Nullable String altas) {
 		if (slot.get(menu, i).isInputLocked()) {
-			sr.draw(pose, slot.slot(), "toggle_slot_2", -1, -1);
+			sr.draw(pose, slot.slot(), "toggle_slot_2", -1 + i * 18, -1);
 		}
 		if (altas != null && slot.get(menu, i).getItem().isEmpty()) {
-			sr.draw(pose, slot.slot(), altas);
+			sr.draw(pose, slot.slot(), altas, i * 18, 0);
 		}
 	}
 

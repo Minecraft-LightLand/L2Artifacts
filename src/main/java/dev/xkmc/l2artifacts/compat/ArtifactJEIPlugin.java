@@ -4,6 +4,7 @@ import dev.xkmc.l2artifacts.content.search.augment.AugmentMenuScreen;
 import dev.xkmc.l2artifacts.content.search.dissolve.DissolveMenuScreen;
 import dev.xkmc.l2artifacts.content.search.fitered.FilteredMenuScreen;
 import dev.xkmc.l2artifacts.content.search.recycle.RecycleMenuScreen;
+import dev.xkmc.l2artifacts.content.search.shape.ShapeMenuScreen;
 import dev.xkmc.l2artifacts.content.search.tabs.IFilterScreen;
 import dev.xkmc.l2artifacts.content.search.upgrade.UpgradeMenuScreen;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
@@ -31,6 +32,7 @@ public class ArtifactJEIPlugin implements IModPlugin {
 		registration.addGuiScreenHandler(UpgradeMenuScreen.class, ArtifactJEIPlugin::create);
 		registration.addGuiScreenHandler(DissolveMenuScreen.class, ArtifactJEIPlugin::create);
 		registration.addGuiScreenHandler(AugmentMenuScreen.class, ArtifactJEIPlugin::create);
+		registration.addGuiScreenHandler(ShapeMenuScreen.class, ArtifactJEIPlugin::create);
 	}
 
 

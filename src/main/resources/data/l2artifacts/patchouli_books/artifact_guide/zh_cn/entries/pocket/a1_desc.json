@@ -10,9 +10,9 @@
 	  "text": "Artifact Pocket has multiple features:$(li)Store massive amounts of artifacts.$(li)Search and sort artifacts with specified rank, slot, set, and stat types.$(li)Bulk convert unwanted artifacts to artifact exp.$(li)Upgrade artifacts and display stats gained."
 	},
 	{
-	  "type": "patchouli:crafting",
-	  "recipe": "l2artifacts:filter",
-	  "text": "Artifact Pocket is the best way to store and upgrade artifacts. It will automatically reveal the artifact from random artifacts and reveal the stats of unopened artifacts. It can store 256 artifacts (configurable)."
+	  "type": "patchouli:spotlight",
+	  "item": "l2artifacts:upgraded_pocket",
+	  "text": "Artifact Pocket is the best way to store and upgrade artifacts. It will automatically reveal the artifact from random artifacts and reveal the stats of unopened artifacts. It can store 256 artifacts (configurable).$(br2)If you upgrade the artifact pocket, it can store 512 artifacts, and provide 3 more functionalities."
 	}
   ]
 }

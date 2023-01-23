@@ -566,6 +566,8 @@
   "container.l2artifacts.augment": "定向强化",
   "container.l2artifacts.dissolve": "词条溶解",
   "container.l2artifacts.shape": "古遗物重构",
+  "patchouli.l2artifacts.landing": "欢迎来到莱特兰-古遗物",
+  "patchouli.l2artifacts.title": "古遗物教程书",
   "l2artifacts.tooltip.artifact_exp": "经验值: %s/%s",
   "l2artifacts.tooltip.artifact_level": "等级: %s",
   "l2artifacts.tooltip.main_stat": "主词条:",

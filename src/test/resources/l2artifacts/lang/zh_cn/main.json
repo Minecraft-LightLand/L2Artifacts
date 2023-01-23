@@ -21,5 +21,7 @@
 	"augment": "定向强化",
 	"dissolve": "词条溶解",
 	"shape": "古遗物重构"
-  }
+  },
+  "patchouli.l2artifacts.landing": "欢迎来到莱特兰-古遗物",
+  "patchouli.l2artifacts.title": "古遗物教程书"
 }

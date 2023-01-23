@@ -1,0 +1,16 @@
+{
+  "name": "Tab: Genesis",
+  "icon": "l2artifacts:select",
+  "category": "l2artifacts:pocket",
+  "sortnum": 203,
+  "pages": [
+	{
+	  "type": "patchouli:text",
+	  "text": ""
+	},
+	{
+	  "type": "patchouli:text",
+	  "text": ""
+	}
+  ]
+}

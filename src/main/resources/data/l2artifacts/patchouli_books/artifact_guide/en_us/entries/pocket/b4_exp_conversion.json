@@ -1,0 +1,16 @@
+{
+  "name": "Tab: Exp Conversion",
+  "icon": "minecraft:composter",
+  "category": "l2artifacts:pocket",
+  "sortnum": 104,
+  "pages": [
+	{
+	  "type": "patchouli:text",
+	  "text": ""
+	},
+	{
+	  "type": "patchouli:text",
+	  "text": ""
+	}
+  ]
+}

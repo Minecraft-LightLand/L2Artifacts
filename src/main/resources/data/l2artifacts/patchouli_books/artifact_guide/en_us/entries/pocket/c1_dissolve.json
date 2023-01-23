@@ -1,0 +1,16 @@
+{
+  "name": "Tab: Dissolve",
+  "icon": "l2artifacts:stat_container_5",
+  "category": "l2artifacts:pocket",
+  "sortnum": 201,
+  "pages": [
+	{
+	  "type": "patchouli:text",
+	  "text": ""
+	},
+	{
+	  "type": "patchouli:text",
+	  "text": ""
+	}
+  ]
+}

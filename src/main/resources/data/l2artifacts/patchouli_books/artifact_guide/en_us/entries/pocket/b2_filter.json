@@ -1,0 +1,16 @@
+{
+  "name": "Tab: Filter",
+  "icon": "minecraft:hopper",
+  "category": "l2artifacts:pocket",
+  "sortnum": 102,
+  "pages": [
+	{
+	  "type": "patchouli:text",
+	  "text": "This tab allows you to specify what artifacts you want to see in other tabs. You can select any ranks / sets / slots / stat types.$(br2)Artifacts that meet at least one requirement of each filter categories will be displayed.$(br2)For stat types, both main stat type and sub stat types count. You can use sort tab to specify the orders."
+	},
+	{
+	  "type": "patchouli:text",
+	  "text": "When selected, the slot will be blue. When the slot is red, it means that there are no artifacts matching this requirement and all previous requirements.$(br2)You can also use the small blue and red buttons to select all or unselect all entries of a filter category."
+	}
+  ]
+}

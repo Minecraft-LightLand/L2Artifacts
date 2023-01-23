@@ -1,0 +1,16 @@
+{
+  "name": "What is Artifact",
+  "icon": "l2artifacts:saint_head_1",
+  "category": "l2artifacts:general",
+  "sortnum": 1,
+  "pages": [
+	{
+	  "type": "patchouli:text",
+	  "text": "Artifacts are curios equipments that boost player stats such as max health and attack, and provide special buffs when certain conditions are met. $(br2)By collecting powerful artifacts that pair well with each other, player can gain massive advantage in battles against strong enemies."
+	},
+	{
+	  "type": "patchouli:text",
+	  "text": "Artifacts belong to certain set and slot. The slots include Head, Body, Necklace, Bracelet, and Belt. Not all sets will have one artifact for each slots, but most sets do. $(br2)Artifacts also have ranks and levels. Ranks determines the quality of the artifacts. Level of artifacts can be increased through upgrading."
+	}
+  ]
+}

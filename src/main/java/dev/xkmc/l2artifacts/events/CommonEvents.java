@@ -8,9 +8,12 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
+import net.minecraftforge.event.entity.living.LivingEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import top.theillusivec4.curios.api.CuriosCapability;
 import top.theillusivec4.curios.api.type.capability.ICurio;
+import top.theillusivec4.curios.common.event.CuriosEventHandler;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -32,6 +35,12 @@ public class CommonEvents {
 		});
 		Objects.requireNonNull(stats);
 		event.addListener(stats::invalidate);
+	}
+
+	@SubscribeEvent
+	public static void revive(PlayerEvent.PlayerRespawnEvent event){
+		new CuriosEventHandler().tick(new LivingEvent.LivingTickEvent(event.getEntity()));
+		event.getEntity().setHealth(event.getEntity().getMaxHealth());
 	}
 
 }

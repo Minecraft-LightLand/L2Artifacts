@@ -1,0 +1,15 @@
+{
+  "name": "Artifact Stats and Level",
+  "icon": "l2artifacts:berserker_body_1",
+  "category": "l2artifacts:general",
+  "sortnum": 2,
+  "pages": [
+	{
+	  "type": "patchouli:text",
+	  "text": "Each artifact will have 1 main stat and 0-4 sub stats depending on its rank. The possible main stat types are determined purely by the slot of the artifact, and the sub stat types are completely random. $(br2)Be aware of the different stat types. It's better to have artifacts with different stat types, as they could have multiplicative effects."
+	},{
+	  "type": "patchouli:text",
+	  "text": "Leveling up the artifact will increase the value of the main stat. And for every 4 levels, one random sub stat value will also increase. The maximum level is determined by the rank.$(br2)The possible range of base main stat value is higher, but the possible range of value gained by leveling up is the same for main stat and sub stats, as well as the initial sub stat values."
+	}
+  ]
+}

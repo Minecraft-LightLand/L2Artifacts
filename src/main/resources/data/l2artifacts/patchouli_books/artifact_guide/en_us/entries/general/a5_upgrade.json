@@ -1,0 +1,16 @@
+{
+  "name": "Upgrading",
+  "icon": "l2artifacts:artifact_experience_1",
+  "category": "l2artifacts:general",
+  "sortnum": 5,
+  "pages": [
+	{
+	  "type": "patchouli:text",
+	  "text": "Artifacts can be used as materials to upgrade other artifacts. Each artifact will have 2 numbers in its tooltip: the amount of artifact exp to reach the next level, and the amount of artifact exp it can be used as.$(br2)High level artifacts can transfer most of the artifact exp consumed when being used as materials to upgrade other artifacts, so don't worry about upgrading bad artifacts in early game."
+	},
+	{
+	  "type": "patchouli:text",
+	  "text": "To upgrade artifacts, you can either use Anvil or Artifact Pocket. In anvil, put artifacts on the left and materials on the right to upgrade artifacts.$(br2)You can also convert unused artifacts to artifact experience item to store them. Though, Artifact Pocket is still easier to use for storing artifacts, storing artifact exp, and upgrading artifacts."
+	}
+  ]
+}

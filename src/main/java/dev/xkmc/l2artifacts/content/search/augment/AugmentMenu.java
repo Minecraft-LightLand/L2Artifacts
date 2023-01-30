@@ -3,6 +3,7 @@ package dev.xkmc.l2artifacts.content.search.augment;
 import dev.xkmc.l2artifacts.content.core.BaseArtifact;
 import dev.xkmc.l2artifacts.content.misc.ArtifactChestItem;
 import dev.xkmc.l2artifacts.content.search.common.IFilterMenu;
+import dev.xkmc.l2artifacts.content.search.common.IntDataSlot;
 import dev.xkmc.l2artifacts.content.search.token.ArtifactChestToken;
 import dev.xkmc.l2artifacts.content.upgrades.ArtifactUpgradeManager;
 import dev.xkmc.l2artifacts.content.upgrades.StatContainerItem;
@@ -20,7 +21,6 @@ import net.minecraft.world.Container;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.inventory.DataSlot;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.ItemStack;
 
@@ -37,10 +37,10 @@ public class AugmentMenu extends BaseContainerMenu<AugmentMenu> implements IFilt
 	public final ArtifactChestToken token;
 	public final Player player;
 
-	public final DataSlot experience;
-	public final DataSlot exp_cost;
-	public final DataSlot player_cost;
-	public final DataSlot mask;
+	public final IntDataSlot experience;
+	public final IntDataSlot exp_cost;
+	public final IntDataSlot player_cost;
+	public final IntDataSlot mask;
 
 	private final PredSlot input, in_0, in_1, in_2;
 
@@ -55,10 +55,10 @@ public class AugmentMenu extends BaseContainerMenu<AugmentMenu> implements IFilt
 				e -> e.setInputLockPred(this::isSlotLocked));
 		addSlot("in_2", e -> e.getItem() == ArtifactItemRegistry.ITEM_BOOST_SUB[getMainItem().item().rank - 1].get(),
 				e -> e.setInputLockPred(this::isSlotLocked));
-		this.experience = addDataSlot(DataSlot.standalone());
-		this.exp_cost = addDataSlot(DataSlot.standalone());
-		this.player_cost = addDataSlot(DataSlot.standalone());
-		this.mask = addDataSlot(DataSlot.standalone());
+		this.experience = new IntDataSlot(this);
+		this.exp_cost = new IntDataSlot(this);
+		this.player_cost = new IntDataSlot(this);
+		this.mask = new IntDataSlot(this);
 		experience.set(token.exp);
 
 		this.input = getAsPredSlot("input");

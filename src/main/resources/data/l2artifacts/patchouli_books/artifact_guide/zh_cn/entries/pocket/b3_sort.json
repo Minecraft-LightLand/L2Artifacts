@@ -1,0 +1,16 @@
+{
+  "name": "Tab: Sort",
+  "icon": "minecraft:comparator",
+  "category": "l2artifacts:pocket",
+  "sortnum": 103,
+  "pages": [
+	{
+	  "type": "patchouli:text",
+	  "text": "This tab allows you to specify the order to display the artifacts. There is a number for each filter category and each entry in all categories.$(br2)Artifacts that meet requirements with smaller sort index in category with smallest sort index will be displayed first. If 2 artifacts tie in one category, the next category will be used to determine the order."
+	},
+	{
+	  "type": "patchouli:text",
+	  "text": "Click on a category sort number button to set it to the first priority, and all other categories will be shifted behind.$(br2)Click on a filter requirement to set it to the first priority within the category. Then all other requirements will be shifted behind. Unselected requirements in filter tab won't have a sort index."
+	}
+  ]
+}

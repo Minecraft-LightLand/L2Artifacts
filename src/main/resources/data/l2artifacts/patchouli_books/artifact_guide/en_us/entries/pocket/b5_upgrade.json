@@ -1,0 +1,16 @@
+{
+  "name": "Tab: Upgrade",
+  "icon": "minecraft:anvil",
+  "category": "l2artifacts:pocket",
+  "sortnum": 105,
+  "pages": [
+	{
+	  "type": "patchouli:text",
+	  "text": "In this page you can upgrade artifacts using the artifact exp you generated from the exp conversion tab.$(br2)Place the artifact you want to upgrade in the central slot, then click the upward arrow button to upgrade.$(br2)This tab will display the required player levels and artifact exp, which will be consumed."
+	},
+	{
+	  "type": "patchouli:text",
+	  "text": "It will also display the current artifact stats and stat types. When you upgrade the artifact, the gained main stat and sub stat values will also be displayed for a short time."
+	}
+  ]
+}

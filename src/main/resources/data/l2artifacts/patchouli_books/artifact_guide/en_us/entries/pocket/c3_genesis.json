@@ -1,0 +1,16 @@
+{
+  "name": "Advanced Tab: Genesis",
+  "icon": "l2artifacts:select",
+  "category": "l2artifacts:pocket",
+  "sortnum": 203,
+  "pages": [
+	{
+	  "type": "patchouli:text",
+	  "text": "This page allows you to craft artifacts with stats above all artifacts you can possibly get.$(br2)The set, slot, main stat type, and sub stat types are all up to you, and all the initial values for main stat and sub stats will be maximum initial main stat value."
+	},
+	{
+	  "type": "patchouli:text",
+	  "text": "To craft a godly artifact, you need 5 fully upgraded godly artifacts of the same set with different sub stats. You use 1 artifact in the central slot as the base and main stat supplier, and the other 4 as sub stat suppliers. Their main stats will be used as the sub stats of the result artifact.$(br2)Then you need 1 main stat booster, 4 sub stat booster, and 4 stat containers with stat types matching each sub stat supplier."
+	}
+  ]
+}

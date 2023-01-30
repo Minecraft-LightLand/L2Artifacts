@@ -1,0 +1,18 @@
+{
+  "conditions": [
+	{
+	  "type": "forge:mod_loaded",
+	  "modid": "patchouli"
+	}
+  ],
+  "type": "patchouli:shapeless_book_recipe",
+  "ingredients": [
+	{
+	  "item": "minecraft:book"
+	},
+	{
+	  "item": "l2artifacts:artifact_experience_1"
+	}
+  ],
+  "book": "l2artifacts:artifact_guide"
+}

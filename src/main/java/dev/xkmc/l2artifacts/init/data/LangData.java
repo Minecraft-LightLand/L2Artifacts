@@ -49,6 +49,7 @@ public enum LangData {
 	TAB_UPGRADE("title.tab.upgrade", "Upgrade", 0, null),
 	TAB_DISSOLVE("title.tab.dissolve", "Dissolve", 0, null),
 	TAB_AUGMENT("title.tab.augment", "Augment", 0, null),
+	TAB_SHAPE("title.tab.shape", "Genesis", 0, null),
 
 	FILTER_RANK("title.filter.rank", "Rank Filter", 0, null),
 	FILTER_SLOT("title.filter.slot", "Slot Filter", 0, null),
@@ -115,6 +116,7 @@ public enum LangData {
 		pvd.add("l2artifacts.set.5", "(5/%s) Set Bonus: ");
 		pvd.add("menu.tabs.set_effects", "Activated Set Effects");
 
+		PatchouliLang.genLang(pvd);
 	}
 
 }

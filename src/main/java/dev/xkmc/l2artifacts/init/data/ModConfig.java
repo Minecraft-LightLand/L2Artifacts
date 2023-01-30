@@ -27,11 +27,11 @@ public class ModConfig {
 		Common(ForgeConfigSpec.Builder builder) {
 			healthRequirement = builder.comment("max health of mobs required per rank of drop")
 					.defineInRange("healthRequirement", 100, 1, 10000);
-			maxRank = builder.comment("maximum available rank")
+			maxRank = builder.comment("maximum available rank (Not implemented. Don't change.)")
 					.defineInRange("maxRank", 5, 1, 10);
-			maxLevelPerRank = builder.comment("maximum level per rank")
+			maxLevelPerRank = builder.comment("maximum level per rank (Not tested. Don't change)")
 					.defineInRange("maxLevelPerRank", 4, 1, 100);
-			levelPerSubStat = builder.comment("level per sub stats granted")
+			levelPerSubStat = builder.comment("level per sub stats granted (Not Tested. Don't change)")
 					.defineInRange("levelPerSubStat", 4, 1, 100);
 			storageSmall = builder.comment("maximum available slots for artifact pocket")
 					.defineInRange("storageSmall", 256, 64, 1024);

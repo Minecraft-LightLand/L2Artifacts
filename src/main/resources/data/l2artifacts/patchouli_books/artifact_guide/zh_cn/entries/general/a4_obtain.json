@@ -1,0 +1,17 @@
+{
+  "name": "How to Obtain",
+  "icon": "l2artifacts:random_1",
+  "category": "l2artifacts:general",
+  "sortnum": 4,
+  "pages": [
+	{
+	  "type": "patchouli:text",
+	  "text": "Artifacts are dropped when player kills enemies with high health. Enemies with higher health will drop artifacts with higher rank."
+	},
+	{
+	  "type": "patchouli:spotlight",
+	  "item": "l2artifacts:random_1",
+	  "text": "By default, enemies with health 100 or more will drop artifacts of rank Common, and every every 100 more health, the artifact dropped is one rank higher. Enemies with 500 or more health will drop Godly artifacts. This is configurable."
+	}
+  ]
+}

@@ -16,6 +16,12 @@ import java.util.Map;
 @SerialClass
 public class ArtifactStats {
 
+	public static ArtifactStats generate(ArtifactSlot slot, int rank, Upgrade upgrade, RandomSource random) {
+		ArtifactStats ans = new ArtifactStats(slot, rank);
+		slot.generate(ans, upgrade, random);
+		return ans;
+	}
+
 	@SerialClass.SerialField
 	public ArtifactSlot slot;
 
@@ -35,10 +41,9 @@ public class ArtifactStats {
 
 	}
 
-	public ArtifactStats(ArtifactSlot slot, int rank, Upgrade upgrade, RandomSource random) {
+	public ArtifactStats(ArtifactSlot slot, int rank) {
 		this.slot = slot;
 		this.rank = rank;
-		slot.generate(this, upgrade, random);
 	}
 
 	@SerialClass.OnInject

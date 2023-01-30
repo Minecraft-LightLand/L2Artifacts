@@ -1,0 +1,16 @@
+{
+  "name": "Advanced Tab: Augment",
+  "icon": "l2artifacts:boost_main_5",
+  "category": "l2artifacts:pocket",
+  "sortnum": 202,
+  "pages": [
+	{
+	  "type": "patchouli:text",
+	  "text": "This tab is the advanced version of the upgrade tab. While upgrading, you can also add stat boosters or stat containers to reinforce the upgrade.$(br2)The effective upgrade items that will be consumed in the next upgrade will be marked blue."
+	},
+	{
+	  "type": "patchouli:text",
+	  "text": "The stat display will mark the effect of upgrade items.$(li)For Main Stat Booster, the main stat will be highlighted.$(li)For Sub Stat Booster, all sub stat values will be marked, and one random sub stat will be picked.$(li)For Stat Container, the sub stat ame will be marked.$(li)If you use Stat Container with Sub Stat Booster, one sub stat entry will have both stat type and value highlighted."
+	}
+  ]
+}

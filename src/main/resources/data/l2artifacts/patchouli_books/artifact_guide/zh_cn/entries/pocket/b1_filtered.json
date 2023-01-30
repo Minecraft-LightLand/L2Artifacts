@@ -1,0 +1,16 @@
+{
+  "name": "Tab: Artifacts",
+  "icon": "minecraft:chest",
+  "category": "l2artifacts:pocket",
+  "sortnum": 101,
+  "pages": [
+	{
+	  "type": "patchouli:text",
+	  "text": "This tab allows you to insert and extract artifacts. Click the artifact you want, and it will appear at the output slot.$(br2)You can also apply filters and sorters to find the artifacts you want faster."
+	},
+	{
+	  "type": "patchouli:text",
+	  "text": "This page accepts all artifact items and random artifact items. When random artifacts are inserted, they will be automatically unboxed into specific artifacts of certain set and slot. When unopened artifacts are inserted, their stats will also be automatically revealed."
+	}
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "name": "Main Stat Booster",
+  "icon": "l2artifacts:boost_main_3",
+  "category": "l2artifacts:overdrive",
+  "sortnum": 2,
+  "pages": [
+	{
+	  "type": "patchouli:text",
+	  "text": "The value you gain from leveling up an artifact can be quite random. Main Stat Booster can be applied on an artifact of the same rank, such that the next upgrade of this artifact will gain the maximum main stat value."
+	},
+	{
+	  "type": "patchouli:spotlight",
+	  "item": "l2artifacts:boost_main_3",
+	  "text": "Since it's very powerful, it's only craftable if you install L2Complements, which adds a lot of hard to obtain materials."
+	}
+  ]
+}

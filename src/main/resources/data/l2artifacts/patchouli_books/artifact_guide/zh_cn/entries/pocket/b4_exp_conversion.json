@@ -1,0 +1,16 @@
+{
+  "name": "Tab: Exp Conversion",
+  "icon": "minecraft:composter",
+  "category": "l2artifacts:pocket",
+  "sortnum": 104,
+  "pages": [
+	{
+	  "type": "patchouli:text",
+	  "text": "This page allows you to bulk select and dismantle unwanted artifacts, to convert them to artifact exp.$(br2)You can click to select artifacts or drag to select multiple artifacts at once. The artifact exp to be obtained will be shown on the left."
+	},
+	{
+	  "type": "patchouli:text",
+	  "text": "You can use filter page to list only the artifacts you don't want, then use the blue circle button to select all artifacts at once. Then you can click the large cross button to dismantle all.$(br2)You can drag to select in bulk or un-select in bulk. Or use bulk selection / un-selection buttons similar to filter tab."
+	}
+  ]
+}

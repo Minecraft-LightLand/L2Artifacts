@@ -1,0 +1,16 @@
+{
+  "name": "Advanced Tab: Dissolve",
+  "icon": "l2artifacts:stat_container_5",
+  "category": "l2artifacts:pocket",
+  "sortnum": 201,
+  "pages": [
+	{
+	  "type": "patchouli:text",
+	  "text": "This tab allows you to fill the stat container conveniently, as a replacement of the anvil operation.$(br2)Put empty stat container in, and then select the artifact you want to use as material for stat container to absorb, and then take the output."
+	},
+	{
+	  "type": "patchouli:text",
+	  "text": "You can use stat type filter to filter out the stat type you want, and make sure that stat type category is the first priority in sort page. Then artifacts with this stat as main stat will be shown first in this tab."
+	}
+  ]
+}

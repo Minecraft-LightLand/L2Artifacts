@@ -58,7 +58,8 @@
 		"upgrade": "古遗物升级",
 		"sort": "排序设置",
 		"augment": "定向强化",
-		"dissolve": "词条溶解"
+		"dissolve": "词条溶解",
+		"shape": "古遗物重构"
 	  },
 	  "info": {
 		"exp_gain": "可获取经验: %s",

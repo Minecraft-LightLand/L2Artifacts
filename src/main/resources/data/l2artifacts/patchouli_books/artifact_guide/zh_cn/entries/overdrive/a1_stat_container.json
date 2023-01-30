@@ -1,0 +1,17 @@
+{
+  "name": "Stat Container",
+  "icon": "l2artifacts:stat_container_3",
+  "category": "l2artifacts:overdrive",
+  "sortnum": 1,
+  "pages": [
+	{
+	  "type": "patchouli:text",
+	  "text": "Sometimes it's annoying to find that the precious chance of sub stat upgrade ends up being on an unwanted stat type.$(br2)Stat Container can fix this problem: It allows you to dictate which sub stat will receive the next upgrade."
+	},
+	{
+	  "type": "patchouli:spotlight",
+	  "item": "l2artifacts:stat_container_3",
+	  "text": "Stat Container can absorb the main stat of an artifact of the same rank, and then be used on another artifact of the same rank to set the sub stat for next upgrade.$(br2)Since it's very powerful, it's only craftable if you install L2Complements, which adds a lot of hard to obtain materials."
+	}
+  ]
+}

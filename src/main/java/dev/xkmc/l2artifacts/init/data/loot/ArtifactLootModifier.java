@@ -3,7 +3,7 @@ package dev.xkmc.l2artifacts.init.data.loot;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import dev.xkmc.l2artifacts.init.data.ModConfig;
-import dev.xkmc.l2artifacts.init.registrate.ArtifactItemRegistry;
+import dev.xkmc.l2artifacts.init.registrate.items.ArtifactItemRegistry;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;

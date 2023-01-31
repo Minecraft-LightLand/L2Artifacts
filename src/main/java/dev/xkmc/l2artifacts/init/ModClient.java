@@ -3,7 +3,7 @@ package dev.xkmc.l2artifacts.init;
 import dev.xkmc.l2artifacts.content.client.tab.TabSetEffects;
 import dev.xkmc.l2artifacts.content.client.tooltip.ClientItemTooltip;
 import dev.xkmc.l2artifacts.content.client.tooltip.ItemTooltip;
-import dev.xkmc.l2artifacts.init.registrate.ArtifactItemRegistry;
+import dev.xkmc.l2artifacts.init.registrate.items.LAItem0;
 import dev.xkmc.l2library.base.tabs.core.TabRegistry;
 import dev.xkmc.l2library.base.tabs.core.TabToken;
 import net.minecraft.network.chat.Component;
@@ -21,7 +21,7 @@ public class ModClient {
 	@SubscribeEvent
 	public static void clientSetup(FMLClientSetupEvent event) {
 		event.enqueueWork(() -> {
-			TAB_SET_EFFECTS = TabRegistry.registerTab(TabSetEffects::new, () -> ArtifactItemRegistry.SET_GAMBLER.items[0][0].get(),
+			TAB_SET_EFFECTS = TabRegistry.registerTab(TabSetEffects::new, () -> LAItem0.SET_GAMBLER.items[0][0].get(),
 					Component.translatable("menu.tabs.set_effects"));
 		});
 	}

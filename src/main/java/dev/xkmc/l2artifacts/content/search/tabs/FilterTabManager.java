@@ -11,7 +11,7 @@ import dev.xkmc.l2artifacts.content.search.sort.SortTab;
 import dev.xkmc.l2artifacts.content.search.token.ArtifactChestToken;
 import dev.xkmc.l2artifacts.content.search.upgrade.UpgradeTab;
 import dev.xkmc.l2artifacts.init.data.LangData;
-import dev.xkmc.l2artifacts.init.registrate.ArtifactItemRegistry;
+import dev.xkmc.l2artifacts.init.registrate.items.ArtifactItemRegistry;
 import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.world.item.Items;

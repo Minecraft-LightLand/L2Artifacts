@@ -38,7 +38,7 @@ public class CommonEvents {
 	}
 
 	@SubscribeEvent
-	public static void revive(PlayerEvent.PlayerRespawnEvent event){
+	public static void revive(PlayerEvent.PlayerRespawnEvent event) {
 		new CuriosEventHandler().tick(new LivingEvent.LivingTickEvent(event.getEntity()));
 		event.getEntity().setHealth(event.getEntity().getMaxHealth());
 	}

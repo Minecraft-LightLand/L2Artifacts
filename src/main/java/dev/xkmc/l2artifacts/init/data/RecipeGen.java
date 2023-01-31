@@ -3,7 +3,6 @@ package dev.xkmc.l2artifacts.init.data;
 import com.tterrag.registrate.providers.RegistrateRecipeProvider;
 import com.tterrag.registrate.util.DataIngredient;
 import com.tterrag.registrate.util.entry.ItemEntry;
-import dev.xkmc.l2artifacts.compat.ComplementRecipeGen;
 import dev.xkmc.l2artifacts.content.core.BaseArtifact;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactItemRegistry;
@@ -79,7 +78,7 @@ public class RecipeGen {
 		}
 
 		// conditionals
-		ComplementRecipeGen.genRecipe(pvd);
+		// TODO ComplementRecipeGen.genRecipe(pvd);
 	}
 
 	public static void craft(RegistrateRecipeProvider pvd, Item output, Item center, Item input, Item corner) {

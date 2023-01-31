@@ -38,14 +38,7 @@ public class ShapeMenu extends BaseContainerMenu<ShapeMenu> implements IFilterMe
 	public final Player player;
 
 	public ShapeMenu(int wid, Inventory plInv, ArtifactChestToken token) {
-		super(ArtifactMenuRegistry.MT_SHAPE.get(), wid, plInv, MANAGER, e -> new BaseContainer<>(15, e) {
-
-			@Override
-			public int getMaxStackSize() {
-				return 1;
-			}
-
-		}, true);
+		super(ArtifactMenuRegistry.MT_SHAPE.get(), wid, plInv, MANAGER, e -> new BaseContainer<>(15, e).setMax(1), true);
 		this.token = token;
 		this.player = plInv.player;
 		addSlot(ShapeSlots.OUTPUT.slot(), e -> false);
@@ -149,8 +142,7 @@ public class ShapeMenu extends BaseContainerMenu<ShapeMenu> implements IFilterMe
 		for (int i = 0; i < 4; i++) {
 			ShapeSlots.BOOST_SUB.get(this, i).updateEject(player);
 		}
-		boolean outputChanged = ShapeSlots.OUTPUT.get(this).clearDirty(() -> {
-		});
+		boolean outputChanged = ShapeSlots.OUTPUT.get(this).clearDirty();
 		if (!outputChanged && !getMainItem().isEmpty()) {
 			BaseArtifact artifact = (BaseArtifact) getMainItem().getItem();
 			int rank = artifact.rank;
@@ -180,8 +172,7 @@ public class ShapeMenu extends BaseContainerMenu<ShapeMenu> implements IFilterMe
 			} else {
 				ShapeSlots.OUTPUT.get(this).set(ItemStack.EMPTY);
 			}
-			ShapeSlots.OUTPUT.get(this).clearDirty(() -> {
-			});
+			ShapeSlots.OUTPUT.get(this).clearDirty();
 		}
 		if (outputChanged && !getMainItem().isEmpty()) {
 			BaseArtifact artifact = (BaseArtifact) getMainItem().getItem();
@@ -204,18 +195,6 @@ public class ShapeMenu extends BaseContainerMenu<ShapeMenu> implements IFilterMe
 	@Override
 	protected boolean shouldClear(Container container, int slot) {
 		return slot != 0;
-	}
-
-	public ItemStack quickMoveStack(Player pl, int id) {
-		ItemStack stack = this.slots.get(id).getItem();
-		int n = this.container.getContainerSize();
-		if (id >= 36) {
-			this.moveItemStackTo(stack, 0, 36, true);
-		} else {
-			this.moveItemStackTo(stack, 36, 36 + n, false);
-		}
-		this.slots.get(id).setChanged();
-		return ItemStack.EMPTY;
 	}
 
 }

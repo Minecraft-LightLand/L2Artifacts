@@ -1,8 +1,6 @@
 package dev.xkmc.l2artifacts.content.search.shape;
 
 import dev.xkmc.l2library.base.menu.PredSlot;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.Locale;
 

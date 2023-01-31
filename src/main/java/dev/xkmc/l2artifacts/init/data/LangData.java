@@ -1,6 +1,7 @@
 package dev.xkmc.l2artifacts.init.data;
 
 import com.tterrag.registrate.providers.RegistrateLangProvider;
+import dev.xkmc.l2artifacts.compat.PatchouliLang;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.MutableComponent;

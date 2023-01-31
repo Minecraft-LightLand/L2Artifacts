@@ -1,7 +1,7 @@
 package dev.xkmc.l2artifacts.compat;
 
+import com.tterrag.registrate.providers.RegistrateLangProvider;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
-import dev.xkmc.l2library.repack.registrate.providers.RegistrateLangProvider;
 
 public enum PatchouliLang {
 	TITLE("title", "L2Artifacts Guide"),

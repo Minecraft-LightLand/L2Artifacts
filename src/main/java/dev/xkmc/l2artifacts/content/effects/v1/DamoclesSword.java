@@ -1,5 +1,6 @@
 package dev.xkmc.l2artifacts.content.effects.v1;
 
+import dev.xkmc.l2artifacts.content.capability.ArtifactData;
 import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
 import dev.xkmc.l2artifacts.content.effects.SetEffect;
 import dev.xkmc.l2artifacts.init.registrate.entries.LinearFuncEntry;
@@ -24,7 +25,7 @@ public class DamoclesSword extends SetEffect {
 	public void tick(Player player, ArtifactSetConfig.Entry ent, int rank, boolean enabled) {
 		if (!enabled)
 			return;
-		if (player.getHealth() < player.getMaxHealth() / 2 && player.hurtTime == 0) {
+		if (player.getHealth() < player.getMaxHealth() / 2 && player.hurtTime == 0 && ArtifactData.HOLDER.get(player).tickSinceDeath > 60) {
 			player.hurt(DamageSource.OUT_OF_WORLD, player.getMaxHealth());
 		}
 	}

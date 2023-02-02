@@ -32,6 +32,8 @@ public class ArtifactData extends PlayerCapabilityTemplate<ArtifactData> {
 
 	@SerialClass.SerialField
 	public HashMap<SetEffect, SetEffectData> data = new HashMap<>();
+	@SerialClass.SerialField
+	public int tickSinceDeath = 0;
 
 	public <T extends SetEffectData> T getOrCreateData(PersistentDataSetEffect<T> setEffect, ArtifactSetConfig.Entry ent) {
 		return Wrappers.cast(data.computeIfAbsent(setEffect, e -> setEffect.getData(ent)));
@@ -43,7 +45,16 @@ public class ArtifactData extends PlayerCapabilityTemplate<ArtifactData> {
 	}
 
 	@Override
+	public void onClone(boolean isWasDeath) {
+		tickSinceDeath = 0;
+	}
+
+	@Override
 	public void tick() {
+		tickSinceDeath++;
+		if (tickSinceDeath < 60 && player.getHealth() < player.getMaxHealth()) {
+			player.setHealth(player.getMaxHealth());
+		}
 		data.entrySet().removeIf(e -> e.getValue().tick(player));
 	}
 

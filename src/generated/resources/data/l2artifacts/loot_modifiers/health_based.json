@@ -1,8 +1,0 @@
-{
-  "type": "l2artifacts:main",
-  "conditions": [
-    {
-      "condition": "minecraft:killed_by_player"
-    }
-  ]
-}

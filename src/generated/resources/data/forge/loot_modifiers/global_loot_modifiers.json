@@ -1,6 +1,10 @@
 {
   "entries": [
-    "l2artifacts:health_based"
+    "l2artifacts:health_based_5",
+    "l2artifacts:health_based_4",
+    "l2artifacts:health_based_3",
+    "l2artifacts:health_based_2",
+    "l2artifacts:health_based_1"
   ],
   "replace": false
 }

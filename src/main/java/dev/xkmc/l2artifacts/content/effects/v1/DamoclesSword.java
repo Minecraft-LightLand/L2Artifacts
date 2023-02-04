@@ -23,10 +23,11 @@ public class DamoclesSword extends SetEffect {
 
 	@Override
 	public void tick(Player player, ArtifactSetConfig.Entry ent, int rank, boolean enabled) {
-		if (!enabled)
+		if (!enabled || player.level.isClientSide())
 			return;
-		if (player.getHealth() < player.getMaxHealth() / 2 && player.hurtTime == 0 && ArtifactData.HOLDER.get(player).tickSinceDeath > 60) {
-			player.hurt(DamageSource.OUT_OF_WORLD, player.getMaxHealth());
+		if (player.getHealth() > 0 && player.getHealth() < player.getMaxHealth() / 2 && player.hurtTime == 0) {
+			if (ArtifactData.HOLDER.get(player).tickSinceDeath > 60)
+				player.hurt(DamageSource.OUT_OF_WORLD, player.getMaxHealth());
 		}
 	}
 

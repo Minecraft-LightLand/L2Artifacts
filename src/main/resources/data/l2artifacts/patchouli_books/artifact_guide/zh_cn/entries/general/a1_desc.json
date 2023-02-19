@@ -1,16 +1,16 @@
 {
-  "name": "What is Artifact",
+  "name": "什么是古遗物",
   "icon": "l2artifacts:saint_head_1",
   "category": "l2artifacts:general",
   "sortnum": 1,
   "pages": [
 	{
 	  "type": "patchouli:text",
-	  "text": "Artifacts are curios equipments that boost player stats such as max health and attack, and provide special buffs when certain conditions are met. $(br2)By collecting powerful artifacts that pair well with each other, player can gain massive advantage in battles against strong enemies."
+	  "text": "古遗物是远古记忆凝成的圣物，装备古遗物可以为玩家带来属性上的提升，如最大生命值和攻击力，并在满足特殊条件时提供额外增益。$(br2)玩家可以通过收集并装备配对的古遗物来提升自身战斗力，从而在与强敌的战斗中获取巨大的优势。"
 	},
 	{
 	  "type": "patchouli:text",
-	  "text": "Artifacts belong to certain set and slot. The slots include Head, Body, Necklace, Bracelet, and Belt. Not all sets will have one artifact for each slots, but most sets do. $(br2)Artifacts also have ranks and levels. Ranks determines the quality of the artifacts. Level of artifacts can be increased through upgrading."
+	  "text": "古遗物拥有特殊的装备槽位，包括头部、身体、项链、手镯和腰带。大多数系列古遗物都拥有对应所有装备槽位的部件，但也有例外。 $(br2)古遗物拥有品阶和等级，品质决定了古遗物的等级上限，你可以升级古遗物。"
 	}
   ]
 }

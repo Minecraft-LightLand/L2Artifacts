@@ -1,16 +1,16 @@
 {
-  "name": "Set Effects",
+  "name": "套装效果的搭配",
   "icon": "l2artifacts:froze_head_1",
   "category": "l2artifacts:general",
   "sortnum": 3,
   "pages": [
 	{
 	  "type": "patchouli:text",
-	  "text": "When equipping multiple artifacts from the same set, set effect will activate and provide extra buffs that trigger when certain conditions are met.$(br2)You can activate multiple set effects from one sets or different sets. The activated effect will be shown in tooltip, as well as the Set Effect page in your inventory tabs."
+	  "text": "当装备同一系列中的多个古遗物时，可以获得额外的特殊增益。$（br2）你可以自行组合古遗物套装。激活的效果将显示在效果提示页面和库存标签页中的设置效果页面。"
 	},
 	{
 	  "type": "patchouli:text",
-	  "text": "The rank of set effect activated is determined by the lowest rank artifact that is necessary to trigger this effect.$(br2)Hold shift, and then you can check the tooltip of the artifact of corresponding rank to know the exact effect of such rank for this artifact set.$(br2)Green set effect tooltip means set effect triggered, while grey tooltip means effect not triggered. Sometimes the effect is triggered bur for a lower rank, then the tooltip will also be grey."
+	  "text": "套装增益的品阶取决于触发该效果古遗物的最低品阶。$(br2)按住 shift可以查看对应品阶古遗物的套装效果。$（br2）绿色提示代表该效果已成功触发，灰色则反之。触发较低品阶的效果时提示也是灰色的。"
 	}
   ]
 }

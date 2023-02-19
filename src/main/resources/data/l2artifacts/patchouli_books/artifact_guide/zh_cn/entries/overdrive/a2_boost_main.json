@@ -1,17 +1,17 @@
 {
-  "name": "Main Stat Booster",
+  "name": "主词条充能水晶",
   "icon": "l2artifacts:boost_main_3",
   "category": "l2artifacts:overdrive",
   "sortnum": 2,
   "pages": [
 	{
 	  "type": "patchouli:text",
-	  "text": "The value you gain from leveling up an artifact can be quite random. Main Stat Booster can be applied on an artifact of the same rank, such that the next upgrade of this artifact will gain the maximum main stat value."
+	  "text": "主词条充能水晶可以用于同品阶的古遗物，使用后下一次强化古遗物增加的主词条属值性必定为最高值。"
 	},
 	{
 	  "type": "patchouli:spotlight",
 	  "item": "l2artifacts:boost_main_3",
-	  "text": "Since it's very powerful, it's only craftable if you install L2Complements, which adds a lot of hard to obtain materials."
+	  "text": "这件物品十分强大，你只有安装了L2Complements后才可以制作，其中添加了许多难以获取的新材料。"
 	}
   ]
 }

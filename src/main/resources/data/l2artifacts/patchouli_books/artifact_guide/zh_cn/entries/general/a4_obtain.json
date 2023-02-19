@@ -1,17 +1,17 @@
 {
-  "name": "How to Obtain",
+  "name": "获取古遗物",
   "icon": "l2artifacts:random_1",
   "category": "l2artifacts:general",
   "sortnum": 4,
   "pages": [
 	{
 	  "type": "patchouli:text",
-	  "text": "Artifacts are dropped when player kills enemies with high health. Enemies with higher health will drop artifacts with higher rank."
+	  "text": "当高生命值的敌人被玩家杀死时会掉落未鉴定古遗物，掉落的古遗物品阶和怪物的血量成正比。"
 	},
 	{
 	  "type": "patchouli:spotlight",
 	  "item": "l2artifacts:random_1",
-	  "text": "By default, enemies with health 100 or more will drop artifacts of rank Common, and every every 100 more health, the artifact dropped is one rank higher. Enemies with 500 or more health will drop Godly artifacts. This is configurable."
+	  "text": "默认情况下，生命值在100及以上的敌人会掉落普通品阶的未鉴定古遗物，生命值每增加100点，掉落的古遗物就会高出一个品阶，生命值在500点以上的敌人会掉落最高品阶古遗物，这些都是可以自行调整的。"
 	}
   ]
 }

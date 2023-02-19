@@ -1,17 +1,17 @@
 {
-  "name": "Stat Container",
+  "name": "词条容器",
   "icon": "l2artifacts:stat_container_3",
   "category": "l2artifacts:overdrive",
   "sortnum": 1,
   "pages": [
 	{
 	  "type": "patchouli:text",
-	  "text": "Sometimes it's annoying to find that the precious chance of sub stat upgrade ends up being on an unwanted stat type.$(br2)Stat Container can fix this problem: It allows you to dictate which sub stat will receive the next upgrade."
+	  "text": "主词条无用的古遗物堆积如山，而想要升级的副词条却次次都歪。$(br2)不妨选择词条容器，它可以让你指定下一次要升级的副属性。"
 	},
 	{
 	  "type": "patchouli:spotlight",
 	  "item": "l2artifacts:stat_container_3",
-	  "text": "Stat Container can absorb the main stat of an artifact of the same rank, and then be used on another artifact of the same rank to set the sub stat for next upgrade.$(br2)Since it's very powerful, it's only craftable if you install L2Complements, which adds a lot of hard to obtain materials."
+	  "text": "词条容器可以吸收同品阶古遗物的主词条，然后用于另一件相同品阶的古遗物，指定下一次升级的副词条。$（br2）由于该物品十分强大，所以只有在安装 L2Complements 作为前置时才可以制作，此mod增加了很多难以获得的材料。"
 	}
   ]
 }

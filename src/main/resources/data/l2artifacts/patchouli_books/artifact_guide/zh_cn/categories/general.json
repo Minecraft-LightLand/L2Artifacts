@@ -1,6 +1,6 @@
 {
-  "name": "General Information",
+  "name": "基本信息",
   "sortnum": 1,
-  "description": "Ways to obtain, upgrade, and use Artifacts",
+  "description": "如何获取，升级，使用古遗物",
   "icon": "l2artifacts:random_1"
 }

@@ -1,17 +1,17 @@
 {
-  "name": "Rank Up",
+  "name": "古遗物进阶",
   "icon": "l2artifacts:protection_head_5",
   "category": "l2artifacts:general",
   "sortnum": 6,
   "pages": [
 	{
 	  "type": "patchouli:text",
-	  "text": "If you have trouble defeating stronger enemies, you can also rank up Artifacts.$(br2)To do this, you need 2 artifacts of the same rank, set, and slot, and a lot of artifact experience items. Then you can craft an artifact of the same set/slot but one rank higher. No data or level will be transferred."
+	  "text": "如果你在对抗强敌时困难重重，进阶古遗物是一个不错的选择。$(br2)为此，您需要 2 件品阶、套装和部位都完全相同的古遗物以及大量古遗物经验值。你就可以合成一个属性随机但品阶更高的同系列古遗物。"
 	},
 	{
 	  "type": "patchouli:crafting",
 	  "recipe": "l2artifacts:protection_head_2",
-	  "text": "Example artifact rank up recipe. Higher rank artifact experiences can also be crafted using lower rank ones."
+	  "text": "与古遗物同理，你也可以按照相同的方式用低品阶的古遗物经验合成更高品阶的古遗物经验。"
 	}
   ]
 }

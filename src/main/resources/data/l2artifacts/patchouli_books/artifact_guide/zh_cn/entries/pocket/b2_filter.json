@@ -1,16 +1,16 @@
 {
-  "name": "Tab: Filter",
+  "name": "选项：过滤",
   "icon": "minecraft:hopper",
   "category": "l2artifacts:pocket",
   "sortnum": 102,
   "pages": [
 	{
 	  "type": "patchouli:text",
-	  "text": "This tab allows you to specify what artifacts you want to see in other tabs. You can select any ranks / sets / slots / stat types.$(br2)Artifacts that meet at least one requirement of each filter categories will be displayed.$(br2)For stat types, both main stat type and sub stat types count. You can use sort tab to specify the orders."
+	  "text": "此选项允许你指定要在其他选项中看到的古遗物。 您可以选择任何等级/系列/部位/词条类型。$(br2)将显示满足每个筛选要求的至少一项要求的古遗物。$(br2)对于词条类型，主要词条类型和副词条类型都计算在内。 您可以使用排序选项来指定顺序。"
 	},
 	{
 	  "type": "patchouli:text",
-	  "text": "When selected, the slot will be blue. When the slot is red, it means that there are no artifacts matching this requirement and all previous requirements.$(br2)You can also use the small blue and red buttons to select all or unselect all entries of a filter category."
+	  "text": "选择后，插槽将变为蓝色。 当插槽为红色时，表示没有符合此要求和所有先前要求的古遗物。$(br2)您还可以使用蓝色和红色小按钮选择所有或取消选择筛选要求的所有词条。"
 	}
   ]
 }

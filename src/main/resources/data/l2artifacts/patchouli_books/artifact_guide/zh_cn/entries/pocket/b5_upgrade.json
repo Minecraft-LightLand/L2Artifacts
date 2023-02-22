@@ -1,16 +1,16 @@
 {
-  "name": "Tab: Upgrade",
+  "name": "选项：升级",
   "icon": "minecraft:anvil",
   "category": "l2artifacts:pocket",
   "sortnum": 105,
   "pages": [
 	{
 	  "type": "patchouli:text",
-	  "text": "In this page you can upgrade artifacts using the artifact exp you generated from the exp conversion tab.$(br2)Place the artifact you want to upgrade in the central slot, then click the upward arrow button to upgrade.$(br2)This tab will display the required player levels and artifact exp, which will be consumed."
+	  "text": "在此页面中，您可以使用古遗物经验值进行升级。$(br2)将要升级的古遗物放在中央槽中，然后单击箭头按钮升级。$(br2)此选项将显示所需消耗的玩家等级和古遗物经验值。"
 	},
 	{
 	  "type": "patchouli:text",
-	  "text": "It will also display the current artifact stats and stat types. When you upgrade the artifact, the gained main stat and sub stat values will also be displayed for a short time."
+	  "text": "它还将显示当前的古遗物词条数值和词条类型。 升级古遗物时，获得的主词条值和副词条值也会短暂显示。"
 	}
   ]
 }

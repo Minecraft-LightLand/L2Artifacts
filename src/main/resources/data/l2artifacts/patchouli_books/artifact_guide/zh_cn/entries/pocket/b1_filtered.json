@@ -6,11 +6,11 @@
   "pages": [
 	{
 	  "type": "patchouli:text",
-	  "text": "This tab allows you to insert and extract artifacts. Click the artifact you want, and it will appear at the output slot.$(br2)You can also apply filters and sorters to find the artifacts you want faster."
+	  "text": "此选项允许您存取古遗物。 单击你想要的古遗物，它会出现在输出槽中。$(br2)你还可以应用过滤器和排序器来更快地找到你想要的古遗物。"
 	},
 	{
 	  "type": "patchouli:text",
-	  "text": "This page accepts all artifact items and random artifact items. When random artifacts are inserted, they will be automatically unboxed into specific artifacts of certain set and slot. When unopened artifacts are inserted, their stats will also be automatically revealed."
+	  "text": "此页面接受所有古遗物和未鉴定古遗物。 当插入未鉴定古遗物时，它们将自动分配到特定系列和部位的特定古遗物中。 当插入未坚定的古遗物时，它们的数据也会自动显示。"
 	}
   ]
 }

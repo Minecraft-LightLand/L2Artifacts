@@ -1,16 +1,16 @@
 {
-  "name": "Advanced Tab: Augment",
+  "name": "高级选项：升变",
   "icon": "l2artifacts:boost_main_5",
   "category": "l2artifacts:pocket",
   "sortnum": 202,
   "pages": [
 	{
 	  "type": "patchouli:text",
-	  "text": "This tab is the advanced version of the upgrade tab. While upgrading, you can also add stat boosters or stat containers to reinforce the upgrade.$(br2)The effective upgrade items that will be consumed in the next upgrade will be marked blue."
+	  "text": "此选项是升级选项的高级版本。 升级时，您还可以添加词条充能水晶或词条容器来加强升级。$(br2)下次升级消耗的有效升级材料将被标记为蓝色。"
 	},
 	{
 	  "type": "patchouli:text",
-	  "text": "The stat display will mark the effect of upgrade items.$(li)For Main Stat Booster, the main stat will be highlighted.$(li)For Sub Stat Booster, all sub stat values will be marked, and one random sub stat will be picked.$(li)For Stat Container, the sub stat ame will be marked.$(li)If you use Stat Container with Sub Stat Booster, one sub stat entry will have both stat type and value highlighted."
+	  "text": "词条显示将标记升级项目的效果。$(li)对于主词条充能水晶，主词条将突出显示。$(li)对于副词条充能水晶，所有副词条数值将被标记，并且将随机显示一个副词条 $(li)对于词条容器，副词条名称将被标记。$(li)如果您将词条容器与副词条充能水晶一起使用，一个副词条将同时突出显示词条类型和数值。"
 	}
   ]
 }

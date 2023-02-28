@@ -8,6 +8,7 @@ import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.CriticalHitEvent;
+import net.minecraftforge.eventbus.api.Event;
 
 import java.util.List;
 
@@ -31,6 +32,7 @@ public class SaintReduction extends SetEffect {
 	@Override
 	public void playerAttackModifyEvent(Player player, ArtifactSetConfig.Entry ent, int rank, CriticalHitEvent crit) {
 		crit.setDamageModifier((float) (crit.getDamageModifier() * (1 - atk.getFromRank(rank))));
+		crit.setResult(Event.Result.ALLOW);
 	}
 
 	@Override

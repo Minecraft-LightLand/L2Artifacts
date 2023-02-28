@@ -9,6 +9,7 @@ import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.entity.player.CriticalHitEvent;
+import net.minecraftforge.eventbus.api.Event;
 
 import java.util.List;
 
@@ -43,6 +44,7 @@ public class DamoclesSword extends SetEffect {
 		if (player.getHealth() < player.getMaxHealth()) return;
 		double amplify = 1 + this.amplify.getFromRank(rank);
 		crit.setDamageModifier((float) (crit.getDamageModifier() * amplify));
+		crit.setResult(Event.Result.ALLOW);
 	}
 
 }

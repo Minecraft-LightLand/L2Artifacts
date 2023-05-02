@@ -1,16 +1,16 @@
 {
-  "name": "Upgrading",
+  "name": "升级古遗物",
   "icon": "l2artifacts:artifact_experience_1",
   "category": "l2artifacts:general",
   "sortnum": 5,
   "pages": [
 	{
 	  "type": "patchouli:text",
-	  "text": "Artifacts can be used as materials to upgrade other artifacts. Each artifact will have 2 numbers in its tooltip: the amount of artifact exp to reach the next level, and the amount of artifact exp it can be used as.$(br2)High level artifacts can transfer most of the artifact exp consumed when being used as materials to upgrade other artifacts, so don't worry about upgrading bad artifacts in early game."
+	  "text": "古遗物可用作升级其他古遗物的材料，每个古遗物的信息提示中都有 2 个数值：达到下一等级所需的古遗物经验值，以及当它被用作升级材料时所能提供的经验值。$(br2)高级古遗物在作为材料为其他古遗物升级时可提供大量经验值，所以不用担心在游戏早期赌出坏的古遗物。"
 	},
 	{
 	  "type": "patchouli:text",
-	  "text": "To upgrade artifacts, you can either use Anvil or Artifact Pocket. In anvil, put artifacts on the left and materials on the right to upgrade artifacts.$(br2)You can also convert unused artifacts to artifact experience item to store them. Though, Artifact Pocket is still easier to use for storing artifacts, storing artifact exp, and upgrading artifacts."
+	  "text": "要升级古遗物，您可以使用铁砧或古遗物多功能包。 在铁砧中将古遗物放于左侧，升级材料放在右侧以升级古遗物。$(br2)您还可以将未使用的古遗物转换为古遗物经验值来存储它们。尽管如此，古遗物多功能包仍是存储和升级古遗物的最优选择。"
 	}
   ]
 }

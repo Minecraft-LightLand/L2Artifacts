@@ -1,5 +1,5 @@
 {
-  "name": "Artifact Pocket",
+  "name": "古遗物多功能包",
   "icon": "l2artifacts:filter",
   "category": "l2artifacts:pocket",
   "sortnum": 1,
@@ -7,12 +7,12 @@
 	{
 	  "type": "patchouli:spotlight",
 	  "item": "l2artifacts:filter",
-	  "text": "Artifact Pocket has multiple features:$(li)Store massive amounts of artifacts.$(li)Search and sort artifacts with specified rank, slot, set, and stat types.$(li)Bulk convert unwanted artifacts to artifact exp.$(li)Upgrade artifacts and display stats gained."
+	  "text": "多功能包，顾名思义还有多种功能:$(li)可以存储大量的古遗物。$(li)可以通过不同的选项筛选古遗物，并在列表栏显示满足条件的古遗物。$(li)可以把不需要的古遗物分解为经验值并储存于多功能包内。$(li)可以升级和查看古遗物属性值。"
 	},
 	{
 	  "type": "patchouli:spotlight",
 	  "item": "l2artifacts:upgraded_pocket",
-	  "text": "Artifact Pocket is the best way to store and upgrade artifacts. It will automatically reveal the artifact from random artifacts and reveal the stats of unopened artifacts. It can store 256 artifacts (configurable).$(br2)If you upgrade the artifact pocket, it can store 512 artifacts, and provide 3 more functionalities."
+	  "text": "古遗物多功能包是存储和升级古遗物的最好途径，它将自动显示未鉴定古遗物的古遗物种类，并显示未打开的古遗物的数据，多功能包共可以储存256件古遗物(可配置的)。$(br2)如果对其进行升级，储存容量会提升到512，并额外添加三种功能。"
 	}
   ]
 }

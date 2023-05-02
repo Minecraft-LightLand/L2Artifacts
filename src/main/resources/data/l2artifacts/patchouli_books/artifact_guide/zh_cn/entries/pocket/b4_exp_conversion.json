@@ -1,16 +1,16 @@
 {
-  "name": "Tab: Exp Conversion",
+  "name": "选项：经验值转化",
   "icon": "minecraft:composter",
   "category": "l2artifacts:pocket",
   "sortnum": 104,
   "pages": [
 	{
 	  "type": "patchouli:text",
-	  "text": "This page allows you to bulk select and dismantle unwanted artifacts, to convert them to artifact exp.$(br2)You can click to select artifacts or drag to select multiple artifacts at once. The artifact exp to be obtained will be shown on the left."
+	  "text": "此页面允许您批量选择和分解不需要的古遗物，将它们转换为古遗物经验值。$(br2)您可以单击以选择古遗物或拖动以选择多个古遗物。 左边会显示能够获得的古遗物经验值。"
 	},
 	{
 	  "type": "patchouli:text",
-	  "text": "You can use filter page to list only the artifacts you don't want, then use the blue circle button to select all artifacts at once. Then you can click the large cross button to dismantle all.$(br2)You can drag to select in bulk or un-select in bulk. Or use bulk selection / un-selection buttons similar to filter tab."
+	  "text": "您可以使用过滤器页面列出不需要的古遗物，然后使用蓝色圆圈按钮一次选择所有古遗物，并点击大十字按钮来全部分解。$(br2)你可以拖动来批量选择或批量取消选择，或者使用类似于过滤器选项的批量选择/取消选择按钮。"
 	}
   ]
 }

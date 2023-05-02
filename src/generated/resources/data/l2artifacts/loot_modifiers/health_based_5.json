@@ -1,0 +1,15 @@
+{
+  "type": "l2artifacts:main",
+  "chance": 1.0,
+  "conditions": [
+    {
+      "condition": "minecraft:killed_by_player"
+    }
+  ],
+  "healthMax": 2147483647,
+  "healthMin": 500,
+  "result": {
+    "Count": 1,
+    "id": "l2artifacts:random_5"
+  }
+}

@@ -2,8 +2,6 @@ package dev.xkmc.l2artifacts.init.data.loot;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import dev.xkmc.l2artifacts.init.data.ModConfig;
-import dev.xkmc.l2artifacts.init.registrate.items.ArtifactItemRegistry;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -17,11 +15,31 @@ import org.jetbrains.annotations.NotNull;
 
 public class ArtifactLootModifier extends LootModifier {
 
-	public static final Codec<ArtifactLootModifier> CODEC = RecordCodecBuilder.create(i ->
-			codecStart(i).apply(i, ArtifactLootModifier::new));
+	public static final Codec<ArtifactLootModifier> CODEC = RecordCodecBuilder.create(i -> codecStart(i).and(i.group(
+					Codec.INT.fieldOf("healthMin").forGetter(e -> e.healthMin),
+					Codec.INT.fieldOf("healthMax").forGetter(e -> e.healthMax),
+					Codec.DOUBLE.fieldOf("chance").forGetter(e -> e.chance),
+					ItemStack.CODEC.fieldOf("result").forGetter(e -> e.result)))
+			.apply(i, ArtifactLootModifier::new));
 
-	public ArtifactLootModifier(LootItemCondition... conditionsIn) {
+	private final int healthMin, healthMax;
+	private final double chance;
+	private final ItemStack result;
+
+	public ArtifactLootModifier(int healthMin, int healthMax, double chance, ItemStack result, LootItemCondition... conditionsIn) {
 		super(conditionsIn);
+		this.healthMin = healthMin;
+		this.healthMax = healthMax;
+		this.chance = chance;
+		this.result = result;
+	}
+
+	private ArtifactLootModifier(LootItemCondition[] conditionsIn, int healthMin, int healthMax, double chance, ItemStack result) {
+		super(conditionsIn);
+		this.healthMin = healthMin;
+		this.healthMax = healthMax;
+		this.chance = chance;
+		this.result = result;
 	}
 
 	@Override
@@ -30,10 +48,8 @@ public class ArtifactLootModifier extends LootModifier {
 		Entity entity = context.getParam(LootContextParams.THIS_ENTITY);
 		if (entity instanceof LivingEntity le && entity instanceof Enemy) {
 			float health = le.getMaxHealth();
-			int rank = (int) Math.floor(health / ModConfig.COMMON.healthRequirement.get());
-			if (rank > 5) rank = 5;
-			if (rank > 0) {
-				list.add(ArtifactItemRegistry.RANDOM[rank - 1].asStack());
+			if (chance > context.getRandom().nextDouble() && health + 1e-3 > healthMin && health + 1e-3 < healthMax) {
+				list.add(result.copy());
 			}
 		}
 		return list;
@@ -43,4 +59,5 @@ public class ArtifactLootModifier extends LootModifier {
 	public Codec<ArtifactLootModifier> codec() {
 		return CODEC;
 	}
+
 }

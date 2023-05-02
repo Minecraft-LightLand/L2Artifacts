@@ -1,15 +1,15 @@
 {
-  "name": "Artifact Stats and Level",
+  "name": "古遗物的属性和等级",
   "icon": "l2artifacts:berserker_body_1",
   "category": "l2artifacts:general",
   "sortnum": 2,
   "pages": [
 	{
 	  "type": "patchouli:text",
-	  "text": "Each artifact will have 1 main stat and 0-4 sub stats depending on its rank. The possible main stat types are determined purely by the slot of the artifact, and the sub stat types are completely random. $(br2)Be aware of the different stat types. It's better to have artifacts with different stat types, as they could have multiplicative effects."
+	  "text": "所有古遗物都拥有一个主词条，而根据品阶的不同，古遗物还有0~4个副词条。主词条的种类取决于古遗物的部件类型，副词条则是完全随机的。  $(br2)注意你的古遗物词条，尽可能装备拥有不同词条的古遗物，他们之间可能产生奇妙的乘法效应。"
 	},{
 	  "type": "patchouli:text",
-	  "text": "Leveling up the artifact will increase the value of the main stat. And for every 4 levels, one random sub stat value will also increase. The maximum level is determined by the rank.$(br2)The possible range of base main stat value is higher, but the possible range of value gained by leveling up is the same for main stat and sub stats, as well as the initial sub stat values."
+	  "text": "升级古遗物可以提升古遗物的主词条属性，每经过4次升级，古遗物的副词条属性也会随机提升，古遗物的等级上限取决于它的品阶。$(br2)古遗物主词条属性的初始值区间会更高，但是古遗物的主词条和副词条升级提升值区间都相同。"
 	}
   ]
 }

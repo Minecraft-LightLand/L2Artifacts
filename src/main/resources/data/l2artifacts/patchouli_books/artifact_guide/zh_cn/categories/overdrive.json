@@ -1,6 +1,6 @@
 {
-  "name": "Artifact Overdrive",
+  "name": "古遗物强化",
   "sortnum": 3,
-  "description": "Special items that further boost artifacts",
+  "description": "用来升级古遗物词条的特殊材料",
   "icon": "l2artifacts:boost_main_1"
 }

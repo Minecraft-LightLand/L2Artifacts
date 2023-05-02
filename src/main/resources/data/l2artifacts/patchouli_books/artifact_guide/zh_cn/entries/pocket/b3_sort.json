@@ -1,16 +1,16 @@
 {
-  "name": "Tab: Sort",
+  "name": "选项：排序",
   "icon": "minecraft:comparator",
   "category": "l2artifacts:pocket",
   "sortnum": 103,
   "pages": [
 	{
 	  "type": "patchouli:text",
-	  "text": "This tab allows you to specify the order to display the artifacts. There is a number for each filter category and each entry in all categories.$(br2)Artifacts that meet requirements with smaller sort index in category with smallest sort index will be displayed first. If 2 artifacts tie in one category, the next category will be used to determine the order."
+	  "text": "此选项允许您指定显示古遗物的顺序。 每个筛选类别和所有类别中的每个词条都有一个编号。$(br2)在具有最小排序索引的类别中满足具有较小排序索引要求的古遗物将首先显示。 如果 2 个古遗物属于一个类别，则将使用下一类别来确定顺序。"
 	},
 	{
 	  "type": "patchouli:text",
-	  "text": "Click on a category sort number button to set it to the first priority, and all other categories will be shifted behind.$(br2)Click on a filter requirement to set it to the first priority within the category. Then all other requirements will be shifted behind. Unselected requirements in filter tab won't have a sort index."
+	  "text": "单击类别排序编号按钮将其设置为第一优先级，所有其他类别将被移到后面。$(br2)单击筛选要求将其设置为类别中的第一优先级，然后所有其他要求将被转移到后面。 过滤器选项中未选择的要求不会有排序索引。"
 	}
   ]
 }

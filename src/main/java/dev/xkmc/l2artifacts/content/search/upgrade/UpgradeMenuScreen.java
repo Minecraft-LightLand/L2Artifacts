@@ -65,7 +65,7 @@ public class UpgradeMenuScreen extends BaseContainerScreen<UpgradeMenu> implemen
 			if (pressed) {
 				sr.draw(pose, "upgrade", "upgrade_on");
 			}
-			FilterScreen.renderHighlight(pose, leftPos + rect.x, topPos + rect.y, rect.w, rect.h, getBlitOffset(), -2130706433);
+			FilterScreen.renderHighlight(pose, leftPos + rect.x, topPos + rect.y, rect.w, rect.h, -2130706433);
 		}
 		if (time > 0) {
 			time -= Minecraft.getInstance().getDeltaFrameTime();

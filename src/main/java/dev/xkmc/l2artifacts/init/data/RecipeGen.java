@@ -8,9 +8,10 @@ import dev.xkmc.l2artifacts.init.L2Artifacts;
 import dev.xkmc.l2artifacts.init.registrate.entries.SetEntry;
 import dev.xkmc.l2artifacts.init.registrate.items.ArtifactItemRegistry;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
+import net.minecraft.data.recipes.LegacyUpgradeRecipeBuilder;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
-import net.minecraft.data.recipes.UpgradeRecipeBuilder;
+import net.minecraft.data.recipes.SmithingTransformRecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
@@ -22,6 +23,7 @@ import net.minecraftforge.registries.tags.ITagManager;
 import java.util.Objects;
 import java.util.function.BiFunction;
 
+@SuppressWarnings("removal")
 public class RecipeGen {
 
 	private static void craftCombine(RegistrateRecipeProvider pvd, ItemEntry<?>[] arr) {
@@ -55,12 +57,21 @@ public class RecipeGen {
 				.define('E', Items.ENDER_PEARL).define('L', Items.LEATHER).define('A', artifact)
 				.save(pvd);
 
-		unlock(pvd, UpgradeRecipeBuilder.smithing(Ingredient.of(ArtifactItemRegistry.FILTER.get()),
+		//TODO mapping
+		unlock(pvd, SmithingTransformRecipeBuilder.smithing(Ingredient.of(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE), Ingredient.of(ArtifactItemRegistry.FILTER.get()),
 						Ingredient.of(Items.NETHERITE_INGOT),
 						RecipeCategory.MISC,
 						ArtifactItemRegistry.UPGRADED_POCKET.get())::unlocks,
 				Items.NETHERITE_INGOT)
 				.save(pvd, L2Artifacts.MODID + ":upgraded_pocket");
+
+		//TODO mapping, removal
+		unlock(pvd, LegacyUpgradeRecipeBuilder.smithing(Ingredient.of(ArtifactItemRegistry.FILTER.get()),
+						Ingredient.of(Items.NETHERITE_INGOT),
+						RecipeCategory.MISC,
+						ArtifactItemRegistry.UPGRADED_POCKET.get())::unlocks,
+				Items.NETHERITE_INGOT)
+				.save(pvd, L2Artifacts.MODID + ":upgraded_pocket_old");
 
 		// rank up recipes
 		for (SetEntry<?> set : L2Artifacts.REGISTRATE.SET_LIST) {

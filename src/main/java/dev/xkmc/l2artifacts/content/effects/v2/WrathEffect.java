@@ -4,6 +4,7 @@ import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
 import dev.xkmc.l2artifacts.content.effects.SetEffect;
 import dev.xkmc.l2artifacts.init.registrate.entries.LinearFuncEntry;
 import dev.xkmc.l2library.init.events.attack.AttackCache;
+import dev.xkmc.l2library.init.events.attack.DamageModifier;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.entity.LivingEntity;
@@ -28,7 +29,7 @@ public class WrathEffect extends SetEffect {
 	public void playerHurtOpponentEvent(Player player, ArtifactSetConfig.Entry ent, int rank, AttackCache event) {
 		boolean bool = pred.test(event.getAttackTarget());
 		double factor = bool ? inc.getFromRank(rank) : dec.getFromRank(rank);
-		event.setDamageModified((float) (event.getDamageModified() * factor));
+		event.addHurtModifier(DamageModifier.multPost((float) factor));
 	}
 
 	@Override

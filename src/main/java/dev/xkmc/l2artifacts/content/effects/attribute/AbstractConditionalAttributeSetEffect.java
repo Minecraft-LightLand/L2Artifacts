@@ -4,7 +4,6 @@ import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
 import dev.xkmc.l2artifacts.content.effects.PersistentDataSetEffect;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.network.chat.contents.TranslatableContents;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.player.Player;
@@ -60,10 +59,10 @@ public abstract class AbstractConditionalAttributeSetEffect<T extends AttributeS
 		for (AttrSetEntry ent : entries) {
 			double val = ent.getValue(rank);
 			String sign = val > 0 ? "attribute.modifier.plus." : "attribute.modifier.take.";
-			ans.add(MutableComponent.create(new TranslatableContents(
+			ans.add(Component.translatable(
 					sign + (ent.usePercent() ? 1 : 0),
 					ATTRIBUTE_MODIFIER_FORMAT.format(Math.abs(ent.usePercent() ? val * 100 : val)),
-					MutableComponent.create(new TranslatableContents(ent.attr().get().getDescriptionId())))));
+					Component.translatable(ent.attr().get().getDescriptionId())));
 		}
 		return ans;
 	}

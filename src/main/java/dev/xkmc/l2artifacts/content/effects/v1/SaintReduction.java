@@ -3,12 +3,14 @@ package dev.xkmc.l2artifacts.content.effects.v1;
 import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
 import dev.xkmc.l2artifacts.content.effects.SetEffect;
 import dev.xkmc.l2artifacts.init.registrate.entries.LinearFuncEntry;
+import dev.xkmc.l2library.init.events.attack.AttackCache;
+import dev.xkmc.l2library.init.events.attack.DamageModifier;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.CriticalHitEvent;
-import net.minecraftforge.eventbus.api.Event;
 
 import java.util.List;
 
@@ -30,14 +32,13 @@ public class SaintReduction extends SetEffect {
 	}
 
 	@Override
-	public void playerAttackModifyEvent(Player player, ArtifactSetConfig.Entry ent, int rank, CriticalHitEvent crit) {
-		crit.setDamageModifier((float) (crit.getDamageModifier() * (1 - atk.getFromRank(rank))));
-		crit.setResult(Event.Result.ALLOW);
+	public void playerDamageOpponentEvent(Player player, ArtifactSetConfig.Entry ent, int rank, AttackCache event) {
+		event.addHurtModifier(DamageModifier.multPost((float) (1 - atk.getFromRank(rank))));
 	}
 
 	@Override
 	public void playerHurtEvent(Player player, ArtifactSetConfig.Entry ent, int rank, LivingHurtEvent hurt) {
-		if (!hurt.getSource().isBypassMagic()) {
+		if (!hurt.getSource().is(DamageTypeTags.BYPASSES_RESISTANCE)) {
 			float amp = (float) (1 - def.getFromRank(rank));
 			hurt.setAmount(hurt.getAmount() * amp);
 		}

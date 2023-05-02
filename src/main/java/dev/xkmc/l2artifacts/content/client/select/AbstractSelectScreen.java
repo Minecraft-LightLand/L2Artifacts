@@ -72,26 +72,23 @@ public abstract class AbstractSelectScreen extends Screen {
 				int sx = comp.x + comp.w * i;
 				int sy = comp.y + comp.h * j;
 				ItemStack stack = getStack(name, i, j);
-				this.renderSlot(sx, sy, stack);
+				this.renderSlot(pose, sx, sy, stack);
 				if (this.isHovering(name, i, j, mx, my)) {
-					AbstractContainerScreen.renderSlotHighlight(pose, sx, sy, this.getBlitOffset(), -2130706433);
+					AbstractContainerScreen.renderSlotHighlight(pose, sx, sy, -2130706433);
 					hovered = stack;
 				}
 			}
 		}
 	}
 
-	private void renderSlot(int x, int y, ItemStack stack) {
+	private void renderSlot(PoseStack pose, int x, int y, ItemStack stack) {
 		String s = null;
-		this.setBlitOffset(100);
-		this.itemRenderer.blitOffset = 100.0F;
 		RenderSystem.enableDepthTest();
 		assert this.minecraft != null;
 		assert this.minecraft.player != null;
-		this.itemRenderer.renderAndDecorateItem(this.minecraft.player, stack, x, y, x + y * this.imageWidth);
-		this.itemRenderer.renderGuiItemDecorations(this.font, stack, x, y, s);
-		this.itemRenderer.blitOffset = 0.0F;
-		this.setBlitOffset(0);
+		this.itemRenderer.renderAndDecorateItem(pose, this.minecraft.player, stack, x, y, x + y * this.imageWidth);
+		this.itemRenderer.renderGuiItemDecorations(pose, this.font, stack, x, y, s);
+		//TODO fix
 	}
 
 	private void renderBg(PoseStack stack, float pt, int mx, int my) {

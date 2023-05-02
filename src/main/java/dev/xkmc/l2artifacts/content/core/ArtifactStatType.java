@@ -8,7 +8,6 @@ import dev.xkmc.l2library.base.NamedEntry;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.network.chat.contents.TranslatableContents;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
@@ -62,10 +61,10 @@ public class ArtifactStatType extends NamedEntry<ArtifactStatType> implements IA
 	}
 
 	public Component getTooltip(double val) {
-		return MutableComponent.create(new TranslatableContents(
+		return Component.translatable(
 				"attribute.modifier.plus." + (usePercent ? 1 : 0),
 				ATTRIBUTE_MODIFIER_FORMAT.format(usePercent ? val * 100 : val),
-				MutableComponent.create(new TranslatableContents(attr.get().getDescriptionId())))).withStyle(ChatFormatting.BLUE);
+				Component.translatable(attr.get().getDescriptionId())).withStyle(ChatFormatting.BLUE);
 	}
 
 	@Override

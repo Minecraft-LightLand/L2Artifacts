@@ -26,10 +26,10 @@ import java.util.Optional;
 
 public abstract class StackedScreen extends Screen implements IFilterScreen {
 
-	public static void renderHighlight(PoseStack pose, int x, int y, int w, int h, int offset, int c) {
+	public static void renderHighlight(PoseStack pose, int x, int y, int w, int h, int c) {
 		RenderSystem.disableDepthTest();
 		RenderSystem.colorMask(true, true, true, false);
-		fillGradient(pose, x, y, x + w, y + h, c, c, offset);
+		fillGradient(pose, x, y, x + w, y + h, c, c);
 		RenderSystem.colorMask(true, true, true, true);
 		RenderSystem.enableDepthTest();
 	}
@@ -77,7 +77,7 @@ public abstract class StackedScreen extends Screen implements IFilterScreen {
 			RenderSystem.setShaderTexture(0, icon.getIcon());
 			blit(pose, hover.x, hover.y, 0, 0, 16, 16, 16, 16);
 		} else if (hover.item instanceof IArtifactFeature.ItemIcon icon) {
-			renderSlotItem(hover.x, hover.y, icon.getItemIcon().getDefaultInstance());
+			renderSlotItem(pose, hover.x, hover.y, icon.getItemIcon().getDefaultInstance());
 		}
 	}
 
@@ -110,7 +110,7 @@ public abstract class StackedScreen extends Screen implements IFilterScreen {
 		handle.flushText();
 		list.forEach(e -> renderItem(pose, e));
 		if (hover != null) {
-			renderHighlight(pose, hover.x, hover.y, 16, 16, getBlitOffset(), -2130706433);
+			renderHighlight(pose, hover.x, hover.y, 16, 16, -2130706433);
 			List<Component> texts = new ArrayList<>();
 			texts.add(hover.item().getDesc());
 			Optional<TooltipComponent> comp = Optional.ofNullable(hover.item().getTooltipItems())
@@ -137,16 +137,13 @@ public abstract class StackedScreen extends Screen implements IFilterScreen {
 		return mx >= (x - 1) && mx < (x + w + 1) && my >= (y - 1) && my < (y + h + 1);
 	}
 
-	private void renderSlotItem(int x, int y, ItemStack stack) {
-		this.setBlitOffset(100);
-		this.itemRenderer.blitOffset = 100.0F;
+	private void renderSlotItem(PoseStack pose, int x, int y, ItemStack stack) {
 		RenderSystem.enableDepthTest();
 		assert this.minecraft != null;
 		assert this.minecraft.player != null;
-		this.itemRenderer.renderAndDecorateItem(this.minecraft.player, stack, x, y, x + y * this.imageWidth);
-		this.itemRenderer.renderGuiItemDecorations(this.font, stack, x, y, null);
-		this.itemRenderer.blitOffset = 0.0F;
-		this.setBlitOffset(0);
+		this.itemRenderer.renderAndDecorateItem(pose, this.minecraft.player, stack, x, y, x + y * this.imageWidth);
+		this.itemRenderer.renderGuiItemDecorations(pose, this.font, stack, x, y, null);
+		//TODO test blit offset
 	}
 
 	protected abstract void clickHover(int i, int j);

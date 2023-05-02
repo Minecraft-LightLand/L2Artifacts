@@ -36,7 +36,7 @@ public abstract class FilterTabBase<T extends FilterTabBase<T>> extends Button {
 		manager.getScreen().renderTooltip(stack, getMessage(), x, y);
 	}
 
-	public void renderButton(PoseStack stack, int mouseX, int mouseY, float partialTicks) {
+	public void renderWidget(PoseStack stack, int mouseX, int mouseY, float partialTicks) {
 		if (this.visible) {
 			RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
 			RenderSystem.enableBlend();
@@ -44,7 +44,7 @@ public abstract class FilterTabBase<T extends FilterTabBase<T>> extends Button {
 			RenderSystem.setShaderTexture(0, TEXTURE);
 			token.type.draw(stack, manager.getScreen(), getX(), getY(), manager.selected == token, index);
 			RenderSystem.defaultBlendFunc();
-			token.type.drawIcon(getX(), getY(), index, Minecraft.getInstance().getItemRenderer(), this.stack);
+			token.type.drawIcon(stack, getX(), getY(), index, Minecraft.getInstance().getItemRenderer(), this.stack);
 		}
 		if (this == manager.list.get(manager.list.size() - 1)) { // draw on last
 			manager.onToolTipRender(stack, mouseX, mouseY);

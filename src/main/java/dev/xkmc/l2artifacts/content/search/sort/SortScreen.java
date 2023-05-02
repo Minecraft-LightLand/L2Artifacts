@@ -10,6 +10,7 @@ import dev.xkmc.l2artifacts.init.data.LangData;
 import dev.xkmc.l2library.base.menu.SpriteManager;
 import dev.xkmc.l2library.base.menu.stacked.CellEntry;
 import dev.xkmc.l2library.base.menu.stacked.StackedRenderHandle;
+import net.minecraft.client.gui.Font;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.network.chat.Component;
 
@@ -36,7 +37,7 @@ public class SortScreen extends StackedScreen {
 	protected void renderPost(PoseStack pose) {
 		if (btnHover != null) {
 			var cell = btnHover.cell();
-			renderHighlight(pose, cell.x(), cell.y(), cell.w(), cell.h(), getBlitOffset(), -2130706433);
+			renderHighlight(pose, cell.x(), cell.y(), cell.w(), cell.h(), -2130706433);
 		}
 	}
 
@@ -59,8 +60,7 @@ public class SortScreen extends StackedScreen {
 		MultiBufferSource.BufferSource buffer = MultiBufferSource.immediate(Tesselator.getInstance().getBuilder());
 		int tx = hover.x() + 19 - 2 - font.width(s);
 		int ty = hover.y() + 6 + 3;
-		font.drawInBatch(s, tx, ty, 16777215, true, pose.last().pose(),
-				buffer, false, 0, 15728880);
+		font.drawInBatch(s, tx, ty, 16777215, true, pose.last().pose(), buffer, Font.DisplayMode.NORMAL, 0, 15728880);
 		buffer.endBatch();
 		pose.popPose();
 	}

@@ -39,10 +39,10 @@ enum FilterTabType {
 		}
 
 		int ty = selected ? this.textureY + this.height : this.textureY;
-		screen.blit(stack, x, y, tx, ty, this.width, this.height);
+		GuiComponent.blit(stack, x, y, tx, ty, this.width, this.height);
 	}
 
-	public void drawIcon(int x, int y, int index, ItemRenderer renderer, ItemStack stack) {
+	public void drawIcon(PoseStack pose, int x, int y, int index, ItemRenderer renderer, ItemStack stack) {
 		int i = x;
 		int j = y;
 		switch (this) {
@@ -64,7 +64,7 @@ enum FilterTabType {
 			}
 		}
 
-		renderer.renderAndDecorateFakeItem(stack, i, j);
+		renderer.renderAndDecorateFakeItem(pose, stack, i, j);
 	}
 
 	public int getX(int pIndex) {

@@ -5,6 +5,7 @@ import dev.xkmc.l2artifacts.content.effects.SetEffect;
 import dev.xkmc.l2artifacts.init.registrate.entries.LinearFuncEntry;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
@@ -28,7 +29,7 @@ public class PerfectionProtection extends SetEffect {
 	@Override
 	public void playerHurtEvent(Player player, ArtifactSetConfig.Entry ent, int rank, LivingHurtEvent hurt) {
 		if (player.getHealth() < player.getMaxHealth()) return;
-		if (!hurt.getSource().isBypassMagic()) {
+		if (!hurt.getSource().is(DamageTypeTags.BYPASSES_RESISTANCE)) {
 			hurt.setAmount((float) (hurt.getAmount() * (1 - reduce.getFromRank(rank))));
 		}
 	}

@@ -4,6 +4,7 @@ import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
 import dev.xkmc.l2artifacts.content.effects.SetEffect;
 import dev.xkmc.l2artifacts.init.registrate.entries.LinearFuncEntry;
 import dev.xkmc.l2library.init.events.attack.AttackCache;
+import dev.xkmc.l2library.init.events.attack.DamageModifier;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.effect.MobEffects;
@@ -23,7 +24,7 @@ public class FrozeBreakEffect extends SetEffect {
 	@Override
 	public void playerHurtOpponentEvent(Player player, ArtifactSetConfig.Entry ent, int rank, AttackCache event) {
 		if (event.getAttackTarget().hasEffect(MobEffects.MOVEMENT_SLOWDOWN)) {
-			event.setDamageModified((float) (factor.getFromRank(rank) * event.getDamageModified()));
+			event.addHurtModifier(DamageModifier.multPost((float) factor.getFromRank(rank)));
 		}
 	}
 

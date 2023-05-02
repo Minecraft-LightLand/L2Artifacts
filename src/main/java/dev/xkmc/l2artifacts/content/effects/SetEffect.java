@@ -4,8 +4,8 @@ import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactTypeRegistry;
 import dev.xkmc.l2library.base.NamedEntry;
 import dev.xkmc.l2library.init.events.attack.AttackCache;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.network.chat.contents.TranslatableContents;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
@@ -38,7 +38,7 @@ public abstract class SetEffect extends NamedEntry<SetEffect> {
 	 * 获取词条描述
 	 */
 	public List<MutableComponent> getDetailedDescription(int rank) {
-		return List.of(MutableComponent.create(new TranslatableContents(getDescriptionId() + ".desc")));
+		return List.of(Component.translatable(getDescriptionId() + ".desc"));
 	}
 
 	/**

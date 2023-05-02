@@ -7,6 +7,7 @@ import dev.xkmc.l2library.base.effects.EffectUtil;
 import dev.xkmc.l2library.init.events.attack.AttackCache;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Player;
@@ -42,7 +43,7 @@ public class FrozeSlowEffect extends SetEffect {
 
 	@Override
 	public void playerHurtEvent(Player player, ArtifactSetConfig.Entry ent, int rank, LivingHurtEvent event) {
-		if (event.getSource().isFire()) {
+		if (event.getSource().is(DamageTypeTags.IS_FIRE)) {
 			event.setAmount((float) (event.getAmount() * factor.getFromRank(rank)));
 		}
 	}

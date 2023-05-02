@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "misc",
   "key": {
     "A": {
       "item": "l2artifacts:artifact_experience_3"
@@ -18,5 +19,6 @@
   ],
   "result": {
     "item": "l2artifacts:abyss_medal_belt_3"
-  }
+  },
+  "show_notification": true
 }

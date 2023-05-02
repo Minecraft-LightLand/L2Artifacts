@@ -41,7 +41,7 @@ public class RecycleMenuScreen extends AbstractScrollerScreen<RecycleMenu> {
 		SpriteManager.Rect r = menu.sprite.getSide(p1 ? "button_1" : "button_1p");
 		blit(pose, btn_x, btn_y, r.x, r.y, r.w, r.h);
 		if (h1) {
-			FilterScreen.renderHighlight(pose, btn_x, btn_y, 8, 8, getBlitOffset(), -2130706433);
+			FilterScreen.renderHighlight(pose, btn_x, btn_y, 8, 8, -2130706433);
 		}
 		btn_x += r.w + 3;
 		boolean h2 = isHovering(btn_x, btn_y, 8, 8, mx, my);
@@ -49,7 +49,7 @@ public class RecycleMenuScreen extends AbstractScrollerScreen<RecycleMenu> {
 		r = menu.sprite.getSide(p2 ? "button_2" : "button_2p");
 		blit(pose, btn_x, btn_y, r.x, r.y, r.w, r.h);
 		if (h2) {
-			FilterScreen.renderHighlight(pose, btn_x, btn_y, 8, 8, getBlitOffset(), -2130706433);
+			FilterScreen.renderHighlight(pose, btn_x, btn_y, 8, 8, -2130706433);
 		}
 		hover_a = h1;
 		hover_b = h2;

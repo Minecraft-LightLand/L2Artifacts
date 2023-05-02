@@ -1,7 +1,7 @@
 package dev.xkmc.l2artifacts.init.data.loot;
 
 import dev.xkmc.l2artifacts.init.L2Artifacts;
-import dev.xkmc.l2artifacts.init.registrate.ArtifactItemRegistry;
+import dev.xkmc.l2artifacts.init.registrate.items.ArtifactItemRegistry;
 import dev.xkmc.l2library.util.data.LootTableTemplate;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.GlobalLootModifierProvider;

@@ -25,14 +25,15 @@ public record ClientItemTooltip(ItemTooltip items) implements ClientTooltipCompo
 
 	}
 
+
 	@Override
-	public void renderImage(Font pFont, int pMouseX, int pMouseY, PoseStack pPoseStack, ItemRenderer pItemRenderer, int pBlitOffset) {
+	public void renderImage(Font pFont, int pMouseX, int pMouseY, PoseStack pPoseStack, ItemRenderer pItemRenderer) {
 		for (int i = 0; i < items.list().size(); ++i) {
 			int x = pMouseX + i * 18 + 1;
 			int y = pMouseY + 1;
 			ItemStack itemstack = this.items.list().get(i);
-			pItemRenderer.renderAndDecorateItem(itemstack, x, y, i);
-			pItemRenderer.renderGuiItemDecorations(pFont, itemstack, x, y);
+			pItemRenderer.renderAndDecorateItem(pPoseStack, itemstack, x, y, i);
+			pItemRenderer.renderGuiItemDecorations(pPoseStack, pFont, itemstack, x, y);
 		}
 	}
 

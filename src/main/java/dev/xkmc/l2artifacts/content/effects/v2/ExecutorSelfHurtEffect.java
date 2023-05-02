@@ -4,9 +4,12 @@ import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
 import dev.xkmc.l2artifacts.content.effects.attribute.AttrSetEntry;
 import dev.xkmc.l2artifacts.content.effects.attribute.AttributeSetEffect;
 import dev.xkmc.l2artifacts.init.registrate.entries.LinearFuncEntry;
+import dev.xkmc.l2library.init.events.damage.DamageTypeRoot;
+import dev.xkmc.l2library.init.events.damage.DefaultDamageState;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 
@@ -32,6 +35,10 @@ public class ExecutorSelfHurtEffect extends AttributeSetEffect {
 	@Override
 	public void playerKillOpponentEvent(Player player, ArtifactSetConfig.Entry ent, int rank, LivingDeathEvent event) {
 		double damage = event.getEntity().getMaxHealth() * factor.getFromRank(rank);
-		player.hurt(DamageSource.playerAttack(player).bypassArmor().bypassMagic(), (float) damage);
+		var type = DamageTypeRoot.of(DamageTypes.PLAYER_ATTACK)
+				.enable(DefaultDamageState.BYPASS_ARMOR)
+				.enable(DefaultDamageState.BYPASS_MAGIC)
+				.getHolder(player.level);
+		player.hurt(new DamageSource(type, player), (float) damage);
 	}
 }

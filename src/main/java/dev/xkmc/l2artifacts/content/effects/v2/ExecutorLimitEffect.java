@@ -5,6 +5,7 @@ import dev.xkmc.l2artifacts.content.effects.SetEffect;
 import dev.xkmc.l2artifacts.init.registrate.entries.LinearFuncEntry;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
@@ -21,7 +22,7 @@ public class ExecutorLimitEffect extends SetEffect {
 
 	@Override
 	public void playerHurtEvent(Player player, ArtifactSetConfig.Entry ent, int rank, LivingHurtEvent event) {
-		if (event.getSource().getEntity() == player && !event.getSource().isBypassInvul()) {
+		if (event.getSource().getEntity() == player && !event.getSource().is(DamageTypeTags.BYPASSES_INVULNERABILITY)) {
 			event.setAmount((float) (Math.min(player.getMaxHealth(), event.getAmount()) * factor.getFromRank(rank)));
 		}
 	}

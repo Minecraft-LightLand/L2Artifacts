@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_heirophant_green": {
+    "has_netherite_ingot": {
       "conditions": {
         "items": [
           {
             "items": [
-              "l2complements:heirophant_green"
+              "minecraft:netherite_ingot"
             ]
           }
         ]
@@ -15,20 +15,20 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "l2artifacts:boost_sub_3"
+        "recipe": "l2artifacts:upgraded_pocket_old"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_heirophant_green",
+      "has_netherite_ingot",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "l2artifacts:boost_sub_3"
+      "l2artifacts:upgraded_pocket_old"
     ]
   }
 }

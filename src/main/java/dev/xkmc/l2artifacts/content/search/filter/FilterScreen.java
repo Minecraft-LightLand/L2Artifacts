@@ -33,7 +33,7 @@ public class FilterScreen extends StackedScreen {
 	protected void renderPost(PoseStack pose) {
 		if (btnHover != null) {
 			var cell = btnHover.cell();
-			renderHighlight(pose, cell.x(), cell.y(), cell.w(), cell.h(), getBlitOffset(), -2130706433);
+			renderHighlight(pose, cell.x(), cell.y(), cell.w(), cell.h(), -2130706433);
 		}
 	}
 

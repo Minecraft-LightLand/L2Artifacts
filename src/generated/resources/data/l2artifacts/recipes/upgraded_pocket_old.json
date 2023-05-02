@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smithing",
+  "addition": {
+    "item": "minecraft:netherite_ingot"
+  },
+  "base": {
+    "item": "l2artifacts:filter"
+  },
+  "result": {
+    "item": "l2artifacts:upgraded_pocket"
+  }
+}

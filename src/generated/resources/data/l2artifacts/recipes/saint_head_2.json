@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "misc",
   "key": {
     "A": {
       "item": "l2artifacts:artifact_experience_2"
@@ -18,5 +19,6 @@
   ],
   "result": {
     "item": "l2artifacts:saint_head_2"
-  }
+  },
+  "show_notification": true
 }

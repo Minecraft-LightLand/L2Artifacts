@@ -24,7 +24,7 @@ import java.util.function.Consumer;
 public class ConfigGen extends ConfigDataProvider {
 
 	public ConfigGen(DataGenerator generator) {
-		super(generator, "data/", "Artifact Config");
+		super(generator, "data/l2artifacts/artifact_config/", "Artifact Config");
 	}
 
 	@Override
@@ -132,7 +132,7 @@ public class ConfigGen extends ConfigDataProvider {
 		for (LinearFuncEntry entry : L2Artifacts.REGISTRATE.LINEAR_LIST) {
 			config.map.put(entry.get(), new LinearFuncConfig.Entry(entry.base, entry.slope));
 		}
-		map.put(L2Artifacts.MODID + "/artifact_config/linear/default", config);
+		map.put("linear/default", config);
 
 	}
 
@@ -141,19 +141,19 @@ public class ConfigGen extends ConfigDataProvider {
 		ResourceLocation rl = Objects.requireNonNull(slot.getRegistryName());
 		config.available_main_stats.put(slot, main);
 		config.available_sub_stats.put(slot, sub);
-		map.put(rl.getNamespace() + "/artifact_config/slot_stats/" + rl.getPath(), config);
+		map.put("slot_stats/" + rl.getPath(), config);
 	}
 
 	private static void addStatType(Map<String, BaseConfig> map, ArtifactStatType type, double base) {
 		StatTypeConfig config = new StatTypeConfig();
 		ResourceLocation rl = Objects.requireNonNull(type.getRegistryName());
 		config.stats.put(type, genEntry(base, 0.2, 2));
-		map.put(rl.getNamespace() + "/artifact_config/stat_types/" + rl.getPath(), config);
+		map.put("stat_types/" + rl.getPath(), config);
 	}
 
 	private static void addArtifactSet(Map<String, BaseConfig> map, ArtifactSet set, Consumer<ArtifactSetConfig.SetBuilder> builder) {
 		ResourceLocation rl = Objects.requireNonNull(set.getRegistryName());
-		map.put(rl.getNamespace() + "/artifact_config/artifact_sets/" + rl.getPath(), ArtifactSetConfig.construct(set, builder));
+		map.put("artifact_sets/" + rl.getPath(), ArtifactSetConfig.construct(set, builder));
 	}
 
 	private static StatTypeConfig.Entry genEntry(double base, double sub, double factor) {

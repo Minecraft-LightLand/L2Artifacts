@@ -135,9 +135,9 @@ public class UpgradeMenuScreen extends BaseContainerScreen<UpgradeMenu> implemen
 	private Component[] addEntry(boolean main, StatEntry entry, @Nullable StatEntry old) {
 		Component[] ans = new Component[3];
 		ans[0] = Component.translatable(entry.type.attr.get().getDescriptionId()).withStyle(main ? MAIN : SUB);
-		ans[1] = entry.type.getValueText(entry.value).withStyle(main ? MAIN : SUB);
+		ans[1] = entry.type.getValueText(entry.getValue()).withStyle(main ? MAIN : SUB);
 		if (old != null) {
-			double diff = entry.value - old.value;
+			double diff = entry.getValue() - old.getValue();
 			if (diff > 1e-3) {
 				Integer fg = ChatFormatting.DARK_PURPLE.getColor();
 				assert fg != null;

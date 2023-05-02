@@ -48,13 +48,7 @@ public enum NetworkManager {
 
 		HANDLER.addCachedConfig(SLOT_STATS.getID(), new ConfigMerger<>(SlotStatConfig.class));
 
-		HANDLER.addCachedConfig(STAT_TYPES.getID(), s -> {
-			List<StatTypeConfig> configs = s.map(e -> (StatTypeConfig) e.getValue()).toList();
-			HashMap<ArtifactStatType, StatTypeConfig.Entry> main = BaseConfig.collectMap(configs, e -> e.stats, StatTypeConfig::getEmpty, StatTypeConfig.Entry::set);
-			StatTypeConfig ans = new StatTypeConfig();
-			ans.stats = main;
-			return ans;
-		});
+		HANDLER.addCachedConfig(STAT_TYPES.getID(), new ConfigMerger<>(StatTypeConfig.class));
 
 		HANDLER.addCachedConfig(LINEAR.getID(), new ConfigMerger<>(LinearFuncConfig.class));
 	}

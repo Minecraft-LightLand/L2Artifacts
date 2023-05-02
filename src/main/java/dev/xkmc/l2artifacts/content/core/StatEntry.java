@@ -14,7 +14,7 @@ public class StatEntry {
 	public ArtifactStatType type;
 
 	@SerialClass.SerialField
-	public double value;
+	private double value;
 
 	private String name;
 
@@ -38,7 +38,15 @@ public class StatEntry {
 	}
 
 	public Component getTooltip() {
-		return type.getTooltip(value);
+		return type.getTooltip(getValue());
+	}
+
+	public double getValue() {
+		return value * type.getBaseValue();
+	}
+
+	public void addMultiplier(double value) {
+		this.value += value;
 	}
 
 	public String getName() {

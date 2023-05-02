@@ -2,6 +2,7 @@
   "_class": "dev.xkmc.l2artifacts.content.config.StatTypeConfig",
   "stats": {
     "l2artifacts:tough_add": {
+      "base": 0.2,
       "base_high": 2.0,
       "base_low": 1.0,
       "main_high": 0.4,

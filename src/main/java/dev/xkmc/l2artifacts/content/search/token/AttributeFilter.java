@@ -29,7 +29,7 @@ public class AttributeFilter extends ArtifactFilter<ArtifactStatType> {
 		list.sort(Comparator.comparingInt(e -> item_priority[e.second()]));
 		for (var p : list) {
 			ans = ans.thenComparingDouble(e -> BaseArtifact.getStats(e.stack())
-					.map(x -> x.map.get(p.left())).map(s -> -s.value).orElse(0d));
+					.map(x -> x.map.get(p.left())).map(s -> -s.getValue()).orElse(0d));
 		}
 		return ans;
 	}

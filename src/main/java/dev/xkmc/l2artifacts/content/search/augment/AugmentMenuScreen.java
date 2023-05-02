@@ -166,9 +166,9 @@ public class AugmentMenuScreen extends BaseContainerScreen<AugmentMenu> implemen
 			lit_name = lit_stat = false;
 		}
 		ans[0] = Component.translatable(entry.type.attr.get().getDescriptionId()).withStyle(lit_name ? LIT : main ? MAIN : SUB);
-		ans[1] = entry.type.getValueText(entry.value).withStyle(lit_stat ? LIT : main ? MAIN : SUB);
+		ans[1] = entry.type.getValueText(entry.getValue()).withStyle(lit_stat ? LIT : main ? MAIN : SUB);
 		if (old != null) {
-			double diff = entry.value - old.value;
+			double diff = entry.getValue() - old.getValue();
 			if (diff > 1e-3) {
 				Integer fg = ChatFormatting.DARK_PURPLE.getColor();
 				assert fg != null;

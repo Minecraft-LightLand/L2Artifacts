@@ -49,7 +49,8 @@ public class ConfigGen extends ConfigDataProvider {
 				ArrayList<ArtifactStatType> list = new ArrayList<>();
 				list.add(ArtifactTypeRegistry.HEALTH_ADD.get());
 				list.add(ArtifactTypeRegistry.ARMOR_ADD.get());
-
+				list.add(ArtifactTypeRegistry.SPEED_MULT.get());
+				list.add(ArtifactTypeRegistry.CR_ADD.get());
 				list.add(ArtifactTypeRegistry.TOUGH_ADD.get());
 				addSlotStat(map, ArtifactTypeRegistry.SLOT_BODY.get(), list, all);
 			}
@@ -58,7 +59,7 @@ public class ConfigGen extends ConfigDataProvider {
 				list.add(ArtifactTypeRegistry.ATK_ADD.get());
 				list.add(ArtifactTypeRegistry.ATK_MULT.get());
 				list.add(ArtifactTypeRegistry.BOW_ADD.get());
-
+				list.add(ArtifactTypeRegistry.CD_ADD.get());
 				list.add(ArtifactTypeRegistry.REACH_ADD.get());
 				addSlotStat(map, ArtifactTypeRegistry.SLOT_BRACELET.get(), list, all);
 			}
@@ -108,16 +109,16 @@ public class ConfigGen extends ConfigDataProvider {
 
 		// Stat Type Config
 
-		addStatType(map, ArtifactTypeRegistry.HEALTH_ADD.get(), 1);
-		addStatType(map, ArtifactTypeRegistry.ARMOR_ADD.get(), 1);
-		addStatType(map, ArtifactTypeRegistry.TOUGH_ADD.get(), 1);
-		addStatType(map, ArtifactTypeRegistry.ATK_ADD.get(), 1);
+		addStatType(map, ArtifactTypeRegistry.HEALTH_ADD.get(), 0.4);
+		addStatType(map, ArtifactTypeRegistry.ARMOR_ADD.get(), 0.4);
+		addStatType(map, ArtifactTypeRegistry.TOUGH_ADD.get(), 0.2);
+		addStatType(map, ArtifactTypeRegistry.ATK_ADD.get(), 0.4);
 		addStatType(map, ArtifactTypeRegistry.ATK_MULT.get(), 0.02);
 		addStatType(map, ArtifactTypeRegistry.CR_ADD.get(), 0.01);
 		addStatType(map, ArtifactTypeRegistry.CD_ADD.get(), 0.02);
 		addStatType(map, ArtifactTypeRegistry.REACH_ADD.get(), 0.02);
-		addStatType(map, ArtifactTypeRegistry.SPEED_MULT.get(), 0.02);
-		addStatType(map, ArtifactTypeRegistry.ATK_SPEED_MULT.get(), 0.02);
+		addStatType(map, ArtifactTypeRegistry.SPEED_MULT.get(), 0.01);
+		addStatType(map, ArtifactTypeRegistry.ATK_SPEED_MULT.get(), 0.01);
 		addStatType(map, ArtifactTypeRegistry.BOW_ADD.get(), 0.02);
 
 		// Set Effect Config
@@ -158,12 +159,13 @@ public class ConfigGen extends ConfigDataProvider {
 
 	private static StatTypeConfig.Entry genEntry(double base, double sub, double factor) {
 		StatTypeConfig.Entry entry = new StatTypeConfig.Entry();
-		entry.base_low = base;
-		entry.base_high = base * factor;
-		entry.main_low = base * sub;
-		entry.main_high = base * sub * factor;
-		entry.sub_low = base * sub;
-		entry.sub_high = base * sub * factor;
+		entry.base = base;
+		entry.base_low = 1;
+		entry.base_high = factor;
+		entry.main_low = sub;
+		entry.main_high = sub * factor;
+		entry.sub_low = sub;
+		entry.sub_high = sub * factor;
 		return entry;
 	}
 

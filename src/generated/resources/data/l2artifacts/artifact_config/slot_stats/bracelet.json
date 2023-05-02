@@ -5,6 +5,7 @@
       "l2artifacts:attack_add",
       "l2artifacts:attack_mult",
       "l2artifacts:bow_strength_add",
+      "l2artifacts:crit_damage_add",
       "l2artifacts:reach_add"
     ]
   },

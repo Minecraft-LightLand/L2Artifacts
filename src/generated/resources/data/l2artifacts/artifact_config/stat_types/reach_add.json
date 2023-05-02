@@ -2,12 +2,13 @@
   "_class": "dev.xkmc.l2artifacts.content.config.StatTypeConfig",
   "stats": {
     "l2artifacts:reach_add": {
-      "base_high": 0.04,
-      "base_low": 0.02,
-      "main_high": 0.008,
-      "main_low": 0.004,
-      "sub_high": 0.008,
-      "sub_low": 0.004
+      "base": 0.02,
+      "base_high": 2.0,
+      "base_low": 1.0,
+      "main_high": 0.4,
+      "main_low": 0.2,
+      "sub_high": 0.4,
+      "sub_low": 0.2
     }
   }
 }

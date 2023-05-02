@@ -1,6 +1,5 @@
 package dev.xkmc.l2artifacts.content.effects;
 
-import dev.xkmc.l2artifacts.content.capability.SetEffectData;
 import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
 import dev.xkmc.l2library.capability.conditionals.ConditionalData;

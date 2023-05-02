@@ -70,7 +70,7 @@ public class ArtifactStats {
 
 	public void add(ArtifactStatType type, double value) {
 		if (map.containsKey(type)) {
-			map.get(type).value += value;
+			map.get(type).addMultiplier(value);
 		} else {
 			add(new StatEntry(slot, type, value));
 		}

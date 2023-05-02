@@ -4,6 +4,8 @@
     "l2artifacts:body": [
       "l2artifacts:health_add",
       "l2artifacts:armor_add",
+      "l2artifacts:speed_mult",
+      "l2artifacts:crit_rate_add",
       "l2artifacts:tough_add"
     ]
   },

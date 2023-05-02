@@ -33,7 +33,7 @@ public class ArtifactStatType extends NamedEntry<ArtifactStatType> implements IA
 	}
 
 	public void getModifier(ImmutableMultimap.Builder<Attribute, AttributeModifier> builder, StatEntry entry) {
-		builder.put(attr.get(), new AttributeModifier(entry.id, entry.getName(), entry.value, op));
+		builder.put(attr.get(), new AttributeModifier(entry.id, entry.getName(), entry.getValue(), op));
 	}
 
 	public double getInitialValue(int rank, RandomSource random, boolean max) {
@@ -73,4 +73,8 @@ public class ArtifactStatType extends NamedEntry<ArtifactStatType> implements IA
 		return new ResourceLocation(rl.getNamespace(), "textures/stat_type/" + rl.getPath() + ".png");
 	}
 
+	public double getBaseValue() {
+		StatTypeConfig.Entry entry = StatTypeConfig.getInstance().stats.get(this);
+		return entry.base;
+	}
 }

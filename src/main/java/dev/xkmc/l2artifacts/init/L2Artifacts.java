@@ -49,7 +49,7 @@ public class L2Artifacts {
 	}
 
 	private static void registerForgeEvents() {
-		AttackEventHandler.LISTENERS.put(3000, new CritHandler());
+		AttackEventHandler.register(3000, new CritHandler());
 		MinecraftForge.EVENT_BUS.register(CommonEvents.class);
 		MinecraftForge.EVENT_BUS.register(CraftEvents.class);
 		MinecraftForge.EVENT_BUS.register(CritHandler.class);

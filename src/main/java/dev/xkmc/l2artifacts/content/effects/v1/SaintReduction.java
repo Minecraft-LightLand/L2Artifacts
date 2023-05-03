@@ -37,7 +37,7 @@ public class SaintReduction extends SetEffect {
 
 	@Override
 	public void playerHurtEvent(Player player, ArtifactSetConfig.Entry ent, int rank, LivingHurtEvent hurt) {
-		if (!hurt.getSource().is(DamageTypeTags.BYPASSES_RESISTANCE)) {
+		if (!hurt.getSource().is(DamageTypeTags.BYPASSES_EFFECTS)) {
 			float amp = (float) (1 - def.getFromRank(rank));
 			hurt.setAmount(hurt.getAmount() * amp);
 		}

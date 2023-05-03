@@ -4,7 +4,7 @@ import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
 import dev.xkmc.l2artifacts.content.effects.attribute.AttrSetEntry;
 import dev.xkmc.l2artifacts.content.effects.attribute.AttributeSetEffect;
 import dev.xkmc.l2artifacts.init.registrate.entries.LinearFuncEntry;
-import dev.xkmc.l2library.init.data.MaterialDamageTypeMultiplex;
+import dev.xkmc.l2library.init.data.L2DamageTypes;
 import dev.xkmc.l2library.init.events.attack.AttackCache;
 import dev.xkmc.l2library.init.events.attack.DamageModifier;
 import net.minecraft.network.chat.Component;
@@ -35,7 +35,7 @@ public class PhysicalDamageEffect extends AttributeSetEffect {
 	public void playerHurtOpponentEvent(Player player, ArtifactSetConfig.Entry ent, int rank, AttackCache event) {
 		LivingHurtEvent hurt = event.getLivingHurtEvent();
 		assert hurt != null;
-		if (hurt.getSource().is(MaterialDamageTypeMultiplex.MAGIC)) {
+		if (hurt.getSource().is(L2DamageTypes.MAGIC)) {
 			event.addHurtModifier(DamageModifier.multPost((float) factor.getFromRank(rank)));
 		}
 	}

@@ -29,7 +29,7 @@ public class PerfectionProtection extends SetEffect {
 	@Override
 	public void playerHurtEvent(Player player, ArtifactSetConfig.Entry ent, int rank, LivingHurtEvent hurt) {
 		if (player.getHealth() < player.getMaxHealth()) return;
-		if (!hurt.getSource().is(DamageTypeTags.BYPASSES_RESISTANCE)) {
+		if (!hurt.getSource().is(DamageTypeTags.BYPASSES_EFFECTS)) {
 			hurt.setAmount((float) (hurt.getAmount() * (1 - reduce.getFromRank(rank))));
 		}
 	}

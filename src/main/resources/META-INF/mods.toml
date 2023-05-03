@@ -14,13 +14,13 @@ Genshin Impact style artifacts that helps to boost player stats.
 [[dependencies.l2artifacts]]
     modId="forge"
     mandatory=true
-    versionRange="[44.1.0,)"
+    versionRange="[45.0.0,)"
     ordering="AFTER"
     side="BOTH"
 [[dependencies.l2artifacts]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.19.3,1.20)"
+    versionRange="[1.19.4,1.20)"
     ordering="NONE"
     side="BOTH"
 [[dependencies.l2artifacts]]
@@ -38,6 +38,6 @@ Genshin Impact style artifacts that helps to boost player stats.
 [[dependencies.l2artifacts]]
     modId="l2library"
     mandatory=true
-    versionRange="[2.0.0,)"
+    versionRange="[2.1.0,)"
     ordering="AFTER"
     side="BOTH"

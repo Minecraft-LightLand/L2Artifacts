@@ -1,4 +1,4 @@
-// 1.19.4	2023-05-02T13:19:38.110943	Registrate Provider for l2artifacts [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
+// 1.19.4	2023-05-03T18:34:13.246108	Registrate Provider for l2artifacts [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
 03e19d0b38a8d7bdc3d43c40ec38fa428bc3a0aa assets/l2artifacts/lang/en_ud.json
 001e327edb158fc42e55e38b3ed469a130bf956f assets/l2artifacts/lang/en_us.json
 b8bd2d2e5b588898d6036ad788cad930cd830bb3 assets/l2artifacts/models/item/abyss_medal_belt_1.json
@@ -513,6 +513,8 @@ e338e24e51adf5f060d5d4cc299eb22dcbdfde26 data/l2artifacts/advancements/recipes/m
 57609a004b912af76e6e7944eb14748bc32bb47c data/l2artifacts/advancements/recipes/misc/berserker_necklace_3.json
 28ece590823b901ee37e6cb85d9d9232ea30182e data/l2artifacts/advancements/recipes/misc/berserker_necklace_4.json
 6bf6c230d2dc19f13373648b23c2f748a5f5bde1 data/l2artifacts/advancements/recipes/misc/berserker_necklace_5.json
+46d98aac74eb141b073c2146074f73b74102560b data/l2artifacts/advancements/recipes/misc/boost_main_3.json
+1ac5a7c7b8cbcb6c66f40ddf010e8eb38bea8691 data/l2artifacts/advancements/recipes/misc/boost_sub_3.json
 fe03479fb1a02bf1a4279bbc88d357c970a4a456 data/l2artifacts/advancements/recipes/misc/damocles_head_2.json
 a56d25eef2335e0767ed95b5ed963521dbf8cc0e data/l2artifacts/advancements/recipes/misc/damocles_head_3.json
 68f37ec5161537a19eee69a71d3f6abc843de795 data/l2artifacts/advancements/recipes/misc/damocles_head_4.json
@@ -734,6 +736,7 @@ b1e1ee9e4150af84441cb7744d4fad1f02a0b01a data/l2artifacts/advancements/recipes/m
 57f42c622e2908a2fd87daedb25f4eb154618d41 data/l2artifacts/advancements/recipes/misc/saint_necklace_3.json
 361363b0eae6f86647b4dc5624f744d36af78a55 data/l2artifacts/advancements/recipes/misc/saint_necklace_4.json
 0f1afe27b0809295b1fc4d182ee8b5850be7b9ee data/l2artifacts/advancements/recipes/misc/saint_necklace_5.json
+62c5b2679452233bfc6014c741dc9bcba22d6be1 data/l2artifacts/advancements/recipes/misc/stat_container_3.json
 7b8243b9eeaab80105135823fa1f612a5636edce data/l2artifacts/advancements/recipes/misc/sun_block_head_2.json
 02210ac27cbf75588c89c7e66ae18486e099d550 data/l2artifacts/advancements/recipes/misc/sun_block_head_3.json
 654bca73b0454893d0bded29d8ab1a117d177f1b data/l2artifacts/advancements/recipes/misc/sun_block_head_4.json
@@ -865,6 +868,8 @@ f1de88d8526dba8055b8b6ac07e466cb90b9244e data/l2artifacts/recipes/berserker_head
 6c4e688590a660c000e41b11933006a88b7ab7f5 data/l2artifacts/recipes/berserker_necklace_3.json
 380595fb721dfed869062d79b51b3297007c8387 data/l2artifacts/recipes/berserker_necklace_4.json
 853bcd533913fbe2d9595073445eb9aec4fdc8c5 data/l2artifacts/recipes/berserker_necklace_5.json
+1d22f2faf714c9f073649d9837227a8d180d1b73 data/l2artifacts/recipes/boost_main_3.json
+cd7246e7ba286d9a4a6636d57cb113b106fef513 data/l2artifacts/recipes/boost_sub_3.json
 94f7fafe2ada84d3dfc59387d22c9c9bcf950221 data/l2artifacts/recipes/damocles_head_2.json
 5a8f6d7358ca417eb493d0be0b0ada5cb0ec962a data/l2artifacts/recipes/damocles_head_3.json
 ab2eefabf3ce3ba36b2d0ed3af800add95214d81 data/l2artifacts/recipes/damocles_head_4.json
@@ -1086,6 +1091,7 @@ aa9f67dd8c91cb081e2fbfaadd12de5c8eab1ce3 data/l2artifacts/recipes/saint_head_5.j
 be0446fac397dc085f7d3741530027d3de644f29 data/l2artifacts/recipes/saint_necklace_3.json
 8249064ce2f93798e3db6ced442d16206f3af3c3 data/l2artifacts/recipes/saint_necklace_4.json
 66e444217124650b79f6b7a57c663d4af88c5812 data/l2artifacts/recipes/saint_necklace_5.json
+ba195df03a48197f07f60e509e26a10f1678a188 data/l2artifacts/recipes/stat_container_3.json
 641966fc787ca7f0660cc8873a07ab9fbefc0bbb data/l2artifacts/recipes/sun_block_head_2.json
 df9ea1c7ea8e5b96d2292351eb76c3480bf07672 data/l2artifacts/recipes/sun_block_head_3.json
 ce3e0ae1974054093b2255b3d166d5e5e957ce94 data/l2artifacts/recipes/sun_block_head_4.json

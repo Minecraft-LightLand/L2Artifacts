@@ -137,7 +137,7 @@ dependencies {
 
     implementation fg.deobf("com.tterrag.registrate:Registrate:${registrate_version}")
     implementation fg.deobf("dev.xkmc.l2library:l2library:${l2library_version}-slim")
-    //implementation fg.deobf("dev.xkmc.l2complements:l2complements:1.0.0")
+    implementation fg.deobf("dev.xkmc.l2complements:l2complements:2.1.0")
     implementation fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}")
     implementation fg.deobf("mezz.jei:jei-${jei_minecraft_version}:${jei_version}")
 

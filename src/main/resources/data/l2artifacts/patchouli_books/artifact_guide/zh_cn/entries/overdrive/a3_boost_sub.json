@@ -1,16 +1,16 @@
 {
   "name": "副词条充能水晶",
-  "icon": "l2artifacts:boost_sub_3",
+  "icon": "l2artifacts:boost_sub_1",
   "category": "l2artifacts:overdrive",
   "sortnum": 3,
   "pages": [
 	{
 	  "type": "patchouli:text",
-	  "text": "副词条充能水晶可以用于同品阶的古遗物，使用后下一次强化古遗物增加的副词条属值性必定为最高值。"
+	  "text": "副词条充能水晶可以用于同品阶的古遗物，使用后下一次强化古遗物增加的副词条属值性大幅提升。"
 	},
 	{
 	  "type": "patchouli:spotlight",
-	  "item": "l2artifacts:boost_sub_3",
+	  "item": "l2artifacts:boost_sub_1",
 	  "text": "这件物品过于便利，你只有安装了莱特兰-扩充（L2Complements）后才能制作，其mod中添加了许多难以获取的新材料。"
 	}
   ]

@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_resonant_feather": {
+    "has_force_field": {
       "conditions": {
         "items": [
           {
             "items": [
-              "l2complements:resonant_feather"
+              "l2complements:force_field"
             ]
           }
         ]
@@ -15,20 +15,20 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "l2artifacts:stat_container_3"
+        "recipe": "l2artifacts:boost_main_1"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_resonant_feather",
+      "has_force_field",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "l2artifacts:stat_container_3"
+      "l2artifacts:boost_main_1"
     ]
   }
 }

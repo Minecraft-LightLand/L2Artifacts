@@ -1,6 +1,6 @@
 {
   "name": "主词条充能水晶",
-  "icon": "l2artifacts:boost_main_3",
+  "icon": "l2artifacts:boost_main_1",
   "category": "l2artifacts:overdrive",
   "sortnum": 2,
   "pages": [
@@ -10,7 +10,7 @@
 	},
 	{
 	  "type": "patchouli:spotlight",
-	  "item": "l2artifacts:boost_main_3",
+	  "item": "l2artifacts:boost_main_1",
 	  "text": "这件物品过于便利，你只有安装了莱特兰-扩充（L2Complements）后才可以制作，其mod中添加了许多难以获取的新材料。"
 	}
   ]

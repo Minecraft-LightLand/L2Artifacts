@@ -1,16 +1,16 @@
 {
   "name": "Sub Stat Booster",
-  "icon": "l2artifacts:boost_sub_3",
+  "icon": "l2artifacts:boost_sub_1",
   "category": "l2artifacts:overdrive",
   "sortnum": 3,
   "pages": [
 	{
 	  "type": "patchouli:text",
-	  "text": "The value you gain from leveling up an artifact can be quite random. Sub Stat Booster can be applied on an artifact of the same rank, such that the next sub stat upgrade of this artifact will gain the maximum sub stat value.$(br2)When used with stat container, you can make an artifact with a surprisingly powerful sub stat entry."
+	  "text": "The value you gain from leveling up an artifact can be quite random. Sub Stat Booster can be applied on an artifact of the same rank, such that the next sub stat upgrade of this artifact will be significantly larger.$(br2)When used with stat container, you can make an artifact with a surprisingly powerful sub stat entry."
 	},
 	{
 	  "type": "patchouli:spotlight",
-	  "item": "l2artifacts:boost_sub_3",
+	  "item": "l2artifacts:boost_sub_1",
 	  "text": "Since it's very powerful, it's only craftable if you install L2Complements, which adds a lot of hard to obtain materials."
 	}
   ]

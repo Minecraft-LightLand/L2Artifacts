@@ -48,7 +48,7 @@ public class ArtifactStatType extends NamedEntry<ArtifactStatType> implements IA
 
 	public double getSubValue(int rank, RandomSource random, boolean max) {
 		StatTypeConfig.Entry entry = StatTypeConfig.getInstance().stats.get(this);
-		return (max ? entry.sub_high : Mth.nextDouble(random, entry.sub_low, entry.sub_high)) * rank;
+		return (max ? entry.base_high : Mth.nextDouble(random, entry.sub_low, entry.sub_high)) * rank;
 	}
 
 	public MutableComponent getValueText(double val) {

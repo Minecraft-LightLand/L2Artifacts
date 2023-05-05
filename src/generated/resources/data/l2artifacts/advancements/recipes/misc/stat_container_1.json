@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_heirophant_green": {
+    "has_resonant_feather": {
       "conditions": {
         "items": [
           {
             "items": [
-              "l2complements:heirophant_green"
+              "l2complements:resonant_feather"
             ]
           }
         ]
@@ -15,20 +15,20 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "l2artifacts:boost_sub_3"
+        "recipe": "l2artifacts:stat_container_1"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_heirophant_green",
+      "has_resonant_feather",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "l2artifacts:boost_sub_3"
+      "l2artifacts:stat_container_1"
     ]
   }
 }

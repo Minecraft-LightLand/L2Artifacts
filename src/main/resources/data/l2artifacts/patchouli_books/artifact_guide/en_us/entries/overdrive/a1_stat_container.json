@@ -1,6 +1,6 @@
 {
   "name": "Stat Container",
-  "icon": "l2artifacts:stat_container_3",
+  "icon": "l2artifacts:stat_container_1",
   "category": "l2artifacts:overdrive",
   "sortnum": 1,
   "pages": [
@@ -10,7 +10,7 @@
 	},
 	{
 	  "type": "patchouli:spotlight",
-	  "item": "l2artifacts:stat_container_3",
+	  "item": "l2artifacts:stat_container_1",
 	  "text": "Stat Container can absorb the main stat of an artifact of the same rank, and then be used on another artifact of the same rank to set the sub stat for next upgrade.$(br2)Since it's very powerful, it's only craftable if you install L2Complements, which adds a lot of hard to obtain materials."
 	}
   ]

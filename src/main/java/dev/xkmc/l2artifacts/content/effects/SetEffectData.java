@@ -1,7 +1,7 @@
 package dev.xkmc.l2artifacts.content.effects;
 
 import dev.xkmc.l2library.capability.conditionals.ConditionalToken;
-import dev.xkmc.l2library.serial.SerialClass;
+import dev.xkmc.l2serial.serialization.SerialClass;
 import net.minecraft.world.entity.player.Player;
 
 @SerialClass

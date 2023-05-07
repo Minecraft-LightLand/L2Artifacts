@@ -5,9 +5,9 @@ import dev.xkmc.l2artifacts.content.core.ArtifactSet;
 import dev.xkmc.l2artifacts.content.effects.SetEffect;
 import dev.xkmc.l2artifacts.network.NetworkManager;
 import dev.xkmc.l2library.capability.conditionals.Context;
-import dev.xkmc.l2library.serial.SerialClass;
-import dev.xkmc.l2library.serial.network.BaseConfig;
+import dev.xkmc.l2library.serial.config.BaseConfig;
 import dev.xkmc.l2library.util.math.MathHelper;
+import dev.xkmc.l2serial.serialization.SerialClass;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;

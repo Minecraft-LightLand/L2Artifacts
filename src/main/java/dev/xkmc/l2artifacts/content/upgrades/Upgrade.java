@@ -2,7 +2,7 @@ package dev.xkmc.l2artifacts.content.upgrades;
 
 import dev.xkmc.l2artifacts.content.core.ArtifactStatType;
 import dev.xkmc.l2artifacts.init.data.LangData;
-import dev.xkmc.l2library.serial.SerialClass;
+import dev.xkmc.l2serial.serialization.SerialClass;
 import net.minecraft.network.chat.Component;
 
 import java.util.ArrayList;

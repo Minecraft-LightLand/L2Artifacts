@@ -3,8 +3,8 @@ package dev.xkmc.l2artifacts.content.search.token;
 import dev.xkmc.l2artifacts.content.core.ArtifactStatType;
 import dev.xkmc.l2artifacts.content.core.BaseArtifact;
 import dev.xkmc.l2artifacts.init.data.LangData;
-import dev.xkmc.l2library.serial.SerialClass;
 import dev.xkmc.l2library.util.code.GenericItemStack;
+import dev.xkmc.l2serial.serialization.SerialClass;
 import it.unimi.dsi.fastutil.Pair;
 
 import java.util.ArrayList;

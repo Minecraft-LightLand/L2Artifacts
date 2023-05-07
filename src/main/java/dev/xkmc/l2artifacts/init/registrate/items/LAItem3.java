@@ -7,7 +7,7 @@ import dev.xkmc.l2artifacts.content.effects.attribute.SimpleCASetEffect;
 import dev.xkmc.l2artifacts.content.effects.v3.*;
 import dev.xkmc.l2artifacts.init.registrate.entries.LinearFuncEntry;
 import dev.xkmc.l2artifacts.init.registrate.entries.SetEntry;
-import dev.xkmc.l2library.util.code.Wrappers;
+import dev.xkmc.l2serial.util.Wrappers;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 

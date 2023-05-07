@@ -2,10 +2,10 @@ package dev.xkmc.l2artifacts.content.config;
 
 import dev.xkmc.l2artifacts.content.core.ArtifactStatType;
 import dev.xkmc.l2artifacts.network.NetworkManager;
-import dev.xkmc.l2library.serial.SerialClass;
+import dev.xkmc.l2library.serial.config.BaseConfig;
 import dev.xkmc.l2library.serial.config.CollectType;
 import dev.xkmc.l2library.serial.config.ConfigCollect;
-import dev.xkmc.l2library.serial.network.BaseConfig;
+import dev.xkmc.l2serial.serialization.SerialClass;
 
 import java.util.HashMap;
 

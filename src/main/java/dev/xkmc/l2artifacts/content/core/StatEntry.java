@@ -1,8 +1,8 @@
 package dev.xkmc.l2artifacts.content.core;
 
 import com.tterrag.registrate.providers.RegistrateLangProvider;
-import dev.xkmc.l2library.serial.SerialClass;
 import dev.xkmc.l2library.util.math.MathHelper;
+import dev.xkmc.l2serial.serialization.SerialClass;
 import net.minecraft.network.chat.Component;
 
 import java.util.UUID;

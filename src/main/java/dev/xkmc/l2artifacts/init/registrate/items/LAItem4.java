@@ -9,7 +9,7 @@ import dev.xkmc.l2artifacts.content.effects.persistent.SimpleCPSetEffect;
 import dev.xkmc.l2artifacts.content.effects.v4.*;
 import dev.xkmc.l2artifacts.init.registrate.entries.LinearFuncEntry;
 import dev.xkmc.l2artifacts.init.registrate.entries.SetEntry;
-import dev.xkmc.l2library.util.code.Wrappers;
+import dev.xkmc.l2serial.util.Wrappers;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.ai.attributes.Attributes;

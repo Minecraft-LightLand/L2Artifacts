@@ -1,7 +1,7 @@
 package dev.xkmc.l2artifacts.content.core;
 
 import com.google.common.collect.Multimap;
-import dev.xkmc.l2library.serial.codec.TagCodec;
+import dev.xkmc.l2serial.serialization.codec.TagCodec;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;

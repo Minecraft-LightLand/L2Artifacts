@@ -49,7 +49,7 @@ public class ArtifactSwapData {
 		}
 
 		public boolean canAccept(ItemStack st) {
-			return st.getItem() instanceof BaseArtifact a && a.slot.get() == slot;
+			return !disabled && st.getItem() instanceof BaseArtifact a && a.slot.get() == slot;
 		}
 
 		public boolean isLocked() {

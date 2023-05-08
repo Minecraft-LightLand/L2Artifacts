@@ -57,10 +57,13 @@ public class ArtifactSwapMenu extends BaseContainerMenu<ArtifactSwapMenu> {
 	}
 
 	@Override
-	public boolean clickMenuButton(Player pPlayer, int id) {
+	public boolean clickMenuButton(Player player, int id) {
 		if (id >= 0 && id < 45) {
-			data.contents[id].toggle();
-			save();
+			if (!player.level.isClientSide()) {
+				data.contents[id].toggle();
+				save();
+				reload();
+			}
 			return true;
 		}
 		return false;

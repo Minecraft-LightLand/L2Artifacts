@@ -6,6 +6,7 @@ import dev.xkmc.l2library.base.menu.BaseContainerScreen;
 import dev.xkmc.l2library.base.menu.SpriteManager;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 
 public class ArtifactSwapScreen extends BaseContainerScreen<ArtifactSwapMenu> {
@@ -33,6 +34,21 @@ public class ArtifactSwapScreen extends BaseContainerScreen<ArtifactSwapMenu> {
 		} else if (stack.isEmpty()) {
 			sr.draw(pose, "grid", "altas_" + slot.getRegistryName().getPath(), (i % 9) * 18, (i / 9) * 18);
 		}
+	}
+
+	@Override
+	public boolean mouseClicked(double mx, double my, int btn) {
+		SpriteManager.Rect r = menu.sprite.getComp("grid");
+		int x = r.x + getGuiLeft();
+		int y = r.y + getGuiTop();
+		if (mx >= x && my >= y && mx < x + r.w * r.rx && my < y + r.h * r.ry) {
+			Slot slot = getSlotUnderMouse();
+			if (slot != null && slot.getItem().isEmpty() && menu.getCarried().isEmpty()) {
+				click(slot.getContainerSlot());
+				return true;
+			}
+		}
+		return super.mouseClicked(mx, my, btn);
 	}
 
 }

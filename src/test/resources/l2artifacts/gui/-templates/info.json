@@ -14,7 +14,13 @@
         "ids": [
             "_boost_main",
             "_boost_sub",
-            "_stat_container"
+            "_stat_container",
+            "_head",
+            "_necklace",
+            "_body",
+            "_bracelet",
+            "_belt",
+            "_disabled"
         ],
         "w": 16,
         "h": 16

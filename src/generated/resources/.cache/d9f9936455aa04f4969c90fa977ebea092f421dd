@@ -1,6 +1,6 @@
-// 1.19.2	2023-01-21T16:50:20.329108	Registrate Provider for l2artifacts [Recipes, Advancements, Loot tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
-03e19d0b38a8d7bdc3d43c40ec38fa428bc3a0aa assets/l2artifacts/lang/en_ud.json
-001e327edb158fc42e55e38b3ed469a130bf956f assets/l2artifacts/lang/en_us.json
+// 1.19.2	2023-05-07T23:12:32.069429	Registrate Provider for l2artifacts [Recipes, Advancements, Loot tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
+39847d7f8b7ae21d1d7f6cbb1ee1e2690c58d803 assets/l2artifacts/lang/en_ud.json
+f2f42ce244414a740fd7ae0c9b80b58df7853928 assets/l2artifacts/lang/en_us.json
 b8bd2d2e5b588898d6036ad788cad930cd830bb3 assets/l2artifacts/models/item/abyss_medal_belt_1.json
 038d8f4126f0f6d17791e0ad6e9d675facf37600 assets/l2artifacts/models/item/abyss_medal_belt_2.json
 f809e0fce1741dccc2e144c6eda90888d93dd883 assets/l2artifacts/models/item/abyss_medal_belt_3.json
@@ -372,6 +372,7 @@ c763572e940047220284032801d51c4667ac2761 assets/l2artifacts/models/item/sun_bloc
 bc9f22e5c026b98f5c07eaab690915385dd4522c assets/l2artifacts/models/item/sun_block_head_3.json
 c7fe7e799e41574b169419a1fc425e945f5f14fb assets/l2artifacts/models/item/sun_block_head_4.json
 f74b4e47de305648f7ac204c47aba61c82d6b8e8 assets/l2artifacts/models/item/sun_block_head_5.json
+dd9e1944c08cccd596844f3d74eb3166cbd248b5 assets/l2artifacts/models/item/swap.json
 96983e9477a6b6fba88bbdfc3dcfc44b22a65df6 assets/l2artifacts/models/item/upgraded_pocket.json
 b10fae4ff18d663180be21dc9b00478d81758a9e assets/l2artifacts/models/item/vampire_belt_1.json
 3ea2014d7e30f76361f562b1175c77d6bf34ce15 assets/l2artifacts/models/item/vampire_belt_2.json
@@ -741,6 +742,7 @@ b1e1ee9e4150af84441cb7744d4fad1f02a0b01a data/l2artifacts/advancements/recipes/l
 02210ac27cbf75588c89c7e66ae18486e099d550 data/l2artifacts/advancements/recipes/l2artifacts.artifacts/sun_block_head_3.json
 654bca73b0454893d0bded29d8ab1a117d177f1b data/l2artifacts/advancements/recipes/l2artifacts.artifacts/sun_block_head_4.json
 0eb8b430c509e7bdea5f0f440754a33b328276e0 data/l2artifacts/advancements/recipes/l2artifacts.artifacts/sun_block_head_5.json
+e7f97c7bcb7d69d8c7662f7ba7f6e2b79442041d data/l2artifacts/advancements/recipes/l2artifacts.artifacts/swap.json
 eccbf0b11d54eac13ed36d845822f511f19e2772 data/l2artifacts/advancements/recipes/l2artifacts.artifacts/upgraded_pocket.json
 f9e38e74f1e0d5912ae0bb6c28beae14b189f87d data/l2artifacts/advancements/recipes/l2artifacts.artifacts/vampire_belt_2.json
 37bcbf2d00b5cc89df38ea5c4825c1f96818d645 data/l2artifacts/advancements/recipes/l2artifacts.artifacts/vampire_belt_3.json
@@ -1095,6 +1097,7 @@ a8a451d46870d3dfa38fc66d1563590524b2e9f0 data/l2artifacts/recipes/stat_container
 3541a9b2c39b5857685b2d5606c3e98127303dcf data/l2artifacts/recipes/sun_block_head_3.json
 b08e0203e0d4783e5c16ff5de55e6a31d99ac193 data/l2artifacts/recipes/sun_block_head_4.json
 0f72788f4f0f3c4ef3a616b86528361bb251653d data/l2artifacts/recipes/sun_block_head_5.json
+536c49093634f6ce0326d325bbf8dae6a1733af6 data/l2artifacts/recipes/swap.json
 e028ba68d2fb67570b7f16970e153030a059fcce data/l2artifacts/recipes/upgraded_pocket.json
 abc4b922a54af8cb29f4ab59f42914797a76e437 data/l2artifacts/recipes/vampire_belt_2.json
 3112c1ac4871ceba1b9a6b322b1ad1e2cbef9ad2 data/l2artifacts/recipes/vampire_belt_3.json

@@ -12,6 +12,8 @@ import dev.xkmc.l2artifacts.content.search.shape.ShapeMenu;
 import dev.xkmc.l2artifacts.content.search.shape.ShapeMenuScreen;
 import dev.xkmc.l2artifacts.content.search.upgrade.UpgradeMenu;
 import dev.xkmc.l2artifacts.content.search.upgrade.UpgradeMenuScreen;
+import dev.xkmc.l2artifacts.content.swap.ArtifactSwapMenu;
+import dev.xkmc.l2artifacts.content.swap.ArtifactSwapScreen;
 import dev.xkmc.l2library.repack.registrate.util.entry.MenuEntry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.MenuType;
@@ -49,6 +51,11 @@ public class ArtifactMenuRegistry {
 	public static final MenuEntry<ShapeMenu> MT_SHAPE = REGISTRATE.menu("shape",
 					ShapeMenu::fromNetwork,
 					() -> ShapeMenuScreen::new)
+			.lang(ArtifactMenuRegistry::getLangKey).register();
+
+	public static final MenuEntry<ArtifactSwapMenu> MT_SWAP = REGISTRATE.menu("swap",
+					ArtifactSwapMenu::fromNetwork,
+					() -> ArtifactSwapScreen::new)
 			.lang(ArtifactMenuRegistry::getLangKey).register();
 
 	public static String getLangKey(MenuType<?> menu) {

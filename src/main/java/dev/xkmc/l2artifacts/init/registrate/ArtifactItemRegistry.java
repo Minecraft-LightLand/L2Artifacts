@@ -14,6 +14,7 @@ import dev.xkmc.l2artifacts.content.misc.ArtifactChestItem;
 import dev.xkmc.l2artifacts.content.misc.ExpItem;
 import dev.xkmc.l2artifacts.content.misc.RandomArtifactItem;
 import dev.xkmc.l2artifacts.content.misc.SelectArtifactItem;
+import dev.xkmc.l2artifacts.content.swap.ArtifactSwapItem;
 import dev.xkmc.l2artifacts.content.upgrades.StatContainerItem;
 import dev.xkmc.l2artifacts.content.upgrades.Upgrade;
 import dev.xkmc.l2artifacts.content.upgrades.UpgradeBoostItem;
@@ -57,6 +58,7 @@ public class ArtifactItemRegistry {
 
 	public static final ItemEntry<SelectArtifactItem> SELECT;
 	public static final ItemEntry<ArtifactChestItem> FILTER, UPGRADED_POCKET;
+	public static final ItemEntry<ArtifactSwapItem> SWAP;
 	public static final ItemEntry<RandomArtifactItem>[] RANDOM;
 	public static final ItemEntry<ExpItem>[] ITEM_EXP;
 	public static final ItemEntry<StatContainerItem>[] ITEM_STAT;
@@ -70,6 +72,8 @@ public class ArtifactItemRegistry {
 				.defaultModel().lang("Artifact Pocket").register();
 		UPGRADED_POCKET = REGISTRATE.item("upgraded_pocket", ArtifactChestItem::new)
 				.defaultModel().lang("Upgraded Artifact Pocket").register();
+		SWAP = REGISTRATE.item("swap", ArtifactSwapItem::new)
+				.defaultModel().lang("Artifact Quick Swap").register();
 		int n = 5;
 		RANDOM = new ItemEntry[n];
 		for (int i = 0; i < n; i++) {

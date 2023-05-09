@@ -26,7 +26,7 @@ public class ArtifactSwapScreen extends BaseContainerScreen<ArtifactSwapMenu> {
 	}
 
 	public void drawDisable(SpriteManager.ScreenRenderer sr, PoseStack pose, int i) {
-		boolean lock = (i < 30 ? (menu.lower.get() & (1 << i)) : (menu.upper.get() & (1 << i - 30))) != 0;
+		boolean lock = menu.disable.get(i);
 		ArtifactSlot slot = menu.data.contents[i].slot;
 		ItemStack stack = menu.container.getItem(i);
 		if (lock) {

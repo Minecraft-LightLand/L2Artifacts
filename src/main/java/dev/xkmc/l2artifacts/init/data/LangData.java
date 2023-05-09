@@ -70,7 +70,8 @@ public enum LangData {
 	RANK_3("tooltip.rank.3", "Rank Lv.3", 0, null),
 	RANK_4("tooltip.rank.4", "Rank Lv.4", 0, null),
 	RANK_5("tooltip.rank.5", "Rank Lv.5", 0, null),
-	;
+
+	TOOL_SWAP("tool.swap", "Stores 9 sets of artifacts. When holding it in hand, click up and down arrow to select, and click R to swap. Click empty slots to disable, to prevent taking down artifacts into empty slot when you don't want to.", 0, ChatFormatting.GRAY);
 
 	private final String key, def;
 	private final int arg;
@@ -117,6 +118,10 @@ public enum LangData {
 		pvd.add("l2artifacts.set.5", "(5/%s) Set Bonus: ");
 		pvd.add("menu.tabs.set_effects", "Activated Set Effects");
 
+		pvd.add("key.categories.l2artifacts", "L2Artifacts Keys");
+		pvd.add(Keys.UP.id, "Arrow Select Up");
+		pvd.add(Keys.DOWN.id, "Arrow Select Down");
+		pvd.add(Keys.SWAP.id, "Artifact Swap");
 		PatchouliLang.genLang(pvd);
 	}
 

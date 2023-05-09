@@ -1,0 +1,17 @@
+{
+  "name": "Artifact Quick Swap",
+  "icon": "l2artifacts:swap",
+  "category": "l2artifacts:general",
+  "sortnum": 7,
+  "pages": [
+	{
+	  "type": "patchouli:text",
+	  "text": "Stores 9 sets of artifacts. Right click the item to open its inventory. Each column in the GUI should be one set.$(br2)When holding the swap, you can see a list of artifacts. Click up and down arrow to select a set, and click R to swap.$(br2)When swapping, equipped artifacts will go to the selected line of the swap, and the selected artifacts will be equipped."
+	},
+	{
+	  "type": "patchouli:crafting",
+	  "recipe": "l2artifacts:swap",
+	  "text": "Right click unused slots to disable them. This prevents taking down artifacts when you don't want to."
+	}
+  ]
+}

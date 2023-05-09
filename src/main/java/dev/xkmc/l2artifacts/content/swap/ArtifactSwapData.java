@@ -60,6 +60,9 @@ public class ArtifactSwapData {
 	@SerialClass.SerialField
 	public final SwapSlot[] contents = new SwapSlot[45];
 
+	@SerialClass.SerialField
+	public int select = 0;
+
 	public ArtifactSwapData() {
 		int slot_ind = 0;
 		for (var slot : ArtifactTypeRegistry.SLOT.get()) {
@@ -81,15 +84,25 @@ public class ArtifactSwapData {
 		}
 	}
 
-	public void swap(Player player, int set_ind) {
+	public void swap(Player player) {
 		player.getCapability(CuriosCapability.INVENTORY).resolve().ifPresent(cap -> {
 			for (int slot_ind = 0; slot_ind < 5; slot_ind++) {
-				SwapSlot slot = contents[slot_ind * 9 + set_ind];
+				SwapSlot slot = contents[slot_ind * 9 + select];
 				if (slot.disabled) {
 					continue;
 				}
-				cap.getStacksHandler(slot.slot.getID()).ifPresent(h -> {
-
+				cap.getStacksHandler(slot.slot.getRegistryName().getPath()).ifPresent(h -> {
+					ItemStack old = h.getStacks().getStackInSlot(0);
+					ItemStack store = slot.getStack();
+					if (old.isEmpty()) {
+						if (!store.isEmpty()) {
+							h.getStacks().setStackInSlot(0, store);
+							slot.setStack(ItemStack.EMPTY);
+						}
+					} else if (old.getItem() instanceof BaseArtifact) {
+						slot.setStack(old.copy());
+						h.getStacks().setStackInSlot(0, store);
+					}
 				});
 			}
 		});

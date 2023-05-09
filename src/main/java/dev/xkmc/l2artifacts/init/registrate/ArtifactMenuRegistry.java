@@ -26,37 +26,37 @@ public class ArtifactMenuRegistry {
 	public static final MenuEntry<FilteredMenu> MT_FILTER = REGISTRATE.menu("filtered",
 					FilteredMenu::fromNetwork,
 					() -> FilteredMenuScreen::new)
-			.lang(ArtifactMenuRegistry::getLangKey).register();
+			.lang(ArtifactMenuRegistry::getLangKey, "Artifact Pocket").register();
 
 	public static final MenuEntry<RecycleMenu> MT_RECYCLE = REGISTRATE.menu("recycle",
 					RecycleMenu::fromNetwork,
 					() -> RecycleMenuScreen::new)
-			.lang(ArtifactMenuRegistry::getLangKey).register();
+			.lang(ArtifactMenuRegistry::getLangKey, "Artifact Exp Conversion").register();
 
 	public static final MenuEntry<UpgradeMenu> MT_UPGRADE = REGISTRATE.menu("upgrade",
 					UpgradeMenu::fromNetwork,
 					() -> UpgradeMenuScreen::new)
-			.lang(ArtifactMenuRegistry::getLangKey).register();
+			.lang(ArtifactMenuRegistry::getLangKey, "Artifact Upgrade").register();
 
 	public static final MenuEntry<DissolveMenu> MT_DISSOLVE = REGISTRATE.menu("dissolve",
 					DissolveMenu::fromNetwork,
 					() -> DissolveMenuScreen::new)
-			.lang(ArtifactMenuRegistry::getLangKey).register();
+			.lang(ArtifactMenuRegistry::getLangKey, "Artifact Dissolve").register();
 
 	public static final MenuEntry<AugmentMenu> MT_AUGMENT = REGISTRATE.menu("augment",
 					AugmentMenu::fromNetwork,
 					() -> AugmentMenuScreen::new)
-			.lang(ArtifactMenuRegistry::getLangKey).register();
+			.lang(ArtifactMenuRegistry::getLangKey, "Artifact Augment").register();
 
 	public static final MenuEntry<ShapeMenu> MT_SHAPE = REGISTRATE.menu("shape",
 					ShapeMenu::fromNetwork,
 					() -> ShapeMenuScreen::new)
-			.lang(ArtifactMenuRegistry::getLangKey).register();
+			.lang(ArtifactMenuRegistry::getLangKey, "Artifact Genesis").register();
 
 	public static final MenuEntry<ArtifactSwapMenu> MT_SWAP = REGISTRATE.menu("swap",
 					ArtifactSwapMenu::fromNetwork,
 					() -> ArtifactSwapScreen::new)
-			.lang(ArtifactMenuRegistry::getLangKey).register();
+			.lang(ArtifactMenuRegistry::getLangKey, "Artifact Quick Swap").register();
 
 	public static String getLangKey(MenuType<?> menu) {
 		ResourceLocation rl = ForgeRegistries.MENU_TYPES.getKey(menu);

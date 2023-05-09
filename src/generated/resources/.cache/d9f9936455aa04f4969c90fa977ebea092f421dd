@@ -1,6 +1,6 @@
-// 1.19.2	2023-05-07T23:12:32.069429	Registrate Provider for l2artifacts [Recipes, Advancements, Loot tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
-39847d7f8b7ae21d1d7f6cbb1ee1e2690c58d803 assets/l2artifacts/lang/en_ud.json
-f2f42ce244414a740fd7ae0c9b80b58df7853928 assets/l2artifacts/lang/en_us.json
+// 1.19.2	2023-05-08T14:45:00.256812	Registrate Provider for l2artifacts [Recipes, Advancements, Loot tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
+4834419c8ee4d02435931af939dee18aa04df51a assets/l2artifacts/lang/en_ud.json
+6c314ab5f95113ff9b4eb0544b24a938adea354b assets/l2artifacts/lang/en_us.json
 b8bd2d2e5b588898d6036ad788cad930cd830bb3 assets/l2artifacts/models/item/abyss_medal_belt_1.json
 038d8f4126f0f6d17791e0ad6e9d675facf37600 assets/l2artifacts/models/item/abyss_medal_belt_2.json
 f809e0fce1741dccc2e144c6eda90888d93dd883 assets/l2artifacts/models/item/abyss_medal_belt_3.json

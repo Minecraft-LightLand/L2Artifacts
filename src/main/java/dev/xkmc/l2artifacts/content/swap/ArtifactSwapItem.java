@@ -12,12 +12,12 @@ import net.minecraft.world.level.Level;
 
 public class ArtifactSwapItem extends Item {
 
-	private static final String KEY = "SwapData";
+	private static final String KEY_DATA = "SwapData";
 
 	public static ArtifactSwapData getData(ItemStack stack) {
 		ArtifactSwapData data = null;
-		if (stack.getOrCreateTag().contains(KEY)) {
-			data = TagCodec.fromTag(stack.getOrCreateTag().getCompound(KEY), ArtifactSwapData.class);
+		if (stack.getOrCreateTag().contains(KEY_DATA)) {
+			data = TagCodec.fromTag(stack.getOrCreateTag().getCompound(KEY_DATA), ArtifactSwapData.class);
 		}
 		if (data == null) {
 			return new ArtifactSwapData();
@@ -32,7 +32,7 @@ public class ArtifactSwapItem extends Item {
 	public static void setData(ItemStack stack, ArtifactSwapData data) {
 		CompoundTag tag = TagCodec.toTag(new CompoundTag(), data);
 		if (tag == null) return;
-		stack.getOrCreateTag().put(KEY, tag);
+		stack.getOrCreateTag().put(KEY_DATA, tag);
 	}
 
 	@Override

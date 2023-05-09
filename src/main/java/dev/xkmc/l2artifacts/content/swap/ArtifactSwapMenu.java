@@ -1,6 +1,6 @@
 package dev.xkmc.l2artifacts.content.swap;
 
-import dev.xkmc.l2artifacts.content.search.common.IntDataSlot;
+import dev.xkmc.l2artifacts.content.search.common.BoolArrayDataSlot;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
 import dev.xkmc.l2library.base.menu.BaseContainerMenu;
 import dev.xkmc.l2library.base.menu.SpriteManager;
@@ -27,7 +27,7 @@ public class ArtifactSwapMenu extends BaseContainerMenu<ArtifactSwapMenu> {
 
 	public final ArtifactSwapData data;
 
-	public final IntDataSlot upper = new IntDataSlot(this), lower = new IntDataSlot(this);
+	public final BoolArrayDataSlot disable = new BoolArrayDataSlot(this, 45);
 
 	private boolean init = false;
 
@@ -44,16 +44,10 @@ public class ArtifactSwapMenu extends BaseContainerMenu<ArtifactSwapMenu> {
 	}
 
 	private void reload() {
-		int low = 0, up = 0;
 		for (int i = 0; i < 45; i++) {
 			container.setItem(i, data.contents[i].getStack().copy());
-			if (data.contents[i].isLocked()) {
-				if (i < 30) low |= 1 << i;
-				else up |= 1 << (i - 30);
-			}
+			disable.set(data.contents[i].isLocked(), i);
 		}
-		lower.set(low);
-		upper.set(up);
 	}
 
 	@Override

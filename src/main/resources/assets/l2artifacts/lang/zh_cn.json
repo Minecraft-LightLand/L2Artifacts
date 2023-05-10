@@ -566,8 +566,14 @@
   "container.l2artifacts.augment": "定向强化",
   "container.l2artifacts.dissolve": "词条溶解",
   "container.l2artifacts.shape": "古遗物重构",
+  "container.l2artifacts.swap": "古遗物快捷切换",
   "patchouli.l2artifacts.landing": "欢迎来到莱特兰-古遗物",
   "patchouli.l2artifacts.title": "古遗物教程书",
+  "item.l2artifacts.swap": "古遗物快捷切换",
+  "key.categories.l2artifacts": "古遗物按键",
+  "key.l2artifacts.down": "选择：上",
+  "key.l2artifacts.swap": "选择：确定",
+  "key.l2artifacts.up": "选择：下",
   "l2artifacts.tooltip.artifact_exp": "经验值: %s/%s",
   "l2artifacts.tooltip.artifact_level": "等级: %s",
   "l2artifacts.tooltip.main_stat": "主词条:",
@@ -617,5 +623,6 @@
   "l2artifacts.title.info.matched": "匹配数量: %s",
   "l2artifacts.title.info.selected": "已选中: %s",
   "l2artifacts.title.info.total": "总数: %s",
-  "l2artifacts.title.info.exp_cost": "古遗物经验消耗: %s"
+  "l2artifacts.title.info.exp_cost": "古遗物经验消耗: %s",
+  "l2artifacts.tool.swap": "储存9套古遗物。按上下键选择，按R切换套装。右键空格子锁定格子，以避免在不想要的时候把古遗物换到那些格子中。"
 }

@@ -20,8 +20,16 @@
 	"upgrade": "古遗物升级",
 	"augment": "定向强化",
 	"dissolve": "词条溶解",
-	"shape": "古遗物重构"
+	"shape": "古遗物重构",
+	"swap": "古遗物快捷切换"
   },
   "patchouli.l2artifacts.landing": "欢迎来到莱特兰-古遗物",
-  "patchouli.l2artifacts.title": "古遗物教程书"
+  "patchouli.l2artifacts.title": "古遗物教程书",
+  "item.l2artifacts.swap": "古遗物快捷切换",
+  "key.categories.l2artifacts": "古遗物按键",
+  "key.l2artifacts":{
+	"down": "选择：上",
+	"swap": "选择：确定",
+	"up": "选择：下"
+  }
 }

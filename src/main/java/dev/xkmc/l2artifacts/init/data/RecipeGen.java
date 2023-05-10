@@ -66,6 +66,14 @@ public class RecipeGen {
 						RecipeCategory.MISC,
 						ArtifactItemRegistry.UPGRADED_POCKET.get())::unlocks,
 				Items.NETHERITE_INGOT)
+		unlock(pvd, new ShapedRecipeBuilder(ArtifactItemRegistry.SWAP.get(), 1)::unlockedBy, Items.ENDER_PEARL)
+				.pattern(" E ").pattern("LAL").pattern(" L ")
+				.define('E', Items.ENDER_PEARL).define('L', Items.LEATHER).define('A', artifact)
+				.save(pvd);
+
+		unlock(pvd, UpgradeRecipeBuilder.smithing(Ingredient.of(ArtifactItemRegistry.FILTER.get()),
+				Ingredient.of(Items.NETHERITE_INGOT),
+				ArtifactItemRegistry.UPGRADED_POCKET.get())::unlocks, Items.NETHERITE_INGOT)
 				.save(pvd, L2Artifacts.MODID + ":upgraded_pocket");
 
 		//TODO mapping, removal

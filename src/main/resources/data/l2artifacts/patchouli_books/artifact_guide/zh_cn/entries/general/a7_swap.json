@@ -1,0 +1,17 @@
+{
+  "name": "古遗物快捷切换",
+  "icon": "l2artifacts:swap",
+  "category": "l2artifacts:general",
+  "sortnum": 7,
+  "pages": [
+	{
+	  "type": "patchouli:text",
+	  "text": "储存9套古遗物。右键打开GUI，每列为1套。$(br2)手持快捷切换时会显示袋内所有古遗物。按上下或者数字键选择， 按R切换$(br2)切换时，已装备的古遗物回到选中区域，选中区域中的古遗物装备。."
+	},
+	{
+	  "type": "patchouli:crafting",
+	  "recipe": "l2artifacts:swap",
+	  "text": "右键不用的空格子来锁定格子，这样可以避免切换时把想保留的古遗物摘下来。"
+	}
+  ]
+}

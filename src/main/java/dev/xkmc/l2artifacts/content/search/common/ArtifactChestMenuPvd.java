@@ -13,8 +13,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.network.NetworkHooks;
 
 public record ArtifactChestMenuPvd(Factory fac, ServerPlayer player,
-								   InteractionHand hand,
-								   ItemStack stack) implements MenuProvider {
+								   int slot, ItemStack stack) implements MenuProvider {
 
 	@Override
 	public Component getDisplayName() {
@@ -23,11 +22,11 @@ public record ArtifactChestMenuPvd(Factory fac, ServerPlayer player,
 
 	@Override
 	public AbstractContainerMenu createMenu(int id, Inventory inventory, Player player) {
-		return fac.apply(id, inventory, ArtifactChestToken.of(player, hand));
+		return fac.apply(id, inventory, ArtifactChestToken.of(player, slot));
 	}
 
 	public void writeBuffer(FriendlyByteBuf buf) {
-		buf.writeInt(hand == InteractionHand.MAIN_HAND ? 0 : 1);
+		buf.writeInt(slot);
 	}
 
 	public void open() {

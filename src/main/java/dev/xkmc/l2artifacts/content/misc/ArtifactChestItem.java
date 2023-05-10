@@ -40,7 +40,7 @@ public class ArtifactChestItem extends Item {
 	}
 
 	public ArtifactChestItem(Properties properties) {
-		super(properties);
+		super(properties.stacksTo(1));
 	}
 
 	public static CompoundTag getFilter(ItemStack stack) {
@@ -63,7 +63,8 @@ public class ArtifactChestItem extends Item {
 	public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
 		ItemStack stack = player.getItemInHand(hand);
 		if (!level.isClientSide()) {
-			new ArtifactChestMenuPvd(FilteredMenu::new, (ServerPlayer) player, hand, stack).open();
+			int slot = hand == InteractionHand.OFF_HAND ? 40 : player.getInventory().selected;
+			new ArtifactChestMenuPvd(FilteredMenu::new, (ServerPlayer) player, slot, stack).open();
 		}
 		return InteractionResultHolder.success(stack);
 	}

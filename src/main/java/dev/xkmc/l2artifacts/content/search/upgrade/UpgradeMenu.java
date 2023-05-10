@@ -24,8 +24,7 @@ public class UpgradeMenu extends BaseContainerMenu<UpgradeMenu> implements IFilt
 
 	public static UpgradeMenu fromNetwork(MenuType<UpgradeMenu> type, int wid, Inventory plInv, FriendlyByteBuf buf) {
 		int i = buf.readInt();
-		InteractionHand hand = i == 0 ? InteractionHand.MAIN_HAND : InteractionHand.OFF_HAND;
-		return new UpgradeMenu(wid, plInv, ArtifactChestToken.of(plInv.player, hand));
+		return new UpgradeMenu(wid, plInv, ArtifactChestToken.of(plInv.player, i));
 	}
 
 	public final ArtifactChestToken token;

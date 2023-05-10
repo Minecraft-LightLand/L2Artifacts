@@ -9,6 +9,7 @@ import dev.xkmc.l2artifacts.content.upgrades.ArtifactUpgradeManager;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactMenuRegistry;
 import dev.xkmc.l2library.base.menu.SpriteManager;
+import dev.xkmc.l2library.base.menu.data.BoolArrayDataSlot;
 import dev.xkmc.l2library.base.menu.data.IntDataSlot;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.Container;
@@ -24,14 +25,13 @@ public class RecycleMenu extends AbstractScrollerMenu<RecycleMenu> {
 
 	public static RecycleMenu fromNetwork(MenuType<RecycleMenu> type, int wid, Inventory plInv, FriendlyByteBuf buf) {
 		int i = buf.readInt();
-		InteractionHand hand = i == 0 ? InteractionHand.MAIN_HAND : InteractionHand.OFF_HAND;
-		return new RecycleMenu(wid, plInv, ArtifactChestToken.of(plInv.player, hand));
+		return new RecycleMenu(wid, plInv, ArtifactChestToken.of(plInv.player, i));
 	}
 
 	public final IntDataSlot select_count;
 	public final IntDataSlot to_gain;
 
-	protected final IntDataSlot sel_0, sel_1;
+	protected final BoolArrayDataSlot sel;
 
 	protected boolean[] selected;
 
@@ -41,8 +41,7 @@ public class RecycleMenu extends AbstractScrollerMenu<RecycleMenu> {
 		this.addSlot("grid", e -> false, e -> e.setPickup(() -> false));
 		select_count = new IntDataSlot(this);
 		to_gain = new IntDataSlot(this);
-		sel_0 = new IntDataSlot(this);
-		sel_1 = new IntDataSlot(this);
+		sel = new BoolArrayDataSlot(this, 36);
 		reload(true);
 	}
 
@@ -66,17 +65,9 @@ public class RecycleMenu extends AbstractScrollerMenu<RecycleMenu> {
 			for (int j = 0; j < 6; j++) {
 				int ind = i * 6 + j;
 				int index = getScroll() * 6 + ind;
-				boolean sel = index < current_count.get() && selected[index];
-				if (!sel) continue;
-				if (ind < 18) {
-					val_0 |= 1 << ind;
-				} else {
-					val_1 |= 1 << (ind - 18);
-				}
+				sel.set(index < current_count.get() && selected[index], ind);
 			}
 		}
-		sel_0.set(val_0);
-		sel_1.set(val_1);
 	}
 
 	@Override

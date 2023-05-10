@@ -1,10 +1,7 @@
 package dev.xkmc.l2artifacts.init;
 
 import com.tterrag.registrate.providers.ProviderType;
-import dev.xkmc.l2artifacts.events.ArtifactEffectEvents;
-import dev.xkmc.l2artifacts.events.CommonEvents;
-import dev.xkmc.l2artifacts.events.CraftEvents;
-import dev.xkmc.l2artifacts.events.CritHandler;
+import dev.xkmc.l2artifacts.events.*;
 import dev.xkmc.l2artifacts.init.data.*;
 import dev.xkmc.l2artifacts.init.data.loot.ArtifactGLMProvider;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactMenuRegistry;
@@ -13,6 +10,7 @@ import dev.xkmc.l2artifacts.init.registrate.ArtifactTypeRegistry;
 import dev.xkmc.l2artifacts.init.registrate.items.ArtifactItemRegistry;
 import dev.xkmc.l2artifacts.network.NetworkManager;
 import dev.xkmc.l2library.init.events.attack.AttackEventHandler;
+import dev.xkmc.l2library.init.events.select.SelectionRegistry;
 import dev.xkmc.l2serial.serialization.custom_handler.RLClassHandler;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraftforge.common.MinecraftForge;
@@ -36,6 +34,7 @@ public class L2Artifacts {
 	public static final String MODID = "l2artifacts";
 	public static final Logger LOGGER = LogManager.getLogger();
 	public static final ArtifactRegistrate REGISTRATE = new ArtifactRegistrate();
+	public static final ArtifactSlotClickListener CLICK = new ArtifactSlotClickListener();
 
 	private static void registerRegistrates(IEventBus bus) {
 		ArtifactTypeRegistry.register();
@@ -49,10 +48,10 @@ public class L2Artifacts {
 	}
 
 	private static void registerForgeEvents() {
-		AttackEventHandler.register(3000, new CritHandler());
+		SelectionRegistry.register(-5000, ArtifactSel.INSTANCE);
+		AttackEventHandler.register(3000, new ArtifactAttackListener());
 		MinecraftForge.EVENT_BUS.register(CommonEvents.class);
 		MinecraftForge.EVENT_BUS.register(CraftEvents.class);
-		MinecraftForge.EVENT_BUS.register(CritHandler.class);
 		MinecraftForge.EVENT_BUS.register(ArtifactEffectEvents.class);
 	}
 

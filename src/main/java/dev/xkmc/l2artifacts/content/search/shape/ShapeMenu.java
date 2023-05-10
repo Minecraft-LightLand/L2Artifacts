@@ -30,8 +30,7 @@ public class ShapeMenu extends BaseContainerMenu<ShapeMenu> implements IFilterMe
 
 	public static ShapeMenu fromNetwork(MenuType<ShapeMenu> type, int wid, Inventory plInv, FriendlyByteBuf buf) {
 		int i = buf.readInt();
-		InteractionHand hand = i == 0 ? InteractionHand.MAIN_HAND : InteractionHand.OFF_HAND;
-		return new ShapeMenu(wid, plInv, ArtifactChestToken.of(plInv.player, hand));
+		return new ShapeMenu(wid, plInv, ArtifactChestToken.of(plInv.player, i));
 	}
 
 	public final ArtifactChestToken token;

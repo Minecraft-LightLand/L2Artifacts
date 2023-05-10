@@ -24,17 +24,17 @@ import java.util.stream.Stream;
 @SerialClass
 public class ArtifactChestToken implements IArtifactFilter {
 
-	public static ArtifactChestToken of(Player player, InteractionHand hand) {
-		ItemStack stack = player.getItemInHand(hand);
+	public static ArtifactChestToken of(Player player, int invSlot) {
+		ItemStack stack = player.getInventory().getItem(invSlot);
 		List<ItemStack> list = ArtifactChestItem.getContent(stack);
-		ArtifactChestToken ans = new ArtifactChestToken(stack, list, hand);
+		ArtifactChestToken ans = new ArtifactChestToken(stack, list, invSlot);
 		TagCodec.fromTag(ArtifactChestItem.getFilter(stack), ArtifactChestToken.class, ans, e -> true);
 		ans.exp = ArtifactChestItem.getExp(stack);
 		return ans;
 	}
 
 	public final ItemStack stack;
-	public final InteractionHand hand;
+	public final int invSlot;
 	public final List<ItemStack> list;
 	public final List<ArtifactFilter<?>> filters = new ArrayList<>();
 
@@ -55,10 +55,10 @@ public class ArtifactChestToken implements IArtifactFilter {
 	@Nullable
 	private List<GenericItemStack<BaseArtifact>> cahce = null;
 
-	private ArtifactChestToken(ItemStack stack, List<ItemStack> list, InteractionHand hand) {
+	private ArtifactChestToken(ItemStack stack, List<ItemStack> list, int invSlot) {
 		this.list = list;
 		this.stack = stack;
-		this.hand = hand;
+		this.invSlot = invSlot;
 		rank = addFilter(e -> new RankFilter(e, LangData.FILTER_RANK));
 		set = addFilter(e -> new SimpleArtifactFilter<>(e, LangData.FILTER_SET,
 				ArtifactTypeRegistry.SET.get(), i -> i.set.get()));

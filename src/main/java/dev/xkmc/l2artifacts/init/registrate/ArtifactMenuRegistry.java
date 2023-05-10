@@ -15,7 +15,6 @@ import dev.xkmc.l2artifacts.content.search.upgrade.UpgradeMenu;
 import dev.xkmc.l2artifacts.content.search.upgrade.UpgradeMenuScreen;
 import dev.xkmc.l2artifacts.content.swap.ArtifactSwapMenu;
 import dev.xkmc.l2artifacts.content.swap.ArtifactSwapScreen;
-import dev.xkmc.l2library.repack.registrate.util.entry.MenuEntry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraftforge.registries.ForgeRegistries;

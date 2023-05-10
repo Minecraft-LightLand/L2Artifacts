@@ -20,7 +20,7 @@ public class SortTab extends FilterTabBase<SortTab> {
 	@Override
 	public void onTabClicked() {
 		manager.screen.onSwitch();
-		var token = ArtifactChestToken.of(Proxy.getClientPlayer(), manager.token.hand);
+		var token = ArtifactChestToken.of(Proxy.getClientPlayer(), manager.token.invSlot);
 		Minecraft.getInstance().setScreen(new SortScreen(token));
 		NetworkManager.HANDLER.toServer(new SetFilterToServer(manager.token, null));
 	}

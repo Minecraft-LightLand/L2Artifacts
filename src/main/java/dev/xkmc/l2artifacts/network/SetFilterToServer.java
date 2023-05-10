@@ -16,7 +16,6 @@ import dev.xkmc.l2serial.serialization.SerialClass;
 import dev.xkmc.l2serial.serialization.codec.TagCodec;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.network.NetworkEvent;
 
@@ -41,7 +40,7 @@ public class SetFilterToServer extends SerialPacketBase {
 	}
 
 	@SerialClass.SerialField
-	private InteractionHand hand;
+	private int slot;
 
 	@SerialClass.SerialField
 	private CompoundTag filter;
@@ -56,9 +55,9 @@ public class SetFilterToServer extends SerialPacketBase {
 	}
 
 	public SetFilterToServer(ArtifactChestToken token, @Nullable Type type) {
-		hand = token.hand;
+		slot = token.invSlot;
 		filter = TagCodec.toTag(new CompoundTag(), token);
-		ArtifactChestItem.setFilter(Proxy.getClientPlayer().getItemInHand(hand), filter);
+		ArtifactChestItem.setFilter(Proxy.getClientPlayer().getInventory().getItem(slot), filter);
 		this.type = type;
 	}
 
@@ -67,7 +66,7 @@ public class SetFilterToServer extends SerialPacketBase {
 	public void handle(NetworkEvent.Context context) {
 		ServerPlayer player = context.getSender();
 		if (player == null) return;
-		ItemStack stack = player.getItemInHand(hand);
+		ItemStack stack = player.getInventory().getItem(slot);
 		if (!(stack.getItem() instanceof ArtifactChestItem))
 			return;
 		ArtifactChestItem.setFilter(stack, filter);
@@ -78,10 +77,10 @@ public class SetFilterToServer extends SerialPacketBase {
 		if (player.containerMenu instanceof IFilterMenu) {
 			ItemStack carried = player.containerMenu.getCarried();
 			player.containerMenu.setCarried(ItemStack.EMPTY);
-			new ArtifactChestMenuPvd(type.factory, player, hand, stack).open();
+			new ArtifactChestMenuPvd(type.factory, player, slot, stack).open();
 			player.containerMenu.setCarried(carried);
 		} else {
-			new ArtifactChestMenuPvd(type.factory, player, hand, stack).open();
+			new ArtifactChestMenuPvd(type.factory, player, slot, stack).open();
 		}
 	}
 

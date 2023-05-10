@@ -60,29 +60,23 @@ public class RecipeGen {
 				.define('E', Items.ENDER_PEARL).define('L', Items.LEATHER).define('A', artifact)
 				.save(pvd);
 
-		//TODO mapping
-		unlock(pvd, SmithingTransformRecipeBuilder.smithing(Ingredient.of(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE), Ingredient.of(ArtifactItemRegistry.FILTER.get()),
-						Ingredient.of(Items.NETHERITE_INGOT),
-						RecipeCategory.MISC,
-						ArtifactItemRegistry.UPGRADED_POCKET.get())::unlocks,
-				Items.NETHERITE_INGOT)
-		unlock(pvd, new ShapedRecipeBuilder(ArtifactItemRegistry.SWAP.get(), 1)::unlockedBy, Items.ENDER_PEARL)
+		unlock(pvd, new ShapedRecipeBuilder(RecipeCategory.MISC, ArtifactItemRegistry.SWAP.get(), 1)::unlockedBy, Items.ENDER_PEARL)
 				.pattern(" E ").pattern("LAL").pattern(" L ")
 				.define('E', Items.ENDER_PEARL).define('L', Items.LEATHER).define('A', artifact)
 				.save(pvd);
 
-		unlock(pvd, UpgradeRecipeBuilder.smithing(Ingredient.of(ArtifactItemRegistry.FILTER.get()),
-				Ingredient.of(Items.NETHERITE_INGOT),
-				ArtifactItemRegistry.UPGRADED_POCKET.get())::unlocks, Items.NETHERITE_INGOT)
-				.save(pvd, L2Artifacts.MODID + ":upgraded_pocket");
+		unlock(pvd, SmithingTransformRecipeBuilder.smithing(Ingredient.of(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE), Ingredient.of(ArtifactItemRegistry.FILTER.get()),
+						Ingredient.of(Items.NETHERITE_INGOT),
+						RecipeCategory.MISC,
+						ArtifactItemRegistry.UPGRADED_POCKET.get())::unlocks,
+				Items.NETHERITE_INGOT).save(pvd, L2Artifacts.MODID + ":upgraded_pocket");
 
 		//TODO mapping, removal
 		unlock(pvd, LegacyUpgradeRecipeBuilder.smithing(Ingredient.of(ArtifactItemRegistry.FILTER.get()),
 						Ingredient.of(Items.NETHERITE_INGOT),
 						RecipeCategory.MISC,
 						ArtifactItemRegistry.UPGRADED_POCKET.get())::unlocks,
-				Items.NETHERITE_INGOT)
-				.save(pvd, L2Artifacts.MODID + ":upgraded_pocket_old");
+				Items.NETHERITE_INGOT).save(pvd, L2Artifacts.MODID + ":upgraded_pocket_old");
 
 		// rank up recipes
 		for (SetEntry<?> set : L2Artifacts.REGISTRATE.SET_LIST) {

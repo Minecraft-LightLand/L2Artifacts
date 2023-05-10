@@ -44,8 +44,8 @@ public abstract class SetEffect extends NamedEntry<SetEffect> {
 	/**
 	 * 当玩家试图发动近战攻击时触发，可以修改伤害数值。此时目标已确定，但是伤害来源还未创建。
 	 */
-	public void playerAttackModifyEvent(Player player, ArtifactSetConfig.Entry ent, int rank, CriticalHitEvent event) {
-
+	public boolean playerAttackModifyEvent(Player player, ArtifactSetConfig.Entry ent, int rank, CriticalHitEvent event) {
+		return false;
 	}
 
 	/**

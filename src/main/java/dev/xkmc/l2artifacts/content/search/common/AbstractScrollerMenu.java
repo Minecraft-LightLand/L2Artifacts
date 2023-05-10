@@ -89,7 +89,7 @@ public abstract class AbstractScrollerMenu<T extends AbstractScrollerMenu<T>> ex
 
 	@Override
 	public final boolean stillValid(Player player) {
-		return player.getItemInHand(token.hand) == token.stack;
+		return player.getInventory().getItem(token.invSlot) == token.stack;
 	}
 
 	@Override

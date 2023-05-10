@@ -12,9 +12,7 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.network.NetworkHooks;
 
-public record ArtifactSwapMenuPvd(ServerPlayer player,
-								  InteractionHand hand,
-								  ItemStack stack) implements MenuProvider {
+public record ArtifactSwapMenuPvd(ServerPlayer player, int slot, ItemStack stack) implements MenuProvider {
 
 	@Override
 	public Component getDisplayName() {
@@ -23,11 +21,11 @@ public record ArtifactSwapMenuPvd(ServerPlayer player,
 
 	@Override
 	public AbstractContainerMenu createMenu(int id, Inventory inventory, Player player) {
-		return new ArtifactSwapMenu(ArtifactMenuRegistry.MT_SWAP.get(), id, inventory, hand);
+		return new ArtifactSwapMenu(ArtifactMenuRegistry.MT_SWAP.get(), id, inventory, slot);
 	}
 
 	public void writeBuffer(FriendlyByteBuf buf) {
-		buf.writeInt(hand == InteractionHand.MAIN_HAND ? 0 : 1);
+		buf.writeInt(slot);
 	}
 
 	public void open() {

@@ -151,7 +151,7 @@ public abstract class StackedScreen extends Screen implements IFilterScreen {
 	public void onSwitch() {
 		var filter = TagCodec.toTag(new CompoundTag(), token);
 		assert filter != null;
-		ArtifactChestItem.setFilter(Proxy.getClientPlayer().getItemInHand(token.hand), filter);
+		ArtifactChestItem.setFilter(Proxy.getClientPlayer().getInventory().getItem(token.invSlot), filter);
 	}
 
 	@Override

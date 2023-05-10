@@ -22,8 +22,7 @@ public class FilteredMenu extends AbstractScrollerMenu<FilteredMenu> {
 
 	public static FilteredMenu fromNetwork(MenuType<FilteredMenu> type, int wid, Inventory plInv, FriendlyByteBuf buf) {
 		int i = buf.readInt();
-		InteractionHand hand = i == 0 ? InteractionHand.MAIN_HAND : InteractionHand.OFF_HAND;
-		return new FilteredMenu(wid, plInv, ArtifactChestToken.of(plInv.player, hand));
+		return new FilteredMenu(wid, plInv, ArtifactChestToken.of(plInv.player, i));
 	}
 
 	private ItemStack selected = ItemStack.EMPTY;

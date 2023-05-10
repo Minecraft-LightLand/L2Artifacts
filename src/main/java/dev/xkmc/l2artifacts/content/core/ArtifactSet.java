@@ -4,7 +4,7 @@ import com.mojang.datafixers.util.Pair;
 import dev.xkmc.l2artifacts.content.client.tab.DarkTextColorRanks;
 import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
 import dev.xkmc.l2artifacts.content.search.token.IArtifactFeature;
-import dev.xkmc.l2artifacts.events.EventConsumer;
+import dev.xkmc.l2artifacts.events.ArtifactEffectEvents;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
 import dev.xkmc.l2artifacts.init.data.LangData;
 import dev.xkmc.l2artifacts.init.data.ModConfig;
@@ -125,7 +125,7 @@ public class ArtifactSet extends NamedEntry<ArtifactSet> implements IArtifactFea
 		}
 	}
 
-	public <T> void propagateEvent(SlotContext context, T event, EventConsumer<T> cons) {
+	public <T> void propagateEvent(SlotContext context, T event, ArtifactEffectEvents.EventConsumer<T> cons) {
 		LivingEntity e = context.entity();
 		if (e instanceof Player player) {
 			Optional<SetContext> result = getCountAndIndex(context);
@@ -139,6 +139,24 @@ public class ArtifactSet extends NamedEntry<ArtifactSet> implements IArtifactFea
 				}
 			}
 		}
+	}
+
+	public <T> boolean propagateEvent(SlotContext context, T event, ArtifactEffectEvents.EventPredicate<T> cons) {
+		LivingEntity e = context.entity();
+		boolean ans = false;
+		if (e instanceof Player player) {
+			Optional<SetContext> result = getCountAndIndex(context);
+			if (result.isPresent() && result.get().current_index() == 0) {
+				ArtifactSetConfig config = ArtifactSetConfig.getInstance();
+				ArrayList<ArtifactSetConfig.Entry> list = config.map.get(this);
+				for (ArtifactSetConfig.Entry ent : list) {
+					if (result.get().count() >= ent.count) {
+						ans |= cons.apply(ent.effect, player, ent, result.get().ranks()[ent.count], event);
+					}
+				}
+			}
+		}
+		return ans;
 	}
 
 	public List<MutableComponent> getAllDescs(ItemStack stack, boolean show) {

@@ -57,12 +57,11 @@ public class RecycleMenuScreen extends AbstractScrollerScreen<RecycleMenu> {
 	}
 
 	private boolean isSelected(int ind) {
-		return ((ind < 18 ? menu.sel_0.get() >> ind : menu.sel_1.get() >> (ind - 18)) & 1) != 0;
+		return menu.sel.get(ind);
 	}
 
 	private void forceSelect(int ind) {
-		if (ind < 18) menu.sel_0.set(menu.sel_0.get() ^ (1 << ind));
-		else menu.sel_1.set(menu.sel_1.get() ^ (1 << (ind - 18)));
+		menu.sel.set(!menu.sel.get(ind), ind);
 	}
 
 	@Override

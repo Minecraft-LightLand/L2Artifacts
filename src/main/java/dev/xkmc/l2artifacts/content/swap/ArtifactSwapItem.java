@@ -26,7 +26,7 @@ public class ArtifactSwapItem extends Item {
 	}
 
 	public ArtifactSwapItem(Properties properties) {
-		super(properties);
+		super(properties.stacksTo(1));
 	}
 
 	public static void setData(ItemStack stack, ArtifactSwapData data) {

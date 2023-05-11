@@ -40,7 +40,7 @@ public class ArtifactChestItem extends Item {
 	}
 
 	public ArtifactChestItem(Properties properties) {
-		super(properties);
+		super(properties.stacksTo(1));
 	}
 
 	public static CompoundTag getFilter(ItemStack stack) {

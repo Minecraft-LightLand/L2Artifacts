@@ -27,7 +27,7 @@ public enum ArtifactSlotCuriosType {
 	}
 
 	public String getDefTranslation() {
-		return RegistrateLangProvider.toEnglishName(name().toLowerCase(Locale.ROOT));
+		return "Artifact - " + RegistrateLangProvider.toEnglishName(name().toLowerCase(Locale.ROOT));
 	}
 
 	public String getDesc() {

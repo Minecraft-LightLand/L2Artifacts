@@ -4,7 +4,6 @@ import dev.xkmc.l2artifacts.content.client.tab.TabSetEffects;
 import dev.xkmc.l2artifacts.content.client.tooltip.ClientItemTooltip;
 import dev.xkmc.l2artifacts.content.client.tooltip.ItemTooltip;
 import dev.xkmc.l2artifacts.content.swap.ArtifactSwapOverlay;
-import dev.xkmc.l2artifacts.init.data.Keys;
 import dev.xkmc.l2artifacts.init.registrate.items.ArtifactItemRegistry;
 import dev.xkmc.l2library.base.tabs.core.TabRegistry;
 import dev.xkmc.l2library.base.tabs.core.TabToken;
@@ -43,8 +42,6 @@ public class ModClient {
 
 	@SubscribeEvent
 	public static void registerKeys(RegisterKeyMappingsEvent event) {
-		for (Keys k : Keys.values())
-			event.register(k.map);
 	}
 
 }

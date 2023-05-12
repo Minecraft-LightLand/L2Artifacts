@@ -1,8 +1,11 @@
 package dev.xkmc.l2artifacts.init.data;
 
+import com.tterrag.registrate.providers.RegistrateLangProvider;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
 import net.minecraft.resources.ResourceLocation;
 import top.theillusivec4.curios.api.SlotTypeMessage;
+
+import java.util.Locale;
 
 public enum ArtifactSlotCuriosType {
 	HEAD("artifact_head", -1400),
@@ -21,6 +24,14 @@ public enum ArtifactSlotCuriosType {
 
 	public String getIdentifier() {
 		return this.id;
+	}
+
+	public String getDefTranslation() {
+		return RegistrateLangProvider.toEnglishName(name().toLowerCase(Locale.ROOT));
+	}
+
+	public String getDesc() {
+		return "curios.identifier." + id;
 	}
 
 	public SlotTypeMessage.Builder getMessageBuilder() {

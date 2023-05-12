@@ -26,10 +26,11 @@
   "patchouli.l2artifacts.landing": "欢迎来到莱特兰-古遗物",
   "patchouli.l2artifacts.title": "古遗物教程书",
   "item.l2artifacts.swap": "古遗物快捷切换",
-  "key.categories.l2artifacts": "古遗物按键",
-  "key.l2artifacts":{
-	"down": "选择：上",
-	"swap": "选择：确定",
-	"up": "选择：下"
+  "curios.identifier": {
+	"artifact_belt": "古遗物-腰带",
+	"artifact_body": "古遗物-胸饰",
+	"artifact_bracelet": "古遗物-手环",
+	"artifact_head": "古遗物-头饰",
+	"artifact_necklace": "古遗物-项链"
   }
 }

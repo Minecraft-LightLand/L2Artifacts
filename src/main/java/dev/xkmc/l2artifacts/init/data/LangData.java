@@ -107,6 +107,9 @@ public enum LangData {
 		for (LangData lang : LangData.values()) {
 			pvd.add(lang.key, lang.def);
 		}
+		for (ArtifactSlotCuriosType type : ArtifactSlotCuriosType.values()) {
+			pvd.add(type.getDesc(), type.getDefTranslation());
+		}
 		pvd.add("itemGroup." + L2Artifacts.MODID + ".artifacts", "Artifacts");
 		pvd.add("attribute.name.crit_rate", "Crit Rate");
 		pvd.add("attribute.name.crit_damage", "Crit Damage");
@@ -117,11 +120,6 @@ public enum LangData {
 		pvd.add("l2artifacts.set.4", "(4/%s) Set Bonus: ");
 		pvd.add("l2artifacts.set.5", "(5/%s) Set Bonus: ");
 		pvd.add("menu.tabs.set_effects", "Activated Set Effects");
-
-		pvd.add("key.categories.l2artifacts", "L2Artifacts Keys");
-		pvd.add(Keys.UP.id, "Arrow Select Up");
-		pvd.add(Keys.DOWN.id, "Arrow Select Down");
-		pvd.add(Keys.SWAP.id, "Artifact Swap");
 		PatchouliLang.genLang(pvd);
 	}
 

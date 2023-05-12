@@ -38,7 +38,7 @@ public class ArtifactSlotClickListener extends SlotClickHandler {
 			stack = player.getInventory().getItem(slot);
 			if (stack.getItem() instanceof ArtifactChestItem) {
 				new ArtifactChestMenuPvd(FilteredMenu::new, player, slot, stack).open();
-			} else if (stack.getItem() instanceof ArtifactSwapItem){
+			} else if (stack.getItem() instanceof ArtifactSwapItem) {
 				new ArtifactSwapMenuPvd(player, slot, stack).open();
 			}
 		}

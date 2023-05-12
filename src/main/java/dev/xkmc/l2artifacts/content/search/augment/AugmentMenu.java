@@ -18,7 +18,6 @@ import dev.xkmc.l2library.base.menu.data.IntDataSlot;
 import dev.xkmc.l2library.util.code.GenericItemStack;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.Container;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.MenuType;

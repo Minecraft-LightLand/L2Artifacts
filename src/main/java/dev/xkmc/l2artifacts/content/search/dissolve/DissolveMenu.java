@@ -10,7 +10,6 @@ import dev.xkmc.l2library.base.menu.SpriteManager;
 import dev.xkmc.l2library.base.menu.data.IntDataSlot;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.Container;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.ItemStack;

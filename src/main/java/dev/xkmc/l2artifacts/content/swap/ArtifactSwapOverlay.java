@@ -77,7 +77,7 @@ public class ArtifactSwapOverlay extends SelectionSideBar<Integer, SideBar.IntSi
 				}
 				if (data.select == i) {
 					var opt = player.getCapability(CuriosCapability.INVENTORY).resolve()
-							.flatMap(cap -> cap.getStacksHandler(slot.slot.getRegistryName().getPath()))
+							.flatMap(cap -> cap.getStacksHandler(slot.slot.getCurioIdentifier()))
 							.map(ICurioStacksHandler::getStacks);
 					if (opt.isPresent()) {
 						float cx = ctx.x0() + 18 * 6;

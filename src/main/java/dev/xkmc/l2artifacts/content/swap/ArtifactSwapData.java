@@ -91,7 +91,7 @@ public class ArtifactSwapData {
 				if (slot.disabled) {
 					continue;
 				}
-				cap.getStacksHandler(slot.slot.getRegistryName().getPath()).ifPresent(h -> {
+				cap.getStacksHandler(slot.slot.getCurioIdentifier()).ifPresent(h -> {
 					ItemStack old = h.getStacks().getStackInSlot(0);
 					ItemStack store = slot.getStack();
 					if (old.isEmpty()) {

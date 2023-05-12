@@ -3,6 +3,7 @@ package dev.xkmc.l2artifacts.content.core;
 import dev.xkmc.l2artifacts.content.config.SlotStatConfig;
 import dev.xkmc.l2artifacts.content.search.token.IArtifactFeature;
 import dev.xkmc.l2artifacts.content.upgrades.Upgrade;
+import dev.xkmc.l2artifacts.init.data.ArtifactSlotCuriosType;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactTypeRegistry;
 import dev.xkmc.l2library.base.NamedEntry;
 import net.minecraft.resources.ResourceLocation;
@@ -14,8 +15,11 @@ import java.util.List;
 
 public class ArtifactSlot extends NamedEntry<ArtifactSlot> implements IArtifactFeature.Sprite {
 
-	public ArtifactSlot() {
+	private final ArtifactSlotCuriosType curios;
+
+	public ArtifactSlot(ArtifactSlotCuriosType curios) {
 		super(ArtifactTypeRegistry.SLOT);
+		this.curios = curios;
 	}
 
 	public void generate(ArtifactStats stat, Upgrade upgrade, RandomSource random) {
@@ -48,4 +52,7 @@ public class ArtifactSlot extends NamedEntry<ArtifactSlot> implements IArtifactF
 		return new ResourceLocation(CuriosApi.MODID, "textures/slot/empty_" + getRegistryName().getPath() + "_slot.png");
 	}
 
+	public String getCurioIdentifier() {
+		return curios.getIdentifier();
+	}
 }

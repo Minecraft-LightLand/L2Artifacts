@@ -7,8 +7,8 @@ import top.theillusivec4.curios.api.SlotTypeMessage;
 public enum ArtifactSlotCuriosType {
 	HEAD("artifact_head", -1400),
 	NECKLACE("artifact_necklace", -1390),
-	BODY("artifact_body", -1380),
-	BRACELET("artifact_bracelet", -1370),
+	BRACELET("artifact_bracelet", -1380),
+	BODY("artifact_body", -1370),
 	BELT("artifact_belt", -1360);
 
 	final String id;

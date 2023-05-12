@@ -1,4 +1,3 @@
-
 package dev.xkmc.l2artifacts.compat;
 
 import com.google.common.base.Preconditions;

@@ -10,7 +10,6 @@ import dev.xkmc.l2library.base.tabs.core.TabRegistry;
 import dev.xkmc.l2library.base.tabs.core.TabToken;
 import net.minecraft.network.chat.Component;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.RegisterClientTooltipComponentFactoriesEvent;
 import net.minecraftforge.client.event.RegisterGuiOverlaysEvent;
 import net.minecraftforge.client.event.RegisterKeyMappingsEvent;

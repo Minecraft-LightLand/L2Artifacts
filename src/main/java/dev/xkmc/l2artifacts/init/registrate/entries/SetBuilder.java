@@ -67,7 +67,7 @@ public class SetBuilder<T extends ArtifactSet, I extends BaseArtifact, P> extend
 		for (int i = 0; i < slots.length; i++) {
 			RegistryEntry<ArtifactSlot> slot = slots[i];
 			String slot_name = slot.getId().getPath();
-			TagKey<Item> curios_tag = manager.createTagKey(new ResourceLocation("curios", slot_name));
+			TagKey<Item> curios_tag = manager.createTagKey(new ResourceLocation("curios", "artifact_"+slot_name));
 			TagKey<Item> slot_tag = manager.createTagKey(new ResourceLocation(L2Artifacts.MODID, slot_name));
 			for (int r = min_rank; r <= max_rank; r++) {
 				TagKey<Item> rank_tag = manager.createTagKey(new ResourceLocation(L2Artifacts.MODID, "rank_" + r));

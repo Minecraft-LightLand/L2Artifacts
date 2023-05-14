@@ -1,4 +1,4 @@
-// 1.19.4	2023-05-11T22:02:59.237621	Registrate Provider for l2artifacts [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
+// 1.19.4	2023-05-14T05:10:04.180277	Registrate Provider for l2artifacts [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
 ea6c7c9206f2d4198f06fcc10f06e82e3e95e5ea assets/l2artifacts/lang/en_ud.json
 d365a69706ae64dc885495a8b42e8030f0dc9f42 assets/l2artifacts/lang/en_us.json
 b8bd2d2e5b588898d6036ad788cad930cd830bb3 assets/l2artifacts/models/item/abyss_medal_belt_1.json
@@ -424,11 +424,11 @@ da7a1ab2726a7178d2ea0dc84f1f03b1730cc61c assets/l2artifacts/models/item/wrath_ne
 80905a65793edf3ef46e55f4ae48f3a2965ca11a assets/l2artifacts/models/item/wrath_necklace_3.json
 c32e07546a039e203cd38cedc8f58312a2cca4cd assets/l2artifacts/models/item/wrath_necklace_4.json
 497d94b15b4c62c78b609c44621002abf814681c assets/l2artifacts/models/item/wrath_necklace_5.json
-e70a1db8074bceef530417c5524fd07600846ff9 data/curios/tags/items/belt.json
-1fec908f213451b33b6430090cdd91bd9f2842ba data/curios/tags/items/body.json
-83f0952fe2044d19c73edbaff0cdd3bd351f265e data/curios/tags/items/bracelet.json
-c41ae9f0cb8a89dfcbf98e1473cce8b9f8dd8f62 data/curios/tags/items/head.json
-0d758cc02a435a25d851db3eb24b33edbb328a87 data/curios/tags/items/necklace.json
+e70a1db8074bceef530417c5524fd07600846ff9 data/curios/tags/items/artifact_belt.json
+1fec908f213451b33b6430090cdd91bd9f2842ba data/curios/tags/items/artifact_body.json
+83f0952fe2044d19c73edbaff0cdd3bd351f265e data/curios/tags/items/artifact_bracelet.json
+c41ae9f0cb8a89dfcbf98e1473cce8b9f8dd8f62 data/curios/tags/items/artifact_head.json
+0d758cc02a435a25d851db3eb24b33edbb328a87 data/curios/tags/items/artifact_necklace.json
 64676b92f7795eab354cb16604120f092e441ff4 data/l2artifacts/advancements/recipes/misc/abyss_medal_belt_2.json
 a6e6063b26ab18feaaf3aa2a51e06837d09e4061 data/l2artifacts/advancements/recipes/misc/abyss_medal_belt_3.json
 ad6e5c7f9920e01250edce74b5b76754739d37da data/l2artifacts/advancements/recipes/misc/abyss_medal_belt_4.json

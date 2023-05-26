@@ -7,6 +7,7 @@ import dev.xkmc.l2artifacts.content.swap.ArtifactSwapItem;
 import dev.xkmc.l2artifacts.content.swap.ArtifactSwapMenuPvd;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
 import dev.xkmc.l2library.init.events.click.SlotClickHandler;
+import dev.xkmc.l2library.init.events.screen.base.ScreenTracker;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.Container;
@@ -32,13 +33,12 @@ public class ArtifactSlotClickListener extends SlotClickHandler {
 	@Override
 	public void handle(ServerPlayer player, int index, int slot, int wid) {
 		ItemStack stack;
-		Container container = null;
-		AbstractContainerMenu menu = player.containerMenu;
 		if (slot >= 0) {
 			stack = player.getInventory().getItem(slot);
 			if (stack.getItem() instanceof ArtifactChestItem) {
 				new ArtifactChestMenuPvd(FilteredMenu::new, player, slot, stack).open();
 			} else if (stack.getItem() instanceof ArtifactSwapItem) {
+				ScreenTracker.onServerOpen(player);
 				new ArtifactSwapMenuPvd(player, slot, stack).open();
 			}
 		}

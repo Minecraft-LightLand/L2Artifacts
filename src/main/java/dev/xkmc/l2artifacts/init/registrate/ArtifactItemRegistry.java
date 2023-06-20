@@ -346,7 +346,7 @@ public class ArtifactItemRegistry {
 				LinearFuncEntry damage = REGISTRATE.regLinear("froze_slow_fire_damage", 1.2, 0);
 				LinearFuncEntry period = REGISTRATE.regLinear("froze_slow_period", 80, 40);
 				LinearFuncEntry level = REGISTRATE.regLinear("froze_slow_level", 0, 1);
-				LinearFuncEntry factor = REGISTRATE.regLinear("froze_break", 0.2, 0.1);
+				LinearFuncEntry factor = REGISTRATE.regLinear("froze_break", 1.2, 0.1);
 				EFF_FROZE_SLOW = REGISTRATE.setEffect("froze_slow", () -> new FrozeSlowEffect(damage, period, level))
 						.desc("Frozen Blade",
 								"Take %s%% fire damage. When not on fire, apply level %s slow effect on attack target for %s seconds"

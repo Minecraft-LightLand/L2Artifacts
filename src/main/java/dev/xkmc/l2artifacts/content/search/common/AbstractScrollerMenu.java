@@ -7,6 +7,7 @@ import dev.xkmc.l2library.base.menu.scroller.ScrollerMenu;
 import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.DataSlot;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.ItemStack;
 
@@ -17,13 +18,12 @@ public abstract class AbstractScrollerMenu<T extends AbstractScrollerMenu<T>> ex
 	public final IntDataSlot total_count;
 	public final IntDataSlot current_count;
 	public final IntDataSlot experience;
+	public final DataSlot max_row;
+	public final DataSlot row;
 
 	protected final Player player;
 
 	public final int extra;
-
-	private int max_row, row = 0;
-
 
 	public AbstractScrollerMenu(MenuType<?> type, int wid, Inventory plInv, SpriteManager manager, int extra, ArtifactChestToken token, boolean isVirtual) {
 		super(type, wid, plInv, manager, e -> new BaseContainer<>(36 + extra, e), isVirtual);
@@ -33,16 +33,18 @@ public abstract class AbstractScrollerMenu<T extends AbstractScrollerMenu<T>> ex
 		this.total_count = new IntDataSlot(this);
 		this.current_count = new IntDataSlot(this);
 		this.experience = new IntDataSlot(this);
+		this.max_row = addDataSlot(DataSlot.standalone());
+		this.row = addDataSlot(DataSlot.standalone());
 	}
 
 	protected void reload(boolean changeContent) {
-		var list = token.getFiltered();
-		max_row = (int) Math.ceil(list.size() / 6.0);
-		if (row < 0) row = 0;
-		if (row > getMaxScroll()) row = getMaxScroll();
 		if (player.level.isClientSide()) return;
+		var list = token.getFiltered();
+		max_row.set((int) Math.ceil(list.size() / 6.0));
+		if (row.get() < 0) row.set(0);
+		if (row.get() > getMaxScroll()) row.set(getMaxScroll());
 		for (int i = 0; i < 36; i++) {
-			int index = row * 6 + i;
+			int index = row.get() * 6 + i;
 			ItemStack stack = index >= list.size() ? ItemStack.EMPTY : list.get(index).stack();
 			container.setItem(i + extra, stack);
 		}
@@ -52,11 +54,11 @@ public abstract class AbstractScrollerMenu<T extends AbstractScrollerMenu<T>> ex
 	}
 
 	public final int getMaxScroll() {
-		return Math.max(0, max_row - 6);
+		return Math.max(0, max_row.get() - 6);
 	}
 
 	public final int getScroll() {
-		return row;
+		return row.get();
 	}
 
 	@Override
@@ -64,17 +66,17 @@ public abstract class AbstractScrollerMenu<T extends AbstractScrollerMenu<T>> ex
 		int amount = pId / 100;
 		pId %= 100;
 		if (pId == 0) {
-			row -= amount;
+			row.set(row.get() - amount);
 			reload(false);
 			return true;
 		}
 		if (pId == 1) {
-			row += amount;
+			row.set(row.get() + amount);
 			reload(false);
 			return true;
 		}
 		pId -= 2;
-		pId += row * 6;
+		pId += row.get() * 6;
 		if (pId >= 0 && pId < token.getFiltered().size()) {
 			if (!player.getLevel().isClientSide()) {
 				clickSlot(pId);

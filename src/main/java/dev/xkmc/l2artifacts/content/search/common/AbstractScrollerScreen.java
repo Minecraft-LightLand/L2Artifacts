@@ -11,6 +11,7 @@ import dev.xkmc.l2library.base.menu.scroller.ScrollerScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.Slot;
+import org.lwjgl.glfw.GLFW;
 
 public class AbstractScrollerScreen<T extends AbstractScrollerMenu<T>>
 		extends BaseContainerScreen<T> implements ScrollerScreen, IFilterScreen {
@@ -91,6 +92,23 @@ public class AbstractScrollerScreen<T extends AbstractScrollerMenu<T>>
 	@Override
 	public boolean mouseScrolled(double mx, double my, double d) {
 		return scroller.mouseScrolled(mx, my, d) || super.mouseScrolled(mx, my, d);
+	}
+
+	@Override
+	public boolean keyPressed(int pKeyCode, int pScanCode, int pModifiers) {
+		if (pKeyCode == GLFW.GLFW_KEY_UP) {
+			if (menu.getScroll() > 0) {
+				scrollTo(menu.getScroll() - 1);
+				return true;
+			}
+		}
+		if (pKeyCode == GLFW.GLFW_KEY_DOWN) {
+			if (menu.getScroll() < menu.getMaxScroll()) {
+				scrollTo(menu.getScroll() + 1);
+				return true;
+			}
+		}
+		return super.keyPressed(pKeyCode, pScanCode, pModifiers);
 	}
 
 }

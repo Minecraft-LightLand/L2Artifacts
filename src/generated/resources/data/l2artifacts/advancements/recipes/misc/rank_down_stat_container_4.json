@@ -30,5 +30,6 @@
     "recipes": [
       "l2artifacts:rank_down_stat_container_4"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

@@ -30,5 +30,6 @@
     "recipes": [
       "l2artifacts:rank_up_artifact_experience_5"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

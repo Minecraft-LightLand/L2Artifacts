@@ -30,5 +30,6 @@
     "recipes": [
       "l2artifacts:swap"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

@@ -1,0 +1,14 @@
+{
+  "map": {
+    "l2artifacts:vampire": [
+      {
+        "count": 1,
+        "effect": "l2artifacts:vampire_burn"
+      },
+      {
+        "count": 4,
+        "effect": "l2artifacts:vampire_heal"
+      }
+    ]
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "map": {
+    "l2artifacts:luck_clover": [
+      {
+        "count": 3,
+        "effect": "l2artifacts:luck_clover_3"
+      },
+      {
+        "count": 4,
+        "effect": "l2artifacts:luck_clover_4"
+      }
+    ]
+  }
+}

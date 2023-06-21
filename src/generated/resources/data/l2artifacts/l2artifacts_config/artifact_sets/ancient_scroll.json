@@ -1,0 +1,26 @@
+{
+  "map": {
+    "l2artifacts:ancient_scroll": [
+      {
+        "count": 1,
+        "effect": "l2artifacts:ancient_scroll_1"
+      },
+      {
+        "count": 2,
+        "effect": "l2artifacts:ancient_scroll_2"
+      },
+      {
+        "count": 3,
+        "effect": "l2artifacts:ancient_scroll_3"
+      },
+      {
+        "count": 4,
+        "effect": "l2artifacts:ancient_scroll_4"
+      },
+      {
+        "count": 5,
+        "effect": "l2artifacts:ancient_scroll_5"
+      }
+    ]
+  }
+}

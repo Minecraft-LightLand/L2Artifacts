@@ -28,5 +28,6 @@
     "recipes": [
       "l2artifacts:artifact_experience_3"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

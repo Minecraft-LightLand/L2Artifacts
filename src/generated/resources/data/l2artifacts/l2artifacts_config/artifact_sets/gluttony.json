@@ -1,0 +1,14 @@
+{
+  "map": {
+    "l2artifacts:gluttony": [
+      {
+        "count": 3,
+        "effect": "l2artifacts:gluttony_fast"
+      },
+      {
+        "count": 5,
+        "effect": "l2artifacts:gluttony_eat"
+      }
+    ]
+  }
+}

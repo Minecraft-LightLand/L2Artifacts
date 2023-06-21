@@ -30,5 +30,6 @@
     "recipes": [
       "l2artifacts:gambler_necklace_4"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

@@ -1,0 +1,28 @@
+{
+  "available_main_stats": {
+    "l2artifacts:necklace": [
+      "l2artifacts:health_add",
+      "l2artifacts:armor_add",
+      "l2artifacts:attack_add",
+      "l2artifacts:attack_mult",
+      "l2artifacts:bow_strength_add",
+      "l2artifacts:crit_rate_add",
+      "l2artifacts:crit_damage_add"
+    ]
+  },
+  "available_sub_stats": {
+    "l2artifacts:necklace": [
+      "l2artifacts:health_add",
+      "l2artifacts:armor_add",
+      "l2artifacts:tough_add",
+      "l2artifacts:attack_add",
+      "l2artifacts:attack_mult",
+      "l2artifacts:crit_rate_add",
+      "l2artifacts:crit_damage_add",
+      "l2artifacts:reach_add",
+      "l2artifacts:attack_speed_mult",
+      "l2artifacts:speed_mult",
+      "l2artifacts:bow_strength_add"
+    ]
+  }
+}

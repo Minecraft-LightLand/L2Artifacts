@@ -30,5 +30,6 @@
     "recipes": [
       "l2artifacts:saint_necklace_2"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

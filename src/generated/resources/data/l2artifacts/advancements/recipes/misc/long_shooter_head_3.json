@@ -30,5 +30,6 @@
     "recipes": [
       "l2artifacts:long_shooter_head_3"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

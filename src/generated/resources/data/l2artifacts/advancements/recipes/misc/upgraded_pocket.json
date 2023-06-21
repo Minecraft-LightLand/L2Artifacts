@@ -30,5 +30,6 @@
     "recipes": [
       "l2artifacts:upgraded_pocket"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

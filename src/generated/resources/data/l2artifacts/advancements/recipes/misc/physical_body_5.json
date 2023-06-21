@@ -30,5 +30,6 @@
     "recipes": [
       "l2artifacts:physical_body_5"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

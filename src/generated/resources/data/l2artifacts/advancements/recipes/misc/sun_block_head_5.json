@@ -30,5 +30,6 @@
     "recipes": [
       "l2artifacts:sun_block_head_5"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

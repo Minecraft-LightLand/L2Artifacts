@@ -30,5 +30,6 @@
     "recipes": [
       "l2artifacts:abyss_medal_belt_4"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

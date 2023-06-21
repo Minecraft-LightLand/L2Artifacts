@@ -1,0 +1,276 @@
+{
+  "map": {
+    "l2artifacts:abyss_duration": {
+      "base": 80.0,
+      "slope": 20.0
+    },
+    "l2artifacts:abyss_health": {
+      "base": 0.4,
+      "slope": 0.2
+    },
+    "l2artifacts:abyss_hurt": {
+      "base": 1.2,
+      "slope": 0.2
+    },
+    "l2artifacts:abyss_level": {
+      "base": 0.0,
+      "slope": 0.2
+    },
+    "l2artifacts:ancient_attack": {
+      "base": 0.2,
+      "slope": 0.1
+    },
+    "l2artifacts:ancient_attack_5": {
+      "base": 0.2,
+      "slope": 0.1
+    },
+    "l2artifacts:ancient_heal": {
+      "base": 2.0,
+      "slope": 1.0
+    },
+    "l2artifacts:ancient_heal_period": {
+      "base": 60.0,
+      "slope": 0.0
+    },
+    "l2artifacts:ancient_protection": {
+      "base": 0.8,
+      "slope": -0.1
+    },
+    "l2artifacts:ancient_speed": {
+      "base": 0.2,
+      "slope": 0.1
+    },
+    "l2artifacts:ancient_speed_5": {
+      "base": 0.2,
+      "slope": 0.1
+    },
+    "l2artifacts:ancient_strike_count": {
+      "base": 3.0,
+      "slope": 0.0
+    },
+    "l2artifacts:ancient_strike_duration": {
+      "base": 40.0,
+      "slope": 20.0
+    },
+    "l2artifacts:ancient_threshold": {
+      "base": 20.0,
+      "slope": 0.0
+    },
+    "l2artifacts:archer_3_attack": {
+      "base": -0.4,
+      "slope": 0.0
+    },
+    "l2artifacts:archer_3_bow": {
+      "base": 0.4,
+      "slope": 0.2
+    },
+    "l2artifacts:archer_5_attack_speed": {
+      "base": -0.4,
+      "slope": 0.0
+    },
+    "l2artifacts:archer_5_crit_rate": {
+      "base": 0.4,
+      "slope": 0.2
+    },
+    "l2artifacts:berserker_3_armor": {
+      "base": -10.0,
+      "slope": 0.0
+    },
+    "l2artifacts:berserker_3_attack": {
+      "base": 0.2,
+      "slope": 0.1
+    },
+    "l2artifacts:berserker_5_attack_speed": {
+      "base": 0.04,
+      "slope": 0.02
+    },
+    "l2artifacts:berserker_5_crit_damage": {
+      "base": 0.04,
+      "slope": 0.02
+    },
+    "l2artifacts:berserker_5_speed": {
+      "base": 0.04,
+      "slope": 0.02
+    },
+    "l2artifacts:damocles": {
+      "base": 1.0,
+      "slope": 0.5
+    },
+    "l2artifacts:executor_attack": {
+      "base": 0.3,
+      "slope": 0.15
+    },
+    "l2artifacts:executor_limit": {
+      "base": 0.3,
+      "slope": -0.05
+    },
+    "l2artifacts:executor_self_hurt": {
+      "base": 0.2,
+      "slope": 0.0
+    },
+    "l2artifacts:froze_break": {
+      "base": 1.2,
+      "slope": 0.1
+    },
+    "l2artifacts:froze_slow_fire_damage": {
+      "base": 1.2,
+      "slope": 0.0
+    },
+    "l2artifacts:froze_slow_level": {
+      "base": 0.0,
+      "slope": 1.0
+    },
+    "l2artifacts:froze_slow_period": {
+      "base": 80.0,
+      "slope": 40.0
+    },
+    "l2artifacts:fury_of_fallen_1": {
+      "base": 0.1,
+      "slope": 0.05
+    },
+    "l2artifacts:fury_of_fallen_2": {
+      "base": 0.2,
+      "slope": 0.1
+    },
+    "l2artifacts:fury_of_fallen_3": {
+      "base": 0.3,
+      "slope": 0.15
+    },
+    "l2artifacts:fury_of_fallen_4": {
+      "base": 0.4,
+      "slope": 0.2
+    },
+    "l2artifacts:fury_of_fallen_5": {
+      "base": 0.5,
+      "slope": 0.25
+    },
+    "l2artifacts:gambler_3_crit_damage": {
+      "base": 0.2,
+      "slope": 0.1
+    },
+    "l2artifacts:gambler_3_crit_rate": {
+      "base": -0.2,
+      "slope": 0.0
+    },
+    "l2artifacts:gambler_5_crit_damage": {
+      "base": 0.08,
+      "slope": 0.04
+    },
+    "l2artifacts:gambler_5_crit_rate": {
+      "base": 0.04,
+      "slope": 0.02
+    },
+    "l2artifacts:gambler_5_luck": {
+      "base": 1.0,
+      "slope": 0.5
+    },
+    "l2artifacts:gluttony_attack": {
+      "base": 0.2,
+      "slope": 0.1
+    },
+    "l2artifacts:gluttony_eat": {
+      "base": 2.0,
+      "slope": 1.0
+    },
+    "l2artifacts:gluttony_speed": {
+      "base": 0.1,
+      "slope": 0.05
+    },
+    "l2artifacts:gluttony_swing": {
+      "base": 0.04,
+      "slope": 0.02
+    },
+    "l2artifacts:long_shooter_atk": {
+      "base": 0.8,
+      "slope": 0.4
+    },
+    "l2artifacts:luck_count_3": {
+      "base": 3.0,
+      "slope": 0.0
+    },
+    "l2artifacts:luck_count_4": {
+      "base": 4.0,
+      "slope": 0.0
+    },
+    "l2artifacts:luck_dmg": {
+      "base": 1.0,
+      "slope": 0.2
+    },
+    "l2artifacts:luck_rate": {
+      "base": 1.0,
+      "slope": 0.0
+    },
+    "l2artifacts:luck_threshold": {
+      "base": 40.0,
+      "slope": 0.0
+    },
+    "l2artifacts:perfection_absorption_max": {
+      "base": 4.0,
+      "slope": 2.0
+    },
+    "l2artifacts:perfection_absorption_period": {
+      "base": 100.0,
+      "slope": 0.0
+    },
+    "l2artifacts:perfection_protection": {
+      "base": 0.2,
+      "slope": 0.1
+    },
+    "l2artifacts:photosynthesis_high": {
+      "base": 12.0,
+      "slope": -1.0
+    },
+    "l2artifacts:photosynthesis_low": {
+      "base": 5.0,
+      "slope": -1.0
+    },
+    "l2artifacts:photosynthesis_period": {
+      "base": 5.0,
+      "slope": -1.0
+    },
+    "l2artifacts:physical_armor": {
+      "base": 4.0,
+      "slope": 2.0
+    },
+    "l2artifacts:physical_attack": {
+      "base": 0.2,
+      "slope": 0.1
+    },
+    "l2artifacts:physical_reduce_magic": {
+      "base": 0.5,
+      "slope": 0.0
+    },
+    "l2artifacts:saint_reduction_atk": {
+      "base": 0.25,
+      "slope": 0.0
+    },
+    "l2artifacts:saint_reduction_def": {
+      "base": 0.25,
+      "slope": 0.05
+    },
+    "l2artifacts:saint_restoration": {
+      "base": 100.0,
+      "slope": -10.0
+    },
+    "l2artifacts:vampire_burn_low": {
+      "base": 3.0,
+      "slope": 1.0
+    },
+    "l2artifacts:vampire_heal_light": {
+      "base": 4.0,
+      "slope": 1.0
+    },
+    "l2artifacts:vampire_heal_ratio": {
+      "base": 0.2,
+      "slope": 0.1
+    },
+    "l2artifacts:wrath_decrease": {
+      "base": 0.8,
+      "slope": 0.0
+    },
+    "l2artifacts:wrath_increase": {
+      "base": 1.2,
+      "slope": 0.1
+    }
+  }
+}

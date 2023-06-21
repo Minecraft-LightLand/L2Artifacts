@@ -30,5 +30,6 @@
     "recipes": [
       "l2artifacts:protection_head_3"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

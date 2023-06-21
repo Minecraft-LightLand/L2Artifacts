@@ -30,5 +30,6 @@
     "recipes": [
       "l2artifacts:archer_necklace_5"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

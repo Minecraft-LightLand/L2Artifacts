@@ -30,5 +30,6 @@
     "recipes": [
       "l2artifacts:fury_of_fallen_head_2"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

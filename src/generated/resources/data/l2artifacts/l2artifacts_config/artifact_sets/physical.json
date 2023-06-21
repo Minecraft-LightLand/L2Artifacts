@@ -1,0 +1,14 @@
+{
+  "map": {
+    "l2artifacts:physical": [
+      {
+        "count": 3,
+        "effect": "l2artifacts:physical_damage"
+      },
+      {
+        "count": 5,
+        "effect": "l2artifacts:physical_armor"
+      }
+    ]
+  }
+}

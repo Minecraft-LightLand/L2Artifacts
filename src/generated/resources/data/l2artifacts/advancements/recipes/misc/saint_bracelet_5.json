@@ -30,5 +30,6 @@
     "recipes": [
       "l2artifacts:saint_bracelet_5"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

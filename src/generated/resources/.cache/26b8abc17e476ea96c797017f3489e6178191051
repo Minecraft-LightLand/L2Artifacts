@@ -1,4 +1,4 @@
-// 1.19.4	2023-05-02T13:19:38.110458	Global Loot Modifiers : l2artifacts
+// 1.20	2023-06-21T15:12:00.549514	Global Loot Modifiers : l2artifacts
 dd3f8eaab80c01b1c7df0ac530dc256130a59213 data/forge/loot_modifiers/global_loot_modifiers.json
 2cc744d517948bcae7b7f5e3c42c60c77efe25c4 data/l2artifacts/loot_modifiers/health_based_1.json
 a77d5f8fcb29e348511b888465e7509c82b32572 data/l2artifacts/loot_modifiers/health_based_2.json

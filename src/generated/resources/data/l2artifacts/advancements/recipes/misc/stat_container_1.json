@@ -30,5 +30,6 @@
     "recipes": [
       "l2artifacts:stat_container_1"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

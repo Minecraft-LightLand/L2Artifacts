@@ -1,0 +1,10 @@
+{
+  "map": {
+    "l2artifacts:sun_block": [
+      {
+        "count": 1,
+        "effect": "l2artifacts:sun_block"
+      }
+    ]
+  }
+}

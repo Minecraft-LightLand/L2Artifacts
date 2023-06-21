@@ -30,5 +30,6 @@
     "recipes": [
       "l2artifacts:saint_belt_3"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

@@ -1,0 +1,14 @@
+{
+  "map": {
+    "l2artifacts:gambler": [
+      {
+        "count": 3,
+        "effect": "l2artifacts:gambler_3"
+      },
+      {
+        "count": 5,
+        "effect": "l2artifacts:gambler_5"
+      }
+    ]
+  }
+}

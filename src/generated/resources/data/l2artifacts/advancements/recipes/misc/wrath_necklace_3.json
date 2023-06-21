@@ -30,5 +30,6 @@
     "recipes": [
       "l2artifacts:wrath_necklace_3"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

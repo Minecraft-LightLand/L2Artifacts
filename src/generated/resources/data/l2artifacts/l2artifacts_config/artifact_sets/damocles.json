@@ -1,0 +1,10 @@
+{
+  "map": {
+    "l2artifacts:damocles": [
+      {
+        "count": 1,
+        "effect": "l2artifacts:damocles"
+      }
+    ]
+  }
+}

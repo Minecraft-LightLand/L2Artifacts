@@ -30,5 +30,6 @@
     "recipes": [
       "l2artifacts:rank_down_boost_sub_3"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

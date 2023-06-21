@@ -30,5 +30,6 @@
     "recipes": [
       "l2artifacts:boost_sub_1"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

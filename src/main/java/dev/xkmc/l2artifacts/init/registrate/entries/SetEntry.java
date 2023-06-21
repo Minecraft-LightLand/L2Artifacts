@@ -5,7 +5,6 @@ import com.tterrag.registrate.util.entry.RegistryEntry;
 import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
 import dev.xkmc.l2artifacts.content.core.ArtifactSet;
 import dev.xkmc.l2artifacts.content.core.BaseArtifact;
-import dev.xkmc.l2artifacts.init.registrate.ArtifactRegistrate;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.registries.RegistryObject;
 
@@ -33,4 +32,5 @@ public class SetEntry<T extends ArtifactSet> extends RegistryEntry<T> {
 	public ItemStack getItem(int slot, int rank) {
 		return items[slot][rank - items[slot][0].get().rank].asStack();
 	}
+
 }

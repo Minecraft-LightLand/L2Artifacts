@@ -12,7 +12,6 @@ import dev.xkmc.l2artifacts.content.core.ArtifactSet;
 import dev.xkmc.l2artifacts.content.core.ArtifactSlot;
 import dev.xkmc.l2artifacts.content.core.BaseArtifact;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
-import dev.xkmc.l2artifacts.init.registrate.ArtifactRegistrate;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactTypeRegistry;
 import dev.xkmc.l2library.base.NamedEntry;
 import dev.xkmc.l2serial.util.Wrappers;
@@ -67,7 +66,7 @@ public class SetBuilder<T extends ArtifactSet, I extends BaseArtifact, P> extend
 		for (int i = 0; i < slots.length; i++) {
 			RegistryEntry<ArtifactSlot> slot = slots[i];
 			String slot_name = slot.getId().getPath();
-			TagKey<Item> curios_tag = manager.createTagKey(new ResourceLocation("curios", "artifact_"+slot_name));
+			TagKey<Item> curios_tag = manager.createTagKey(new ResourceLocation("curios", "artifact_" + slot_name));
 			TagKey<Item> slot_tag = manager.createTagKey(new ResourceLocation(L2Artifacts.MODID, slot_name));
 			for (int r = min_rank; r <= max_rank; r++) {
 				TagKey<Item> rank_tag = manager.createTagKey(new ResourceLocation(L2Artifacts.MODID, "rank_" + r));
@@ -100,5 +99,10 @@ public class SetBuilder<T extends ArtifactSet, I extends BaseArtifact, P> extend
 
 	public SetBuilder<T, I, P> lang(String name) {
 		return this.lang(NamedEntry::getDescriptionId, name);
+	}
+
+	@Override
+	public SetEntry<T> register() {
+		return Wrappers.cast(super.register());
 	}
 }

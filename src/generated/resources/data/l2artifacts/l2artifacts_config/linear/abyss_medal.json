@@ -1,0 +1,20 @@
+{
+  "map": {
+    "l2artifacts:abyss_duration": {
+      "base": 80.0,
+      "slope": 20.0
+    },
+    "l2artifacts:abyss_health": {
+      "base": 0.4,
+      "slope": 0.2
+    },
+    "l2artifacts:abyss_hurt": {
+      "base": 1.2,
+      "slope": 0.2
+    },
+    "l2artifacts:abyss_level": {
+      "base": 0.0,
+      "slope": 0.2
+    }
+  }
+}

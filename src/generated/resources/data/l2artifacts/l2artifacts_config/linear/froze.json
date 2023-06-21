@@ -1,0 +1,20 @@
+{
+  "map": {
+    "l2artifacts:froze_break": {
+      "base": 1.2,
+      "slope": 0.1
+    },
+    "l2artifacts:froze_slow_fire_damage": {
+      "base": 1.2,
+      "slope": 0.0
+    },
+    "l2artifacts:froze_slow_level": {
+      "base": 0.0,
+      "slope": 1.0
+    },
+    "l2artifacts:froze_slow_period": {
+      "base": 80.0,
+      "slope": 40.0
+    }
+  }
+}

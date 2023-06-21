@@ -1,0 +1,16 @@
+{
+  "map": {
+    "l2artifacts:saint_reduction_atk": {
+      "base": 0.25,
+      "slope": 0.0
+    },
+    "l2artifacts:saint_reduction_def": {
+      "base": 0.25,
+      "slope": 0.05
+    },
+    "l2artifacts:saint_restoration": {
+      "base": 100.0,
+      "slope": -10.0
+    }
+  }
+}

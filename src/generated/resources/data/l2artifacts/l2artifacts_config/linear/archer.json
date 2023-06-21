@@ -1,0 +1,20 @@
+{
+  "map": {
+    "l2artifacts:archer_3_attack": {
+      "base": -0.4,
+      "slope": 0.0
+    },
+    "l2artifacts:archer_3_bow": {
+      "base": 0.4,
+      "slope": 0.2
+    },
+    "l2artifacts:archer_5_attack_speed": {
+      "base": -0.4,
+      "slope": 0.0
+    },
+    "l2artifacts:archer_5_crit_rate": {
+      "base": 0.4,
+      "slope": 0.2
+    }
+  }
+}

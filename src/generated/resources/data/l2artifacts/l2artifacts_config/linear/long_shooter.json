@@ -1,0 +1,8 @@
+{
+  "map": {
+    "l2artifacts:long_shooter_atk": {
+      "base": 0.8,
+      "slope": 0.4
+    }
+  }
+}

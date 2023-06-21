@@ -1,0 +1,24 @@
+{
+  "map": {
+    "l2artifacts:fury_of_fallen_1": {
+      "base": 0.1,
+      "slope": 0.05
+    },
+    "l2artifacts:fury_of_fallen_2": {
+      "base": 0.2,
+      "slope": 0.1
+    },
+    "l2artifacts:fury_of_fallen_3": {
+      "base": 0.3,
+      "slope": 0.15
+    },
+    "l2artifacts:fury_of_fallen_4": {
+      "base": 0.4,
+      "slope": 0.2
+    },
+    "l2artifacts:fury_of_fallen_5": {
+      "base": 0.5,
+      "slope": 0.25
+    }
+  }
+}

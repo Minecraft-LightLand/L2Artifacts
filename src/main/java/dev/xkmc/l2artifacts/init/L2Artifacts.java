@@ -5,7 +5,7 @@ import dev.xkmc.l2artifacts.events.*;
 import dev.xkmc.l2artifacts.init.data.*;
 import dev.xkmc.l2artifacts.init.data.loot.ArtifactGLMProvider;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactMenuRegistry;
-import dev.xkmc.l2artifacts.init.registrate.ArtifactRegistrate;
+import dev.xkmc.l2artifacts.init.registrate.entries.ArtifactRegistrate;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactTypeRegistry;
 import dev.xkmc.l2artifacts.init.registrate.items.ArtifactItemRegistry;
 import dev.xkmc.l2artifacts.network.NetworkManager;

@@ -1,0 +1,12 @@
+{
+  "map": {
+    "l2artifacts:wrath_decrease": {
+      "base": 0.8,
+      "slope": 0.0
+    },
+    "l2artifacts:wrath_increase": {
+      "base": 1.2,
+      "slope": 0.1
+    }
+  }
+}

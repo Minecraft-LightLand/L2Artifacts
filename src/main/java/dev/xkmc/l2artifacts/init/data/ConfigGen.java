@@ -9,7 +9,6 @@ import dev.xkmc.l2artifacts.content.core.ArtifactSlot;
 import dev.xkmc.l2artifacts.content.core.ArtifactStatType;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactTypeRegistry;
-import dev.xkmc.l2artifacts.init.registrate.entries.LinearFuncEntry;
 import dev.xkmc.l2artifacts.init.registrate.entries.SetEntry;
 import dev.xkmc.l2artifacts.network.NetworkManager;
 import dev.xkmc.l2library.serial.config.ConfigDataProvider;
@@ -128,11 +127,14 @@ public class ConfigGen extends ConfigDataProvider {
 
 		// linear function handle
 
-		LinearFuncConfig config = new LinearFuncConfig();
-		for (LinearFuncEntry entry : L2Artifacts.REGISTRATE.LINEAR_LIST) {
-			config.map.put(entry.get(), new LinearFuncConfig.Entry(entry.base, entry.slope));
+		for (var key : L2Artifacts.REGISTRATE.LINEAR_LIST.keySet()) {
+			LinearFuncConfig config = new LinearFuncConfig();
+			var list = L2Artifacts.REGISTRATE.LINEAR_LIST.get(key);
+			for (var entry : list) {
+				config.map.put(entry.get(), new LinearFuncConfig.Entry(entry.base, entry.slope));
+			}
+			map.add(NetworkManager.LINEAR, key, config);
 		}
-		map.add(NetworkManager.LINEAR, new ResourceLocation(L2Artifacts.MODID, "default"), config);
 
 	}
 

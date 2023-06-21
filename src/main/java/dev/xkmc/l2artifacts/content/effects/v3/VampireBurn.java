@@ -32,9 +32,9 @@ public class VampireBurn extends SetEffect {
 	@Override
 	public void tick(Player player, ArtifactSetConfig.Entry ent, int rank, boolean enabled) {
 		if (!enabled) return;
-		if (player.getLevel().isClientSide()) return;
+		if (player.level().isClientSide()) return;
 		int light = PlayerLight.playerUnderSun(player);
-		Level level = player.getLevel();
+		Level level = player.level();
 		if (light > this.light.getFromRank(rank) && level.canSeeSky(player.getOnPos()) && level.isDay() && !fireImmune(player)) {
 			if (player.getRemainingFireTicks() < 40) {
 				player.setRemainingFireTicks(60);

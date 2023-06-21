@@ -11,7 +11,6 @@ import dev.xkmc.l2complements.init.L2Complements;
 import dev.xkmc.l2complements.init.registrate.LCItems;
 import dev.xkmc.l2library.serial.recipe.ConditionalRecipeWrapper;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
-import net.minecraft.data.recipes.LegacyUpgradeRecipeBuilder;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.SmithingTransformRecipeBuilder;
@@ -70,13 +69,6 @@ public class RecipeGen {
 						RecipeCategory.MISC,
 						ArtifactItemRegistry.UPGRADED_POCKET.get())::unlocks,
 				Items.NETHERITE_INGOT).save(pvd, L2Artifacts.MODID + ":upgraded_pocket");
-
-		//TODO mapping, removal
-		unlock(pvd, LegacyUpgradeRecipeBuilder.smithing(Ingredient.of(ArtifactItemRegistry.FILTER.get()),
-						Ingredient.of(Items.NETHERITE_INGOT),
-						RecipeCategory.MISC,
-						ArtifactItemRegistry.UPGRADED_POCKET.get())::unlocks,
-				Items.NETHERITE_INGOT).save(pvd, L2Artifacts.MODID + ":upgraded_pocket_old");
 
 		// rank up recipes
 		for (SetEntry<?> set : L2Artifacts.REGISTRATE.SET_LIST) {

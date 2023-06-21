@@ -8,7 +8,7 @@ import dev.xkmc.l2artifacts.content.search.token.ArtifactChestToken;
 import dev.xkmc.l2artifacts.content.upgrades.ArtifactUpgradeManager;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactMenuRegistry;
-import dev.xkmc.l2library.base.menu.SpriteManager;
+import dev.xkmc.l2library.base.menu.base.SpriteManager;
 import dev.xkmc.l2library.base.menu.data.BoolArrayDataSlot;
 import dev.xkmc.l2library.base.menu.data.IntDataSlot;
 import net.minecraft.network.FriendlyByteBuf;
@@ -89,7 +89,7 @@ public class RecycleMenu extends AbstractScrollerMenu<RecycleMenu> {
 
 	@Override
 	public void slotsChanged(Container cont) {
-		if (!player.getLevel().isClientSide()) {
+		if (!player.level().isClientSide()) {
 			if (!cont.getItem(0).isEmpty()) {
 				ItemStack stack = cont.getItem(0).copy();
 				ExpItem item = (ExpItem) stack.getItem();
@@ -103,7 +103,7 @@ public class RecycleMenu extends AbstractScrollerMenu<RecycleMenu> {
 	@Override
 	public boolean clickMenuButton(Player player, int pId) {
 		if (pId == 50) {
-			if (player.level.isClientSide)
+			if (player.level().isClientSide)
 				return true;
 			var list = token.getFiltered();
 			int exp = 0;
@@ -123,7 +123,7 @@ public class RecycleMenu extends AbstractScrollerMenu<RecycleMenu> {
 			return true;
 		}
 		if (pId == 51) {
-			if (player.level.isClientSide)
+			if (player.level().isClientSide)
 				return true;
 			var list = token.getFiltered();
 			int exp = 0;
@@ -137,7 +137,7 @@ public class RecycleMenu extends AbstractScrollerMenu<RecycleMenu> {
 			return true;
 		}
 		if (pId == 52) {
-			if (player.level.isClientSide)
+			if (player.level().isClientSide)
 				return true;
 			var list = token.getFiltered();
 			for (int i = 0; i < list.size(); i++) {

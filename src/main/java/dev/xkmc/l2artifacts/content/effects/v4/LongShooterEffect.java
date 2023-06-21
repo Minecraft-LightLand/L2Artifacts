@@ -27,7 +27,7 @@ public class LongShooterEffect extends AbstractConditionalAttributeSetEffect<Att
 	public void tick(Player player, ArtifactSetConfig.Entry ent, int rank, boolean enabled) {
 		if (!enabled) return;
 		if (player.tickCount % 10 != 0) return;
-		if (player.getLevel().getEntities(EntityTypeTest.forClass(Monster.class), new AABB(player.getPosition(0), player.getPosition(0)).inflate(8), EntitySelector.NO_SPECTATORS).isEmpty()) {
+		if (player.level().getEntities(EntityTypeTest.forClass(Monster.class), new AABB(player.getPosition(0), player.getPosition(0)).inflate(8), EntitySelector.NO_SPECTATORS).isEmpty()) {
 			if (!ConditionalData.HOLDER.get(player).hasData(LAItem4.EFF_LONGSHOOTER_4.get().getKey())) {
 				AttributeSetData data = ConditionalData.HOLDER.get(player).getOrCreateData(this, ent);
 				data.update(11, rank);

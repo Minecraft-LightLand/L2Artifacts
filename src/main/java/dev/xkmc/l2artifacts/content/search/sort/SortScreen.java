@@ -1,17 +1,14 @@
 package dev.xkmc.l2artifacts.content.search.sort;
 
-import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.Tesselator;
 import dev.xkmc.l2artifacts.content.search.common.StackedScreen;
 import dev.xkmc.l2artifacts.content.search.tabs.FilterTabManager;
 import dev.xkmc.l2artifacts.content.search.token.ArtifactChestToken;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
 import dev.xkmc.l2artifacts.init.data.LangData;
-import dev.xkmc.l2library.base.menu.SpriteManager;
+import dev.xkmc.l2library.base.menu.base.SpriteManager;
 import dev.xkmc.l2library.base.menu.stacked.CellEntry;
 import dev.xkmc.l2library.base.menu.stacked.StackedRenderHandle;
-import net.minecraft.client.gui.Font;
-import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 
 import javax.annotation.Nullable;
@@ -34,10 +31,10 @@ public class SortScreen extends StackedScreen {
 		btnHover = null;
 	}
 
-	protected void renderPost(PoseStack pose) {
+	protected void renderPost(GuiGraphics g) {
 		if (btnHover != null) {
 			var cell = btnHover.cell();
-			renderHighlight(pose, cell.x(), cell.y(), cell.w(), cell.h(), -2130706433);
+			renderHighlight(g, cell.x(), cell.y(), cell.w(), cell.h(), -2130706433);
 		}
 	}
 
@@ -52,17 +49,15 @@ public class SortScreen extends StackedScreen {
 	}
 
 	@Override
-	protected void renderItem(PoseStack pose, FilterHover hover) {
-		super.renderItem(pose, hover);
+	protected void renderItem(GuiGraphics g, FilterHover hover) {
+		super.renderItem(g, hover);
 		String s = token.filters.get(hover.i()).getPriority(hover.j()) + "";
-		pose.pushPose();
-		pose.translate(0.0D, 0.0D, 300.0F);
-		MultiBufferSource.BufferSource buffer = MultiBufferSource.immediate(Tesselator.getInstance().getBuilder());
+		g.pose().pushPose();
+		g.pose().translate(0.0D, 0.0D, 300.0F);
 		int tx = hover.x() + 19 - 2 - font.width(s);
 		int ty = hover.y() + 6 + 3;
-		font.drawInBatch(s, tx, ty, 16777215, true, pose.last().pose(), buffer, Font.DisplayMode.NORMAL, 0, 15728880);
-		buffer.endBatch();
-		pose.popPose();
+		g.drawString(font, s, tx, ty, 16777215, false);
+		g.pose().popPose();
 	}
 
 	@Override

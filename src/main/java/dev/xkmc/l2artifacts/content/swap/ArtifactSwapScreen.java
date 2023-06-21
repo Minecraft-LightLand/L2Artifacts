@@ -1,9 +1,9 @@
 package dev.xkmc.l2artifacts.content.swap;
 
-import com.mojang.blaze3d.vertex.PoseStack;
 import dev.xkmc.l2artifacts.content.core.ArtifactSlot;
-import dev.xkmc.l2library.base.menu.BaseContainerScreen;
-import dev.xkmc.l2library.base.menu.SpriteManager;
+import dev.xkmc.l2library.base.menu.base.BaseContainerScreen;
+import dev.xkmc.l2library.base.menu.base.MenuLayoutConfig;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.Slot;
@@ -16,29 +16,29 @@ public class ArtifactSwapScreen extends BaseContainerScreen<ArtifactSwapMenu> {
 	}
 
 	@Override
-	protected void renderBg(PoseStack pose, float pTick, int mx, int my) {
-		SpriteManager sm = this.menu.sprite;
-		SpriteManager.ScreenRenderer sr = sm.getRenderer(this);
-		sr.start(pose);
+	protected void renderBg(GuiGraphics g, float pTick, int mx, int my) {
+		var sm = this.menu.sprite.get();
+		var sr = sm.getRenderer(this);
+		sr.start(g);
 		for (int i = 0; i < 45; i++) {
-			drawDisable(sr, pose, i);
+			drawDisable(sr, g, i);
 		}
 	}
 
-	public void drawDisable(SpriteManager.ScreenRenderer sr, PoseStack pose, int i) {
+	public void drawDisable(MenuLayoutConfig.ScreenRenderer sr, GuiGraphics g, int i) {
 		boolean lock = menu.disable.get(i);
 		ArtifactSlot slot = menu.data.contents[i].slot;
 		ItemStack stack = menu.container.getItem(i);
 		if (lock) {
-			sr.draw(pose, "grid", "altas_disabled", (i % 9) * 18, (i / 9) * 18);
+			sr.draw(g, "grid", "altas_disabled", (i % 9) * 18, (i / 9) * 18);
 		} else if (stack.isEmpty()) {
-			sr.draw(pose, "grid", "altas_" + slot.getRegistryName().getPath(), (i % 9) * 18, (i / 9) * 18);
+			sr.draw(g, "grid", "altas_" + slot.getRegistryName().getPath(), (i % 9) * 18, (i / 9) * 18);
 		}
 	}
 
 	@Override
 	public boolean mouseClicked(double mx, double my, int btn) {
-		SpriteManager.Rect r = menu.sprite.getComp("grid");
+		var r = menu.sprite.get().getComp("grid");
 		int x = r.x + getGuiLeft();
 		int y = r.y + getGuiTop();
 		if (mx >= x && my >= y && mx < x + r.w * r.rx && my < y + r.h * r.ry) {

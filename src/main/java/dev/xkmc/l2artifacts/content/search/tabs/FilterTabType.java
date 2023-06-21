@@ -1,8 +1,9 @@
 package dev.xkmc.l2artifacts.content.search.tabs;
 
-import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.client.gui.GuiComponent;
-import net.minecraft.client.renderer.entity.ItemRenderer;
+import dev.xkmc.l2artifacts.init.L2Artifacts;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -13,6 +14,8 @@ enum FilterTabType {
 	BELOW(84, 0, 28, 32, 8),
 	LEFT(0, 64, 32, 28, 5),
 	RIGHT(96, 64, 32, 28, 5);
+
+	private final static ResourceLocation TEXTURE = new ResourceLocation(L2Artifacts.MODID, "textures/gui/tabs.png");
 
 	public static final int MAX_TABS = 8;
 	private final int textureX;
@@ -27,7 +30,7 @@ enum FilterTabType {
 		this.height = h;
 	}
 
-	public void draw(PoseStack stack, GuiComponent screen, int x, int y, boolean selected, int index) {
+	public void draw(GuiGraphics g, int x, int y, boolean selected, int index) {
 		index = index % MAX_TABS;
 		int tx = this.textureX;
 		if (index > 0) {
@@ -39,10 +42,10 @@ enum FilterTabType {
 		}
 
 		int ty = selected ? this.textureY + this.height : this.textureY;
-		GuiComponent.blit(stack, x, y, tx, ty, this.width, this.height);
+		g.blit(TEXTURE, x, y, tx, ty, this.width, this.height);
 	}
 
-	public void drawIcon(PoseStack pose, int x, int y, int index, ItemRenderer renderer, ItemStack stack) {
+	public void drawIcon(GuiGraphics g, int x, int y, int index, ItemStack stack) {
 		int i = x;
 		int j = y;
 		switch (this) {
@@ -63,8 +66,8 @@ enum FilterTabType {
 				j += 5;
 			}
 		}
-
-		renderer.renderAndDecorateFakeItem(pose, stack, i, j);
+		g.renderFakeItem(stack, i, j);
+		g.renderItemDecorations(Minecraft.getInstance().font, stack, i, j);
 	}
 
 	public int getX(int pIndex) {

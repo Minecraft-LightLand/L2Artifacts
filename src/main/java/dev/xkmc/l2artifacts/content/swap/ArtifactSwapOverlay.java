@@ -1,21 +1,21 @@
 package dev.xkmc.l2artifacts.content.swap;
 
-import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.BufferBuilder;
-import com.mojang.blaze3d.vertex.Tesselator;
 import com.mojang.datafixers.util.Pair;
 import dev.xkmc.l2artifacts.events.ArtifactSel;
-import dev.xkmc.l2library.base.overlay.OverlayUtils;
+import dev.xkmc.l2library.base.overlay.OverlayUtil;
 import dev.xkmc.l2library.base.overlay.SelectionSideBar;
 import dev.xkmc.l2library.base.overlay.SideBar;
 import dev.xkmc.l2library.util.Proxy;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.world.item.ItemStack;
 import top.theillusivec4.curios.api.CuriosCapability;
 import top.theillusivec4.curios.api.type.inventory.ICurioStacksHandler;
 
 import java.util.List;
+
+import static dev.xkmc.l2library.base.overlay.ItemSelSideBar.color;
 
 public class ArtifactSwapOverlay extends SelectionSideBar<Integer, SideBar.IntSignature> {
 
@@ -66,13 +66,14 @@ public class ArtifactSwapOverlay extends SelectionSideBar<Integer, SideBar.IntSi
 		var data = pair.second();
 		idle = 0;
 		for (int i = 0; i < 9; ++i) {
-			float y = 18 * i + ctx.y0();
+			int y = 18 * i + ctx.y0();
 			for (int j = 0; j < 5; j++) {
-				float x = ctx.x0() + 18 * j;
+				int x = ctx.x0() + 18 * j;
 				var slot = data.contents[j * 9 + i];
 				ItemStack stack = slot.getStack();
 				if (!slot.isLocked()) {
-					this.renderSelection(x, y, data.select == i ? 128 : 64, true, data.select == i && !stack.isEmpty());
+					this.renderSelection(ctx.g(), x, y, data.select == i ? 128 : 64,
+							true, data.select == i && !stack.isEmpty());
 					ctx.renderItem(stack, (int) x, (int) y);
 				}
 				if (data.select == i) {
@@ -80,12 +81,12 @@ public class ArtifactSwapOverlay extends SelectionSideBar<Integer, SideBar.IntSi
 							.flatMap(cap -> cap.getStacksHandler(slot.slot.getCurioIdentifier()))
 							.map(ICurioStacksHandler::getStacks);
 					if (opt.isPresent()) {
-						float cx = ctx.x0() + 18 * 6;
-						float cy = ctx.y0() + 36 + j * 18;
+						int cx = ctx.x0() + 18 * 6;
+						int cy = ctx.y0() + 36 + j * 18;
 						ItemStack current = opt.get().getStackInSlot(0);
 						boolean sel = !slot.isLocked() && (!current.isEmpty() || !stack.isEmpty());
-						this.renderArmorSlot(cx, cy, 64, sel && !current.isEmpty());
-						ctx.renderItem(current, (int) cx, (int) cy);
+						this.renderArmorSlot(ctx.g(), cx, cy, 64, sel && !current.isEmpty());
+						ctx.renderItem(current, cx, cy);
 					}
 				}
 			}
@@ -97,45 +98,31 @@ public class ArtifactSwapOverlay extends SelectionSideBar<Integer, SideBar.IntSi
 
 	}
 
-	public void renderArmorSlot(float x, float y, int a, boolean target) {
-		RenderSystem.disableDepthTest();
-		RenderSystem.enableBlend();
-		RenderSystem.defaultBlendFunc();
-		Tesselator tex = Tesselator.getInstance();
-		BufferBuilder builder = tex.getBuilder();
-		OverlayUtils.fillRect(builder, x, y, 16, 16, 255, 255, 255, a);
+	public void renderArmorSlot(GuiGraphics g, int x, int y, int a, boolean target) {
+		OverlayUtil.fillRect(g, x, y, 16, 16, color(255, 255, 255, a));
 		if (target) {
-			OverlayUtils.drawRect(builder, x, y, 16, 16, 70, 150, 185, 255);
+			OverlayUtil.drawRect(g, x, y, 16, 16, color(70, 150, 185, 255));
 		}
-		RenderSystem.enableDepthTest();
 	}
 
-	public void renderSelection(float x, float y, int a, boolean available, boolean selected) {
-		RenderSystem.disableDepthTest();
-		RenderSystem.enableBlend();
-		RenderSystem.defaultBlendFunc();
-		Tesselator tex = Tesselator.getInstance();
-		BufferBuilder builder = tex.getBuilder();
+	public void renderSelection(GuiGraphics g, int x, int y, int a, boolean available, boolean selected) {
 		if (available) {
-			OverlayUtils.fillRect(builder, x, y, 16.0F, 16.0F, 255, 255, 255, a);
+			OverlayUtil.fillRect(g, x, y, 16, 16, color(255, 255, 255, a));
 		} else {
-			OverlayUtils.fillRect(builder, x, y, 16.0F, 16.0F, 255, 0, 0, a);
+			OverlayUtil.fillRect(g, x, y, 16, 16, color(255, 0, 0, a));
 		}
-
 		if (selected) {
-			OverlayUtils.drawRect(builder, x, y, 16.0F, 16.0F, 255, 170, 0, 255);
+			OverlayUtil.drawRect(g, x, y, 16, 16, color(255, 170, 0, 255));
 		}
-
-		RenderSystem.enableDepthTest();
 	}
 
-	protected float getXOffset(int width) {
+	protected int getXOffset(int width) {
 		float progress = (this.max_ease - this.ease_time) / this.max_ease;
-		return this.onCenter() ? width / 2f - 54 - 1 - progress * (float) width / 2.0F : 2 - progress * 20.0F;
+		return Math.round(this.onCenter() ? width / 2f - 54 - 1 - progress * (float) width / 2.0F : 2 - progress * 20.0F);
 	}
 
-	protected float getYOffset(int height) {
-		return height / 2f - 9 * 9 + 1;
+	protected int getYOffset(int height) {
+		return height / 2 - 9 * 9 + 1;
 	}
 
 }

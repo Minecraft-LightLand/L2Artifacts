@@ -1,6 +1,5 @@
 package dev.xkmc.l2artifacts.content.search.tabs;
 
-import com.mojang.blaze3d.vertex.PoseStack;
 import dev.xkmc.l2artifacts.content.search.augment.AugmentTab;
 import dev.xkmc.l2artifacts.content.search.dissolve.DissolveTab;
 import dev.xkmc.l2artifacts.content.search.filter.FilterTab;
@@ -12,6 +11,7 @@ import dev.xkmc.l2artifacts.content.search.token.ArtifactChestToken;
 import dev.xkmc.l2artifacts.content.search.upgrade.UpgradeTab;
 import dev.xkmc.l2artifacts.init.data.LangData;
 import dev.xkmc.l2artifacts.init.registrate.items.ArtifactItemRegistry;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.world.item.Items;
@@ -76,7 +76,7 @@ public class FilterTabManager {
 		return screen.asScreen();
 	}
 
-	public void onToolTipRender(PoseStack stack, int mouseX, int mouseY) {
+	public void onToolTipRender(GuiGraphics stack, int mouseX, int mouseY) {
 		for (FilterTabBase<?> tab : list) {
 			if (tab.visible && tab.isHoveredOrFocused()) {
 				tab.onTooltip(stack, mouseX, mouseY);

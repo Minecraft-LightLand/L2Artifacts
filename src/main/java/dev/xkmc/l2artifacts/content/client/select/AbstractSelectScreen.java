@@ -2,10 +2,10 @@ package dev.xkmc.l2artifacts.content.client.select;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
-import dev.xkmc.l2library.base.menu.SpriteManager;
+import dev.xkmc.l2library.base.menu.base.SpriteManager;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
-import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 
@@ -30,15 +30,15 @@ public abstract class AbstractSelectScreen extends Screen {
 	@Override
 	protected void init() {
 		this.imageWidth = 176;
-		this.imageHeight = manager.getHeight();
+		this.imageHeight = manager.get().getHeight();
 		this.leftPos = (this.width - imageWidth) / 2;
 		this.topPos = (this.height - imageHeight) / 2;
 	}
 
-	public void render(PoseStack pose, int mx, int my, float pTick) {
-		this.renderBg(pose, pTick, mx, my);
+	public void render(GuiGraphics g, int mx, int my, float pTick) {
+		this.renderBg(g, pTick, mx, my);
 		RenderSystem.disableDepthTest();
-		super.render(pose, mx, my, pTick);
+		super.render(g, mx, my, pTick);
 		PoseStack posestack = RenderSystem.getModelViewStack();
 		posestack.pushPose();
 		posestack.translate(leftPos, topPos, 0.0D);
@@ -46,29 +46,28 @@ public abstract class AbstractSelectScreen extends Screen {
 		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
 		hovered = null;
 		for (String c : slots) {
-			renderSlotComp(pose, c, mx, my);
+			renderSlotComp(g, c, mx, my);
 		}
-		this.renderLabels(pose, mx, my);
+		this.renderLabels(g, mx, my);
 		if (hovered != null && !hovered.isEmpty()) {
-			pose.pushPose();
-			pose.translate(-leftPos, -topPos, 0);
-			this.renderTooltip(pose, hovered, mx, my);
-			pose.popPose();
+			g.pose().pushPose();
+			g.pose().translate(-leftPos, -topPos, 0);
+			g.renderTooltip(font, hovered, mx, my);
+			g.pose().popPose();
 		}
 		posestack.popPose();
 		RenderSystem.applyModelViewMatrix();
 		RenderSystem.enableDepthTest();
 	}
 
-	protected abstract void renderLabels(PoseStack pose, int mx, int my);
+	protected abstract void renderLabels(GuiGraphics pose, int mx, int my);
 
 	protected abstract ItemStack getStack(String comp, int x, int y);
 
-	private void renderSlotComp(PoseStack pose, String name, int mx, int my) {
-		var comp = manager.getComp(name);
+	private void renderSlotComp(GuiGraphics pose, String name, int mx, int my) {
+		var comp = manager.get().getComp(name);
 		for (int i = 0; i < comp.rx; i++) {
 			for (int j = 0; j < comp.ry; j++) {
-				RenderSystem.setShader(GameRenderer::getPositionTexShader);
 				int sx = comp.x + comp.w * i;
 				int sy = comp.y + comp.h * j;
 				ItemStack stack = getStack(name, i, j);
@@ -81,24 +80,22 @@ public abstract class AbstractSelectScreen extends Screen {
 		}
 	}
 
-	private void renderSlot(PoseStack pose, int x, int y, ItemStack stack) {
+	private void renderSlot(GuiGraphics g, int x, int y, ItemStack stack) {
 		String s = null;
 		RenderSystem.enableDepthTest();
 		assert this.minecraft != null;
 		assert this.minecraft.player != null;
-		this.itemRenderer.renderAndDecorateItem(pose, this.minecraft.player, stack, x, y, x + y * this.imageWidth);
-		this.itemRenderer.renderGuiItemDecorations(pose, this.font, stack, x, y, s);
-		//TODO fix
+		g.renderItem(stack, x, y, x + y * this.imageWidth);
+		g.renderItemDecorations(this.font, stack, x, y, s);
 	}
 
-	private void renderBg(PoseStack stack, float pt, int mx, int my) {
-		manager.getWidth();// call check();
-		SpriteManager.ScreenRenderer sr = manager.new ScreenRenderer(this, leftPos, topPos, imageWidth, imageHeight);
+	private void renderBg(GuiGraphics stack, float pt, int mx, int my) {
+		var sr = manager.get().new ScreenRenderer(this, leftPos, topPos, imageWidth, imageHeight);
 		sr.start(stack);
 	}
 
 	private boolean isHovering(String slot, int i, int j, double mx, double my) {
-		var comp = manager.getComp(slot);
+		var comp = manager.get().getComp(slot);
 		return this.isHovering(comp.x + comp.w * i, comp.y + comp.h * j, 16, 16, mx, my);
 	}
 
@@ -113,7 +110,7 @@ public abstract class AbstractSelectScreen extends Screen {
 	@Nullable
 	protected SlotResult findSlot(double mx, double my) {
 		for (String c : slots) {
-			var comp = manager.getComp(c);
+			var comp = manager.get().getComp(c);
 			for (int i = 0; i < comp.rx; i++) {
 				for (int j = 0; j < comp.ry; j++) {
 					if (this.isHovering(c, i, j, mx, my)) {

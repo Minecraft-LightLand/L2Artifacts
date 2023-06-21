@@ -6,7 +6,7 @@ import dev.xkmc.l2artifacts.content.search.token.ArtifactChestToken;
 import dev.xkmc.l2artifacts.content.upgrades.StatContainerItem;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactMenuRegistry;
-import dev.xkmc.l2library.base.menu.SpriteManager;
+import dev.xkmc.l2library.base.menu.base.SpriteManager;
 import dev.xkmc.l2library.base.menu.data.IntDataSlot;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.Container;
@@ -64,7 +64,7 @@ public class DissolveMenu extends AbstractScrollerMenu<DissolveMenu> {
 
 	@Override
 	public void slotsChanged(Container cont) {
-		if (!player.getLevel().isClientSide()) {
+		if (!player.level().isClientSide()) {
 			if (!cont.getItem(0).isEmpty() && selected >= 0) {
 				if (token.getFiltered().get(selected).item().rank != ((StatContainerItem) container.getItem(0).getItem()).rank)
 					container.setItem(1, setSelected(-1));

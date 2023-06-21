@@ -9,11 +9,13 @@ import dev.xkmc.l2artifacts.content.search.tabs.FilterTabToken;
 import dev.xkmc.l2artifacts.content.search.tabs.IFilterScreen;
 import dev.xkmc.l2artifacts.content.search.token.ArtifactChestToken;
 import dev.xkmc.l2artifacts.content.search.token.IArtifactFeature;
-import dev.xkmc.l2library.base.menu.SpriteManager;
+import dev.xkmc.l2library.base.menu.base.SpriteManager;
 import dev.xkmc.l2library.base.menu.stacked.StackedRenderHandle;
 import dev.xkmc.l2library.util.Proxy;
 import dev.xkmc.l2serial.serialization.codec.TagCodec;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.inventory.tooltip.TooltipComponent;
@@ -26,12 +28,8 @@ import java.util.Optional;
 
 public abstract class StackedScreen extends Screen implements IFilterScreen {
 
-	public static void renderHighlight(PoseStack pose, int x, int y, int w, int h, int c) {
-		RenderSystem.disableDepthTest();
-		RenderSystem.colorMask(true, true, true, false);
-		fillGradient(pose, x, y, x + w, y + h, c, c);
-		RenderSystem.colorMask(true, true, true, true);
-		RenderSystem.enableDepthTest();
+	public static void renderHighlight(GuiGraphics g, int x, int y, int w, int h, int c) {
+		g.fillGradient(RenderType.guiOverlay(), x, y, x + w, y + h, c, c, 0);
 	}
 
 	public final ArtifactChestToken token;
@@ -55,8 +53,8 @@ public abstract class StackedScreen extends Screen implements IFilterScreen {
 
 	@Override
 	protected void init() {
-		this.imageWidth = manager.getWidth();
-		this.imageHeight = manager.getHeight();
+		this.imageWidth = manager.get().getWidth();
+		this.imageHeight = manager.get().getHeight();
 		this.leftPos = (this.width - imageWidth) / 2;
 		this.topPos = (this.height - imageHeight) / 2;
 		new FilterTabManager(this, token).init(this::addRenderableWidget, tab);
@@ -65,31 +63,30 @@ public abstract class StackedScreen extends Screen implements IFilterScreen {
 	protected void renderInit() {
 	}
 
-	protected void renderPost(PoseStack pose) {
+	protected void renderPost(GuiGraphics pose) {
 	}
 
 	protected abstract void renderText(StackedRenderHandle handle, int i, int mx, int my);
 
 	protected abstract boolean isAvailable(int i, int j);
 
-	protected void renderItem(PoseStack pose, FilterHover hover) {
+	protected void renderItem(GuiGraphics g, FilterHover hover) {
 		if (hover.item instanceof IArtifactFeature.Sprite icon) {
-			RenderSystem.setShaderTexture(0, icon.getIcon());
-			blit(pose, hover.x, hover.y, 0, 0, 16, 16, 16, 16);
+			g.blit(icon.getIcon(), hover.x, hover.y, 0, 0, 16, 16, 16, 16);
 		} else if (hover.item instanceof IArtifactFeature.ItemIcon icon) {
-			renderSlotItem(pose, hover.x, hover.y, icon.getItemIcon().getDefaultInstance());
+			renderSlotItem(g, hover.x, hover.y, icon.getItemIcon().getDefaultInstance());
 		}
 	}
 
-	public final void render(PoseStack pose, int mx, int my, float pTick) {
-		renderBg(pose, pTick, mx, my);
+	public final void render(GuiGraphics g, int mx, int my, float pTick) {
+		renderBg(g, pTick, mx, my);
 		RenderSystem.disableDepthTest();
 		PoseStack posestack = RenderSystem.getModelViewStack();
 		posestack.pushPose();
 		posestack.translate(leftPos, topPos, 0.0D);
 		RenderSystem.applyModelViewMatrix();
 		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-		StackedRenderHandle handle = new StackedRenderHandle(this, pose, manager);
+		StackedRenderHandle handle = new StackedRenderHandle(this, g, manager.get());
 		hover = null;
 		renderInit();
 		List<FilterHover> list = new ArrayList<>();
@@ -108,25 +105,25 @@ public abstract class StackedScreen extends Screen implements IFilterScreen {
 			}
 		}
 		handle.flushText();
-		list.forEach(e -> renderItem(pose, e));
+		list.forEach(e -> renderItem(g, e));
 		if (hover != null) {
-			renderHighlight(pose, hover.x, hover.y, 16, 16, -2130706433);
+			renderHighlight(g, hover.x, hover.y, 16, 16, -2130706433);
 			List<Component> texts = new ArrayList<>();
 			texts.add(hover.item().getDesc());
 			Optional<TooltipComponent> comp = Optional.ofNullable(hover.item().getTooltipItems())
 					.map(ItemTooltip::new);
-			renderTooltip(pose, texts, comp, mx - leftPos, my - topPos);
+			g.renderTooltip(font, texts, comp, mx - leftPos, my - topPos);
 		}
-		renderPost(pose);
+		renderPost(g);
 		posestack.popPose();
 		RenderSystem.applyModelViewMatrix();
 		RenderSystem.enableDepthTest();
-		super.render(pose, mx, my, pTick);
+		super.render(g, mx, my, pTick);
 	}
 
-	private void renderBg(PoseStack stack, float pt, int mx, int my) {
-		SpriteManager.ScreenRenderer sr = manager.new ScreenRenderer(this, leftPos, topPos, imageWidth, imageHeight);
-		sr.start(stack);
+	private void renderBg(GuiGraphics g, float pt, int mx, int my) {
+		var sr = manager.get().new ScreenRenderer(this, leftPos, topPos, imageWidth, imageHeight);
+		sr.start(g);
 	}
 
 	protected boolean isHovering(int x, int y, int w, int h, double mx, double my) {
@@ -137,13 +134,12 @@ public abstract class StackedScreen extends Screen implements IFilterScreen {
 		return mx >= (x - 1) && mx < (x + w + 1) && my >= (y - 1) && my < (y + h + 1);
 	}
 
-	private void renderSlotItem(PoseStack pose, int x, int y, ItemStack stack) {
+	private void renderSlotItem(GuiGraphics g, int x, int y, ItemStack stack) {
 		RenderSystem.enableDepthTest();
 		assert this.minecraft != null;
 		assert this.minecraft.player != null;
-		this.itemRenderer.renderAndDecorateItem(pose, this.minecraft.player, stack, x, y, x + y * this.imageWidth);
-		this.itemRenderer.renderGuiItemDecorations(pose, this.font, stack, x, y, null);
-		//TODO test blit offset
+		g.renderItem(stack, x, y, x + y * this.imageWidth);
+		g.renderItemDecorations(this.font, stack, x, y, null);
 	}
 
 	protected abstract void clickHover(int i, int j);

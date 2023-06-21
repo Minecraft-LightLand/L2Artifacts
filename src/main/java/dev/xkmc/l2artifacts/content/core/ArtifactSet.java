@@ -7,7 +7,7 @@ import dev.xkmc.l2artifacts.content.search.token.IArtifactFeature;
 import dev.xkmc.l2artifacts.events.ArtifactEffectEvents;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
 import dev.xkmc.l2artifacts.init.data.LangData;
-import dev.xkmc.l2artifacts.init.data.ModConfig;
+import dev.xkmc.l2artifacts.init.data.ArtifactConfig;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactTypeRegistry;
 import dev.xkmc.l2library.base.NamedEntry;
 import dev.xkmc.l2library.util.Proxy;
@@ -64,7 +64,7 @@ public class ArtifactSet extends NamedEntry<ArtifactSet> implements IArtifactFea
 		LivingEntity e = context == null ? Proxy.getPlayer() : context.entity();
 		if (e instanceof Player player) {
 			List<SlotResult> list = CuriosApi.getCuriosHelper().findCurios(player, stack -> stack.getItem() instanceof BaseArtifact artifact && artifact.set.get() == this);
-			int[] rank = new int[ModConfig.COMMON.maxRank.get() + 1];
+			int[] rank = new int[ArtifactConfig.COMMON.maxRank.get() + 1];
 			int index = -1;
 			int count = 0;
 			for (SlotResult result : list) {
@@ -84,7 +84,7 @@ public class ArtifactSet extends NamedEntry<ArtifactSet> implements IArtifactFea
 	public Optional<SetContext> getSetCount(LivingEntity e) {
 		if (e instanceof Player player) {
 			List<SlotResult> list = CuriosApi.getCuriosHelper().findCurios(player, stack -> stack.getItem() instanceof BaseArtifact artifact && artifact.set.get() == this);
-			int[] rank = new int[ModConfig.COMMON.maxRank.get() + 1];
+			int[] rank = new int[ArtifactConfig.COMMON.maxRank.get() + 1];
 			int count = 0;
 			for (SlotResult result : list) {
 				if (result.stack().getItem() instanceof BaseArtifact artifact && artifact.set.get() == this) {

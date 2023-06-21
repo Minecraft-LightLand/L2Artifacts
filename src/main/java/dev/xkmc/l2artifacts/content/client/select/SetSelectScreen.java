@@ -1,10 +1,10 @@
 package dev.xkmc.l2artifacts.content.client.select;
 
-import com.mojang.blaze3d.vertex.PoseStack;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
 import dev.xkmc.l2artifacts.init.data.LangData;
-import dev.xkmc.l2library.base.menu.SpriteManager;
+import dev.xkmc.l2library.base.menu.base.SpriteManager;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.world.item.ItemStack;
 
 public class SetSelectScreen extends AbstractSelectScreen {
@@ -16,8 +16,8 @@ public class SetSelectScreen extends AbstractSelectScreen {
 	}
 
 	@Override
-	protected void renderLabels(PoseStack pose, int mx, int my) {
-		this.font.draw(pose, LangData.TITLE_SELECT_SET.get(), 8, 6, 4210752);
+	protected void renderLabels(GuiGraphics g, int mx, int my) {
+		g.drawString(font, LangData.TITLE_SELECT_SET.get(), 8, 6, 4210752);
 	}
 
 	@Override

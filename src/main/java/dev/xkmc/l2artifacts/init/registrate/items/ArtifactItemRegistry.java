@@ -10,7 +10,6 @@ import dev.xkmc.l2artifacts.content.upgrades.StatContainerItem;
 import dev.xkmc.l2artifacts.content.upgrades.Upgrade;
 import dev.xkmc.l2artifacts.content.upgrades.UpgradeBoostItem;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
-import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
@@ -28,9 +27,8 @@ public class ArtifactItemRegistry {
 	public static final String[] RANK_NAME = {" -Common-", " =Rare=", " >Epic<", " »Legendary«", " -»Godly«-"};
 
 	static {
-		REGISTRATE.creativeModeTab("artifacts", b -> b
-				.icon(ArtifactItemRegistry.SELECT::asStack)
-				.title(Component.translatable("itemGroup.l2artifacts.artifacts")));
+		REGISTRATE.buildL2CreativeTab("artifacts", "L2 Artifacts", b -> b
+				.icon(ArtifactItemRegistry.SELECT::asStack));
 	}
 
 	public static final ItemEntry<SelectArtifactItem> SELECT;

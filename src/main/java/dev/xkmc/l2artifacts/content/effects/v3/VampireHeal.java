@@ -3,7 +3,7 @@ package dev.xkmc.l2artifacts.content.effects.v3;
 import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
 import dev.xkmc.l2artifacts.content.effects.SetEffect;
 import dev.xkmc.l2artifacts.init.registrate.entries.LinearFuncEntry;
-import dev.xkmc.l2library.init.events.attack.AttackCache;
+import dev.xkmc.l2damagetracker.contents.attack.AttackCache;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.entity.player.Player;
@@ -29,7 +29,7 @@ public class VampireHeal extends SetEffect {
 
 	@Override
 	public void playerDamageOpponentEvent(Player player, ArtifactSetConfig.Entry ent, int rank, AttackCache event) {
-		if (player.getLevel().isClientSide()) return;
+		if (player.level().isClientSide()) return;
 		int light = PlayerLight.playerUnderSun(player);
 		if (light <= this.light.getFromRank(rank)) {
 			player.heal((float) (event.getDamageDealt() * percent.getFromRank(rank)));

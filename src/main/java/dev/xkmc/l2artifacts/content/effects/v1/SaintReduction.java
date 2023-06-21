@@ -3,8 +3,8 @@ package dev.xkmc.l2artifacts.content.effects.v1;
 import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
 import dev.xkmc.l2artifacts.content.effects.SetEffect;
 import dev.xkmc.l2artifacts.init.registrate.entries.LinearFuncEntry;
-import dev.xkmc.l2library.init.events.attack.AttackCache;
-import dev.xkmc.l2library.init.events.attack.DamageModifier;
+import dev.xkmc.l2damagetracker.contents.attack.AttackCache;
+import dev.xkmc.l2damagetracker.contents.attack.DamageModifier;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.tags.DamageTypeTags;
@@ -32,7 +32,7 @@ public class SaintReduction extends SetEffect {
 
 	@Override
 	public void playerDamageOpponentEvent(Player player, ArtifactSetConfig.Entry ent, int rank, AttackCache event) {
-		event.addHurtModifier(DamageModifier.multPost((float) (1 - atk.getFromRank(rank))));
+		event.addHurtModifier(DamageModifier.multBase((float) (1 - atk.getFromRank(rank))));
 	}
 
 	@Override

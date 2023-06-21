@@ -8,12 +8,12 @@ import dev.xkmc.l2artifacts.content.upgrades.ArtifactUpgradeManager;
 import dev.xkmc.l2artifacts.content.upgrades.StatContainerItem;
 import dev.xkmc.l2artifacts.content.upgrades.Upgrade;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
-import dev.xkmc.l2artifacts.init.data.ModConfig;
+import dev.xkmc.l2artifacts.init.data.ArtifactConfig;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactMenuRegistry;
 import dev.xkmc.l2artifacts.init.registrate.items.ArtifactItemRegistry;
-import dev.xkmc.l2library.base.menu.BaseContainerMenu;
-import dev.xkmc.l2library.base.menu.PredSlot;
-import dev.xkmc.l2library.base.menu.SpriteManager;
+import dev.xkmc.l2library.base.menu.base.BaseContainerMenu;
+import dev.xkmc.l2library.base.menu.base.PredSlot;
+import dev.xkmc.l2library.base.menu.base.SpriteManager;
 import dev.xkmc.l2library.base.menu.data.IntDataSlot;
 import dev.xkmc.l2library.util.code.GenericItemStack;
 import net.minecraft.network.FriendlyByteBuf;
@@ -101,7 +101,7 @@ public class AugmentMenu extends BaseContainerMenu<AugmentMenu> implements IFilt
 					ec = ArtifactUpgradeManager.getExpForLevel(item.rank, stats.level) - stats.exp;
 					pc = (int) Math.ceil(Math.log10(ec) * item.rank);
 					useMain = !in_1.getItem().isEmpty();
-					if ((stats.level + 1) % ModConfig.COMMON.levelPerSubStat.get() == 0) {
+					if ((stats.level + 1) % ArtifactConfig.COMMON.levelPerSubStat.get() == 0) {
 						useSub = !in_2.getItem().isEmpty();
 						ItemStack stat = in_0.getItem();
 						var opt_stat = StatContainerItem.getType(stat);
@@ -125,7 +125,7 @@ public class AugmentMenu extends BaseContainerMenu<AugmentMenu> implements IFilt
 		if (data == 0) {
 			boolean canUpgrade = player_cost.get() > 0 && exp_cost.get() <= experience.get() &&
 					(player.getAbilities().instabuild || player.experienceLevel >= player_cost.get());
-			if (player.level.isClientSide) {
+			if (player.level().isClientSide) {
 				return canUpgrade;
 			}
 			if (!canUpgrade)

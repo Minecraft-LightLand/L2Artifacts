@@ -16,7 +16,7 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 
 import static dev.xkmc.l2artifacts.init.L2Artifacts.REGISTRATE;
 import static dev.xkmc.l2artifacts.init.registrate.ArtifactTypeRegistry.*;
-import static dev.xkmc.l2library.init.L2Library.*;
+import static dev.xkmc.l2damagetracker.init.L2DamageTracker.*;
 import static net.minecraft.world.entity.ai.attributes.AttributeModifier.Operation.ADDITION;
 import static net.minecraft.world.entity.ai.attributes.AttributeModifier.Operation.MULTIPLY_BASE;
 

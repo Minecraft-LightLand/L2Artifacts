@@ -1,8 +1,8 @@
 package dev.xkmc.l2artifacts.content.search.common;
 
 import dev.xkmc.l2artifacts.content.search.token.ArtifactChestToken;
-import dev.xkmc.l2library.base.menu.BaseContainerMenu;
-import dev.xkmc.l2library.base.menu.SpriteManager;
+import dev.xkmc.l2library.base.menu.base.BaseContainerMenu;
+import dev.xkmc.l2library.base.menu.base.SpriteManager;
 import dev.xkmc.l2library.base.menu.data.IntDataSlot;
 import dev.xkmc.l2library.base.menu.scroller.ScrollerMenu;
 import net.minecraft.world.Container;
@@ -41,7 +41,7 @@ public abstract class AbstractScrollerMenu<T extends AbstractScrollerMenu<T>> ex
 	}
 
 	protected void reload(boolean changeContent) {
-		if (player.level.isClientSide()) return;
+		if (player.level().isClientSide()) return;
 		var list = token.getFiltered();
 		max_row.set((int) Math.ceil(list.size() / 6.0));
 		if (row.get() < 0) row.set(0);
@@ -81,7 +81,7 @@ public abstract class AbstractScrollerMenu<T extends AbstractScrollerMenu<T>> ex
 		pId -= 2;
 		pId += row.get() * 6;
 		if (pId >= 0 && pId < token.getFiltered().size()) {
-			if (!player.getLevel().isClientSide()) {
+			if (!player.level().isClientSide()) {
 				clickSlot(pId);
 			}
 			return true;

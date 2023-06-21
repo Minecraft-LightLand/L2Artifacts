@@ -1,9 +1,9 @@
 package dev.xkmc.l2artifacts.events;
 
 import dev.xkmc.l2artifacts.content.effects.SetEffect;
-import dev.xkmc.l2library.init.events.attack.AttackCache;
-import dev.xkmc.l2library.init.events.attack.AttackListener;
-import dev.xkmc.l2library.init.events.attack.PlayerAttackCache;
+import dev.xkmc.l2damagetracker.contents.attack.AttackCache;
+import dev.xkmc.l2damagetracker.contents.attack.AttackListener;
+import dev.xkmc.l2damagetracker.contents.attack.PlayerAttackCache;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.entity.player.CriticalHitEvent;

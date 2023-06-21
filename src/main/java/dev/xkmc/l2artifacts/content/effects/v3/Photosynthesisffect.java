@@ -32,7 +32,7 @@ public class Photosynthesisffect extends SetEffect {
 	@Override
 	public void tick(Player player, ArtifactSetConfig.Entry ent, int rank, boolean enabled) {
 		if (!enabled) return;
-		if (player.getLevel().isClientSide()) return;
+		if (player.level().isClientSide()) return;
 		if (player.tickCount % period.getFromRank(rank) != 0) return;
 		int sun = PlayerLight.playerUnderSun(player);
 

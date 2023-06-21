@@ -29,7 +29,7 @@ public class SaintRestoration extends SetEffect {
 			if (player.getHealth() < player.getMaxHealth()) {
 				player.heal(1);
 			} else {
-				List<Player> list = player.level.getEntitiesOfClass(Player.class, player.getBoundingBox().inflate(32));
+				List<Player> list = player.level().getEntitiesOfClass(Player.class, player.getBoundingBox().inflate(32));
 				Player min = null;
 				double health = 1e6;
 				for (Player p : list) {

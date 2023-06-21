@@ -1,8 +1,8 @@
 package dev.xkmc.l2artifacts.content.swap;
 
 import dev.xkmc.l2artifacts.init.L2Artifacts;
-import dev.xkmc.l2library.base.menu.BaseContainerMenu;
-import dev.xkmc.l2library.base.menu.SpriteManager;
+import dev.xkmc.l2library.base.menu.base.BaseContainerMenu;
+import dev.xkmc.l2library.base.menu.base.SpriteManager;
 import dev.xkmc.l2library.base.menu.data.BoolArrayDataSlot;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.Container;
@@ -49,7 +49,7 @@ public class ArtifactSwapMenu extends BaseContainerMenu<ArtifactSwapMenu> {
 	@Override
 	public boolean clickMenuButton(Player player, int id) {
 		if (id >= 0 && id < 45) {
-			if (!player.level.isClientSide()) {
+			if (!player.level().isClientSide()) {
 				data.contents[id].toggle();
 				save();
 				reload();
@@ -60,7 +60,7 @@ public class ArtifactSwapMenu extends BaseContainerMenu<ArtifactSwapMenu> {
 	}
 
 	private void save() {
-		if (!init || inventory.player.level.isClientSide()) {
+		if (!init || inventory.player.level().isClientSide()) {
 			return;
 		}
 		for (int i = 0; i < 45; i++) {

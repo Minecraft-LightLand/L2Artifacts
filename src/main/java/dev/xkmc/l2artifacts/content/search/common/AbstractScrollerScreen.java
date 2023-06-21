@@ -1,13 +1,13 @@
 package dev.xkmc.l2artifacts.content.search.common;
 
-import com.mojang.blaze3d.vertex.PoseStack;
 import dev.xkmc.l2artifacts.content.search.tabs.FilterTabManager;
 import dev.xkmc.l2artifacts.content.search.tabs.FilterTabToken;
 import dev.xkmc.l2artifacts.content.search.tabs.IFilterScreen;
-import dev.xkmc.l2library.base.menu.BaseContainerScreen;
-import dev.xkmc.l2library.base.menu.SpriteManager;
+import dev.xkmc.l2library.base.menu.base.BaseContainerScreen;
+import dev.xkmc.l2library.base.menu.base.MenuLayoutConfig;
 import dev.xkmc.l2library.base.menu.scroller.Scroller;
 import dev.xkmc.l2library.base.menu.scroller.ScrollerScreen;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.Slot;
@@ -21,7 +21,7 @@ public class AbstractScrollerScreen<T extends AbstractScrollerMenu<T>>
 
 	public AbstractScrollerScreen(T cont, Inventory plInv, Component title, FilterTabToken<?> tab) {
 		super(cont, plInv, title);
-		scroller = new Scroller(this, cont.sprite,
+		scroller = new Scroller(this, cont.sprite.get(),
 				"slider_middle", "slider_light", "slider_dark");
 		this.tab = tab;
 	}
@@ -33,21 +33,21 @@ public class AbstractScrollerScreen<T extends AbstractScrollerMenu<T>>
 	}
 
 	@Override
-	protected void renderBg(PoseStack pose, float pTick, int mx, int my) {
-		SpriteManager sm = this.menu.sprite;
-		SpriteManager.ScreenRenderer sr = sm.getRenderer(this);
+	protected void renderBg(GuiGraphics pose, float pTick, int mx, int my) {
+		var sm = this.menu.sprite.get();
+		var sr = sm.getRenderer(this);
 		sr.start(pose);
 		scroller.render(pose, sr);
 		renderBgExtra(pose, sr, mx, my);
 	}
 
-	protected void renderBgExtra(PoseStack pose, SpriteManager.ScreenRenderer sr, int mx, int my) {
+	protected void renderBgExtra(GuiGraphics pose, MenuLayoutConfig.ScreenRenderer sr, int mx, int my) {
 	}
 
 	@Override
-	protected void renderLabels(PoseStack pPoseStack, int pMouseX, int pMouseY) {
-		this.font.draw(pPoseStack, getTitle(), this.titleLabelX, this.titleLabelY, 4210752);
-		this.font.draw(pPoseStack, this.playerInventoryTitle, this.inventoryLabelX, this.inventoryLabelY, 4210752);
+	protected void renderLabels(GuiGraphics g, int pMouseX, int pMouseY) {
+		g.drawString(font, getTitle(), this.titleLabelX, this.titleLabelY, 4210752, false);
+		g.drawString(font, this.playerInventoryTitle, this.inventoryLabelX, this.inventoryLabelY, 4210752, false);
 	}
 
 	@Override
@@ -71,7 +71,7 @@ public class AbstractScrollerScreen<T extends AbstractScrollerMenu<T>>
 
 	@Override
 	public boolean mouseClicked(double mx, double my, int btn) {
-		SpriteManager.Rect r = menu.sprite.getComp("grid");
+		var r = menu.sprite.get().getComp("grid");
 		int x = r.x + getGuiLeft();
 		int y = r.y + getGuiTop();
 		if (mx >= x && my >= y && mx < x + r.w * r.rx && my < y + r.h * r.ry) {

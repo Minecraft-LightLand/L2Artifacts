@@ -7,7 +7,7 @@ import dev.xkmc.l2artifacts.content.core.BaseArtifact;
 import dev.xkmc.l2artifacts.content.core.StatEntry;
 import dev.xkmc.l2artifacts.content.misc.ExpItem;
 import dev.xkmc.l2artifacts.content.upgrades.*;
-import dev.xkmc.l2artifacts.init.data.ModConfig;
+import dev.xkmc.l2artifacts.init.data.ArtifactConfig;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.AnvilUpdateEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -96,7 +96,7 @@ public class CraftEvents {
 		int maxLvl = ArtifactUpgradeManager.getMaxLevel(artifact.rank);
 		int lvl = BaseArtifact.getStats(stack).map(e -> e.old_level).orElse(-1);
 		int pre = lvl == -1 ? artifact.rank - 1 : 0;
-		int gate = ModConfig.COMMON.levelPerSubStat.get();
+		int gate = ArtifactConfig.COMMON.levelPerSubStat.get();
 		if (maxLvl / gate - lvl / gate + pre <= upgrade.stats.size())
 			return false;
 		return BaseArtifact.getStats(stack).map(stats -> {
@@ -128,7 +128,7 @@ public class CraftEvents {
 			}
 		} else {
 			int pre = lvl == -1 ? artifact.rank - 1 : 0;
-			int gate = ModConfig.COMMON.levelPerSubStat.get();
+			int gate = ArtifactConfig.COMMON.levelPerSubStat.get();
 			if (maxLvl / gate - lvl / gate + pre > upgrade.sub) {
 				upgrade.sub++;
 				return Optional.of(upgrade);

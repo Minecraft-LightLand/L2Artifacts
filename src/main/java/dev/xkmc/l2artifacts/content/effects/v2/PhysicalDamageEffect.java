@@ -4,9 +4,9 @@ import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
 import dev.xkmc.l2artifacts.content.effects.attribute.AttrSetEntry;
 import dev.xkmc.l2artifacts.content.effects.attribute.AttributeSetEffect;
 import dev.xkmc.l2artifacts.init.registrate.entries.LinearFuncEntry;
-import dev.xkmc.l2library.init.data.L2DamageTypes;
-import dev.xkmc.l2library.init.events.attack.AttackCache;
-import dev.xkmc.l2library.init.events.attack.DamageModifier;
+import dev.xkmc.l2damagetracker.contents.attack.AttackCache;
+import dev.xkmc.l2damagetracker.contents.attack.DamageModifier;
+import dev.xkmc.l2damagetracker.init.data.L2DamageTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.entity.player.Player;
@@ -36,7 +36,7 @@ public class PhysicalDamageEffect extends AttributeSetEffect {
 		LivingHurtEvent hurt = event.getLivingHurtEvent();
 		assert hurt != null;
 		if (hurt.getSource().is(L2DamageTypes.MAGIC)) {
-			event.addHurtModifier(DamageModifier.multPost((float) factor.getFromRank(rank)));
+			event.addHurtModifier(DamageModifier.multBase((float) factor.getFromRank(rank)));
 		}
 	}
 }

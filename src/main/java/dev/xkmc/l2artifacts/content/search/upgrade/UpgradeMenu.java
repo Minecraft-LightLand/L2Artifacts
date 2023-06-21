@@ -7,8 +7,8 @@ import dev.xkmc.l2artifacts.content.search.token.ArtifactChestToken;
 import dev.xkmc.l2artifacts.content.upgrades.ArtifactUpgradeManager;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactMenuRegistry;
-import dev.xkmc.l2library.base.menu.BaseContainerMenu;
-import dev.xkmc.l2library.base.menu.SpriteManager;
+import dev.xkmc.l2library.base.menu.base.BaseContainerMenu;
+import dev.xkmc.l2library.base.menu.base.SpriteManager;
 import dev.xkmc.l2library.base.menu.data.IntDataSlot;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.Container;
@@ -46,7 +46,7 @@ public class UpgradeMenu extends BaseContainerMenu<UpgradeMenu> implements IFilt
 
 	@Override
 	public void slotsChanged(Container cont) {
-		if (player.level.isClientSide) return;
+		if (player.level().isClientSide) return;
 		ItemStack stack = cont.getItem(0);
 		int ec = 0;
 		int pc = 0;
@@ -76,7 +76,7 @@ public class UpgradeMenu extends BaseContainerMenu<UpgradeMenu> implements IFilt
 		if (data == 0) {
 			boolean canUpgrade = player_cost.get() > 0 && exp_cost.get() <= experience.get() &&
 					(player.getAbilities().instabuild || player.experienceLevel >= player_cost.get());
-			if (player.level.isClientSide) {
+			if (player.level().isClientSide) {
 				return canUpgrade;
 			}
 			if (!canUpgrade)

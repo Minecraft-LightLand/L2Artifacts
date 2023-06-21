@@ -11,24 +11,23 @@ import dev.xkmc.l2artifacts.init.L2Artifacts;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactTypeRegistry;
 import dev.xkmc.l2artifacts.init.registrate.entries.LinearFuncEntry;
 import dev.xkmc.l2artifacts.init.registrate.entries.SetEntry;
-import dev.xkmc.l2library.serial.config.BaseConfig;
+import dev.xkmc.l2artifacts.network.NetworkManager;
 import dev.xkmc.l2library.serial.config.ConfigDataProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
 
 import java.util.ArrayList;
-import java.util.Map;
 import java.util.Objects;
 import java.util.function.Consumer;
 
 public class ConfigGen extends ConfigDataProvider {
 
 	public ConfigGen(DataGenerator generator) {
-		super(generator, "data/l2artifacts/artifact_config/", "Artifact Config");
+		super(generator, "Artifact Config");
 	}
 
 	@Override
-	public void add(Map<String, BaseConfig> map) {
+	public void add(Collector map) {
 		// Slot Stat Config
 		{
 			ArrayList<ArtifactStatType> all = new ArrayList<>();
@@ -133,28 +132,28 @@ public class ConfigGen extends ConfigDataProvider {
 		for (LinearFuncEntry entry : L2Artifacts.REGISTRATE.LINEAR_LIST) {
 			config.map.put(entry.get(), new LinearFuncConfig.Entry(entry.base, entry.slope));
 		}
-		map.put("linear/default", config);
+		map.add(NetworkManager.LINEAR, new ResourceLocation(L2Artifacts.MODID, "default"), config);
 
 	}
 
-	public static void addSlotStat(Map<String, BaseConfig> map, ArtifactSlot slot, ArrayList<ArtifactStatType> main, ArrayList<ArtifactStatType> sub) {
+	public static void addSlotStat(Collector map, ArtifactSlot slot, ArrayList<ArtifactStatType> main, ArrayList<ArtifactStatType> sub) {
 		SlotStatConfig config = new SlotStatConfig();
 		ResourceLocation rl = Objects.requireNonNull(slot.getRegistryName());
 		config.available_main_stats.put(slot, main);
 		config.available_sub_stats.put(slot, sub);
-		map.put("slot_stats/" + rl.getPath(), config);
+		map.add(NetworkManager.SLOT_STATS, rl, config);
 	}
 
-	private static void addStatType(Map<String, BaseConfig> map, ArtifactStatType type, double base) {
+	private static void addStatType(Collector map, ArtifactStatType type, double base) {
 		StatTypeConfig config = new StatTypeConfig();
 		ResourceLocation rl = Objects.requireNonNull(type.getRegistryName());
 		config.stats.put(type, genEntry(base, 0.2, 2));
-		map.put("stat_types/" + rl.getPath(), config);
+		map.add(NetworkManager.STAT_TYPES, rl, config);
 	}
 
-	private static void addArtifactSet(Map<String, BaseConfig> map, ArtifactSet set, Consumer<ArtifactSetConfig.SetBuilder> builder) {
+	private static void addArtifactSet(Collector map, ArtifactSet set, Consumer<ArtifactSetConfig.SetBuilder> builder) {
 		ResourceLocation rl = Objects.requireNonNull(set.getRegistryName());
-		map.put("artifact_sets/" + rl.getPath(), ArtifactSetConfig.construct(set, builder));
+		map.add(NetworkManager.ARTIFACT_SETS, rl, ArtifactSetConfig.construct(set, builder));
 	}
 
 	private static StatTypeConfig.Entry genEntry(double base, double sub, double factor) {

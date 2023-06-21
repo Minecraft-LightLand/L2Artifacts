@@ -28,13 +28,13 @@ public class LongShooterPersistentEffect extends AbstractConditionalAttributeSet
 	public void tick(Player player, ArtifactSetConfig.Entry ent, int rank, boolean enabled) {
 		if (!enabled) return;
 		if (player.tickCount % 10 == 0) {
-			if (player.getLevel().getEntities(EntityTypeTest.forClass(Monster.class), new AABB(player.getPosition(0), player.getPosition(0)).inflate(6), EntitySelector.NO_SPECTATORS).isEmpty()) {
+			if (player.level().getEntities(EntityTypeTest.forClass(Monster.class), new AABB(player.getPosition(0), player.getPosition(0)).inflate(6), EntitySelector.NO_SPECTATORS).isEmpty()) {
 				LongShooterPersistentData data = ConditionalData.HOLDER.get(player).getOrCreateData(this, ent);
 				data.update(11, rank);
 				addAttributes(player, ent, rank, data);
 				data.old = true;
 			} else if
-			(!player.getLevel().getEntities(EntityTypeTest.forClass(Monster.class), new AABB(player.getPosition(0), player.getPosition(0)).inflate(6), EntitySelector.NO_SPECTATORS).isEmpty()) {
+			(!player.level().getEntities(EntityTypeTest.forClass(Monster.class), new AABB(player.getPosition(0), player.getPosition(0)).inflate(6), EntitySelector.NO_SPECTATORS).isEmpty()) {
 				LongShooterPersistentData data = ConditionalData.HOLDER.get(player).getOrCreateData(this, ent);
 				if (data.old) {
 					data.update(40, rank);

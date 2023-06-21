@@ -4,8 +4,8 @@ import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
 import dev.xkmc.l2artifacts.content.effects.attribute.AttrSetEntry;
 import dev.xkmc.l2artifacts.content.effects.attribute.AttributeSetEffect;
 import dev.xkmc.l2artifacts.init.registrate.entries.LinearFuncEntry;
-import dev.xkmc.l2library.init.events.damage.DamageTypeRoot;
-import dev.xkmc.l2library.init.events.damage.DefaultDamageState;
+import dev.xkmc.l2damagetracker.contents.damage.DamageTypeRoot;
+import dev.xkmc.l2damagetracker.contents.damage.DefaultDamageState;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.damagesource.DamageSource;
@@ -38,7 +38,7 @@ public class ExecutorSelfHurtEffect extends AttributeSetEffect {
 		var type = DamageTypeRoot.of(DamageTypes.PLAYER_ATTACK)
 				.enable(DefaultDamageState.BYPASS_ARMOR)
 				.enable(DefaultDamageState.BYPASS_MAGIC)
-				.getHolder(player.level);
+				.getHolder(player.level());
 		player.hurt(new DamageSource(type, player), (float) damage);
 	}
 }

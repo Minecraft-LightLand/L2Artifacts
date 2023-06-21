@@ -1,20 +1,14 @@
 package dev.xkmc.l2artifacts.content.search.tabs;
 
-import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.PoseStack;
-import dev.xkmc.l2artifacts.init.L2Artifacts;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
-import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 
 import java.util.function.Supplier;
 
 public abstract class FilterTabBase<T extends FilterTabBase<T>> extends Button {
-
-	private final static ResourceLocation TEXTURE = new ResourceLocation(L2Artifacts.MODID, "textures/gui/tabs.png");
 
 	public final int index;
 	public final ItemStack stack;
@@ -32,22 +26,17 @@ public abstract class FilterTabBase<T extends FilterTabBase<T>> extends Button {
 
 	public abstract void onTabClicked();
 
-	public void onTooltip(PoseStack stack, int x, int y) {
-		manager.getScreen().renderTooltip(stack, getMessage(), x, y);
+	public void onTooltip(GuiGraphics g, int x, int y) {
+		g.renderTooltip(Minecraft.getInstance().font, getMessage(), x, y);
 	}
 
-	public void renderWidget(PoseStack stack, int mouseX, int mouseY, float partialTicks) {
+	public void renderWidget(GuiGraphics g, int mouseX, int mouseY, float partialTicks) {
 		if (this.visible) {
-			RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-			RenderSystem.enableBlend();
-			RenderSystem.setShader(GameRenderer::getPositionTexShader);
-			RenderSystem.setShaderTexture(0, TEXTURE);
-			token.type.draw(stack, manager.getScreen(), getX(), getY(), manager.selected == token, index);
-			RenderSystem.defaultBlendFunc();
-			token.type.drawIcon(stack, getX(), getY(), index, Minecraft.getInstance().getItemRenderer(), this.stack);
+			token.type.draw(g, getX(), getY(), manager.selected == token, index);
+			token.type.drawIcon(g, getX(), getY(), index, this.stack);
 		}
 		if (this == manager.list.get(manager.list.size() - 1)) { // draw on last
-			manager.onToolTipRender(stack, mouseX, mouseY);
+			manager.onToolTipRender(g, mouseX, mouseY);
 		}
 	}
 

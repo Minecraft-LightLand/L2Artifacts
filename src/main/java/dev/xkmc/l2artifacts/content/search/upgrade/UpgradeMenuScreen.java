@@ -1,6 +1,5 @@
 package dev.xkmc.l2artifacts.content.search.upgrade;
 
-import com.mojang.blaze3d.vertex.PoseStack;
 import dev.xkmc.l2artifacts.content.core.ArtifactStats;
 import dev.xkmc.l2artifacts.content.core.BaseArtifact;
 import dev.xkmc.l2artifacts.content.core.StatEntry;
@@ -9,11 +8,12 @@ import dev.xkmc.l2artifacts.content.search.recycle.RecycleMenuScreen;
 import dev.xkmc.l2artifacts.content.search.tabs.FilterTabManager;
 import dev.xkmc.l2artifacts.content.search.tabs.IFilterScreen;
 import dev.xkmc.l2artifacts.init.data.LangData;
-import dev.xkmc.l2library.base.menu.BaseContainerScreen;
+import dev.xkmc.l2library.base.menu.base.BaseContainerScreen;
 import dev.xkmc.l2library.base.menu.stacked.StackedRenderHandle;
 import dev.xkmc.l2library.util.Proxy;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
 import net.minecraft.util.Mth;
@@ -57,15 +57,15 @@ public class UpgradeMenuScreen extends BaseContainerScreen<UpgradeMenu> implemen
 	}
 
 	@Override
-	protected void renderBg(PoseStack pose, float pTick, int mx, int my) {
-		var sr = menu.sprite.getRenderer(this);
-		sr.start(pose);
-		var rect = menu.sprite.getComp("upgrade");
+	protected void renderBg(GuiGraphics g, float pTick, int mx, int my) {
+		var sr = menu.sprite.get().getRenderer(this);
+		sr.start(g);
+		var rect = menu.sprite.get().getComp("upgrade");
 		if (isHovering(rect.x, rect.y, rect.w, rect.h, mx, my)) {
 			if (pressed) {
-				sr.draw(pose, "upgrade", "upgrade_on");
+				sr.draw(g, "upgrade", "upgrade_on");
 			}
-			FilterScreen.renderHighlight(pose, leftPos + rect.x, topPos + rect.y, rect.w, rect.h, -2130706433);
+			FilterScreen.renderHighlight(g, leftPos + rect.x, topPos + rect.y, rect.w, rect.h, -2130706433);
 		}
 		if (time > 0) {
 			time -= Minecraft.getInstance().getDeltaFrameTime();
@@ -85,7 +85,7 @@ public class UpgradeMenuScreen extends BaseContainerScreen<UpgradeMenu> implemen
 	@Override
 	public boolean mouseReleased(double mx, double my, int btn) {
 		pressed = false;
-		var rect = menu.sprite.getComp("upgrade");
+		var rect = menu.sprite.get().getComp("upgrade");
 		if (isHovering(rect.x, rect.y, rect.w, rect.h, mx, my)) {
 			old = current;
 			time = MAX_TIME;
@@ -95,11 +95,11 @@ public class UpgradeMenuScreen extends BaseContainerScreen<UpgradeMenu> implemen
 	}
 
 	@Override
-	protected void renderLabels(PoseStack pose, int mx, int my) {
-		super.renderLabels(pose, mx, my);
-		pose.pushPose();
-		pose.translate(0, 45, 0);
-		StackedRenderHandle handle = new StackedRenderHandle(this, pose, menu.sprite, 0);
+	protected void renderLabels(GuiGraphics g, int mx, int my) {
+		super.renderLabels(g, mx, my);
+		g.pose().pushPose();
+		g.pose().translate(0, 45, 0);
+		StackedRenderHandle handle = new StackedRenderHandle(this, g, menu.sprite.get(), 0);
 		int exp = menu.experience.get();
 		int cost = menu.exp_cost.get();
 		int plexp = menu.player_cost.get();
@@ -129,7 +129,7 @@ public class UpgradeMenuScreen extends BaseContainerScreen<UpgradeMenu> implemen
 			handle.drawText(LangData.TAB_INFO_EXP.get(exp));
 		}
 		handle.flushText();
-		pose.popPose();
+		g.pose().popPose();
 	}
 
 	private Component[] addEntry(boolean main, StatEntry entry, @Nullable StatEntry old) {

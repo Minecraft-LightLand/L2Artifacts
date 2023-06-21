@@ -9,8 +9,8 @@ import dev.xkmc.l2artifacts.init.registrate.ArtifactRegistrate;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactTypeRegistry;
 import dev.xkmc.l2artifacts.init.registrate.items.ArtifactItemRegistry;
 import dev.xkmc.l2artifacts.network.NetworkManager;
-import dev.xkmc.l2library.init.events.attack.AttackEventHandler;
-import dev.xkmc.l2library.init.events.select.SelectionRegistry;
+import dev.xkmc.l2damagetracker.contents.attack.AttackEventHandler;
+import dev.xkmc.l2itemselector.select.SelectionRegistry;
 import dev.xkmc.l2serial.serialization.custom_handler.RLClassHandler;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraftforge.common.MinecraftForge;
@@ -40,7 +40,7 @@ public class L2Artifacts {
 		ArtifactTypeRegistry.register();
 		ArtifactItemRegistry.register();
 		ArtifactMenuRegistry.register();
-		ModConfig.init();
+		ArtifactConfig.init();
 		NetworkManager.register();
 		REGISTRATE.addDataGenerator(ProviderType.LANG, LangData::genLang);
 		REGISTRATE.addDataGenerator(ProviderType.RECIPE, RecipeGen::genRecipe);
@@ -83,7 +83,7 @@ public class L2Artifacts {
 		event.getGenerator().addProvider(event.includeServer(), new ArtifactGLMProvider(event.getGenerator()));
 	}
 
-	private static void sendMessage(final InterModEnqueueEvent event) {
+	private static void sendMessage(final InterModEnqueueEvent event) {//TODO
 		InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE, () -> ArtifactSlotCuriosType.HEAD.getMessageBuilder().build());
 		InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE, () -> ArtifactSlotCuriosType.NECKLACE.getMessageBuilder().build());
 		InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE, () -> ArtifactSlotCuriosType.BRACELET.getMessageBuilder().build());

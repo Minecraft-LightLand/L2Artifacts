@@ -27,7 +27,7 @@ public class GluttonyHeal extends SetEffect {
 
 	@Override
 	public void playerKillOpponentEvent(Player player, ArtifactSetConfig.Entry ent, int rank, LivingDeathEvent event) {
-		if (player.getLevel().isClientSide()) return;
+		if (player.level().isClientSide()) return;
 		int val = (int) Math.round(value.getFromRank(rank));
 		player.getFoodData().eat(val, 1);
 	}

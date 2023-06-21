@@ -1,10 +1,9 @@
 package dev.xkmc.l2artifacts.content.client.tooltip;
 
-import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.gui.Font;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent;
 import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.world.item.ItemStack;
 import org.joml.Matrix4f;
 
@@ -25,15 +24,14 @@ public record ClientItemTooltip(ItemTooltip items) implements ClientTooltipCompo
 
 	}
 
-
 	@Override
-	public void renderImage(Font pFont, int pMouseX, int pMouseY, PoseStack pPoseStack, ItemRenderer pItemRenderer) {
+	public void renderImage(Font pFont, int pMouseX, int pMouseY, GuiGraphics g) {
 		for (int i = 0; i < items.list().size(); ++i) {
 			int x = pMouseX + i * 18 + 1;
 			int y = pMouseY + 1;
 			ItemStack itemstack = this.items.list().get(i);
-			pItemRenderer.renderAndDecorateItem(pPoseStack, itemstack, x, y, i);
-			pItemRenderer.renderGuiItemDecorations(pPoseStack, pFont, itemstack, x, y);
+			g.renderItem(itemstack, x, y, i);
+			g.renderItemDecorations(pFont, itemstack, x, y);
 		}
 	}
 

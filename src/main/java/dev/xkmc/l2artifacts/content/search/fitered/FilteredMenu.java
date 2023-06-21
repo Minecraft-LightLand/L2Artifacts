@@ -5,10 +5,10 @@ import dev.xkmc.l2artifacts.content.misc.RandomArtifactItem;
 import dev.xkmc.l2artifacts.content.search.common.AbstractScrollerMenu;
 import dev.xkmc.l2artifacts.content.search.token.ArtifactChestToken;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
-import dev.xkmc.l2artifacts.init.data.ModConfig;
+import dev.xkmc.l2artifacts.init.data.ArtifactConfig;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactMenuRegistry;
 import dev.xkmc.l2artifacts.init.registrate.items.ArtifactItemRegistry;
-import dev.xkmc.l2library.base.menu.SpriteManager;
+import dev.xkmc.l2library.base.menu.base.SpriteManager;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Inventory;
@@ -36,7 +36,7 @@ public class FilteredMenu extends AbstractScrollerMenu<FilteredMenu> {
 	}
 
 	private int getMaxSize() {
-		return token.stack.getItem() == ArtifactItemRegistry.FILTER.get() ? ModConfig.COMMON.storageSmall.get() : ModConfig.COMMON.storageLarge.get();
+		return token.stack.getItem() == ArtifactItemRegistry.FILTER.get() ? ArtifactConfig.COMMON.storageSmall.get() : ArtifactConfig.COMMON.storageLarge.get();
 	}
 
 	@Override
@@ -47,7 +47,7 @@ public class FilteredMenu extends AbstractScrollerMenu<FilteredMenu> {
 
 	@Override
 	public void slotsChanged(Container cont) {
-		if (!player.getLevel().isClientSide()) {
+		if (!player.level().isClientSide()) {
 			if (!cont.getItem(0).isEmpty()) {
 				ItemStack stack = cont.getItem(0).copy();
 				if (stack.getItem() instanceof RandomArtifactItem item) {

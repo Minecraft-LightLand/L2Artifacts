@@ -6,6 +6,8 @@ import dev.xkmc.l2artifacts.content.effects.SetEffect;
 import dev.xkmc.l2artifacts.network.NetworkManager;
 import dev.xkmc.l2library.capability.conditionals.Context;
 import dev.xkmc.l2library.serial.config.BaseConfig;
+import dev.xkmc.l2library.serial.config.CollectType;
+import dev.xkmc.l2library.serial.config.ConfigCollect;
 import dev.xkmc.l2library.util.math.MathHelper;
 import dev.xkmc.l2serial.serialization.SerialClass;
 import org.jetbrains.annotations.NotNull;
@@ -30,8 +32,15 @@ public class ArtifactSetConfig extends BaseConfig {
 		return config;
 	}
 
+	@ConfigCollect(CollectType.MAP_COLLECT)
 	@SerialClass.SerialField
 	public HashMap<ArtifactSet, ArrayList<Entry>> map = new HashMap<>();
+
+	@Override
+	protected void postMerge() {
+		map.values().forEach(e -> e.sort(null));
+		map.forEach((k, v) -> v.forEach(e -> e.validate(k)));
+	}
 
 	@SerialClass
 	public static class Entry implements Comparable<Entry>, Context {

@@ -1,13 +1,13 @@
 package dev.xkmc.l2artifacts.content.client.tab;
 
-import com.mojang.blaze3d.vertex.PoseStack;
 import dev.xkmc.l2artifacts.content.core.BaseArtifact;
 import dev.xkmc.l2artifacts.init.ModClient;
-import dev.xkmc.l2library.base.tabs.contents.BaseTextScreen;
-import dev.xkmc.l2library.base.tabs.core.TabManager;
 import dev.xkmc.l2library.util.Proxy;
 import dev.xkmc.l2library.util.code.TextWrapper;
+import dev.xkmc.l2tabs.tabs.contents.BaseTextScreen;
+import dev.xkmc.l2tabs.tabs.core.TabManager;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.FormattedCharSequence;
@@ -37,8 +37,8 @@ public class SetEffectScreen extends BaseTextScreen {
 	private List<Component> hover = null;
 
 	@Override
-	public void render(PoseStack pose, int mx, int my, float ptick) {
-		super.render(pose, mx, my, ptick);
+	public void render(GuiGraphics g, int mx, int my, float ptick) {
+		super.render(g, mx, my, ptick);
 		Player player = Proxy.getClientPlayer();
 		int x = leftPos + 8;
 		int y = topPos + 6;
@@ -65,11 +65,11 @@ public class SetEffectScreen extends BaseTextScreen {
 			});
 		}
 		for (var comp : seq) {
-			this.font.draw(pose, comp, x, y, 0);
+			g.drawString(font, comp, x, y, 0);
 			y += 10;
 		}
 		if (hover != null) {
-			renderTooltip(pose, hover, Optional.empty(), mx, my);
+			g.renderTooltip(font, hover, Optional.empty(), mx, my);
 		}
 	}
 

@@ -1,15 +1,13 @@
-package organize.sub;
+package organize;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.mojang.datafixers.util.Pair;
-import organize.ResourceOrganizer;
 
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -32,7 +30,7 @@ public class LangFileOrganizer extends ResourceOrganizer {
 			JsonObject dst_json = new JsonObject();
 			for (File fj : fi.listFiles()) {
 				if (!fj.getName().endsWith(".json")) continue;
-				JsonObject json = new JsonParser().parse(new FileReader(fj.getPath(), StandardCharsets.UTF_8)).getAsJsonObject();
+				JsonObject json = new JsonParser().parse(new FileReader(fj.getPath())).getAsJsonObject();
 				inject("", json, dst_json);
 				if (json.has("-cartesian")) {
 					JsonObject block_list = json.get("-cartesian").getAsJsonObject();
@@ -63,7 +61,7 @@ public class LangFileOrganizer extends ResourceOrganizer {
 					});
 				}
 			}
-			FileWriter w = new FileWriter(target, StandardCharsets.UTF_8);
+			FileWriter w = new FileWriter(target);
 			w.write(GSON.toJson(dst_json));
 			w.close();
 		}

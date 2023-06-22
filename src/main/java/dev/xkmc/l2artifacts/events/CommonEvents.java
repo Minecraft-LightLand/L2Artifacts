@@ -2,6 +2,7 @@ package dev.xkmc.l2artifacts.events;
 
 import dev.xkmc.l2artifacts.content.core.ArtifactCurioCap;
 import dev.xkmc.l2artifacts.content.core.BaseArtifact;
+import dev.xkmc.l2artifacts.init.L2Artifacts;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.capabilities.Capability;
@@ -9,6 +10,7 @@ import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 import top.theillusivec4.curios.api.CuriosCapability;
 import top.theillusivec4.curios.api.type.capability.ICurio;
 
@@ -16,6 +18,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Objects;
 
+@Mod.EventBusSubscriber(modid = L2Artifacts.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class CommonEvents {
 
 	@SubscribeEvent

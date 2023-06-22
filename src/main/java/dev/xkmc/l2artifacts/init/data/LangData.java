@@ -110,10 +110,6 @@ public enum LangData {
 		for (ArtifactSlotCuriosType type : ArtifactSlotCuriosType.values()) {
 			pvd.add(type.getDesc(), type.getDefTranslation());
 		}
-		pvd.add("itemGroup." + L2Artifacts.MODID + ".artifacts", "Artifacts");
-		pvd.add("attribute.name.crit_rate", "Crit Rate");
-		pvd.add("attribute.name.crit_damage", "Crit Damage");
-		pvd.add("attribute.name.bow_strength", "Bow Strength");
 		pvd.add("l2artifacts.set.1", "When Equip: ");
 		pvd.add("l2artifacts.set.2", "(2/%s) Set Bonus: ");
 		pvd.add("l2artifacts.set.3", "(3/%s) Set Bonus: ");

@@ -1,7 +1,4 @@
 {
-  "attribute.name.bow_strength": "ɥʇbuǝɹʇS ʍoᗺ",
-  "attribute.name.crit_damage": "ǝbɐɯɐᗡ ʇıɹƆ",
-  "attribute.name.crit_rate": "ǝʇɐᴚ ʇıɹƆ",
   "container.l2artifacts.augment": "ʇuǝɯbnⱯ ʇɔɐɟıʇɹⱯ",
   "container.l2artifacts.dissolve": "ǝʌןossıᗡ ʇɔɐɟıʇɹⱯ",
   "container.l2artifacts.filtered": "ʇǝʞɔoԀ ʇɔɐɟıʇɹⱯ",
@@ -437,7 +434,6 @@
   "item.l2artifacts.wrath_necklace_3": "<ɔıdƎ> ǝɔɐןʞɔǝN ɥʇɐɹM",
   "item.l2artifacts.wrath_necklace_4": "«ʎɹɐpuǝbǝꞀ» ǝɔɐןʞɔǝN ɥʇɐɹM",
   "item.l2artifacts.wrath_necklace_5": "-«ʎןpo⅁»- ǝɔɐןʞɔǝN ɥʇɐɹM",
-  "itemGroup.l2artifacts.artifacts": "sʇɔɐɟıʇɹⱯ",
   "itemGroup.l2library.artifacts": "sʇɔɐɟıʇɹⱯ ᄅꞀ",
   "l2artifacts.set.1": " :dınbƎ uǝɥM",
   "l2artifacts.set.2": " :snuoᗺ ʇǝS )%s/ᄅ(",

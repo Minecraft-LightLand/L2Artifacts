@@ -18,7 +18,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
 @Mod.EventBusSubscriber(value = Dist.CLIENT, modid = L2Artifacts.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
-public class ModClient {
+public class ArtifactClient {
 
 	public static TabToken<TabSetEffects> TAB_SET_EFFECTS;
 

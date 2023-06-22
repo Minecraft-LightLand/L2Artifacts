@@ -134,11 +134,11 @@ public class RecycleMenuScreen extends AbstractScrollerScreen<RecycleMenu> {
 		pPoseStack.pose().pushPose();
 		pPoseStack.pose().translate(0, topPos, 0);
 		var handle = new StackedRenderHandle(this, pPoseStack, 8, 0xFFFFFFFF, menu.sprite.get());
-		handle.drawText(LangData.TAB_INFO_TOTAL.get(menu.total_count.get()));
-		handle.drawText(LangData.TAB_INFO_MATCHED.get(menu.current_count.get()));
-		handle.drawText(LangData.TAB_INFO_EXP.get(formatNumber(menu.experience.get())));
-		handle.drawText(LangData.TAB_INFO_SELECTED.get(menu.select_count.get()));
-		handle.drawText(LangData.TAB_INFO_EXP_GAIN.get(formatNumber(menu.to_gain.get())));
+		handle.drawText(LangData.TAB_INFO_TOTAL.get(menu.total_count.get()), false);
+		handle.drawText(LangData.TAB_INFO_MATCHED.get(menu.current_count.get()), false);
+		handle.drawText(LangData.TAB_INFO_EXP.get(formatNumber(menu.experience.get())), false);
+		handle.drawText(LangData.TAB_INFO_SELECTED.get(menu.select_count.get()),false);
+		handle.drawText(LangData.TAB_INFO_EXP_GAIN.get(formatNumber(menu.to_gain.get())), false);
 		handle.flushText();
 		pPoseStack.pose().popPose();
 		if (!dragging) {

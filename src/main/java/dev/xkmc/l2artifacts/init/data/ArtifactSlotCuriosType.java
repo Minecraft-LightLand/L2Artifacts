@@ -2,10 +2,11 @@ package dev.xkmc.l2artifacts.init.data;
 
 import com.tterrag.registrate.providers.RegistrateLangProvider;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
+import dev.xkmc.l2artifacts.init.data.slot.CurioSlotBuilder;
 import net.minecraft.resources.ResourceLocation;
-import top.theillusivec4.curios.api.SlotTypeMessage;
 
 import java.util.Locale;
+import java.util.function.BiConsumer;
 
 public enum ArtifactSlotCuriosType {
 	HEAD("artifact_head", -1400),
@@ -34,8 +35,9 @@ public enum ArtifactSlotCuriosType {
 		return "curios.identifier." + id;
 	}
 
-	public SlotTypeMessage.Builder getMessageBuilder() {
-		return new SlotTypeMessage.Builder(this.id).priority(this.priority).icon(
-				new ResourceLocation(L2Artifacts.MODID, "slot/empty_" + this.getIdentifier() + "_slot"));
+	public void buildConfig(BiConsumer<String, CurioSlotBuilder> cons) {
+		cons.accept("curios/curios/slots/" + getIdentifier(),
+				new CurioSlotBuilder(priority, new ResourceLocation(L2Artifacts.MODID,
+						"slot/empty_" + this.getIdentifier() + "_slot").toString()));
 	}
 }

@@ -1,7 +1,6 @@
 package dev.xkmc.l2artifacts.content.search.common;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.PoseStack;
 import dev.xkmc.l2artifacts.content.client.tooltip.ItemTooltip;
 import dev.xkmc.l2artifacts.content.misc.ArtifactChestItem;
 import dev.xkmc.l2artifacts.content.search.tabs.FilterTabManager;
@@ -80,12 +79,8 @@ public abstract class StackedScreen extends Screen implements IFilterScreen {
 
 	public final void render(GuiGraphics g, int mx, int my, float pTick) {
 		renderBg(g, pTick, mx, my);
-		RenderSystem.disableDepthTest();
-		PoseStack posestack = RenderSystem.getModelViewStack();
-		posestack.pushPose();
-		posestack.translate(leftPos, topPos, 0.0D);
-		RenderSystem.applyModelViewMatrix();
-		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
+		g.pose().pushPose();
+		g.pose().translate(leftPos, topPos, 0);
 		StackedRenderHandle handle = new StackedRenderHandle(this, g, manager.get());
 		hover = null;
 		renderInit();
@@ -115,9 +110,7 @@ public abstract class StackedScreen extends Screen implements IFilterScreen {
 			g.renderTooltip(font, texts, comp, mx - leftPos, my - topPos);
 		}
 		renderPost(g);
-		posestack.popPose();
-		RenderSystem.applyModelViewMatrix();
-		RenderSystem.enableDepthTest();
+		g.pose().popPose();
 		super.render(g, mx, my, pTick);
 	}
 

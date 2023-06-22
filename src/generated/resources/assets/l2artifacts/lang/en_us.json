@@ -1,7 +1,4 @@
 {
-  "attribute.name.bow_strength": "Bow Strength",
-  "attribute.name.crit_damage": "Crit Damage",
-  "attribute.name.crit_rate": "Crit Rate",
   "container.l2artifacts.augment": "Artifact Augment",
   "container.l2artifacts.dissolve": "Artifact Dissolve",
   "container.l2artifacts.filtered": "Artifact Pocket",
@@ -437,7 +434,6 @@
   "item.l2artifacts.wrath_necklace_3": "Wrath Necklace >Epic<",
   "item.l2artifacts.wrath_necklace_4": "Wrath Necklace »Legendary«",
   "item.l2artifacts.wrath_necklace_5": "Wrath Necklace -»Godly«-",
-  "itemGroup.l2artifacts.artifacts": "Artifacts",
   "itemGroup.l2library.artifacts": "L2 Artifacts",
   "l2artifacts.set.1": "When Equip: ",
   "l2artifacts.set.2": "(2/%s) Set Bonus: ",

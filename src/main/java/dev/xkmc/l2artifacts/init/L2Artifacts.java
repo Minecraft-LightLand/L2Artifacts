@@ -2,11 +2,15 @@ package dev.xkmc.l2artifacts.init;
 
 import com.tterrag.registrate.providers.ProviderType;
 import dev.xkmc.l2artifacts.events.*;
-import dev.xkmc.l2artifacts.init.data.*;
+import dev.xkmc.l2artifacts.init.data.ArtifactConfig;
+import dev.xkmc.l2artifacts.init.data.ConfigGen;
+import dev.xkmc.l2artifacts.init.data.LangData;
+import dev.xkmc.l2artifacts.init.data.RecipeGen;
 import dev.xkmc.l2artifacts.init.data.loot.ArtifactGLMProvider;
+import dev.xkmc.l2artifacts.init.data.slot.SlotGen;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactMenuRegistry;
-import dev.xkmc.l2artifacts.init.registrate.entries.ArtifactRegistrate;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactTypeRegistry;
+import dev.xkmc.l2artifacts.init.registrate.entries.ArtifactRegistrate;
 import dev.xkmc.l2artifacts.init.registrate.items.ArtifactItemRegistry;
 import dev.xkmc.l2artifacts.network.NetworkManager;
 import dev.xkmc.l2damagetracker.contents.attack.AttackEventHandler;
@@ -15,20 +19,15 @@ import dev.xkmc.l2serial.serialization.custom_handler.RLClassHandler;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.data.event.GatherDataEvent;
-import net.minecraftforge.event.entity.EntityAttributeModificationEvent;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.InterModComms;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import top.theillusivec4.curios.api.SlotTypeMessage;
 
 // The value here should match an entry in the META-INF/mods.toml file
-@Mod("l2artifacts")
+@Mod(L2Artifacts.MODID)
+@Mod.EventBusSubscriber(modid = L2Artifacts.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class L2Artifacts {
 
 	public static final String MODID = "l2artifacts";
@@ -36,7 +35,8 @@ public class L2Artifacts {
 	public static final ArtifactRegistrate REGISTRATE = new ArtifactRegistrate();
 	public static final ArtifactSlotClickListener CLICK = new ArtifactSlotClickListener();
 
-	private static void registerRegistrates(IEventBus bus) {
+
+	public L2Artifacts() {
 		ArtifactTypeRegistry.register();
 		ArtifactItemRegistry.register();
 		ArtifactMenuRegistry.register();
@@ -45,50 +45,15 @@ public class L2Artifacts {
 		REGISTRATE.addDataGenerator(ProviderType.LANG, LangData::genLang);
 		REGISTRATE.addDataGenerator(ProviderType.RECIPE, RecipeGen::genRecipe);
 		new RLClassHandler<>(Attribute.class, () -> ForgeRegistries.ATTRIBUTES);
-	}
-
-	private static void registerForgeEvents() {
 		SelectionRegistry.register(-5000, ArtifactSel.INSTANCE);
 		AttackEventHandler.register(3000, new ArtifactAttackListener());
-		MinecraftForge.EVENT_BUS.register(CommonEvents.class);
-		MinecraftForge.EVENT_BUS.register(CraftEvents.class);
-		MinecraftForge.EVENT_BUS.register(ArtifactEffectEvents.class);
 	}
 
-	private static void registerModBusEvents(IEventBus bus) {
-		bus.addListener(L2Artifacts::modifyAttributes);
-		bus.addListener(L2Artifacts::setup);
-		bus.addListener(L2Artifacts::gatherData);
-		bus.addListener(L2Artifacts::sendMessage);
-	}
-
-	public L2Artifacts() {
-		FMLJavaModLoadingContext ctx = FMLJavaModLoadingContext.get();
-		IEventBus bus = ctx.getModEventBus();
-		registerModBusEvents(bus);
-		registerRegistrates(bus);
-		registerForgeEvents();
-	}
-
-	private static void modifyAttributes(EntityAttributeModificationEvent event) {
-	}
-
-	private static void setup(final FMLCommonSetupEvent event) {
-		event.enqueueWork(() -> {
-		});
-	}
-
+	@SubscribeEvent
 	public static void gatherData(GatherDataEvent event) {
 		event.getGenerator().addProvider(event.includeServer(), new ConfigGen(event.getGenerator()));
+		event.getGenerator().addProvider(event.includeServer(), new SlotGen(event.getGenerator()));
 		event.getGenerator().addProvider(event.includeServer(), new ArtifactGLMProvider(event.getGenerator()));
-	}
-
-	private static void sendMessage(final InterModEnqueueEvent event) {//TODO
-		InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE, () -> ArtifactSlotCuriosType.HEAD.getMessageBuilder().build());
-		InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE, () -> ArtifactSlotCuriosType.NECKLACE.getMessageBuilder().build());
-		InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE, () -> ArtifactSlotCuriosType.BRACELET.getMessageBuilder().build());
-		InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE, () -> ArtifactSlotCuriosType.BODY.getMessageBuilder().build());
-		InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE, () -> ArtifactSlotCuriosType.BELT.getMessageBuilder().build());
 	}
 
 }

@@ -1,7 +1,7 @@
 package dev.xkmc.l2artifacts.content.client.tab;
 
 import dev.xkmc.l2artifacts.content.core.BaseArtifact;
-import dev.xkmc.l2artifacts.init.ModClient;
+import dev.xkmc.l2artifacts.init.ArtifactClient;
 import dev.xkmc.l2library.util.Proxy;
 import dev.xkmc.l2library.util.code.TextWrapper;
 import dev.xkmc.l2tabs.tabs.contents.BaseTextScreen;
@@ -24,13 +24,13 @@ import java.util.Optional;
 public class SetEffectScreen extends BaseTextScreen {
 
 	protected SetEffectScreen(Component title) {
-		super(title, new ResourceLocation("l2library:textures/gui/empty.png"));
+		super(title, new ResourceLocation("l2tabs:textures/gui/empty.png"));
 	}
 
 	@Override
 	public void init() {
 		super.init();
-		new TabManager(this).init(this::addRenderableWidget, ModClient.TAB_SET_EFFECTS);
+		new TabManager(this).init(this::addRenderableWidget, ArtifactClient.TAB_SET_EFFECTS);
 	}
 
 	@Nullable
@@ -65,7 +65,7 @@ public class SetEffectScreen extends BaseTextScreen {
 			});
 		}
 		for (var comp : seq) {
-			g.drawString(font, comp, x, y, 0);
+			g.drawString(font, comp, x, y, 0, false);
 			y += 10;
 		}
 		if (hover != null) {

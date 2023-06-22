@@ -135,7 +135,6 @@ public class ConfigGen extends ConfigDataProvider {
 			}
 			map.add(NetworkManager.LINEAR, key, config);
 		}
-
 	}
 
 	public static void addSlotStat(Collector map, ArtifactSlot slot, ArrayList<ArtifactStatType> main, ArrayList<ArtifactStatType> sub) {

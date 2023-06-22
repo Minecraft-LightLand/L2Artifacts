@@ -7,15 +7,18 @@ import dev.xkmc.l2artifacts.content.core.BaseArtifact;
 import dev.xkmc.l2artifacts.content.core.StatEntry;
 import dev.xkmc.l2artifacts.content.misc.ExpItem;
 import dev.xkmc.l2artifacts.content.upgrades.*;
+import dev.xkmc.l2artifacts.init.L2Artifacts;
 import dev.xkmc.l2artifacts.init.data.ArtifactConfig;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.AnvilUpdateEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
+@Mod.EventBusSubscriber(modid = L2Artifacts.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class CraftEvents {
 
 	@SubscribeEvent

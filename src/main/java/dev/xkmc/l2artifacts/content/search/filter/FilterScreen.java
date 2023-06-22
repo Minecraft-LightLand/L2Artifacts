@@ -41,7 +41,7 @@ public class FilterScreen extends StackedScreen {
 		boolean p = pressed && prevBtnHover != null && prevBtnHover.i() == i;
 		boolean pa = p && prevBtnHover.a();
 		boolean pb = p && !prevBtnHover.a();
-		var btns = handle.drawTextWithButtons(token.filters.get(i).getDescription());
+		var btns = handle.drawTextWithButtons(token.filters.get(i).getDescription(), false);
 		var ca = btns.addButton(pa ? "button_1" : "button_1p");
 		var cb = btns.addButton(pb ? "button_2" : "button_2p");
 		if (isHovering(ca.x(), ca.y(), ca.w(), ca.h(), mx, my)) {

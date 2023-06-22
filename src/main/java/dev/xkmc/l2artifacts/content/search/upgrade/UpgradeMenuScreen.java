@@ -106,11 +106,11 @@ public class UpgradeMenuScreen extends BaseContainerScreen<UpgradeMenu> implemen
 		if (cost > 0) {
 			String str = RecycleMenuScreen.formatNumber(cost) + "/" + RecycleMenuScreen.formatNumber(exp);
 			handle.drawText(LangData.TAB_INFO_EXP_COST.get(Component.literal(str)
-					.withStyle(cost <= exp ? ChatFormatting.DARK_GREEN : ChatFormatting.DARK_RED)));
+					.withStyle(cost <= exp ? ChatFormatting.DARK_GREEN : ChatFormatting.DARK_RED)), false);
 			var player = Proxy.getClientPlayer();
 			boolean canUpgrade = player.getAbilities().instabuild || plexp <= player.experienceLevel;
 			handle.drawText(Component.translatable("container.repair.cost", Component.literal("" + plexp)
-					.withStyle(canUpgrade ? ChatFormatting.DARK_GREEN : ChatFormatting.DARK_RED)));
+					.withStyle(canUpgrade ? ChatFormatting.DARK_GREEN : ChatFormatting.DARK_RED)), false);
 			ItemStack stack = menu.container.getItem(0);
 			var opt = BaseArtifact.getStats(stack);
 			if (opt.isPresent()) {
@@ -122,11 +122,11 @@ public class UpgradeMenuScreen extends BaseContainerScreen<UpgradeMenu> implemen
 					table.add(addEntry(false, stat.sub_stats.get(i),
 							old == null ? null : old.sub_stats.get(i)));
 				}
-				handle.drawTable(table.toArray(Component[][]::new), imageWidth);
+				handle.drawTable(table.toArray(Component[][]::new), imageWidth, false);
 				current = stat;
 			}
 		} else {
-			handle.drawText(LangData.TAB_INFO_EXP.get(exp));
+			handle.drawText(LangData.TAB_INFO_EXP.get(exp), false);
 		}
 		handle.flushText();
 		g.pose().popPose();

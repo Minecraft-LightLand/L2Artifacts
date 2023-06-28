@@ -16,18 +16,6 @@ public class Upgrade {
 	@SerialClass.SerialField
 	public ArrayList<ArtifactStatType> stats = new ArrayList<>();
 
-	public void addTooltips(List<Component> list) {
-		if (main > 0) {
-			list.add(LangData.UPGRADE_MAIN.get(main));
-		}
-		if (sub > 0) {
-			list.add(LangData.UPGRADE_SUB.get(sub));
-		}
-		for (ArtifactStatType stat : stats) {
-			list.add(LangData.UPGRADE_STAT.get(stat.getDesc()));
-		}
-	}
-
 	public boolean removeMain() {
 		if (main > 0) {
 			main--;

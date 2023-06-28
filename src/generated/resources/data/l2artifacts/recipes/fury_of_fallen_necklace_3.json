@@ -1,24 +1,15 @@
 {
-  "type": "minecraft:crafting_shaped",
+  "type": "minecraft:crafting_shapeless",
   "category": "misc",
-  "key": {
-    "A": {
-      "item": "l2artifacts:artifact_experience_3"
-    },
-    "B": {
+  "ingredients": [
+    {
       "item": "l2artifacts:fury_of_fallen_necklace_2"
     },
-    "C": {
-      "item": "l2artifacts:artifact_experience_2"
+    {
+      "item": "l2artifacts:fury_of_fallen_necklace_2"
     }
-  },
-  "pattern": [
-    "CCC",
-    "BAB",
-    "CCC"
   ],
   "result": {
     "item": "l2artifacts:fury_of_fallen_necklace_3"
-  },
-  "show_notification": true
+  }
 }

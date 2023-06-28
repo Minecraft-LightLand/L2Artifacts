@@ -102,15 +102,10 @@ public class UpgradeMenuScreen extends BaseContainerScreen<UpgradeMenu> implemen
 		StackedRenderHandle handle = new StackedRenderHandle(this, g, menu.sprite.get(), 0);
 		int exp = menu.experience.get();
 		int cost = menu.exp_cost.get();
-		int plexp = menu.player_cost.get();
 		if (cost > 0) {
 			String str = RecycleMenuScreen.formatNumber(cost) + "/" + RecycleMenuScreen.formatNumber(exp);
 			handle.drawText(LangData.TAB_INFO_EXP_COST.get(Component.literal(str)
 					.withStyle(cost <= exp ? ChatFormatting.DARK_GREEN : ChatFormatting.DARK_RED)), false);
-			var player = Proxy.getClientPlayer();
-			boolean canUpgrade = player.getAbilities().instabuild || plexp <= player.experienceLevel;
-			handle.drawText(Component.translatable("container.repair.cost", Component.literal("" + plexp)
-					.withStyle(canUpgrade ? ChatFormatting.DARK_GREEN : ChatFormatting.DARK_RED)), false);
 			ItemStack stack = menu.container.getItem(0);
 			var opt = BaseArtifact.getStats(stack);
 			if (opt.isPresent()) {

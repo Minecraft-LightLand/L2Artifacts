@@ -112,7 +112,6 @@ public class BaseArtifact extends RankedItem {
 	@Override
 	public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> list, TooltipFlag flag) {
 		boolean shift = Screen.hasShiftDown();
-		boolean ctrl = Screen.hasControlDown();
 		if (Proxy.getPlayer() != null) {
 			ItemCompoundTag tag = ItemCompoundTag.of(stack).getSubTag(KEY);
 			if (!tag.isPresent()) {
@@ -122,12 +121,12 @@ public class BaseArtifact extends RankedItem {
 					boolean max = stats.level == ArtifactUpgradeManager.getMaxLevel(stats.rank);
 					list.add(LangData.ARTIFACT_LEVEL.get(stats.level).withStyle(max ? ChatFormatting.GOLD : ChatFormatting.WHITE));
 					if (stats.level < ArtifactUpgradeManager.getMaxLevel(stats.rank)) {
-						if (shift && !ctrl)
+						if (shift)
 							list.add(LangData.ARTIFACT_EXP.get(stats.exp, ArtifactUpgradeManager.getExpForLevel(stats.rank, stats.level)));
 					}
 					if (stats.level > stats.old_level) {
 						list.add(LangData.UPGRADE.get());
-					} else if (!shift && !ctrl) {
+					} else if (!shift) {
 						list.add(LangData.MAIN_STAT.get());
 						list.add(stats.main_stat.getTooltip());
 						if (stats.sub_stats.size() > 0) {
@@ -139,16 +138,13 @@ public class BaseArtifact extends RankedItem {
 					}
 				});
 			}
-			if (!ctrl)
 				list.addAll(set.get().getAllDescs(stack, shift));
-			else if (!shift) getUpgrade(stack).ifPresent(e -> e.addTooltips(list));
-			if (!shift && !ctrl)
+			if (!shift)
 				list.add(LangData.EXP_CONVERSION.get(ArtifactUpgradeManager.getExpForConversion(rank, getStats(stack).orElse(null))));
 		}
 		super.appendHoverText(stack, level, list, flag);
-		if (!shift && !ctrl) {
+		if (!shift) {
 			list.add(LangData.SHIFT_TEXT.get());
-			list.add(LangData.CTRL_TEXT.get());
 		}
 	}
 }

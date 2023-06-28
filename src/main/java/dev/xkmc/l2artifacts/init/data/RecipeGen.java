@@ -13,6 +13,7 @@ import dev.xkmc.l2library.serial.recipe.ConditionalRecipeWrapper;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
+import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.data.recipes.SmithingTransformRecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
@@ -25,7 +26,6 @@ import net.minecraftforge.registries.tags.ITagManager;
 import java.util.Objects;
 import java.util.function.BiFunction;
 
-@SuppressWarnings("removal")
 public class RecipeGen {
 
 	private static void craftCombine(RegistrateRecipeProvider pvd, ItemEntry<?>[] arr) {
@@ -77,10 +77,10 @@ public class RecipeGen {
 				int n = slot.length;
 				for (int i = 1; i < n; i++) {
 					BaseArtifact input = slot[i - 1].get();
-					Item corner = ArtifactItemRegistry.ITEM_EXP[input.rank - 1].get();
 					BaseArtifact output = slot[i].get();
-					Item center = ArtifactItemRegistry.ITEM_EXP[output.rank - 1].get();
-					craft(pvd, output, center, input, corner);
+					unlock(pvd, new ShapelessRecipeBuilder(RecipeCategory.MISC, output, 1)::unlockedBy, input)
+							.requires(input, 2)
+							.save(pvd);
 				}
 			}
 		}
@@ -108,15 +108,6 @@ public class RecipeGen {
 					.define('C', LCItems.EMERALD.get())
 					.save(ConditionalRecipeWrapper.mod(pvd, L2Complements.MODID));
 		}
-	}
-
-	public static void craft(RegistrateRecipeProvider pvd, Item output, Item center, Item input, Item corner) {
-		unlock(pvd, new ShapedRecipeBuilder(RecipeCategory.MISC, output, 1)::unlockedBy, input)
-				.pattern("CCC").pattern("BAB").pattern("CCC")
-				.define('A', center)
-				.define('B', input)
-				.define('C', corner)
-				.save(pvd);
 	}
 
 	public static <T> T unlock(RegistrateRecipeProvider pvd, BiFunction<String, InventoryChangeTrigger.TriggerInstance, T> func, Item item) {

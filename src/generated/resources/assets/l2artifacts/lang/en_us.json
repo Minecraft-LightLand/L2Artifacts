@@ -467,7 +467,6 @@
   "l2artifacts.tooltip.artifact_level": "Level: %s",
   "l2artifacts.tooltip.boost.main": "Put it in Anvil right slot, put artifact of the same rank on the left slot, to ensure the next upgrade of main stat will be maximized",
   "l2artifacts.tooltip.boost.sub": "Put it in Anvil right slot, put artifact of the same rank on the left slot, to ensure the next upgrade of sub stat will be maximized",
-  "l2artifacts.tooltip.ctrl": "Hold Ctrl for upgrades",
   "l2artifacts.tooltip.enhance.main": "Next %s upgraded main stat will be maximized.",
   "l2artifacts.tooltip.enhance.stat": "Next upgraded sub stat will be %s.",
   "l2artifacts.tooltip.enhance.sub": "Next %s upgraded sub stat will be maximized.",

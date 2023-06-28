@@ -19,7 +19,6 @@ public enum LangData {
 	SUB_STAT("tooltip.sub_stat", "Sub Stats", 0, ChatFormatting.GRAY),
 	EXP_CONVERSION("tooltip.exp_conversion", "Exp as fodder: %s", 1, ChatFormatting.GRAY),
 	SHIFT_TEXT("tooltip.shift", "Hold Shift for set effects", 0, ChatFormatting.AQUA),
-	CTRL_TEXT("tooltip.ctrl", "Hold Ctrl for upgrades", 0, ChatFormatting.AQUA),
 	SET("tooltip.set", "Set: %s", 1, null),
 	STAT_CAPTURE_INFO("tooltip.stat_container.capture",
 			"Put it in Anvil left slot, put artifact of same rank on right slot, " +

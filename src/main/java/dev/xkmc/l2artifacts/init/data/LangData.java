@@ -20,19 +20,11 @@ public enum LangData {
 	EXP_CONVERSION("tooltip.exp_conversion", "Exp as fodder: %s", 1, ChatFormatting.GRAY),
 	SHIFT_TEXT("tooltip.shift", "Hold Shift for set effects", 0, ChatFormatting.AQUA),
 	SET("tooltip.set", "Set: %s", 1, null),
-	STAT_CAPTURE_INFO("tooltip.stat_container.capture",
-			"Put it in Anvil left slot, put artifact of same rank on right slot, " +
-					"to capture the main stat of the artifact.", 0, null),
-	STAT_USE_INFO("tooltip.stat_container.apply",
-			"Put it in Anvil right slot, put artifact of the same rank that contains this stat as substat on the left slot, " +
-					"to ensure the next upgrade of sub stat will be this stat", 0, null),
+	STAT_CAPTURE_INFO("tooltip.stat_container.capture", "Can capture the main stat of an artifact", 0, null),
+	STAT_USE_INFO("tooltip.stat_container.apply", "Next upgrade of sub stat will be this stat", 0, null),
 	STAT_INFO("tooltip.stat_container.info", "Stat: %s", 1, null),
-	BOOST_MAIN("tooltip.boost.main",
-			"Put it in Anvil right slot, put artifact of the same rank on the left slot, " +
-					"to ensure the next upgrade of main stat will be maximized", 0, null),
-	BOOST_SUB("tooltip.boost.sub",
-			"Put it in Anvil right slot, put artifact of the same rank on the left slot, " +
-					"to ensure the next upgrade of sub stat will be maximized", 0, null),
+	BOOST_MAIN("tooltip.boost.main", "Next upgrade of main stat will be maximized", 0, null),
+	BOOST_SUB("tooltip.boost.sub", "Next upgrade of sub stat will be very high", 0, null),
 	UPGRADE_STAT("tooltip.enhance.stat", "Next upgraded sub stat will be %s.", 1, null),
 	UPGRADE_MAIN("tooltip.enhance.main", "Next %s upgraded main stat will be maximized.", 1, null),
 	UPGRADE_SUB("tooltip.enhance.sub", "Next %s upgraded sub stat will be maximized.", 1, null),

@@ -37,7 +37,6 @@ public class AugmentMenu extends BaseContainerMenu<AugmentMenu> implements IFilt
 
 	public final IntDataSlot experience;
 	public final IntDataSlot exp_cost;
-	public final IntDataSlot player_cost;
 	public final IntDataSlot mask;
 
 	private final PredSlot input, in_0, in_1, in_2;
@@ -55,7 +54,6 @@ public class AugmentMenu extends BaseContainerMenu<AugmentMenu> implements IFilt
 				e -> e.setInputLockPred(this::isSlotLocked));
 		this.experience = new IntDataSlot(this);
 		this.exp_cost = new IntDataSlot(this);
-		this.player_cost = new IntDataSlot(this);
 		this.mask = new IntDataSlot(this);
 		experience.set(token.exp);
 
@@ -77,7 +75,6 @@ public class AugmentMenu extends BaseContainerMenu<AugmentMenu> implements IFilt
 	protected void securedServerSlotChange(Container cont) {
 		ItemStack stack = input.getItem();
 		int ec = 0;
-		int pc = 0;
 		boolean useStat = false;
 		boolean useSub = false;
 		boolean useMain = false;
@@ -99,7 +96,6 @@ public class AugmentMenu extends BaseContainerMenu<AugmentMenu> implements IFilt
 				var stats = opt.get();
 				if (stats.level < ArtifactUpgradeManager.getMaxLevel(item.rank)) {
 					ec = ArtifactUpgradeManager.getExpForLevel(item.rank, stats.level) - stats.exp;
-					pc = (int) Math.ceil(Math.log10(ec) * item.rank);
 					useMain = !in_1.getItem().isEmpty();
 					if ((stats.level + 1) % ArtifactConfig.COMMON.levelPerSubStat.get() == 0) {
 						useSub = !in_2.getItem().isEmpty();
@@ -116,21 +112,18 @@ public class AugmentMenu extends BaseContainerMenu<AugmentMenu> implements IFilt
 			}
 		}
 		exp_cost.set(ec);
-		player_cost.set(pc);
 		mask.set((useStat ? 1 : 0) + (useMain ? 2 : 0) + (useSub ? 4 : 0));
 	}
 
 	@Override
 	public boolean clickMenuButton(Player player, int data) {
 		if (data == 0) {
-			boolean canUpgrade = player_cost.get() > 0 && exp_cost.get() <= experience.get() &&
-					(player.getAbilities().instabuild || player.experienceLevel >= player_cost.get());
+			boolean canUpgrade = exp_cost.get() > 0 && exp_cost.get() <= experience.get();
 			if (player.level().isClientSide) {
 				return canUpgrade;
 			}
 			if (!canUpgrade)
 				return false;
-			player.giveExperienceLevels(-player_cost.get());
 			ItemStack stack = getAsPredSlot("input").getItem();
 			Upgrade upgrade = BaseArtifact.getUpgrade(stack).orElseGet(Upgrade::new);
 			int mask = this.mask.get();

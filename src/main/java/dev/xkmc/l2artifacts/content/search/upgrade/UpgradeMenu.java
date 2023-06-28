@@ -47,7 +47,6 @@ public class UpgradeMenu extends BaseContainerMenu<UpgradeMenu> implements IFilt
 		if (player.level().isClientSide) return;
 		ItemStack stack = cont.getItem(0);
 		int ec = 0;
-		int pc = 0;
 		if (!stack.isEmpty()) {
 			BaseArtifact item = (BaseArtifact) stack.getItem();
 			var result = item.resolve(stack, false, player.getRandom());
@@ -60,7 +59,6 @@ public class UpgradeMenu extends BaseContainerMenu<UpgradeMenu> implements IFilt
 				var stats = opt.get();
 				if (stats.level < ArtifactUpgradeManager.getMaxLevel(item.rank)) {
 					ec = ArtifactUpgradeManager.getExpForLevel(item.rank, stats.level) - stats.exp;
-					pc = (int) Math.ceil(Math.log10(ec) * item.rank);
 				}
 			}
 		}

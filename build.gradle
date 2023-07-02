@@ -215,4 +215,7 @@ dependencies {
     runtimeOnly fg.deobf("curse.maven:bookshelf-228525:4581675")
     runtimeOnly fg.deobf("curse.maven:enchantment-descriptions-250419:4587429")
 
+    compileOnly fg.deobf("vazkii.patchouli:Patchouli:${patchouli_version}:api")
+    runtimeOnly fg.deobf("vazkii.patchouli:Patchouli:${patchouli_version}")
+
 }

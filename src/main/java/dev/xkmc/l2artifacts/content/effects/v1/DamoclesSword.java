@@ -41,6 +41,6 @@ public class DamoclesSword extends SetEffect {
 	@Override
 	public void playerHurtOpponentEvent(Player player, ArtifactSetConfig.Entry ent, int rank, AttackCache event) {
 		if (player.getHealth() < player.getMaxHealth()) return;
-		event.addHurtModifier(DamageModifier.multBase((float) (1 + amplify.getFromRank(rank))));
+		event.addHurtModifier(DamageModifier.multBase((float) amplify.getFromRank(rank)));
 	}
 }

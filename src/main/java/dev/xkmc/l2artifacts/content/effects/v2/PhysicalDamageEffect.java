@@ -36,7 +36,7 @@ public class PhysicalDamageEffect extends AttributeSetEffect {
 		LivingHurtEvent hurt = event.getLivingHurtEvent();
 		assert hurt != null;
 		if (hurt.getSource().is(L2DamageTypes.MAGIC)) {
-			event.addHurtModifier(DamageModifier.multBase((float) factor.getFromRank(rank)));
+			event.addHurtModifier(DamageModifier.multBase((float) factor.getFromRank(rank) - 1));
 		}
 	}
 }

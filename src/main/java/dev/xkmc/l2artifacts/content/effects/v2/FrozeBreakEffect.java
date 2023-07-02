@@ -24,7 +24,7 @@ public class FrozeBreakEffect extends SetEffect {
 	@Override
 	public void playerHurtOpponentEvent(Player player, ArtifactSetConfig.Entry ent, int rank, AttackCache event) {
 		if (event.getAttackTarget().hasEffect(MobEffects.MOVEMENT_SLOWDOWN)) {
-			event.addHurtModifier(DamageModifier.multBase((float) factor.getFromRank(rank)));
+			event.addHurtModifier(DamageModifier.multBase((float) (factor.getFromRank(rank) - 1)));
 		}
 	}
 

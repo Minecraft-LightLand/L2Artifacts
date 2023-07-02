@@ -29,7 +29,7 @@ public class WrathEffect extends SetEffect {
 	public void playerHurtOpponentEvent(Player player, ArtifactSetConfig.Entry ent, int rank, AttackCache event) {
 		boolean bool = pred.test(event.getAttackTarget());
 		double factor = bool ? inc.getFromRank(rank) : dec.getFromRank(rank);
-		event.addHurtModifier(DamageModifier.multBase((float) factor));
+		event.addHurtModifier(DamageModifier.multTotal((float) factor));// multiplicative
 	}
 
 	@Override

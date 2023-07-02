@@ -32,7 +32,7 @@ public class SaintReduction extends SetEffect {
 
 	@Override
 	public void playerDamageOpponentEvent(Player player, ArtifactSetConfig.Entry ent, int rank, AttackCache event) {
-		event.addHurtModifier(DamageModifier.multBase((float) (1 - atk.getFromRank(rank))));
+		event.addHurtModifier(DamageModifier.multBase((float) -atk.getFromRank(rank)));
 	}
 
 	@Override

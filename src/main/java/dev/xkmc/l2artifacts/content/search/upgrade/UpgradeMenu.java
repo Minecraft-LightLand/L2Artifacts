@@ -33,7 +33,6 @@ public class UpgradeMenu extends BaseContainerMenu<UpgradeMenu> implements IFilt
 
 	public final IntDataSlot experience;
 	public final IntDataSlot exp_cost;
-	public final IntDataSlot player_cost;
 
 	public UpgradeMenu(int wid, Inventory plInv, ArtifactChestToken token) {
 		super(ArtifactMenuRegistry.MT_UPGRADE.get(), wid, plInv, MANAGER, e -> new BaseContainer<>(1, e), true);
@@ -42,7 +41,6 @@ public class UpgradeMenu extends BaseContainerMenu<UpgradeMenu> implements IFilt
 		addSlot("input", e -> e.getItem() instanceof BaseArtifact);
 		this.experience = new IntDataSlot(this);
 		this.exp_cost = new IntDataSlot(this);
-		this.player_cost = new IntDataSlot(this);
 		experience.set(token.exp);
 	}
 
@@ -69,21 +67,18 @@ public class UpgradeMenu extends BaseContainerMenu<UpgradeMenu> implements IFilt
 			}
 		}
 		exp_cost.set(ec);
-		player_cost.set(pc);
 		super.slotsChanged(cont);
 	}
 
 	@Override
 	public boolean clickMenuButton(Player player, int data) {
 		if (data == 0) {
-			boolean canUpgrade = player_cost.get() > 0 && exp_cost.get() <= experience.get() &&
-					(player.getAbilities().instabuild || player.experienceLevel >= player_cost.get());
+			boolean canUpgrade = exp_cost.get() > 0 && exp_cost.get() <= experience.get();
 			if (player.level.isClientSide) {
 				return canUpgrade;
 			}
 			if (!canUpgrade)
 				return false;
-			player.giveExperienceLevels(-player_cost.get());
 			ItemStack stack = container.getItem(0);
 			BaseArtifact.upgrade(stack, exp_cost.get(), player.getRandom());
 			stack = ((BaseArtifact) stack.getItem()).resolve(stack, false, player.getRandom()).getObject();

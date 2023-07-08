@@ -4,6 +4,7 @@ import dev.xkmc.l2artifacts.init.registrate.items.LAItem3;
 import dev.xkmc.l2library.capability.conditionals.ConditionalData;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.LightLayer;
 
 public class PlayerLight {
 
@@ -12,10 +13,10 @@ public class PlayerLight {
 			if (ConditionalData.HOLDER.get(player).hasData(LAItem3.EFF_SUN_BLOCK.get().getKey())) {
 				return 0;
 			}
-		return entity.level().getLightEngine().getRawBrightness(entity.getOnPos(), -64) - 64;
+		return entity.level().getBrightness(LightLayer.SKY, entity.getOnPos().above()) - entity.level().getSkyDarken();
 	}
 
 	public static int playerLight(LivingEntity entity) {
-		return entity.level().getLightEngine().getRawBrightness(entity.getOnPos(), 0);
+		return entity.level().getMaxLocalRawBrightness(entity.getOnPos().above());
 	}
 }

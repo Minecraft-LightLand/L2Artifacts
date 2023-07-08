@@ -40,10 +40,12 @@ public class ArtifactSwapMenu extends BaseContainerMenu<ArtifactSwapMenu> {
 	}
 
 	private void reload() {
+		init = false;
 		for (int i = 0; i < 45; i++) {
 			container.setItem(i, data.contents[i].getStack().copy());
 			disable.set(data.contents[i].isLocked(), i);
 		}
+		init = true;
 	}
 
 	@Override
@@ -71,7 +73,8 @@ public class ArtifactSwapMenu extends BaseContainerMenu<ArtifactSwapMenu> {
 
 	@Override
 	protected void securedServerSlotChange(Container cont) {
-		save();
+		if (init)
+			save();
 	}
 
 	@Override

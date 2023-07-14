@@ -190,9 +190,9 @@ dependencies {
     implementation fg.deobf("dev.xkmc.l2screentracker:l2screentracker:0.1.0")
     implementation fg.deobf('dev.xkmc.l2complements:l2complements:2.4.9-slim')
 
-    implementation fg.deobf(jarJar("dev.xkmc.l2itemselector:l2itemselector:0.1.1")) {
+    implementation fg.deobf(jarJar("dev.xkmc.l2itemselector:l2itemselector:0.1.2")) {
         transitive = false
-        jarJar.ranged(it, "[0.1.1,)")
+        jarJar.ranged(it, "[0.1.2,)")
     }
 
     implementation fg.deobf(jarJar("dev.xkmc.l2damagetracker:l2damagetracker:0.1.4")) {

@@ -3,6 +3,6 @@
   "landing_text": "patchouli.l2artifacts.landing",
   "version": 1,
   "model": "l2artifacts:book",
-  "creative_tab": "l2library.artifacts",
+  "creative_tab": "l2library:artifacts",
   "use_resource_pack": true
 }

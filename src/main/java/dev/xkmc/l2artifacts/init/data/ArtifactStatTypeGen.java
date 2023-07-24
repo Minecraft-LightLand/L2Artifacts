@@ -1,5 +1,6 @@
 package dev.xkmc.l2artifacts.init.data;
 
+import com.tterrag.registrate.providers.RegistrateLangProvider;
 import dev.xkmc.l2artifacts.content.core.ArtifactStatType;
 import dev.xkmc.l2artifacts.content.core.ArtifactStatTypeHolder;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
@@ -57,6 +58,7 @@ public class ArtifactStatTypeGen extends DatapackBuiltinEntriesProvider {
 	private static DatapackEntry<ArtifactStatType, ArtifactStatTypeHolder> regStat(String id, Supplier<Attribute> attr, AttributeModifier.Operation op, boolean usePercent) {
 		var ans = new DatapackEntry<>(STAT_TYPE, STAT_TYPE.entryKey(new ResourceLocation(L2Artifacts.MODID, id)), () -> new ArtifactStatType(attr.get(), op.name(), usePercent));
 		LIST.add(ans);
+		L2Artifacts.REGISTRATE.addRawLang(STAT_TYPE.key.location().getPath() + "." + L2Artifacts.MODID + "." + id, RegistrateLangProvider.toEnglishName(id));
 		return ans;
 	}
 

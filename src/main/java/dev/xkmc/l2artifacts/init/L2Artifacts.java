@@ -7,6 +7,7 @@ import dev.xkmc.l2artifacts.events.ArtifactSlotClickListener;
 import dev.xkmc.l2artifacts.init.data.*;
 import dev.xkmc.l2artifacts.init.data.loot.ArtifactGLMProvider;
 import dev.xkmc.l2artifacts.init.data.slot.SlotGen;
+import dev.xkmc.l2artifacts.init.registrate.ArtifactDatapackRegistry;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactMenuRegistry;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactTypeRegistry;
 import dev.xkmc.l2artifacts.init.registrate.entries.ArtifactRegistrate;
@@ -22,6 +23,8 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import java.util.Set;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(L2Artifacts.MODID)
@@ -40,6 +43,7 @@ public class L2Artifacts {
 		ArtifactMenuRegistry.register();
 		ArtifactConfig.init();
 		NetworkManager.register();
+		ArtifactDatapackRegistry.register();
 		REGISTRATE.addDataGenerator(ProviderType.LANG, LangData::genLang);
 		REGISTRATE.addDataGenerator(ProviderType.RECIPE, RecipeGen::genRecipe);
 		new RLClassHandler<>(Attribute.class, () -> ForgeRegistries.ATTRIBUTES);
@@ -49,7 +53,10 @@ public class L2Artifacts {
 
 	@SubscribeEvent
 	public static void gatherData(GatherDataEvent event) {
-		var gen = new ArtifactStatTypeGen(event.getGenerator().getPackOutput(), event.getLookupProvider());
+		var gen = ArtifactDatapackRegistry.ENTRIES.generate(
+				event.getGenerator().getPackOutput(),
+				event.getLookupProvider(),
+				Set.of("minecraft", L2Artifacts.MODID));
 		event.getGenerator().addProvider(event.includeServer(), gen);
 		event.getGenerator().addProvider(event.includeServer(), new ConfigGen(event.getGenerator(), gen.getRegistryProvider()));
 		event.getGenerator().addProvider(event.includeServer(), new SlotGen(event.getGenerator()));

@@ -1,13 +1,14 @@
 package dev.xkmc.l2artifacts.content.core;
 
 import dev.xkmc.l2artifacts.content.search.token.IArtifactFeature;
-import dev.xkmc.l2artifacts.init.registrate.ArtifactDatapackRegistry;
+import dev.xkmc.l2library.base.datapack.EntryHolder;
 import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 
-public record ArtifactStatTypeHolder(Holder.Reference<ArtifactStatType> holder) implements ArtifactDatapackRegistry.EntryHolder<ArtifactStatType>, IArtifactFeature.Sprite {
+public record ArtifactStatTypeHolder(Holder.Reference<ArtifactStatType> holder)
+		implements EntryHolder<ArtifactStatType>, IArtifactFeature.Sprite {
 
 	@Override
 	public ResourceLocation getIcon() {
@@ -16,15 +17,7 @@ public record ArtifactStatTypeHolder(Holder.Reference<ArtifactStatType> holder) 
 
 	@Override
 	public MutableComponent getDesc() {
-		return Component.translatable(holder.key().registry().getPath() + "." + getID().getNamespace() + "." + getID().getPath());
-	}
-
-	public ResourceLocation getID() {
-		return holder.key().location();
-	}
-
-	public ArtifactStatType get() {
-		return holder.get();
+		return EntryHolder.super.getDesc();
 	}
 
 }

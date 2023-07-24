@@ -1,7 +1,5 @@
 package dev.xkmc.l2artifacts.content.client.select;
 
-import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.PoseStack;
 import dev.xkmc.l2library.base.menu.base.SpriteManager;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.Screen;
@@ -37,13 +35,9 @@ public abstract class AbstractSelectScreen extends Screen {
 
 	public void render(GuiGraphics g, int mx, int my, float pTick) {
 		this.renderBg(g, pTick, mx, my);
-		RenderSystem.disableDepthTest();
 		super.render(g, mx, my, pTick);
-		PoseStack posestack = RenderSystem.getModelViewStack();
-		posestack.pushPose();
-		posestack.translate(leftPos, topPos, 0.0D);
-		RenderSystem.applyModelViewMatrix();
-		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
+		g.pose().pushPose();
+		g.pose().translate(leftPos, topPos, 0.0D);
 		hovered = null;
 		for (String c : slots) {
 			renderSlotComp(g, c, mx, my);
@@ -55,9 +49,7 @@ public abstract class AbstractSelectScreen extends Screen {
 			g.renderTooltip(font, hovered, mx, my);
 			g.pose().popPose();
 		}
-		posestack.popPose();
-		RenderSystem.applyModelViewMatrix();
-		RenderSystem.enableDepthTest();
+		g.pose().popPose();
 	}
 
 	protected abstract void renderLabels(GuiGraphics pose, int mx, int my);
@@ -82,7 +74,6 @@ public abstract class AbstractSelectScreen extends Screen {
 
 	private void renderSlot(GuiGraphics g, int x, int y, ItemStack stack) {
 		String s = null;
-		RenderSystem.enableDepthTest();
 		assert this.minecraft != null;
 		assert this.minecraft.player != null;
 		g.renderItem(stack, x, y, x + y * this.imageWidth);

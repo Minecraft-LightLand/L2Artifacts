@@ -20,8 +20,8 @@ public class SlotSelectScreen extends AbstractSelectScreen {
 
 	@Override
 	protected void renderLabels(GuiGraphics g, int mx, int my) {
-		g.drawString(font, LangData.TITLE_SELECT_SET.get(), 8, 6, 4210752);
-		g.drawString(font, LangData.TITLE_SELECT_SLOT.get(), 8, 6 + 13 + 18, 4210752);
+		g.drawString(font, LangData.TITLE_SELECT_SET.get(), 8, 6, 4210752, false);
+		g.drawString(font, LangData.TITLE_SELECT_SLOT.get(), 8, 6 + 13 + 18, 4210752, false);
 	}
 
 	@Override

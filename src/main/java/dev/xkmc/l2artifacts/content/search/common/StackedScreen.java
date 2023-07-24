@@ -1,6 +1,5 @@
 package dev.xkmc.l2artifacts.content.search.common;
 
-import com.mojang.blaze3d.systems.RenderSystem;
 import dev.xkmc.l2artifacts.content.client.tooltip.ItemTooltip;
 import dev.xkmc.l2artifacts.content.misc.ArtifactChestItem;
 import dev.xkmc.l2artifacts.content.search.tabs.FilterTabManager;
@@ -128,7 +127,6 @@ public abstract class StackedScreen extends Screen implements IFilterScreen {
 	}
 
 	private void renderSlotItem(GuiGraphics g, int x, int y, ItemStack stack) {
-		RenderSystem.enableDepthTest();
 		assert this.minecraft != null;
 		assert this.minecraft.player != null;
 		g.renderItem(stack, x, y, x + y * this.imageWidth);

@@ -27,9 +27,10 @@ import static net.minecraft.world.entity.ai.attributes.AttributeModifier.Operati
 public class ArtifactTypeRegistry {
 
 	public static final L2Registrate.RegistryInstance<ArtifactSlot> SLOT = REGISTRATE.newRegistry("slot", ArtifactSlot.class);
-	public static final L2Registrate.RegistryInstance<ArtifactStatType> STAT_TYPE = REGISTRATE.newRegistry("stat_type", ArtifactStatType.class);
 	public static final L2Registrate.RegistryInstance<ArtifactSet> SET = REGISTRATE.newRegistry("set", ArtifactSet.class);
 	public static final L2Registrate.RegistryInstance<SetEffect> SET_EFFECT = REGISTRATE.newRegistry("set_effect", SetEffect.class);
+
+	public static final L2Registrate.RegistryInstance<ArtifactStatType> STAT_TYPE = REGISTRATE.newRegistry("stat_type", ArtifactStatType.class);
 	public static final L2Registrate.RegistryInstance<LinearFuncHandle> LINEAR = REGISTRATE.newRegistry("linear", LinearFuncHandle.class);
 
 	public static final RegistryEntry<ArtifactSlot> SLOT_HEAD = regSlot("head", () -> new ArtifactSlot(ArtifactSlotCuriosType.HEAD));

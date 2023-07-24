@@ -1,11 +1,10 @@
 package dev.xkmc.l2artifacts.init;
 
 import com.tterrag.registrate.providers.ProviderType;
-import dev.xkmc.l2artifacts.events.*;
-import dev.xkmc.l2artifacts.init.data.ArtifactConfig;
-import dev.xkmc.l2artifacts.init.data.ConfigGen;
-import dev.xkmc.l2artifacts.init.data.LangData;
-import dev.xkmc.l2artifacts.init.data.RecipeGen;
+import dev.xkmc.l2artifacts.events.ArtifactAttackListener;
+import dev.xkmc.l2artifacts.events.ArtifactSel;
+import dev.xkmc.l2artifacts.events.ArtifactSlotClickListener;
+import dev.xkmc.l2artifacts.init.data.*;
 import dev.xkmc.l2artifacts.init.data.loot.ArtifactGLMProvider;
 import dev.xkmc.l2artifacts.init.data.slot.SlotGen;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactMenuRegistry;
@@ -17,7 +16,6 @@ import dev.xkmc.l2damagetracker.contents.attack.AttackEventHandler;
 import dev.xkmc.l2itemselector.select.SelectionRegistry;
 import dev.xkmc.l2serial.serialization.custom_handler.RLClassHandler;
 import net.minecraft.world.entity.ai.attributes.Attribute;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -51,7 +49,9 @@ public class L2Artifacts {
 
 	@SubscribeEvent
 	public static void gatherData(GatherDataEvent event) {
-		event.getGenerator().addProvider(event.includeServer(), new ConfigGen(event.getGenerator()));
+		var gen = new ArtifactStatTypeGen(event.getGenerator().getPackOutput(), event.getLookupProvider());
+		event.getGenerator().addProvider(event.includeServer(), gen);
+		event.getGenerator().addProvider(event.includeServer(), new ConfigGen(event.getGenerator(), gen.getRegistryProvider()));
 		event.getGenerator().addProvider(event.includeServer(), new SlotGen(event.getGenerator()));
 		event.getGenerator().addProvider(event.includeServer(), new ArtifactGLMProvider(event.getGenerator()));
 	}

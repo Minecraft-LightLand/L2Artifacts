@@ -1,6 +1,7 @@
 package dev.xkmc.l2artifacts.content.config;
 
 import dev.xkmc.l2artifacts.content.core.ArtifactStatType;
+import dev.xkmc.l2artifacts.content.core.ArtifactStatTypeHolder;
 import dev.xkmc.l2artifacts.network.NetworkManager;
 import dev.xkmc.l2library.serial.config.BaseConfig;
 import dev.xkmc.l2library.serial.config.CollectType;
@@ -18,7 +19,7 @@ public class StatTypeConfig extends BaseConfig {
 
 	@ConfigCollect(CollectType.MAP_OVERWRITE)
 	@SerialClass.SerialField
-	public HashMap<ArtifactStatType, Entry> stats = new HashMap<>();
+	public HashMap<ArtifactStatTypeHolder, Entry> stats = new HashMap<>();
 
 	@SerialClass
 	public static class Entry {

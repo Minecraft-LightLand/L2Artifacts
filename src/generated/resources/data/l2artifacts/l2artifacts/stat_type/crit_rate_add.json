@@ -1,0 +1,5 @@
+{
+  "attr": "l2damagetracker:crit_rate",
+  "operation": "ADDITION",
+  "percent": true
+}

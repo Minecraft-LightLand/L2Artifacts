@@ -591,16 +591,5 @@
   "slot.l2artifacts.body": "ʎpoᗺ",
   "slot.l2artifacts.bracelet": "ʇǝןǝɔɐɹᗺ",
   "slot.l2artifacts.head": "pɐǝH",
-  "slot.l2artifacts.necklace": "ǝɔɐןʞɔǝN",
-  "stat_type.l2artifacts.armor_add": "ppⱯ ɹoɯɹⱯ",
-  "stat_type.l2artifacts.attack_add": "ppⱯ ʞɔɐʇʇⱯ",
-  "stat_type.l2artifacts.attack_mult": "ʇןnW ʞɔɐʇʇⱯ",
-  "stat_type.l2artifacts.attack_speed_mult": "ʇןnW pǝǝdS ʞɔɐʇʇⱯ",
-  "stat_type.l2artifacts.bow_strength_add": "ppⱯ ɥʇbuǝɹʇS ʍoᗺ",
-  "stat_type.l2artifacts.crit_damage_add": "ppⱯ ǝbɐɯɐᗡ ʇıɹƆ",
-  "stat_type.l2artifacts.crit_rate_add": "ppⱯ ǝʇɐᴚ ʇıɹƆ",
-  "stat_type.l2artifacts.health_add": "ppⱯ ɥʇןɐǝH",
-  "stat_type.l2artifacts.reach_add": "ppⱯ ɥɔɐǝᴚ",
-  "stat_type.l2artifacts.speed_mult": "ʇןnW pǝǝdS",
-  "stat_type.l2artifacts.tough_add": "ppⱯ ɥbno⟘"
+  "slot.l2artifacts.necklace": "ǝɔɐןʞɔǝN"
 }

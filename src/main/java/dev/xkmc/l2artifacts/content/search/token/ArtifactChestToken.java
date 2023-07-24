@@ -1,17 +1,16 @@
 package dev.xkmc.l2artifacts.content.search.token;
 
-import dev.xkmc.l2artifacts.content.core.ArtifactSet;
-import dev.xkmc.l2artifacts.content.core.ArtifactSlot;
-import dev.xkmc.l2artifacts.content.core.ArtifactStatType;
-import dev.xkmc.l2artifacts.content.core.BaseArtifact;
+import dev.xkmc.l2artifacts.content.core.*;
 import dev.xkmc.l2artifacts.content.misc.ArtifactChestItem;
 import dev.xkmc.l2artifacts.init.data.LangData;
+import dev.xkmc.l2artifacts.init.registrate.ArtifactDatapackRegistry;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactTypeRegistry;
 import dev.xkmc.l2library.util.code.GenericItemStack;
 import dev.xkmc.l2serial.serialization.SerialClass;
 import dev.xkmc.l2serial.serialization.codec.TagCodec;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -26,7 +25,7 @@ public class ArtifactChestToken implements IArtifactFilter {
 	public static ArtifactChestToken of(Player player, int invSlot) {
 		ItemStack stack = player.getInventory().getItem(invSlot);
 		List<ItemStack> list = ArtifactChestItem.getContent(stack);
-		ArtifactChestToken ans = new ArtifactChestToken(stack, list, invSlot);
+		ArtifactChestToken ans = new ArtifactChestToken(player.level(), stack, list, invSlot);
 		TagCodec.fromTag(ArtifactChestItem.getFilter(stack), ArtifactChestToken.class, ans, e -> true);
 		ans.exp = ArtifactChestItem.getExp(stack);
 		return ans;
@@ -47,14 +46,14 @@ public class ArtifactChestToken implements IArtifactFilter {
 	public final ArtifactFilter<ArtifactSlot> slot;
 
 	@SerialClass.SerialField
-	public final ArtifactFilter<ArtifactStatType> stat;
+	public final ArtifactFilter<ArtifactStatTypeHolder> stat;
 
 	public int exp = 0;
 
 	@Nullable
 	private List<GenericItemStack<BaseArtifact>> cahce = null;
 
-	private ArtifactChestToken(ItemStack stack, List<ItemStack> list, int invSlot) {
+	private ArtifactChestToken(Level level, ItemStack stack, List<ItemStack> list, int invSlot) {
 		this.list = list;
 		this.stack = stack;
 		this.invSlot = invSlot;
@@ -63,7 +62,7 @@ public class ArtifactChestToken implements IArtifactFilter {
 				ArtifactTypeRegistry.SET.get(), i -> i.set.get()));
 		slot = addFilter(e -> new SimpleArtifactFilter<>(e, LangData.FILTER_SLOT,
 				ArtifactTypeRegistry.SLOT.get(), i -> i.slot.get()));
-		stat = addFilter(e -> new AttributeFilter(e, LangData.FILTER_STAT, ArtifactTypeRegistry.STAT_TYPE.get().getValues()));
+		stat = addFilter(e -> new AttributeFilter(e, LangData.FILTER_STAT, ArtifactDatapackRegistry.STAT_TYPE.getValues(level)));
 		TagCodec.fromTag(ArtifactChestItem.getFilter(stack), ArtifactChestToken.class, this, e -> true);
 	}
 

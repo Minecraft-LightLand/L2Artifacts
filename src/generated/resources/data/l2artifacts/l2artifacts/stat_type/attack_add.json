@@ -1,0 +1,5 @@
+{
+  "attr": "minecraft:generic.attack_damage",
+  "operation": "ADDITION",
+  "percent": false
+}

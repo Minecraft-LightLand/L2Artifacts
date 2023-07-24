@@ -591,16 +591,5 @@
   "slot.l2artifacts.body": "Body",
   "slot.l2artifacts.bracelet": "Bracelet",
   "slot.l2artifacts.head": "Head",
-  "slot.l2artifacts.necklace": "Necklace",
-  "stat_type.l2artifacts.armor_add": "Armor Add",
-  "stat_type.l2artifacts.attack_add": "Attack Add",
-  "stat_type.l2artifacts.attack_mult": "Attack Mult",
-  "stat_type.l2artifacts.attack_speed_mult": "Attack Speed Mult",
-  "stat_type.l2artifacts.bow_strength_add": "Bow Strength Add",
-  "stat_type.l2artifacts.crit_damage_add": "Crit Damage Add",
-  "stat_type.l2artifacts.crit_rate_add": "Crit Rate Add",
-  "stat_type.l2artifacts.health_add": "Health Add",
-  "stat_type.l2artifacts.reach_add": "Reach Add",
-  "stat_type.l2artifacts.speed_mult": "Speed Mult",
-  "stat_type.l2artifacts.tough_add": "Tough Add"
+  "slot.l2artifacts.necklace": "Necklace"
 }

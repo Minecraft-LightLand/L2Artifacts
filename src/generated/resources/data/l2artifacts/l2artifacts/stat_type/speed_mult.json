@@ -1,0 +1,5 @@
+{
+  "attr": "minecraft:generic.movement_speed",
+  "operation": "MULTIPLY_BASE",
+  "percent": true
+}

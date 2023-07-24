@@ -1,0 +1,5 @@
+{
+  "attr": "l2damagetracker:bow_strength",
+  "operation": "ADDITION",
+  "percent": true
+}

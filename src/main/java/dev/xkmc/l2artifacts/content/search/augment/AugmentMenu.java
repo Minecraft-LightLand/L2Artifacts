@@ -100,7 +100,7 @@ public class AugmentMenu extends BaseContainerMenu<AugmentMenu> implements IFilt
 					if ((stats.level + 1) % ArtifactConfig.COMMON.levelPerSubStat.get() == 0) {
 						useSub = !in_2.getItem().isEmpty();
 						ItemStack stat = in_0.getItem();
-						var opt_stat = StatContainerItem.getType(stat);
+						var opt_stat = StatContainerItem.getType(player.level(), stat);
 						if (opt_stat.isPresent()) {
 							var astat = opt_stat.get();
 							if (stats.main_stat.type != astat && stats.map.containsKey(astat)) {
@@ -129,7 +129,7 @@ public class AugmentMenu extends BaseContainerMenu<AugmentMenu> implements IFilt
 			int mask = this.mask.get();
 			if ((mask & 1) > 0) {
 				ItemStack stat = getAsPredSlot("in_0").getItem();
-				var opt_stat = StatContainerItem.getType(stat);
+				var opt_stat = StatContainerItem.getType(player.level(), stat);
 				opt_stat.ifPresent(artifactStatType -> upgrade.stats.add(artifactStatType));
 				getAsPredSlot("in_0").getItem().shrink(1);
 			}

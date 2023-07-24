@@ -5,6 +5,7 @@ import com.google.common.collect.Multimap;
 import dev.xkmc.l2artifacts.content.upgrades.ArtifactUpgradeManager;
 import dev.xkmc.l2artifacts.content.upgrades.Upgrade;
 import dev.xkmc.l2serial.serialization.SerialClass;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -34,7 +35,7 @@ public class ArtifactStats {
 	@SerialClass.SerialField
 	public ArrayList<StatEntry> sub_stats = new ArrayList<>();
 
-	public final Map<ArtifactStatType, StatEntry> map = new HashMap<>();
+	public final Map<ArtifactStatTypeHolder, StatEntry> map = new HashMap<>();
 
 	@Deprecated
 	public ArtifactStats() {
@@ -68,7 +69,7 @@ public class ArtifactStats {
 		map.put(entry.type, entry);
 	}
 
-	public void add(ArtifactStatType type, double value) {
+	public void add(ArtifactStatTypeHolder type, double value) {
 		if (map.containsKey(type)) {
 			map.get(type).addMultiplier(value);
 		} else {
@@ -79,7 +80,7 @@ public class ArtifactStats {
 	public Multimap<Attribute, AttributeModifier> buildAttributes() {
 		ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
 		for (StatEntry ent : map.values()) {
-			ent.type.getModifier(builder, ent);
+			ent.type.get().getModifier(builder, ent);
 		}
 		return builder.build();
 	}

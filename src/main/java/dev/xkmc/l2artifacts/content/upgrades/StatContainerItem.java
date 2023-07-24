@@ -1,8 +1,9 @@
 package dev.xkmc.l2artifacts.content.upgrades;
 
-import dev.xkmc.l2artifacts.content.core.ArtifactStatType;
+import dev.xkmc.l2artifacts.content.core.ArtifactStatTypeHolder;
 import dev.xkmc.l2artifacts.init.data.LangData;
-import dev.xkmc.l2artifacts.init.registrate.ArtifactTypeRegistry;
+import dev.xkmc.l2artifacts.init.registrate.ArtifactDatapackRegistry;
+import dev.xkmc.l2library.util.Proxy;
 import dev.xkmc.l2library.util.nbt.ItemCompoundTag;
 import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.Tag;
@@ -20,12 +21,12 @@ public class StatContainerItem extends UpgradeEnhanceItem {
 
 	private static final String KEY = "stat";
 
-	public static ItemStack setStat(ItemStack item, ArtifactStatType type) {
-		item.getOrCreateTag().putString(KEY, type.getID());
+	public static ItemStack setStat(ItemStack item, ArtifactStatTypeHolder type) {
+		item.getOrCreateTag().putString(KEY, type.getID().toString());
 		return item;
 	}
 
-	public static Optional<ArtifactStatType> getType(ItemStack item) {
+	public static Optional<ArtifactStatTypeHolder> getType(Level level, ItemStack item) {
 		ItemCompoundTag tag = ItemCompoundTag.of(item);
 		if (!tag.isPresent()) {
 			return Optional.empty();
@@ -37,7 +38,7 @@ public class StatContainerItem extends UpgradeEnhanceItem {
 		if (str.length() == 0) {
 			return Optional.empty();
 		}
-		return Optional.ofNullable(ArtifactTypeRegistry.STAT_TYPE.get().getValue(new ResourceLocation(str)));
+		return ArtifactDatapackRegistry.STAT_TYPE.getValue(level, new ResourceLocation(str));
 	}
 
 	public StatContainerItem(Properties props, int rank) {
@@ -46,7 +47,7 @@ public class StatContainerItem extends UpgradeEnhanceItem {
 
 	@Override
 	public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> list, TooltipFlag flag) {
-		getType(stack).ifPresentOrElse(e -> {
+		if (level != null) getType(level, stack).ifPresentOrElse(e -> {
 			list.add(LangData.STAT_INFO.get(e.getDesc().withStyle(ChatFormatting.BLUE)).withStyle(ChatFormatting.DARK_GREEN));
 			list.add(LangData.STAT_USE_INFO.get().withStyle(ChatFormatting.GRAY));
 		}, () -> list.add(LangData.STAT_CAPTURE_INFO.get().withStyle(ChatFormatting.GRAY)));
@@ -54,6 +55,6 @@ public class StatContainerItem extends UpgradeEnhanceItem {
 
 	@Override
 	public boolean isFoil(ItemStack pStack) {
-		return getType(pStack).isPresent();
+		return getType(Proxy.getWorld(), pStack).isPresent();
 	}
 }

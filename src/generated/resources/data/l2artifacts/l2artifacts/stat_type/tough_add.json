@@ -1,0 +1,5 @@
+{
+  "attr": "minecraft:generic.armor_toughness",
+  "operation": "ADDITION",
+  "percent": false
+}

@@ -9,24 +9,24 @@ import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.common.util.LazyOptional;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurio;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 public class ArtifactCurioCap implements ICurio {
 
 	private final ItemStack stack;
 
-	private ArtifactStats stats;
+	private final LazyOptional<ArtifactStats> stats;
 
 	public ArtifactCurioCap(ItemStack stack) {
 		this.stack = stack;
 		if (stack.getTag() != null && stack.getTag().contains(BaseArtifact.KEY)) {
-			stats = TagCodec.fromTag(stack.getTag().getCompound(BaseArtifact.KEY), ArtifactStats.class);
+			stats = LazyOptional.of(() -> Objects.requireNonNull(TagCodec.fromTag(stack.getTag().getCompound(BaseArtifact.KEY), ArtifactStats.class)));
+		} else {
+			stats = LazyOptional.empty();
 		}
 	}
 
@@ -36,13 +36,13 @@ public class ArtifactCurioCap implements ICurio {
 	}
 
 	public Optional<ArtifactStats> getStats() {
-		return Optional.ofNullable(stats);
+		return stats.resolve();
 	}
 
 	@Override
 	public Multimap<Attribute, AttributeModifier> getAttributeModifiers(SlotContext slotContext, UUID uuid) {
-		if (stats != null) {
-			return stats.buildAttributes();
+		if (getStats().isPresent()) {
+			return getStats().get().buildAttributes();
 		}
 		return ICurio.super.getAttributeModifiers(slotContext, uuid);
 	}

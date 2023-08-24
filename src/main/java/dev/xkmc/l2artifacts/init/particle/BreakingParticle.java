@@ -17,7 +17,6 @@ import java.awt.*;
 public class BreakingParticle extends TextureSheetParticle {
     private final float uo;
     private final float vo;
-    int renderTick= 0;
     BreakingParticle(ClientLevel p_105646_, double p_105647_, double p_105648_, double p_105649_, double p_105650_, double p_105651_, double p_105652_, ItemStack p_105653_) {
         this(p_105646_, p_105647_, p_105648_, p_105649_, p_105653_);
         this.xd *=  0.1F;
@@ -43,7 +42,6 @@ public class BreakingParticle extends TextureSheetParticle {
         this.uo = this.random.nextFloat() * 3.0F;
         this.vo = this.random.nextFloat() * 3.0F;
         this.alpha= 75;
-        Color color = new Color(255,255,255);
         this.setColor(255,255,255);
         this.scale(1);
         this.lifetime=90;

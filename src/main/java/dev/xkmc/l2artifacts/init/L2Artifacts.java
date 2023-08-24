@@ -65,6 +65,4 @@ public class L2Artifacts {
 		event.getGenerator().addProvider(event.includeServer(), new ArtifactGLMProvider(event.getGenerator()));
 	}
 
-
-
 }

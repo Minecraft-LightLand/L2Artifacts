@@ -1,10 +1,10 @@
 package dev.xkmc.l2artifacts.init;
 
+import dev.xkmc.l2artifacts.content.client.artifactLayerRenderer.ArtifactRenderEvent;
 import dev.xkmc.l2artifacts.content.client.tab.TabSetEffects;
 import dev.xkmc.l2artifacts.content.client.tooltip.ClientItemTooltip;
 import dev.xkmc.l2artifacts.content.client.tooltip.ItemTooltip;
 import dev.xkmc.l2artifacts.content.swap.ArtifactSwapOverlay;
-import dev.xkmc.l2artifacts.content.client.artifactLayerRenderer.ArtifactRenderEvent;
 import dev.xkmc.l2artifacts.init.registrate.items.ArtifactItemRegistry;
 import dev.xkmc.l2tabs.tabs.core.TabRegistry;
 import dev.xkmc.l2tabs.tabs.core.TabToken;
@@ -48,8 +48,5 @@ public class ArtifactClient {
 	@SubscribeEvent
 	public static void registerKeys(RegisterKeyMappingsEvent event) {
 	}
-
-
-
 
 }

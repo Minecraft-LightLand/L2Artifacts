@@ -46,23 +46,27 @@ public class SetEffectScreen extends BaseTextScreen {
 		List<FormattedCharSequence> seq = new ArrayList<>();
 		hover = null;
 		for (SlotResult sr : slots) {
-			ItemStack stack = sr.stack();
+			ItemStack stack = sr.stack();//玩家身上的饰品
 			BaseArtifact base = (BaseArtifact) stack.getItem();
 			base.set.get().getCountAndIndex(sr.slotContext()).ifPresent(result -> {
-				if (result.current_index() > 0) {
+				if (result.current_index() > 0) {//第一件即可获取该套装全部信息
 					return;
 				}
+
 				var list = base.set.get().addComponents(result);
 				for (var pair : list) {
 					var lines = TextWrapper.wrapText(Minecraft.getInstance().font, pair.getFirst(), imageWidth - 16);
 					int row = topPos + 6 + seq.size() * 10;
+					int column = leftPos + 6 ;
 					seq.addAll(lines);
 					int rowAft = topPos + 6 + seq.size() * 10;
-					if (my >= row && my < rowAft) {
+					int columnAft = leftPos + 6 + lines.size() *45 ;
+					if (my >= row && my < rowAft && mx >=column && mx <columnAft) {
 						hover = pair.getSecond();
 					}
 				}
 			});
+
 		}
 		for (var comp : seq) {
 			g.drawString(font, comp, x, y, 0, false);

@@ -76,6 +76,7 @@ public class ArtifactLayer extends ItemInHandLayer {
                     });
                 }
             }
+
             if (level.getDayTime()%5==0&&Minecraft.getInstance().getPartialTick()<=0.1 && flag.get() == 0) {
                 Random aa = new Random();
                 double xx = aa.nextDouble() *2-1 ;

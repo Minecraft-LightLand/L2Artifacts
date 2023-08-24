@@ -190,13 +190,15 @@ public class ArtifactSet extends NamedEntry<ArtifactSet> implements IArtifactFea
 	}
 
 	public List<Pair<List<Component>, List<Component>>> addComponents(SetContext ctx) {
-		List<Pair<List<Component>, List<Component>>> ans = new ArrayList<>();
+		List<Pair<List<Component>, List<Component>>> ans = new ArrayList<>();//创建一个空list
+		//获取一个SetEffect，List.of()把SetEffect对象转为只有一个元素的List，Pair.of()把两个List封装成一个Pair，Pair添加到ans
 		ans.add(Pair.of(List.of(LangData.ALL_SET_EFFECTS.get(getDesc(), ctx.count())), List.of()));
 		ArtifactSetConfig config = ArtifactSetConfig.getInstance();
-		ArrayList<ArtifactSetConfig.Entry> list = config.map.get(this);
+		ArrayList<ArtifactSetConfig.Entry> list = config.map.get(this);//获取玩家身上可能有的条件-套装效果组合
 		for (ArtifactSetConfig.Entry ent : list) {
-			if (ctx.count() >= ent.count) {
-				int rank = ctx.ranks[ent.count];
+			//判断符合数量条件的效果与描述加入ans
+			if (ctx.count() >= ent.count) {//若数量符合
+				int rank = ctx.ranks[ent.count];//根据不同数量获取不同等级
 				List<Component> a = List.of(getCountDesc(ent.count), ent.effect.getDesc()
 						.withStyle(DarkTextColorRanks.getDark(rank)));
 				List<Component> b = new ArrayList<>();
@@ -204,6 +206,27 @@ public class ArtifactSet extends NamedEntry<ArtifactSet> implements IArtifactFea
 						.withStyle(DarkTextColorRanks.getLight(rank))));
 				b.addAll(ent.effect.getDetailedDescription(rank).stream()
 						.map(comp -> (Component) comp.withStyle(DarkTextColorRanks.getDark(rank))).toList());
+				ans.add(Pair.of(a, b));
+			}
+		}
+		return ans;
+	}
+
+	//用于获取古遗物的信息，不需要各种描述
+	public List<Pair<List<Component>, List<Integer>>> addComponentss(SetContext ctx) {
+		List<Pair<List<Component>, List<Integer>>> ans = new ArrayList<>();//创建一个空list
+		//获取一个SetEffect，List.of()把SetEffect对象转为只有一个元素的List，Pair.of()把两个List封装成一个Pair，Pair添加到ans
+		ArtifactSetConfig config = ArtifactSetConfig.getInstance();//获取唯一实例对象
+		ArrayList<ArtifactSetConfig.Entry> list = config.map.get(this);//获取玩家身上可能有的条件-套装效果组合
+		for (ArtifactSetConfig.Entry ent : list) {
+			//判断符合数量条件的效果与描述加入ans
+			if (ctx.count() >= ent.count) {//若数量符合
+
+				int rank = ctx.ranks[ent.count];//根据不同数量获取不同等级
+				List<Component> a = new ArrayList<>();
+				a.add(getCountDesc(ent.count));//返回一个数组包含所有生效的效果，[set.套装数量,最大套装数量]
+				List<Integer> b = new ArrayList<>();
+				b.add(ent.count);//套装生效数量
 				ans.add(Pair.of(a, b));
 			}
 		}

@@ -4,14 +4,14 @@ import dev.xkmc.l2artifacts.content.client.tab.TabSetEffects;
 import dev.xkmc.l2artifacts.content.client.tooltip.ClientItemTooltip;
 import dev.xkmc.l2artifacts.content.client.tooltip.ItemTooltip;
 import dev.xkmc.l2artifacts.content.swap.ArtifactSwapOverlay;
+import dev.xkmc.l2artifacts.content.client.artifactLayerRenderer.ArtifactRenderEvent;
 import dev.xkmc.l2artifacts.init.registrate.items.ArtifactItemRegistry;
 import dev.xkmc.l2tabs.tabs.core.TabRegistry;
 import dev.xkmc.l2tabs.tabs.core.TabToken;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.packs.resources.ResourceManagerReloadListener;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.RegisterClientTooltipComponentFactoriesEvent;
-import net.minecraftforge.client.event.RegisterGuiOverlaysEvent;
-import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
+import net.minecraftforge.client.event.*;
 import net.minecraftforge.client.gui.overlay.VanillaGuiOverlay;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -36,6 +36,11 @@ public class ArtifactClient {
 	}
 
 	@SubscribeEvent
+	public static void registerReloadListener(RegisterClientReloadListenersEvent event) {
+		event.registerReloadListener((ResourceManagerReloadListener) resourceManager -> ArtifactRenderEvent.registerArtifactLayer());
+	}
+
+	@SubscribeEvent
 	public static void registerOverlay(RegisterGuiOverlaysEvent event) {
 		event.registerAbove(VanillaGuiOverlay.CROSSHAIR.id(), "artifact_swap", ArtifactSwapOverlay.INSTANCE);
 	}
@@ -43,5 +48,8 @@ public class ArtifactClient {
 	@SubscribeEvent
 	public static void registerKeys(RegisterKeyMappingsEvent event) {
 	}
+
+
+
 
 }

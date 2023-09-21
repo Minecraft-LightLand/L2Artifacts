@@ -6,6 +6,7 @@ import dev.xkmc.l2damagetracker.contents.attack.AttackCache;
 import dev.xkmc.l2library.base.NamedEntry;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
@@ -25,7 +26,7 @@ public abstract class SetEffect extends NamedEntry<SetEffect> {
 	/**
 	 * when the set count changes. Entry contains an uuid if one needs to add it. for Attributes, it must be transient
 	 */
-	public void update(Player player, ArtifactSetConfig.Entry ent, int rank, boolean enabled) {
+	public void update(LivingEntity player, ArtifactSetConfig.Entry ent, int rank, boolean enabled) {
 	}
 
 	/**

@@ -4,6 +4,7 @@ import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
 import dev.xkmc.l2artifacts.content.effects.SetEffect;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.player.Player;
@@ -23,7 +24,7 @@ public class AttributeSetEffect extends SetEffect {
 	}
 
 	@Override
-	public void update(Player player, ArtifactSetConfig.Entry ent, int rank, boolean enabled) {
+	public void update(LivingEntity player, ArtifactSetConfig.Entry ent, int rank, boolean enabled) {
 		for (int i = 0; i < entries.length; i++) {
 			AttrSetEntry entry = entries[i];
 			double val = entry.getValue(rank);

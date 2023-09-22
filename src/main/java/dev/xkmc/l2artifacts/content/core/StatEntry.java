@@ -4,6 +4,7 @@ import com.tterrag.registrate.providers.RegistrateLangProvider;
 import dev.xkmc.l2library.util.math.MathHelper;
 import dev.xkmc.l2serial.serialization.SerialClass;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.level.Level;
 
 import java.util.UUID;
 
@@ -37,12 +38,12 @@ public class StatEntry {
 		this.id = MathHelper.getUUIDFromString(str);
 	}
 
-	public Component getTooltip() {
-		return type.get().getTooltip(getValue());
+	public Component getTooltip(Level level) {
+		return type.get(level).getTooltip(getValue());
 	}
 
 	public double getValue() {
-		return value * type.get().getBaseValue();
+		return value * type.getBaseValue();
 	}
 
 	public void addMultiplier(double value) {

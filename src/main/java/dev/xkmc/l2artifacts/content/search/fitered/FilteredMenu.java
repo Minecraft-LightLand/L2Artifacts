@@ -72,7 +72,7 @@ public class FilteredMenu extends AbstractScrollerMenu<FilteredMenu> {
 	}
 
 	private void addItemToList(ItemStack stack) {
-		stack = ((BaseArtifact) stack.getItem()).resolve(stack, false, player.getRandom()).getObject();
+		stack = ((BaseArtifact) stack.getItem()).resolve(player.level(), stack, false, player.getRandom()).getObject();
 		token.list.add(stack);
 	}
 

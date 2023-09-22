@@ -49,7 +49,7 @@ public class UpgradeMenu extends BaseContainerMenu<UpgradeMenu> implements IFilt
 		int ec = 0;
 		if (!stack.isEmpty()) {
 			BaseArtifact item = (BaseArtifact) stack.getItem();
-			var result = item.resolve(stack, false, player.getRandom());
+			var result = item.resolve(player.level(), stack, false, player.getRandom());
 			if (result.getResult().consumesAction()) {
 				stack = result.getObject();
 				cont.setItem(0, stack);
@@ -77,7 +77,7 @@ public class UpgradeMenu extends BaseContainerMenu<UpgradeMenu> implements IFilt
 				return false;
 			ItemStack stack = container.getItem(0);
 			BaseArtifact.upgrade(stack, exp_cost.get(), player.getRandom());
-			stack = ((BaseArtifact) stack.getItem()).resolve(stack, false, player.getRandom()).getObject();
+			stack = ((BaseArtifact) stack.getItem()).resolve(player.level(), stack, false, player.getRandom()).getObject();
 			container.setItem(0, stack);
 			costExp(exp_cost.get());
 		}

@@ -37,7 +37,7 @@ public class ArtifactUpgradeManager {
 
 	public static void onUpgrade(ArtifactStats stats, int lv, Upgrade upgrade, RandomSource random) {
 		int gate = ArtifactConfig.COMMON.levelPerSubStat.get();
-		stats.add(stats.main_stat.type, stats.main_stat.type.get().getMainValue(stats.rank, random, upgrade.removeMain()));
+		stats.add(stats.main_stat.type, stats.main_stat.type.getMainValue(stats.rank, random, upgrade.removeMain()));
 		if (lv % gate == 0 && stats.sub_stats.size() > 0) {
 			StatEntry substat = null;
 			if (upgrade.stats.size() > 0) {
@@ -52,7 +52,7 @@ public class ArtifactUpgradeManager {
 			if (substat == null) {
 				substat = stats.sub_stats.get(random.nextInt(stats.sub_stats.size()));
 			}
-			stats.add(substat.type, substat.type.get().getSubValue(stats.rank, random, upgrade.removeSub()));
+			stats.add(substat.type, substat.type.getSubValue(stats.rank, random, upgrade.removeSub()));
 		}
 	}
 }

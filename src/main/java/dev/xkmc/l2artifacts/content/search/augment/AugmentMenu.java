@@ -80,7 +80,7 @@ public class AugmentMenu extends BaseContainerMenu<AugmentMenu> implements IFilt
 		boolean useMain = false;
 		if (!stack.isEmpty()) {
 			BaseArtifact item = getMainItem().item();
-			var result = item.resolve(stack, false, player.getRandom());
+			var result = item.resolve(player.level(), stack, false, player.getRandom());
 			if (result.getResult().consumesAction()) {
 				stack = result.getObject();
 				input.set(stack);
@@ -143,7 +143,7 @@ public class AugmentMenu extends BaseContainerMenu<AugmentMenu> implements IFilt
 			}
 			BaseArtifact.setUpgrade(stack, upgrade);
 			BaseArtifact.upgrade(stack, exp_cost.get(), player.getRandom());
-			stack = ((BaseArtifact) stack.getItem()).resolve(stack, false, player.getRandom()).getObject();
+			stack = ((BaseArtifact) stack.getItem()).resolve(player.level(), stack, false, player.getRandom()).getObject();
 			getAsPredSlot("input").set(stack);
 			costExp(exp_cost.get());
 		}

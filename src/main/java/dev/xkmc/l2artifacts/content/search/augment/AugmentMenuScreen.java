@@ -20,6 +20,7 @@ import net.minecraft.network.chat.Style;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -157,11 +158,13 @@ public class AugmentMenuScreen extends BaseContainerScreen<AugmentMenu> implemen
 
 	private Component[] addEntry(boolean main, StatEntry entry, @Nullable StatEntry old, boolean lit_name, boolean lit_stat) {
 		Component[] ans = new Component[3];
+		Level level = Proxy.getClientWorld();
+		assert level != null;
 		if (Proxy.getClientPlayer().tickCount % 20 < 10) {
 			lit_name = lit_stat = false;
 		}
-		ans[0] = Component.translatable(entry.type.get().attr.getDescriptionId()).withStyle(lit_name ? LIT : main ? MAIN : SUB);
-		ans[1] = entry.type.get().getValueText(entry.getValue()).withStyle(lit_stat ? LIT : main ? MAIN : SUB);
+		ans[0] = Component.translatable(entry.type.get(level).attr.getDescriptionId()).withStyle(lit_name ? LIT : main ? MAIN : SUB);
+		ans[1] = entry.type.get(level).getValueText(entry.getValue()).withStyle(lit_stat ? LIT : main ? MAIN : SUB);
 		if (old != null) {
 			double diff = entry.getValue() - old.getValue();
 			if (diff > 1e-3) {
@@ -169,14 +172,14 @@ public class AugmentMenuScreen extends BaseContainerScreen<AugmentMenu> implemen
 				assert fg != null;
 				float perc = 1 - time / MAX_TIME;
 				int c = lerpColor(perc, fg, 0xC6C6C6);
-				ans[2] = entry.type.get().getValueText(diff).withStyle(Style.EMPTY.withColor(c));
+				ans[2] = entry.type.get(level).getValueText(diff).withStyle(Style.EMPTY.withColor(c));
 			} else {
 				ans[2] = Component.empty();
 			}
 		} else {
 			ans[2] = Component.empty();
 		}
-		entry.getTooltip();
+		entry.getTooltip(level);
 		return ans;
 	}
 

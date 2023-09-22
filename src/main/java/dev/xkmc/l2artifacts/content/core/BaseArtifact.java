@@ -3,7 +3,6 @@ package dev.xkmc.l2artifacts.content.core;
 import dev.xkmc.l2artifacts.content.upgrades.ArtifactUpgradeManager;
 import dev.xkmc.l2artifacts.content.upgrades.Upgrade;
 import dev.xkmc.l2artifacts.init.data.LangData;
-import dev.xkmc.l2library.util.Proxy;
 import dev.xkmc.l2library.util.nbt.ItemCompoundTag;
 import dev.xkmc.l2serial.serialization.codec.TagCodec;
 import net.minecraft.ChatFormatting;
@@ -72,10 +71,10 @@ public class BaseArtifact extends RankedItem {
 	@Override
 	public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
 		ItemStack stack = player.getItemInHand(hand);
-		return resolve(stack, level.isClientSide(), player.getRandom());
+		return resolve(level, stack, level.isClientSide(), player.getRandom());
 	}
 
-	public InteractionResultHolder<ItemStack> resolve(ItemStack stack, boolean isClient, RandomSource random) {
+	public InteractionResultHolder<ItemStack> resolve(Level level, ItemStack stack, boolean isClient, RandomSource random) {
 		ItemCompoundTag tag = ItemCompoundTag.of(stack).getSubTag(KEY);
 		Upgrade upgrade = getUpgrade(stack).orElse(new Upgrade());
 		if (!tag.isPresent()) {
@@ -112,7 +111,7 @@ public class BaseArtifact extends RankedItem {
 	@Override
 	public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> list, TooltipFlag flag) {
 		boolean shift = Screen.hasShiftDown();
-		if (Proxy.getPlayer() != null) {
+		if (level != null) {
 			ItemCompoundTag tag = ItemCompoundTag.of(stack).getSubTag(KEY);
 			if (!tag.isPresent()) {
 				list.add(LangData.RAW_ARTIFACT.get());
@@ -128,11 +127,11 @@ public class BaseArtifact extends RankedItem {
 						list.add(LangData.UPGRADE.get());
 					} else if (!shift) {
 						list.add(LangData.MAIN_STAT.get());
-						list.add(stats.main_stat.getTooltip());
+						list.add(stats.main_stat.getTooltip(level));
 						if (stats.sub_stats.size() > 0) {
 							list.add(LangData.SUB_STAT.get());
 							for (StatEntry ent : stats.sub_stats) {
-								list.add(ent.getTooltip());
+								list.add(ent.getTooltip(level));
 							}
 						}
 					}

@@ -3,14 +3,19 @@ package dev.xkmc.l2artifacts.init.registrate.entries;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.LinkedListMultimap;
 import com.google.common.collect.Multimap;
+import com.mojang.serialization.Codec;
+import com.tterrag.registrate.util.OneTimeEventReceiver;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import dev.xkmc.l2artifacts.content.core.ArtifactSet;
 import dev.xkmc.l2artifacts.content.core.BaseArtifact;
 import dev.xkmc.l2artifacts.content.core.LinearFuncHandle;
 import dev.xkmc.l2artifacts.content.effects.SetEffect;
+import dev.xkmc.l2artifacts.datapack.DatapackInstance;
+import dev.xkmc.l2artifacts.datapack.EntryHolder;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
 import dev.xkmc.l2library.base.L2Registrate;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraftforge.registries.DataPackRegistryEvent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,6 +45,13 @@ public class ArtifactRegistrate extends L2Registrate {
 
 	public SetRegHelper getSetHelper(String id) {
 		return new SetRegHelper(this, id);
+	}
+
+	//TODO removal
+	public <T, R extends EntryHolder<T, R>> DatapackInstance<T, R> datapackRegistry(String id, Class<R> cls, DatapackInstance.Factory<T, R> func, Codec<T> codec) {
+		DatapackInstance<T, R> ans = new DatapackInstance<>(new ResourceLocation(getModid(), id), cls, func);
+		OneTimeEventReceiver.addModListener(this, DataPackRegistryEvent.NewRegistry.class, e -> e.dataPackRegistry(ans.key, codec, codec));
+		return ans;
 	}
 
 }

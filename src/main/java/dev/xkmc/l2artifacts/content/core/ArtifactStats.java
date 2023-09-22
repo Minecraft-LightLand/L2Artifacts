@@ -5,10 +5,10 @@ import com.google.common.collect.Multimap;
 import dev.xkmc.l2artifacts.content.upgrades.ArtifactUpgradeManager;
 import dev.xkmc.l2artifacts.content.upgrades.Upgrade;
 import dev.xkmc.l2serial.serialization.SerialClass;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.level.Level;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -77,10 +77,10 @@ public class ArtifactStats {
 		}
 	}
 
-	public Multimap<Attribute, AttributeModifier> buildAttributes() {
+	public Multimap<Attribute, AttributeModifier> buildAttributes(Level level) {
 		ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
 		for (StatEntry ent : map.values()) {
-			ent.type.get().getModifier(builder, ent);
+			ent.type.getModifier(level, builder, ent);
 		}
 		return builder.build();
 	}

@@ -14,6 +14,7 @@ import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import static net.minecraft.world.item.ItemStack.ATTRIBUTE_MODIFIER_FORMAT;
@@ -27,32 +28,13 @@ public class ArtifactStatType {
 	).apply(i, ArtifactStatType::new));
 
 	public final Attribute attr;
-	private final AttributeModifier.Operation op;
+	protected final AttributeModifier.Operation op;
 	private final boolean usePercent;
 
 	public ArtifactStatType(Attribute attr, String op, boolean useMult) {
 		this.attr = attr;
 		this.op = AttributeModifier.Operation.valueOf(op);
 		this.usePercent = useMult;
-	}
-
-	public void getModifier(ImmutableMultimap.Builder<Attribute, AttributeModifier> builder, StatEntry entry) {
-		builder.put(attr, new AttributeModifier(entry.id, entry.getName(), entry.getValue(), op));
-	}
-
-	public double getInitialValue(int rank, RandomSource random, boolean max) {
-		StatTypeConfig.Entry entry = StatTypeConfig.getInstance().stats.get(this);
-		return (max ? entry.base_high : Mth.nextDouble(random, entry.base_low, entry.base_high)) * rank;
-	}
-
-	public double getMainValue(int rank, RandomSource random, boolean max) {
-		StatTypeConfig.Entry entry = StatTypeConfig.getInstance().stats.get(this);
-		return (max ? entry.main_high : Mth.nextDouble(random, entry.main_low, entry.main_high)) * rank;
-	}
-
-	public double getSubValue(int rank, RandomSource random, boolean max) {
-		StatTypeConfig.Entry entry = StatTypeConfig.getInstance().stats.get(this);
-		return (max ? entry.base_high : Mth.nextDouble(random, entry.sub_low, entry.sub_high)) * rank;
 	}
 
 	public MutableComponent getValueText(double val) {
@@ -69,11 +51,6 @@ public class ArtifactStatType {
 				"attribute.modifier.plus." + (usePercent ? 1 : 0),
 				ATTRIBUTE_MODIFIER_FORMAT.format(usePercent ? val * 100 : val),
 				Component.translatable(attr.getDescriptionId())).withStyle(ChatFormatting.BLUE);
-	}
-
-	public double getBaseValue() {
-		StatTypeConfig.Entry entry = StatTypeConfig.getInstance().stats.get(this);
-		return entry.base;
 	}
 
 }

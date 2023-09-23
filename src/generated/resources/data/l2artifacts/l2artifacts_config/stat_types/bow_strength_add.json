@@ -1,6 +1,6 @@
 {
   "attr": "l2damagetracker:bow_strength",
-  "base": 0.01,
+  "base": 0.1,
   "base_high": 2.0,
   "base_low": 1.0,
   "main_high": 0.4,

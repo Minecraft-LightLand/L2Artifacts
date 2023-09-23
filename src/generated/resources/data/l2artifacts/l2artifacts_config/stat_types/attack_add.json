@@ -1,6 +1,6 @@
 {
   "attr": "minecraft:generic.attack_damage",
-  "base": 0.2,
+  "base": 2.0,
   "base_high": 2.0,
   "base_low": 1.0,
   "main_high": 0.4,

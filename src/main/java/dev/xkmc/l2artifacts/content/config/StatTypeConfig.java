@@ -47,15 +47,15 @@ public class StatTypeConfig extends BaseConfig implements IArtifactFeature.Sprit
 	}
 
 	public double getInitialValue(int rank, RandomSource random, boolean max) {
-		return (max ? base_high : Mth.nextDouble(random, base_low, base_high)) * rank;
+		return max ? base_high : Mth.nextDouble(random, base_low, base_high);
 	}
 
 	public double getMainValue(int rank, RandomSource random, boolean max) {
-		return (max ? main_high : Mth.nextDouble(random, main_low, main_high)) * rank;
+		return max ? main_high : Mth.nextDouble(random, main_low, main_high);
 	}
 
 	public double getSubValue(int rank, RandomSource random, boolean max) {
-		return (max ? base_high : Mth.nextDouble(random, sub_low, sub_high)) * rank;
+		return max ? base_high : Mth.nextDouble(random, sub_low, sub_high);
 	}
 
 	public MutableComponent getValueText(double val) {

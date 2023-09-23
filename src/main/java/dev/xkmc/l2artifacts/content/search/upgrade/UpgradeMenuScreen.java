@@ -10,7 +10,6 @@ import dev.xkmc.l2artifacts.content.search.tabs.IFilterScreen;
 import dev.xkmc.l2artifacts.init.data.LangData;
 import dev.xkmc.l2library.base.menu.base.BaseContainerScreen;
 import dev.xkmc.l2library.base.menu.stacked.StackedRenderHandle;
-import dev.xkmc.l2library.util.Proxy;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
@@ -129,8 +128,8 @@ public class UpgradeMenuScreen extends BaseContainerScreen<UpgradeMenu> implemen
 
 	private Component[] addEntry(boolean main, StatEntry entry, @Nullable StatEntry old) {
 		Component[] ans = new Component[3];
-		ans[0] = Component.translatable(entry.type.attr.get().getDescriptionId()).withStyle(main ? MAIN : SUB);
-		ans[1] = entry.type.getValueText(entry.getValue()).withStyle(main ? MAIN : SUB);
+		ans[0] = Component.translatable(entry.getType().attr.getDescriptionId()).withStyle(main ? MAIN : SUB);
+		ans[1] = entry.getType().getValueText(entry.getValue()).withStyle(main ? MAIN : SUB);
 		if (old != null) {
 			double diff = entry.getValue() - old.getValue();
 			if (diff > 1e-3) {
@@ -138,7 +137,7 @@ public class UpgradeMenuScreen extends BaseContainerScreen<UpgradeMenu> implemen
 				assert fg != null;
 				float perc = 1 - time / MAX_TIME;
 				int c = lerpColor(perc, fg, 0xC6C6C6);
-				ans[2] = entry.type.getValueText(diff).withStyle(Style.EMPTY.withColor(c));
+				ans[2] = entry.getType().getValueText(diff).withStyle(Style.EMPTY.withColor(c));
 			} else {
 				ans[2] = Component.empty();
 			}

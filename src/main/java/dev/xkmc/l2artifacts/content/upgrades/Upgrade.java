@@ -1,12 +1,9 @@
 package dev.xkmc.l2artifacts.content.upgrades;
 
-import dev.xkmc.l2artifacts.content.core.ArtifactStatType;
-import dev.xkmc.l2artifacts.init.data.LangData;
 import dev.xkmc.l2serial.serialization.SerialClass;
-import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 
 import java.util.ArrayList;
-import java.util.List;
 
 @SerialClass
 public class Upgrade {
@@ -14,7 +11,7 @@ public class Upgrade {
 	@SerialClass.SerialField
 	public int main, sub;
 	@SerialClass.SerialField
-	public ArrayList<ArtifactStatType> stats = new ArrayList<>();
+	public ArrayList<ResourceLocation> stats = new ArrayList<>();
 
 	public boolean removeMain() {
 		if (main > 0) {

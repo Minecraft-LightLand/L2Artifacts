@@ -1,7 +1,9 @@
 package dev.xkmc.l2artifacts.init;
 
 import com.tterrag.registrate.providers.ProviderType;
-import dev.xkmc.l2artifacts.events.*;
+import dev.xkmc.l2artifacts.events.ArtifactAttackListener;
+import dev.xkmc.l2artifacts.events.ArtifactSel;
+import dev.xkmc.l2artifacts.events.ArtifactSlotClickListener;
 import dev.xkmc.l2artifacts.init.data.ArtifactConfig;
 import dev.xkmc.l2artifacts.init.data.ConfigGen;
 import dev.xkmc.l2artifacts.init.data.LangData;
@@ -17,7 +19,6 @@ import dev.xkmc.l2damagetracker.contents.attack.AttackEventHandler;
 import dev.xkmc.l2itemselector.select.SelectionRegistry;
 import dev.xkmc.l2serial.serialization.custom_handler.RLClassHandler;
 import net.minecraft.world.entity.ai.attributes.Attribute;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -42,6 +43,7 @@ public class L2Artifacts {
 		ArtifactMenuRegistry.register();
 		ArtifactConfig.init();
 		NetworkManager.register();
+		ConfigGen.register();
 		REGISTRATE.addDataGenerator(ProviderType.LANG, LangData::genLang);
 		REGISTRATE.addDataGenerator(ProviderType.RECIPE, RecipeGen::genRecipe);
 		new RLClassHandler<>(Attribute.class, () -> ForgeRegistries.ATTRIBUTES);

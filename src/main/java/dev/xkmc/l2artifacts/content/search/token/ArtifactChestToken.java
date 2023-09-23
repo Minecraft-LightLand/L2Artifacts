@@ -1,8 +1,8 @@
 package dev.xkmc.l2artifacts.content.search.token;
 
+import dev.xkmc.l2artifacts.content.config.StatTypeConfig;
 import dev.xkmc.l2artifacts.content.core.ArtifactSet;
 import dev.xkmc.l2artifacts.content.core.ArtifactSlot;
-import dev.xkmc.l2artifacts.content.core.ArtifactStatType;
 import dev.xkmc.l2artifacts.content.core.BaseArtifact;
 import dev.xkmc.l2artifacts.content.misc.ArtifactChestItem;
 import dev.xkmc.l2artifacts.init.data.LangData;
@@ -10,6 +10,7 @@ import dev.xkmc.l2artifacts.init.registrate.ArtifactTypeRegistry;
 import dev.xkmc.l2library.util.code.GenericItemStack;
 import dev.xkmc.l2serial.serialization.SerialClass;
 import dev.xkmc.l2serial.serialization.codec.TagCodec;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 
@@ -47,7 +48,7 @@ public class ArtifactChestToken implements IArtifactFilter {
 	public final ArtifactFilter<ArtifactSlot> slot;
 
 	@SerialClass.SerialField
-	public final ArtifactFilter<ArtifactStatType> stat;
+	public final ArtifactFilter<StatTypeConfig> stat;
 
 	public int exp = 0;
 
@@ -63,7 +64,7 @@ public class ArtifactChestToken implements IArtifactFilter {
 				ArtifactTypeRegistry.SET.get(), i -> i.set.get()));
 		slot = addFilter(e -> new SimpleArtifactFilter<>(e, LangData.FILTER_SLOT,
 				ArtifactTypeRegistry.SLOT.get(), i -> i.slot.get()));
-		stat = addFilter(e -> new AttributeFilter(e, LangData.FILTER_STAT, ArtifactTypeRegistry.STAT_TYPE.get().getValues()));
+		stat = addFilter(e -> new AttributeFilter(e, LangData.FILTER_STAT, StatTypeConfig.getValues()));
 		TagCodec.fromTag(ArtifactChestItem.getFilter(stack), ArtifactChestToken.class, this, e -> true);
 	}
 

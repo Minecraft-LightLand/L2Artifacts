@@ -79,7 +79,7 @@ public class LAItem1 {
 		{
 
 			SetRegHelper helper = REGISTRATE.getSetHelper("damocles");
-			LinearFuncEntry amplify = helper.regLinear("damocles", 1, 0.5);
+			LinearFuncEntry amplify = helper.regLinear("damocles", 0.6, 0.3);
 			EFF_DAMOCLES = helper.setEffect("damocles", () -> new DamoclesSword(amplify))
 					.desc("Sword of Damocles",
 							"When at full health, direct attack damage increase by %s%%. When below half health, die immediately."

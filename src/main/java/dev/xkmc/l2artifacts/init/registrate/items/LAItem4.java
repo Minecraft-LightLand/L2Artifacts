@@ -152,13 +152,13 @@ public class LAItem4 {
 		}
 		{//Long range shooter
 			SetRegHelper helper = REGISTRATE.getSetHelper("long_shooter");
-			LinearFuncEntry long_shooter_atk = helper.regLinear("long_shooter_atk", 0.8, 0.4);
-			EFF_LONGSHOOTER_3 = helper.setEffect("long_shooter_3", () -> new LongShooterEffect(new AttrSetEntry(BOW_STRENGTH, MULTIPLY_BASE, long_shooter_atk, true)))
+			LinearFuncEntry long_shooter_atk = helper.regLinear("long_shooter_atk", 0.6, 0.3);
+			EFF_LONGSHOOTER_3 = helper.setEffect("long_shooter_3", () -> new LongShooterEffect(new AttrSetEntry(BOW_STRENGTH, ADDITION, long_shooter_atk, true)))
 					.desc("Focus of the long-range shooter",
 							"When there is no Monster in the nearby 8 cells:")
 					.register();
 
-			EFF_LONGSHOOTER_4 = helper.setEffect("long_shooter_4", () -> new LongShooterPersistentEffect(new AttrSetEntry(BOW_STRENGTH, MULTIPLY_BASE, long_shooter_atk, true)))
+			EFF_LONGSHOOTER_4 = helper.setEffect("long_shooter_4", () -> new LongShooterPersistentEffect(new AttrSetEntry(BOW_STRENGTH, ADDITION, long_shooter_atk, true)))
 					.desc("Last chance",
 							"Set the effect of suit 3 to 6 squares, when approached, it still lasts for two seconds and gains two second acceleration"
 					).register();

@@ -58,17 +58,17 @@ public class ConfigGen extends ConfigDataProvider {
 	public void add(Collector map) {
 
 		// Stat Type Config
-		regStat(map, HEALTH_ADD, Attributes.MAX_HEALTH, ADDITION, false, 0.4);
-		regStat(map, ARMOR_ADD, Attributes.ARMOR, ADDITION, false, 0.4);
-		regStat(map, TOUGH_ADD, Attributes.ARMOR_TOUGHNESS, ADDITION, false, 0.2);
-		regStat(map, ATK_ADD, Attributes.ATTACK_DAMAGE, ADDITION, false, 0.4);
+		regStat(map, HEALTH_ADD, Attributes.MAX_HEALTH, ADDITION, false, 0.2);
+		regStat(map, ARMOR_ADD, Attributes.ARMOR, ADDITION, false, 0.2);
+		regStat(map, TOUGH_ADD, Attributes.ARMOR_TOUGHNESS, ADDITION, false, 0.1);
+		regStat(map, ATK_ADD, Attributes.ATTACK_DAMAGE, ADDITION, false, 0.2);
 		regStat(map, REACH_ADD, ForgeMod.ENTITY_REACH.get(), ADDITION, false, 0.02);
 		regStat(map, CR_ADD, L2DamageTracker.CRIT_RATE.get(), ADDITION, true, 0.01);
 		regStat(map, CD_ADD, L2DamageTracker.CRIT_DMG.get(), ADDITION, true, 0.02);
-		regStat(map, ATK_MULT, Attributes.ATTACK_DAMAGE, MULTIPLY_BASE, true, 0.02);
+		regStat(map, ATK_MULT, Attributes.ATTACK_DAMAGE, MULTIPLY_BASE, true, 0.01);
 		regStat(map, SPEED_MULT, Attributes.MOVEMENT_SPEED, MULTIPLY_BASE, true, 0.01);
 		regStat(map, ATK_SPEED_MULT, Attributes.ATTACK_SPEED, MULTIPLY_BASE, true, 0.01);
-		regStat(map, BOW_ADD, L2DamageTracker.BOW_STRENGTH.get(), ADDITION, true, 0.02);
+		regStat(map, BOW_ADD, L2DamageTracker.BOW_STRENGTH.get(), ADDITION, true, 0.01);
 		// Slot Stat Config
 		{
 

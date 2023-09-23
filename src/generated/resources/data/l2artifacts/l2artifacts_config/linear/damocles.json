@@ -1,8 +1,8 @@
 {
   "map": {
     "l2artifacts:damocles": {
-      "base": 1.0,
-      "slope": 0.5
+      "base": 0.6,
+      "slope": 0.3
     }
   }
 }

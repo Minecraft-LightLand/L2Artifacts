@@ -46,7 +46,10 @@ public class AugmentMenuScreen extends BaseContainerScreen<AugmentMenu> implemen
 	private boolean pressed = false;
 
 	private float time = 0;
+	@Nullable
 	private ArtifactStats old = null, current = null;
+	private ItemStack oldStack = ItemStack.EMPTY;
+	private boolean keep = false;
 
 	public AugmentMenuScreen(AugmentMenu cont, Inventory plInv, Component title) {
 		super(cont, plInv, LangData.TAB_AUGMENT.get());
@@ -110,7 +113,7 @@ public class AugmentMenuScreen extends BaseContainerScreen<AugmentMenu> implemen
 		if (isHovering(rect.x, rect.y, rect.w, rect.h, mx, my)) {
 			old = current;
 			time = MAX_TIME;
-			click(0);
+			keep = click(0);
 		}
 		return super.mouseReleased(mx, my, btn);
 	}
@@ -128,12 +131,18 @@ public class AugmentMenuScreen extends BaseContainerScreen<AugmentMenu> implemen
 			handle.drawText(LangData.TAB_INFO_EXP_COST.get(Component.literal(str)
 					.withStyle(cost <= exp ? ChatFormatting.DARK_GREEN : ChatFormatting.DARK_RED)), false);
 			ItemStack stack = menu.container.getItem(0);
+			if (stack != oldStack) {
+				oldStack = stack;
+				if (keep) keep = false;
+				else old = null;
+			}
 			var opt = BaseArtifact.getStats(stack);
 			if (opt.isPresent()) {
 				ArtifactStats stat = opt.get();
 				List<Component[]> table = new ArrayList<>();
 				table.add(addEntry(true, stat.main_stat,
 						old == null ? null : old.main_stat, false, (menu.mask.get() & 2) > 0));
+				boolean display = old != null && old.sub_stats.size() == stat.sub_stats.size();
 				for (int i = 0; i < stat.sub_stats.size(); i++) {
 					int I = i;
 					boolean stat_exist = (menu.mask.get() & 1) > 0;
@@ -143,7 +152,7 @@ public class AugmentMenuScreen extends BaseContainerScreen<AugmentMenu> implemen
 					boolean boost_sub = (menu.mask.get() & 4) > 0;
 					boolean lit_stat = boost_sub && (!stat_exist || lit_name);
 					table.add(addEntry(false, stat.sub_stats.get(i),
-							old == null ? null : old.sub_stats.get(i), lit_name, lit_stat));
+							!display ? null : old.sub_stats.get(i), lit_name, lit_stat));
 				}
 				handle.drawTable(table.toArray(Component[][]::new), imageWidth, false);
 				current = stat;

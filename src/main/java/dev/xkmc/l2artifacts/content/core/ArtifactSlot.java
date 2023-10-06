@@ -29,7 +29,7 @@ public class ArtifactSlot extends NamedEntry<ArtifactSlot> implements IArtifactF
 
 		ResourceLocation main = main_list.get(random.nextInt(main_list.size()));
 		sub_list.remove(main);
-		stat.add(main, StatTypeConfig.get(main).getInitialValue(stat.rank, random, upgrade.removeMain()));
+		stat.add(main, StatTypeConfig.get(main).getInitialValue(random, upgrade.removeMain()));
 
 		int roll = stat.rank - 1;
 		for (int i = 0; i < roll; i++) {
@@ -44,7 +44,7 @@ public class ArtifactSlot extends NamedEntry<ArtifactSlot> implements IArtifactF
 				sub = sub_list.get(index);
 			}
 			sub_list.remove(sub);
-			stat.add(sub, StatTypeConfig.get(sub).getSubValue(stat.rank, random, upgrade.removeSub()));
+			stat.add(sub, StatTypeConfig.get(sub).getSubValue(random, upgrade.removeSub()));
 		}
 	}
 

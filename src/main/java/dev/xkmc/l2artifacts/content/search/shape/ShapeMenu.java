@@ -159,12 +159,12 @@ public class ShapeMenu extends BaseContainerMenu<ShapeMenu> implements IFilterMe
 					var mainOpt = BaseArtifact.getStats(getMainItem());
 					assert mainOpt.isPresent();
 					var mainStat = mainOpt.get().main_stat.type;
-					stat.add(mainStat, StatTypeConfig.get(mainStat).getInitialValue(rank, r, true));
+					stat.add(mainStat, StatTypeConfig.get(mainStat).getInitialValue(r, true));
 					for (int i = 0; i < rank - 1; i++) {
 						var subOpt = BaseArtifact.getStats(ShapeSlots.ARTIFACT_SUB.get(this, i).getItem());
 						assert subOpt.isPresent();
 						var subStat = subOpt.get().main_stat.type;
-						stat.add(subStat, StatTypeConfig.get(subStat).getInitialValue(rank, r, true));
+						stat.add(subStat, StatTypeConfig.get(subStat).getInitialValue(r, true));
 					}
 					TagCodec.toTag(ItemCompoundTag.of(result).getSubTag(BaseArtifact.KEY).getOrCreate(), stat);
 					ShapeSlots.OUTPUT.get(this).set(result);

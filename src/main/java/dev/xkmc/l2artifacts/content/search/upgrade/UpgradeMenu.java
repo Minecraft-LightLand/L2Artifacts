@@ -69,17 +69,18 @@ public class UpgradeMenu extends BaseContainerMenu<UpgradeMenu> implements IFilt
 	@Override
 	public boolean clickMenuButton(Player player, int data) {
 		if (data == 0) {
-			boolean canUpgrade = exp_cost.get() > 0 && exp_cost.get() <= experience.get();
+			int cost = exp_cost.get();
+			boolean canUpgrade = cost > 0 && cost <= experience.get();
 			if (player.level().isClientSide) {
 				return canUpgrade;
 			}
 			if (!canUpgrade)
 				return false;
 			ItemStack stack = container.getItem(0);
-			BaseArtifact.upgrade(stack, exp_cost.get(), player.getRandom());
+			BaseArtifact.upgrade(stack, cost, player.getRandom());
 			stack = ((BaseArtifact) stack.getItem()).resolve(stack, false, player.getRandom()).getObject();
 			container.setItem(0, stack);
-			costExp(exp_cost.get());
+			costExp(cost);
 		}
 		return false;
 	}

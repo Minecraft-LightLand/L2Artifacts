@@ -46,15 +46,15 @@ public class StatTypeConfig extends BaseConfig implements IArtifactFeature.Sprit
 		builder.put(attr, new AttributeModifier(entry.id, entry.getName(), entry.getValue(), op));
 	}
 
-	public double getInitialValue(int rank, RandomSource random, boolean max) {
+	public double getInitialValue(RandomSource random, boolean max) {
 		return max ? base_high : Mth.nextDouble(random, base_low, base_high);
 	}
 
-	public double getMainValue(int rank, RandomSource random, boolean max) {
+	public double getMainValue(RandomSource random, boolean max) {
 		return max ? main_high : Mth.nextDouble(random, main_low, main_high);
 	}
 
-	public double getSubValue(int rank, RandomSource random, boolean max) {
+	public double getSubValue(RandomSource random, boolean max) {
 		return max ? base_high : Mth.nextDouble(random, sub_low, sub_high);
 	}
 

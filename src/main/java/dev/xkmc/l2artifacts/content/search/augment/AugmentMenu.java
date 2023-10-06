@@ -118,7 +118,8 @@ public class AugmentMenu extends BaseContainerMenu<AugmentMenu> implements IFilt
 	@Override
 	public boolean clickMenuButton(Player player, int data) {
 		if (data == 0) {
-			boolean canUpgrade = exp_cost.get() > 0 && exp_cost.get() <= experience.get();
+			int cost = exp_cost.get();
+			boolean canUpgrade = cost > 0 && cost <= experience.get();
 			if (player.level().isClientSide) {
 				return canUpgrade;
 			}
@@ -142,10 +143,10 @@ public class AugmentMenu extends BaseContainerMenu<AugmentMenu> implements IFilt
 				getAsPredSlot("in_2").getItem().shrink(1);
 			}
 			BaseArtifact.setUpgrade(stack, upgrade);
-			BaseArtifact.upgrade(stack, exp_cost.get(), player.getRandom());
+			BaseArtifact.upgrade(stack, cost, player.getRandom());
 			stack = ((BaseArtifact) stack.getItem()).resolve(stack, false, player.getRandom()).getObject();
 			getAsPredSlot("input").set(stack);
-			costExp(exp_cost.get());
+			costExp(cost);
 		}
 		return false;
 	}

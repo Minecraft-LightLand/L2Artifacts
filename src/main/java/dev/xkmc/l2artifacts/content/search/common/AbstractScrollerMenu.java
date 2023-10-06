@@ -77,7 +77,7 @@ public abstract class AbstractScrollerMenu<T extends AbstractScrollerMenu<T>> ex
 		}
 		pId -= 2;
 		pId += row.get() * 6;
-		if (pId >= 0 && pId < token.getFiltered().size()) {
+		if (pId >= 0 && pId < current_count.get()) {
 			if (!player.getLevel().isClientSide()) {
 				clickSlot(pId);
 			}

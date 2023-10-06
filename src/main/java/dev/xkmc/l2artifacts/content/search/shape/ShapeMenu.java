@@ -151,7 +151,7 @@ public class ShapeMenu extends BaseContainerMenu<ShapeMenu> implements IFilterMe
 		}
 		boolean outputChanged = ShapeSlots.OUTPUT.get(this).clearDirty(() -> {
 		});
-		if (!outputChanged && !getMainItem().isEmpty()) {
+		if (!getMainItem().isEmpty()) {
 			BaseArtifact artifact = (BaseArtifact) getMainItem().getItem();
 			int rank = artifact.rank;
 
@@ -161,37 +161,37 @@ public class ShapeMenu extends BaseContainerMenu<ShapeMenu> implements IFilterMe
 				pass &= !ShapeSlots.STAT_SUB.get(this, i).getItem().isEmpty();
 				pass &= !ShapeSlots.BOOST_SUB.get(this, i).getItem().isEmpty();
 			}
-			if (pass) {
-				ItemStack result = new ItemStack(artifact, 1);
-				var r = player.getRandom();
-				ArtifactStats stat = new ArtifactStats(artifact.slot.get(), rank);
-				var mainOpt = BaseArtifact.getStats(getMainItem());
-				assert mainOpt.isPresent();
-				var mainStat = mainOpt.get().main_stat.type;
-				stat.add(mainStat, mainStat.getInitialValue(rank, r, true));
-				for (int i = 0; i < rank - 1; i++) {
-					var subOpt = BaseArtifact.getStats(ShapeSlots.ARTIFACT_SUB.get(this, i).getItem());
-					assert subOpt.isPresent();
-					var subStat = subOpt.get().main_stat.type;
-					stat.add(subStat, subStat.getInitialValue(rank, r, true));
+			if (!outputChanged) {
+				if (pass) {
+					ItemStack result = new ItemStack(artifact, 1);
+					var r = player.getRandom();
+					ArtifactStats stat = new ArtifactStats(artifact.slot.get(), rank);
+					var mainOpt = BaseArtifact.getStats(getMainItem());
+					assert mainOpt.isPresent();
+					var mainStat = mainOpt.get().main_stat.type;
+					stat.add(mainStat, mainStat.getInitialValue(rank, r, true));
+					for (int i = 0; i < rank - 1; i++) {
+						var subOpt = BaseArtifact.getStats(ShapeSlots.ARTIFACT_SUB.get(this, i).getItem());
+						assert subOpt.isPresent();
+						var subStat = subOpt.get().main_stat.type;
+						stat.add(subStat, subStat.getInitialValue(rank, r, true));
+					}
+					TagCodec.toTag(ItemCompoundTag.of(result).getSubTag(BaseArtifact.KEY).getOrCreate(), stat);
+					ShapeSlots.OUTPUT.get(this).set(result);
+				} else {
+					ShapeSlots.OUTPUT.get(this).set(ItemStack.EMPTY);
 				}
-				TagCodec.toTag(ItemCompoundTag.of(result).getSubTag(BaseArtifact.KEY).getOrCreate(), stat);
-				ShapeSlots.OUTPUT.get(this).set(result);
-			} else {
-				ShapeSlots.OUTPUT.get(this).set(ItemStack.EMPTY);
+				ShapeSlots.OUTPUT.get(this).clearDirty(() -> {
+				});
 			}
-			ShapeSlots.OUTPUT.get(this).clearDirty(() -> {
-			});
-		}
-		if (outputChanged && !getMainItem().isEmpty()) {
-			BaseArtifact artifact = (BaseArtifact) getMainItem().getItem();
-			int rank = artifact.rank;
-			ShapeSlots.ARTIFACT_MAIN.get(this).remove(1);
-			ShapeSlots.BOOST_MAIN.get(this).remove(1);
-			for (int i = 0; i < rank - 1; i++) {
-				ShapeSlots.ARTIFACT_SUB.get(this, i).remove(1);
-				ShapeSlots.STAT_SUB.get(this, i).remove(1);
-				ShapeSlots.BOOST_SUB.get(this, i).remove(1);
+			if (outputChanged && pass) {
+				ShapeSlots.ARTIFACT_MAIN.get(this).remove(1);
+				ShapeSlots.BOOST_MAIN.get(this).remove(1);
+				for (int i = 0; i < rank - 1; i++) {
+					ShapeSlots.ARTIFACT_SUB.get(this, i).remove(1);
+					ShapeSlots.STAT_SUB.get(this, i).remove(1);
+					ShapeSlots.BOOST_SUB.get(this, i).remove(1);
+				}
 			}
 		}
 	}

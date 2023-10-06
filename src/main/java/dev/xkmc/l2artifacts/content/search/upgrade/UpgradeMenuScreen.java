@@ -11,7 +11,6 @@ import dev.xkmc.l2artifacts.content.search.tabs.IFilterScreen;
 import dev.xkmc.l2artifacts.init.data.LangData;
 import dev.xkmc.l2library.base.menu.BaseContainerScreen;
 import dev.xkmc.l2library.base.menu.stacked.StackedRenderHandle;
-import dev.xkmc.l2library.util.Proxy;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
@@ -45,6 +44,8 @@ public class UpgradeMenuScreen extends BaseContainerScreen<UpgradeMenu> implemen
 
 	private float time = 0;
 	private ArtifactStats old = null, current = null;
+	private ItemStack oldStack = ItemStack.EMPTY;
+	private boolean keep = false;
 
 	public UpgradeMenuScreen(UpgradeMenu cont, Inventory plInv, Component title) {
 		super(cont, plInv, LangData.TAB_UPGRADE.get());
@@ -89,7 +90,7 @@ public class UpgradeMenuScreen extends BaseContainerScreen<UpgradeMenu> implemen
 		if (isHovering(rect.x, rect.y, rect.w, rect.h, mx, my)) {
 			old = current;
 			time = MAX_TIME;
-			click(0);
+			keep = click(0);
 		}
 		return super.mouseReleased(mx, my, btn);
 	}
@@ -107,15 +108,21 @@ public class UpgradeMenuScreen extends BaseContainerScreen<UpgradeMenu> implemen
 			handle.drawText(LangData.TAB_INFO_EXP_COST.get(Component.literal(str)
 					.withStyle(cost <= exp ? ChatFormatting.DARK_GREEN : ChatFormatting.DARK_RED)));
 			ItemStack stack = menu.container.getItem(0);
+			if (stack != oldStack) {
+				oldStack = stack;
+				if (keep) keep = false;
+				else old = null;
+			}
 			var opt = BaseArtifact.getStats(stack);
 			if (opt.isPresent()) {
 				ArtifactStats stat = opt.get();
 				List<Component[]> table = new ArrayList<>();
 				table.add(addEntry(true, stat.main_stat,
 						old == null ? null : old.main_stat));
+				boolean display = old != null && old.sub_stats.size() == stat.sub_stats.size();
 				for (int i = 0; i < stat.sub_stats.size(); i++) {
 					table.add(addEntry(false, stat.sub_stats.get(i),
-							old == null ? null : old.sub_stats.get(i)));
+							!display ? null : old.sub_stats.get(i)));
 				}
 				handle.drawTable(table.toArray(Component[][]::new), imageWidth);
 				current = stat;

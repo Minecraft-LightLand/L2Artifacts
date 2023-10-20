@@ -11,77 +11,25 @@ import dev.xkmc.l2artifacts.content.search.token.ArtifactChestToken;
 import dev.xkmc.l2artifacts.content.search.upgrade.UpgradeTab;
 import dev.xkmc.l2artifacts.init.data.LangData;
 import dev.xkmc.l2artifacts.init.registrate.items.ArtifactItemRegistry;
-import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.gui.components.AbstractWidget;
-import net.minecraft.client.gui.screens.Screen;
+import dev.xkmc.l2tabs.tabs.core.*;
 import net.minecraft.world.item.Items;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.function.Consumer;
+public class FilterTabManager extends TabManager<FilterGroup> {
 
-public class FilterTabManager {
+	public static final TabGroup<FilterGroup> GROUP = new TabGroup<>(TabType.RIGHT);
 
-	public static final FilterTabToken<FilteredTab> FILTERED = new FilterTabToken<>(FilteredTab::new, () -> Items.CHEST, LangData.TAB_FILTERED.get());
-	public static final FilterTabToken<FilterTab> FILTER = new FilterTabToken<>(FilterTab::new, () -> Items.HOPPER, LangData.TAB_FILTER.get());
-	public static final FilterTabToken<SortTab> SORT = new FilterTabToken<>(SortTab::new, () -> Items.COMPARATOR, LangData.TAB_SORT.get());
-	public static final FilterTabToken<RecycleTab> RECYCLE = new FilterTabToken<>(RecycleTab::new, () -> Items.COMPOSTER, LangData.TAB_RECYCLE.get());
-	public static final FilterTabToken<UpgradeTab> UPGRADE = new FilterTabToken<>(UpgradeTab::new, () -> Items.ANVIL, LangData.TAB_UPGRADE.get());
-	public static final FilterTabToken<DissolveTab> DISSOLVE = new FilterTabToken<>(DissolveTab::new, () -> ArtifactItemRegistry.ITEM_STAT[4].get(), LangData.TAB_DISSOLVE.get());
-	public static final FilterTabToken<AugmentTab> AUGMENT = new FilterTabToken<>(AugmentTab::new, () -> ArtifactItemRegistry.ITEM_BOOST_MAIN[4].get(), LangData.TAB_AUGMENT.get());
-	public static final FilterTabToken<ShapeTab> SHAPE = new FilterTabToken<>(ShapeTab::new, ArtifactItemRegistry.SELECT::get, LangData.TAB_SHAPE.get());
+	public static final TabToken<FilterGroup, FilteredTab> FILTERED = GROUP.registerTab(1000, FilteredTab::new, () -> Items.CHEST, LangData.TAB_FILTERED.get());
+	public static final TabToken<FilterGroup, FilterTab> FILTER = GROUP.registerTab(2000, FilterTab::new, () -> Items.HOPPER, LangData.TAB_FILTER.get());
+	public static final TabToken<FilterGroup, SortTab> SORT = GROUP.registerTab(3000, SortTab::new, () -> Items.COMPARATOR, LangData.TAB_SORT.get());
+	public static final TabToken<FilterGroup, RecycleTab> RECYCLE = GROUP.registerTab(4000, RecycleTab::new, () -> Items.COMPOSTER, LangData.TAB_RECYCLE.get());
+	public static final TabToken<FilterGroup, UpgradeTab> UPGRADE = GROUP.registerTab(5000, UpgradeTab::new, () -> Items.ANVIL, LangData.TAB_UPGRADE.get());
+	public static final TabToken<FilterGroup, DissolveTab> DISSOLVE = GROUP.registerTab(6000, DissolveTab::new, () -> ArtifactItemRegistry.ITEM_STAT[4].get(), LangData.TAB_DISSOLVE.get());
 
-	private static final List<FilterTabToken<?>> LIST_0 = List.of(FILTERED, FILTER, SORT, RECYCLE, UPGRADE);
-	private static final List<FilterTabToken<?>> LIST_1 = List.of(FILTERED, FILTER, SORT, RECYCLE, DISSOLVE, AUGMENT, SHAPE);
+	public static final TabToken<FilterGroup, AugmentTab> AUGMENT = GROUP.registerTab(7000, AugmentTab::new, () -> ArtifactItemRegistry.ITEM_BOOST_MAIN[4].get(), LangData.TAB_AUGMENT.get());
+	public static final TabToken<FilterGroup, ShapeTab> SHAPE = GROUP.registerTab(8000, ShapeTab::new, ArtifactItemRegistry.SELECT::get, LangData.TAB_SHAPE.get());
 
-	protected final List<FilterTabBase<?>> list = new ArrayList<>();
-
-	public final IFilterScreen screen;
-	public final ArtifactChestToken token;
-
-	public int tabPage;
-	public FilterTabToken<?> selected;
-
-	public FilterTabManager(IFilterScreen screen, ArtifactChestToken token) {
-		this.screen = screen;
-		this.token = token;
-	}
-
-	public void init(Consumer<AbstractWidget> adder, FilterTabToken<?> selected) {
-		var token_list = token.stack.getItem() == ArtifactItemRegistry.FILTER.get() ? LIST_0 : LIST_1;
-		list.clear();
-		this.selected = selected;
-		int guiLeft = screen.getGuiLeft();
-		int guiTop = screen.getGuiTop();
-		int imgWidth = screen.getXSize();
-		for (int i = 0; i < token_list.size(); i++) {
-			FilterTabToken<?> token = token_list.get(i);
-			FilterTabBase<?> tab = token.create(i, this);
-			tab.setX(guiLeft + imgWidth + FilterTabType.RIGHT.getX(tab.index));
-			tab.setY(guiTop + FilterTabType.RIGHT.getY(tab.index));
-			adder.accept(tab);
-			list.add(tab);
-		}
-		updateVisibility();
-	}
-
-	private void updateVisibility() {
-		for (FilterTabBase<?> tab : list) {
-			tab.visible = tab.index >= tabPage * FilterTabType.MAX_TABS && tab.index < (tabPage + 1) * FilterTabType.MAX_TABS;
-			tab.active = tab.visible;
-		}
-	}
-
-	public Screen getScreen() {
-		return screen.asScreen();
-	}
-
-	public void onToolTipRender(GuiGraphics stack, int mouseX, int mouseY) {
-		for (FilterTabBase<?> tab : list) {
-			if (tab.visible && tab.isHoveredOrFocused()) {
-				tab.onTooltip(stack, mouseX, mouseY);
-			}
-		}
+	public FilterTabManager(ITabScreen scr, ArtifactChestToken token) {
+		super(scr, new FilterGroup(GROUP, token));
 	}
 
 }

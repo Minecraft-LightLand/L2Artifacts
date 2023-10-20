@@ -2,7 +2,6 @@ package dev.xkmc.l2artifacts.content.upgrades;
 
 import dev.xkmc.l2artifacts.content.config.StatTypeConfig;
 import dev.xkmc.l2artifacts.init.data.LangData;
-import dev.xkmc.l2artifacts.init.registrate.ArtifactTypeRegistry;
 import dev.xkmc.l2library.util.nbt.ItemCompoundTag;
 import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.Tag;

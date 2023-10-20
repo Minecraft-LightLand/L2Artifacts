@@ -5,9 +5,9 @@ import dev.xkmc.l2artifacts.content.search.dissolve.DissolveMenuScreen;
 import dev.xkmc.l2artifacts.content.search.fitered.FilteredMenuScreen;
 import dev.xkmc.l2artifacts.content.search.recycle.RecycleMenuScreen;
 import dev.xkmc.l2artifacts.content.search.shape.ShapeMenuScreen;
-import dev.xkmc.l2artifacts.content.search.tabs.IFilterScreen;
 import dev.xkmc.l2artifacts.content.search.upgrade.UpgradeMenuScreen;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
+import dev.xkmc.l2tabs.tabs.core.ITabScreen;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.gui.handlers.IGuiProperties;
@@ -37,7 +37,7 @@ public class ArtifactJEIPlugin implements IModPlugin {
 	}
 
 	@Nullable
-	public static IGuiProperties create(IFilterScreen screen) {
+	public static IGuiProperties create(ITabScreen screen) {
 		if (screen.screenWidth() <= 0 || screen.screenHeight() <= 0) {
 			return null;
 		}

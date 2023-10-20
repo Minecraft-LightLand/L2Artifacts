@@ -39,7 +39,7 @@ public class StatEntry {
 		this.id = MathHelper.getUUIDFromString(str);
 	}
 
-	public StatTypeConfig getType(){
+	public StatTypeConfig getType() {
 		return StatTypeConfig.get(type);
 	}
 

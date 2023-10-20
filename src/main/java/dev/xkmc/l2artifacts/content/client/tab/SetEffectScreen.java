@@ -6,6 +6,7 @@ import dev.xkmc.l2library.util.Proxy;
 import dev.xkmc.l2library.util.code.TextWrapper;
 import dev.xkmc.l2tabs.tabs.contents.BaseTextScreen;
 import dev.xkmc.l2tabs.tabs.core.TabManager;
+import dev.xkmc.l2tabs.tabs.inventory.InvTabData;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
@@ -30,7 +31,7 @@ public class SetEffectScreen extends BaseTextScreen {
 	@Override
 	public void init() {
 		super.init();
-		new TabManager(this).init(this::addRenderableWidget, ArtifactClient.TAB_SET_EFFECTS);
+		new TabManager<>(this, new InvTabData()).init(this::addRenderableWidget, ArtifactClient.TAB_SET_EFFECTS);
 	}
 
 	@Nullable

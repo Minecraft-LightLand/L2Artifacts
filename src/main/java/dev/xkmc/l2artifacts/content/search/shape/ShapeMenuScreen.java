@@ -1,17 +1,17 @@
 package dev.xkmc.l2artifacts.content.search.shape;
 
 import dev.xkmc.l2artifacts.content.search.tabs.FilterTabManager;
-import dev.xkmc.l2artifacts.content.search.tabs.IFilterScreen;
 import dev.xkmc.l2artifacts.init.data.LangData;
 import dev.xkmc.l2library.base.menu.base.BaseContainerScreen;
 import dev.xkmc.l2library.base.menu.base.MenuLayoutConfig;
+import dev.xkmc.l2tabs.tabs.core.ITabScreen;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
 
 import javax.annotation.Nullable;
 
-public class ShapeMenuScreen extends BaseContainerScreen<ShapeMenu> implements IFilterScreen {
+public class ShapeMenuScreen extends BaseContainerScreen<ShapeMenu> implements ITabScreen {
 
 	public ShapeMenuScreen(ShapeMenu cont, Inventory plInv, Component title) {
 		super(cont, plInv, LangData.TAB_SHAPE.get());
@@ -21,16 +21,6 @@ public class ShapeMenuScreen extends BaseContainerScreen<ShapeMenu> implements I
 	protected final void init() {
 		super.init();
 		new FilterTabManager(this, menu.token).init(this::addRenderableWidget, FilterTabManager.SHAPE);
-	}
-
-	@Override
-	public int screenWidth() {
-		return width;
-	}
-
-	@Override
-	public int screenHeight() {
-		return height;
 	}
 
 	@Override

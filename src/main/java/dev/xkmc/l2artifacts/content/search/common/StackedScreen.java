@@ -2,15 +2,16 @@ package dev.xkmc.l2artifacts.content.search.common;
 
 import dev.xkmc.l2artifacts.content.client.tooltip.ItemTooltip;
 import dev.xkmc.l2artifacts.content.misc.ArtifactChestItem;
+import dev.xkmc.l2artifacts.content.search.tabs.FilterGroup;
 import dev.xkmc.l2artifacts.content.search.tabs.FilterTabManager;
-import dev.xkmc.l2artifacts.content.search.tabs.FilterTabToken;
-import dev.xkmc.l2artifacts.content.search.tabs.IFilterScreen;
 import dev.xkmc.l2artifacts.content.search.token.ArtifactChestToken;
 import dev.xkmc.l2artifacts.content.search.token.IArtifactFeature;
 import dev.xkmc.l2library.base.menu.base.SpriteManager;
 import dev.xkmc.l2library.base.menu.stacked.StackedRenderHandle;
 import dev.xkmc.l2library.util.Proxy;
 import dev.xkmc.l2serial.serialization.codec.TagCodec;
+import dev.xkmc.l2tabs.tabs.core.ITabScreen;
+import dev.xkmc.l2tabs.tabs.core.TabToken;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.renderer.RenderType;
@@ -24,7 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public abstract class StackedScreen extends Screen implements IFilterScreen {
+public abstract class StackedScreen extends Screen implements ITabScreen {
 
 	public static void renderHighlight(GuiGraphics g, int x, int y, int w, int h, int c) {
 		g.fillGradient(RenderType.guiOverlay(), x, y, x + w, y + h, c, c, 0);
@@ -33,7 +34,7 @@ public abstract class StackedScreen extends Screen implements IFilterScreen {
 	public final ArtifactChestToken token;
 
 	private final SpriteManager manager;
-	private final FilterTabToken<?> tab;
+	private final TabToken<FilterGroup, ?> tab;
 
 	private int imageWidth, imageHeight, leftPos, topPos;
 
@@ -42,7 +43,7 @@ public abstract class StackedScreen extends Screen implements IFilterScreen {
 	@Nullable
 	private FilterHover hover;
 
-	protected StackedScreen(Component title, SpriteManager manager, FilterTabToken<?> tab, ArtifactChestToken token) {
+	protected StackedScreen(Component title, SpriteManager manager, TabToken<FilterGroup, ?> tab, ArtifactChestToken token) {
 		super(title);
 		this.token = token;
 		this.tab = tab;
@@ -135,12 +136,6 @@ public abstract class StackedScreen extends Screen implements IFilterScreen {
 
 	protected abstract void clickHover(int i, int j);
 
-	public void onSwitch() {
-		var filter = TagCodec.toTag(new CompoundTag(), token);
-		assert filter != null;
-		ArtifactChestItem.setFilter(Proxy.getClientPlayer().getInventory().getItem(token.invSlot), filter);
-	}
-
 	@Override
 	public boolean mouseClicked(double mx, double my, int button) {
 		pressed = true;
@@ -176,16 +171,6 @@ public abstract class StackedScreen extends Screen implements IFilterScreen {
 	}
 
 	@Override
-	public int screenWidth() {
-		return width;
-	}
-
-	@Override
-	public int screenHeight() {
-		return height;
-	}
-
-	@Override
 	public int getXSize() {
 		return imageWidth;
 	}
@@ -193,6 +178,12 @@ public abstract class StackedScreen extends Screen implements IFilterScreen {
 	@Override
 	public int getYSize() {
 		return imageHeight;
+	}
+
+	public void onSwitch() {
+		var filter = TagCodec.toTag(new CompoundTag(), token);
+		assert filter != null;
+		ArtifactChestItem.setFilter(Proxy.getClientPlayer().getInventory().getItem(token.invSlot), filter);
 	}
 
 	protected record FilterHover(IArtifactFeature item, int i, int j, int x, int y) {

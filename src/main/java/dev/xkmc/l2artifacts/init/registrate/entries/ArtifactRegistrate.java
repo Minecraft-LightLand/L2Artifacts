@@ -1,6 +1,5 @@
 package dev.xkmc.l2artifacts.init.registrate.entries;
 
-import com.google.common.collect.HashMultimap;
 import com.google.common.collect.LinkedListMultimap;
 import com.google.common.collect.Multimap;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;

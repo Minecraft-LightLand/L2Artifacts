@@ -6,12 +6,12 @@ import dev.xkmc.l2artifacts.content.core.StatEntry;
 import dev.xkmc.l2artifacts.content.search.filter.FilterScreen;
 import dev.xkmc.l2artifacts.content.search.recycle.RecycleMenuScreen;
 import dev.xkmc.l2artifacts.content.search.tabs.FilterTabManager;
-import dev.xkmc.l2artifacts.content.search.tabs.IFilterScreen;
 import dev.xkmc.l2artifacts.content.upgrades.StatContainerItem;
 import dev.xkmc.l2artifacts.init.data.LangData;
 import dev.xkmc.l2library.base.menu.base.BaseContainerScreen;
 import dev.xkmc.l2library.base.menu.stacked.StackedRenderHandle;
 import dev.xkmc.l2library.util.Proxy;
+import dev.xkmc.l2tabs.tabs.core.ITabScreen;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
@@ -25,7 +25,7 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AugmentMenuScreen extends BaseContainerScreen<AugmentMenu> implements IFilterScreen {
+public class AugmentMenuScreen extends BaseContainerScreen<AugmentMenu> implements ITabScreen {
 
 	private static int lerpColor(float perc, int fg, int bg) {
 		int c0 = Math.round(Mth.lerp(perc, fg & 0xFF, bg & 0xFF));
@@ -187,16 +187,6 @@ public class AugmentMenuScreen extends BaseContainerScreen<AugmentMenu> implemen
 		}
 		entry.getTooltip();
 		return ans;
-	}
-
-	@Override
-	public int screenWidth() {
-		return width;
-	}
-
-	@Override
-	public int screenHeight() {
-		return height;
 	}
 
 }

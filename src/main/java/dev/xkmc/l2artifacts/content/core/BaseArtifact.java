@@ -138,7 +138,7 @@ public class BaseArtifact extends RankedItem {
 					}
 				});
 			}
-				list.addAll(set.get().getAllDescs(stack, shift));
+			list.addAll(set.get().getAllDescs(stack, shift));
 			if (!shift)
 				list.add(LangData.EXP_CONVERSION.get(ArtifactUpgradeManager.getExpForConversion(rank, getStats(stack).orElse(null))));
 		}

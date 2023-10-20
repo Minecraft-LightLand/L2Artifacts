@@ -1,12 +1,13 @@
 package dev.xkmc.l2artifacts.content.search.common;
 
+import dev.xkmc.l2artifacts.content.search.tabs.FilterGroup;
 import dev.xkmc.l2artifacts.content.search.tabs.FilterTabManager;
-import dev.xkmc.l2artifacts.content.search.tabs.FilterTabToken;
-import dev.xkmc.l2artifacts.content.search.tabs.IFilterScreen;
 import dev.xkmc.l2library.base.menu.base.BaseContainerScreen;
 import dev.xkmc.l2library.base.menu.base.MenuLayoutConfig;
 import dev.xkmc.l2library.base.menu.scroller.Scroller;
 import dev.xkmc.l2library.base.menu.scroller.ScrollerScreen;
+import dev.xkmc.l2tabs.tabs.core.ITabScreen;
+import dev.xkmc.l2tabs.tabs.core.TabToken;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
@@ -14,12 +15,12 @@ import net.minecraft.world.inventory.Slot;
 import org.lwjgl.glfw.GLFW;
 
 public class AbstractScrollerScreen<T extends AbstractScrollerMenu<T>>
-		extends BaseContainerScreen<T> implements ScrollerScreen, IFilterScreen {
+		extends BaseContainerScreen<T> implements ScrollerScreen, ITabScreen {
 
 	private final Scroller scroller;
-	private final FilterTabToken<?> tab;
+	private final TabToken<FilterGroup, ?> tab;
 
-	public AbstractScrollerScreen(T cont, Inventory plInv, Component title, FilterTabToken<?> tab) {
+	public AbstractScrollerScreen(T cont, Inventory plInv, Component title, TabToken<FilterGroup, ?> tab) {
 		super(cont, plInv, title);
 		scroller = new Scroller(this, cont.sprite.get(),
 				"slider_middle", "slider_light", "slider_dark");
@@ -57,16 +58,6 @@ public class AbstractScrollerScreen<T extends AbstractScrollerMenu<T>>
 		} else if (i > menu.getScroll()) {
 			click(1 + (i - menu.getScroll()) * 100);
 		}
-	}
-
-	@Override
-	public int screenWidth() {
-		return width;
-	}
-
-	@Override
-	public int screenHeight() {
-		return height;
 	}
 
 	@Override

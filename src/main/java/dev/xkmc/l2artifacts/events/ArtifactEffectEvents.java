@@ -23,7 +23,7 @@ public class ArtifactEffectEvents {
 	public static <T> void postEvent(LivingEntity entity, T event, EventConsumer<T> cons) {
 		if (!(entity instanceof Player))
 			return;
-		List<SlotResult> list = CuriosApi.getCuriosHelper().findCurios(entity, stack -> stack.getItem() instanceof BaseArtifact);
+		List<SlotResult> list = CuriosApi.getCuriosInventory(entity).resolve().get().findCurios(stack -> stack.getItem() instanceof BaseArtifact);
 		for (SlotResult result : list) {
 			ItemStack stack = result.stack();
 			BaseArtifact base = (BaseArtifact) stack.getItem();
@@ -34,7 +34,7 @@ public class ArtifactEffectEvents {
 	public static <T> boolean postEvent(LivingEntity entity, T event, EventPredicate<T> cons) {
 		if (!(entity instanceof Player))
 			return false;
-		List<SlotResult> list = CuriosApi.getCuriosHelper().findCurios(entity, stack -> stack.getItem() instanceof BaseArtifact);
+		List<SlotResult> list = CuriosApi.getCuriosInventory(entity).resolve().get().findCurios(stack -> stack.getItem() instanceof BaseArtifact);
 		boolean ans = false;
 		for (SlotResult result : list) {
 			ItemStack stack = result.stack();

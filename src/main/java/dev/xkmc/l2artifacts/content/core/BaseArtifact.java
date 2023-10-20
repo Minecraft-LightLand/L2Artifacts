@@ -41,7 +41,7 @@ public class BaseArtifact extends RankedItem {
 	}
 
 	public static Optional<ArtifactStats> getStats(ItemStack stack) {
-		return CuriosApi.getCuriosHelper().getCurio(stack).filter(e -> e instanceof ArtifactCurioCap)
+		return CuriosApi.getCurio(stack).filter(e -> e instanceof ArtifactCurioCap)
 				.flatMap(e -> ((ArtifactCurioCap) e).getStats());
 	}
 

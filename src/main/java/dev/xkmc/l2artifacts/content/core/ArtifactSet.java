@@ -62,8 +62,8 @@ public class ArtifactSet extends NamedEntry<ArtifactSet> implements IArtifactFea
 
 	public Optional<SetContext> getCountAndIndex(@Nullable SlotContext context) {
 		LivingEntity e = context == null ? Proxy.getPlayer() : context.entity();
-		if (e instanceof Player player) {
-			List<SlotResult> list = CuriosApi.getCuriosHelper().findCurios(player, stack -> stack.getItem() instanceof BaseArtifact artifact && artifact.set.get() == this);
+		if (e instanceof Player player && CuriosApi.getCuriosInventory(player).resolve().isPresent()) {
+			List<SlotResult> list = CuriosApi.getCuriosInventory(player).resolve().get().findCurios(stack -> stack.getItem() instanceof BaseArtifact artifact && artifact.set.get() == this);
 			int[] rank = new int[ArtifactConfig.COMMON.maxRank.get() + 1];
 			int index = -1;
 			int count = 0;
@@ -82,8 +82,8 @@ public class ArtifactSet extends NamedEntry<ArtifactSet> implements IArtifactFea
 	}
 
 	public Optional<SetContext> getSetCount(LivingEntity e) {
-		if (e instanceof Player player) {
-			List<SlotResult> list = CuriosApi.getCuriosHelper().findCurios(player, stack -> stack.getItem() instanceof BaseArtifact artifact && artifact.set.get() == this);
+		if (e instanceof Player player && CuriosApi.getCuriosInventory(player).resolve().isPresent()) {
+			List<SlotResult> list = CuriosApi.getCuriosInventory(player).resolve().get().findCurios(stack -> stack.getItem() instanceof BaseArtifact artifact && artifact.set.get() == this);
 			int[] rank = new int[ArtifactConfig.COMMON.maxRank.get() + 1];
 			int count = 0;
 			for (SlotResult result : list) {

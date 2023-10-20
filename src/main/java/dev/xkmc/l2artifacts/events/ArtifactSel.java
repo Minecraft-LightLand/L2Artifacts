@@ -57,14 +57,12 @@ public class ArtifactSel implements ISelectionListener {
 
 	@Override
 	public boolean handleClientScroll(int i, Player player) {
-		if (i < 0) {
+		if (i > 0) {
 			toServer(UP);
-			return true;
-		} else if (i > 0) {
+		} else if (i < 0) {
 			toServer(DOWN);
-			return true;
 		}
-		return false;
+		return true;
 	}
 
 	@Override

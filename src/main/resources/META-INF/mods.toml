@@ -26,7 +26,7 @@ Genshin Impact style artifacts that helps to boost player stats.
 [[dependencies.l2artifacts]]
     modId="curios"
     mandatory=true
-    versionRange="[5.0.0,)"
+    versionRange="[5.3.4,)"
     ordering="AFTER"
     side="BOTH"
 [[dependencies.l2artifacts]]

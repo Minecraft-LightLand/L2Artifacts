@@ -45,4 +45,8 @@ public class ArtifactSwapItem extends Item {
 		return InteractionResultHolder.success(stack);
 	}
 
+	@Override
+	public boolean canFitInsideContainerItems() {
+		return false;
+	}
 }

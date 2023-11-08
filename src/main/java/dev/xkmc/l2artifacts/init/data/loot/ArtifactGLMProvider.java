@@ -18,6 +18,6 @@ public class ArtifactGLMProvider extends GlobalLootModifierProvider {
 		this.add("health_based_2", new ArtifactLootModifier(200, 300, 1, ArtifactItemRegistry.RANDOM[1].asStack(), LootTableTemplate.byPlayer().build()));
 		this.add("health_based_3", new ArtifactLootModifier(300, 400, 1, ArtifactItemRegistry.RANDOM[2].asStack(), LootTableTemplate.byPlayer().build()));
 		this.add("health_based_4", new ArtifactLootModifier(400, 500, 1, ArtifactItemRegistry.RANDOM[3].asStack(), LootTableTemplate.byPlayer().build()));
-		this.add("health_based_5", new ArtifactLootModifier(500, Integer.MAX_VALUE, 1, ArtifactItemRegistry.RANDOM[4].asStack(), LootTableTemplate.byPlayer().build()));
+		this.add("health_based_5", new ArtifactLootModifier(500, 0, 1, ArtifactItemRegistry.RANDOM[4].asStack(), LootTableTemplate.byPlayer().build()));
 	}
 }

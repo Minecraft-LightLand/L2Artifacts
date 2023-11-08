@@ -6,7 +6,7 @@
       "condition": "minecraft:killed_by_player"
     }
   ],
-  "healthMax": 2147483647,
+  "healthMax": 0,
   "healthMin": 500,
   "result": {
     "Count": 1,

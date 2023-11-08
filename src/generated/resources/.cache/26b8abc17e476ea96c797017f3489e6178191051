@@ -1,7 +1,7 @@
-// 1.20.1	2023-09-23T01:00:55.17589	Global Loot Modifiers : l2artifacts
+// 1.20.1	2023-11-08T22:06:51.838922	Global Loot Modifiers : l2artifacts
 dd3f8eaab80c01b1c7df0ac530dc256130a59213 data/forge/loot_modifiers/global_loot_modifiers.json
 2cc744d517948bcae7b7f5e3c42c60c77efe25c4 data/l2artifacts/loot_modifiers/health_based_1.json
 a77d5f8fcb29e348511b888465e7509c82b32572 data/l2artifacts/loot_modifiers/health_based_2.json
 6d2e175c4ee9d9bbb0d254079f59ba0708d13810 data/l2artifacts/loot_modifiers/health_based_3.json
 065aa7f5ed74a9a7d0895f6146058253bff82af7 data/l2artifacts/loot_modifiers/health_based_4.json
-38e43e3ac7b2f8e780a6f702f9905d731c0aa443 data/l2artifacts/loot_modifiers/health_based_5.json
+60aaf2799896bb3cb541932361f154f2711ff2ec data/l2artifacts/loot_modifiers/health_based_5.json

@@ -48,7 +48,8 @@ public class ArtifactLootModifier extends LootModifier {
 		Entity entity = context.getParam(LootContextParams.THIS_ENTITY);
 		if (entity instanceof LivingEntity le && entity instanceof Enemy) {
 			float health = le.getMaxHealth();
-			if (chance > context.getRandom().nextDouble() && health + 1e-3 > healthMin && health + 1e-3 < healthMax) {
+			if (chance > context.getRandom().nextDouble() && health + 1e-3 > healthMin &&
+					(healthMax <= 0 || health + 1e-3 < healthMax)) {
 				list.add(result.copy());
 			}
 		}

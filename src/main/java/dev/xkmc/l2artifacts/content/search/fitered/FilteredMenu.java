@@ -52,7 +52,7 @@ public class FilteredMenu extends AbstractScrollerMenu<FilteredMenu> {
 				ItemStack stack = cont.getItem(0).copy();
 				if (stack.getItem() instanceof RandomArtifactItem item) {
 					for (int i = 0; i < stack.getCount(); i++) {
-						addItemToList(RandomArtifactItem.getRandomArtifact(item.rank, player.getRandom()));
+						addItemToList(RandomArtifactItem.getRandomArtifact(stack, item.rank, player.getRandom()));
 					}
 				} else {
 					addItemToList(stack);

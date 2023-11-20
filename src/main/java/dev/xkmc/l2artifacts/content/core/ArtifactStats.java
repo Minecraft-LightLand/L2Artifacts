@@ -13,6 +13,7 @@ import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 @SerialClass
 public class ArtifactStats {
@@ -77,10 +78,10 @@ public class ArtifactStats {
 		}
 	}
 
-	public Multimap<Attribute, AttributeModifier> buildAttributes() {
+	public Multimap<Attribute, AttributeModifier> buildAttributes(UUID uuid) {
 		ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
 		for (StatEntry ent : map.values()) {
-			ent.getType().getModifier(builder, ent);
+			ent.getType().getModifier(builder, ent, uuid);
 		}
 		return builder.build();
 	}

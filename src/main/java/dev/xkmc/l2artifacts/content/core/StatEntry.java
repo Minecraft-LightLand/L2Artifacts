@@ -35,8 +35,6 @@ public class StatEntry {
 
 	protected void init(ArtifactSlot slot) {
 		name = RegistrateLangProvider.toEnglishName(slot.getRegistryName().getPath());
-		String str = slot.getID() + "-" + type.toString();
-		this.id = MathHelper.getUUIDFromString(str);
 	}
 
 	public StatTypeConfig getType(){

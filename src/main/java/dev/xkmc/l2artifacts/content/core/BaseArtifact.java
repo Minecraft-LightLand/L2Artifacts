@@ -8,6 +8,7 @@ import dev.xkmc.l2library.util.nbt.ItemCompoundTag;
 import dev.xkmc.l2serial.serialization.codec.TagCodec;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.RandomSource;
@@ -17,9 +18,14 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.ICapabilityProvider;
+import net.minecraftforge.common.util.LazyOptional;
 import org.jetbrains.annotations.Nullable;
 import top.theillusivec4.curios.api.CuriosApi;
+import top.theillusivec4.curios.api.CuriosCapability;
 
+import javax.annotation.Nonnull;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Supplier;
@@ -41,7 +47,7 @@ public class BaseArtifact extends RankedItem {
 	}
 
 	public static Optional<ArtifactStats> getStats(ItemStack stack) {
-		return CuriosApi.getCuriosHelper().getCurio(stack).filter(e -> e instanceof ArtifactCurioCap)
+		return CuriosApi.getCurio(stack).filter(e -> e instanceof ArtifactCurioCap)
 				.flatMap(e -> ((ArtifactCurioCap) e).getStats());
 	}
 
@@ -138,7 +144,7 @@ public class BaseArtifact extends RankedItem {
 					}
 				});
 			}
-				list.addAll(set.get().getAllDescs(stack, shift));
+			list.addAll(set.get().getAllDescs(stack, shift));
 			if (!shift)
 				list.add(LangData.EXP_CONVERSION.get(ArtifactUpgradeManager.getExpForConversion(rank, getStats(stack).orElse(null))));
 		}
@@ -147,4 +153,15 @@ public class BaseArtifact extends RankedItem {
 			list.add(LangData.SHIFT_TEXT.get());
 		}
 	}
+
+	@Override
+	public @Nullable ICapabilityProvider initCapabilities(ItemStack stack, @Nullable CompoundTag nbt) {
+		return new ICapabilityProvider() {
+			@Nonnull
+			public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
+				return CuriosCapability.ITEM.orEmpty(cap, LazyOptional.of(() -> new ArtifactCurioCap(stack)));
+			}
+		};
+	}
+
 }

@@ -16,6 +16,7 @@ import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 
 import java.util.Collection;
+import java.util.UUID;
 
 import static net.minecraft.world.item.ItemStack.ATTRIBUTE_MODIFIER_FORMAT;
 
@@ -42,8 +43,8 @@ public class StatTypeConfig extends BaseConfig implements IArtifactFeature.Sprit
 	@SerialClass.SerialField
 	public boolean usePercent;
 
-	public void getModifier(ImmutableMultimap.Builder<Attribute, AttributeModifier> builder, StatEntry entry) {
-		builder.put(attr, new AttributeModifier(entry.id, entry.getName(), entry.getValue(), op));
+	public void getModifier(ImmutableMultimap.Builder<Attribute, AttributeModifier> builder, StatEntry entry, UUID uuid) {
+		builder.put(attr, new AttributeModifier(uuid, entry.getName(), entry.getValue(), op));
 	}
 
 	public double getInitialValue(RandomSource random, boolean max) {
@@ -82,7 +83,7 @@ public class StatTypeConfig extends BaseConfig implements IArtifactFeature.Sprit
 
 	@Override
 	public MutableComponent getDesc() {
-		return Component.translatable("stat_type." + getID().getPath() + "." + getID().getPath());
+		return Component.translatable("stat_type." + getID().getNamespace() + "." + getID().getPath());
 	}
 
 	public double getBaseValue() {

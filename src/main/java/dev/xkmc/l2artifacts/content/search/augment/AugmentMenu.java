@@ -103,7 +103,7 @@ public class AugmentMenu extends BaseContainerMenu<AugmentMenu> implements IFilt
 						var opt_stat = StatContainerItem.getType(stat);
 						if (opt_stat.isPresent()) {
 							var astat = opt_stat.get();
-							if (stats.main_stat.type != astat && stats.map.containsKey(astat)) {
+							if (!stats.main_stat.type.equals(astat) && stats.map.containsKey(astat)) {
 								useStat = true;
 							}
 						}

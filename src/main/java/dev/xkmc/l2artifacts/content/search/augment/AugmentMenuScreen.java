@@ -148,7 +148,7 @@ public class AugmentMenuScreen extends BaseContainerScreen<AugmentMenu> implemen
 					boolean stat_exist = (menu.mask.get() & 1) > 0;
 					boolean lit_name = stat_exist &&
 							StatContainerItem.getType(menu.container.getItem(1))
-									.map(e -> e == stat.sub_stats.get(I).type).orElse(false);
+									.map(e -> e.equals(stat.sub_stats.get(I).type)).orElse(false);
 					boolean boost_sub = (menu.mask.get() & 4) > 0;
 					boolean lit_stat = boost_sub && (!stat_exist || lit_name);
 					table.add(addEntry(false, stat.sub_stats.get(i),

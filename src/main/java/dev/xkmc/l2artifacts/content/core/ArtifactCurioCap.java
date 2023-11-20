@@ -42,7 +42,7 @@ public class ArtifactCurioCap implements ICurio {
 	@Override
 	public Multimap<Attribute, AttributeModifier> getAttributeModifiers(SlotContext slotContext, UUID uuid) {
 		if (getStats().isPresent()) {
-			return getStats().get().buildAttributes();
+			return getStats().get().buildAttributes(uuid);
 		}
 		return ICurio.super.getAttributeModifiers(slotContext, uuid);
 	}

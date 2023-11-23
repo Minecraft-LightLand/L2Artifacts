@@ -1,3 +1,6 @@
+2.4.15
+- Fix genesis
+
 2.4.14
 - Fix Stat Container
 - Allow repeated-slot artifact entries to apply stat

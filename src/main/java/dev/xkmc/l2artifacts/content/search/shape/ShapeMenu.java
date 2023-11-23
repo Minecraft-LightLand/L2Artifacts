@@ -59,7 +59,7 @@ public class ShapeMenu extends BaseContainerMenu<ShapeMenu> implements IFilterMe
 			var subOpt = BaseArtifact.getStats(sub);
 			if (statOpt.isEmpty()) return false;
 			if (subOpt.isEmpty()) return false;
-			return subOpt.get().main_stat.type == statOpt.get();
+			return subOpt.get().main_stat.type.equals(statOpt.get());
 		}, (i, s) -> s.setInputLockPred(() -> subMatSlotLocked(i)));
 		addSlot(ShapeSlots.BOOST_SUB.slot(), (i, e) -> {
 			ItemStack sub = ShapeSlots.ARTIFACT_SUB.get(this, i).getItem();
@@ -116,7 +116,7 @@ public class ShapeMenu extends BaseContainerMenu<ShapeMenu> implements IFilterMe
 		if (eOpt.isEmpty()) return false;
 		if (eOpt.get().level < ArtifactUpgradeManager.getMaxLevel(rank)) return false;
 		var eType = eOpt.get().main_stat.type;
-		if (mainType == eType) return false;
+		if (mainType.equals(eType)) return false;
 		for (int i = 0; i < rank - 1; i++) {
 			if (i == index) continue;
 			ItemStack other = ShapeSlots.ARTIFACT_SUB.get(this, i).getItem();
@@ -124,7 +124,7 @@ public class ShapeMenu extends BaseContainerMenu<ShapeMenu> implements IFilterMe
 			var subOpt = BaseArtifact.getStats(other);
 			assert subOpt.isPresent();
 			var subType = subOpt.get().main_stat.type;
-			if (subType == eType) return false;
+			if (subType.equals(eType)) return false;
 		}
 		return true;
 	}

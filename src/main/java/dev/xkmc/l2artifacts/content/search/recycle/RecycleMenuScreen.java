@@ -137,7 +137,7 @@ public class RecycleMenuScreen extends AbstractScrollerScreen<RecycleMenu> {
 		handle.drawText(LangData.TAB_INFO_TOTAL.get(menu.total_count.get()), false);
 		handle.drawText(LangData.TAB_INFO_MATCHED.get(menu.current_count.get()), false);
 		handle.drawText(LangData.TAB_INFO_EXP.get(formatNumber(menu.experience.get())), false);
-		handle.drawText(LangData.TAB_INFO_SELECTED.get(menu.select_count.get()),false);
+		handle.drawText(LangData.TAB_INFO_SELECTED.get(menu.select_count.get()), false);
 		handle.drawText(LangData.TAB_INFO_EXP_GAIN.get(formatNumber(menu.to_gain.get())), false);
 		handle.flushText();
 		pPoseStack.pose().popPose();

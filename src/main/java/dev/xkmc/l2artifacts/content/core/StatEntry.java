@@ -2,7 +2,6 @@ package dev.xkmc.l2artifacts.content.core;
 
 import com.tterrag.registrate.providers.RegistrateLangProvider;
 import dev.xkmc.l2artifacts.content.config.StatTypeConfig;
-import dev.xkmc.l2library.util.math.MathHelper;
 import dev.xkmc.l2serial.serialization.SerialClass;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -37,7 +36,7 @@ public class StatEntry {
 		name = RegistrateLangProvider.toEnglishName(slot.getRegistryName().getPath());
 	}
 
-	public StatTypeConfig getType(){
+	public StatTypeConfig getType() {
 		return StatTypeConfig.get(type);
 	}
 

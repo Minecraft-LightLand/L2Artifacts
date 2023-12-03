@@ -63,7 +63,7 @@ public enum LangData {
 	RANK_5("tooltip.rank.5", "Rank Lv.5", 0, null),
 
 	LOOT_POOL("tooltip.loot_pool", "Possible Sets:", 0, ChatFormatting.YELLOW),
-	LOOT_POOL_ALL("tooltip.loot_pool_all", "Possible Sets: All Sets", 0,  ChatFormatting.YELLOW),
+	LOOT_POOL_ALL("tooltip.loot_pool_all", "Possible Sets: All Sets", 0, ChatFormatting.YELLOW),
 
 	TOOL_SWAP("tool.swap", "Stores 9 sets of artifacts. When holding it in hand, click up and down arrow to select, and click R to swap. Click empty slots to disable, to prevent taking down artifacts into empty slot when you don't want to.", 0, ChatFormatting.GRAY);
 

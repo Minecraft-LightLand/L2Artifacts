@@ -21,9 +21,10 @@ import java.util.List;
 public class ArtifactEffectEvents {
 
 	public static <T> void postEvent(LivingEntity entity, T event, EventConsumer<T> cons) {
-		if (!(entity instanceof Player))
+		var opt = CuriosApi.getCuriosInventory(entity).resolve();
+		if (opt.isEmpty() || !(entity instanceof Player))
 			return;
-		List<SlotResult> list = CuriosApi.getCuriosInventory(entity).resolve().get()
+		List<SlotResult> list = opt.get()
 				.findCurios(stack -> stack.getItem() instanceof BaseArtifact);
 		for (SlotResult result : list) {
 			ItemStack stack = result.stack();
@@ -33,9 +34,10 @@ public class ArtifactEffectEvents {
 	}
 
 	public static <T> boolean postEvent(LivingEntity entity, T event, EventPredicate<T> cons) {
-		if (!(entity instanceof Player))
+		var opt = CuriosApi.getCuriosInventory(entity).resolve();
+		if (opt.isEmpty() || !(entity instanceof Player))
 			return false;
-		List<SlotResult> list = CuriosApi.getCuriosInventory(entity).resolve().get()
+		List<SlotResult> list = opt.get()
 				.findCurios(stack -> stack.getItem() instanceof BaseArtifact);
 		boolean ans = false;
 		for (SlotResult result : list) {

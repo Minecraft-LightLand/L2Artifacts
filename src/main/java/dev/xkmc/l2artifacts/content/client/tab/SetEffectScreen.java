@@ -42,7 +42,9 @@ public class SetEffectScreen extends BaseTextScreen {
 		Player player = Proxy.getClientPlayer();
 		int x = leftPos + 8;
 		int y = topPos + 6;
-		List<SlotResult> slots = CuriosApi.getCuriosInventory(player).resolve().get()
+		var opt = CuriosApi.getCuriosInventory(player).resolve();
+		if (opt.isEmpty()) return;
+		List<SlotResult> slots = opt.get()
 				.findCurios(stack -> stack.getItem() instanceof BaseArtifact);
 		List<FormattedCharSequence> seq = new ArrayList<>();
 		hover = null;

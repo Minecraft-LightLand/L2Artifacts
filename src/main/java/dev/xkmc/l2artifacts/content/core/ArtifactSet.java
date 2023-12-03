@@ -62,8 +62,9 @@ public class ArtifactSet extends NamedEntry<ArtifactSet> implements IArtifactFea
 
 	public Optional<SetContext> getCountAndIndex(@Nullable SlotContext context) {
 		LivingEntity e = context == null ? Proxy.getPlayer() : context.entity();
-		if (e instanceof Player player) {
-			List<SlotResult> list = CuriosApi.getCuriosInventory(player).resolve().get()
+		var opt = CuriosApi.getCuriosInventory(e).resolve();
+		if (opt.isPresent() && e instanceof Player) {
+			List<SlotResult> list = opt.get()
 					.findCurios(stack -> stack.getItem() instanceof BaseArtifact artifact && artifact.set.get() == this);
 			int[] rank = new int[ArtifactConfig.COMMON.maxRank.get() + 1];
 			int index = -1;
@@ -83,8 +84,9 @@ public class ArtifactSet extends NamedEntry<ArtifactSet> implements IArtifactFea
 	}
 
 	public Optional<SetContext> getSetCount(LivingEntity e) {
-		if (e instanceof Player player) {
-			List<SlotResult> list = CuriosApi.getCuriosInventory(player).resolve().get()
+		var opt = CuriosApi.getCuriosInventory(e).resolve();
+		if (opt.isPresent() && e instanceof Player) {
+			List<SlotResult> list = opt.get()
 					.findCurios(stack -> stack.getItem() instanceof BaseArtifact artifact && artifact.set.get() == this);
 			int[] rank = new int[ArtifactConfig.COMMON.maxRank.get() + 1];
 			int count = 0;

@@ -40,9 +40,9 @@ public class SortScreen extends StackedScreen {
 
 	protected void renderText(StackedRenderHandle handle, int i, int mx, int my) {
 		boolean p = pressed && prevBtnHover != null && prevBtnHover.i() == i;
-		var btns = handle.drawTextWithButtons(token.filters.get(i).getDescription(),false);
+		var btns = handle.drawTextWithButtons(token.filters.get(i).getDescription(), false);
 		var ca = btns.addButton(p ? "sort_1" : "sort_1p");
-		btns.drawText(ca, Component.literal("" + token.filters.get(i).priority()),false);
+		btns.drawText(ca, Component.literal("" + token.filters.get(i).priority()), false);
 		if (isHovering(ca.x(), ca.y(), ca.w(), ca.h(), mx, my)) {
 			btnHover = new ButtonHover(i, ca);
 		}

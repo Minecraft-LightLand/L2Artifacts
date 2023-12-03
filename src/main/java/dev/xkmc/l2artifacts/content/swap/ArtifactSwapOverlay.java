@@ -74,7 +74,7 @@ public class ArtifactSwapOverlay extends SelectionSideBar<Integer, SideBar.IntSi
 				if (!slot.isLocked()) {
 					this.renderSelection(ctx.g(), x, y, data.select == i ? 128 : 64,
 							true, data.select == i && !stack.isEmpty());
-					ctx.renderItem(stack, (int) x, (int) y);
+					ctx.renderItem(stack, x, y);
 				}
 				if (data.select == i) {
 					var opt = player.getCapability(CuriosCapability.INVENTORY).resolve()

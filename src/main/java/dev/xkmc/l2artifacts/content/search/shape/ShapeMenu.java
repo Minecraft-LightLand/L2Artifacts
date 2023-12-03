@@ -24,6 +24,8 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.ItemStack;
 
+import java.util.function.Predicate;
+
 public class ShapeMenu extends BaseContainerMenu<ShapeMenu> implements IFilterMenu {
 
 	private static final SpriteManager MANAGER = new SpriteManager(L2Artifacts.MODID, "shape");
@@ -40,7 +42,7 @@ public class ShapeMenu extends BaseContainerMenu<ShapeMenu> implements IFilterMe
 		super(ArtifactMenuRegistry.MT_SHAPE.get(), wid, plInv, MANAGER, e -> new BaseContainer<>(15, e).setMax(1), true);
 		this.token = token;
 		this.player = plInv.player;
-		addSlot(ShapeSlots.OUTPUT.slot(), e -> false);
+		addResultSlot(ShapeSlots.OUTPUT.slot(), e -> false);
 		addSlot(ShapeSlots.ARTIFACT_MAIN.slot(), e -> {
 			if (!(e.getItem() instanceof BaseArtifact art)) return false;
 			int rank = art.rank;
@@ -67,6 +69,10 @@ public class ShapeMenu extends BaseContainerMenu<ShapeMenu> implements IFilterMe
 			BaseArtifact item = (BaseArtifact) sub.getItem();
 			return e.getItem() == ArtifactItemRegistry.ITEM_BOOST_SUB[item.rank - 1].get();
 		}, (i, s) -> s.setInputLockPred(() -> subMatSlotLocked(i)));
+	}
+
+	protected void addResultSlot(String name, Predicate<ItemStack> pred) {//TODO hotfix
+		this.sprite.get().getSlot(name, (x, y) -> new ShapeResultSlot(this.container, this.added++, x, y, pred), this::addSlot);
 	}
 
 	public PredSlot getAsPredSlot(ShapeSlots slot) {

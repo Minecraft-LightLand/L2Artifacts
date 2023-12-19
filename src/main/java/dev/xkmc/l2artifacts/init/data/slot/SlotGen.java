@@ -1,5 +1,6 @@
 package dev.xkmc.l2artifacts.init.data.slot;
 
+import dev.xkmc.l2artifacts.init.L2Artifacts;
 import dev.xkmc.l2artifacts.init.data.ArtifactSlotCuriosType;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
@@ -20,7 +21,7 @@ public class SlotGen extends RecordDataProvider {
 		for (var e : ArtifactSlotCuriosType.values()) {
 			e.buildConfig(map::accept);
 		}
-		map.accept("curios/curios/entities/l2artifacts", new CurioEntityBuilder(
+		map.accept(L2Artifacts.MODID + "/curios/entities/l2artifacts", new CurioEntityBuilder(
 				new ArrayList<>(List.of(new ResourceLocation("player"))),
 				new ArrayList<>(Stream.of(ArtifactSlotCuriosType.values())
 						.map(ArtifactSlotCuriosType::getIdentifier).toList())

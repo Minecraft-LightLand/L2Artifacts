@@ -70,21 +70,6 @@ public class RecipeGen {
 						ArtifactItemRegistry.UPGRADED_POCKET.get())::unlocks,
 				Items.NETHERITE_INGOT).save(pvd, L2Artifacts.MODID + ":upgraded_pocket");
 
-		// rank up recipes
-		for (SetEntry<?> set : L2Artifacts.REGISTRATE.SET_LIST) {
-			ItemEntry<BaseArtifact>[][] items = set.items;
-			for (ItemEntry<BaseArtifact>[] slot : items) {
-				int n = slot.length;
-				for (int i = 1; i < n; i++) {
-					BaseArtifact input = slot[i - 1].get();
-					BaseArtifact output = slot[i].get();
-					unlock(pvd, new ShapelessRecipeBuilder(RecipeCategory.MISC, output, 1)::unlockedBy, input)
-							.requires(input, 2)
-							.save(pvd);
-				}
-			}
-		}
-
 		// conditionals
 		{
 			unlock(pvd, new ShapedRecipeBuilder(RecipeCategory.MISC, ArtifactItemRegistry.ITEM_STAT[0].get(), 4)::unlockedBy, LCItems.RESONANT_FEATHER.get())

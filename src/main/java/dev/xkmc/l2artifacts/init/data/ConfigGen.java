@@ -1,6 +1,5 @@
 package dev.xkmc.l2artifacts.init.data;
 
-import com.tterrag.registrate.providers.RegistrateLangProvider;
 import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
 import dev.xkmc.l2artifacts.content.config.LinearFuncConfig;
 import dev.xkmc.l2artifacts.content.config.SlotStatConfig;
@@ -29,21 +28,23 @@ import static net.minecraft.world.entity.ai.attributes.AttributeModifier.Operati
 
 public class ConfigGen extends ConfigDataProvider {
 
-	public static final ResourceLocation HEALTH_ADD = regLang("health_add");
-	public static final ResourceLocation ARMOR_ADD = regLang("armor_add");
-	public static final ResourceLocation TOUGH_ADD = regLang("tough_add");
-	public static final ResourceLocation ATK_ADD = regLang("attack_add");
-	public static final ResourceLocation REACH_ADD = regLang("reach_add");
-	public static final ResourceLocation CR_ADD = regLang("crit_rate_add");
-	public static final ResourceLocation CD_ADD = regLang("crit_damage_add");
-	public static final ResourceLocation ATK_MULT = regLang("attack_mult");
-	public static final ResourceLocation SPEED_MULT = regLang("speed_mult");
-	public static final ResourceLocation ATK_SPEED_MULT = regLang("attack_speed_mult");
-	public static final ResourceLocation BOW_ADD = regLang("bow_strength_add");
+	public static final ResourceLocation HEALTH_ADD = regLang("health_add", "Health +");
+	public static final ResourceLocation ARMOR_ADD = regLang("armor_add", "Armor +");
+	public static final ResourceLocation TOUGH_ADD = regLang("tough_add", "Armor Toughness +");
+	public static final ResourceLocation ATK_ADD = regLang("attack_add", "Melee Damage +");
+	public static final ResourceLocation REACH_ADD = regLang("reach_add", "Attack Range +");
+	public static final ResourceLocation CR_ADD = regLang("crit_rate_add", "Crit Rate +");
+	public static final ResourceLocation CD_ADD = regLang("crit_damage_add", "Crit Damage +");
+	public static final ResourceLocation ATK_MULT = regLang("attack_mult", "Melee Damage +%%");
+	public static final ResourceLocation SPEED_MULT = regLang("speed_mult", "Speed +%%");
+	public static final ResourceLocation ATK_SPEED_MULT = regLang("attack_speed_mult", "Attack Speed +%%");
+	public static final ResourceLocation BOW_ADD = regLang("bow_strength_add", "Bow Strength +%%");
+	public static final ResourceLocation EXPLOSION_ADD = regLang("explosion_add", "Explosion Damage +%%");
+	public static final ResourceLocation MAGIC_ADD = regLang("magic_add", "Magic Damage +%%");
 
-	private static ResourceLocation regLang(String name) {
-		L2Artifacts.REGISTRATE.addRawLang("stat_type." + L2Artifacts.MODID + "." + name, RegistrateLangProvider.toEnglishName(name));
-		return new ResourceLocation(L2Artifacts.MODID, name);
+	private static ResourceLocation regLang(String id, String name) {
+		L2Artifacts.REGISTRATE.addRawLang("stat_type." + L2Artifacts.MODID + "." + id, name);
+		return new ResourceLocation(L2Artifacts.MODID, id);
 	}
 
 	public static void register() {
@@ -69,6 +70,8 @@ public class ConfigGen extends ConfigDataProvider {
 		regStat(map, SPEED_MULT, Attributes.MOVEMENT_SPEED, MULTIPLY_BASE, true, 0.05);
 		regStat(map, ATK_SPEED_MULT, Attributes.ATTACK_SPEED, MULTIPLY_BASE, true, 0.05);
 		regStat(map, BOW_ADD, L2DamageTracker.BOW_STRENGTH.get(), ADDITION, true, 0.1);
+		regStat(map, EXPLOSION_ADD, L2DamageTracker.EXPLOSION_FACTOR.get(), ADDITION, true, 0.2);
+		regStat(map, MAGIC_ADD, L2DamageTracker.MAGIC_FACTOR.get(), ADDITION, true, 0.15);
 		// Slot Stat Config
 		{
 
@@ -85,6 +88,8 @@ public class ConfigGen extends ConfigDataProvider {
 				all.add(ATK_SPEED_MULT);
 				all.add(SPEED_MULT);
 				all.add(BOW_ADD);
+				all.add(EXPLOSION_ADD);
+				all.add(MAGIC_ADD);
 			}
 			{
 				ArrayList<ResourceLocation> list = new ArrayList<>();
@@ -93,6 +98,8 @@ public class ConfigGen extends ConfigDataProvider {
 				list.add(SPEED_MULT);
 				list.add(CR_ADD);
 				list.add(TOUGH_ADD);
+				list.add(EXPLOSION_ADD);
+				list.add(MAGIC_ADD);
 				addSlotStat(map, ArtifactTypeRegistry.SLOT_BODY.get(), list, all);
 			}
 			{
@@ -102,6 +109,8 @@ public class ConfigGen extends ConfigDataProvider {
 				list.add(BOW_ADD);
 				list.add(CD_ADD);
 				list.add(REACH_ADD);
+				list.add(EXPLOSION_ADD);
+				list.add(MAGIC_ADD);
 				addSlotStat(map, ArtifactTypeRegistry.SLOT_BRACELET.get(), list, all);
 			}
 			{
@@ -111,6 +120,8 @@ public class ConfigGen extends ConfigDataProvider {
 				list.add(ATK_ADD);
 				list.add(ATK_MULT);
 				list.add(BOW_ADD);
+				list.add(EXPLOSION_ADD);
+				list.add(MAGIC_ADD);
 
 				list.add(CR_ADD);
 				list.add(CD_ADD);
@@ -123,6 +134,8 @@ public class ConfigGen extends ConfigDataProvider {
 				list.add(ATK_ADD);
 				list.add(ATK_MULT);
 				list.add(BOW_ADD);
+				list.add(EXPLOSION_ADD);
+				list.add(MAGIC_ADD);
 
 				list.add(ATK_SPEED_MULT);
 				list.add(SPEED_MULT);
@@ -135,6 +148,8 @@ public class ConfigGen extends ConfigDataProvider {
 				list.add(ATK_ADD);
 				list.add(ATK_MULT);
 				list.add(BOW_ADD);
+				list.add(EXPLOSION_ADD);
+				list.add(MAGIC_ADD);
 
 				list.add(TOUGH_ADD);
 				list.add(REACH_ADD);

@@ -40,13 +40,13 @@ public class LAItem0 {
 			LinearFuncEntry luck = helper.regLinear("gambler_5_luck", 1, 0.5);
 
 			EFF_GAMBLER_3 = helper.setEffect("gambler_3", () -> new AttributeSetEffect(
-					new AttrSetEntry(CRIT_RATE, ADDITION, cr3, true),
-					new AttrSetEntry(CRIT_DMG, ADDITION, cd3, true)
+					new AttrSetEntry(CRIT_RATE::get, ADDITION, cr3, true),
+					new AttrSetEntry(CRIT_DMG::get, ADDITION, cd3, true)
 			)).lang("Pursuit of Bets").register();
 
 			EFF_GAMBLER_5 = helper.setEffect("gambler_5", () -> new AttributeSetEffect(
-					new AttrSetEntry(CRIT_RATE, ADDITION, cr5, true),
-					new AttrSetEntry(CRIT_DMG, ADDITION, cd5, true),
+					new AttrSetEntry(CRIT_RATE::get, ADDITION, cr5, true),
+					new AttrSetEntry(CRIT_DMG::get, ADDITION, cd5, true),
 					new AttrSetEntry(() -> Attributes.LUCK, ADDITION, luck, false)
 			)).lang("Bless of Luck").register();
 
@@ -75,7 +75,7 @@ public class LAItem0 {
 			EFF_BERSERKER_5 = helper.setEffect("berserker_5", () -> new AttributeSetEffect(
 					new AttrSetEntry(() -> Attributes.MOVEMENT_SPEED, MULTIPLY_BASE, speed, true),
 					new AttrSetEntry(() -> Attributes.ATTACK_SPEED, MULTIPLY_BASE, haste, true),
-					new AttrSetEntry(CRIT_DMG, ADDITION, cd5, true)
+					new AttrSetEntry(CRIT_DMG::get, ADDITION, cd5, true)
 			)).lang("Subconscious Fight").register();
 
 			SET_BERSERKER = helper.regSet(1, 5, "Berserker Set")
@@ -97,12 +97,12 @@ public class LAItem0 {
 
 			EFF_ARCHER_3 = helper.setEffect("archer_3", () -> new AttributeSetEffect(
 					new AttrSetEntry(() -> Attributes.ATTACK_DAMAGE, MULTIPLY_BASE, atk3, true),
-					new AttrSetEntry(BOW_STRENGTH, ADDITION, bow3, true)
+					new AttrSetEntry(BOW_STRENGTH::get, ADDITION, bow3, true)
 			)).lang("Specialty of Archer").register();
 
 			EFF_ARCHER_5 = helper.setEffect("archer_5", () -> new AttributeSetEffect(
 					new AttrSetEntry(() -> Attributes.ATTACK_SPEED, MULTIPLY_BASE, haste, true),
-					new AttrSetEntry(CRIT_RATE, ADDITION, cr5, true)
+					new AttrSetEntry(CRIT_RATE::get, ADDITION, cr5, true)
 			)).lang("Focus of Archer").register();
 
 			SET_ARCHER = helper.regSet(1, 5, "Archer Set")

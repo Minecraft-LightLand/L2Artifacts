@@ -78,10 +78,10 @@ public class ArtifactStats {
 		}
 	}
 
-	public Multimap<Attribute, AttributeModifier> buildAttributes(UUID uuid) {
+	public Multimap<Attribute, AttributeModifier> buildAttributes(String uuidBase) {
 		ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
 		for (StatEntry ent : map.values()) {
-			ent.getType().getModifier(builder, ent, uuid);
+			ent.getType().getModifier(builder, ent, UUID.nameUUIDFromBytes((uuidBase + ent.type).getBytes()));
 		}
 		return builder.build();
 	}

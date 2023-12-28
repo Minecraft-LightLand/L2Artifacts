@@ -56,7 +56,7 @@ public class LAItem4 {
 
 			EFF_ANCIENT_1 = helper.setEffect("ancient_scroll_1", () -> new TimedCASetEffect(Entity::isSprinting, threshold,
 							new AttrSetEntry(() -> Attributes.MOVEMENT_SPEED, MULTIPLY_BASE, speed, true)))
-					.desc("Run lick wind",
+					.desc("Run like wind",
 							"After sprinting for %s seconds:"
 					).register();
 			EFF_ANCIENT_2 = helper.setEffect("ancient_scroll_2", () -> new SimpleCPSetEffect(period,
@@ -72,14 +72,14 @@ public class LAItem4 {
 							"After attacking with full power for %s strikes with interval less than %s seconds:"
 					).register();
 			EFF_ANCIENT_4 = helper.setEffect("ancient_scroll_4", () -> new ImmobileEffect(protection, threshold))
-					.desc("Immovable as mountain",
+					.desc("Solid as mountain",
 							"After stay still for %s seconds: Damage taken is reduced to %s%% of original"
 					).register();
 			EFF_ANCIENT_5 = helper.setEffect("ancient_scroll_5", () -> new TimedCASetEffect(Entity::isShiftKeyDown, threshold,
 							new AttrSetEntry(() -> Attributes.MOVEMENT_SPEED, MULTIPLY_BASE, speed5, true),
 							new AttrSetEntry(() -> Attributes.ATTACK_DAMAGE, MULTIPLY_BASE, attack5, true)
 					))
-					.desc("As dark as dark clouds",
+					.desc("Dark as night sky",
 							"After sneaking for %s seconds:"
 					).register();
 
@@ -104,12 +104,12 @@ public class LAItem4 {
 			LinearFuncEntry luck_dmg = helper.regLinear("luck_dmg", 1, 0.2);
 
 			EFF_LUCKCLOVER_3 = helper.setEffect("luck_clover_3", () -> new LuckAttackEffect(luck_threshold, luck_count_3,
-							new AttrSetEntry(CRIT_DMG, ADDITION, luck_dmg, true)))
+							new AttrSetEntry(CRIT_DMG::get, ADDITION, luck_dmg, true)))
 					.desc("Lucky number : 3",
 							"The %s consecutive attacks are all within %s second:"
 					).register();
 			EFF_LUCKCLOVER_4 = helper.setEffect("luck_clover_4", () -> new LuckAttackEffect(luck_threshold, luck_count_4,
-							new AttrSetEntry(CRIT_RATE, ADDITION, luck_rate, true)))
+							new AttrSetEntry(CRIT_RATE::get, ADDITION, luck_rate, true)))
 					.desc("Lucky number : 4",
 							"Must be critical hit! The %s consecutive attacks are all within %s second:"
 					).register();
@@ -153,12 +153,14 @@ public class LAItem4 {
 		{//Long range shooter
 			SetRegHelper helper = REGISTRATE.getSetHelper("long_shooter");
 			LinearFuncEntry long_shooter_atk = helper.regLinear("long_shooter_atk", 0.6, 0.3);
-			EFF_LONGSHOOTER_3 = helper.setEffect("long_shooter_3", () -> new LongShooterEffect(new AttrSetEntry(BOW_STRENGTH, ADDITION, long_shooter_atk, true)))
+			EFF_LONGSHOOTER_3 = helper.setEffect("long_shooter_3", () -> new LongShooterEffect(
+					new AttrSetEntry(BOW_STRENGTH::get, ADDITION, long_shooter_atk, true)))
 					.desc("Focus of the long-range shooter",
 							"When there is no Monster in the nearby 8 cells:")
 					.register();
 
-			EFF_LONGSHOOTER_4 = helper.setEffect("long_shooter_4", () -> new LongShooterPersistentEffect(new AttrSetEntry(BOW_STRENGTH, ADDITION, long_shooter_atk, true)))
+			EFF_LONGSHOOTER_4 = helper.setEffect("long_shooter_4", () -> new LongShooterPersistentEffect(
+					new AttrSetEntry(BOW_STRENGTH::get, ADDITION, long_shooter_atk, true)))
 					.desc("Last chance",
 							"Set the effect of suit 3 to 6 squares, when approached, it still lasts for two seconds and gains two second acceleration"
 					).register();

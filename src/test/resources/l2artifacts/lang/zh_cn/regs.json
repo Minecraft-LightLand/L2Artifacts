@@ -10,7 +10,9 @@
 	"health_add": "+最大生命值",
 	"reach_add": "+攻击距离",
 	"speed_mult": "+%%速度",
-	"tough_add": "+盔甲韧性"
+	"tough_add": "+盔甲韧性",
+	"stat_type.l2artifacts.explosion_add": "+%%爆炸伤害",
+	"stat_type.l2artifacts.magic_add": "+%%魔法伤害"
   },
   "set.l2artifacts": {
 	"archer": "弓箭手",
@@ -78,7 +80,7 @@
 	"long_shooter_4": "最后的先机",
 	"luck_clover_3": "幸运数：3",
 	"luck_clover_4": "幸运数：4",
-	"damocles.desc": "满血时，近战伤害+%s%%。半血以下即死。",
+	"damocles.desc": "满血时，伤害+%s%%。半血以下玩家即死。",
 	"protection_resistance.desc": "根据失去的血量比例获得减伤。",
 	"perfection_absorption.desc": "满血时每%s秒获得1点伤害吸收，上限%s点。",
 	"perfection_protection.desc": "满血时受到的伤害-%s%%。",

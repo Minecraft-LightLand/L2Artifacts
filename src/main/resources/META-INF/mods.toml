@@ -1,5 +1,5 @@
 modLoader="javafml"
-loaderVersion="[46,)"
+loaderVersion="[47,)"
 license="LGPL v2.1"
 [[mods]]
 modId="l2artifacts"
@@ -14,7 +14,7 @@ Genshin Impact style artifacts that helps to boost player stats.
 [[dependencies.l2artifacts]]
     modId="forge"
     mandatory=true
-    versionRange="[46.0.0,)"
+    versionRange="[47.1.0,)"
     ordering="AFTER"
     side="BOTH"
 [[dependencies.l2artifacts]]
@@ -26,12 +26,12 @@ Genshin Impact style artifacts that helps to boost player stats.
 [[dependencies.l2artifacts]]
     modId="curios"
     mandatory=true
-    versionRange="[5.3.4,)"
+    versionRange="[5.4.5,)"
     ordering="AFTER"
     side="BOTH"
 [[dependencies.l2artifacts]]
     modId="l2library"
     mandatory=true
-    versionRange="[2.4.17,)"
+    versionRange="[2.4.22,)"
     ordering="AFTER"
     side="BOTH"

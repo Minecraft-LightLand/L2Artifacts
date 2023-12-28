@@ -6,6 +6,8 @@
       "l2artifacts:attack_add",
       "l2artifacts:attack_mult",
       "l2artifacts:bow_strength_add",
+      "l2artifacts:explosion_add",
+      "l2artifacts:magic_add",
       "l2artifacts:attack_speed_mult",
       "l2artifacts:speed_mult"
     ]
@@ -22,7 +24,9 @@
       "l2artifacts:reach_add",
       "l2artifacts:attack_speed_mult",
       "l2artifacts:speed_mult",
-      "l2artifacts:bow_strength_add"
+      "l2artifacts:bow_strength_add",
+      "l2artifacts:explosion_add",
+      "l2artifacts:magic_add"
     ]
   }
 }

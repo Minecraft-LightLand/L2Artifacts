@@ -22,10 +22,10 @@ public abstract class ArtifactFilter<T extends IArtifactFeature> implements IArt
 	private final LangData desc;
 
 	@SerialClass.SerialField
-	private final boolean[] selected;
+	private boolean[] selected;
 
 	@SerialClass.SerialField
-	protected final int[] item_priority;
+	protected int[] item_priority;
 
 	@SerialClass.SerialField
 	protected int sort_priority;
@@ -119,4 +119,16 @@ public abstract class ArtifactFilter<T extends IArtifactFeature> implements IArt
 	public int priority() {
 		return sort_priority;
 	}
+
+	@SerialClass.OnInject
+	public void postInject() {
+		int size = allEntries.size();
+		if (item_priority.length < size) {
+			item_priority = Arrays.copyOf(item_priority, size);
+		}
+		if (selected.length < size) {
+			selected = Arrays.copyOf(selected, size);
+		}
+	}
+
 }

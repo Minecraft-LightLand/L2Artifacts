@@ -68,7 +68,7 @@ public class ArtifactChestToken implements IArtifactFilter {
 	}
 
 	private <T extends IArtifactFeature> ArtifactFilter<T> addFilter(Function<IArtifactFilter, ArtifactFilter<T>> gen) {
-		var ans = gen.apply(filters.size() == 0 ? this : filters.get(filters.size() - 1));
+		var ans = gen.apply(filters.isEmpty() ? this : filters.get(filters.size() - 1));
 		filters.add(ans);
 		return ans;
 	}
@@ -95,7 +95,7 @@ public class ArtifactChestToken implements IArtifactFilter {
 		var list = new ArrayList<>(filters);
 		list.sort(Comparator.comparingInt(e -> e.sort_priority));
 		Comparator<GenericItemStack<BaseArtifact>> ans = null;
-		assert list.size() > 0;
+		assert !list.isEmpty();
 		for (var e : list) {
 			if (ans == null) {
 				ans = e.getComparator();

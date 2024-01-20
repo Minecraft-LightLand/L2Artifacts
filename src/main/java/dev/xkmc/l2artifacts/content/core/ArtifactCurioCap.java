@@ -3,6 +3,7 @@ package dev.xkmc.l2artifacts.content.core;
 import com.google.common.collect.Multimap;
 import dev.xkmc.l2artifacts.content.capability.ArtifactData;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
+import dev.xkmc.l2artifacts.init.data.ModConfig;
 import dev.xkmc.l2library.serial.codec.TagCodec;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.ai.attributes.Attribute;
@@ -49,6 +50,9 @@ public class ArtifactCurioCap implements ICurio {
 
 	@Override
 	public List<Component> getAttributesTooltip(List<Component> tooltips) {
+		if (ModConfig.COMMON.showArtifactAttributeTooltip.get()) {
+			return tooltips;
+		}
 		return new ArrayList<>();
 	}
 

@@ -22,6 +22,8 @@ public class ModConfig {
 		public final ForgeConfigSpec.IntValue baseExpConversion;
 		public final ForgeConfigSpec.DoubleValue expConversionRankFactor;
 
+		public final ForgeConfigSpec.BooleanValue showArtifactAttributeTooltip;
+
 		Common(ForgeConfigSpec.Builder builder) {
 			maxRank = builder.comment("maximum available rank (Not implemented. Don't change.)")
 					.defineInRange("maxRank", 5, 1, 10);
@@ -46,6 +48,8 @@ public class ModConfig {
 					.defineInRange("baseExpConversion", 100, 1, 1000000);
 			expConversionRankFactor = builder.comment("exponential experience available per rank")
 					.defineInRange("expConversionRankFactor", 2d, 1, 10);
+			showArtifactAttributeTooltip = builder.comment("Show Artifact Attribute Tooltip again at the bottom of tooltip")
+					.define("showArtifactAttributeTooltip", false);
 		}
 
 	}

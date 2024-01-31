@@ -1,0 +1,45 @@
+{
+  "parent": "minecraft:recipes/root",
+  "conditions": [
+    {
+      "type": "l2library:boolean_config",
+      "expected": true,
+      "line": [
+        "enableArtifactRankUpRecipe"
+      ],
+      "path": "l2_configs/l2artifacts-common.toml"
+    }
+  ],
+  "criteria": {
+    "has_ancient_scroll_necklace_3": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "l2artifacts:ancient_scroll_necklace_3"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "l2artifacts:ancient_scroll_necklace_4"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_ancient_scroll_necklace_3",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "l2artifacts:ancient_scroll_necklace_4"
+    ]
+  },
+  "sends_telemetry_event": false
+}

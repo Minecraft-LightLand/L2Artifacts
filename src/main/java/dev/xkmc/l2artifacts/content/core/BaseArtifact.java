@@ -117,8 +117,9 @@ public class BaseArtifact extends RankedItem {
 
 	@Override
 	public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> list, TooltipFlag flag) {
+		if (level == null || !level.isClientSide()) return;
 		boolean shift = Screen.hasShiftDown();
-		if (Proxy.getPlayer() != null) {
+		if (Proxy.getClientPlayer() != null) {
 			ItemCompoundTag tag = ItemCompoundTag.of(stack).getSubTag(KEY);
 			if (!tag.isPresent()) {
 				list.add(LangData.RAW_ARTIFACT.get());
@@ -135,7 +136,7 @@ public class BaseArtifact extends RankedItem {
 					} else if (!shift) {
 						list.add(LangData.MAIN_STAT.get());
 						list.add(stats.main_stat.getTooltip());
-						if (stats.sub_stats.size() > 0) {
+						if (!stats.sub_stats.isEmpty()) {
 							list.add(LangData.SUB_STAT.get());
 							for (StatEntry ent : stats.sub_stats) {
 								list.add(ent.getTooltip());

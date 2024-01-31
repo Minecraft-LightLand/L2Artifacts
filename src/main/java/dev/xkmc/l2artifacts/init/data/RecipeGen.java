@@ -9,6 +9,7 @@ import dev.xkmc.l2artifacts.init.registrate.entries.SetEntry;
 import dev.xkmc.l2artifacts.init.registrate.items.ArtifactItemRegistry;
 import dev.xkmc.l2complements.init.L2Complements;
 import dev.xkmc.l2complements.init.registrate.LCItems;
+import dev.xkmc.l2library.serial.conditions.BooleanValueCondition;
 import dev.xkmc.l2library.serial.recipe.ConditionalRecipeWrapper;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.data.recipes.RecipeCategory;
@@ -52,6 +53,22 @@ public class RecipeGen {
 		craftCombine(pvd, ArtifactItemRegistry.ITEM_STAT);
 		craftCombine(pvd, ArtifactItemRegistry.ITEM_BOOST_MAIN);
 		craftCombine(pvd, ArtifactItemRegistry.ITEM_BOOST_SUB);
+
+		// rank up recipes
+		for (SetEntry<?> set : L2Artifacts.REGISTRATE.SET_LIST) {
+			ItemEntry<BaseArtifact>[][] items = set.items;
+			for (ItemEntry<BaseArtifact>[] slot : items) {
+				int n = slot.length;
+				for (int i = 1; i < n; i++) {
+					BaseArtifact input = slot[i - 1].get();
+					BaseArtifact output = slot[i].get();
+					unlock(pvd, new ShapelessRecipeBuilder(RecipeCategory.MISC, output, 1)::unlockedBy, input)
+							.requires(input, 2)
+							.save(ConditionalRecipeWrapper.of(pvd, BooleanValueCondition.of(ArtifactConfig.COMMON_PATH,
+									ArtifactConfig.COMMON.enableArtifactRankUpRecipe, true)));
+				}
+			}
+		}
 
 		TagKey<Item> artifact = manager.createTagKey(new ResourceLocation(L2Artifacts.MODID, "artifact"));
 		unlock(pvd, new ShapedRecipeBuilder(RecipeCategory.MISC, ArtifactItemRegistry.FILTER.get(), 1)::unlockedBy, Items.ENDER_PEARL)

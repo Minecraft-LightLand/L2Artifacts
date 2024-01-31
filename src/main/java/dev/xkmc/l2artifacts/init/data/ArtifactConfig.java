@@ -30,6 +30,7 @@ public class ArtifactConfig {
 		public final ForgeConfigSpec.DoubleValue expRetention;
 		public final ForgeConfigSpec.IntValue baseExpConversion;
 		public final ForgeConfigSpec.DoubleValue expConversionRankFactor;
+		public final ForgeConfigSpec.BooleanValue enableArtifactRankUpRecipe;
 
 		Common(ForgeConfigSpec.Builder builder) {
 			maxRank = builder.comment("maximum available rank (Not implemented. Don't change.)")
@@ -55,6 +56,9 @@ public class ArtifactConfig {
 					.defineInRange("baseExpConversion", 100, 1, 1000000);
 			expConversionRankFactor = builder.comment("exponential experience available per rank")
 					.defineInRange("expConversionRankFactor", 2d, 1, 10);
+
+			enableArtifactRankUpRecipe = builder.comment("Enable Artifact Rank up recipe")
+					.define("enableArtifactRankUpRecipe", true);
 		}
 
 	}
@@ -64,6 +68,7 @@ public class ArtifactConfig {
 
 	public static final ForgeConfigSpec COMMON_SPEC;
 	public static final Common COMMON;
+	public static String COMMON_PATH;
 
 	static {
 
@@ -78,13 +83,14 @@ public class ArtifactConfig {
 
 	public static void init() {
 		register(ModConfig.Type.CLIENT, CLIENT_SPEC);
-		register(ModConfig.Type.COMMON, COMMON_SPEC);
+		COMMON_PATH = register(ModConfig.Type.COMMON, COMMON_SPEC);
 	}
 
-	private static void register(ModConfig.Type type, IConfigSpec<?> spec) {
+	private static String register(ModConfig.Type type, IConfigSpec<?> spec) {
 		var mod = ModLoadingContext.get().getActiveContainer();
 		String path = "l2_configs/" + mod.getModId() + "-" + type.extension() + ".toml";
 		ModLoadingContext.get().registerConfig(type, spec, path);
+		return path;
 	}
 
 

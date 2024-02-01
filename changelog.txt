@@ -1,3 +1,6 @@
+2.4.18
+- Add config option to toggle artifact rank up recipe
+
 2.4.17
 - Fix artifact pocket in old saves
 

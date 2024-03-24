@@ -37,7 +37,7 @@ public class ArtifactRenderEvent {
 
     private static <T extends LivingEntity, M extends HumanoidModel<T>> void addLayer(EntityRenderDispatcher manager, LivingEntityRenderer<T, M> ler) {
         Minecraft mc = Minecraft.getInstance();
-        ler.addLayer(new ArtifactLayer(ler, mc.getEntityModels(), manager.getItemInHandRenderer()));
+        //TODO ler.addLayer(new ArtifactLayer(ler, mc.getEntityModels(), manager.getItemInHandRenderer()));
     }
 
 }

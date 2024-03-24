@@ -6,7 +6,7 @@
   "pages": [
 	{
 	  "type": "patchouli:text",
-	  "text": "This tab allows you to fill the stat container conveniently, as a replacement of the anvil operation.$(br2)Put empty stat container in, and then select the artifact you want to use as material for stat container to absorb, and then take the output."
+	  "text": "This tab allows you to fill the stat container conveniently.$(br2)Put empty stat container in, and then select the artifact you want to use as material for stat container to absorb, and then take the output."
 	},
 	{
 	  "type": "patchouli:text",

@@ -2,6 +2,7 @@ package dev.xkmc.l2artifacts.init.data.slot;
 
 import dev.xkmc.l2artifacts.init.L2Artifacts;
 import dev.xkmc.l2artifacts.init.data.ArtifactSlotCuriosType;
+import dev.xkmc.l2library.serial.config.RecordDataProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
 

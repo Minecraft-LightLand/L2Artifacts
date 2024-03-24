@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "conditions": [
+    {
+      "type": "l2library:boolean_config",
+      "expected": true,
+      "line": [
+        "enableArtifactRankUpRecipe"
+      ],
+      "path": "l2_configs/l2artifacts-common.toml"
+    }
+  ],
+  "ingredients": [
+    {
+      "item": "l2artifacts:flesh_body_3"
+    },
+    {
+      "item": "l2artifacts:flesh_body_3"
+    }
+  ],
+  "result": {
+    "item": "l2artifacts:flesh_body_4"
+  }
+}

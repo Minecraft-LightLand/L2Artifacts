@@ -18,6 +18,12 @@ public class ArtifactAttackListener implements AttackListener {
 	}
 
 	@Override
+	public void onAttack(AttackCache cache, ItemStack weapon) {
+		if (cache.getAttackTarget() instanceof Player player)
+			postEvent(player, cache, SetEffect::playerAttackedEvent);
+	}
+
+	@Override
 	public void onHurt(AttackCache cache, ItemStack weapon) {
 		if (cache.getAttacker() instanceof Player player)
 			postEvent(player, cache, SetEffect::playerHurtOpponentEvent);

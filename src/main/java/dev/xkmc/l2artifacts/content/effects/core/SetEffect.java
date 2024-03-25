@@ -50,6 +50,24 @@ public abstract class SetEffect extends NamedEntry<SetEffect> {
 	}
 
 	/**
+	 * 当玩家被攻击时触发
+	 */
+	public void playerAttackedEvent(Player player, ArtifactSetConfig.Entry ent, int rank, AttackCache cache) {
+		var event = cache.getLivingAttackEvent();
+		assert event != null;
+		var source = event.getSource();
+		if (!event.isCanceled() && !source.is(DamageTypeTags.BYPASSES_EFFECTS)) {
+			if (playerAttackedCancel(player, ent, rank, source, cache)) {
+				event.setCanceled(true);
+			}
+		}
+	}
+
+	public boolean playerAttackedCancel(Player player, ArtifactSetConfig.Entry ent, int rank, DamageSource source, AttackCache cache) {
+		return false;
+	}
+
+	/**
 	 * 当玩家收到伤害时触发，可以修改伤害数值。
 	 */
 	public void playerHurtEvent(Player player, ArtifactSetConfig.Entry ent, int rank, AttackCache cache) {

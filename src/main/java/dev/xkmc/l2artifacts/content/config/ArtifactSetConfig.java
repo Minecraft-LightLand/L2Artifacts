@@ -2,7 +2,7 @@ package dev.xkmc.l2artifacts.content.config;
 
 import com.tterrag.registrate.providers.RegistrateLangProvider;
 import dev.xkmc.l2artifacts.content.core.ArtifactSet;
-import dev.xkmc.l2artifacts.content.effects.SetEffect;
+import dev.xkmc.l2artifacts.content.effects.core.SetEffect;
 import dev.xkmc.l2artifacts.network.NetworkManager;
 import dev.xkmc.l2library.capability.conditionals.Context;
 import dev.xkmc.l2library.serial.config.BaseConfig;

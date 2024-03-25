@@ -111,7 +111,7 @@ public class LAItem4 {
 			EFF_LUCKCLOVER_4 = helper.setEffect("luck_clover_4", () -> new LuckAttackEffect(luck_threshold, luck_count_4,
 							new AttrSetEntry(CRIT_RATE::get, ADDITION, luck_rate, true)))
 					.desc("Lucky number : 4",
-							"Must be critical hit! The %s consecutive attacks are all within %s second:"
+							"The %s consecutive attacks are all within %s second:"
 					).register();
 
 			SET_LUCKLOVER = helper.regSet(4, 4, "Luck Clover")
@@ -128,16 +128,14 @@ public class LAItem4 {
 			LinearFuncEntry abyss_level = helper.regLinear("abyss_level", 0, 0.2);
 			LinearFuncEntry abyss_health = helper.regLinear("abyss_health", 0.4, 0.2);
 			LinearFuncEntry abyss_duration = helper.regLinear("abyss_duration", 80, 20);
-			LinearFuncEntry abyss_hurt = helper.regLinear("abyss_hurt", 1.2, 0.2);
+			LinearFuncEntry abyss_hurt = helper.regLinear("abyss_hurt", 0.2, 0.1);
 
 			EFF_ABYSSMEDAL_3 = helper.setEffect("abyss_medal_3", () -> new AttributeSetEffect(
 							new AttrSetEntry(() -> Attributes.MAX_HEALTH, MULTIPLY_BASE, abyss_health, true)))
-					.desc("Abyss strengthens your body",
-							"The abyss will give you the power of blood and flesh."
-					).register();
+					.lang("Abyss Aggregate").register();
 			EFF_ABYSSMEDAL_5 = helper.setEffect("abyss_medal_5", () -> new AbyssAttackEffect(abyss_duration, abyss_level, abyss_hurt, 0))
-					.desc("Abyss eclipse",
-							"The power of the abyss is attached to your weapon and will bring %s second Lv%s Weakness and Wither to the enemy, but you will also receive %s%% damage."
+					.desc("Abyss Eclipse",
+							"On attack, inflict %s and %s. -%s%% magic damage you take."
 					).register();
 
 			SET_ABYSSMEDAL = helper.regSet(1, 5, "Abyss Medal")
@@ -154,13 +152,13 @@ public class LAItem4 {
 			SetRegHelper helper = REGISTRATE.getSetHelper("long_shooter");
 			LinearFuncEntry long_shooter_atk = helper.regLinear("long_shooter_atk", 0.6, 0.3);
 			EFF_LONGSHOOTER_3 = helper.setEffect("long_shooter_3", () -> new LongShooterEffect(
-					new AttrSetEntry(BOW_STRENGTH::get, ADDITION, long_shooter_atk, true)))
+							new AttrSetEntry(BOW_STRENGTH::get, ADDITION, long_shooter_atk, true)))
 					.desc("Focus of the long-range shooter",
 							"When there is no Monster in the nearby 8 cells:")
 					.register();
 
 			EFF_LONGSHOOTER_4 = helper.setEffect("long_shooter_4", () -> new LongShooterPersistentEffect(
-					new AttrSetEntry(BOW_STRENGTH::get, ADDITION, long_shooter_atk, true)))
+							new AttrSetEntry(BOW_STRENGTH::get, ADDITION, long_shooter_atk, true)))
 					.desc("Last chance",
 							"Set the effect of suit 3 to 6 squares, when approached, it still lasts for two seconds and gains two second acceleration"
 					).register();

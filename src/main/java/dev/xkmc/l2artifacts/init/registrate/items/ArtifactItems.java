@@ -22,13 +22,13 @@ import java.util.Objects;
 import static dev.xkmc.l2artifacts.init.L2Artifacts.REGISTRATE;
 
 @SuppressWarnings({"raw_type", "unchecked"})
-public class ArtifactItemRegistry {
+public class ArtifactItems {
 
 	public static final String[] RANK_NAME = {" -Common-", " =Rare=", " >Epic<", " »Legendary«", " -»Godly«-"};
 
 	static {
 		REGISTRATE.buildL2CreativeTab("artifacts", "L2 Artifacts", b -> b
-				.icon(ArtifactItemRegistry.SELECT::asStack));
+				.icon(ArtifactItems.SELECT::asStack));
 	}
 
 	public static final ItemEntry<SelectArtifactItem> SELECT;
@@ -107,6 +107,7 @@ public class ArtifactItemRegistry {
 		LAItem3.register();
 		LAItem4.register();
 		LAItem5.register();
+		LAItemMisc.register();
 	}
 
 	public static void register() {

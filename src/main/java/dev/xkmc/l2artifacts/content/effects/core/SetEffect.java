@@ -1,4 +1,4 @@
-package dev.xkmc.l2artifacts.content.effects;
+package dev.xkmc.l2artifacts.content.effects.core;
 
 import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactTypeRegistry;
@@ -6,9 +6,10 @@ import dev.xkmc.l2damagetracker.contents.attack.AttackCache;
 import dev.xkmc.l2library.base.NamedEntry;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.tags.DamageTypeTags;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
-import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.CriticalHitEvent;
 
 import java.util.List;
@@ -51,7 +52,16 @@ public abstract class SetEffect extends NamedEntry<SetEffect> {
 	/**
 	 * 当玩家收到伤害时触发，可以修改伤害数值。
 	 */
-	public void playerHurtEvent(Player player, ArtifactSetConfig.Entry ent, int rank, LivingHurtEvent event) {
+	public void playerHurtEvent(Player player, ArtifactSetConfig.Entry ent, int rank, AttackCache cache) {
+		var event = cache.getLivingDamageEvent();
+		assert event != null;
+		var source = event.getSource();
+		if (!source.is(DamageTypeTags.BYPASSES_EFFECTS)) {
+			playerReduceDamage(player, ent, rank, source, cache);
+		}
+	}
+
+	public void playerReduceDamage(Player player, ArtifactSetConfig.Entry ent, int rank, DamageSource source, AttackCache cache) {
 
 	}
 

@@ -1,6 +1,6 @@
-// 1.20.1	2024-03-24T22:36:31.806269	Registrate Provider for l2artifacts [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider, Tags (attributes), Tags (mob_effects), Patchouli Provider]
-00689f0f2cb00ff8dcf484045ee0a5813142b123 assets/l2artifacts/lang/en_ud.json
-b71d4f7efc4acb547a10f9dcdaac314a0b7a80d5 assets/l2artifacts/lang/en_us.json
+// 1.20.1	2024-03-25T13:33:08.720407	Registrate Provider for l2artifacts [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider, Tags (attributes), Tags (mob_effects), Patchouli Provider]
+3fcda0854c9509866453d149594d6a5ce6fc0d39 assets/l2artifacts/lang/en_ud.json
+e98652c0dbc5249b80143c5efb8ca96484c2a8c6 assets/l2artifacts/lang/en_us.json
 b8bd2d2e5b588898d6036ad788cad930cd830bb3 assets/l2artifacts/models/item/abyss_medal_belt_1.json
 038d8f4126f0f6d17791e0ad6e9d675facf37600 assets/l2artifacts/models/item/abyss_medal_belt_2.json
 f809e0fce1741dccc2e144c6eda90888d93dd883 assets/l2artifacts/models/item/abyss_medal_belt_3.json
@@ -171,6 +171,7 @@ b9da385a3131f942d729d32e3033c6d5435eb1ba assets/l2artifacts/models/item/executor
 b9f9b353b78296153b4ca179b6f1b661a43b8df7 assets/l2artifacts/models/item/executor_necklace_3.json
 0837f27099d28aac6608765507122d00cd9be451 assets/l2artifacts/models/item/executor_necklace_4.json
 ecc95b51106740f683e1a8945d27edd9afbbf72a assets/l2artifacts/models/item/executor_necklace_5.json
+9a01220c080f6183ee54b1e679a0f47ce2d644c5 assets/l2artifacts/models/item/explosive_fungus.json
 776998b0f835fb6b7db81c1ef563675f073f7233 assets/l2artifacts/models/item/filter.json
 2f26d869e11ab71c6786cce1924d315d304355da assets/l2artifacts/models/item/flesh_belt_1.json
 41408b58fa10ff6c932497ab4001a5d27731e006 assets/l2artifacts/models/item/flesh_belt_2.json
@@ -371,6 +372,7 @@ e68eae77a9f9e78e0bc96b8d5fd533e2f7892990 assets/l2artifacts/models/item/long_sho
 6c8a5657165f3a00fd15b353105ee78f980ad4e4 assets/l2artifacts/models/item/luck_clover_body_4.json
 1f79b30bb128dbe91c4cfebc62263ca36be6ce35 assets/l2artifacts/models/item/luck_clover_bracelet_4.json
 edfd38204db8e4fd6261404a0b634c67c51ad000 assets/l2artifacts/models/item/luck_clover_necklace_4.json
+14b509c0471f68e65108de28d32abcd674cd216e assets/l2artifacts/models/item/nutritious_fungus.json
 4b48b4977cdc950df8c55d65139ecf83e80b9ad2 assets/l2artifacts/models/item/perfection_belt_1.json
 0c6f45b9025de6cb996602ec4a0b0978821e6062 assets/l2artifacts/models/item/perfection_belt_2.json
 d67572e119266c65de56e8c62507b04158b4e503 assets/l2artifacts/models/item/perfection_belt_3.json
@@ -396,6 +398,7 @@ f9cfb7fcaf800f31a1d938a250f94fdc1ec4ec8d assets/l2artifacts/models/item/perfecti
 b1eae23db692b937d83e72666b9a610e6b25f548 assets/l2artifacts/models/item/perfection_necklace_3.json
 84ebc97c555eb406c8b6e179f726108d2791d455 assets/l2artifacts/models/item/perfection_necklace_4.json
 569b800ab8ff038af2573a3d82c920ff8e8efcfe assets/l2artifacts/models/item/perfection_necklace_5.json
+527d6aaca87d2dbb134c2772623623a8b23ae8a5 assets/l2artifacts/models/item/petrified_fungus.json
 75bc461f4f94d27dc3b0c1d25c18d39732446c1a assets/l2artifacts/models/item/photosynthesis_head_1.json
 fd7e5b5ed4d1c1ec5e9f73c6e68a64f142a6cf88 assets/l2artifacts/models/item/photosynthesis_head_2.json
 20872d90d12d1451bf184c6211c9bc0e0348285b assets/l2artifacts/models/item/photosynthesis_head_3.json
@@ -594,6 +597,7 @@ f6a524543d865877d9fd2ab80ffee06eed2a59fe data/curios/tags/items/artifact_body.js
 0e6546be74e098565bcbf5aec7de5607f904ef39 data/curios/tags/items/artifact_bracelet.json
 3ecfdd396bec4ee880c18016531330a2472c8bae data/curios/tags/items/artifact_head.json
 3855b465cc248b7fb31045baf4241eb51d99e1d3 data/curios/tags/items/artifact_necklace.json
+24126a3098a2464ad7c8e4f998833087a899defe data/forge/tags/items/mushrooms.json
 7f7a3e3c18b6b0315bf7d6932abef12c7373575f data/l2artifacts/advancements/recipes/misc/abyss_medal_belt_2.json
 d821b8020277b8f0e20657db2257ddec2d538f88 data/l2artifacts/advancements/recipes/misc/abyss_medal_belt_3.json
 1b7c1a455c1070b81342f3f307678beebc6a2f73 data/l2artifacts/advancements/recipes/misc/abyss_medal_belt_4.json
@@ -1081,6 +1085,7 @@ d3bea9a2f55971ae48edd08dae0a77deb17cd090 data/l2artifacts/advancements/recipes/m
 79a17092420ad932b8279f33f930c36c5e398163 data/l2artifacts/advancements/recipes/misc/wrath_necklace_3.json
 cac7ddc4481f2c84ef2ea5b14f7b2a8920062231 data/l2artifacts/advancements/recipes/misc/wrath_necklace_4.json
 80d4a93e5b43d40ebbfad260579fd4518a62df12 data/l2artifacts/advancements/recipes/misc/wrath_necklace_5.json
+08420ee97706b2c177fde1174de805e79813ebab data/l2artifacts/loot_tables/drop_fungus.json
 aedeec6d5f96cacc3a55e0f27fc3764c7c3d56a5 data/l2artifacts/recipes/abyss_medal_belt_2.json
 ed26fc5e7f234c5c328d213864448234ff396c96 data/l2artifacts/recipes/abyss_medal_belt_3.json
 651aa91eaa91344e178f7cfd2942f25d54404f11 data/l2artifacts/recipes/abyss_medal_belt_4.json

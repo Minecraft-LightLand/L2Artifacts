@@ -7,7 +7,7 @@ import dev.xkmc.l2artifacts.content.search.token.ArtifactChestToken;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
 import dev.xkmc.l2artifacts.init.data.ArtifactConfig;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactMenuRegistry;
-import dev.xkmc.l2artifacts.init.registrate.items.ArtifactItemRegistry;
+import dev.xkmc.l2artifacts.init.registrate.items.ArtifactItems;
 import dev.xkmc.l2library.base.menu.base.SpriteManager;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.Container;
@@ -36,7 +36,7 @@ public class FilteredMenu extends AbstractScrollerMenu<FilteredMenu> {
 	}
 
 	private int getMaxSize() {
-		return token.stack.getItem() == ArtifactItemRegistry.FILTER.get() ? ArtifactConfig.COMMON.storageSmall.get() : ArtifactConfig.COMMON.storageLarge.get();
+		return token.stack.getItem() == ArtifactItems.FILTER.get() ? ArtifactConfig.COMMON.storageSmall.get() : ArtifactConfig.COMMON.storageLarge.get();
 	}
 
 	@Override

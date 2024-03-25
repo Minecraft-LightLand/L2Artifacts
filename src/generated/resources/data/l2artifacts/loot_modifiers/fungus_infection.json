@@ -1,0 +1,19 @@
+{
+  "type": "l2artifacts:add_table",
+  "conditions": [
+    {
+      "condition": "minecraft:damage_source_properties",
+      "predicate": {}
+    },
+    {
+      "condition": "minecraft:entity_properties",
+      "entity": "this",
+      "predicate": {
+        "effects": {
+          "l2artifacts:fungus_infection": {}
+        }
+      }
+    }
+  ],
+  "lootTable": "l2artifacts:drop_fungus"
+}

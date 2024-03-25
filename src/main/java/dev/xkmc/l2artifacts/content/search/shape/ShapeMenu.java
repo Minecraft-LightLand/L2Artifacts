@@ -11,7 +11,7 @@ import dev.xkmc.l2artifacts.content.upgrades.Upgrade;
 import dev.xkmc.l2artifacts.content.upgrades.UpgradeBoostItem;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactMenuRegistry;
-import dev.xkmc.l2artifacts.init.registrate.items.ArtifactItemRegistry;
+import dev.xkmc.l2artifacts.init.registrate.items.ArtifactItems;
 import dev.xkmc.l2library.base.menu.base.BaseContainerMenu;
 import dev.xkmc.l2library.base.menu.base.PredSlot;
 import dev.xkmc.l2library.base.menu.base.SpriteManager;
@@ -56,7 +56,7 @@ public class ShapeMenu extends BaseContainerMenu<ShapeMenu> implements IFilterMe
 			ItemStack sub = ShapeSlots.ARTIFACT_SUB.get(this, i).getItem();
 			if (sub.isEmpty()) return false;
 			BaseArtifact item = (BaseArtifact) sub.getItem();
-			if (e.getItem() != ArtifactItemRegistry.ITEM_STAT[item.rank - 1].get()) return false;
+			if (e.getItem() != ArtifactItems.ITEM_STAT[item.rank - 1].get()) return false;
 			var statOpt = StatContainerItem.getType(e);
 			var subOpt = BaseArtifact.getStats(sub);
 			if (statOpt.isEmpty()) return false;
@@ -67,7 +67,7 @@ public class ShapeMenu extends BaseContainerMenu<ShapeMenu> implements IFilterMe
 			ItemStack sub = ShapeSlots.ARTIFACT_SUB.get(this, i).getItem();
 			if (sub.isEmpty()) return false;
 			BaseArtifact item = (BaseArtifact) sub.getItem();
-			return e.getItem() == ArtifactItemRegistry.ITEM_BOOST_SUB[item.rank - 1].get();
+			return e.getItem() == ArtifactItems.ITEM_BOOST_SUB[item.rank - 1].get();
 		}, (i, s) -> s.setInputLockPred(() -> subMatSlotLocked(i)));
 	}
 

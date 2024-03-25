@@ -10,7 +10,7 @@ import dev.xkmc.l2artifacts.content.upgrades.Upgrade;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
 import dev.xkmc.l2artifacts.init.data.ArtifactConfig;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactMenuRegistry;
-import dev.xkmc.l2artifacts.init.registrate.items.ArtifactItemRegistry;
+import dev.xkmc.l2artifacts.init.registrate.items.ArtifactItems;
 import dev.xkmc.l2library.base.menu.base.BaseContainerMenu;
 import dev.xkmc.l2library.base.menu.base.PredSlot;
 import dev.xkmc.l2library.base.menu.base.SpriteManager;
@@ -46,11 +46,11 @@ public class AugmentMenu extends BaseContainerMenu<AugmentMenu> implements IFilt
 		this.token = token;
 		this.player = plInv.player;
 		addSlot("input", e -> e.getItem() instanceof BaseArtifact);
-		addSlot("in_0", e -> e.getItem() == ArtifactItemRegistry.ITEM_STAT[getMainItem().item().rank - 1].get(),
+		addSlot("in_0", e -> e.getItem() == ArtifactItems.ITEM_STAT[getMainItem().item().rank - 1].get(),
 				e -> e.setInputLockPred(this::isSlotLocked));
-		addSlot("in_1", e -> e.getItem() == ArtifactItemRegistry.ITEM_BOOST_MAIN[getMainItem().item().rank - 1].get(),
+		addSlot("in_1", e -> e.getItem() == ArtifactItems.ITEM_BOOST_MAIN[getMainItem().item().rank - 1].get(),
 				e -> e.setInputLockPred(this::isSlotLocked));
-		addSlot("in_2", e -> e.getItem() == ArtifactItemRegistry.ITEM_BOOST_SUB[getMainItem().item().rank - 1].get(),
+		addSlot("in_2", e -> e.getItem() == ArtifactItems.ITEM_BOOST_SUB[getMainItem().item().rank - 1].get(),
 				e -> e.setInputLockPred(this::isSlotLocked));
 		this.experience = new IntDataSlot(this);
 		this.exp_cost = new IntDataSlot(this);

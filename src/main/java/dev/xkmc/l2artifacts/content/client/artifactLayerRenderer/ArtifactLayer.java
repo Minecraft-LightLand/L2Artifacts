@@ -4,7 +4,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import dev.xkmc.l2artifacts.content.core.BaseArtifact;
 import dev.xkmc.l2artifacts.init.particle.BreakingParticle;
-import dev.xkmc.l2artifacts.init.registrate.items.ArtifactItemRegistry;
+import dev.xkmc.l2artifacts.init.registrate.items.ArtifactItems;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ArmedModel;
 import net.minecraft.client.model.EntityModel;
@@ -83,7 +83,7 @@ public class ArtifactLayer<T extends Player, M extends EntityModel<T> & ArmedMod
 			double yy = aa.nextDouble() * 2 - 1 + 5;
 			if (entity.level().getDayTime() % 5 != 0 && xx * xx + zz * zz > 1) return;
 			ParticleProvider<ItemParticleOption> provider = new BreakingParticle.Provider();
-			Particle particle = provider.createParticle(new ItemParticleOption(ParticleTypes.ITEM, ArtifactItemRegistry.SELECT.asStack()), (ClientLevel) level, entity.getX() + xx, entity.getY() + yy, entity.getZ() + zz, 0, 0, 0);
+			Particle particle = provider.createParticle(new ItemParticleOption(ParticleTypes.ITEM, ArtifactItems.SELECT.asStack()), (ClientLevel) level, entity.getX() + xx, entity.getY() + yy, entity.getZ() + zz, 0, 0, 0);
 			assert particle != null;
 			Minecraft.getInstance().particleEngine.add(particle);
 		}

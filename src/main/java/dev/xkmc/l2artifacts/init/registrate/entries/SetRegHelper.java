@@ -3,7 +3,7 @@ package dev.xkmc.l2artifacts.init.registrate.entries;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import dev.xkmc.l2artifacts.content.core.ArtifactSet;
 import dev.xkmc.l2artifacts.content.core.BaseArtifact;
-import dev.xkmc.l2artifacts.content.effects.SetEffect;
+import dev.xkmc.l2artifacts.content.effects.core.SetEffect;
 import net.minecraft.resources.ResourceLocation;
 
 public class SetRegHelper {

@@ -1,13 +1,14 @@
 package dev.xkmc.l2artifacts.content.effects.v2;
 
 import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
-import dev.xkmc.l2artifacts.content.effects.SetEffect;
+import dev.xkmc.l2artifacts.content.effects.core.SetEffect;
 import dev.xkmc.l2artifacts.init.registrate.entries.LinearFuncEntry;
+import dev.xkmc.l2damagetracker.contents.attack.AttackCache;
+import dev.xkmc.l2damagetracker.contents.attack.DamageModifier;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.tags.DamageTypeTags;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.player.Player;
-import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
 import java.util.List;
 
@@ -21,9 +22,9 @@ public class ExecutorLimitEffect extends SetEffect {
 	}
 
 	@Override
-	public void playerHurtEvent(Player player, ArtifactSetConfig.Entry ent, int rank, LivingHurtEvent event) {
-		if (event.getSource().getEntity() == player && !event.getSource().is(DamageTypeTags.BYPASSES_INVULNERABILITY)) {
-			event.setAmount((float) (Math.min(player.getMaxHealth(), event.getAmount()) * factor.getFromRank(rank)));
+	public void playerReduceDamage(Player player, ArtifactSetConfig.Entry ent, int rank, DamageSource source, AttackCache cache) {
+		if (source.getEntity() == player) {
+			cache.addDealtModifier(DamageModifier.nonlinearPre(546, f -> Math.min(f, player.getMaxHealth()) * (float) factor.getFromRank(rank)));
 		}
 	}
 

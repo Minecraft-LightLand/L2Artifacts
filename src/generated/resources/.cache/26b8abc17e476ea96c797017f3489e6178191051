@@ -1,5 +1,6 @@
-// 1.20.1	2023-11-08T22:06:51.838922	Global Loot Modifiers : l2artifacts
-dd3f8eaab80c01b1c7df0ac530dc256130a59213 data/forge/loot_modifiers/global_loot_modifiers.json
+// 1.20.1	2024-03-25T12:57:18.405168	Global Loot Modifiers : l2artifacts
+1d15e7341e9eca9b23675c2fb0d56cf9d2e4c2a4 data/forge/loot_modifiers/global_loot_modifiers.json
+733b79d53d628da98168b74753f9d4a9b0d27e4b data/l2artifacts/loot_modifiers/fungus_infection.json
 2cc744d517948bcae7b7f5e3c42c60c77efe25c4 data/l2artifacts/loot_modifiers/health_based_1.json
 a77d5f8fcb29e348511b888465e7509c82b32572 data/l2artifacts/loot_modifiers/health_based_2.json
 6d2e175c4ee9d9bbb0d254079f59ba0708d13810 data/l2artifacts/loot_modifiers/health_based_3.json

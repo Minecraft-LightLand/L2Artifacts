@@ -1,6 +1,6 @@
 package dev.xkmc.l2artifacts.content.effects.attribute;
 
-import dev.xkmc.l2artifacts.content.effects.SetEffectData;
+import dev.xkmc.l2artifacts.content.effects.core.SetEffectData;
 import dev.xkmc.l2serial.serialization.SerialClass;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.player.Player;

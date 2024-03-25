@@ -27,7 +27,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Objects;
 import java.util.function.Consumer;
 
-import static dev.xkmc.l2artifacts.init.registrate.items.ArtifactItemRegistry.RANK_NAME;
+import static dev.xkmc.l2artifacts.init.registrate.items.ArtifactItems.RANK_NAME;
 
 public class SetBuilder<T extends ArtifactSet, I extends BaseArtifact, P> extends AbstractBuilder<ArtifactSet, T, P, SetBuilder<T, I, P>> {
 

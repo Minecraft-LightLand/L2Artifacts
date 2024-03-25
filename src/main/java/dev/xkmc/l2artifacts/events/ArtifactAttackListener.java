@@ -1,6 +1,6 @@
 package dev.xkmc.l2artifacts.events;
 
-import dev.xkmc.l2artifacts.content.effects.SetEffect;
+import dev.xkmc.l2artifacts.content.effects.core.SetEffect;
 import dev.xkmc.l2damagetracker.contents.attack.AttackCache;
 import dev.xkmc.l2damagetracker.contents.attack.AttackListener;
 import dev.xkmc.l2damagetracker.contents.attack.PlayerAttackCache;
@@ -21,6 +21,12 @@ public class ArtifactAttackListener implements AttackListener {
 	public void onHurt(AttackCache cache, ItemStack weapon) {
 		if (cache.getAttacker() instanceof Player player)
 			postEvent(player, cache, SetEffect::playerHurtOpponentEvent);
+	}
+
+	@Override
+	public void onDamage(AttackCache cache, ItemStack weapon) {
+		if (cache.getAttackTarget() instanceof Player player)
+			postEvent(player, cache, SetEffect::playerHurtEvent);
 	}
 
 	@Override

@@ -1,7 +1,7 @@
 package dev.xkmc.l2artifacts.content.effects.attribute;
 
 import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
-import dev.xkmc.l2artifacts.content.effects.PersistentDataSetEffect;
+import dev.xkmc.l2artifacts.content.effects.core.PersistentDataSetEffect;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;

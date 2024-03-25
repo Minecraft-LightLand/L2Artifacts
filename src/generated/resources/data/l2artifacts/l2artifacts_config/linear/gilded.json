@@ -1,0 +1,16 @@
+{
+  "map": {
+    "l2artifacts:gilded_armor": {
+      "base": 0.2,
+      "slope": 0.1
+    },
+    "l2artifacts:gilded_attack": {
+      "base": 0.2,
+      "slope": 0.1
+    },
+    "l2artifacts:gilded_tough": {
+      "base": 0.2,
+      "slope": 0.1
+    }
+  }
+}

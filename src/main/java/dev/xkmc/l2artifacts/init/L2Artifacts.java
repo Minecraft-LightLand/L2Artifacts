@@ -9,26 +9,19 @@ import dev.xkmc.l2artifacts.init.data.ConfigGen;
 import dev.xkmc.l2artifacts.init.data.LangData;
 import dev.xkmc.l2artifacts.init.data.RecipeGen;
 import dev.xkmc.l2artifacts.init.data.loot.ArtifactGLMProvider;
+import dev.xkmc.l2artifacts.init.data.loot.ArtifactLootGen;
 import dev.xkmc.l2artifacts.init.data.slot.SlotGen;
+import dev.xkmc.l2artifacts.init.registrate.ArtifactEffects;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactMenuRegistry;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactTypeRegistry;
 import dev.xkmc.l2artifacts.init.registrate.entries.ArtifactRegistrate;
-import dev.xkmc.l2artifacts.init.registrate.items.ArtifactItemRegistry;
+import dev.xkmc.l2artifacts.init.registrate.items.ArtifactItems;
 import dev.xkmc.l2artifacts.network.NetworkManager;
 import dev.xkmc.l2damagetracker.contents.attack.AttackEventHandler;
 import dev.xkmc.l2itemselector.select.SelectionRegistry;
-import dev.xkmc.l2serial.serialization.custom_handler.Handlers;
-import dev.xkmc.l2serial.serialization.custom_handler.RLClassHandler;
-import net.minecraft.core.particles.ParticleType;
-import net.minecraft.core.particles.SimpleParticleType;
-import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -42,21 +35,19 @@ public class L2Artifacts {
 	public static final ArtifactRegistrate REGISTRATE = new ArtifactRegistrate();
 	public static final ArtifactSlotClickListener CLICK = new ArtifactSlotClickListener();
 
-	public static final DeferredRegister<ParticleType<?>> PARTICLES = DeferredRegister.create(ForgeRegistries.PARTICLE_TYPES, MODID);
-	public static final RegistryObject<ParticleType<?>> WATER1 = PARTICLES.register("water1", () -> new SimpleParticleType(true));
-
 	public L2Artifacts() {
 		ArtifactTypeRegistry.register();
-		ArtifactItemRegistry.register();
+		ArtifactItems.register();
 		ArtifactMenuRegistry.register();
+		ArtifactEffects.register();
 		ArtifactConfig.init();
 		NetworkManager.register();
 		ConfigGen.register();
 		REGISTRATE.addDataGenerator(ProviderType.LANG, LangData::genLang);
 		REGISTRATE.addDataGenerator(ProviderType.RECIPE, RecipeGen::genRecipe);
+		REGISTRATE.addDataGenerator(ProviderType.LOOT, ArtifactLootGen::onLootGen);
 		SelectionRegistry.register(-5000, ArtifactSel.INSTANCE);
 		AttackEventHandler.register(3000, new ArtifactAttackListener());
-		PARTICLES.register(FMLJavaModLoadingContext.get().getModEventBus());
 	}
 
 	@SubscribeEvent

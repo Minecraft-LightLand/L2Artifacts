@@ -6,8 +6,9 @@ import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import dev.xkmc.l2artifacts.content.core.ArtifactSet;
 import dev.xkmc.l2artifacts.content.core.ArtifactSlot;
 import dev.xkmc.l2artifacts.content.core.LinearFuncHandle;
-import dev.xkmc.l2artifacts.content.effects.SetEffect;
+import dev.xkmc.l2artifacts.content.effects.core.SetEffect;
 import dev.xkmc.l2artifacts.init.data.ArtifactSlotCuriosType;
+import dev.xkmc.l2artifacts.init.data.loot.AddLootTableModifier;
 import dev.xkmc.l2artifacts.init.data.loot.ArtifactLootModifier;
 import dev.xkmc.l2library.base.L2Registrate;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -28,7 +29,11 @@ public class ArtifactTypeRegistry {
 	public static final RegistryEntry<ArtifactSlot> SLOT_BODY = regSlot("body", () -> new ArtifactSlot(ArtifactSlotCuriosType.BODY));
 	public static final RegistryEntry<ArtifactSlot> SLOT_BELT = regSlot("belt", () -> new ArtifactSlot(ArtifactSlotCuriosType.BELT));
 
-	public static final RegistryEntry<Codec<ArtifactLootModifier>> SER = REGISTRATE.simple("main", ForgeRegistries.Keys.GLOBAL_LOOT_MODIFIER_SERIALIZERS, () -> ArtifactLootModifier.CODEC);
+	public static final RegistryEntry<Codec<ArtifactLootModifier>> SER = REGISTRATE.simple("main",
+			ForgeRegistries.Keys.GLOBAL_LOOT_MODIFIER_SERIALIZERS, () -> ArtifactLootModifier.CODEC);
+
+	public static final RegistryEntry<Codec<AddLootTableModifier>> ADD_TABLE = REGISTRATE.simple("add_table",
+			ForgeRegistries.Keys.GLOBAL_LOOT_MODIFIER_SERIALIZERS, () -> AddLootTableModifier.CODEC);
 
 	public static void register() {
 

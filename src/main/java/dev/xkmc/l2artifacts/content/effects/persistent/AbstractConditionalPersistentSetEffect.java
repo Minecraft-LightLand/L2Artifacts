@@ -1,7 +1,7 @@
 package dev.xkmc.l2artifacts.content.effects.persistent;
 
 import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
-import dev.xkmc.l2artifacts.content.effects.PersistentDataSetEffect;
+import dev.xkmc.l2artifacts.content.effects.core.PersistentDataSetEffect;
 import dev.xkmc.l2artifacts.init.registrate.entries.LinearFuncEntry;
 import dev.xkmc.l2library.capability.conditionals.ConditionalData;
 import net.minecraft.world.entity.player.Player;

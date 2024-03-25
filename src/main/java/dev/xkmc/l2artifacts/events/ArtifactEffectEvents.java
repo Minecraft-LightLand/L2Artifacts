@@ -2,8 +2,9 @@ package dev.xkmc.l2artifacts.events;
 
 import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
 import dev.xkmc.l2artifacts.content.core.BaseArtifact;
-import dev.xkmc.l2artifacts.content.effects.SetEffect;
+import dev.xkmc.l2artifacts.content.effects.core.SetEffect;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
+import dev.xkmc.l2artifacts.init.registrate.ArtifactEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -46,11 +47,6 @@ public class ArtifactEffectEvents {
 			ans |= base.set.get().propagateEvent(result.slotContext(), event, cons);
 		}
 		return ans;
-	}
-
-	@SubscribeEvent(priority = EventPriority.LOW)
-	public static void onHurtEventPost(LivingHurtEvent event) {
-		postEvent(event.getEntity(), event, SetEffect::playerHurtEvent);
 	}
 
 	@SubscribeEvent

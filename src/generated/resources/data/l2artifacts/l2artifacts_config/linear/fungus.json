@@ -1,0 +1,16 @@
+{
+  "map": {
+    "l2artifacts:explode_range": {
+      "base": 6.0,
+      "slope": 1.0
+    },
+    "l2artifacts:explode_rate": {
+      "base": 0.6,
+      "slope": 0.3
+    },
+    "l2artifacts:infect_duration": {
+      "base": 200.0,
+      "slope": 40.0
+    }
+  }
+}

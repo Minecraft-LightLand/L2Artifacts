@@ -6,7 +6,7 @@ import com.tterrag.registrate.util.entry.ItemEntry;
 import dev.xkmc.l2artifacts.content.core.BaseArtifact;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
 import dev.xkmc.l2artifacts.init.registrate.entries.SetEntry;
-import dev.xkmc.l2artifacts.init.registrate.items.ArtifactItemRegistry;
+import dev.xkmc.l2artifacts.init.registrate.items.ArtifactItems;
 import dev.xkmc.l2complements.init.L2Complements;
 import dev.xkmc.l2complements.init.registrate.LCItems;
 import dev.xkmc.l2library.serial.conditions.BooleanValueCondition;
@@ -45,14 +45,14 @@ public class RecipeGen {
 		for (int i = 0; i < 5; i++) {
 			int rank = i + 1;
 			TagKey<Item> rank_tag = manager.createTagKey(new ResourceLocation(L2Artifacts.MODID, "rank_" + rank));
-			ItemEntry<?> output = ArtifactItemRegistry.ITEM_EXP[i];
+			ItemEntry<?> output = ArtifactItems.ITEM_EXP[i];
 			pvd.singleItem(DataIngredient.tag(rank_tag), RecipeCategory.MISC, output, 1, 1);
 		}
 
-		craftCombine(pvd, ArtifactItemRegistry.ITEM_EXP);
-		craftCombine(pvd, ArtifactItemRegistry.ITEM_STAT);
-		craftCombine(pvd, ArtifactItemRegistry.ITEM_BOOST_MAIN);
-		craftCombine(pvd, ArtifactItemRegistry.ITEM_BOOST_SUB);
+		craftCombine(pvd, ArtifactItems.ITEM_EXP);
+		craftCombine(pvd, ArtifactItems.ITEM_STAT);
+		craftCombine(pvd, ArtifactItems.ITEM_BOOST_MAIN);
+		craftCombine(pvd, ArtifactItems.ITEM_BOOST_SUB);
 
 		// rank up recipes
 		for (SetEntry<?> set : L2Artifacts.REGISTRATE.SET_LIST) {
@@ -71,39 +71,39 @@ public class RecipeGen {
 		}
 
 		TagKey<Item> artifact = manager.createTagKey(new ResourceLocation(L2Artifacts.MODID, "artifact"));
-		unlock(pvd, new ShapedRecipeBuilder(RecipeCategory.MISC, ArtifactItemRegistry.FILTER.get(), 1)::unlockedBy, Items.ENDER_PEARL)
+		unlock(pvd, new ShapedRecipeBuilder(RecipeCategory.MISC, ArtifactItems.FILTER.get(), 1)::unlockedBy, Items.ENDER_PEARL)
 				.pattern(" A ").pattern("LEL").pattern(" L ")
 				.define('E', Items.ENDER_PEARL).define('L', Items.LEATHER).define('A', artifact)
 				.save(pvd);
 
-		unlock(pvd, new ShapedRecipeBuilder(RecipeCategory.MISC, ArtifactItemRegistry.SWAP.get(), 1)::unlockedBy, Items.ENDER_PEARL)
+		unlock(pvd, new ShapedRecipeBuilder(RecipeCategory.MISC, ArtifactItems.SWAP.get(), 1)::unlockedBy, Items.ENDER_PEARL)
 				.pattern(" E ").pattern("LAL").pattern(" L ")
 				.define('E', Items.ENDER_PEARL).define('L', Items.LEATHER).define('A', artifact)
 				.save(pvd);
 
-		unlock(pvd, SmithingTransformRecipeBuilder.smithing(Ingredient.of(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE), Ingredient.of(ArtifactItemRegistry.FILTER.get()),
+		unlock(pvd, SmithingTransformRecipeBuilder.smithing(Ingredient.of(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE), Ingredient.of(ArtifactItems.FILTER.get()),
 						Ingredient.of(Items.NETHERITE_INGOT),
 						RecipeCategory.MISC,
-						ArtifactItemRegistry.UPGRADED_POCKET.get())::unlocks,
+						ArtifactItems.UPGRADED_POCKET.get())::unlocks,
 				Items.NETHERITE_INGOT).save(pvd, L2Artifacts.MODID + ":upgraded_pocket");
 
 		// conditionals
 		{
-			unlock(pvd, new ShapedRecipeBuilder(RecipeCategory.MISC, ArtifactItemRegistry.ITEM_STAT[0].get(), 4)::unlockedBy, LCItems.RESONANT_FEATHER.get())
+			unlock(pvd, new ShapedRecipeBuilder(RecipeCategory.MISC, ArtifactItems.ITEM_STAT[0].get(), 4)::unlockedBy, LCItems.RESONANT_FEATHER.get())
 					.pattern("AAA").pattern("BCB").pattern("AAA")
 					.define('A', Items.GOLD_INGOT)
 					.define('B', LCItems.SOUL_FLAME.get())
 					.define('C', LCItems.RESONANT_FEATHER.get())
 					.save(ConditionalRecipeWrapper.mod(pvd, L2Complements.MODID));
 
-			unlock(pvd, new ShapedRecipeBuilder(RecipeCategory.MISC, ArtifactItemRegistry.ITEM_BOOST_MAIN[0].get(), 4)::unlockedBy, LCItems.FORCE_FIELD.get())
+			unlock(pvd, new ShapedRecipeBuilder(RecipeCategory.MISC, ArtifactItems.ITEM_BOOST_MAIN[0].get(), 4)::unlockedBy, LCItems.FORCE_FIELD.get())
 					.pattern("ABA").pattern("BCB").pattern("ABA")
 					.define('A', Items.GOLD_INGOT)
 					.define('B', LCItems.STORM_CORE.get())
 					.define('C', LCItems.FORCE_FIELD.get())
 					.save(ConditionalRecipeWrapper.mod(pvd, L2Complements.MODID));
 
-			unlock(pvd, new ShapedRecipeBuilder(RecipeCategory.MISC, ArtifactItemRegistry.ITEM_BOOST_SUB[0].get(), 4)::unlockedBy, LCItems.EMERALD.get())
+			unlock(pvd, new ShapedRecipeBuilder(RecipeCategory.MISC, ArtifactItems.ITEM_BOOST_SUB[0].get(), 4)::unlockedBy, LCItems.EMERALD.get())
 					.pattern("ABA").pattern("BCB").pattern("ABA")
 					.define('A', Items.GOLD_INGOT)
 					.define('B', LCItems.CAPTURED_WIND.get())

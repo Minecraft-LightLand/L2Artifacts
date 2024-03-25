@@ -1,13 +1,14 @@
 package dev.xkmc.l2artifacts.content.effects.v1;
 
 import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
-import dev.xkmc.l2artifacts.content.effects.SetEffect;
+import dev.xkmc.l2artifacts.content.effects.core.SetEffect;
 import dev.xkmc.l2artifacts.init.registrate.entries.LinearFuncEntry;
+import dev.xkmc.l2damagetracker.contents.attack.AttackCache;
+import dev.xkmc.l2damagetracker.contents.attack.DamageModifier;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.tags.DamageTypeTags;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.player.Player;
-import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
 import java.util.List;
 
@@ -27,11 +28,9 @@ public class PerfectionProtection extends SetEffect {
 	}
 
 	@Override
-	public void playerHurtEvent(Player player, ArtifactSetConfig.Entry ent, int rank, LivingHurtEvent hurt) {
+	public void playerReduceDamage(Player player, ArtifactSetConfig.Entry ent, int rank, DamageSource source, AttackCache cache) {
 		if (player.getHealth() < player.getMaxHealth()) return;
-		if (!hurt.getSource().is(DamageTypeTags.BYPASSES_EFFECTS)) {
-			hurt.setAmount((float) (hurt.getAmount() * (1 - reduce.getFromRank(rank))));
-		}
+		cache.addDealtModifier(DamageModifier.multTotal((float) (1 - reduce.getFromRank(rank))));
 	}
 
 }

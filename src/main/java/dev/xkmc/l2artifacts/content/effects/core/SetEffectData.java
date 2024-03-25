@@ -1,4 +1,4 @@
-package dev.xkmc.l2artifacts.content.effects;
+package dev.xkmc.l2artifacts.content.effects.core;
 
 import dev.xkmc.l2library.capability.conditionals.ConditionalToken;
 import dev.xkmc.l2serial.serialization.SerialClass;

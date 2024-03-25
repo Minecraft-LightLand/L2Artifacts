@@ -5,7 +5,7 @@ import dev.xkmc.l2artifacts.content.client.tab.TabSetEffects;
 import dev.xkmc.l2artifacts.content.client.tooltip.ClientItemTooltip;
 import dev.xkmc.l2artifacts.content.client.tooltip.ItemTooltip;
 import dev.xkmc.l2artifacts.content.swap.ArtifactSwapOverlay;
-import dev.xkmc.l2artifacts.init.registrate.items.ArtifactItemRegistry;
+import dev.xkmc.l2artifacts.init.registrate.items.ArtifactItems;
 import dev.xkmc.l2tabs.tabs.core.TabRegistry;
 import dev.xkmc.l2tabs.tabs.core.TabToken;
 import net.minecraft.network.chat.Component;
@@ -25,7 +25,7 @@ public class ArtifactClient {
 	@SubscribeEvent
 	public static void clientSetup(FMLClientSetupEvent event) {
 		event.enqueueWork(() -> {
-			TAB_SET_EFFECTS = TabRegistry.registerTab(3000, TabSetEffects::new, ArtifactItemRegistry.SELECT::get,
+			TAB_SET_EFFECTS = TabRegistry.registerTab(3000, TabSetEffects::new, ArtifactItems.SELECT::get,
 					Component.translatable("menu.tabs.set_effects"));
 		});
 	}

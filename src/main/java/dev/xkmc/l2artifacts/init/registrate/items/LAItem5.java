@@ -25,24 +25,36 @@ public class LAItem5 {
 	public static final SetEntry<ArtifactSet> SET_SLIMY;
 	public static final SetEntry<ArtifactSet> SET_THERMAL;
 
+	public static final RegistryEntry<DeadCellDodge> CELL_3;
+	public static final RegistryEntry<DeadCellParry> CELL_5;
+
 	public static final RegistryEntry<FungusInfect> FUNGUS_3;
 	public static final RegistryEntry<FungusExplode> FUNGUS_5;
 	public static final RegistryEntry<AttributeSetEffect> GILDED_3;
 	public static final RegistryEntry<GildedAttack> GILDED_5;
 	public static final RegistryEntry<PoisonTouch> POISON_2;
 	public static final RegistryEntry<PoisonAttack> POISON_5;
+	public static final RegistryEntry<SlimyBuffer> SLIMY_1;
+	public static final RegistryEntry<Slimification> SLIMY_3;
 	public static final RegistryEntry<ThermalMotive> THERMAL_2;
 	public static final RegistryEntry<ThermalShield> THERMAL_4;
 
 
 	static {
-		// cell TODO
+		// cell
 		{
 			SetRegHelper helper = REGISTRATE.getSetHelper("cell");
+			var chance = helper.regLinear("dodge_chance", 0.1, 0.05);
+			var reflect = helper.regLinear("parry_reflect", 0.4, 0.2);
+			CELL_3 = helper.setEffect("dead_cell_dodge", () -> new DeadCellDodge(chance))
+					.desc("Dead Cells Dodge", "When you are sneaking, you have %s%% chance to dodge a melee / projectile damage")
+					.register();
+			CELL_5 = helper.setEffect("dead_cell_parry", () -> new DeadCellParry(reflect))
+					.desc("Dead Cells Parry", "When you shields a melee damage, reflect %s%% of the damage")
+					.register();
 			SET_CELL = helper.regSet(1, 5, "Dead Cell")
 					.setSlots(SLOT_HEAD, SLOT_NECKLACE, SLOT_BODY, SLOT_BRACELET, SLOT_BELT).regItems()
-					.buildConfig(c -> {
-					})
+					.buildConfig(c -> c.add(3, CELL_3.get()).add(5, CELL_5.get()))
 					.register();
 		}
 
@@ -111,13 +123,21 @@ public class LAItem5 {
 					.buildConfig(c -> c.add(2, POISON_2.get()).add(5, POISON_5.get())).register();
 		}
 
-		// slimy TODO
+		// slimy
 		{
 			SetRegHelper helper = REGISTRATE.getSetHelper("slimy");
+			var buffer = helper.regLinear("buffer", 0.9, 0.02);
+			var reduction = helper.regLinear("protection", 0.2, 0.1);
+			var penalty = helper.regLinear("penalty", 1, 0);
+			SLIMY_1 = helper.setEffect("slimy_buffer", () -> new SlimyBuffer(buffer))
+					.desc("Slimy Buffer", "Reduce falling / flying into wall damage by %s%%")
+					.register();
+			SLIMY_3 = helper.setEffect("slimification", () -> new Slimification(reduction, penalty))
+					.desc("Slimification", "Reduce melee / projectile damage taken by %s%%, but increase fire / freezing / explosion / magic damage taken by %s%%")
+					.register();
 			SET_SLIMY = helper.regSet(1, 5, "Slimy")
 					.setSlots(SLOT_HEAD, SLOT_BODY, SLOT_BELT).regItems()
-					.buildConfig(c -> {
-					})
+					.buildConfig(c -> c.add(1, SLIMY_1.get()).add(3, SLIMY_3.get()))
 					.register();
 		}
 

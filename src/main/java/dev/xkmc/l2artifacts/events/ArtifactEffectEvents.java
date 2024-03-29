@@ -10,6 +10,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.event.entity.living.ShieldBlockEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -53,6 +54,12 @@ public class ArtifactEffectEvents {
 	public static void onKillEvent(LivingDeathEvent event) {
 		if (event.getSource().getEntity() instanceof Player player)
 			postEvent(player, event, SetEffect::playerKillOpponentEvent);
+	}
+
+	@SubscribeEvent
+	public static void onShieldBlock(ShieldBlockEvent event) {
+		if (event.getEntity() instanceof Player player)
+			postEvent(player, event, SetEffect::playerShieldBlock);
 	}
 
 	public interface EventConsumer<T> {

@@ -10,6 +10,7 @@ import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import net.minecraftforge.event.entity.living.ShieldBlockEvent;
 import net.minecraftforge.event.entity.player.CriticalHitEvent;
 
 import java.util.List;
@@ -103,5 +104,7 @@ public abstract class SetEffect extends NamedEntry<SetEffect> {
 
 	}
 
+	public void playerShieldBlock(Player player, ArtifactSetConfig.Entry entry, int i, ShieldBlockEvent event) {
+	}
 
 }

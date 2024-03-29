@@ -1,5 +1,14 @@
 {
   "map": {
-    "l2artifacts:slimy": []
+    "l2artifacts:slimy": [
+      {
+        "count": 1,
+        "effect": "l2artifacts:slimy_buffer"
+      },
+      {
+        "count": 3,
+        "effect": "l2artifacts:slimification"
+      }
+    ]
   }
 }

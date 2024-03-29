@@ -1,5 +1,14 @@
 {
   "map": {
-    "l2artifacts:cell": []
+    "l2artifacts:cell": [
+      {
+        "count": 3,
+        "effect": "l2artifacts:dead_cell_dodge"
+      },
+      {
+        "count": 5,
+        "effect": "l2artifacts:dead_cell_parry"
+      }
+    ]
   }
 }

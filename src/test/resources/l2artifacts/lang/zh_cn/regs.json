@@ -128,10 +128,22 @@
 	"fungus_explode.desc": "对目标造成伤害时，对该生物周围%2$s格内持有真菌感染效果的生物造成该伤害%1$s%%的魔法伤害",
 	"gilded_3": "炉金镀甲",
 	"gilded_5": "炉金淬刃",
-	"gilded_5.desc": "你造成的伤害上升你的护甲的%s%%"
+	"gilded_5.desc": "你造成的伤害上升你的护甲的%s%%",
+	"thermal_motive": "热力驱动",
+	"thermal_motive.desc": "当你受到火焰伤害时，免疫该伤害并且获得短暂的%s%%伤害提升",
+	"frost_shield": "冰结护盾",
+	"frost_shield.desc": "当你受到冰冻伤害时，免疫该伤害并且获得短暂的%s%%伤害减免",
+	"poisonous_erosion": "毒辐侵蚀",
+	"poisonous_erosion.desc": "目标每有一个负面效果，你对该目标的伤害上升%s%%",
+	"poisonous_touch": "毒辐侵染",
+	"poisonous_touch.desc": "攻击有%s%%概率附带%s/%s/%s"
   },
   "effect.l2artifacts": {
 	"fungus_infection": "真菌感染",
-	"fungus_infection.description": "降低最大生命值，死亡时随机掉落特殊蘑菇"
+	"fungus_infection.description": "降低最大生命值，死亡时随机掉落特殊蘑菇",
+	"frost_shield": "冰结护盾",
+	"frost_shield.description": "减少受到的伤害",
+	"thermal_motive": "热力驱动",
+	"thermal_motive.description": "增加造成的伤害"
   }
 }

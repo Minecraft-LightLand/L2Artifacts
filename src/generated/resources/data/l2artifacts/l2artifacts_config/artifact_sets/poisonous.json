@@ -1,5 +1,14 @@
 {
   "map": {
-    "l2artifacts:poisonous": []
+    "l2artifacts:poisonous": [
+      {
+        "count": 2,
+        "effect": "l2artifacts:poisonous_touch"
+      },
+      {
+        "count": 5,
+        "effect": "l2artifacts:poisonous_erosion"
+      }
+    ]
   }
 }

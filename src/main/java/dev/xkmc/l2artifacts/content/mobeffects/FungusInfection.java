@@ -16,7 +16,7 @@ public class FungusInfection extends InherentEffect implements SkillEffect {
 		super(category, color);
 		String str = "l2artifacts:fungus_infection";
 		var id = MathHelper.getUUIDFromString(str);
-		addAttributeModifier(Attributes.MAX_HEALTH, id.toString(), -0.2, AttributeModifier.Operation.MULTIPLY_TOTAL);
+		addAttributeModifier(Attributes.MAX_HEALTH, id.toString(), -0.16, AttributeModifier.Operation.MULTIPLY_TOTAL);
 	}
 
 	@Override

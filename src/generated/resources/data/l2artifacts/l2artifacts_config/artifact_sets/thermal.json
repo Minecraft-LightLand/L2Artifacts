@@ -1,5 +1,14 @@
 {
   "map": {
-    "l2artifacts:thermal": []
+    "l2artifacts:thermal": [
+      {
+        "count": 2,
+        "effect": "l2artifacts:thermal_motive"
+      },
+      {
+        "count": 4,
+        "effect": "l2artifacts:frost_shield"
+      }
+    ]
   }
 }

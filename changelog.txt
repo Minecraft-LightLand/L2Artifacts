@@ -1,3 +1,6 @@
+2.4.20
+- Add 7 sets of artifacts
+
 2.4.19
 - Redo all textures to make them look better
 - Fix patchouli book: remove anvil operation descriptions

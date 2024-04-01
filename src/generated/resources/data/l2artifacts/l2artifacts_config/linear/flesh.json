@@ -1,0 +1,16 @@
+{
+  "map": {
+    "l2artifacts:attack": {
+      "base": 0.4,
+      "slope": 0.2
+    },
+    "l2artifacts:duration": {
+      "base": 100.0,
+      "slope": 20.0
+    },
+    "l2artifacts:threshold": {
+      "base": 0.5,
+      "slope": 0.0
+    }
+  }
+}

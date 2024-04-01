@@ -144,7 +144,11 @@
 	"slimy_buffer": "粘性缓冲层",
 	"slimy_buffer.desc": "受到的摔落/动能伤害-%s%%",
 	"slimification": "史莱姆化",
-	"slimification.desc": "受到的近战/弹射物伤害-%s%%，但是受到的火焰/冰冻/爆炸/魔法伤害+%s%%"
+	"slimification.desc": "受到的近战/弹射物伤害-%s%%，但是受到的火焰/冰冻/爆炸/魔法伤害+%s%%",
+	"flesh_decay": "血肉崩坏",
+	"flesh_decay.desc": "对血量低于%s%%的生物造成的伤害+%s%%",
+	"flesh_overgrowth": "血肉膨胀",
+	"flesh_overgrowth.desc": "攻击对目标施加%s"
   },
   "effect.l2artifacts": {
 	"fungus_infection": "真菌感染",
@@ -152,6 +156,8 @@
 	"frost_shield": "冰结护盾",
 	"frost_shield.description": "减少受到的伤害",
 	"thermal_motive": "热力驱动",
-	"thermal_motive.description": "增加造成的伤害"
+	"thermal_motive.description": "增加造成的伤害",
+	"flesh_overgrowth": "血肉膨胀",
+	"flesh_overgrowth.description": "增加最大血量和受到的伤害"
   }
 }

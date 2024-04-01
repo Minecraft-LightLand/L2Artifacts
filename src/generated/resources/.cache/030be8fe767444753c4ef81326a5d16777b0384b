@@ -1,4 +1,4 @@
-// 1.20.1	2024-03-29T16:58:59.124855	Artifact Config
+// 1.20.1	2024-04-01T18:55:45.425698	Artifact Config
 e464c5f57b8a6ca85222e50d3367648e7850f72a data/l2artifacts/l2artifacts_config/artifact_sets/abyss_medal.json
 fa8493ce7a24d86f24f56f4b497eceb07fd21ebf data/l2artifacts/l2artifacts_config/artifact_sets/ancient_scroll.json
 135e18838a196f63c10ddfb34def1ffcd698655b data/l2artifacts/l2artifacts_config/artifact_sets/archer.json
@@ -6,7 +6,7 @@ fa8493ce7a24d86f24f56f4b497eceb07fd21ebf data/l2artifacts/l2artifacts_config/art
 c3d3621aaa9b27a13e8443a6e0a8b0bfa6287496 data/l2artifacts/l2artifacts_config/artifact_sets/cell.json
 030bdd8acb49d66fb62bb18c2056dd29db33e1ce data/l2artifacts/l2artifacts_config/artifact_sets/damocles.json
 4b0ff5deff7520fe9a3f67addabc3afddf7fc607 data/l2artifacts/l2artifacts_config/artifact_sets/executor.json
-abf6449b18c697a8513ac33b6032d78a0a1a5014 data/l2artifacts/l2artifacts_config/artifact_sets/flesh.json
+7b199f84019f204855dff1112ce92c0c8c8f73c9 data/l2artifacts/l2artifacts_config/artifact_sets/flesh.json
 1e72d7af46bc311f00f3859263747e98e9b61050 data/l2artifacts/l2artifacts_config/artifact_sets/froze.json
 8ae2de644826b92e582059db89db6f69db74f130 data/l2artifacts/l2artifacts_config/artifact_sets/fungus.json
 29335592c1701a4bd8390566c2e8463038e3b539 data/l2artifacts/l2artifacts_config/artifact_sets/fury_of_fallen.json
@@ -33,6 +33,7 @@ ec19d561c9cde08b11589f2c0599d16ef2cc3d3f data/l2artifacts/l2artifacts_config/lin
 76661b143710b63b767864b0813b421036b44e4a data/l2artifacts/l2artifacts_config/linear/cell.json
 4e435a513d5212263c2911e73ec7224f71d34a85 data/l2artifacts/l2artifacts_config/linear/damocles.json
 0077f7002885447db55bce366c6a867ec4762ba8 data/l2artifacts/l2artifacts_config/linear/executor.json
+4276244f50c8974e0a7097094707b0800bd933bb data/l2artifacts/l2artifacts_config/linear/flesh.json
 5e435d4ef4e37a27cbb782f13ada143f2bf66650 data/l2artifacts/l2artifacts_config/linear/froze.json
 f2bda94ca2b5fb807e62997614d4b9e537bb532a data/l2artifacts/l2artifacts_config/linear/fungus.json
 3eaf2b3f3b29adab24adbcbf2a6f65f7275c7436 data/l2artifacts/l2artifacts_config/linear/fury_of_fallen.json

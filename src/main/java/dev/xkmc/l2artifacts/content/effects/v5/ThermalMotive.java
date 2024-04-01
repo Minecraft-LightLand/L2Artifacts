@@ -38,7 +38,7 @@ public class ThermalMotive extends SetEffect {
 	public void playerHurtOpponentEvent(Player player, ArtifactSetConfig.Entry ent, int rank, AttackCache event) {
 		var ins = player.getEffect(ArtifactEffects.THERMAL_MOTIVE.get());
 		if (ins == null) return;
-		event.addHurtModifier(DamageModifier.multTotal((float) (1 + atk.getFromRank(rank))));
+		event.addHurtModifier(DamageModifier.multBase((float) (1 + atk.getFromRank(rank))));
 	}
 
 	@Override

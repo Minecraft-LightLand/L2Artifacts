@@ -27,7 +27,8 @@ public class LAItem5 {
 
 	public static final RegistryEntry<DeadCellDodge> CELL_3;
 	public static final RegistryEntry<DeadCellParry> CELL_5;
-
+	public static final RegistryEntry<FleshOvergrowth> FLESH_3;
+	public static final RegistryEntry<FleshAttack> FLESH_5;
 	public static final RegistryEntry<FungusInfect> FUNGUS_3;
 	public static final RegistryEntry<FungusExplode> FUNGUS_5;
 	public static final RegistryEntry<AttributeSetEffect> GILDED_3;
@@ -58,13 +59,19 @@ public class LAItem5 {
 					.register();
 		}
 
-		// flesh TODO
+		// flesh
 		{
 			SetRegHelper helper = REGISTRATE.getSetHelper("flesh");
+			var dur = helper.regLinear("duration", 100, 20);
+			var thr = helper.regLinear("threshold", 0.5, 0);
+			var atk = helper.regLinear("attack", 0.4, 0.2);
+			FLESH_3 = helper.setEffect("flesh_overgrowth", () -> new FleshOvergrowth(dur))
+					.desc("Flesh Overgrowth", "On hit, inflict target with %s").register();
+			FLESH_5 = helper.setEffect("flesh_decay", () -> new FleshAttack(thr, atk))
+					.desc("Flesh Decay", "Damage to target with %s%% or less health is increased by %s%%").register();
 			SET_FLESH = helper.regSet(1, 5, "Flesh")
 					.setSlots(SLOT_HEAD, SLOT_NECKLACE, SLOT_BODY, SLOT_BRACELET, SLOT_BELT).regItems()
-					.buildConfig(c -> {
-					})
+					.buildConfig(c -> c.add(3, FLESH_3.get()).add(5, FLESH_5.get()))
 					.register();
 		}
 

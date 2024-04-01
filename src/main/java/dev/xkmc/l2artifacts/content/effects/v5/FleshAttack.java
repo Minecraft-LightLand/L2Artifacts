@@ -7,31 +7,31 @@ import dev.xkmc.l2damagetracker.contents.attack.AttackCache;
 import dev.xkmc.l2damagetracker.contents.attack.DamageModifier;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.player.Player;
 
 import java.util.List;
 
-public class PoisonAttack extends SetEffect {
+public class FleshAttack extends SetEffect {
 
-	private final LinearFuncEntry atk;
+	private final LinearFuncEntry thr, atk;
 
-	public PoisonAttack(LinearFuncEntry atk) {
+	public FleshAttack(LinearFuncEntry thr, LinearFuncEntry atk) {
 		super(0);
+		this.thr = thr;
 		this.atk = atk;
 	}
 
 	@Override
 	public void playerHurtOpponentEvent(Player player, ArtifactSetConfig.Entry ent, int rank, AttackCache event) {
-		long count = event.getAttackTarget().getActiveEffectsMap().keySet().stream()
-				.filter(e -> e.getCategory() == MobEffectCategory.HARMFUL).count();
-		event.addHurtModifier(DamageModifier.multBase( (float) (count * atk.getFromRank(rank))));
+		if (event.getAttackTarget().getHealth() <= event.getAttackTarget().getMaxHealth() * thr.getFromRank(rank))
+			event.addHurtModifier(DamageModifier.multBase((float) atk.getFromRank(rank)));
 	}
 
 	@Override
 	public List<MutableComponent> getDetailedDescription(int rank) {
+		int php = (int) Math.round(thr.getFromRank(rank) * 100);
 		int val = (int) Math.round(atk.getFromRank(rank) * 100);
-		return List.of(Component.translatable(getDescriptionId() + ".desc", val));
+		return List.of(Component.translatable(getDescriptionId() + ".desc", php, val));
 	}
 
 }

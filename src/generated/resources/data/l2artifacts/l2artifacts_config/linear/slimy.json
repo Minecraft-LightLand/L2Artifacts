@@ -1,14 +1,14 @@
 {
   "map": {
-    "l2artifacts:buffer": {
+    "l2artifacts:slimy_buffer": {
       "base": 0.9,
       "slope": 0.02
     },
-    "l2artifacts:penalty": {
+    "l2artifacts:slimy_penalty": {
       "base": 1.0,
       "slope": 0.0
     },
-    "l2artifacts:protection": {
+    "l2artifacts:slimy_protection": {
       "base": 0.2,
       "slope": 0.1
     }

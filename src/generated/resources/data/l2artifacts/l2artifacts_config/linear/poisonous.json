@@ -1,14 +1,14 @@
 {
   "map": {
-    "l2artifacts:attack": {
+    "l2artifacts:poisonous_attack": {
       "base": 0.1,
       "slope": 0.05
     },
-    "l2artifacts:chance": {
+    "l2artifacts:poisonous_chance": {
       "base": 0.1,
       "slope": 0.05
     },
-    "l2artifacts:duration": {
+    "l2artifacts:poisonous_duration": {
       "base": 100.0,
       "slope": 40.0
     }

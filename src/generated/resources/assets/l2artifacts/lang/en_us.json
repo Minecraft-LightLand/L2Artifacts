@@ -771,7 +771,7 @@
   "set_effect.l2artifacts.physical_damage": "Barbaric Attack",
   "set_effect.l2artifacts.physical_damage.desc": "Magical damage dealt will be reduced to %s%%",
   "set_effect.l2artifacts.poisonous_erosion": "Poisonous Erosion",
-  "set_effect.l2artifacts.poisonous_erosion.desc": "For every hramful effect on target, increase damage you dealt by %s%%",
+  "set_effect.l2artifacts.poisonous_erosion.desc": "For every harmful effect on target, increase damage you dealt by %s%%",
   "set_effect.l2artifacts.poisonous_touch": "Poisonous Touch",
   "set_effect.l2artifacts.poisonous_touch.desc": "On hit, %s%% chance to inflict target with %s, %s, and %s",
   "set_effect.l2artifacts.protection_resistance": "Crown of Never Falling Soldier",

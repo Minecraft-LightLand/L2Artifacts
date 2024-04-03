@@ -1,14 +1,14 @@
 {
   "map": {
-    "l2artifacts:attack": {
+    "l2artifacts:flesh_attack": {
       "base": 0.4,
       "slope": 0.2
     },
-    "l2artifacts:duration": {
+    "l2artifacts:flesh_duration": {
       "base": 100.0,
       "slope": 20.0
     },
-    "l2artifacts:threshold": {
+    "l2artifacts:flesh_threshold": {
       "base": 0.5,
       "slope": 0.0
     }

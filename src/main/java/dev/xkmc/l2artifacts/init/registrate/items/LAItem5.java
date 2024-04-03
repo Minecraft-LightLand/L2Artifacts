@@ -45,8 +45,8 @@ public class LAItem5 {
 		// cell
 		{
 			SetRegHelper helper = REGISTRATE.getSetHelper("cell");
-			var chance = helper.regLinear("dodge_chance", 0.1, 0.05);
-			var reflect = helper.regLinear("parry_reflect", 0.4, 0.2);
+			var chance = helper.regLinear("cell_dodge_chance", 0.1, 0.05);
+			var reflect = helper.regLinear("cell_parry_reflect", 0.4, 0.2);
 			CELL_3 = helper.setEffect("dead_cell_dodge", () -> new DeadCellDodge(chance))
 					.desc("Dead Cells Dodge", "When you are sneaking, you have %s%% chance to dodge a melee / projectile damage")
 					.register();
@@ -62,9 +62,9 @@ public class LAItem5 {
 		// flesh
 		{
 			SetRegHelper helper = REGISTRATE.getSetHelper("flesh");
-			var dur = helper.regLinear("duration", 100, 20);
-			var thr = helper.regLinear("threshold", 0.5, 0);
-			var atk = helper.regLinear("attack", 0.4, 0.2);
+			var dur = helper.regLinear("flesh_duration", 100, 20);
+			var thr = helper.regLinear("flesh_threshold", 0.5, 0);
+			var atk = helper.regLinear("flesh_attack", 0.4, 0.2);
 			FLESH_3 = helper.setEffect("flesh_overgrowth", () -> new FleshOvergrowth(dur))
 					.desc("Flesh Overgrowth", "On hit, inflict target with %s").register();
 			FLESH_5 = helper.setEffect("flesh_decay", () -> new FleshAttack(thr, atk))
@@ -78,9 +78,9 @@ public class LAItem5 {
 		// fungus
 		{
 			SetRegHelper helper = REGISTRATE.getSetHelper("fungus");
-			var duration = helper.regLinear("infect_duration", 200, 40);
-			var range = helper.regLinear("explode_range", 6, 1);
-			var rate = helper.regLinear("explode_rate", 0.6, 0.3);
+			var duration = helper.regLinear("fungus_infect_duration", 200, 40);
+			var range = helper.regLinear("fungus_explode_range", 6, 1);
+			var rate = helper.regLinear("fungus_explode_rate", 0.6, 0.3);
 			FUNGUS_3 = helper.setEffect("fungus_infect", () -> new FungusInfect(duration))
 					.desc("Fungus Infection", "When hurt target, inflict %s")
 					.register();
@@ -116,14 +116,14 @@ public class LAItem5 {
 		// poisonous
 		{
 			SetRegHelper helper = REGISTRATE.getSetHelper("poisonous");
-			var chance = helper.regLinear("chance", 0.1, 0.05);
-			var duration = helper.regLinear("duration", 100, 40);
-			var attack = helper.regLinear("attack", 0.1, 0.05);
+			var chance = helper.regLinear("poisonous_chance", 0.1, 0.05);
+			var duration = helper.regLinear("poisonous_duration", 100, 40);
+			var attack = helper.regLinear("poisonous_attack", 0.1, 0.05);
 			POISON_2 = helper.setEffect("poisonous_touch", () -> new PoisonTouch(chance, duration))
 					.desc("Poisonous Touch", "On hit, %s%% chance to inflict target with %s, %s, and %s")
 					.register();
 			POISON_5 = helper.setEffect("poisonous_erosion", () -> new PoisonAttack(attack))
-					.desc("Poisonous Erosion", "For every hramful effect on target, increase damage you dealt by %s%%")
+					.desc("Poisonous Erosion", "For every harmful effect on target, increase damage you dealt by %s%%")
 					.register();
 			SET_POISONOUS = helper.regSet(1, 5, "Poisonous")
 					.setSlots(SLOT_HEAD, SLOT_NECKLACE, SLOT_BODY, SLOT_BRACELET, SLOT_BELT).regItems()
@@ -133,9 +133,9 @@ public class LAItem5 {
 		// slimy
 		{
 			SetRegHelper helper = REGISTRATE.getSetHelper("slimy");
-			var buffer = helper.regLinear("buffer", 0.9, 0.02);
-			var reduction = helper.regLinear("protection", 0.2, 0.1);
-			var penalty = helper.regLinear("penalty", 1, 0);
+			var buffer = helper.regLinear("slimy_buffer", 0.9, 0.02);
+			var reduction = helper.regLinear("slimy_protection", 0.2, 0.1);
+			var penalty = helper.regLinear("slimy_penalty", 1, 0);
 			SLIMY_1 = helper.setEffect("slimy_buffer", () -> new SlimyBuffer(buffer))
 					.desc("Slimy Buffer", "Reduce falling / flying into wall damage by %s%%")
 					.register();
@@ -153,8 +153,8 @@ public class LAItem5 {
 			SetRegHelper helper = REGISTRATE.getSetHelper("thermal");
 
 			var atk = helper.regLinear("thermal_motive", 0.2, 0.1);
-			var def = helper.regLinear("forst_shield", 0.2, 0.1);
-			var dura = helper.regLinear("duration", 60, 0);
+			var def = helper.regLinear("frost_shield", 0.2, 0.1);
+			var dura = helper.regLinear("thermal_effect_duration", 60, 0);
 
 			THERMAL_2 = helper.setEffect("thermal_motive", () -> new ThermalMotive(atk, dura))
 					.desc("Thermal Motive", "When you take fire damage, negates the damage and gains %s%% attack boost")

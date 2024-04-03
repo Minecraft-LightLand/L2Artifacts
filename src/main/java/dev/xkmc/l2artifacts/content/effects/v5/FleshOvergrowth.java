@@ -23,7 +23,7 @@ public class FleshOvergrowth extends SetEffect {
 	}
 
 	private MobEffectInstance eff(int rank) {
-		return new MobEffectInstance(ArtifactEffects.FUNGUS.get(), (int) duration.getFromRank(rank), rank);
+		return new MobEffectInstance(ArtifactEffects.FLESH_OVERGROWTH.get(), (int) duration.getFromRank(rank), rank - 1);
 	}
 
 	@Override

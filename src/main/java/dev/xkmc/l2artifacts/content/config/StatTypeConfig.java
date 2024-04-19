@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableMultimap;
 import dev.xkmc.l2artifacts.content.core.StatEntry;
 import dev.xkmc.l2artifacts.content.search.token.IArtifactFeature;
 import dev.xkmc.l2artifacts.network.NetworkManager;
+import dev.xkmc.l2damagetracker.contents.curios.AttrTooltip;
 import dev.xkmc.l2library.serial.config.BaseConfig;
 import dev.xkmc.l2serial.serialization.SerialClass;
 import net.minecraft.ChatFormatting;
@@ -43,6 +44,9 @@ public class StatTypeConfig extends BaseConfig implements IArtifactFeature.Sprit
 	@SerialClass.SerialField
 	public boolean usePercent;
 
+	@SerialClass.SerialField
+	public ResourceLocation icon;
+
 	public void getModifier(ImmutableMultimap.Builder<Attribute, AttributeModifier> builder, StatEntry entry, UUID uuid) {
 		builder.put(attr, new AttributeModifier(uuid, entry.getName(), entry.getValue(), op));
 	}
@@ -69,14 +73,16 @@ public class StatTypeConfig extends BaseConfig implements IArtifactFeature.Sprit
 	}
 
 	public Component getTooltip(double val) {
+		boolean neg = val < 0 ^ AttrTooltip.isNegative(attr);
 		return Component.translatable(
 				"attribute.modifier.plus." + (usePercent ? 1 : 0),
 				ATTRIBUTE_MODIFIER_FORMAT.format(usePercent ? val * 100 : val),
-				Component.translatable(attr.getDescriptionId())).withStyle(ChatFormatting.BLUE);
+				Component.translatable(attr.getDescriptionId())).withStyle(neg ? ChatFormatting.RED : ChatFormatting.BLUE);
 	}
 
 	@Override
 	public ResourceLocation getIcon() {
+		if (icon != null) return icon;
 		ResourceLocation rl = getID();
 		return new ResourceLocation(rl.getNamespace(), "textures/stat_type/" + rl.getPath() + ".png");
 	}

@@ -1,4 +1,4 @@
-// 1.20.1	2024-04-02T09:57:06.409154	Registrate Provider for l2artifacts [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider, Tags (attributes), Tags (mob_effects), Patchouli Provider]
+// 1.20.1	2024-04-19T10:40:25.070639	Registrate Provider for l2artifacts [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider, Tags (attributes), Tags (mob_effects), Patchouli Provider]
 37c119cd1c2f6c1f4ed77d78674bd8316a35fb3b assets/l2artifacts/lang/en_ud.json
 d644e4ddacf7967cb5a8139af159fce12183cf78 assets/l2artifacts/lang/en_us.json
 b8bd2d2e5b588898d6036ad788cad930cd830bb3 assets/l2artifacts/models/item/abyss_medal_belt_1.json
@@ -1584,3 +1584,4 @@ f6a524543d865877d9fd2ab80ffee06eed2a59fe data/l2artifacts/tags/items/body.json
 5571e75ef9ce8c21cc326624e62eedebf5383d8e data/l2artifacts/tags/items/rank_3.json
 25ed9df942c35e3002ee55d489fa344069dd90ea data/l2artifacts/tags/items/rank_4.json
 dfe5e4694fc5cbe67117d5a18f491df7f8760557 data/l2artifacts/tags/items/rank_5.json
+11108b0be390711b52e98596f9e825afc61f358b data/l2complements/tags/mob_effect/skill_effect.json

@@ -2,6 +2,7 @@ package dev.xkmc.l2artifacts.content.core;
 
 import com.google.common.collect.Multimap;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
+import dev.xkmc.l2damagetracker.contents.curios.AttrTooltip;
 import dev.xkmc.l2library.capability.conditionals.ConditionalData;
 import dev.xkmc.l2serial.serialization.codec.TagCodec;
 import net.minecraft.network.chat.Component;
@@ -49,7 +50,12 @@ public class ArtifactCurioCap implements ICurio {
 
 	@Override
 	public List<Component> getAttributesTooltip(List<Component> tooltips) {
-		return new ArrayList<>();
+		if (getStats().isPresent()) {
+			var ans = AttrTooltip.modifyTooltip(tooltips, getStats().get().buildAttributes(""), true);
+			if (ans.size() <= 2) return new ArrayList<>();
+			return ans;
+		}
+		return tooltips;
 	}
 
 	@Override

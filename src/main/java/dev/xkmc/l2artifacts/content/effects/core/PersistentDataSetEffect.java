@@ -7,7 +7,7 @@ import dev.xkmc.l2library.capability.conditionals.TokenKey;
 import dev.xkmc.l2library.capability.conditionals.TokenProvider;
 import net.minecraft.world.entity.player.Player;
 
-public abstract class PersistentDataSetEffect<T extends SetEffectData> extends SetEffect implements TokenProvider<T, ArtifactSetConfig.Entry> {
+public abstract class PersistentDataSetEffect<T extends SetEffectData> extends PlayerOnlySetEffect implements TokenProvider<T, ArtifactSetConfig.Entry> {
 
 	public PersistentDataSetEffect(int n) {
 		super(n);

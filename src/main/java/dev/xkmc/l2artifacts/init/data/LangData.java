@@ -62,6 +62,8 @@ public enum LangData {
 	RANK_4("tooltip.rank.4", "Rank Lv.4", 0, null),
 	RANK_5("tooltip.rank.5", "Rank Lv.5", 0, null),
 
+	PLAYER_ONLY("tooltip.player_only", "Set Effects works on player only.", 0, null),
+
 	LOOT_POOL("tooltip.loot_pool", "Possible Sets:", 0, ChatFormatting.YELLOW),
 	LOOT_POOL_ALL("tooltip.loot_pool_all", "Possible Sets: All Sets", 0, ChatFormatting.YELLOW),
 

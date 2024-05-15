@@ -1,7 +1,7 @@
 package dev.xkmc.l2artifacts.content.effects.v1;
 
 import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
-import dev.xkmc.l2artifacts.content.effects.core.SetEffect;
+import dev.xkmc.l2artifacts.content.effects.core.PlayerOnlySetEffect;
 import dev.xkmc.l2artifacts.init.registrate.entries.LinearFuncEntry;
 import dev.xkmc.l2damagetracker.contents.attack.AttackCache;
 import dev.xkmc.l2damagetracker.contents.attack.DamageModifier;
@@ -12,7 +12,7 @@ import net.minecraft.world.entity.player.Player;
 
 import java.util.List;
 
-public class SaintReduction extends SetEffect {
+public class SaintReduction extends PlayerOnlySetEffect {
 
 	private final LinearFuncEntry atk, def;
 

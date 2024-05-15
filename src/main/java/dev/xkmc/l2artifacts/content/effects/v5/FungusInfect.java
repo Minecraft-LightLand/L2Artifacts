@@ -1,6 +1,7 @@
 package dev.xkmc.l2artifacts.content.effects.v5;
 
 import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
+import dev.xkmc.l2artifacts.content.effects.core.PlayerOnlySetEffect;
 import dev.xkmc.l2artifacts.content.effects.core.SetEffect;
 import dev.xkmc.l2artifacts.content.mobeffects.EffectDesc;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactEffects;
@@ -9,6 +10,7 @@ import dev.xkmc.l2damagetracker.contents.attack.AttackCache;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 
 import java.util.List;
@@ -27,7 +29,7 @@ public class FungusInfect extends SetEffect {
 	}
 
 	@Override
-	public void playerHurtOpponentEvent(Player player, ArtifactSetConfig.Entry ent, int rank, AttackCache event) {
+	public void playerHurtOpponentEvent(LivingEntity player, ArtifactSetConfig.Entry ent, int rank, AttackCache event) {
 		event.getAttackTarget().addEffect(eff(rank), player);
 	}
 

@@ -8,7 +8,6 @@ import dev.xkmc.l2damagetracker.contents.attack.DamageModifier;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
 
 import java.util.List;
 import java.util.function.Predicate;
@@ -26,7 +25,7 @@ public class WrathEffect extends SetEffect {
 	}
 
 	@Override
-	public void playerHurtOpponentEvent(Player player, ArtifactSetConfig.Entry ent, int rank, AttackCache event) {
+	public void playerHurtOpponentEvent(LivingEntity player, ArtifactSetConfig.Entry ent, int rank, AttackCache event) {
 		boolean bool = pred.test(event.getAttackTarget());
 		double factor = bool ? inc.getFromRank(rank) : dec.getFromRank(rank);
 		event.addHurtModifier(DamageModifier.multTotal((float) factor));// multiplicative

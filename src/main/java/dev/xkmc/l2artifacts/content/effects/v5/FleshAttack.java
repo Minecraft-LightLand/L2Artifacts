@@ -7,7 +7,7 @@ import dev.xkmc.l2damagetracker.contents.attack.AttackCache;
 import dev.xkmc.l2damagetracker.contents.attack.DamageModifier;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.LivingEntity;
 
 import java.util.List;
 
@@ -22,7 +22,7 @@ public class FleshAttack extends SetEffect {
 	}
 
 	@Override
-	public void playerHurtOpponentEvent(Player player, ArtifactSetConfig.Entry ent, int rank, AttackCache event) {
+	public void playerHurtOpponentEvent(LivingEntity player, ArtifactSetConfig.Entry ent, int rank, AttackCache event) {
 		if (event.getAttackTarget().getHealth() <= event.getAttackTarget().getMaxHealth() * thr.getFromRank(rank))
 			event.addHurtModifier(DamageModifier.multBase((float) atk.getFromRank(rank)));
 	}

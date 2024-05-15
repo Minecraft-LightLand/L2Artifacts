@@ -1,7 +1,7 @@
 package dev.xkmc.l2artifacts.content.effects.v3;
 
 import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
-import dev.xkmc.l2artifacts.content.effects.core.SetEffect;
+import dev.xkmc.l2artifacts.content.effects.core.PlayerOnlySetEffect;
 import dev.xkmc.l2artifacts.init.registrate.entries.LinearFuncEntry;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
@@ -10,7 +10,7 @@ import net.minecraftforge.event.entity.living.LivingDeathEvent;
 
 import java.util.List;
 
-public class GluttonyHeal extends SetEffect {
+public class GluttonyHeal extends PlayerOnlySetEffect {
 
 	private final LinearFuncEntry value;
 

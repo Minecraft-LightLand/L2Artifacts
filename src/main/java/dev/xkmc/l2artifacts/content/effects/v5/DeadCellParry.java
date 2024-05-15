@@ -1,7 +1,7 @@
 package dev.xkmc.l2artifacts.content.effects.v5;
 
 import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
-import dev.xkmc.l2artifacts.content.effects.core.SetEffect;
+import dev.xkmc.l2artifacts.content.effects.core.PlayerOnlySetEffect;
 import dev.xkmc.l2artifacts.init.registrate.entries.LinearFuncEntry;
 import dev.xkmc.l2damagetracker.init.data.L2DamageTypes;
 import dev.xkmc.l2library.init.events.GeneralEventHandler;
@@ -13,7 +13,7 @@ import net.minecraftforge.event.entity.living.ShieldBlockEvent;
 
 import java.util.List;
 
-public class DeadCellParry extends SetEffect {
+public class DeadCellParry extends PlayerOnlySetEffect {
 
 	private final LinearFuncEntry reflect;
 

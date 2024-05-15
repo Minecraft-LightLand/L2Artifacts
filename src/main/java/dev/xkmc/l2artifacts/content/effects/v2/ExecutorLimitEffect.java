@@ -8,7 +8,7 @@ import dev.xkmc.l2damagetracker.contents.attack.DamageModifier;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.LivingEntity;
 
 import java.util.List;
 
@@ -22,9 +22,10 @@ public class ExecutorLimitEffect extends SetEffect {
 	}
 
 	@Override
-	public void playerReduceDamage(Player player, ArtifactSetConfig.Entry ent, int rank, DamageSource source, AttackCache cache) {
+	public void playerReduceDamage(LivingEntity player, ArtifactSetConfig.Entry ent, int rank, DamageSource source, AttackCache cache) {
 		if (source.getEntity() == player) {
-			cache.addDealtModifier(DamageModifier.nonlinearPre(546, f -> Math.min(f, player.getMaxHealth()) * (float) factor.getFromRank(rank)));
+			cache.addDealtModifier(DamageModifier.nonlinearPre(546,
+					f -> Math.min(f, player.getMaxHealth()) * (float) factor.getFromRank(rank)));
 		}
 	}
 

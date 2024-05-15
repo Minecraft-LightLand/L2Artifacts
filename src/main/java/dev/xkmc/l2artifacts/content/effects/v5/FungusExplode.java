@@ -1,6 +1,7 @@
 package dev.xkmc.l2artifacts.content.effects.v5;
 
 import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
+import dev.xkmc.l2artifacts.content.effects.core.PlayerOnlySetEffect;
 import dev.xkmc.l2artifacts.content.effects.core.SetEffect;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactEffects;
 import dev.xkmc.l2artifacts.init.registrate.entries.LinearFuncEntry;
@@ -25,7 +26,7 @@ public class FungusExplode extends SetEffect {
 	}
 
 	@Override
-	public void playerDamageOpponentEvent(Player player, ArtifactSetConfig.Entry ent, int rank, AttackCache cache) {
+	public void playerDamageOpponentEvent(LivingEntity player, ArtifactSetConfig.Entry ent, int rank, AttackCache cache) {
 		var event = cache.getLivingDamageEvent();
 		assert event != null;
 		if (event.getSource().is(L2DamageTypes.MAGIC)) return;
@@ -35,7 +36,7 @@ public class FungusExplode extends SetEffect {
 
 	}
 
-	private void explode(Player player, LivingEntity target, int r, float dmg) {
+	private void explode(LivingEntity player, LivingEntity target, int r, float dmg) {
 		for (var e : target.level().getEntities(target, target.getBoundingBox().inflate(r))) {
 			if (e instanceof LivingEntity le && le.hasEffect(ArtifactEffects.FUNGUS.get())) {
 				le.hurt(target.damageSources().indirectMagic(target, player), dmg);

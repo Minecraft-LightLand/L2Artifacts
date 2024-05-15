@@ -1,6 +1,7 @@
 package dev.xkmc.l2artifacts.content.effects.v2;
 
 import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
+import dev.xkmc.l2artifacts.content.effects.core.PlayerOnlySetEffect;
 import dev.xkmc.l2artifacts.content.effects.core.SetEffect;
 import dev.xkmc.l2artifacts.init.registrate.entries.LinearFuncEntry;
 import dev.xkmc.l2damagetracker.contents.attack.AttackCache;
@@ -12,6 +13,7 @@ import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 
 import java.util.List;
@@ -28,7 +30,7 @@ public class FrozeSlowEffect extends SetEffect {
 	}
 
 	@Override
-	public void playerHurtOpponentEvent(Player player, ArtifactSetConfig.Entry ent, int rank, AttackCache event) {
+	public void playerHurtOpponentEvent(LivingEntity player, ArtifactSetConfig.Entry ent, int rank, AttackCache event) {
 		if (player.isOnFire()) return;
 		EffectUtil.addEffect(event.getAttackTarget(), new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN,
 				(int) period.getFromRank(rank), (int) level.getFromRank(rank)), EffectUtil.AddReason.NONE, player);
@@ -43,7 +45,7 @@ public class FrozeSlowEffect extends SetEffect {
 	}
 
 	@Override
-	public void playerReduceDamage(Player player, ArtifactSetConfig.Entry ent, int rank, DamageSource source, AttackCache cache) {
+	public void playerReduceDamage(LivingEntity player, ArtifactSetConfig.Entry ent, int rank, DamageSource source, AttackCache cache) {
 		if (source.is(DamageTypeTags.IS_FIRE)) {
 			cache.addDealtModifier(DamageModifier.multTotal((float) factor.getFromRank(rank)));
 		}

@@ -3,6 +3,7 @@ package dev.xkmc.l2artifacts.content.core;
 import com.mojang.datafixers.util.Pair;
 import dev.xkmc.l2artifacts.content.client.tab.DarkTextColorRanks;
 import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
+import dev.xkmc.l2artifacts.content.effects.core.PlayerOnlySetEffect;
 import dev.xkmc.l2artifacts.content.search.token.IArtifactFeature;
 import dev.xkmc.l2artifacts.events.ArtifactEffectEvents;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
@@ -16,9 +17,9 @@ import net.minecraft.core.NonNullList;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.registries.ForgeRegistries;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.SlotResult;
@@ -63,7 +64,7 @@ public class ArtifactSet extends NamedEntry<ArtifactSet> implements IArtifactFea
 	public Optional<SetContext> getCountAndIndex(@Nullable SlotContext context) {
 		LivingEntity e = context == null ? Proxy.getPlayer() : context.entity();
 		var opt = CuriosApi.getCuriosInventory(e).resolve();
-		if (opt.isPresent() && e instanceof Player) {
+		if (opt.isPresent()) {
 			List<SlotResult> list = opt.get()
 					.findCurios(stack -> stack.getItem() instanceof BaseArtifact artifact && artifact.set.get() == this);
 			int[] rank = new int[ArtifactConfig.COMMON.maxRank.get() + 1];
@@ -85,7 +86,7 @@ public class ArtifactSet extends NamedEntry<ArtifactSet> implements IArtifactFea
 
 	public Optional<SetContext> getSetCount(LivingEntity e) {
 		var opt = CuriosApi.getCuriosInventory(e).resolve();
-		if (opt.isPresent() && e instanceof Player) {
+		if (opt.isPresent()) {
 			List<SlotResult> list = opt.get()
 					.findCurios(stack -> stack.getItem() instanceof BaseArtifact artifact && artifact.set.get() == this);
 			int[] rank = new int[ArtifactConfig.COMMON.maxRank.get() + 1];
@@ -103,43 +104,37 @@ public class ArtifactSet extends NamedEntry<ArtifactSet> implements IArtifactFea
 
 	public void update(SlotContext context) {
 		LivingEntity e = context.entity();
-		if (e instanceof Player player) {
-			Optional<SetContext> result = getCountAndIndex(context);
-			if (result.isPresent()) {
-				ArtifactSetConfig config = ArtifactSetConfig.getInstance();
-				ArrayList<ArtifactSetConfig.Entry> list = config.map.get(this);
-				for (ArtifactSetConfig.Entry ent : list) {
-					ent.effect.update(player, ent, result.get().ranks()[ent.count], result.get().count() >= ent.count);
-				}
+		Optional<SetContext> result = getCountAndIndex(context);
+		if (result.isPresent()) {
+			ArtifactSetConfig config = ArtifactSetConfig.getInstance();
+			ArrayList<ArtifactSetConfig.Entry> list = config.map.get(this);
+			for (ArtifactSetConfig.Entry ent : list) {
+				ent.effect.update(e, ent, result.get().ranks()[ent.count], result.get().count() >= ent.count);
 			}
 		}
 	}
 
 	public void tick(SlotContext context) {
 		LivingEntity e = context.entity();
-		if (e instanceof Player player) {
-			Optional<SetContext> result = getCountAndIndex(context);
-			if (result.isPresent() && result.get().current_index() == 0) {
-				ArtifactSetConfig config = ArtifactSetConfig.getInstance();
-				ArrayList<ArtifactSetConfig.Entry> list = config.map.get(this);
-				for (ArtifactSetConfig.Entry ent : list) {
-					ent.effect.tick(player, ent, result.get().ranks()[ent.count], result.get().count() >= ent.count);
-				}
+		Optional<SetContext> result = getCountAndIndex(context);
+		if (result.isPresent() && result.get().current_index() == 0) {
+			ArtifactSetConfig config = ArtifactSetConfig.getInstance();
+			ArrayList<ArtifactSetConfig.Entry> list = config.map.get(this);
+			for (ArtifactSetConfig.Entry ent : list) {
+				ent.effect.tick(e, ent, result.get().ranks()[ent.count], result.get().count() >= ent.count);
 			}
 		}
 	}
 
 	public <T> void propagateEvent(SlotContext context, T event, ArtifactEffectEvents.EventConsumer<T> cons) {
 		LivingEntity e = context.entity();
-		if (e instanceof Player player) {
-			Optional<SetContext> result = getCountAndIndex(context);
-			if (result.isPresent() && result.get().current_index() == 0) {
-				ArtifactSetConfig config = ArtifactSetConfig.getInstance();
-				ArrayList<ArtifactSetConfig.Entry> list = config.map.get(this);
-				for (ArtifactSetConfig.Entry ent : list) {
-					if (result.get().count() >= ent.count) {
-						cons.apply(ent.effect, player, ent, result.get().ranks()[ent.count], event);
-					}
+		Optional<SetContext> result = getCountAndIndex(context);
+		if (result.isPresent() && result.get().current_index() == 0) {
+			ArtifactSetConfig config = ArtifactSetConfig.getInstance();
+			ArrayList<ArtifactSetConfig.Entry> list = config.map.get(this);
+			for (ArtifactSetConfig.Entry ent : list) {
+				if (result.get().count() >= ent.count) {
+					cons.apply(ent.effect, e, ent, result.get().ranks()[ent.count], event);
 				}
 			}
 		}
@@ -148,17 +143,16 @@ public class ArtifactSet extends NamedEntry<ArtifactSet> implements IArtifactFea
 	public <T> boolean propagateEvent(SlotContext context, T event, ArtifactEffectEvents.EventPredicate<T> cons) {
 		LivingEntity e = context.entity();
 		boolean ans = false;
-		if (e instanceof Player player) {
-			Optional<SetContext> result = getCountAndIndex(context);
-			if (result.isPresent() && result.get().current_index() == 0) {
-				ArtifactSetConfig config = ArtifactSetConfig.getInstance();
-				ArrayList<ArtifactSetConfig.Entry> list = config.map.get(this);
-				for (ArtifactSetConfig.Entry ent : list) {
-					if (result.get().count() >= ent.count) {
-						ans |= cons.apply(ent.effect, player, ent, result.get().ranks()[ent.count], event);
-					}
+		Optional<SetContext> result = getCountAndIndex(context);
+		if (result.isPresent() && result.get().current_index() == 0) {
+			ArtifactSetConfig config = ArtifactSetConfig.getInstance();
+			ArrayList<ArtifactSetConfig.Entry> list = config.map.get(this);
+			for (ArtifactSetConfig.Entry ent : list) {
+				if (result.get().count() >= ent.count) {
+					ans |= cons.apply(ent.effect, e, ent, result.get().ranks()[ent.count], event);
 				}
 			}
+
 		}
 		return ans;
 	}
@@ -166,14 +160,14 @@ public class ArtifactSet extends NamedEntry<ArtifactSet> implements IArtifactFea
 	public List<MutableComponent> getAllDescs(ItemStack stack, boolean show) {
 		List<MutableComponent> ans = new ArrayList<>();
 		BaseArtifact artifact = (BaseArtifact) stack.getItem();
+		ArtifactSetConfig config = ArtifactSetConfig.getInstance();
+		ArrayList<ArtifactSetConfig.Entry> list = config.map.get(this);
 		if (Proxy.getPlayer() != null) {
 			Optional<SetContext> opt = getSetCount(Proxy.getPlayer());
 			if (opt.isPresent()) {
 				SetContext ctx = opt.get();
 				ans.add(LangData.SET.get(Component.translatable(getDescriptionId()).withStyle(ChatFormatting.YELLOW)));
 				if (show) {
-					ArtifactSetConfig config = ArtifactSetConfig.getInstance();
-					ArrayList<ArtifactSetConfig.Entry> list = config.map.get(this);
 					for (ArtifactSetConfig.Entry ent : list) {
 						ChatFormatting color_count = ctx.count() < ent.count ?
 								ChatFormatting.GRAY : ChatFormatting.GREEN;
@@ -188,6 +182,15 @@ public class ArtifactSet extends NamedEntry<ArtifactSet> implements IArtifactFea
 						}
 					}
 				}
+			}
+		}
+		if (!show) {
+			boolean playerOnly = false;
+			for (var e : list) {
+				playerOnly |= e.effect instanceof PlayerOnlySetEffect;
+			}
+			if (playerOnly) {
+				ans.add(LangData.PLAYER_ONLY.get().withStyle(ChatFormatting.DARK_GRAY));
 			}
 		}
 		return ans;

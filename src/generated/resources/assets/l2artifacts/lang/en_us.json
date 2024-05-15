@@ -700,6 +700,7 @@
   "l2artifacts.tooltip.loot_pool": "Possible Sets:",
   "l2artifacts.tooltip.loot_pool_all": "Possible Sets: All Sets",
   "l2artifacts.tooltip.main_stat": "Main Stats",
+  "l2artifacts.tooltip.player_only": "Set Effects works on player only.",
   "l2artifacts.tooltip.rank.1": "Rank Lv.1",
   "l2artifacts.tooltip.rank.2": "Rank Lv.2",
   "l2artifacts.tooltip.rank.3": "Rank Lv.3",

@@ -1,7 +1,7 @@
 package dev.xkmc.l2artifacts.content.effects.v1;
 
 import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
-import dev.xkmc.l2artifacts.content.effects.core.SetEffect;
+import dev.xkmc.l2artifacts.content.effects.core.PlayerOnlySetEffect;
 import dev.xkmc.l2artifacts.init.registrate.entries.LinearFuncEntry;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
@@ -11,7 +11,7 @@ import java.util.List;
 
 import static net.minecraft.world.item.ItemStack.ATTRIBUTE_MODIFIER_FORMAT;
 
-public class SaintRestoration extends SetEffect {
+public class SaintRestoration extends PlayerOnlySetEffect {
 
 	private final LinearFuncEntry val;
 

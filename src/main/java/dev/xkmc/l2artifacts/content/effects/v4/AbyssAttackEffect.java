@@ -1,6 +1,7 @@
 package dev.xkmc.l2artifacts.content.effects.v4;
 
 import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
+import dev.xkmc.l2artifacts.content.effects.core.PlayerOnlySetEffect;
 import dev.xkmc.l2artifacts.content.effects.core.SetEffect;
 import dev.xkmc.l2artifacts.content.mobeffects.EffectDesc;
 import dev.xkmc.l2artifacts.init.registrate.entries.LinearFuncEntry;
@@ -12,6 +13,7 @@ import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 
 import java.util.List;
@@ -37,13 +39,13 @@ public class AbyssAttackEffect extends SetEffect {
 	}
 
 	@Override
-	public void playerHurtOpponentEvent(Player player, ArtifactSetConfig.Entry ent, int rank, AttackCache event) {
+	public void playerHurtOpponentEvent(LivingEntity player, ArtifactSetConfig.Entry ent, int rank, AttackCache event) {
 		event.getAttackTarget().addEffect(weak(rank), player);
 		event.getAttackTarget().addEffect(wither(rank), player);
 	}
 
 	@Override
-	public void playerReduceDamage(Player player, ArtifactSetConfig.Entry ent, int rank, DamageSource source, AttackCache cache) {
+	public void playerReduceDamage(LivingEntity player, ArtifactSetConfig.Entry ent, int rank, DamageSource source, AttackCache cache) {
 		if (source.is(L2DamageTypes.MAGIC)) {
 			cache.addDealtModifier(DamageModifier.multTotal(1 - (float) hurt.getFromRank(rank)));
 		}

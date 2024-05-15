@@ -1,7 +1,7 @@
 package dev.xkmc.l2artifacts.content.effects.v5;
 
 import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
-import dev.xkmc.l2artifacts.content.effects.core.SetEffect;
+import dev.xkmc.l2artifacts.content.effects.core.PlayerOnlySetEffect;
 import dev.xkmc.l2artifacts.init.registrate.entries.LinearFuncEntry;
 import dev.xkmc.l2damagetracker.contents.attack.AttackCache;
 import dev.xkmc.l2damagetracker.init.data.L2DamageTypes;
@@ -13,7 +13,7 @@ import net.minecraft.world.entity.player.Player;
 
 import java.util.List;
 
-public class DeadCellDodge extends SetEffect {
+public class DeadCellDodge extends PlayerOnlySetEffect {
 
 	private final LinearFuncEntry chance;
 

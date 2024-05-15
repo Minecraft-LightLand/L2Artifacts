@@ -8,6 +8,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.ShieldBlockEvent;
@@ -25,18 +26,6 @@ public abstract class SetEffect extends NamedEntry<SetEffect> {
 	}
 
 	/**
-	 * when the set count changes. Entry contains an uuid if one needs to add it. for Attributes, it must be transient
-	 */
-	public void update(Player player, ArtifactSetConfig.Entry ent, int rank, boolean enabled) {
-	}
-
-	/**
-	 * always ticks regardless if it's enabled or not
-	 */
-	public void tick(Player player, ArtifactSetConfig.Entry ent, int rank, boolean enabled) {
-	}
-
-	/**
 	 * 获取词条描述
 	 */
 	public List<MutableComponent> getDetailedDescription(int rank) {
@@ -44,16 +33,25 @@ public abstract class SetEffect extends NamedEntry<SetEffect> {
 	}
 
 	/**
-	 * 当玩家试图发动近战攻击时触发，可以修改伤害数值。此时目标已确定，但是伤害来源还未创建。
+	 * when the set count changes. Entry contains an uuid if one needs to add it. for Attributes, it must be transient
 	 */
-	public boolean playerAttackModifyEvent(Player player, ArtifactSetConfig.Entry ent, int rank, CriticalHitEvent event) {
-		return false;
+	public void update(LivingEntity player, ArtifactSetConfig.Entry ent, int rank, boolean enabled) {
 	}
 
 	/**
-	 * 当玩家被攻击时触发
+	 * always ticks regardless if it's enabled or not
 	 */
-	public void playerAttackedEvent(Player player, ArtifactSetConfig.Entry ent, int rank, AttackCache cache) {
+	public void tick(LivingEntity player, ArtifactSetConfig.Entry ent, int rank, boolean enabled) {
+	}
+
+	/**
+	 * 当玩家试图发动近战攻击时触发，可以修改伤害数值。此时目标已确定，但是伤害来源还未创建。
+	 */
+	public boolean playerAttackModifyEvent(LivingEntity player, ArtifactSetConfig.Entry ent, int rank, CriticalHitEvent event) {
+		return false;
+	}
+
+	public final void playerAttackedEvent(LivingEntity player, ArtifactSetConfig.Entry ent, int rank, AttackCache cache) {
 		var event = cache.getLivingAttackEvent();
 		assert event != null;
 		var source = event.getSource();
@@ -64,14 +62,7 @@ public abstract class SetEffect extends NamedEntry<SetEffect> {
 		}
 	}
 
-	public boolean playerAttackedCancel(Player player, ArtifactSetConfig.Entry ent, int rank, DamageSource source, AttackCache cache) {
-		return false;
-	}
-
-	/**
-	 * 当玩家收到伤害时触发，可以修改伤害数值。
-	 */
-	public void playerHurtEvent(Player player, ArtifactSetConfig.Entry ent, int rank, AttackCache cache) {
+	public final void playerHurtEvent(LivingEntity player, ArtifactSetConfig.Entry ent, int rank, AttackCache cache) {
 		var event = cache.getLivingDamageEvent();
 		assert event != null;
 		var source = event.getSource();
@@ -80,31 +71,35 @@ public abstract class SetEffect extends NamedEntry<SetEffect> {
 		}
 	}
 
-	public void playerReduceDamage(Player player, ArtifactSetConfig.Entry ent, int rank, DamageSource source, AttackCache cache) {
-
+	public boolean playerAttackedCancel(LivingEntity player, ArtifactSetConfig.Entry ent, int rank, DamageSource source, AttackCache cache) {
+		return false;
 	}
+
+	public void playerReduceDamage(LivingEntity player, ArtifactSetConfig.Entry ent, int rank, DamageSource source, AttackCache cache) {
+	}
+
 
 	/**
 	 * 当玩家试图对怪物造成伤害时触发，可以修改伤害数值。此时已通过怪物的免疫判定，但是还未处理怪物减伤判定。
 	 */
-	public void playerHurtOpponentEvent(Player player, ArtifactSetConfig.Entry ent, int rank, AttackCache event) {
+	public void playerHurtOpponentEvent(LivingEntity player, ArtifactSetConfig.Entry ent, int rank, AttackCache event) {
 
 	}
 
 	/**
 	 * 当玩家对怪物造成确实伤害时触发。此时已处理过怪物减伤判定。
 	 */
-	public void playerDamageOpponentEvent(Player player, ArtifactSetConfig.Entry ent, int rank, AttackCache event) {
+	public void playerDamageOpponentEvent(LivingEntity player, ArtifactSetConfig.Entry ent, int rank, AttackCache event) {
 	}
 
 	/**
 	 * 当玩家击杀怪物时触发。
 	 */
-	public void playerKillOpponentEvent(Player player, ArtifactSetConfig.Entry ent, int rank, LivingDeathEvent event) {
+	public void playerKillOpponentEvent(LivingEntity player, ArtifactSetConfig.Entry ent, int rank, LivingDeathEvent event) {
 
 	}
 
-	public void playerShieldBlock(Player player, ArtifactSetConfig.Entry entry, int i, ShieldBlockEvent event) {
+	public void playerShieldBlock(LivingEntity player, ArtifactSetConfig.Entry entry, int i, ShieldBlockEvent event) {
 	}
 
 }

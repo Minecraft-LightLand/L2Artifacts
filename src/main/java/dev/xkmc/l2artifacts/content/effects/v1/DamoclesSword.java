@@ -8,6 +8,7 @@ import dev.xkmc.l2damagetracker.contents.attack.DamageModifier;
 import dev.xkmc.l2library.capability.conditionals.ConditionalData;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 
 import java.util.List;
@@ -22,12 +23,12 @@ public class DamoclesSword extends SetEffect {
 	}
 
 	@Override
-	public void tick(Player player, ArtifactSetConfig.Entry ent, int rank, boolean enabled) {
-		if (!enabled || player.level().isClientSide())
+	public void tick(LivingEntity le, ArtifactSetConfig.Entry ent, int rank, boolean enabled) {
+		if (!enabled || le.level().isClientSide())
 			return;
-		if (player.getHealth() > 0 && player.getHealth() < player.getMaxHealth() / 2 && player.hurtTime == 0) {
-			if (ConditionalData.HOLDER.get(player).tickSinceDeath > 60)
-				player.hurt(player.level().damageSources().fellOutOfWorld(), player.getMaxHealth());
+		if (le.getHealth() > 0 && le.getHealth() < le.getMaxHealth() / 2 && le.hurtTime == 0) {
+			if (!(le instanceof Player pl) || ConditionalData.HOLDER.get(pl).tickSinceDeath > 60)
+				le.hurt(le.level().damageSources().fellOutOfWorld(), le.getMaxHealth());
 		}
 	}
 
@@ -39,7 +40,7 @@ public class DamoclesSword extends SetEffect {
 	}
 
 	@Override
-	public void playerHurtOpponentEvent(Player player, ArtifactSetConfig.Entry ent, int rank, AttackCache event) {
+	public void playerHurtOpponentEvent(LivingEntity player, ArtifactSetConfig.Entry ent, int rank, AttackCache event) {
 		if (player.getHealth() < player.getMaxHealth()) return;
 		event.addHurtModifier(DamageModifier.multBase((float) amplify.getFromRank(rank)));
 	}

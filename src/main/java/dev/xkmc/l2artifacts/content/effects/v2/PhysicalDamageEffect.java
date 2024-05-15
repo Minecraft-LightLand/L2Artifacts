@@ -9,6 +9,7 @@ import dev.xkmc.l2damagetracker.contents.attack.DamageModifier;
 import dev.xkmc.l2damagetracker.init.data.L2DamageTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
@@ -32,7 +33,7 @@ public class PhysicalDamageEffect extends AttributeSetEffect {
 	}
 
 	@Override
-	public void playerHurtOpponentEvent(Player player, ArtifactSetConfig.Entry ent, int rank, AttackCache event) {
+	public void playerHurtOpponentEvent(LivingEntity player, ArtifactSetConfig.Entry ent, int rank, AttackCache event) {
 		LivingHurtEvent hurt = event.getLivingHurtEvent();
 		assert hurt != null;
 		if (hurt.getSource().is(L2DamageTypes.MAGIC)) {

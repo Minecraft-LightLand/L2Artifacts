@@ -4,14 +4,11 @@ import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
 import dev.xkmc.l2artifacts.content.core.BaseArtifact;
 import dev.xkmc.l2artifacts.content.effects.core.SetEffect;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
-import dev.xkmc.l2artifacts.init.registrate.ArtifactEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
-import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.living.ShieldBlockEvent;
-import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import top.theillusivec4.curios.api.CuriosApi;
@@ -24,8 +21,7 @@ public class ArtifactEffectEvents {
 
 	public static <T> void postEvent(LivingEntity entity, T event, EventConsumer<T> cons) {
 		var opt = CuriosApi.getCuriosInventory(entity).resolve();
-		if (opt.isEmpty() || !(entity instanceof Player))
-			return;
+		if (opt.isEmpty()) return;
 		List<SlotResult> list = opt.get()
 				.findCurios(stack -> stack.getItem() instanceof BaseArtifact);
 		for (SlotResult result : list) {
@@ -37,7 +33,7 @@ public class ArtifactEffectEvents {
 
 	public static <T> boolean postEvent(LivingEntity entity, T event, EventPredicate<T> cons) {
 		var opt = CuriosApi.getCuriosInventory(entity).resolve();
-		if (opt.isEmpty() || !(entity instanceof Player))
+		if (opt.isEmpty())
 			return false;
 		List<SlotResult> list = opt.get()
 				.findCurios(stack -> stack.getItem() instanceof BaseArtifact);
@@ -52,25 +48,24 @@ public class ArtifactEffectEvents {
 
 	@SubscribeEvent
 	public static void onKillEvent(LivingDeathEvent event) {
-		if (event.getSource().getEntity() instanceof Player player)
+		if (event.getSource().getEntity() instanceof LivingEntity player)
 			postEvent(player, event, SetEffect::playerKillOpponentEvent);
 	}
 
 	@SubscribeEvent
 	public static void onShieldBlock(ShieldBlockEvent event) {
-		if (event.getEntity() instanceof Player player)
-			postEvent(player, event, SetEffect::playerShieldBlock);
+		postEvent(event.getEntity(), event, SetEffect::playerShieldBlock);
 	}
 
 	public interface EventConsumer<T> {
 
-		void apply(SetEffect set, Player player, ArtifactSetConfig.Entry ent, int rank, T event);
+		void apply(SetEffect set, LivingEntity player, ArtifactSetConfig.Entry ent, int rank, T event);
 
 	}
 
 	public interface EventPredicate<T> {
 
-		boolean apply(SetEffect set, Player player, ArtifactSetConfig.Entry ent, int rank, T event);
+		boolean apply(SetEffect set, LivingEntity player, ArtifactSetConfig.Entry ent, int rank, T event);
 
 	}
 

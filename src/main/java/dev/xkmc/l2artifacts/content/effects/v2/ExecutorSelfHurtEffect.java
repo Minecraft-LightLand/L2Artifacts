@@ -10,6 +10,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 
@@ -33,12 +34,12 @@ public class ExecutorSelfHurtEffect extends AttributeSetEffect {
 	}
 
 	@Override
-	public void playerKillOpponentEvent(Player player, ArtifactSetConfig.Entry ent, int rank, LivingDeathEvent event) {
+	public void playerKillOpponentEvent(LivingEntity le, ArtifactSetConfig.Entry ent, int rank, LivingDeathEvent event) {
 		double damage = event.getEntity().getMaxHealth() * factor.getFromRank(rank);
 		var type = DamageTypeRoot.of(DamageTypes.PLAYER_ATTACK)
 				.enable(DefaultDamageState.BYPASS_ARMOR)
 				.enable(DefaultDamageState.BYPASS_MAGIC)
-				.getHolder(player.level());
-		player.hurt(new DamageSource(type, player), (float) damage);
+				.getHolder(le.level());
+		le.hurt(new DamageSource(type, le), (float) damage);
 	}
 }

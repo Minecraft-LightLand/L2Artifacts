@@ -189,7 +189,9 @@
 		  "fungus": "真菌",
 		  "gilded": "炉金",
 		  "poisonous": "毒辐",
-		  "thermal": "热力"
+		  "thermal": "热力",
+		  "mage": "法师",
+		  "pirate": "海盗"
 		},
 		{
 		  "head": "头饰",

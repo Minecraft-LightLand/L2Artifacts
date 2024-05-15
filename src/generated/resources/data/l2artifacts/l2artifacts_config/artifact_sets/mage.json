@@ -1,0 +1,14 @@
+{
+  "map": {
+    "l2artifacts:mage": [
+      {
+        "count": 2,
+        "effect": "l2artifacts:mage_2"
+      },
+      {
+        "count": 4,
+        "effect": "l2artifacts:mage_4"
+      }
+    ]
+  }
+}

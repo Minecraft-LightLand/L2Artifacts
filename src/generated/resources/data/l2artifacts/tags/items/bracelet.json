@@ -105,6 +105,16 @@
     "l2artifacts:thermal_bracelet_2",
     "l2artifacts:thermal_bracelet_3",
     "l2artifacts:thermal_bracelet_4",
-    "l2artifacts:thermal_bracelet_5"
+    "l2artifacts:thermal_bracelet_5",
+    "l2artifacts:mage_bracelet_1",
+    "l2artifacts:mage_bracelet_2",
+    "l2artifacts:mage_bracelet_3",
+    "l2artifacts:mage_bracelet_4",
+    "l2artifacts:mage_bracelet_5",
+    "l2artifacts:pirate_bracelet_1",
+    "l2artifacts:pirate_bracelet_2",
+    "l2artifacts:pirate_bracelet_3",
+    "l2artifacts:pirate_bracelet_4",
+    "l2artifacts:pirate_bracelet_5"
   ]
 }

@@ -110,6 +110,16 @@
     "l2artifacts:thermal_belt_2",
     "l2artifacts:thermal_belt_3",
     "l2artifacts:thermal_belt_4",
-    "l2artifacts:thermal_belt_5"
+    "l2artifacts:thermal_belt_5",
+    "l2artifacts:mage_belt_1",
+    "l2artifacts:mage_belt_2",
+    "l2artifacts:mage_belt_3",
+    "l2artifacts:mage_belt_4",
+    "l2artifacts:mage_belt_5",
+    "l2artifacts:pirate_belt_1",
+    "l2artifacts:pirate_belt_2",
+    "l2artifacts:pirate_belt_3",
+    "l2artifacts:pirate_belt_4",
+    "l2artifacts:pirate_belt_5"
   ]
 }

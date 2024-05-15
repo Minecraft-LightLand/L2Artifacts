@@ -115,6 +115,16 @@
     "l2artifacts:thermal_necklace_4",
     "l2artifacts:thermal_body_4",
     "l2artifacts:thermal_bracelet_4",
-    "l2artifacts:thermal_belt_4"
+    "l2artifacts:thermal_belt_4",
+    "l2artifacts:mage_head_4",
+    "l2artifacts:mage_necklace_4",
+    "l2artifacts:mage_body_4",
+    "l2artifacts:mage_bracelet_4",
+    "l2artifacts:mage_belt_4",
+    "l2artifacts:pirate_head_4",
+    "l2artifacts:pirate_necklace_4",
+    "l2artifacts:pirate_body_4",
+    "l2artifacts:pirate_bracelet_4",
+    "l2artifacts:pirate_belt_4"
   ]
 }

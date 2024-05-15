@@ -1,0 +1,12 @@
+{
+  "map": {
+    "l2artifacts:mage_2_magic": {
+      "base": 0.2,
+      "slope": 0.1
+    },
+    "l2artifacts:mage_4_reduction": {
+      "base": 2.0,
+      "slope": 1.0
+    }
+  }
+}

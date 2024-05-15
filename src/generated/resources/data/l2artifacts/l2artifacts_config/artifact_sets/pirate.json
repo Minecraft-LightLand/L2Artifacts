@@ -1,0 +1,14 @@
+{
+  "map": {
+    "l2artifacts:pirate": [
+      {
+        "count": 2,
+        "effect": "l2artifacts:pirate_2"
+      },
+      {
+        "count": 4,
+        "effect": "l2artifacts:pirate_4"
+      }
+    ]
+  }
+}

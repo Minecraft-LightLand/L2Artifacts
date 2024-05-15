@@ -107,6 +107,7 @@ public class ArtifactItems {
 		LAItem3.register();
 		LAItem4.register();
 		LAItem5.register();
+		LAItem6.register();
 		LAItemMisc.register();
 	}
 

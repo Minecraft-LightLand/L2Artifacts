@@ -105,6 +105,16 @@
     "l2artifacts:thermal_body_2",
     "l2artifacts:thermal_body_3",
     "l2artifacts:thermal_body_4",
-    "l2artifacts:thermal_body_5"
+    "l2artifacts:thermal_body_5",
+    "l2artifacts:mage_body_1",
+    "l2artifacts:mage_body_2",
+    "l2artifacts:mage_body_3",
+    "l2artifacts:mage_body_4",
+    "l2artifacts:mage_body_5",
+    "l2artifacts:pirate_body_1",
+    "l2artifacts:pirate_body_2",
+    "l2artifacts:pirate_body_3",
+    "l2artifacts:pirate_body_4",
+    "l2artifacts:pirate_body_5"
   ]
 }

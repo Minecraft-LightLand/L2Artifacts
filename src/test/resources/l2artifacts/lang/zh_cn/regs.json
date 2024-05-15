@@ -41,7 +41,9 @@
 	"gilded": "炉金",
 	"poisonous": "毒辐",
 	"slimy": "史莱姆",
-	"thermal": "热力"
+	"thermal": "热力",
+	"mage": "法师",
+	"pirate": "海盗"
   },
   "set_effect.l2artifacts": {
 	"berserker_3": "嗜血暴徒",
@@ -148,7 +150,11 @@
 	"flesh_decay": "血肉崩坏",
 	"flesh_decay.desc": "对血量低于%s%%的生物造成的伤害+%s%%",
 	"flesh_overgrowth": "血肉膨胀",
-	"flesh_overgrowth.desc": "攻击对目标施加%s"
+	"flesh_overgrowth.desc": "攻击对目标施加%s",
+	"mage_2": "法术强化",
+	"mage_4": "魔法护盾",
+	"pirate_2": "海盗出击!",
+	"pirate_4": "秘密炸弹"
   },
   "effect.l2artifacts": {
 	"fungus_infection": "真菌感染",

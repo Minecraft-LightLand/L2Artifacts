@@ -129,6 +129,16 @@
     "l2artifacts:thermal_head_2",
     "l2artifacts:thermal_head_3",
     "l2artifacts:thermal_head_4",
-    "l2artifacts:thermal_head_5"
+    "l2artifacts:thermal_head_5",
+    "l2artifacts:mage_head_1",
+    "l2artifacts:mage_head_2",
+    "l2artifacts:mage_head_3",
+    "l2artifacts:mage_head_4",
+    "l2artifacts:mage_head_5",
+    "l2artifacts:pirate_head_1",
+    "l2artifacts:pirate_head_2",
+    "l2artifacts:pirate_head_3",
+    "l2artifacts:pirate_head_4",
+    "l2artifacts:pirate_head_5"
   ]
 }

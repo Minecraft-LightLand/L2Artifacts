@@ -1,0 +1,35 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "l2complements"
+    }
+  ],
+  "key": {
+    "1": {
+      "item": "l2complements:resonant_feather"
+    },
+    "2": {
+      "item": "l2complements:explosion_shard"
+    },
+    "A": {
+      "item": "l2artifacts:random_4"
+    },
+    "X": {
+      "item": "l2artifacts:artifact_experience_4"
+    }
+  },
+  "pattern": [
+    "1A2",
+    "AXA",
+    "2A1"
+  ],
+  "result": {
+    "count": 4,
+    "item": "l2artifacts:random_4",
+    "nbt": "{Sets:[\"l2artifacts:gambler\",\"l2artifacts:archer\",\"l2artifacts:berserker\",\"l2artifacts:physical\",\"l2artifacts:mage\",\"l2artifacts:pirate\",\"l2artifacts:damocles\",\"l2artifacts:luck_clover\"]}"
+  },
+  "show_notification": true
+}

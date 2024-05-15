@@ -1,0 +1,45 @@
+{
+  "parent": "minecraft:recipes/root",
+  "conditions": [
+    {
+      "type": "l2library:boolean_config",
+      "expected": true,
+      "line": [
+        "enableArtifactRankUpRecipe"
+      ],
+      "path": "l2_configs/l2artifacts-common.toml"
+    }
+  ],
+  "criteria": {
+    "has_sun_block_head_4": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "l2artifacts:sun_block_head_4"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "l2artifacts:rank_up/sun_block_head_5"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_sun_block_head_4",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "l2artifacts:rank_up/sun_block_head_5"
+    ]
+  },
+  "sends_telemetry_event": false
+}

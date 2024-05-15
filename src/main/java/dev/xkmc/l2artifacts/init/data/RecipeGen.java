@@ -4,13 +4,16 @@ import com.tterrag.registrate.providers.RegistrateRecipeProvider;
 import com.tterrag.registrate.util.DataIngredient;
 import com.tterrag.registrate.util.entry.ItemEntry;
 import dev.xkmc.l2artifacts.content.core.BaseArtifact;
+import dev.xkmc.l2artifacts.content.misc.RandomArtifactItem;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
+import dev.xkmc.l2artifacts.init.registrate.LASets;
 import dev.xkmc.l2artifacts.init.registrate.entries.SetEntry;
 import dev.xkmc.l2artifacts.init.registrate.items.ArtifactItems;
 import dev.xkmc.l2complements.init.L2Complements;
 import dev.xkmc.l2complements.init.registrate.LCItems;
 import dev.xkmc.l2library.serial.conditions.BooleanValueCondition;
 import dev.xkmc.l2library.serial.recipe.ConditionalRecipeWrapper;
+import dev.xkmc.l2library.serial.recipe.NBTRecipe;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
@@ -24,6 +27,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.tags.ITagManager;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.function.BiFunction;
 
@@ -34,9 +38,9 @@ public class RecipeGen {
 			ItemEntry<?> input = arr[i - 1];
 			ItemEntry<?> output = arr[i];
 			pvd.singleItemUnfinished(DataIngredient.items(input.get()), RecipeCategory.MISC, output, 2, 1)
-					.save(pvd, new ResourceLocation(L2Artifacts.MODID, "rank_up_" + output.getId().getPath()));
+					.save(pvd, output.getId().withPrefix("upgrades/rank_up_"));
 			pvd.singleItemUnfinished(DataIngredient.items(output.get()), RecipeCategory.MISC, input, 1, 2)
-					.save(pvd, new ResourceLocation(L2Artifacts.MODID, "rank_down_" + output.getId().getPath()));
+					.save(pvd, output.getId().withPrefix("upgrades/rank_down_"));
 		}
 	}
 
@@ -65,7 +69,8 @@ public class RecipeGen {
 					unlock(pvd, new ShapelessRecipeBuilder(RecipeCategory.MISC, output, 1)::unlockedBy, input)
 							.requires(input, 2)
 							.save(ConditionalRecipeWrapper.of(pvd, BooleanValueCondition.of(ArtifactConfig.COMMON_PATH,
-									ArtifactConfig.COMMON.enableArtifactRankUpRecipe, true)));
+											ArtifactConfig.COMMON.enableArtifactRankUpRecipe, true)),
+									slot[i].getId().withPrefix("rank_up/"));
 				}
 			}
 		}
@@ -89,6 +94,58 @@ public class RecipeGen {
 
 		// conditionals
 		{
+			List<SetEntry<?>> set0 = List.of(LASets.SET_GAMBLER, LASets.SET_ARCHER, LASets.SET_BERSERKER,
+					LASets.SET_PHYSICAL, LASets.SET_MAGE, LASets.SET_PIRATE, LASets.SET_DAMOCLES, LASets.SET_LUCKCLOVER);
+			List<SetEntry<?>> set1 = List.of(LASets.SET_PERFECTION, LASets.SET_SAINT, LASets.SET_EXECUTOR,
+					LASets.SET_VAMPIRE, LASets.SET_GLUTTONY, LASets.SET_FALLEN, LASets.SET_SUN_BLOCK, LASets.SET_LUCKCLOVER);
+			List<SetEntry<?>> set2 = List.of(LASets.SET_FROZE, LASets.SET_WRATH, LASets.SET_ANCIENT,
+					LASets.SET_FLESH, LASets.SET_FUNGUS, LASets.SET_SLIMY, LASets.SET_PHOTOSYN, LASets.SET_LUCKCLOVER);
+			List<SetEntry<?>> set3 = List.of(LASets.SET_LONGSHOOTER, LASets.SET_ABYSSMEDAL, LASets.SET_CELL,
+					LASets.SET_GILDED, LASets.SET_POISONOUS, LASets.SET_THERMAL, LASets.SET_PROTECTION, LASets.SET_LUCKCLOVER);
+
+			for (int i = 0; i < 5; i++) {
+				final int rank = i + 1;
+				unlock(pvd, new ShapedRecipeBuilder(RecipeCategory.MISC, ArtifactItems.RANDOM[i], 4)::unlockedBy, LCItems.RESONANT_FEATHER.get())
+						.pattern("1A2").pattern("AXA").pattern("2A1")
+						.define('A', ArtifactItems.RANDOM[i])
+						.define('X', ArtifactItems.ITEM_EXP[i])
+						.define('1', LCItems.RESONANT_FEATHER.get())
+						.define('2', LCItems.EXPLOSION_SHARD.get())
+						.save(e -> ConditionalRecipeWrapper.mod(pvd, L2Complements.MODID)
+										.accept(new NBTRecipe(e, RandomArtifactItem.setList(rank, set0))),
+								new ResourceLocation(L2Artifacts.MODID, "directed/set_0_rank_" + rank));
+
+				unlock(pvd, new ShapedRecipeBuilder(RecipeCategory.MISC, ArtifactItems.RANDOM[i], 4)::unlockedBy, LCItems.STORM_CORE.get())
+						.pattern("1A2").pattern("AXA").pattern("2A1")
+						.define('A', ArtifactItems.RANDOM[i])
+						.define('X', ArtifactItems.ITEM_EXP[i])
+						.define('1', LCItems.CAPTURED_BULLET.get())
+						.define('2', LCItems.STORM_CORE.get())
+						.save(e -> ConditionalRecipeWrapper.mod(pvd, L2Complements.MODID)
+										.accept(new NBTRecipe(e, RandomArtifactItem.setList(rank, set1))),
+								new ResourceLocation(L2Artifacts.MODID, "directed/set_1_rank_" + rank));
+
+				unlock(pvd, new ShapedRecipeBuilder(RecipeCategory.MISC, ArtifactItems.RANDOM[i], 4)::unlockedBy, LCItems.SOUL_FLAME.get())
+						.pattern("1A2").pattern("AXA").pattern("2A1")
+						.define('A', ArtifactItems.RANDOM[i])
+						.define('X', ArtifactItems.ITEM_EXP[i])
+						.define('1', LCItems.HARD_ICE.get())
+						.define('2', LCItems.SOUL_FLAME.get())
+						.save(e -> ConditionalRecipeWrapper.mod(pvd, L2Complements.MODID)
+										.accept(new NBTRecipe(e, RandomArtifactItem.setList(rank, set2))),
+								new ResourceLocation(L2Artifacts.MODID, "directed/set_2_rank_" + rank));
+
+				unlock(pvd, new ShapedRecipeBuilder(RecipeCategory.MISC, ArtifactItems.RANDOM[i], 4)::unlockedBy, LCItems.CAPTURED_WIND.get())
+						.pattern("1A2").pattern("AXA").pattern("2A1")
+						.define('A', ArtifactItems.RANDOM[i])
+						.define('X', ArtifactItems.ITEM_EXP[i])
+						.define('1', LCItems.WARDEN_BONE_SHARD.get())
+						.define('2', LCItems.CAPTURED_WIND.get())
+						.save(e -> ConditionalRecipeWrapper.mod(pvd, L2Complements.MODID)
+										.accept(new NBTRecipe(e, RandomArtifactItem.setList(rank, set3))),
+								new ResourceLocation(L2Artifacts.MODID, "directed/set_3_rank_" + rank));
+			}
+
 			unlock(pvd, new ShapedRecipeBuilder(RecipeCategory.MISC, ArtifactItems.ITEM_STAT[0].get(), 4)::unlockedBy, LCItems.RESONANT_FEATHER.get())
 					.pattern("AAA").pattern("BCB").pattern("AAA")
 					.define('A', Items.GOLD_INGOT)

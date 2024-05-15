@@ -1,0 +1,45 @@
+{
+  "parent": "minecraft:recipes/root",
+  "conditions": [
+    {
+      "type": "l2library:boolean_config",
+      "expected": true,
+      "line": [
+        "enableArtifactRankUpRecipe"
+      ],
+      "path": "l2_configs/l2artifacts-common.toml"
+    }
+  ],
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "l2artifacts:rank_up/vampire_necklace_5"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_vampire_necklace_4": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "l2artifacts:vampire_necklace_4"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_vampire_necklace_4",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "l2artifacts:rank_up/vampire_necklace_5"
+    ]
+  },
+  "sends_telemetry_event": false
+}

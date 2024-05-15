@@ -12,13 +12,11 @@ import static dev.xkmc.l2artifacts.init.L2Artifacts.REGISTRATE;
 import static dev.xkmc.l2artifacts.init.registrate.ArtifactTypeRegistry.*;
 import static dev.xkmc.l2damagetracker.init.L2DamageTracker.*;
 import static net.minecraft.world.entity.ai.attributes.AttributeModifier.Operation.ADDITION;
-import static net.minecraft.world.entity.ai.attributes.AttributeModifier.Operation.MULTIPLY_TOTAL;
 
 public class LAItem6 {
 
 	public static final SetEntry<ArtifactSet> SET_MAGE;
 	public static final SetEntry<ArtifactSet> SET_PIRATE;
-
 
 	public static final RegistryEntry<AttributeSetEffect> EFF_MAGE_2;
 	public static final RegistryEntry<AttributeSetEffect> EFF_MAGE_4;
@@ -26,7 +24,6 @@ public class LAItem6 {
 	public static final RegistryEntry<AttributeSetEffect> EFF_PIRATE_4;
 
 	static {
-
 
 		{
 			SetRegHelper helper = REGISTRATE.getSetHelper("mage");

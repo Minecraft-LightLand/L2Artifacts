@@ -1,0 +1,45 @@
+{
+  "parent": "minecraft:recipes/root",
+  "conditions": [
+    {
+      "type": "l2library:boolean_config",
+      "expected": true,
+      "line": [
+        "enableArtifactRankUpRecipe"
+      ],
+      "path": "l2_configs/l2artifacts-common.toml"
+    }
+  ],
+  "criteria": {
+    "has_froze_bracelet_1": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "l2artifacts:froze_bracelet_1"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "l2artifacts:rank_up/froze_bracelet_2"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_froze_bracelet_1",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "l2artifacts:rank_up/froze_bracelet_2"
+    ]
+  },
+  "sends_telemetry_event": false
+}

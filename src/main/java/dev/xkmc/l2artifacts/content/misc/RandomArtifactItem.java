@@ -4,8 +4,10 @@ import dev.xkmc.l2artifacts.content.core.RankedItem;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
 import dev.xkmc.l2artifacts.init.data.LangData;
 import dev.xkmc.l2artifacts.init.registrate.entries.SetEntry;
+import dev.xkmc.l2artifacts.init.registrate.items.ArtifactItems;
 import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.ListTag;
+import net.minecraft.nbt.StringTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.stats.Stats;
@@ -37,6 +39,18 @@ public class RandomArtifactItem extends RankedItem {
 			stack.shrink(1);
 		}
 		return InteractionResultHolder.sidedSuccess(stack, level.isClientSide());
+	}
+
+	public static ItemStack setList(int rank, Collection<SetEntry<?>> sets) {
+		ItemStack stack = ArtifactItems.RANDOM[rank - 1].asStack();
+		var root = stack.getOrCreateTag();
+		ListTag ltag = new ListTag();
+		for (var e : sets) {
+			if (e.hasRank(rank))
+				ltag.add(StringTag.valueOf(e.get().getID()));
+		}
+		root.put("Sets", ltag);
+		return stack;
 	}
 
 	@Nullable

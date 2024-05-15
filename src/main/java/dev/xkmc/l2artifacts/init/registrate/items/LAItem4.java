@@ -24,7 +24,7 @@ public class LAItem4 {
 
 	//v4
 	public static final SetEntry<ArtifactSet> SET_ANCIENT;
-	public static final SetEntry<ArtifactSet> SET_LUCKLOVER;
+	public static final SetEntry<ArtifactSet> SET_LUCKCLOVER;
 	public static final SetEntry<ArtifactSet> SET_ABYSSMEDAL;
 	public static final SetEntry<ArtifactSet> SET_LONGSHOOTER;
 	public static final RegistryEntry<TimedCASetEffect> EFF_ANCIENT_1;
@@ -114,7 +114,7 @@ public class LAItem4 {
 							"The %s consecutive attacks are all within %s second:"
 					).register();
 
-			SET_LUCKLOVER = helper.regSet(4, 4, "Luck Clover")
+			SET_LUCKCLOVER = helper.regSet(4, 4, "Luck Clover")
 					.setSlots(SLOT_NECKLACE, SLOT_BODY, SLOT_BRACELET, SLOT_BELT).regItems()
 					.buildConfig((c) -> c
 							.add(3, EFF_LUCKCLOVER_3.get())

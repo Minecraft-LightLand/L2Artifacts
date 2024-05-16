@@ -168,7 +168,7 @@ public class AugmentMenuScreen extends BaseContainerScreen<AugmentMenu> implemen
 		if (Proxy.getClientPlayer().tickCount % 20 < 10) {
 			lit_name = lit_stat = false;
 		}
-		ans[0] = Component.translatable(entry.type.attr.get().getDescriptionId()).withStyle(lit_name ? LIT : main ? MAIN : SUB);
+		ans[0] = Component.translatable(entry.type.getAttr().get().getDescriptionId()).withStyle(lit_name ? LIT : main ? MAIN : SUB);
 		ans[1] = entry.type.getValueText(entry.value).withStyle(lit_stat ? LIT : main ? MAIN : SUB);
 		if (old != null) {
 			double diff = entry.value - old.value;

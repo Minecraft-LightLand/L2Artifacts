@@ -19,7 +19,18 @@
       "l2artifacts:reach_add",
       "l2artifacts:attack_speed_mult",
       "l2artifacts:speed_mult",
-      "l2artifacts:bow_strength_add"
+      "l2artifacts:bow_strength_add",
+      "l2artifacts:fire_spell_power",
+      "l2artifacts:ice_spell_power",
+      "l2artifacts:nature_spell_power",
+      "l2artifacts:holy_spell_power",
+      "l2artifacts:lightning_spell_power",
+      "l2artifacts:ender_spell_power",
+      "l2artifacts:max_mana",
+      "l2artifacts:summon_damage",
+      "l2artifacts:staminar",
+      "l2artifacts:resistance",
+      "l2artifacts:cast_time_reduction"
     ]
   }
 }

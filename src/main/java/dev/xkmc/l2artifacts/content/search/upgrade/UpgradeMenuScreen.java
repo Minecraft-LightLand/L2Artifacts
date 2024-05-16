@@ -136,7 +136,7 @@ public class UpgradeMenuScreen extends BaseContainerScreen<UpgradeMenu> implemen
 
 	private Component[] addEntry(boolean main, StatEntry entry, @Nullable StatEntry old) {
 		Component[] ans = new Component[3];
-		ans[0] = Component.translatable(entry.type.attr.get().getDescriptionId()).withStyle(main ? MAIN : SUB);
+		ans[0] = Component.translatable(entry.type.getAttr().get().getDescriptionId()).withStyle(main ? MAIN : SUB);
 		ans[1] = entry.type.getValueText(entry.value).withStyle(main ? MAIN : SUB);
 		if (old != null) {
 			double diff = entry.value - old.value;

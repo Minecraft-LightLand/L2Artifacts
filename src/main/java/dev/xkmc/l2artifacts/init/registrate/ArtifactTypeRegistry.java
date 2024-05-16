@@ -17,6 +17,7 @@ import net.minecraft.world.entity.ai.attributes.RangedAttribute;
 import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.registries.ForgeRegistries;
 
+import java.util.List;
 import java.util.function.Supplier;
 
 import static dev.xkmc.l2artifacts.init.L2Artifacts.REGISTRATE;
@@ -52,6 +53,25 @@ public class ArtifactTypeRegistry {
 	public static final RegistryEntry<ArtifactStatType> SPEED_MULT = regStat("speed_mult", () -> Attributes.MOVEMENT_SPEED, MULTIPLY_BASE, true);
 	public static final RegistryEntry<ArtifactStatType> ATK_SPEED_MULT = regStat("attack_speed_mult", () -> Attributes.ATTACK_SPEED, MULTIPLY_BASE, true);
 	public static final RegistryEntry<ArtifactStatType> BOW_ADD = regStat("bow_strength_add", BOW_STRENGTH, ADDITION, true);
+
+	public static final List<RegistryEntry<ArtifactStatType>> CUSTOMS;
+
+	// custom dummy
+	static {
+		CUSTOMS = List.of(
+				regStat("fire_spell_power", ForgeMod.SWIM_SPEED, ADDITION, false),
+				regStat("ice_spell_power", ForgeMod.SWIM_SPEED, ADDITION, false),
+				regStat("nature_spell_power", ForgeMod.SWIM_SPEED, ADDITION, false),
+				regStat("holy_spell_power", ForgeMod.SWIM_SPEED, ADDITION, false),
+				regStat("lightning_spell_power", ForgeMod.SWIM_SPEED, ADDITION, false),
+				regStat("ender_spell_power", ForgeMod.SWIM_SPEED, ADDITION, false),
+				regStat("max_mana", ForgeMod.SWIM_SPEED, ADDITION, false),
+				regStat("summon_damage", ForgeMod.SWIM_SPEED, ADDITION, false),
+				regStat("staminar", ForgeMod.SWIM_SPEED, ADDITION, false),
+				regStat("resistance", ForgeMod.SWIM_SPEED, ADDITION, false),
+				regStat("cast_time_reduction", ForgeMod.SWIM_SPEED, ADDITION, false)
+		);
+	}
 
 	public static final RegistryEntry<Codec<ArtifactLootModifier>> SER = REGISTRATE.simple("main", ForgeRegistries.Keys.GLOBAL_LOOT_MODIFIER_SERIALIZERS, () -> ArtifactLootModifier.CODEC);
 

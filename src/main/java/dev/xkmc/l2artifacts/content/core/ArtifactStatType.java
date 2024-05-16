@@ -21,10 +21,12 @@ import static net.minecraft.world.item.ItemStack.ATTRIBUTE_MODIFIER_FORMAT;
 
 public class ArtifactStatType extends NamedEntry<ArtifactStatType> implements IArtifactFeature.Sprite {
 
+	@Deprecated
 	public final Supplier<Attribute> attr;
-
-	private final AttributeModifier.Operation op;
-	private final boolean usePercent;
+	@Deprecated
+	public final AttributeModifier.Operation op;
+	@Deprecated
+	public final boolean usePercent;
 
 	public ArtifactStatType(Supplier<Attribute> attr, AttributeModifier.Operation op, boolean useMult) {
 		super(ArtifactTypeRegistry.STAT_TYPE);
@@ -34,7 +36,7 @@ public class ArtifactStatType extends NamedEntry<ArtifactStatType> implements IA
 	}
 
 	public void getModifier(ImmutableMultimap.Builder<Attribute, AttributeModifier> builder, StatEntry entry) {
-		builder.put(attr.get(), new AttributeModifier(entry.id, entry.getName(), entry.value, op));
+		builder.put(getAttr().get(), new AttributeModifier(entry.id, entry.getName(), entry.value, getOp()));
 	}
 
 	public double getInitialValue(int rank, RandomSource random, boolean max) {
@@ -54,8 +56,8 @@ public class ArtifactStatType extends NamedEntry<ArtifactStatType> implements IA
 
 	public MutableComponent getValueText(double val) {
 		var ans = Component.literal("+");
-		ans = ans.append(ATTRIBUTE_MODIFIER_FORMAT.format(usePercent ? val * 100 : val));
-		if (usePercent) {
+		ans = ans.append(ATTRIBUTE_MODIFIER_FORMAT.format(isUsePercent() ? val * 100 : val));
+		if (isUsePercent()) {
 			ans = ans.append("%");
 		}
 		return ans;
@@ -63,9 +65,9 @@ public class ArtifactStatType extends NamedEntry<ArtifactStatType> implements IA
 
 	public Component getTooltip(double val) {
 		return MutableComponent.create(new TranslatableContents(
-				"attribute.modifier.plus." + (usePercent ? 1 : 0),
-				ATTRIBUTE_MODIFIER_FORMAT.format(usePercent ? val * 100 : val),
-				MutableComponent.create(new TranslatableContents(attr.get().getDescriptionId())))).withStyle(ChatFormatting.BLUE);
+				"attribute.modifier.plus." + (isUsePercent() ? 1 : 0),
+				ATTRIBUTE_MODIFIER_FORMAT.format(isUsePercent() ? val * 100 : val),
+				MutableComponent.create(new TranslatableContents(getAttr().get().getDescriptionId())))).withStyle(ChatFormatting.BLUE);
 	}
 
 	@Override
@@ -74,4 +76,18 @@ public class ArtifactStatType extends NamedEntry<ArtifactStatType> implements IA
 		return new ResourceLocation(rl.getNamespace(), "textures/stat_type/" + rl.getPath() + ".png");
 	}
 
+	public Supplier<Attribute> getAttr() {
+		StatTypeConfig.Entry entry = StatTypeConfig.getInstance().stats.get(this);
+		return () -> entry.attr;
+	}
+
+	public boolean isUsePercent() {
+		StatTypeConfig.Entry entry = StatTypeConfig.getInstance().stats.get(this);
+		return entry.usePercent;
+	}
+
+	public AttributeModifier.Operation getOp() {
+		StatTypeConfig.Entry entry = StatTypeConfig.getInstance().stats.get(this);
+		return entry.op;
+	}
 }

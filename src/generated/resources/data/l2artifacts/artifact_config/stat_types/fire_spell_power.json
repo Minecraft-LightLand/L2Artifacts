@@ -1,8 +1,8 @@
 {
   "_class": "dev.xkmc.l2artifacts.content.config.StatTypeConfig",
   "stats": {
-    "l2artifacts:attack_add": {
-      "attr": "minecraft:generic.attack_damage",
+    "l2artifacts:fire_spell_power": {
+      "attr": "forge:swim_speed",
       "base_high": 2.0,
       "base_low": 1.0,
       "main_high": 0.4,

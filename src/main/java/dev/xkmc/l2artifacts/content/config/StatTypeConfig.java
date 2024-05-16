@@ -4,6 +4,8 @@ import dev.xkmc.l2artifacts.content.core.ArtifactStatType;
 import dev.xkmc.l2artifacts.network.NetworkManager;
 import dev.xkmc.l2library.serial.SerialClass;
 import dev.xkmc.l2library.serial.network.BaseConfig;
+import net.minecraft.world.entity.ai.attributes.Attribute;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 
 import java.util.HashMap;
 
@@ -29,6 +31,15 @@ public class StatTypeConfig extends BaseConfig {
 		@SerialClass.SerialField
 		public double base_low, base_high, main_low, main_high, sub_low, sub_high;
 
+		@SerialClass.SerialField
+		public Attribute attr;
+
+		@SerialClass.SerialField
+		public boolean usePercent;
+
+		@SerialClass.SerialField
+		public AttributeModifier.Operation op;
+
 		public int count = 1;
 
 		public void set(Entry t1) {
@@ -40,6 +51,9 @@ public class StatTypeConfig extends BaseConfig {
 			sub_low = (sub_low * count + t1.sub_low * t1.count) / total;
 			sub_high = (sub_high * count + t1.sub_high * t1.count) / total;
 			count = total;
+			if (attr == null) attr = t1.attr;
+			usePercent |= t1.usePercent;
+			if (op == null) op = t1.op;
 		}
 
 	}

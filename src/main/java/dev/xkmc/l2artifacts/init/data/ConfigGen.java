@@ -44,6 +44,9 @@ public class ConfigGen extends ConfigDataProvider {
 				all.add(ArtifactTypeRegistry.ATK_SPEED_MULT.get());
 				all.add(ArtifactTypeRegistry.SPEED_MULT.get());
 				all.add(ArtifactTypeRegistry.BOW_ADD.get());
+
+				for (var e : ArtifactTypeRegistry.CUSTOMS)
+					all.add(e.get());
 			}
 			{
 				ArrayList<ArtifactStatType> list = new ArrayList<>();
@@ -120,6 +123,10 @@ public class ConfigGen extends ConfigDataProvider {
 		addStatType(map, ArtifactTypeRegistry.ATK_SPEED_MULT.get(), 0.02);
 		addStatType(map, ArtifactTypeRegistry.BOW_ADD.get(), 0.02);
 
+		for (var e : ArtifactTypeRegistry.CUSTOMS) {
+			addStatType(map, e.get(), 1);
+		}
+
 		// Set Effect Config
 
 		for (SetEntry<?> set : L2Artifacts.REGISTRATE.SET_LIST) {
@@ -147,7 +154,7 @@ public class ConfigGen extends ConfigDataProvider {
 	private static void addStatType(Map<String, BaseConfig> map, ArtifactStatType type, double base) {
 		StatTypeConfig config = new StatTypeConfig();
 		ResourceLocation rl = Objects.requireNonNull(type.getRegistryName());
-		config.stats.put(type, genEntry(base, 0.2, 2));
+		config.stats.put(type, genEntry(type, base, 0.2, 2));
 		map.put(rl.getNamespace() + "/artifact_config/stat_types/" + rl.getPath(), config);
 	}
 
@@ -156,7 +163,7 @@ public class ConfigGen extends ConfigDataProvider {
 		map.put(rl.getNamespace() + "/artifact_config/artifact_sets/" + rl.getPath(), ArtifactSetConfig.construct(set, builder));
 	}
 
-	private static StatTypeConfig.Entry genEntry(double base, double sub, double factor) {
+	private static StatTypeConfig.Entry genEntry(ArtifactStatType type, double base, double sub, double factor) {
 		StatTypeConfig.Entry entry = new StatTypeConfig.Entry();
 		entry.base_low = base;
 		entry.base_high = base * factor;
@@ -164,6 +171,9 @@ public class ConfigGen extends ConfigDataProvider {
 		entry.main_high = base * sub * factor;
 		entry.sub_low = base * sub;
 		entry.sub_high = base * sub * factor;
+		entry.attr = type.attr.get();
+		entry.usePercent = type.usePercent;
+		entry.op = type.op;
 		return entry;
 	}
 

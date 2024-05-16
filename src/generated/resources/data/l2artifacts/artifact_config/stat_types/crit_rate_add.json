@@ -2,12 +2,15 @@
   "_class": "dev.xkmc.l2artifacts.content.config.StatTypeConfig",
   "stats": {
     "l2artifacts:crit_rate_add": {
+      "attr": "l2artifacts:crit_rate",
       "base_high": 0.02,
       "base_low": 0.01,
       "main_high": 0.004,
       "main_low": 0.002,
+      "op": "ADDITION",
       "sub_high": 0.004,
-      "sub_low": 0.002
+      "sub_low": 0.002,
+      "usePercent": true
     }
   }
 }

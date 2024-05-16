@@ -25,6 +25,7 @@ public class StatContainerItem extends UpgradeEnhanceItem {
 	}
 
 	public static Optional<ResourceLocation> getType(ItemStack item) {
+		if (item.isEmpty()) return Optional.empty();
 		ItemCompoundTag tag = ItemCompoundTag.of(item);
 		if (!tag.isPresent()) {
 			return Optional.empty();
@@ -33,7 +34,7 @@ public class StatContainerItem extends UpgradeEnhanceItem {
 			return Optional.empty();
 		}
 		String str = tag.getOrCreate().getString(KEY);
-		if (str.length() == 0) {
+		if (str.isEmpty()) {
 			return Optional.empty();
 		}
 		return Optional.of(new ResourceLocation(str));

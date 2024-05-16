@@ -162,6 +162,7 @@
 	  "list": [
 		{
 		  "random": "未鉴定古遗物",
+		  "random_set": "未鉴定古遗物套装",
 		  "artifact_experience": "古遗物经验",
 		  "stat_container": "词条容器",
 		  "boost_main": "主词条充能水晶",

@@ -38,7 +38,7 @@ public class UpgradeMenuScreen extends BaseContainerScreen<UpgradeMenu> implemen
 
 	private static final int MAX_TIME = 60;
 	private static final ChatFormatting MAIN = ChatFormatting.DARK_GREEN;
-	private static final ChatFormatting SUB = ChatFormatting.DARK_BLUE;
+	private static final ChatFormatting SUB = ChatFormatting.BLUE;
 
 	private boolean pressed = false;
 
@@ -49,7 +49,7 @@ public class UpgradeMenuScreen extends BaseContainerScreen<UpgradeMenu> implemen
 	private boolean keep = false;
 
 	public UpgradeMenuScreen(UpgradeMenu cont, Inventory plInv, Component title) {
-		super(cont, plInv, LangData.TAB_UPGRADE.get());
+		super(cont, plInv, LangData.TAB_UPGRADE.get().withStyle(ChatFormatting.GRAY));
 	}
 
 	@Override
@@ -98,7 +98,8 @@ public class UpgradeMenuScreen extends BaseContainerScreen<UpgradeMenu> implemen
 
 	@Override
 	protected void renderLabels(GuiGraphics g, int mx, int my) {
-		super.renderLabels(g, mx, my);
+		g.drawString(this.font, this.title, this.titleLabelX, this.titleLabelY, 4210752, false);
+		g.drawString(this.font, this.playerInventoryTitle.copy().withStyle(ChatFormatting.GRAY), this.inventoryLabelX, this.inventoryLabelY, 4210752, false);
 		g.pose().pushPose();
 		g.pose().translate(0, 45, 0);
 		StackedRenderHandle handle = new StackedRenderHandle(this, g, menu.sprite.get(), 0);
@@ -107,7 +108,8 @@ public class UpgradeMenuScreen extends BaseContainerScreen<UpgradeMenu> implemen
 		if (cost > 0) {
 			String str = RecycleMenuScreen.formatNumber(cost) + "/" + RecycleMenuScreen.formatNumber(exp);
 			handle.drawText(LangData.TAB_INFO_EXP_COST.get(Component.literal(str)
-					.withStyle(cost <= exp ? ChatFormatting.DARK_GREEN : ChatFormatting.DARK_RED)), false);
+					.withStyle(cost <= exp ? ChatFormatting.DARK_GREEN : ChatFormatting.RED))
+					.withStyle(ChatFormatting.GRAY), false);
 			ItemStack stack = menu.container.getItem(0);
 			if (stack != oldStack) {
 				oldStack = stack;
@@ -129,7 +131,7 @@ public class UpgradeMenuScreen extends BaseContainerScreen<UpgradeMenu> implemen
 				current = stat;
 			}
 		} else {
-			handle.drawText(LangData.TAB_INFO_EXP.get(exp), false);
+			handle.drawText(LangData.TAB_INFO_EXP.get(exp).withStyle(ChatFormatting.GRAY), false);
 		}
 		handle.flushText();
 		g.pose().popPose();
@@ -145,7 +147,7 @@ public class UpgradeMenuScreen extends BaseContainerScreen<UpgradeMenu> implemen
 				Integer fg = ChatFormatting.DARK_PURPLE.getColor();
 				assert fg != null;
 				float perc = 1 - time / MAX_TIME;
-				int c = lerpColor(perc, fg, 0xC6C6C6);
+				int c = lerpColor(perc, fg, 0x33322E);
 				ans[2] = entry.getType().getValueText(diff).withStyle(Style.EMPTY.withColor(c));
 			} else {
 				ans[2] = Component.empty();

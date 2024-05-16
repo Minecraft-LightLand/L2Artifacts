@@ -7,6 +7,7 @@ import dev.xkmc.l2library.base.menu.base.BaseContainerScreen;
 import dev.xkmc.l2library.base.menu.base.MenuLayoutConfig;
 import dev.xkmc.l2library.base.menu.scroller.Scroller;
 import dev.xkmc.l2library.base.menu.scroller.ScrollerScreen;
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
@@ -47,7 +48,7 @@ public class AbstractScrollerScreen<T extends AbstractScrollerMenu<T>>
 	@Override
 	protected void renderLabels(GuiGraphics g, int pMouseX, int pMouseY) {
 		g.drawString(font, getTitle(), this.titleLabelX, this.titleLabelY, 4210752, false);
-		g.drawString(font, this.playerInventoryTitle, this.inventoryLabelX, this.inventoryLabelY, 4210752, false);
+		g.drawString(font, this.playerInventoryTitle.copy().withStyle(ChatFormatting.GRAY), this.inventoryLabelX, this.inventoryLabelY, 4210752, false);
 	}
 
 	@Override

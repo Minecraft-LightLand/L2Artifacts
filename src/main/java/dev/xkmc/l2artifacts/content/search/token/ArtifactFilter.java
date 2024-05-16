@@ -4,6 +4,7 @@ import dev.xkmc.l2artifacts.content.core.BaseArtifact;
 import dev.xkmc.l2artifacts.init.data.LangData;
 import dev.xkmc.l2library.util.code.GenericItemStack;
 import dev.xkmc.l2serial.serialization.SerialClass;
+import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 
 import javax.annotation.Nullable;
@@ -109,7 +110,7 @@ public abstract class ArtifactFilter<T extends IArtifactFeature> implements IArt
 	}
 
 	public Component getDescription() {
-		return desc.get();
+		return desc.get().withStyle(ChatFormatting.GRAY);
 	}
 
 	public int getPriority(int j) {

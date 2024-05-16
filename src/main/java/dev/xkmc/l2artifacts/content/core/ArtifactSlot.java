@@ -4,6 +4,7 @@ import dev.xkmc.l2artifacts.content.config.SlotStatConfig;
 import dev.xkmc.l2artifacts.content.config.StatTypeConfig;
 import dev.xkmc.l2artifacts.content.search.token.IArtifactFeature;
 import dev.xkmc.l2artifacts.content.upgrades.Upgrade;
+import dev.xkmc.l2artifacts.init.L2Artifacts;
 import dev.xkmc.l2artifacts.init.data.ArtifactSlotCuriosType;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactTypeRegistry;
 import dev.xkmc.l2library.base.NamedEntry;
@@ -33,11 +34,11 @@ public class ArtifactSlot extends NamedEntry<ArtifactSlot> implements IArtifactF
 
 		int roll = stat.rank - 1;
 		for (int i = 0; i < roll; i++) {
-			if (sub_list.size() == 0) {
+			if (sub_list.isEmpty()) {
 				break;
 			}
 			ResourceLocation sub;
-			if (upgrade.stats.size() > 0) {
+			if (!upgrade.stats.isEmpty()) {
 				sub = upgrade.stats.remove(0);
 			} else {
 				int index = random.nextInt(sub_list.size());
@@ -50,7 +51,7 @@ public class ArtifactSlot extends NamedEntry<ArtifactSlot> implements IArtifactF
 
 	@Override
 	public ResourceLocation getIcon() {
-		return new ResourceLocation(CuriosApi.MODID, "textures/slot/empty_" + getRegistryName().getPath() + "_slot.png");
+		return new ResourceLocation(L2Artifacts.MODID, "textures/slot/empty_artifact_" + getRegistryName().getPath() + "_slot.png");
 	}
 
 	public String getCurioIdentifier() {

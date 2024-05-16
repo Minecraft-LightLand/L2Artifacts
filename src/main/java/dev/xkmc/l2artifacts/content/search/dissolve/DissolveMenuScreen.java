@@ -6,6 +6,7 @@ import dev.xkmc.l2artifacts.content.search.tabs.FilterTabManager;
 import dev.xkmc.l2artifacts.content.upgrades.StatContainerItem;
 import dev.xkmc.l2artifacts.init.data.LangData;
 import dev.xkmc.l2library.base.menu.base.MenuLayoutConfig;
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
@@ -14,7 +15,7 @@ import net.minecraft.world.item.ItemStack;
 public class DissolveMenuScreen extends AbstractScrollerScreen<DissolveMenu> {
 
 	public DissolveMenuScreen(DissolveMenu cont, Inventory plInv, Component title) {
-		super(cont, plInv, LangData.TAB_DISSOLVE.get(), FilterTabManager.DISSOLVE);
+		super(cont, plInv, LangData.TAB_DISSOLVE.get().withStyle(ChatFormatting.GRAY), FilterTabManager.DISSOLVE);
 	}
 
 	@Override

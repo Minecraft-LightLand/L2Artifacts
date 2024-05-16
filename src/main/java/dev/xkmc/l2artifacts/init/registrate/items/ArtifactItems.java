@@ -1,10 +1,7 @@
 package dev.xkmc.l2artifacts.init.registrate.items;
 
 import com.tterrag.registrate.util.entry.ItemEntry;
-import dev.xkmc.l2artifacts.content.misc.ArtifactChestItem;
-import dev.xkmc.l2artifacts.content.misc.ExpItem;
-import dev.xkmc.l2artifacts.content.misc.RandomArtifactItem;
-import dev.xkmc.l2artifacts.content.misc.SelectArtifactItem;
+import dev.xkmc.l2artifacts.content.misc.*;
 import dev.xkmc.l2artifacts.content.swap.ArtifactSwapItem;
 import dev.xkmc.l2artifacts.content.upgrades.StatContainerItem;
 import dev.xkmc.l2artifacts.content.upgrades.Upgrade;
@@ -35,6 +32,7 @@ public class ArtifactItems {
 	public static final ItemEntry<ArtifactChestItem> FILTER, UPGRADED_POCKET;
 	public static final ItemEntry<ArtifactSwapItem> SWAP;
 	public static final ItemEntry<RandomArtifactItem>[] RANDOM;
+	public static final ItemEntry<RandomArtifactSetItem>[] RANDOM_SET;
 	public static final ItemEntry<ExpItem>[] ITEM_EXP;
 	public static final ItemEntry<StatContainerItem>[] ITEM_STAT;
 	public static final ItemEntry<UpgradeBoostItem>[] ITEM_BOOST_MAIN, ITEM_BOOST_SUB;
@@ -61,6 +59,15 @@ public class ArtifactItems {
 							.texture("layer1", new ResourceLocation(L2Artifacts.MODID, "item/random")))
 					.tag(rank_tag, artifact)
 					.lang("Random Artifact" + RANK_NAME[i]).register();
+		}
+		RANDOM_SET = new ItemEntry[n];
+		for (int i = 0; i < n; i++) {
+			int r = i + 1;
+			RANDOM_SET[i] = REGISTRATE.item("random_set_" + r, p -> new RandomArtifactSetItem(p, r))
+					.model((ctx, pvd) -> pvd.getBuilder(ctx.getName()).parent(new ModelFile.UncheckedModelFile("item/generated"))
+							.texture("layer0", new ResourceLocation(L2Artifacts.MODID, "item/rank/" + r))
+							.texture("layer1", new ResourceLocation(L2Artifacts.MODID, "item/random_set")))
+					.lang("Random Artifact Set" + RANK_NAME[i]).register();
 		}
 		ITEM_EXP = new ItemEntry[n];
 		for (int i = 0; i < n; i++) {

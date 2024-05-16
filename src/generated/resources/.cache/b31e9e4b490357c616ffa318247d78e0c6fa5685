@@ -1,6 +1,6 @@
-// 1.20.1	2024-05-15T16:46:48.068782	Registrate Provider for l2artifacts [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider, Tags (attributes), Tags (mob_effects), Patchouli Provider]
-da5112f89f4f59055b052c6afa1c5f3614335f13 assets/l2artifacts/lang/en_ud.json
-3bb69916d71addd04e19cf5a204971ac0afbb1df assets/l2artifacts/lang/en_us.json
+// 1.20.1	2024-05-16T09:26:22.531489	Registrate Provider for l2artifacts [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider, Tags (attributes), Tags (mob_effects), Patchouli Provider]
+914cb7a9ce2c9d0f19f9596b75c4558822e43b13 assets/l2artifacts/lang/en_ud.json
+ed435877bdf3372b1179bb48be4c46cc70b2ef2b assets/l2artifacts/lang/en_us.json
 b8bd2d2e5b588898d6036ad788cad930cd830bb3 assets/l2artifacts/models/item/abyss_medal_belt_1.json
 038d8f4126f0f6d17791e0ad6e9d675facf37600 assets/l2artifacts/models/item/abyss_medal_belt_2.json
 f809e0fce1741dccc2e144c6eda90888d93dd883 assets/l2artifacts/models/item/abyss_medal_belt_3.json
@@ -514,6 +514,11 @@ ecd0490875ab4b921090a87f1aaa73897cde05a2 assets/l2artifacts/models/item/poisonou
 3d9e2f726ecf91c979ddf10649f606b04bd74e78 assets/l2artifacts/models/item/random_3.json
 bb75c0b1a0eda096dd7d008f4cc35cb3d61c7a8c assets/l2artifacts/models/item/random_4.json
 b669e0aea3747fa247903b7bb589e0f804158bbc assets/l2artifacts/models/item/random_5.json
+276258b4ce4776d1f89c79b2278c62666591e1ac assets/l2artifacts/models/item/random_set_1.json
+43767473071f656ba4f04bf2ef7df2ea8d9b5f36 assets/l2artifacts/models/item/random_set_2.json
+1dfd21aa36269dedea0b46cb924d3a2e2ea4ea20 assets/l2artifacts/models/item/random_set_3.json
+6fcfef2a8694fc42f6255123056d089e0628c422 assets/l2artifacts/models/item/random_set_4.json
+db82a577e809d31986208886483a89fdfe7246b5 assets/l2artifacts/models/item/random_set_5.json
 dc4c83b5d4b72eea621af3d2f12cb4ea985898ae assets/l2artifacts/models/item/saint_belt_1.json
 6622d75002ec7dfab6ab78d2d82a0559dcf4afd0 assets/l2artifacts/models/item/saint_belt_2.json
 dc2080ac36dae257a7cb307474f9ba1cc65889d7 assets/l2artifacts/models/item/saint_belt_3.json
@@ -676,6 +681,11 @@ b0c9fd36fecfff9b513a177a98a5f624bf43b514 data/l2artifacts/advancements/recipes/m
 d8f39d74245b78214ede0efc5a9dde939dbf4028 data/l2artifacts/advancements/recipes/misc/directed/set_3_rank_4.json
 575889d1c51de39c883de20ac863a90ab3f4eddc data/l2artifacts/advancements/recipes/misc/directed/set_3_rank_5.json
 81bc6e30bb569b4e37f21e18dc915682407fd828 data/l2artifacts/advancements/recipes/misc/filter.json
+7160a63525bdec7eef3b5ffc837be71f7e4c1611 data/l2artifacts/advancements/recipes/misc/random_set_1.json
+c8f5eb3eefe863ce6566ad6b1c24f8ddad6abc25 data/l2artifacts/advancements/recipes/misc/random_set_2.json
+6a4e5f943436c21bd69d6bc0fc5c9e1bd8e3d844 data/l2artifacts/advancements/recipes/misc/random_set_3.json
+c6cb46ce53aee060f947efcbaf1b2520d56dc273 data/l2artifacts/advancements/recipes/misc/random_set_4.json
+282bc9a3de83926687765531dc0b7c1b384875c8 data/l2artifacts/advancements/recipes/misc/random_set_5.json
 d9723b5687dad6a60c6bbbe421b6f76f166041e1 data/l2artifacts/advancements/recipes/misc/rank_up/abyss_medal_belt_2.json
 2d8cce21a4f5c2b89da4fc2da93171ad3da7674a data/l2artifacts/advancements/recipes/misc/rank_up/abyss_medal_belt_3.json
 e7f623af2651c1e40c0ba948de681627589585e9 data/l2artifacts/advancements/recipes/misc/rank_up/abyss_medal_belt_4.json
@@ -1224,6 +1234,11 @@ c158bcc6db84e1555795766e4448e565e99252e1 data/l2artifacts/recipes/directed/set_3
 96e4aa4b7e11e6bbfa46d667e12ff23695607098 data/l2artifacts/recipes/directed/set_3_rank_4.json
 f2e3389d984053828e4de00856788cf39967d975 data/l2artifacts/recipes/directed/set_3_rank_5.json
 14cd4a606c97a20fcfb5e04fad6bced4c2d54b86 data/l2artifacts/recipes/filter.json
+a9c9225f5c5ef50e5c65db3547e3109e06222d2e data/l2artifacts/recipes/random_set_1.json
+59d280fcc2aa1efac3e016a923014fa5d21d960e data/l2artifacts/recipes/random_set_2.json
+d3749e9b2084204f9a58c66df5cee3dab36729af data/l2artifacts/recipes/random_set_3.json
+70f7bd593d40bd8ce966ff438389dfd645076d19 data/l2artifacts/recipes/random_set_4.json
+edd73db9e5e1ce3294b78a1c62fbbf71fd306ab3 data/l2artifacts/recipes/random_set_5.json
 aedeec6d5f96cacc3a55e0f27fc3764c7c3d56a5 data/l2artifacts/recipes/rank_up/abyss_medal_belt_2.json
 ed26fc5e7f234c5c328d213864448234ff396c96 data/l2artifacts/recipes/rank_up/abyss_medal_belt_3.json
 651aa91eaa91344e178f7cfd2942f25d54404f11 data/l2artifacts/recipes/rank_up/abyss_medal_belt_4.json

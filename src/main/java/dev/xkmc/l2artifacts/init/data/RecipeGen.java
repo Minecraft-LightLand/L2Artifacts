@@ -105,6 +105,14 @@ public class RecipeGen {
 
 			for (int i = 0; i < 5; i++) {
 				final int rank = i + 1;
+
+				unlock(pvd, new ShapedRecipeBuilder(RecipeCategory.MISC, ArtifactItems.RANDOM_SET[i], 1)::unlockedBy, LCItems.RESONANT_FEATHER.get())
+						.pattern("XXX").pattern("A1A").pattern("AAA")
+						.define('A', ArtifactItems.RANDOM[i])
+						.define('X', ArtifactItems.ITEM_EXP[i])
+						.define('1', LCItems.RESONANT_FEATHER.get())
+						.save(ConditionalRecipeWrapper.mod(pvd, L2Complements.MODID));
+
 				unlock(pvd, new ShapedRecipeBuilder(RecipeCategory.MISC, ArtifactItems.RANDOM[i], 4)::unlockedBy, LCItems.RESONANT_FEATHER.get())
 						.pattern("1A2").pattern("AXA").pattern("2A1")
 						.define('A', ArtifactItems.RANDOM[i])

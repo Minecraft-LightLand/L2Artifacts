@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "l2complements"
+    }
+  ],
+  "key": {
+    "1": {
+      "item": "l2complements:resonant_feather"
+    },
+    "A": {
+      "item": "l2artifacts:random_1"
+    },
+    "X": {
+      "item": "l2artifacts:artifact_experience_1"
+    }
+  },
+  "pattern": [
+    "XXX",
+    "A1A",
+    "AAA"
+  ],
+  "result": {
+    "item": "l2artifacts:random_set_1"
+  },
+  "show_notification": true
+}

@@ -1,3 +1,13 @@
+2.4.24
+- Fix Genesis item duping
+
+2.4.23
+- Texture update
+- Augment bug fix
+- 4 artifact set pools
+- random artifact set
+- allow non-players to use most of the sets
+
 2.4.22
 - Add Mage and Pirate set
 

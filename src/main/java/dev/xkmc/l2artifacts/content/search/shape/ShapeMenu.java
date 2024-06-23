@@ -188,6 +188,9 @@ public class ShapeMenu extends BaseContainerMenu<ShapeMenu> implements IFilterMe
 					ShapeSlots.BOOST_SUB.get(this, i).remove(1);
 				}
 			}
+		}else {
+			ShapeSlots.OUTPUT.get(this).set(ItemStack.EMPTY);
+			ShapeSlots.OUTPUT.get(this).clearDirty();
 		}
 	}
 

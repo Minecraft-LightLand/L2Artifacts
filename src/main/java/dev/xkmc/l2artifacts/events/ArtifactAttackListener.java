@@ -4,7 +4,6 @@ import dev.xkmc.l2artifacts.content.effects.core.SetEffect;
 import dev.xkmc.l2damagetracker.contents.attack.AttackCache;
 import dev.xkmc.l2damagetracker.contents.attack.AttackListener;
 import dev.xkmc.l2damagetracker.contents.attack.PlayerAttackCache;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.entity.player.CriticalHitEvent;
 
@@ -19,26 +18,24 @@ public class ArtifactAttackListener implements AttackListener {
 
 	@Override
 	public void onAttack(AttackCache cache, ItemStack weapon) {
-		if (cache.getAttackTarget() instanceof Player player)
-			postEvent(player, cache, SetEffect::playerAttackedEvent);
+		postEvent(cache.getAttackTarget(), cache, SetEffect::playerAttackedEvent);
 	}
 
 	@Override
 	public void onHurt(AttackCache cache, ItemStack weapon) {
-		if (cache.getAttacker() instanceof Player player)
-			postEvent(player, cache, SetEffect::playerHurtOpponentEvent);
+		if (cache.getAttacker() != null)
+			postEvent(cache.getAttacker(), cache, SetEffect::playerHurtOpponentEvent);
 	}
 
 	@Override
 	public void onDamage(AttackCache cache, ItemStack weapon) {
-		if (cache.getAttackTarget() instanceof Player player)
-			postEvent(player, cache, SetEffect::playerHurtEvent);
+		postEvent(cache.getAttackTarget(), cache, SetEffect::playerHurtEvent);
 	}
 
 	@Override
 	public void onDamageFinalized(AttackCache cache, ItemStack weapon) {
-		if (cache.getAttacker() instanceof Player player)
-			postEvent(player, cache, SetEffect::playerDamageOpponentEvent);
+		if (cache.getAttacker() != null)
+			postEvent(cache.getAttacker(), cache, SetEffect::playerDamageOpponentEvent);
 	}
 
 

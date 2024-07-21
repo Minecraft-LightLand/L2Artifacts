@@ -32,6 +32,9 @@ public class ArtifactConfig {
 		public final ForgeConfigSpec.DoubleValue expConversionRankFactor;
 		public final ForgeConfigSpec.BooleanValue enableArtifactRankUpRecipe;
 
+		public final ForgeConfigSpec.BooleanValue useLevelDropForHostility;
+		public final ForgeConfigSpec.DoubleValue globalDropChanceMultiplier;
+
 		Common(ForgeConfigSpec.Builder builder) {
 			maxRank = builder.comment("maximum available rank (Not implemented. Don't change.)")
 					.defineInRange("maxRank", 5, 5, 5);
@@ -59,6 +62,12 @@ public class ArtifactConfig {
 
 			enableArtifactRankUpRecipe = builder.comment("Enable Artifact Rank up recipe")
 					.define("enableArtifactRankUpRecipe", true);
+			useLevelDropForHostility = builder.comment("When L2Hostility is installed, use level instead of health for drops")
+					.comment("Min health requirement would still be effective")
+					.define("useLevelDropForHostility", true);
+			globalDropChanceMultiplier = builder.comment("Reduce artifact drop chance by a factor")
+					.comment("Stack multiplicatively with drop chance specified in datapack")
+					.defineInRange("globalDropChanceMultiplier", 1, 0, 10d);
 		}
 
 	}

@@ -1,6 +1,8 @@
 2.4.25
 - Fix certain artifacts not taking effects if on non-players
 - Flesh set now does not apply effect on armor stands
+- (config: default on) When L2Hostility is installed, use level in addition of health as requirement for drops.
+- Add mutant enderman and death tome to drop blacklist
 
 2.4.24
 - Fix Genesis item duping

@@ -66,6 +66,7 @@ public class L2Artifacts {
 		if (ModList.get().isLoaded(L2Complements.MODID)) {
 			REGISTRATE.addDataGenerator(TagGen.EFF_TAGS, ArtifactTagGen::onEffectTagGen);
 		}
+		REGISTRATE.addDataGenerator(ProviderType.ENTITY_TAGS, ArtifactTagGen::onEntityTypeGen);
 		event.getGenerator().addProvider(event.includeServer(), new ConfigGen(event.getGenerator()));
 		event.getGenerator().addProvider(event.includeServer(), new SlotGen(event.getGenerator()));
 		event.getGenerator().addProvider(event.includeServer(), new ArtifactGLMProvider(event.getGenerator()));

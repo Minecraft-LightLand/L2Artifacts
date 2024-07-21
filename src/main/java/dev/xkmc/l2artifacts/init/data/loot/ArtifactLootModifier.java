@@ -2,10 +2,12 @@ package dev.xkmc.l2artifacts.init.data.loot;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import dev.xkmc.l2artifacts.compat.L2HostilityCompat;
+import dev.xkmc.l2artifacts.init.data.ArtifactConfig;
+import dev.xkmc.l2artifacts.init.data.ArtifactTagGen;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
@@ -46,10 +48,9 @@ public class ArtifactLootModifier extends LootModifier {
 	protected @NotNull ObjectArrayList<ItemStack> doApply(ObjectArrayList<ItemStack> list, LootContext context) {
 		if (!context.hasParam(LootContextParams.THIS_ENTITY)) return list;
 		Entity entity = context.getParam(LootContextParams.THIS_ENTITY);
-		if (entity instanceof LivingEntity le && entity instanceof Enemy) {
-			float health = le.getMaxHealth();
-			if (chance > context.getRandom().nextDouble() && health + 1e-3 > healthMin &&
-					(healthMax <= 0 || health + 1e-3 < healthMax)) {
+		if (entity.getType().is(ArtifactTagGen.NO_DROP)) return list;
+		if (entity instanceof LivingEntity le && L2HostilityCompat.validForDrop(le, healthMin, healthMax)) {
+			if (chance * ArtifactConfig.COMMON.globalDropChanceMultiplier.get() > context.getRandom().nextDouble()) {
 				list.add(result.copy());
 			}
 		}

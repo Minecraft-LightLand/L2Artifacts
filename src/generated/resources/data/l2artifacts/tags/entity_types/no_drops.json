@@ -1,0 +1,12 @@
+{
+  "values": [
+    {
+      "id": "mutantmonsters:mutant_enderman",
+      "required": false
+    },
+    {
+      "id": "twilightforest:death_tome",
+      "required": false
+    }
+  ]
+}

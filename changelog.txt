@@ -1,3 +1,6 @@
+2.4.26
+- Create multi-page set effect display
+
 2.4.25
 - Fix certain artifacts not taking effects if on non-players
 - Flesh set now does not apply effect on armor stands

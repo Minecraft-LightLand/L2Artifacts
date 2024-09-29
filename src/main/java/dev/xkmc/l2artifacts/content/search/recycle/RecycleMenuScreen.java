@@ -4,8 +4,8 @@ import dev.xkmc.l2artifacts.content.search.common.AbstractScrollerScreen;
 import dev.xkmc.l2artifacts.content.search.filter.FilterScreen;
 import dev.xkmc.l2artifacts.content.search.tabs.FilterTabManager;
 import dev.xkmc.l2artifacts.init.data.LangData;
-import dev.xkmc.l2library.base.menu.base.MenuLayoutConfig;
-import dev.xkmc.l2library.base.menu.stacked.StackedRenderHandle;
+import dev.xkmc.l2core.base.menu.base.MenuLayoutConfig;
+import dev.xkmc.l2core.base.menu.stacked.StackedRenderHandle;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
@@ -22,7 +22,7 @@ public class RecycleMenuScreen extends AbstractScrollerScreen<RecycleMenu> {
 
 	@Override
 	protected void renderBgExtra(GuiGraphics g, MenuLayoutConfig.ScreenRenderer sr, int mx, int my) {
-		var spr = menu.sprite.get();
+		var spr = menu.getLayout();
 		for (int i = 0; i < 6; i++) {
 			for (int j = 0; j < 6; j++) {
 				if (isSelected(i * 6 + j)) {
@@ -41,7 +41,8 @@ public class RecycleMenuScreen extends AbstractScrollerScreen<RecycleMenu> {
 		boolean h1 = isHovering(btn_x, btn_y, 8, 8, mx, my);
 		boolean p1 = pressed && h1;
 		var r = spr.getSide(p1 ? "button_1" : "button_1p");
-		g.blit(spr.getTexture(), btn_x, btn_y, r.x, r.y, r.w, r.h);
+		var tex = MenuLayoutConfig.getTexture(sr.id);
+		g.blit(tex, btn_x, btn_y, r.x, r.y, r.w, r.h);
 		if (h1) {
 			FilterScreen.renderHighlight(g, btn_x, btn_y, 8, 8, -2130706433);
 		}
@@ -49,7 +50,7 @@ public class RecycleMenuScreen extends AbstractScrollerScreen<RecycleMenu> {
 		boolean h2 = isHovering(btn_x, btn_y, 8, 8, mx, my);
 		boolean p2 = pressed && h2;
 		r = spr.getSide(p2 ? "button_2" : "button_2p");
-		g.blit(spr.getTexture(), btn_x, btn_y, r.x, r.y, r.w, r.h);
+		g.blit(tex, btn_x, btn_y, r.x, r.y, r.w, r.h);
 		if (h2) {
 			FilterScreen.renderHighlight(g, btn_x, btn_y, 8, 8, -2130706433);
 		}
@@ -68,7 +69,7 @@ public class RecycleMenuScreen extends AbstractScrollerScreen<RecycleMenu> {
 
 	@Override
 	public boolean mouseClicked(double mx, double my, int btn) {
-		var r = menu.sprite.get().getComp("grid");
+		var r = menu.getLayout().getComp("grid");
 		pressed = true;
 		int x = r.x + getGuiLeft();
 		int y = r.y + getGuiTop();
@@ -95,7 +96,7 @@ public class RecycleMenuScreen extends AbstractScrollerScreen<RecycleMenu> {
 		dragging = false;
 		canDrag = false;
 		pressed = false;
-		var rect = menu.sprite.get().getComp("output");
+		var rect = menu.getLayout().getComp("output");
 		if (isHovering(rect.x, rect.y, rect.w, rect.h, mx, my)) {
 			click(50);
 		}
@@ -112,7 +113,7 @@ public class RecycleMenuScreen extends AbstractScrollerScreen<RecycleMenu> {
 
 	@Override
 	public boolean mouseDragged(double mx, double my, int btn, double dx, double dy) {
-		var r = menu.sprite.get().getComp("grid");
+		var r = menu.getLayout().getComp("grid");
 		int x = r.x + getGuiLeft();
 		int y = r.y + getGuiTop();
 		if (mx >= x && my >= y && mx < x + r.w * r.rx && my < y + r.h * r.ry) {
@@ -134,7 +135,7 @@ public class RecycleMenuScreen extends AbstractScrollerScreen<RecycleMenu> {
 	protected void renderTooltip(GuiGraphics pPoseStack, int pX, int pY) {
 		pPoseStack.pose().pushPose();
 		pPoseStack.pose().translate(0, topPos, 0);
-		var handle = new StackedRenderHandle(this, pPoseStack, 8, 0xFFFFFFFF, menu.sprite.get());
+		var handle = new StackedRenderHandle(this, pPoseStack, 8, 0xFFFFFFFF, getRenderer());
 		handle.drawText(LangData.TAB_INFO_TOTAL.get(menu.total_count.get()), false);
 		handle.drawText(LangData.TAB_INFO_MATCHED.get(menu.current_count.get()), false);
 		handle.drawText(LangData.TAB_INFO_EXP.get(formatNumber(menu.experience.get())), false);

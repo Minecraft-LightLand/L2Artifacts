@@ -26,7 +26,7 @@ public abstract class AbstractConditionalAttributeSetEffect<T extends AttributeS
 	protected void addAttributes(Player player, ArtifactSetConfig.Entry ent, int rank, T data) {
 		for (int i = 0; i < entries.length; i++) {
 			AttrSetEntry entry = entries[i];
-			AttributeInstance ins = player.getAttribute(entry.attr().get());
+			AttributeInstance ins = player.getAttribute(entry.attr());
 			if (ins == null) continue;
 			UUID id = ent.id[i];
 			if (ins.getModifier(id) != null) continue;
@@ -42,8 +42,8 @@ public abstract class AbstractConditionalAttributeSetEffect<T extends AttributeS
 		T ans = getData();
 		for (int i = 0; i < entries.length; i++) {
 			AttrSetEntry entry = entries[i];
-			UUID id = ent.id[i];
-			ans.list.add(new AttributeSetData.AttributePair(entry.attr().get(), id));
+			var id = ent.id[i];
+			ans.list.add(new AttributeSetData.AttributePair(entry.attr(), id));
 		}
 		return ans;
 	}

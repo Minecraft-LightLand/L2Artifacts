@@ -5,7 +5,6 @@ import dev.xkmc.l2artifacts.content.effects.core.PersistentDataSetEffect;
 import dev.xkmc.l2artifacts.init.registrate.entries.LinearFuncEntry;
 import dev.xkmc.l2damagetracker.contents.attack.DamageData;
 import dev.xkmc.l2damagetracker.contents.attack.DamageModifier;
-import dev.xkmc.l2library.capability.conditionals.ConditionalData;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.damagesource.DamageSource;
@@ -29,7 +28,7 @@ public class ImmobileEffect extends PersistentDataSetEffect<ImmobileData> {
 	@Override
 	public void tick(Player player, ArtifactSetConfig.Entry ent, int rank, boolean enabled) {
 		if (!enabled) return;
-		ImmobileData data = ConditionalData.HOLDER.get(player).getOrCreateData(this, ent);
+		ImmobileData data = fetch(player, ent);
 		data.update(2, rank);
 		double x = player.getX();
 		double y = player.getY();
@@ -52,7 +51,7 @@ public class ImmobileEffect extends PersistentDataSetEffect<ImmobileData> {
 
 	@Override
 	public void playerReduceDamage(Player player, ArtifactSetConfig.Entry ent, int rank, DamageSource source, DamageData.Defence cache) {
-		ImmobileData data = ConditionalData.HOLDER.get(player).getData(this.getKey());
+		ImmobileData data = fetchNullable(player);
 		if (data == null) return;
 		if (data.time >= threshold.getFromRank(rank)) {
 			cache.addDealtModifier(DamageModifier.multTotal((float) protection.getFromRank(rank), getRegistryName()));

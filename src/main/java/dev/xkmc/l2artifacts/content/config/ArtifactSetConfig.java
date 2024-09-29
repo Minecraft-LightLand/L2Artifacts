@@ -45,7 +45,7 @@ public class ArtifactSetConfig extends BaseConfig {
 	}
 
 	@SerialClass
-	public static class Entry implements Comparable<Entry>, Context {
+	public static class Entry implements Comparable<Entry> {
 
 		@SerialField
 		public int count;

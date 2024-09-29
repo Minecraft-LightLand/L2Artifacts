@@ -2,8 +2,10 @@ package dev.xkmc.l2artifacts.content.search.token;
 
 import dev.xkmc.l2artifacts.content.core.BaseArtifact;
 import dev.xkmc.l2artifacts.init.data.LangData;
-import dev.xkmc.l2library.util.code.GenericItemStack;
-import dev.xkmc.l2serial.serialization.SerialClass;
+import dev.xkmc.l2library.util.GenericItemStack;
+import dev.xkmc.l2serial.serialization.marker.OnInject;
+import dev.xkmc.l2serial.serialization.marker.SerialClass;
+import dev.xkmc.l2serial.serialization.marker.SerialField;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 
@@ -22,13 +24,13 @@ public abstract class ArtifactFilter<T extends IArtifactFeature> implements IArt
 	private final IArtifactPredicate<T> func;
 	private final LangData desc;
 
-	@SerialClass.SerialField
+	@SerialField
 	private boolean[] selected;
 
-	@SerialClass.SerialField
+	@SerialField
 	protected int[] item_priority;
 
-	@SerialClass.SerialField
+	@SerialField
 	protected int sort_priority;
 
 	@Nullable
@@ -36,7 +38,7 @@ public abstract class ArtifactFilter<T extends IArtifactFeature> implements IArt
 
 	public ArtifactFilter(IArtifactFilter parent, LangData desc, Collection<T> reg, IArtifactPredicate<T> func) {
 		this.parent = parent;
-		this.sort_priority = parent instanceof ArtifactFilter a ? a.sort_priority + 1 : 1;
+		this.sort_priority = parent instanceof ArtifactFilter<?> a ? a.sort_priority + 1 : 1;
 		allEntries = new ArrayList<>(reg);
 		this.func = func;
 		this.desc = desc;
@@ -121,7 +123,7 @@ public abstract class ArtifactFilter<T extends IArtifactFeature> implements IArt
 		return sort_priority;
 	}
 
-	@SerialClass.OnInject
+	@OnInject
 	public void postInject() {
 		int size = allEntries.size();
 		if (item_priority.length < size) {

@@ -1,6 +1,6 @@
 package dev.xkmc.l2artifacts.content.search.shape;
 
-import dev.xkmc.l2library.base.menu.base.PredSlot;
+import dev.xkmc.l2core.base.menu.base.PredSlot;
 
 import java.util.Locale;
 

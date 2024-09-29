@@ -8,7 +8,7 @@ import dev.xkmc.l2artifacts.init.L2Artifacts;
 import dev.xkmc.l2artifacts.init.data.ArtifactConfig;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactMenuRegistry;
 import dev.xkmc.l2artifacts.init.registrate.items.ArtifactItems;
-import dev.xkmc.l2library.base.menu.base.SpriteManager;
+import dev.xkmc.l2core.base.menu.base.SpriteManager;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Inventory;

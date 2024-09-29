@@ -4,13 +4,11 @@ import dev.xkmc.l2artifacts.content.config.SlotStatConfig;
 import dev.xkmc.l2artifacts.content.config.StatTypeConfig;
 import dev.xkmc.l2artifacts.content.search.token.IArtifactFeature;
 import dev.xkmc.l2artifacts.content.upgrades.Upgrade;
-import dev.xkmc.l2artifacts.init.L2Artifacts;
 import dev.xkmc.l2artifacts.init.data.ArtifactSlotCuriosType;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactTypeRegistry;
-import dev.xkmc.l2library.base.NamedEntry;
+import dev.xkmc.l2core.init.reg.registrate.NamedEntry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.RandomSource;
-import top.theillusivec4.curios.api.CuriosApi;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +37,7 @@ public class ArtifactSlot extends NamedEntry<ArtifactSlot> implements IArtifactF
 			}
 			ResourceLocation sub;
 			if (!upgrade.stats.isEmpty()) {
-				sub = upgrade.stats.remove(0);
+				sub = upgrade.stats.removeFirst();
 			} else {
 				int index = random.nextInt(sub_list.size());
 				sub = sub_list.get(index);
@@ -51,7 +49,7 @@ public class ArtifactSlot extends NamedEntry<ArtifactSlot> implements IArtifactF
 
 	@Override
 	public ResourceLocation getIcon() {
-		return new ResourceLocation(L2Artifacts.MODID, "textures/slot/empty_artifact_" + getRegistryName().getPath() + "_slot.png");
+		return getRegistryName().withPath(e -> "textures/slot/empty_artifact_" + e + "_slot.png");
 	}
 
 	public String getCurioIdentifier() {

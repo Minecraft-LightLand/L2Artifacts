@@ -8,8 +8,8 @@ import dev.xkmc.l2artifacts.content.search.recycle.RecycleMenuScreen;
 import dev.xkmc.l2artifacts.content.search.tabs.FilterTabManager;
 import dev.xkmc.l2artifacts.content.search.tabs.IFilterScreen;
 import dev.xkmc.l2artifacts.init.data.LangData;
-import dev.xkmc.l2library.base.menu.base.BaseContainerScreen;
-import dev.xkmc.l2library.base.menu.stacked.StackedRenderHandle;
+import dev.xkmc.l2core.base.menu.base.BaseContainerScreen;
+import dev.xkmc.l2core.base.menu.stacked.StackedRenderHandle;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
@@ -60,9 +60,9 @@ public class UpgradeMenuScreen extends BaseContainerScreen<UpgradeMenu> implemen
 
 	@Override
 	protected void renderBg(GuiGraphics g, float pTick, int mx, int my) {
-		var sr = menu.sprite.get().getRenderer(this);
+		var sr = getRenderer();
 		sr.start(g);
-		var rect = menu.sprite.get().getComp("upgrade");
+		var rect = menu.getLayout().getComp("upgrade");
 		if (isHovering(rect.x, rect.y, rect.w, rect.h, mx, my)) {
 			if (pressed) {
 				sr.draw(g, "upgrade", "upgrade_on");
@@ -87,7 +87,7 @@ public class UpgradeMenuScreen extends BaseContainerScreen<UpgradeMenu> implemen
 	@Override
 	public boolean mouseReleased(double mx, double my, int btn) {
 		pressed = false;
-		var rect = menu.sprite.get().getComp("upgrade");
+		var rect = menu.getLayout().getComp("upgrade");
 		if (isHovering(rect.x, rect.y, rect.w, rect.h, mx, my)) {
 			old = current;
 			time = MAX_TIME;
@@ -102,13 +102,13 @@ public class UpgradeMenuScreen extends BaseContainerScreen<UpgradeMenu> implemen
 		g.drawString(this.font, this.playerInventoryTitle.copy().withStyle(ChatFormatting.GRAY), this.inventoryLabelX, this.inventoryLabelY, 4210752, false);
 		g.pose().pushPose();
 		g.pose().translate(0, 45, 0);
-		StackedRenderHandle handle = new StackedRenderHandle(this, g, menu.sprite.get(), 0);
+		StackedRenderHandle handle = new StackedRenderHandle(this, g, getRenderer(), 0);
 		int exp = menu.experience.get();
 		int cost = menu.exp_cost.get();
 		if (cost > 0) {
 			String str = RecycleMenuScreen.formatNumber(cost) + "/" + RecycleMenuScreen.formatNumber(exp);
 			handle.drawText(LangData.TAB_INFO_EXP_COST.get(Component.literal(str)
-					.withStyle(cost <= exp ? ChatFormatting.DARK_GREEN : ChatFormatting.RED))
+							.withStyle(cost <= exp ? ChatFormatting.DARK_GREEN : ChatFormatting.RED))
 					.withStyle(ChatFormatting.GRAY), false);
 			ItemStack stack = menu.container.getItem(0);
 			if (stack != oldStack) {

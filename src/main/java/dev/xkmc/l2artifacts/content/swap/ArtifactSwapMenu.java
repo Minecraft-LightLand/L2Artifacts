@@ -1,9 +1,9 @@
 package dev.xkmc.l2artifacts.content.swap;
 
 import dev.xkmc.l2artifacts.init.L2Artifacts;
-import dev.xkmc.l2library.base.menu.base.BaseContainerMenu;
-import dev.xkmc.l2library.base.menu.base.SpriteManager;
-import dev.xkmc.l2library.base.menu.data.BoolArrayDataSlot;
+import dev.xkmc.l2core.base.menu.base.BaseContainerMenu;
+import dev.xkmc.l2core.base.menu.base.SpriteManager;
+import dev.xkmc.l2core.base.menu.data.BoolArrayDataSlot;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Inventory;

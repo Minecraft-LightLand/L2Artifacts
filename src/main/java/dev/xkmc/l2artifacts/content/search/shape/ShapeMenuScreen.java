@@ -3,8 +3,8 @@ package dev.xkmc.l2artifacts.content.search.shape;
 import dev.xkmc.l2artifacts.content.search.tabs.FilterTabManager;
 import dev.xkmc.l2artifacts.content.search.tabs.IFilterScreen;
 import dev.xkmc.l2artifacts.init.data.LangData;
-import dev.xkmc.l2library.base.menu.base.BaseContainerScreen;
-import dev.xkmc.l2library.base.menu.base.MenuLayoutConfig;
+import dev.xkmc.l2core.base.menu.base.BaseContainerScreen;
+import dev.xkmc.l2core.base.menu.base.MenuLayoutConfig;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
@@ -36,7 +36,7 @@ public class ShapeMenuScreen extends BaseContainerScreen<ShapeMenu> implements I
 
 	@Override
 	protected void renderBg(GuiGraphics g, float pTick, int mx, int my) {
-		var sr = menu.sprite.get().getRenderer(this);
+		var sr = getRenderer();
 		sr.start(g);
 		drawDisable(sr, g, ShapeSlots.BOOST_MAIN, 0, "altas_boost_main");
 		for (int i = 0; i < 4; i++) {

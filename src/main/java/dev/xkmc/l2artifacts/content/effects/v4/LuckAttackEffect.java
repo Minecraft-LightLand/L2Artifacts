@@ -5,7 +5,6 @@ import dev.xkmc.l2artifacts.content.effects.attribute.AbstractConditionalAttribu
 import dev.xkmc.l2artifacts.content.effects.attribute.AttrSetEntry;
 import dev.xkmc.l2artifacts.init.registrate.entries.LinearFuncEntry;
 import dev.xkmc.l2damagetracker.contents.attack.DamageData;
-import dev.xkmc.l2library.capability.conditionals.ConditionalData;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.entity.player.Player;
@@ -23,14 +22,14 @@ public class LuckAttackEffect extends AbstractConditionalAttributeSetEffect<Luck
 	@Override
 	public void tick(Player player, ArtifactSetConfig.Entry ent, int rank, boolean enabled) {
 		if (!enabled) return;
-		LuckAttackData data = ConditionalData.HOLDER.get(player).getData(getKey());
+		LuckAttackData data = fetchNullable(player);
 		if (data != null && data.count == count.getFromRank(rank))
 			addAttributes(player, ent, rank, data);
 	}
 
 	@Override
 	public void playerHurtOpponentEvent(Player player, ArtifactSetConfig.Entry ent, int rank, DamageData.Offence event) {
-		LuckAttackData data = ConditionalData.HOLDER.get(player).getOrCreateData(this, ent);
+		LuckAttackData data = fetch(player, ent);
 		data.update((int) duration.getFromRank(rank), rank);
 		data.count++;
 

@@ -154,13 +154,13 @@ public class LAItem4 {
 			EFF_LONGSHOOTER_3 = helper.setEffect("long_shooter_3", () -> new LongShooterEffect(
 							new AttrSetEntry(BOW_STRENGTH, ADD_VALUE, long_shooter_atk, true)))
 					.desc("Focus of the long-range shooter",
-							"When there is no Monster in the nearby 8 cells:")
+							"When there is no Monster in the nearby 8 blocks:")
 					.register();
 
 			EFF_LONGSHOOTER_4 = helper.setEffect("long_shooter_4", () -> new LongShooterPersistentEffect(
 							new AttrSetEntry(BOW_STRENGTH, ADD_VALUE, long_shooter_atk, true)))
 					.desc("Last chance",
-							"Set the effect of suit 3 to 6 squares, when approached, it still lasts for two seconds and gains two second acceleration"
+							"Focus distance above becomes 6 blocks. When approached, it still lasts for two seconds and gains two second acceleration"
 					).register();
 
 

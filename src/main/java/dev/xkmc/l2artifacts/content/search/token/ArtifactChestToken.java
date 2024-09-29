@@ -7,9 +7,10 @@ import dev.xkmc.l2artifacts.content.core.BaseArtifact;
 import dev.xkmc.l2artifacts.content.misc.ArtifactChestItem;
 import dev.xkmc.l2artifacts.init.data.LangData;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactTypeRegistry;
-import dev.xkmc.l2library.util.code.GenericItemStack;
-import dev.xkmc.l2serial.serialization.SerialClass;
+import dev.xkmc.l2library.util.GenericItemStack;
 import dev.xkmc.l2serial.serialization.codec.TagCodec;
+import dev.xkmc.l2serial.serialization.marker.SerialClass;
+import dev.xkmc.l2serial.serialization.marker.SerialField;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 
@@ -37,16 +38,16 @@ public class ArtifactChestToken implements IArtifactFilter {
 	public final List<ItemStack> list;
 	public final List<ArtifactFilter<?>> filters = new ArrayList<>();
 
-	@SerialClass.SerialField
+	@SerialField
 	public final ArtifactFilter<RankToken> rank;
 
-	@SerialClass.SerialField
+	@SerialField
 	public final ArtifactFilter<ArtifactSet> set;
 
-	@SerialClass.SerialField
+	@SerialField
 	public final ArtifactFilter<ArtifactSlot> slot;
 
-	@SerialClass.SerialField
+	@SerialField
 	public final ArtifactFilter<StatTypeConfig> stat;
 
 	public int exp = 0;

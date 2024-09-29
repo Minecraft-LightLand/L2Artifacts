@@ -1,8 +1,8 @@
 package dev.xkmc.l2artifacts.content.swap;
 
 import dev.xkmc.l2artifacts.content.core.ArtifactSlot;
-import dev.xkmc.l2library.base.menu.base.BaseContainerScreen;
-import dev.xkmc.l2library.base.menu.base.MenuLayoutConfig;
+import dev.xkmc.l2core.base.menu.base.BaseContainerScreen;
+import dev.xkmc.l2core.base.menu.base.MenuLayoutConfig;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
@@ -18,8 +18,7 @@ public class ArtifactSwapScreen extends BaseContainerScreen<ArtifactSwapMenu> {
 
 	@Override
 	protected void renderBg(GuiGraphics g, float pTick, int mx, int my) {
-		var sm = this.menu.sprite.get();
-		var sr = sm.getRenderer(this);
+		var sr = getRenderer();
 		sr.start(g);
 		for (int i = 0; i < 45; i++) {
 			drawDisable(sr, g, i);
@@ -45,7 +44,7 @@ public class ArtifactSwapScreen extends BaseContainerScreen<ArtifactSwapMenu> {
 
 	@Override
 	public boolean mouseClicked(double mx, double my, int btn) {
-		var r = menu.sprite.get().getComp("grid");
+		var r = menu.getLayout().getComp("grid");
 		int x = r.x + getGuiLeft();
 		int y = r.y + getGuiTop();
 		if (mx >= x && my >= y && mx < x + r.w * r.rx && my < y + r.h * r.ry) {

@@ -4,8 +4,8 @@ import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
 import dev.xkmc.l2artifacts.content.effects.attribute.AbstractConditionalAttributeSetEffect;
 import dev.xkmc.l2artifacts.content.effects.attribute.AttrSetEntry;
 import dev.xkmc.l2artifacts.init.registrate.entries.LinearFuncEntry;
+import dev.xkmc.l2core.init.L2LibReg;
 import dev.xkmc.l2damagetracker.contents.attack.DamageData;
-import dev.xkmc.l2library.capability.conditionals.ConditionalData;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.entity.player.Player;
@@ -23,7 +23,7 @@ public class AttackStrikeEffect extends AbstractConditionalAttributeSetEffect<At
 	@Override
 	public void tick(Player player, ArtifactSetConfig.Entry ent, int rank, boolean enabled) {
 		if (!enabled) return;
-		AttackStrikeData data = ConditionalData.HOLDER.get(player).getData(getKey());
+		AttackStrikeData data = fetchNullable(player);
 		if (data != null && data.count >= count.getFromRank(rank))
 			addAttributes(player, ent, rank, data); // efficient operation, perform every tick
 	}
@@ -31,7 +31,7 @@ public class AttackStrikeEffect extends AbstractConditionalAttributeSetEffect<At
 	@Override
 	public void playerHurtOpponentEvent(Player player, ArtifactSetConfig.Entry ent, int rank, DamageData.Offence event) {
 		if (event.getStrength() > 0.99) {
-			AttackStrikeData data = ConditionalData.HOLDER.get(player).getOrCreateData(this, ent);
+			AttackStrikeData data = fetch(player, ent);
 			data.update((int) duration.getFromRank(rank), rank);
 			data.count++;
 		}

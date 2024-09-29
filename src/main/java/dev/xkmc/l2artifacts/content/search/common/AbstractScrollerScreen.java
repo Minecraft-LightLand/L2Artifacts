@@ -3,10 +3,10 @@ package dev.xkmc.l2artifacts.content.search.common;
 import dev.xkmc.l2artifacts.content.search.tabs.FilterTabManager;
 import dev.xkmc.l2artifacts.content.search.tabs.FilterTabToken;
 import dev.xkmc.l2artifacts.content.search.tabs.IFilterScreen;
-import dev.xkmc.l2library.base.menu.base.BaseContainerScreen;
-import dev.xkmc.l2library.base.menu.base.MenuLayoutConfig;
-import dev.xkmc.l2library.base.menu.scroller.Scroller;
-import dev.xkmc.l2library.base.menu.scroller.ScrollerScreen;
+import dev.xkmc.l2core.base.menu.base.BaseContainerScreen;
+import dev.xkmc.l2core.base.menu.base.MenuLayoutConfig;
+import dev.xkmc.l2core.base.menu.scroller.Scroller;
+import dev.xkmc.l2core.base.menu.scroller.ScrollerScreen;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
@@ -22,7 +22,7 @@ public class AbstractScrollerScreen<T extends AbstractScrollerMenu<T>>
 
 	public AbstractScrollerScreen(T cont, Inventory plInv, Component title, FilterTabToken<?> tab) {
 		super(cont, plInv, title);
-		scroller = new Scroller(this, cont.sprite.get(),
+		scroller = new Scroller(this, cont.getLayout(),
 				"slider_middle", "slider_light", "slider_dark");
 		this.tab = tab;
 	}
@@ -35,8 +35,7 @@ public class AbstractScrollerScreen<T extends AbstractScrollerMenu<T>>
 
 	@Override
 	protected void renderBg(GuiGraphics pose, float pTick, int mx, int my) {
-		var sm = this.menu.sprite.get();
-		var sr = sm.getRenderer(this);
+		var sr = getRenderer();
 		sr.start(pose);
 		scroller.render(pose, sr);
 		renderBgExtra(pose, sr, mx, my);
@@ -72,7 +71,7 @@ public class AbstractScrollerScreen<T extends AbstractScrollerMenu<T>>
 
 	@Override
 	public boolean mouseClicked(double mx, double my, int btn) {
-		var r = menu.sprite.get().getComp("grid");
+		var r = menu.getLayout().getComp("grid");
 		int x = r.x + getGuiLeft();
 		int y = r.y + getGuiTop();
 		if (mx >= x && my >= y && mx < x + r.w * r.rx && my < y + r.h * r.ry) {
@@ -91,8 +90,8 @@ public class AbstractScrollerScreen<T extends AbstractScrollerMenu<T>>
 	}
 
 	@Override
-	public boolean mouseScrolled(double mx, double my, double d) {
-		return scroller.mouseScrolled(mx, my, d) || super.mouseScrolled(mx, my, d);
+	public boolean mouseScrolled(double mx, double my, double i, double d) {
+		return scroller.mouseScrolled(mx, my, d) || super.mouseScrolled(mx, my, i, d);
 	}
 
 	@Override

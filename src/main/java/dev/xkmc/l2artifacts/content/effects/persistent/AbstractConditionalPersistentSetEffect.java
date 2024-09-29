@@ -3,7 +3,6 @@ package dev.xkmc.l2artifacts.content.effects.persistent;
 import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
 import dev.xkmc.l2artifacts.content.effects.core.PersistentDataSetEffect;
 import dev.xkmc.l2artifacts.init.registrate.entries.LinearFuncEntry;
-import dev.xkmc.l2library.capability.conditionals.ConditionalData;
 import net.minecraft.world.entity.player.Player;
 
 public abstract class AbstractConditionalPersistentSetEffect<T extends PeriodicData> extends PersistentDataSetEffect<T> {
@@ -18,7 +17,7 @@ public abstract class AbstractConditionalPersistentSetEffect<T extends PeriodicD
 	@Override
 	public void tick(Player player, ArtifactSetConfig.Entry ent, int rank, boolean enabled) {
 		if (!enabled) return;
-		T data = ConditionalData.HOLDER.get(player).getOrCreateData(this, ent);
+		T data = fetch(player, ent);
 		data.update(2, rank);
 		if (!test(player, ent, rank, data)) {
 			data.tick_count = 0;

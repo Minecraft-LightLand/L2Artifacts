@@ -9,9 +9,8 @@ import dev.xkmc.l2artifacts.content.search.tabs.FilterTabManager;
 import dev.xkmc.l2artifacts.content.search.tabs.IFilterScreen;
 import dev.xkmc.l2artifacts.content.upgrades.StatContainerItem;
 import dev.xkmc.l2artifacts.init.data.LangData;
-import dev.xkmc.l2library.base.menu.base.BaseContainerScreen;
-import dev.xkmc.l2library.base.menu.stacked.StackedRenderHandle;
-import dev.xkmc.l2library.util.Proxy;
+import dev.xkmc.l2core.base.menu.base.BaseContainerScreen;
+import dev.xkmc.l2core.base.menu.stacked.StackedRenderHandle;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
@@ -63,7 +62,7 @@ public class AugmentMenuScreen extends BaseContainerScreen<AugmentMenu> implemen
 
 	@Override
 	protected void renderBg(GuiGraphics g, float pTick, int mx, int my) {
-		var sr = menu.sprite.get().getRenderer(this);
+		var sr = getRenderer();
 		sr.start(g);
 		int mask = menu.mask.get();
 		if ((mask & 1) > 0) {
@@ -84,7 +83,7 @@ public class AugmentMenuScreen extends BaseContainerScreen<AugmentMenu> implemen
 		if (menu.container.getItem(3).isEmpty()) {
 			sr.draw(g, "in_2", "altas_boost_sub");
 		}
-		var rect = menu.sprite.get().getComp("upgrade");
+		var rect = menu.getLayout().getComp("upgrade");
 		if (isHovering(rect.x, rect.y, rect.w, rect.h, mx, my)) {
 			if (pressed) {
 				sr.draw(g, "upgrade", "upgrade_on");
@@ -109,7 +108,7 @@ public class AugmentMenuScreen extends BaseContainerScreen<AugmentMenu> implemen
 	@Override
 	public boolean mouseReleased(double mx, double my, int btn) {
 		pressed = false;
-		var rect = menu.sprite.get().getComp("upgrade");
+		var rect = menu.getLayout().getComp("upgrade");
 		if (isHovering(rect.x, rect.y, rect.w, rect.h, mx, my)) {
 			old = current;
 			time = MAX_TIME;
@@ -124,13 +123,13 @@ public class AugmentMenuScreen extends BaseContainerScreen<AugmentMenu> implemen
 		g.drawString(this.font, this.playerInventoryTitle.copy().withStyle(ChatFormatting.GRAY), this.inventoryLabelX, this.inventoryLabelY, 4210752, false);
 		g.pose().pushPose();
 		g.pose().translate(0, 45, 0);
-		StackedRenderHandle handle = new StackedRenderHandle(this, g, menu.sprite.get(), 0);
+		StackedRenderHandle handle = new StackedRenderHandle(this, g, getRenderer(), 0);
 		int exp = menu.experience.get();
 		int cost = menu.exp_cost.get();
 		if (cost > 0) {
 			String str = RecycleMenuScreen.formatNumber(cost) + "/" + RecycleMenuScreen.formatNumber(exp);
 			handle.drawText(LangData.TAB_INFO_EXP_COST.get(Component.literal(str)
-					.withStyle(cost <= exp ? ChatFormatting.DARK_GREEN : ChatFormatting.RED))
+							.withStyle(cost <= exp ? ChatFormatting.DARK_GREEN : ChatFormatting.RED))
 					.withStyle(ChatFormatting.GRAY), false);
 			ItemStack stack = menu.container.getItem(0);
 			if (stack != oldStack) {
@@ -168,7 +167,8 @@ public class AugmentMenuScreen extends BaseContainerScreen<AugmentMenu> implemen
 
 	private Component[] addEntry(boolean main, StatEntry entry, @Nullable StatEntry old, boolean lit_name, boolean lit_stat) {
 		Component[] ans = new Component[3];
-		if (Proxy.getClientPlayer().tickCount % 20 < 10) {
+		var player = Minecraft.getInstance().player;
+		if (player == null || player.tickCount % 20 < 10) {
 			lit_name = lit_stat = false;
 		}
 		ans[0] = Component.translatable(entry.getType().attr.getDescriptionId()).withStyle(lit_name ? LIT : main ? MAIN : SUB);

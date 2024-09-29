@@ -6,7 +6,7 @@ import dev.xkmc.l2artifacts.content.search.tabs.FilterTabToken;
 import dev.xkmc.l2artifacts.content.search.token.ArtifactChestToken;
 import dev.xkmc.l2artifacts.network.NetworkManager;
 import dev.xkmc.l2artifacts.network.SetFilterToServer;
-import dev.xkmc.l2library.util.Proxy;
+import dev.xkmc.l2core.util.Proxy;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
@@ -22,6 +22,6 @@ public class FilterTab extends FilterTabBase<FilterTab> {
 		manager.screen.onSwitch();
 		var token = ArtifactChestToken.of(Proxy.getClientPlayer(), manager.token.invSlot);
 		Minecraft.getInstance().setScreen(new FilterScreen(token));
-		NetworkManager.HANDLER.toServer(new SetFilterToServer(manager.token, null));
+		NetworkManager.HANDLER.toServer(SetFilterToServer.of(manager.token, null));
 	}
 }

@@ -6,9 +6,8 @@ import dev.xkmc.l2artifacts.content.search.fitered.FilteredMenu;
 import dev.xkmc.l2artifacts.content.swap.ArtifactSwapItem;
 import dev.xkmc.l2artifacts.content.swap.ArtifactSwapMenuPvd;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
-import dev.xkmc.l2screentracker.click.SlotClickHandler;
-import dev.xkmc.l2screentracker.screen.base.ScreenTracker;
-import net.minecraft.resources.ResourceLocation;
+import dev.xkmc.l2menustacker.click.SlotClickHandler;
+import dev.xkmc.l2menustacker.screen.base.ScreenTracker;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.ItemStack;
 
@@ -20,7 +19,7 @@ public class ArtifactSlotClickListener extends SlotClickHandler {
 	}
 
 	public ArtifactSlotClickListener() {
-		super(new ResourceLocation(L2Artifacts.MODID, "artifacts"));
+		super(L2Artifacts.loc("artifacts"));
 	}
 
 	@Override

@@ -9,7 +9,6 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.network.NetworkHooks;
 
 public record ArtifactChestMenuPvd(Factory fac, ServerPlayer player,
 								   int slot, ItemStack stack) implements MenuProvider {
@@ -29,7 +28,7 @@ public record ArtifactChestMenuPvd(Factory fac, ServerPlayer player,
 	}
 
 	public void open() {
-		NetworkHooks.openScreen(player, this, this::writeBuffer);
+		player.openMenu(this, this::writeBuffer);
 	}
 
 	public interface Factory {

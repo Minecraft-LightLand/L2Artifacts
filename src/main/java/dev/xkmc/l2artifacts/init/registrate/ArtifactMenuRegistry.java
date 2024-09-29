@@ -15,9 +15,9 @@ import dev.xkmc.l2artifacts.content.search.upgrade.UpgradeMenu;
 import dev.xkmc.l2artifacts.content.search.upgrade.UpgradeMenuScreen;
 import dev.xkmc.l2artifacts.content.swap.ArtifactSwapMenu;
 import dev.xkmc.l2artifacts.content.swap.ArtifactSwapScreen;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.MenuType;
-import net.minecraftforge.registries.ForgeRegistries;
 
 import static dev.xkmc.l2artifacts.init.L2Artifacts.REGISTRATE;
 
@@ -59,7 +59,7 @@ public class ArtifactMenuRegistry {
 			.lang(ArtifactMenuRegistry::getLangKey, "Artifact Quick Swap").register();
 
 	public static String getLangKey(MenuType<?> menu) {
-		ResourceLocation rl = ForgeRegistries.MENU_TYPES.getKey(menu);
+		ResourceLocation rl = BuiltInRegistries.MENU.getKey(menu);
 		assert rl != null;
 		return "container." + rl.getNamespace() + "." + rl.getPath();
 	}

@@ -12,10 +12,9 @@ import dev.xkmc.l2artifacts.content.upgrades.UpgradeBoostItem;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactMenuRegistry;
 import dev.xkmc.l2artifacts.init.registrate.items.ArtifactItems;
-import dev.xkmc.l2library.base.menu.base.BaseContainerMenu;
-import dev.xkmc.l2library.base.menu.base.PredSlot;
-import dev.xkmc.l2library.base.menu.base.SpriteManager;
-import dev.xkmc.l2library.util.nbt.ItemCompoundTag;
+import dev.xkmc.l2core.base.menu.base.BaseContainerMenu;
+import dev.xkmc.l2core.base.menu.base.PredSlot;
+import dev.xkmc.l2core.base.menu.base.SpriteManager;
 import dev.xkmc.l2serial.serialization.codec.TagCodec;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.Container;
@@ -72,7 +71,7 @@ public class ShapeMenu extends BaseContainerMenu<ShapeMenu> implements IFilterMe
 	}
 
 	protected void addResultSlot(String name, Predicate<ItemStack> pred) {//TODO hotfix
-		this.sprite.get().getSlot(name, (x, y) -> new ShapeResultSlot(this.container, this.added++, x, y, pred), this::addSlot);
+		this.getLayout().getSlot(name, (x, y) -> new ShapeResultSlot(this.container, this.added++, x, y, pred), this::addSlot);
 	}
 
 	public PredSlot getAsPredSlot(ShapeSlots slot) {
@@ -188,7 +187,7 @@ public class ShapeMenu extends BaseContainerMenu<ShapeMenu> implements IFilterMe
 					ShapeSlots.BOOST_SUB.get(this, i).remove(1);
 				}
 			}
-		}else {
+		} else {
 			ShapeSlots.OUTPUT.get(this).set(ItemStack.EMPTY);
 			ShapeSlots.OUTPUT.get(this).clearDirty();
 		}

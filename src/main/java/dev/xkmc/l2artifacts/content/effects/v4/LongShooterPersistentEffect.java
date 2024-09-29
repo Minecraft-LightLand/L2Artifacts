@@ -1,48 +1,18 @@
 package dev.xkmc.l2artifacts.content.effects.v4;
 
 import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
-import dev.xkmc.l2artifacts.content.effects.attribute.AbstractConditionalAttributeSetEffect;
-import dev.xkmc.l2artifacts.content.effects.attribute.AttrSetEntry;
-import dev.xkmc.l2core.init.L2LibReg;
+import dev.xkmc.l2artifacts.content.effects.core.PersistentDataSetEffect;
+import dev.xkmc.l2artifacts.content.effects.core.SetEffectData;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.EntitySelector;
-import net.minecraft.world.entity.monster.Monster;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.level.entity.EntityTypeTest;
-import net.minecraft.world.phys.AABB;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class LongShooterPersistentEffect extends AbstractConditionalAttributeSetEffect<LongShooterPersistentData> {
+public class LongShooterPersistentEffect extends PersistentDataSetEffect<SetEffectData> {
 
-	public LongShooterPersistentEffect(AttrSetEntry... entries) {
-		super(entries);
-
-	}
-
-	@Override
-	public void tick(Player player, ArtifactSetConfig.Entry ent, int rank, boolean enabled) {
-		if (!enabled) return;
-		if (player.tickCount % 10 == 0) {
-			if (player.level().getEntities(EntityTypeTest.forClass(Monster.class), new AABB(player.getPosition(0), player.getPosition(0)).inflate(6), EntitySelector.NO_SPECTATORS).isEmpty()) {
-				LongShooterPersistentData data = L2LibReg.CONDITIONAL.type().getOrCreate(player).getOrCreateData(this, ent);
-				data.update(11, rank);
-				addAttributes(player, ent, rank, data);
-				data.old = true;
-			} else if
-			(!player.level().getEntities(EntityTypeTest.forClass(Monster.class), new AABB(player.getPosition(0), player.getPosition(0)).inflate(6), EntitySelector.NO_SPECTATORS).isEmpty()) {
-				LongShooterPersistentData data = L2LibReg.CONDITIONAL.type().getOrCreate(player).getOrCreateData(this, ent);
-				if (data.old) {
-					data.update(40, rank);
-					player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 40, 1));
-					data.old = false;
-				}
-			}
-		}
+	public LongShooterPersistentEffect() {
+		super(0);
 	}
 
 	@Override
@@ -53,10 +23,9 @@ public class LongShooterPersistentEffect extends AbstractConditionalAttributeSet
 	}
 
 	@Override
-	public LongShooterPersistentData getData() {
-		return new LongShooterPersistentData();
+	public SetEffectData getData(ArtifactSetConfig.Entry ent) {
+		return new SetEffectData();
 	}
-
 
 	protected MutableComponent getConditionText(int rank) {
 

@@ -6,16 +6,16 @@ import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
 import dev.xkmc.l2artifacts.content.core.ArtifactSet;
 import dev.xkmc.l2artifacts.content.core.BaseArtifact;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.registries.DeferredHolder;
 
 import java.util.function.Consumer;
 
-public class SetEntry<T extends ArtifactSet> extends RegistryEntry<T> {
+public class SetEntry<T extends ArtifactSet> extends RegistryEntry<ArtifactSet, T> {
 
 	public final ItemEntry<BaseArtifact>[][] items;
 	public final Consumer<ArtifactSetConfig.SetBuilder> builder;
 
-	public SetEntry(ArtifactRegistrate owner, RegistryObject<T> delegate,
+	public SetEntry(ArtifactRegistrate owner, DeferredHolder<ArtifactSet, T> delegate,
 					ItemEntry<BaseArtifact>[][] items,
 					Consumer<ArtifactSetConfig.SetBuilder> builder) {
 		super(owner, delegate);

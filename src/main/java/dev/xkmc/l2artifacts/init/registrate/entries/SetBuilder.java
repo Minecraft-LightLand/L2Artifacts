@@ -13,18 +13,17 @@ import dev.xkmc.l2artifacts.content.core.ArtifactSlot;
 import dev.xkmc.l2artifacts.content.core.BaseArtifact;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactTypeRegistry;
-import dev.xkmc.l2library.base.NamedEntry;
+import dev.xkmc.l2core.init.reg.registrate.NamedEntry;
+import dev.xkmc.l2core.init.reg.registrate.SimpleEntry;
 import dev.xkmc.l2serial.util.Wrappers;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
-import net.minecraftforge.client.model.generators.ModelFile;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
-import net.minecraftforge.registries.tags.ITagManager;
+import net.neoforged.neoforge.client.model.generators.ModelFile;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Objects;
 import java.util.function.Consumer;
 
 import static dev.xkmc.l2artifacts.init.registrate.items.ArtifactItems.RANK_NAME;
@@ -34,7 +33,7 @@ public class SetBuilder<T extends ArtifactSet, I extends BaseArtifact, P> extend
 	private final NonNullSupplier<T> sup;
 	private final int min_rank, max_rank;
 
-	private RegistryEntry<ArtifactSlot>[] slots;
+	private SimpleEntry<ArtifactSlot>[] slots;
 	private ItemEntry<BaseArtifact>[][] items;
 	private Consumer<ArtifactSetConfig.SetBuilder> builder;
 
@@ -47,7 +46,7 @@ public class SetBuilder<T extends ArtifactSet, I extends BaseArtifact, P> extend
 	}
 
 	@SafeVarargs
-	public final SetBuilder<T, I, P> setSlots(RegistryEntry<ArtifactSlot>... slots) {
+	public final SetBuilder<T, I, P> setSlots(SimpleEntry<ArtifactSlot>... slots) {
 		this.slots = slots;
 		return this;
 	}
@@ -61,21 +60,20 @@ public class SetBuilder<T extends ArtifactSet, I extends BaseArtifact, P> extend
 	public SetBuilder<T, I, P> regItems() {
 		if (slots == null) throw new IllegalStateException("call setSlots() first");
 		items = new ItemEntry[slots.length][max_rank - min_rank + 1];
-		ITagManager<Item> manager = Objects.requireNonNull(ForgeRegistries.ITEMS.tags());
-		TagKey<Item> artifact = manager.createTagKey(new ResourceLocation(L2Artifacts.MODID, "artifact"));
+		TagKey<Item> artifact = ItemTags.create(L2Artifacts.loc("artifact"));
 		for (int i = 0; i < slots.length; i++) {
-			RegistryEntry<ArtifactSlot> slot = slots[i];
-			String slot_name = slot.getId().getPath();
-			TagKey<Item> curios_tag = manager.createTagKey(new ResourceLocation("curios", "artifact_" + slot_name));
-			TagKey<Item> slot_tag = manager.createTagKey(new ResourceLocation(L2Artifacts.MODID, slot_name));
+			SimpleEntry<ArtifactSlot> slot = slots[i];
+			String slot_name = slot.key().location().getPath();
+			TagKey<Item> curios_tag = ItemTags.create(ResourceLocation.fromNamespaceAndPath("curios", "artifact_" + slot_name));
+			TagKey<Item> slot_tag = ItemTags.create(L2Artifacts.loc(slot_name));
 			for (int r = min_rank; r <= max_rank; r++) {
-				TagKey<Item> rank_tag = manager.createTagKey(new ResourceLocation(L2Artifacts.MODID, "rank_" + r));
+				TagKey<Item> rank_tag = ItemTags.create(L2Artifacts.loc("rank_" + r));
 				String name = this.getName() + "_" + slot_name + "_" + r;
 				int rank = r;
 				items[i][r - min_rank] = L2Artifacts.REGISTRATE.item(name, p -> new BaseArtifact(p, asSupplier()::get, slot, rank))
 						.model((ctx, pvd) -> pvd.getBuilder(name).parent(new ModelFile.UncheckedModelFile("item/generated"))
-								.texture("layer0", new ResourceLocation(L2Artifacts.MODID, "item/rank/" + rank))
-								.texture("layer1", new ResourceLocation(L2Artifacts.MODID, "item/" + getName() + "/" + slot_name)))
+								.texture("layer0", L2Artifacts.loc("item/rank/" + rank))
+								.texture("layer1", L2Artifacts.loc("item/" + getName() + "/" + slot_name)))
 						.tag(curios_tag, slot_tag, rank_tag, artifact).lang(RegistrateLangProvider
 								.toEnglishName(this.getName() + "_" + slot_name) + RANK_NAME[r - 1]).register();
 			}
@@ -84,7 +82,7 @@ public class SetBuilder<T extends ArtifactSet, I extends BaseArtifact, P> extend
 	}
 
 	@Override
-	protected RegistryEntry<T> createEntryWrapper(RegistryObject<T> delegate) {
+	protected RegistryEntry<ArtifactSet, T> createEntryWrapper(DeferredHolder<ArtifactSet, T> delegate) {
 		if (slots == null) throw new IllegalStateException("call setSlots() first");
 		if (builder == null) throw new IllegalStateException("call buildConfig() first");
 		if (items == null) throw new IllegalStateException("call regItems() first");

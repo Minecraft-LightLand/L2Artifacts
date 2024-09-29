@@ -3,7 +3,7 @@ package dev.xkmc.l2artifacts.content.effects.v1;
 import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
 import dev.xkmc.l2artifacts.content.effects.core.PlayerOnlySetEffect;
 import dev.xkmc.l2artifacts.init.registrate.entries.LinearFuncEntry;
-import dev.xkmc.l2damagetracker.contents.attack.AttackCache;
+import dev.xkmc.l2damagetracker.contents.attack.DamageData;
 import dev.xkmc.l2damagetracker.contents.attack.DamageModifier;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
@@ -30,14 +30,14 @@ public class SaintReduction extends PlayerOnlySetEffect {
 	}
 
 	@Override
-	public void playerHurtOpponentEvent(Player player, ArtifactSetConfig.Entry ent, int rank, AttackCache event) {
-		event.addHurtModifier(DamageModifier.multBase((float) -atk.getFromRank(rank)));
+	public void playerHurtOpponentEvent(Player player, ArtifactSetConfig.Entry ent, int rank, DamageData.Offence event) {
+		event.addHurtModifier(DamageModifier.multBase((float) -atk.getFromRank(rank), getRegistryName()));
 	}
 
 	@Override
-	public void playerReduceDamage(Player player, ArtifactSetConfig.Entry ent, int rank, DamageSource source, AttackCache cache) {
+	public void playerReduceDamage(Player player, ArtifactSetConfig.Entry ent, int rank, DamageSource source, DamageData.Defence cache) {
 		float amp = (float) (1 - def.getFromRank(rank));
-		cache.addDealtModifier(DamageModifier.multTotal(amp));
+		cache.addDealtModifier(DamageModifier.multTotal(amp, getRegistryName()));
 	}
 
 }

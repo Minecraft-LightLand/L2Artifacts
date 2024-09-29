@@ -3,7 +3,7 @@ package dev.xkmc.l2artifacts.content.effects.v4;
 import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
 import dev.xkmc.l2artifacts.content.effects.core.PersistentDataSetEffect;
 import dev.xkmc.l2artifacts.init.registrate.entries.LinearFuncEntry;
-import dev.xkmc.l2damagetracker.contents.attack.AttackCache;
+import dev.xkmc.l2damagetracker.contents.attack.DamageData;
 import dev.xkmc.l2damagetracker.contents.attack.DamageModifier;
 import dev.xkmc.l2library.capability.conditionals.ConditionalData;
 import net.minecraft.network.chat.Component;
@@ -51,11 +51,11 @@ public class ImmobileEffect extends PersistentDataSetEffect<ImmobileData> {
 	}
 
 	@Override
-	public void playerReduceDamage(Player player, ArtifactSetConfig.Entry ent, int rank, DamageSource source, AttackCache cache) {
+	public void playerReduceDamage(Player player, ArtifactSetConfig.Entry ent, int rank, DamageSource source, DamageData.Defence cache) {
 		ImmobileData data = ConditionalData.HOLDER.get(player).getData(this.getKey());
 		if (data == null) return;
 		if (data.time >= threshold.getFromRank(rank)) {
-			cache.addDealtModifier(DamageModifier.multTotal((float) protection.getFromRank(rank)));
+			cache.addDealtModifier(DamageModifier.multTotal((float) protection.getFromRank(rank), getRegistryName()));
 		}
 	}
 

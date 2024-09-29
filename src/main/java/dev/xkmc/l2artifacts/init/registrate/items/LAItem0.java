@@ -1,10 +1,10 @@
 package dev.xkmc.l2artifacts.init.registrate.items;
 
-import com.tterrag.registrate.util.entry.RegistryEntry;
 import dev.xkmc.l2artifacts.content.core.ArtifactSet;
 import dev.xkmc.l2artifacts.content.effects.attribute.AttrSetEntry;
 import dev.xkmc.l2artifacts.content.effects.attribute.AttributeSetEffect;
 import dev.xkmc.l2artifacts.init.registrate.entries.LinearFuncEntry;
+import dev.xkmc.l2artifacts.init.registrate.entries.SetEffectEntry;
 import dev.xkmc.l2artifacts.init.registrate.entries.SetEntry;
 import dev.xkmc.l2artifacts.init.registrate.entries.SetRegHelper;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -12,8 +12,8 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import static dev.xkmc.l2artifacts.init.L2Artifacts.REGISTRATE;
 import static dev.xkmc.l2artifacts.init.registrate.ArtifactTypeRegistry.*;
 import static dev.xkmc.l2damagetracker.init.L2DamageTracker.*;
-import static net.minecraft.world.entity.ai.attributes.AttributeModifier.Operation.ADDITION;
-import static net.minecraft.world.entity.ai.attributes.AttributeModifier.Operation.MULTIPLY_BASE;
+import static net.minecraft.world.entity.ai.attributes.AttributeModifier.Operation.ADD_MULTIPLIED_BASE;
+import static net.minecraft.world.entity.ai.attributes.AttributeModifier.Operation.ADD_VALUE;
 
 public class LAItem0 {
 
@@ -21,12 +21,12 @@ public class LAItem0 {
 	public static final SetEntry<ArtifactSet> SET_GAMBLER;
 	public static final SetEntry<ArtifactSet> SET_BERSERKER;
 	public static final SetEntry<ArtifactSet> SET_ARCHER;
-	public static final RegistryEntry<AttributeSetEffect> EFF_GAMBLER_3;
-	public static final RegistryEntry<AttributeSetEffect> EFF_GAMBLER_5;
-	public static final RegistryEntry<AttributeSetEffect> EFF_BERSERKER_3;
-	public static final RegistryEntry<AttributeSetEffect> EFF_BERSERKER_5;
-	public static final RegistryEntry<AttributeSetEffect> EFF_ARCHER_3;
-	public static final RegistryEntry<AttributeSetEffect> EFF_ARCHER_5;
+	public static final SetEffectEntry<AttributeSetEffect> EFF_GAMBLER_3;
+	public static final SetEffectEntry<AttributeSetEffect> EFF_GAMBLER_5;
+	public static final SetEffectEntry<AttributeSetEffect> EFF_BERSERKER_3;
+	public static final SetEffectEntry<AttributeSetEffect> EFF_BERSERKER_5;
+	public static final SetEffectEntry<AttributeSetEffect> EFF_ARCHER_3;
+	public static final SetEffectEntry<AttributeSetEffect> EFF_ARCHER_5;
 
 	static {
 		// gambler set
@@ -40,14 +40,14 @@ public class LAItem0 {
 			LinearFuncEntry luck = helper.regLinear("gambler_5_luck", 1, 0.5);
 
 			EFF_GAMBLER_3 = helper.setEffect("gambler_3", () -> new AttributeSetEffect(
-					new AttrSetEntry(CRIT_RATE::get, ADDITION, cr3, true),
-					new AttrSetEntry(CRIT_DMG::get, ADDITION, cd3, true)
+					new AttrSetEntry(CRIT_RATE, ADD_VALUE, cr3, true),
+					new AttrSetEntry(CRIT_DMG, ADD_VALUE, cd3, true)
 			)).lang("Pursuit of Bets").register();
 
 			EFF_GAMBLER_5 = helper.setEffect("gambler_5", () -> new AttributeSetEffect(
-					new AttrSetEntry(CRIT_RATE::get, ADDITION, cr5, true),
-					new AttrSetEntry(CRIT_DMG::get, ADDITION, cd5, true),
-					new AttrSetEntry(() -> Attributes.LUCK, ADDITION, luck, false)
+					new AttrSetEntry(CRIT_RATE, ADD_VALUE, cr5, true),
+					new AttrSetEntry(CRIT_DMG, ADD_VALUE, cd5, true),
+					new AttrSetEntry(Attributes.LUCK, ADD_VALUE, luck, false)
 			)).lang("Bless of Luck").register();
 
 			SET_GAMBLER = helper.regSet(1, 5, "Gambler Set")
@@ -68,14 +68,14 @@ public class LAItem0 {
 			LinearFuncEntry cd5 = helper.regLinear("berserker_5_crit_damage", 0.04, 0.02);
 
 			EFF_BERSERKER_3 = helper.setEffect("berserker_3", () -> new AttributeSetEffect(
-					new AttrSetEntry(() -> Attributes.ARMOR, ADDITION, ar3, false),
-					new AttrSetEntry(() -> Attributes.ATTACK_DAMAGE, MULTIPLY_BASE, atk3, true)
+					new AttrSetEntry(Attributes.ARMOR, ADD_VALUE, ar3, false),
+					new AttrSetEntry(Attributes.ATTACK_DAMAGE, ADD_MULTIPLIED_BASE, atk3, true)
 			)).lang("Unpolished Bruteforce").register();
 
 			EFF_BERSERKER_5 = helper.setEffect("berserker_5", () -> new AttributeSetEffect(
-					new AttrSetEntry(() -> Attributes.MOVEMENT_SPEED, MULTIPLY_BASE, speed, true),
-					new AttrSetEntry(() -> Attributes.ATTACK_SPEED, MULTIPLY_BASE, haste, true),
-					new AttrSetEntry(CRIT_DMG::get, ADDITION, cd5, true)
+					new AttrSetEntry(Attributes.MOVEMENT_SPEED, ADD_MULTIPLIED_BASE, speed, true),
+					new AttrSetEntry(Attributes.ATTACK_SPEED, ADD_MULTIPLIED_BASE, haste, true),
+					new AttrSetEntry(CRIT_DMG, ADD_VALUE, cd5, true)
 			)).lang("Subconscious Fight").register();
 
 			SET_BERSERKER = helper.regSet(1, 5, "Berserker Set")
@@ -96,13 +96,13 @@ public class LAItem0 {
 			LinearFuncEntry cr5 = helper.regLinear("archer_5_crit_rate", 0.4, 0.2);
 
 			EFF_ARCHER_3 = helper.setEffect("archer_3", () -> new AttributeSetEffect(
-					new AttrSetEntry(() -> Attributes.ATTACK_DAMAGE, MULTIPLY_BASE, atk3, true),
-					new AttrSetEntry(BOW_STRENGTH::get, ADDITION, bow3, true)
+					new AttrSetEntry(Attributes.ATTACK_DAMAGE, ADD_MULTIPLIED_BASE, atk3, true),
+					new AttrSetEntry(BOW_STRENGTH, ADD_VALUE, bow3, true)
 			)).lang("Specialty of Archer").register();
 
 			EFF_ARCHER_5 = helper.setEffect("archer_5", () -> new AttributeSetEffect(
-					new AttrSetEntry(() -> Attributes.ATTACK_SPEED, MULTIPLY_BASE, haste, true),
-					new AttrSetEntry(CRIT_RATE::get, ADDITION, cr5, true)
+					new AttrSetEntry(Attributes.ATTACK_SPEED, ADD_MULTIPLIED_BASE, haste, true),
+					new AttrSetEntry(CRIT_RATE, ADD_VALUE, cr5, true)
 			)).lang("Focus of Archer").register();
 
 			SET_ARCHER = helper.regSet(1, 5, "Archer Set")

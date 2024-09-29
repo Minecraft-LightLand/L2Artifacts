@@ -7,7 +7,9 @@ import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import com.tterrag.registrate.util.nullness.NonnullType;
 import dev.xkmc.l2artifacts.content.effects.core.SetEffect;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactTypeRegistry;
-import dev.xkmc.l2library.base.NamedEntry;
+import dev.xkmc.l2core.init.reg.registrate.NamedEntry;
+import dev.xkmc.l2serial.util.Wrappers;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import org.jetbrains.annotations.NotNull;
 
 public class SetEffectBuilder<T extends SetEffect, P> extends AbstractBuilder<SetEffect, T, P, SetEffectBuilder<T, P>> {
@@ -34,6 +36,16 @@ public class SetEffectBuilder<T extends SetEffect, P> extends AbstractBuilder<Se
 
 	public SetEffectBuilder<T, P> lang(String name) {
 		return this.lang(NamedEntry::getDescriptionId, name);
+	}
+
+	@Override
+	protected SetEffectEntry<T> createEntryWrapper(DeferredHolder<SetEffect, T> delegate) {
+		return new SetEffectEntry<>(Wrappers.cast(this.getOwner()), delegate);
+	}
+
+	@Override
+	public SetEffectEntry<T> register() {
+		return Wrappers.cast(super.register());
 	}
 
 }

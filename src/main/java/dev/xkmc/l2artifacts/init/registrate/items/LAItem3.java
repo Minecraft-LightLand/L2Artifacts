@@ -1,11 +1,11 @@
 package dev.xkmc.l2artifacts.init.registrate.items;
 
-import com.tterrag.registrate.util.entry.RegistryEntry;
 import dev.xkmc.l2artifacts.content.core.ArtifactSet;
 import dev.xkmc.l2artifacts.content.effects.attribute.AttrSetEntry;
 import dev.xkmc.l2artifacts.content.effects.attribute.SimpleCASetEffect;
 import dev.xkmc.l2artifacts.content.effects.v3.*;
 import dev.xkmc.l2artifacts.init.registrate.entries.LinearFuncEntry;
+import dev.xkmc.l2artifacts.init.registrate.entries.SetEffectEntry;
 import dev.xkmc.l2artifacts.init.registrate.entries.SetEntry;
 import dev.xkmc.l2artifacts.init.registrate.entries.SetRegHelper;
 import net.minecraft.world.effect.MobEffects;
@@ -13,7 +13,7 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 
 import static dev.xkmc.l2artifacts.init.L2Artifacts.REGISTRATE;
 import static dev.xkmc.l2artifacts.init.registrate.ArtifactTypeRegistry.*;
-import static net.minecraft.world.entity.ai.attributes.AttributeModifier.Operation.MULTIPLY_BASE;
+import static net.minecraft.world.entity.ai.attributes.AttributeModifier.Operation.ADD_MULTIPLIED_BASE;
 
 public class LAItem3 {
 
@@ -23,17 +23,17 @@ public class LAItem3 {
 	public static final SetEntry<ArtifactSet> SET_SUN_BLOCK;
 	public static final SetEntry<ArtifactSet> SET_GLUTTONY;
 	public static final SetEntry<ArtifactSet> SET_FALLEN;
-	public static final RegistryEntry<Photosynthesisffect> EFF_PHOTOSYN;
-	public static final RegistryEntry<VampireBurn> EFF_VAMPIRE_BURN;
-	public static final RegistryEntry<VampireHeal> EFF_VAMPIRE_HEAL;
-	public static final RegistryEntry<SunBlockMask> EFF_SUN_BLOCK;
-	public static final RegistryEntry<SimpleCASetEffect> EFF_GLUTTONY_FAST;
-	public static final RegistryEntry<GluttonyHeal> EFF_GLUTTONY_HEAL;
-	public static final RegistryEntry<SimpleCASetEffect> EFF_FALLEN_1;
-	public static final RegistryEntry<SimpleCASetEffect> EFF_FALLEN_2;
-	public static final RegistryEntry<SimpleCASetEffect> EFF_FALLEN_3;
-	public static final RegistryEntry<SimpleCASetEffect> EFF_FALLEN_4;
-	public static final RegistryEntry<SimpleCASetEffect> EFF_FALLEN_5;
+	public static final SetEffectEntry<Photosynthesisffect> EFF_PHOTOSYN;
+	public static final SetEffectEntry<VampireBurn> EFF_VAMPIRE_BURN;
+	public static final SetEffectEntry<VampireHeal> EFF_VAMPIRE_HEAL;
+	public static final SetEffectEntry<SunBlockMask> EFF_SUN_BLOCK;
+	public static final SetEffectEntry<SimpleCASetEffect> EFF_GLUTTONY_FAST;
+	public static final SetEffectEntry<GluttonyHeal> EFF_GLUTTONY_HEAL;
+	public static final SetEffectEntry<SimpleCASetEffect> EFF_FALLEN_1;
+	public static final SetEffectEntry<SimpleCASetEffect> EFF_FALLEN_2;
+	public static final SetEffectEntry<SimpleCASetEffect> EFF_FALLEN_3;
+	public static final SetEffectEntry<SimpleCASetEffect> EFF_FALLEN_4;
+	public static final SetEffectEntry<SimpleCASetEffect> EFF_FALLEN_5;
 
 	static {
 		// v3
@@ -100,9 +100,9 @@ public class LAItem3 {
 			LinearFuncEntry spe = helper.regLinear("gluttony_speed", 0.1, 0.05);
 			EFF_GLUTTONY_FAST = helper.setEffect("gluttony_fast", () -> new SimpleCASetEffect(
 					player -> player.hasEffect(MobEffects.HUNGER),
-					new AttrSetEntry(() -> Attributes.ATTACK_DAMAGE, MULTIPLY_BASE, atk, true),
-					new AttrSetEntry(() -> Attributes.ATTACK_SPEED, MULTIPLY_BASE, swi, true),
-					new AttrSetEntry(() -> Attributes.MOVEMENT_SPEED, MULTIPLY_BASE, spe, true)
+					new AttrSetEntry(Attributes.ATTACK_DAMAGE, ADD_MULTIPLIED_BASE, atk, true),
+					new AttrSetEntry(Attributes.ATTACK_SPEED, ADD_MULTIPLIED_BASE, swi, true),
+					new AttrSetEntry(Attributes.MOVEMENT_SPEED, ADD_MULTIPLIED_BASE, spe, true)
 			)).desc("Hunger Strike", "When having Hunger effect:").register();
 
 			LinearFuncEntry eat = helper.regLinear("gluttony_eat", 2, 1);
@@ -128,23 +128,23 @@ public class LAItem3 {
 			LinearFuncEntry atk5 = helper.regLinear("fury_of_fallen_5", 0.5, 0.25);
 			EFF_FALLEN_1 = helper.setEffect("fury_of_fallen_1", () -> new SimpleCASetEffect(
 					player -> player.getHealth() <= player.getMaxHealth() * 0.5,
-					new AttrSetEntry(() -> Attributes.ATTACK_DAMAGE, MULTIPLY_BASE, atk1, true)
+					new AttrSetEntry(Attributes.ATTACK_DAMAGE, ADD_MULTIPLIED_BASE, atk1, true)
 			)).desc("Furry of Fallen Lv.1", "When health is less than 50%:").register();
 			EFF_FALLEN_2 = helper.setEffect("fury_of_fallen_2", () -> new SimpleCASetEffect(
 					player -> player.getHealth() <= player.getMaxHealth() * 0.4,
-					new AttrSetEntry(() -> Attributes.ATTACK_DAMAGE, MULTIPLY_BASE, atk2, true)
+					new AttrSetEntry(Attributes.ATTACK_DAMAGE, ADD_MULTIPLIED_BASE, atk2, true)
 			)).desc("Furry of Fallen Lv.2", "When health is less than 40%:").register();
 			EFF_FALLEN_3 = helper.setEffect("fury_of_fallen_3", () -> new SimpleCASetEffect(
 					player -> player.getHealth() <= player.getMaxHealth() * 0.3,
-					new AttrSetEntry(() -> Attributes.ATTACK_DAMAGE, MULTIPLY_BASE, atk3, true)
+					new AttrSetEntry(Attributes.ATTACK_DAMAGE, ADD_MULTIPLIED_BASE, atk3, true)
 			)).desc("Furry of Fallen Lv.3", "When health is less than 30%:").register();
 			EFF_FALLEN_4 = helper.setEffect("fury_of_fallen_4", () -> new SimpleCASetEffect(
 					player -> player.getHealth() <= player.getMaxHealth() * 0.2,
-					new AttrSetEntry(() -> Attributes.ATTACK_DAMAGE, MULTIPLY_BASE, atk4, true)
+					new AttrSetEntry(Attributes.ATTACK_DAMAGE, ADD_MULTIPLIED_BASE, atk4, true)
 			)).desc("Furry of Fallen Lv.4", "When health is less than 20%:").register();
 			EFF_FALLEN_5 = helper.setEffect("fury_of_fallen_5", () -> new SimpleCASetEffect(
 					player -> player.getHealth() <= player.getMaxHealth() * 0.1,
-					new AttrSetEntry(() -> Attributes.ATTACK_DAMAGE, MULTIPLY_BASE, atk5, true)
+					new AttrSetEntry(Attributes.ATTACK_DAMAGE, ADD_MULTIPLIED_BASE, atk5, true)
 			)).desc("Furry of Fallen Lv.5", "When health is less than 10%:").register();
 
 			SET_FALLEN = helper.regSet(1, 5, "Fury of Fallen")

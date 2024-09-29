@@ -2,17 +2,16 @@ package dev.xkmc.l2artifacts.content.effects.core;
 
 import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactTypeRegistry;
-import dev.xkmc.l2damagetracker.contents.attack.AttackCache;
-import dev.xkmc.l2library.base.NamedEntry;
+import dev.xkmc.l2core.init.reg.registrate.NamedEntry;
+import dev.xkmc.l2damagetracker.contents.attack.DamageData;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
-import net.minecraftforge.event.entity.living.LivingDeathEvent;
-import net.minecraftforge.event.entity.living.ShieldBlockEvent;
-import net.minecraftforge.event.entity.player.CriticalHitEvent;
+import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
+import net.neoforged.neoforge.event.entity.living.LivingShieldBlockEvent;
+import net.neoforged.neoforge.event.entity.player.CriticalHitEvent;
 
 import java.util.List;
 
@@ -51,45 +50,40 @@ public abstract class SetEffect extends NamedEntry<SetEffect> {
 		return false;
 	}
 
-	public final void playerAttackedEvent(LivingEntity player, ArtifactSetConfig.Entry ent, int rank, AttackCache cache) {
-		var event = cache.getLivingAttackEvent();
-		assert event != null;
-		var source = event.getSource();
-		if (!event.isCanceled() && !source.is(DamageTypeTags.BYPASSES_EFFECTS)) {
-			if (playerAttackedCancel(player, ent, rank, source, cache)) {
-				event.setCanceled(true);
-			}
+	public final boolean playerAttackedEvent(LivingEntity player, ArtifactSetConfig.Entry ent, int rank, DamageData.Attack cache) {
+		var source = cache.getSource();
+		if (!source.is(DamageTypeTags.BYPASSES_EFFECTS)) {
+			return playerAttackedCancel(player, ent, rank, source, cache);
 		}
+		return false;
 	}
 
-	public final void playerHurtEvent(LivingEntity player, ArtifactSetConfig.Entry ent, int rank, AttackCache cache) {
-		var event = cache.getLivingDamageEvent();
-		assert event != null;
-		var source = event.getSource();
+	public final void playerHurtEvent(LivingEntity player, ArtifactSetConfig.Entry ent, int rank, DamageData.Defence cache) {
+		var source = cache.getSource();
 		if (!source.is(DamageTypeTags.BYPASSES_EFFECTS)) {
 			playerReduceDamage(player, ent, rank, source, cache);
 		}
 	}
 
-	public boolean playerAttackedCancel(LivingEntity player, ArtifactSetConfig.Entry ent, int rank, DamageSource source, AttackCache cache) {
+	public boolean playerAttackedCancel(LivingEntity player, ArtifactSetConfig.Entry ent, int rank, DamageSource source, DamageData.Attack cache) {
 		return false;
 	}
 
-	public void playerReduceDamage(LivingEntity player, ArtifactSetConfig.Entry ent, int rank, DamageSource source, AttackCache cache) {
+	public void playerReduceDamage(LivingEntity player, ArtifactSetConfig.Entry ent, int rank, DamageSource source, DamageData.Defence cache) {
 	}
 
 
 	/**
 	 * 当玩家试图对怪物造成伤害时触发，可以修改伤害数值。此时已通过怪物的免疫判定，但是还未处理怪物减伤判定。
 	 */
-	public void playerHurtOpponentEvent(LivingEntity player, ArtifactSetConfig.Entry ent, int rank, AttackCache event) {
+	public void playerHurtOpponentEvent(LivingEntity player, ArtifactSetConfig.Entry ent, int rank, DamageData.Offence event) {
 
 	}
 
 	/**
 	 * 当玩家对怪物造成确实伤害时触发。此时已处理过怪物减伤判定。
 	 */
-	public void playerDamageOpponentEvent(LivingEntity player, ArtifactSetConfig.Entry ent, int rank, AttackCache event) {
+	public void playerDamageOpponentEvent(LivingEntity player, ArtifactSetConfig.Entry ent, int rank, DamageData.DefenceMax event) {
 	}
 
 	/**
@@ -99,7 +93,7 @@ public abstract class SetEffect extends NamedEntry<SetEffect> {
 
 	}
 
-	public void playerShieldBlock(LivingEntity player, ArtifactSetConfig.Entry entry, int i, ShieldBlockEvent event) {
+	public void playerShieldBlock(LivingEntity player, ArtifactSetConfig.Entry entry, int i, LivingShieldBlockEvent event) {
 	}
 
 }

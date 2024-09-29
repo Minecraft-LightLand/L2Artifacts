@@ -17,7 +17,7 @@ public class SetRegHelper {
 	}
 
 	public ResourceLocation getId() {
-		return new ResourceLocation(reg.getModid(), id);
+		return ResourceLocation.fromNamespaceAndPath(reg.getModid(), id);
 	}
 
 	public <I extends BaseArtifact> LinearFuncEntry regLinear(String id, double v, double s) {

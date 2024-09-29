@@ -3,7 +3,7 @@ package dev.xkmc.l2artifacts.content.effects.v2;
 import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
 import dev.xkmc.l2artifacts.content.effects.core.SetEffect;
 import dev.xkmc.l2artifacts.init.registrate.entries.LinearFuncEntry;
-import dev.xkmc.l2damagetracker.contents.attack.AttackCache;
+import dev.xkmc.l2damagetracker.contents.attack.DamageData;
 import dev.xkmc.l2damagetracker.contents.attack.DamageModifier;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
@@ -25,10 +25,10 @@ public class WrathEffect extends SetEffect {
 	}
 
 	@Override
-	public void playerHurtOpponentEvent(LivingEntity player, ArtifactSetConfig.Entry ent, int rank, AttackCache event) {
-		boolean bool = pred.test(event.getAttackTarget());
+	public void playerHurtOpponentEvent(LivingEntity player, ArtifactSetConfig.Entry ent, int rank, DamageData.Offence event) {
+		boolean bool = pred.test(event.getTarget());
 		double factor = bool ? inc.getFromRank(rank) : dec.getFromRank(rank);
-		event.addHurtModifier(DamageModifier.multTotal((float) factor));// multiplicative
+		event.addHurtModifier(DamageModifier.multTotal((float) factor, getRegistryName()));// multiplicative
 	}
 
 	@Override

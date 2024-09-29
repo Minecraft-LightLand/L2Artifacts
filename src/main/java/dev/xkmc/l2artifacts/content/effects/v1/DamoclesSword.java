@@ -3,7 +3,9 @@ package dev.xkmc.l2artifacts.content.effects.v1;
 import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
 import dev.xkmc.l2artifacts.content.effects.core.SetEffect;
 import dev.xkmc.l2artifacts.init.registrate.entries.LinearFuncEntry;
-import dev.xkmc.l2damagetracker.contents.attack.AttackCache;
+import dev.xkmc.l2core.capability.conditionals.ConditionalData;
+import dev.xkmc.l2core.init.L2LibReg;
+import dev.xkmc.l2damagetracker.contents.attack.DamageData;
 import dev.xkmc.l2damagetracker.contents.attack.DamageModifier;
 import dev.xkmc.l2library.capability.conditionals.ConditionalData;
 import net.minecraft.network.chat.Component;
@@ -27,7 +29,7 @@ public class DamoclesSword extends SetEffect {
 		if (!enabled || le.level().isClientSide())
 			return;
 		if (le.getHealth() > 0 && le.getHealth() < le.getMaxHealth() / 2 && le.hurtTime == 0) {
-			if (!(le instanceof Player pl) || ConditionalData.HOLDER.get(pl).tickSinceDeath > 60)
+			if (!(le instanceof Player pl) || L2LibReg.CONDITIONAL.type().getOrCreate(pl).tickSinceDeath > 60)
 				le.hurt(le.level().damageSources().fellOutOfWorld(), le.getMaxHealth());
 		}
 	}
@@ -40,8 +42,8 @@ public class DamoclesSword extends SetEffect {
 	}
 
 	@Override
-	public void playerHurtOpponentEvent(LivingEntity player, ArtifactSetConfig.Entry ent, int rank, AttackCache event) {
+	public void playerHurtOpponentEvent(LivingEntity player, ArtifactSetConfig.Entry ent, int rank, DamageData.Offence event) {
 		if (player.getHealth() < player.getMaxHealth()) return;
-		event.addHurtModifier(DamageModifier.multBase((float) amplify.getFromRank(rank)));
+		event.addHurtModifier(DamageModifier.multBase((float) amplify.getFromRank(rank), getRegistryName()));
 	}
 }

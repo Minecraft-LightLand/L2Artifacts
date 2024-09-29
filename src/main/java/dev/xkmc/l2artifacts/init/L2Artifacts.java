@@ -14,26 +14,29 @@ import dev.xkmc.l2artifacts.init.registrate.ArtifactTypeRegistry;
 import dev.xkmc.l2artifacts.init.registrate.entries.ArtifactRegistrate;
 import dev.xkmc.l2artifacts.init.registrate.items.ArtifactItems;
 import dev.xkmc.l2artifacts.network.NetworkManager;
-import dev.xkmc.l2complements.init.L2Complements;
-import dev.xkmc.l2complements.init.data.TagGen;
+import dev.xkmc.l2core.init.L2TagGen;
+import dev.xkmc.l2core.init.reg.simple.Reg;
 import dev.xkmc.l2damagetracker.contents.attack.AttackEventHandler;
 import dev.xkmc.l2itemselector.select.SelectionRegistry;
 import dev.xkmc.l2library.init.events.EffectSyncEvents;
-import net.minecraftforge.data.event.GatherDataEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.ModList;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraft.resources.ResourceLocation;
+import net.neoforged.bus.api.EventPriority;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.neoforge.data.event.GatherDataEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(L2Artifacts.MODID)
-@Mod.EventBusSubscriber(modid = L2Artifacts.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = L2Artifacts.MODID, bus = EventBusSubscriber.Bus.MOD)
 public class L2Artifacts {
 
 	public static final String MODID = "l2artifacts";
 	public static final Logger LOGGER = LogManager.getLogger();
+	public static final Reg REG = new Reg(MODID);
 	public static final ArtifactRegistrate REGISTRATE = new ArtifactRegistrate();
 	public static final ArtifactSlotClickListener CLICK = new ArtifactSlotClickListener();
 
@@ -45,9 +48,6 @@ public class L2Artifacts {
 		ArtifactConfig.init();
 		NetworkManager.register();
 		ConfigGen.register();
-		REGISTRATE.addDataGenerator(ProviderType.LANG, LangData::genLang);
-		REGISTRATE.addDataGenerator(ProviderType.RECIPE, RecipeGen::genRecipe);
-		REGISTRATE.addDataGenerator(ProviderType.LOOT, ArtifactLootGen::onLootGen);
 
 		SelectionRegistry.register(-5000, ArtifactSel.INSTANCE);
 		AttackEventHandler.register(3000, new ArtifactAttackListener());
@@ -61,15 +61,21 @@ public class L2Artifacts {
 		});
 	}
 
-	@SubscribeEvent
+	@SubscribeEvent(priority = EventPriority.HIGH)
 	public static void gatherData(GatherDataEvent event) {
-		if (ModList.get().isLoaded(L2Complements.MODID)) {
-			REGISTRATE.addDataGenerator(TagGen.EFF_TAGS, ArtifactTagGen::onEffectTagGen);
-		}
+		REGISTRATE.addDataGenerator(ProviderType.LANG, LangData::genLang);
+		REGISTRATE.addDataGenerator(ProviderType.RECIPE, RecipeGen::genRecipe);
+		REGISTRATE.addDataGenerator(ProviderType.LOOT, ArtifactLootGen::onLootGen);
+		REGISTRATE.addDataGenerator(L2TagGen.EFF_TAGS, ArtifactTagGen::onEffectTagGen);
+
 		REGISTRATE.addDataGenerator(ProviderType.ENTITY_TAGS, ArtifactTagGen::onEntityTypeGen);
 		event.getGenerator().addProvider(event.includeServer(), new ConfigGen(event.getGenerator()));
 		event.getGenerator().addProvider(event.includeServer(), new SlotGen(event.getGenerator()));
 		event.getGenerator().addProvider(event.includeServer(), new ArtifactGLMProvider(event.getGenerator()));
+	}
+
+	public static ResourceLocation loc(String id) {
+		return ResourceLocation.fromNamespaceAndPath(MODID, id);
 	}
 
 }

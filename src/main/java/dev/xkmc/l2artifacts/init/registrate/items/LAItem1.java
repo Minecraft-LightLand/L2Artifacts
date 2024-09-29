@@ -1,9 +1,9 @@
 package dev.xkmc.l2artifacts.init.registrate.items;
 
-import com.tterrag.registrate.util.entry.RegistryEntry;
 import dev.xkmc.l2artifacts.content.core.ArtifactSet;
 import dev.xkmc.l2artifacts.content.effects.v1.*;
 import dev.xkmc.l2artifacts.init.registrate.entries.LinearFuncEntry;
+import dev.xkmc.l2artifacts.init.registrate.entries.SetEffectEntry;
 import dev.xkmc.l2artifacts.init.registrate.entries.SetEntry;
 import dev.xkmc.l2artifacts.init.registrate.entries.SetRegHelper;
 import dev.xkmc.l2serial.util.Wrappers;
@@ -18,12 +18,12 @@ public class LAItem1 {
 	public static final SetEntry<ArtifactSet> SET_PERFECTION;
 	public static final SetEntry<ArtifactSet> SET_DAMOCLES;
 	public static final SetEntry<ArtifactSet> SET_PROTECTION;
-	public static final RegistryEntry<PerfectionAbsorption> EFF_PERFECTION_ABSORPTION;
-	public static final RegistryEntry<PerfectionProtection> EFF_PERFECTION_PROTECTION;
-	public static final RegistryEntry<SaintReduction> EFF_SAINT_REDUCTION;
-	public static final RegistryEntry<SaintRestoration> EFF_SAINT_RESTORATION;
-	public static final RegistryEntry<DamoclesSword> EFF_DAMOCLES;
-	public static final RegistryEntry<ProtectionResistance> EFF_PROTECTION_RESISTANCE;
+	public static final SetEffectEntry<PerfectionAbsorption> EFF_PERFECTION_ABSORPTION;
+	public static final SetEffectEntry<PerfectionProtection> EFF_PERFECTION_PROTECTION;
+	public static final SetEffectEntry<SaintReduction> EFF_SAINT_REDUCTION;
+	public static final SetEffectEntry<SaintRestoration> EFF_SAINT_RESTORATION;
+	public static final SetEffectEntry<DamoclesSword> EFF_DAMOCLES;
+	public static final SetEffectEntry<ProtectionResistance> EFF_PROTECTION_RESISTANCE;
 
 
 	static {

@@ -1,14 +1,12 @@
 package dev.xkmc.l2artifacts.content.effects.v3;
 
 import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
-import dev.xkmc.l2artifacts.content.effects.core.PlayerOnlySetEffect;
 import dev.xkmc.l2artifacts.content.effects.core.SetEffect;
 import dev.xkmc.l2artifacts.init.registrate.entries.LinearFuncEntry;
-import dev.xkmc.l2damagetracker.contents.attack.AttackCache;
+import dev.xkmc.l2damagetracker.contents.attack.DamageData;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
 
 import java.util.List;
 
@@ -30,11 +28,11 @@ public class VampireHeal extends SetEffect {
 	}
 
 	@Override
-	public void playerDamageOpponentEvent(LivingEntity player, ArtifactSetConfig.Entry ent, int rank, AttackCache event) {
+	public void playerDamageOpponentEvent(LivingEntity player, ArtifactSetConfig.Entry ent, int rank, DamageData.DefenceMax event) {
 		if (player.level().isClientSide()) return;
 		int light = PlayerLight.playerUnderSun(player);
 		if (light <= this.light.getFromRank(rank)) {
-			player.heal((float) (event.getDamageDealt() * percent.getFromRank(rank)));
+			player.heal((float) (event.getDamageFinal() * percent.getFromRank(rank)));
 		}
 	}
 

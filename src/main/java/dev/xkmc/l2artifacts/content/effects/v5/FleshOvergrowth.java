@@ -5,7 +5,7 @@ import dev.xkmc.l2artifacts.content.effects.core.SetEffect;
 import dev.xkmc.l2artifacts.content.mobeffects.EffectDesc;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactEffects;
 import dev.xkmc.l2artifacts.init.registrate.entries.LinearFuncEntry;
-import dev.xkmc.l2damagetracker.contents.attack.AttackCache;
+import dev.xkmc.l2damagetracker.contents.attack.DamageData;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -25,15 +25,15 @@ public class FleshOvergrowth extends SetEffect {
 	}
 
 	private MobEffectInstance eff(int rank) {
-		return new MobEffectInstance(ArtifactEffects.FLESH_OVERGROWTH.get(), (int) duration.getFromRank(rank), rank - 1);
+		return new MobEffectInstance(ArtifactEffects.FLESH_OVERGROWTH, (int) duration.getFromRank(rank), rank - 1);
 	}
 
 	@Override
-	public void playerHurtOpponentEvent(LivingEntity player, ArtifactSetConfig.Entry ent, int rank, AttackCache event) {
-		var e = event.getAttackTarget();
+	public void playerHurtOpponentEvent(LivingEntity player, ArtifactSetConfig.Entry ent, int rank, DamageData.Offence event) {
+		var e = event.getTarget();
 		if (player == e) return;
 		if (e instanceof Mob || e instanceof Player)
-			event.getAttackTarget().addEffect(eff(rank), player);
+			e.addEffect(eff(rank), player);
 	}
 
 	@Override

@@ -1,17 +1,17 @@
 package dev.xkmc.l2artifacts.init.registrate.items;
 
-import com.tterrag.registrate.util.entry.RegistryEntry;
 import dev.xkmc.l2artifacts.content.core.ArtifactSet;
 import dev.xkmc.l2artifacts.content.effects.attribute.AttrSetEntry;
 import dev.xkmc.l2artifacts.content.effects.attribute.AttributeSetEffect;
 import dev.xkmc.l2artifacts.content.effects.v5.*;
+import dev.xkmc.l2artifacts.init.registrate.entries.SetEffectEntry;
 import dev.xkmc.l2artifacts.init.registrate.entries.SetEntry;
 import dev.xkmc.l2artifacts.init.registrate.entries.SetRegHelper;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 
 import static dev.xkmc.l2artifacts.init.L2Artifacts.REGISTRATE;
 import static dev.xkmc.l2artifacts.init.registrate.ArtifactTypeRegistry.*;
-import static net.minecraft.world.entity.ai.attributes.AttributeModifier.Operation.MULTIPLY_BASE;
+import static net.minecraft.world.entity.ai.attributes.AttributeModifier.Operation.ADD_MULTIPLIED_BASE;
 
 public class LAItem5 {
 
@@ -25,20 +25,20 @@ public class LAItem5 {
 	public static final SetEntry<ArtifactSet> SET_SLIMY;
 	public static final SetEntry<ArtifactSet> SET_THERMAL;
 
-	public static final RegistryEntry<DeadCellDodge> CELL_3;
-	public static final RegistryEntry<DeadCellParry> CELL_5;
-	public static final RegistryEntry<FleshOvergrowth> FLESH_3;
-	public static final RegistryEntry<FleshAttack> FLESH_5;
-	public static final RegistryEntry<FungusInfect> FUNGUS_3;
-	public static final RegistryEntry<FungusExplode> FUNGUS_5;
-	public static final RegistryEntry<AttributeSetEffect> GILDED_3;
-	public static final RegistryEntry<GildedAttack> GILDED_5;
-	public static final RegistryEntry<PoisonTouch> POISON_2;
-	public static final RegistryEntry<PoisonAttack> POISON_5;
-	public static final RegistryEntry<SlimyBuffer> SLIMY_1;
-	public static final RegistryEntry<Slimification> SLIMY_3;
-	public static final RegistryEntry<ThermalMotive> THERMAL_2;
-	public static final RegistryEntry<ThermalShield> THERMAL_4;
+	public static final SetEffectEntry<DeadCellDodge> CELL_3;
+	public static final SetEffectEntry<DeadCellParry> CELL_5;
+	public static final SetEffectEntry<FleshOvergrowth> FLESH_3;
+	public static final SetEffectEntry<FleshAttack> FLESH_5;
+	public static final SetEffectEntry<FungusInfect> FUNGUS_3;
+	public static final SetEffectEntry<FungusExplode> FUNGUS_5;
+	public static final SetEffectEntry<AttributeSetEffect> GILDED_3;
+	public static final SetEffectEntry<GildedAttack> GILDED_5;
+	public static final SetEffectEntry<PoisonTouch> POISON_2;
+	public static final SetEffectEntry<PoisonAttack> POISON_5;
+	public static final SetEffectEntry<SlimyBuffer> SLIMY_1;
+	public static final SetEffectEntry<Slimification> SLIMY_3;
+	public static final SetEffectEntry<ThermalMotive> THERMAL_2;
+	public static final SetEffectEntry<ThermalShield> THERMAL_4;
 
 
 	static {
@@ -102,8 +102,8 @@ public class LAItem5 {
 			var tough = helper.regLinear("gilded_tough", 0.2, 0.1);
 			var atk = helper.regLinear("gilded_attack", 0.2, 0.1);
 			GILDED_3 = helper.setEffect("gilded_3", () -> new AttributeSetEffect(
-					new AttrSetEntry(() -> Attributes.ARMOR, MULTIPLY_BASE, armor, true),
-					new AttrSetEntry(() -> Attributes.ARMOR_TOUGHNESS, MULTIPLY_BASE, tough, true)
+					new AttrSetEntry(Attributes.ARMOR, ADD_MULTIPLIED_BASE, armor, true),
+					new AttrSetEntry(Attributes.ARMOR_TOUGHNESS, ADD_MULTIPLIED_BASE, tough, true)
 			)).lang("Gilded Armor").register();
 			GILDED_5 = helper.setEffect("gilded_5", () -> new GildedAttack(atk))
 					.desc("Infusion Blade", "Increase your attack damage by %s%% of your armor")

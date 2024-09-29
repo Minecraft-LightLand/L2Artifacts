@@ -8,7 +8,7 @@ import com.tterrag.registrate.util.nullness.NonnullType;
 import dev.xkmc.l2artifacts.content.core.LinearFuncHandle;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactTypeRegistry;
 import dev.xkmc.l2serial.util.Wrappers;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import org.jetbrains.annotations.NotNull;
 
 public class LinearFuncBuilder<P> extends AbstractBuilder<LinearFuncHandle, LinearFuncHandle, P, LinearFuncBuilder<P>> {
@@ -30,7 +30,7 @@ public class LinearFuncBuilder<P> extends AbstractBuilder<LinearFuncHandle, Line
 	}
 
 	@Override
-	protected RegistryEntry<LinearFuncHandle> createEntryWrapper(RegistryObject<LinearFuncHandle> delegate) {
+	protected RegistryEntry<LinearFuncHandle, LinearFuncHandle> createEntryWrapper(DeferredHolder<LinearFuncHandle, LinearFuncHandle> delegate) {
 		return new LinearFuncEntry(Wrappers.cast(this.getOwner()), set, delegate, base, slope);
 	}
 

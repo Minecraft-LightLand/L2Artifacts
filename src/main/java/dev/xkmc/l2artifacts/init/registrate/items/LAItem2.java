@@ -1,11 +1,11 @@
 package dev.xkmc.l2artifacts.init.registrate.items;
 
-import com.tterrag.registrate.util.entry.RegistryEntry;
 import dev.xkmc.l2artifacts.content.core.ArtifactSet;
 import dev.xkmc.l2artifacts.content.effects.attribute.AttrSetEntry;
 import dev.xkmc.l2artifacts.content.effects.attribute.AttributeSetEffect;
 import dev.xkmc.l2artifacts.content.effects.v2.*;
 import dev.xkmc.l2artifacts.init.registrate.entries.LinearFuncEntry;
+import dev.xkmc.l2artifacts.init.registrate.entries.SetEffectEntry;
 import dev.xkmc.l2artifacts.init.registrate.entries.SetEntry;
 import dev.xkmc.l2artifacts.init.registrate.entries.SetRegHelper;
 import net.minecraft.world.effect.MobEffects;
@@ -15,8 +15,8 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 
 import static dev.xkmc.l2artifacts.init.L2Artifacts.REGISTRATE;
 import static dev.xkmc.l2artifacts.init.registrate.ArtifactTypeRegistry.*;
-import static net.minecraft.world.entity.ai.attributes.AttributeModifier.Operation.ADDITION;
-import static net.minecraft.world.entity.ai.attributes.AttributeModifier.Operation.MULTIPLY_BASE;
+import static net.minecraft.world.entity.ai.attributes.AttributeModifier.Operation.ADD_MULTIPLIED_BASE;
+import static net.minecraft.world.entity.ai.attributes.AttributeModifier.Operation.ADD_VALUE;
 
 public class LAItem2 {
 
@@ -25,15 +25,15 @@ public class LAItem2 {
 	public static final SetEntry<ArtifactSet> SET_EXECUTOR;
 	public static final SetEntry<ArtifactSet> SET_PHYSICAL;
 	public static final SetEntry<ArtifactSet> SET_WRATH;
-	public static final RegistryEntry<FrozeSlowEffect> EFF_FROZE_SLOW;
-	public static final RegistryEntry<FrozeBreakEffect> EFF_FROZE_BREAK;
-	public static final RegistryEntry<ExecutorSelfHurtEffect> EFF_EXECUTOR_SELF_HURT;
-	public static final RegistryEntry<ExecutorLimitEffect> EFF_EXECUTOR_LIMIT;
-	public static final RegistryEntry<PhysicalDamageEffect> EFF_PHYSICAL_DAMAGE;
-	public static final RegistryEntry<AttributeSetEffect> EFF_PHYSICAL_ARMOR;
-	public static final RegistryEntry<WrathEffect> EFF_WRATH_POISON;
-	public static final RegistryEntry<WrathEffect> EFF_WRATH_SLOW;
-	public static final RegistryEntry<WrathEffect> EFF_WRATH_FIRE;
+	public static final SetEffectEntry<FrozeSlowEffect> EFF_FROZE_SLOW;
+	public static final SetEffectEntry<FrozeBreakEffect> EFF_FROZE_BREAK;
+	public static final SetEffectEntry<ExecutorSelfHurtEffect> EFF_EXECUTOR_SELF_HURT;
+	public static final SetEffectEntry<ExecutorLimitEffect> EFF_EXECUTOR_LIMIT;
+	public static final SetEffectEntry<PhysicalDamageEffect> EFF_PHYSICAL_DAMAGE;
+	public static final SetEffectEntry<AttributeSetEffect> EFF_PHYSICAL_ARMOR;
+	public static final SetEffectEntry<WrathEffect> EFF_WRATH_POISON;
+	public static final SetEffectEntry<WrathEffect> EFF_WRATH_SLOW;
+	public static final SetEffectEntry<WrathEffect> EFF_WRATH_FIRE;
 
 	static {
 
@@ -71,7 +71,7 @@ public class LAItem2 {
 			LinearFuncEntry factor = helper.regLinear("executor_limit", 0.3, -0.05);
 
 			EFF_EXECUTOR_SELF_HURT = helper.setEffect("executor_self_hurt", () -> new ExecutorSelfHurtEffect(
-					new AttrSetEntry(() -> Attributes.ATTACK_DAMAGE, MULTIPLY_BASE, atk, true),
+					new AttrSetEntry(Attributes.ATTACK_DAMAGE, ADD_MULTIPLIED_BASE, atk, true),
 					hurt)).desc("Brutal Execution",
 					"When kill enemies, deal real damage to oneself equal to %s%% of enemies' max health."
 			).register();
@@ -96,14 +96,14 @@ public class LAItem2 {
 			LinearFuncEntry factor = helper.regLinear("physical_reduce_magic", 0.5, 0);
 
 			EFF_PHYSICAL_DAMAGE = helper.setEffect("physical_damage", () -> new PhysicalDamageEffect(
-					new AttrSetEntry(() -> Attributes.ATTACK_DAMAGE,
-							AttributeModifier.Operation.MULTIPLY_BASE, atk, true),
+					new AttrSetEntry(Attributes.ATTACK_DAMAGE,
+							AttributeModifier.Operation.ADD_MULTIPLIED_BASE, atk, true),
 					factor)).desc("Barbaric Attack",
 					"Magical damage dealt will be reduced to %s%%"
 			).register();
 			EFF_PHYSICAL_ARMOR = helper.setEffect("physical_armor", () -> new AttributeSetEffect(
-					new AttrSetEntry(() -> Attributes.ARMOR,
-							ADDITION, armor, false)
+					new AttrSetEntry(Attributes.ARMOR,
+							ADD_VALUE, armor, false)
 			)).lang("Survival Instinct").register();
 
 			SET_PHYSICAL = helper.regSet(1, 5, "Courage Set")

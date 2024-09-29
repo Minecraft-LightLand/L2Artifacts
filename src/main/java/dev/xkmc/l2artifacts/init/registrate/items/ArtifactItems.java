@@ -7,14 +7,10 @@ import dev.xkmc.l2artifacts.content.upgrades.StatContainerItem;
 import dev.xkmc.l2artifacts.content.upgrades.Upgrade;
 import dev.xkmc.l2artifacts.content.upgrades.UpgradeBoostItem;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
-import net.minecraftforge.client.model.generators.ModelFile;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.tags.ITagManager;
-
-import java.util.Objects;
+import net.neoforged.neoforge.client.model.generators.ModelFile;
 
 import static dev.xkmc.l2artifacts.init.L2Artifacts.REGISTRATE;
 
@@ -38,7 +34,6 @@ public class ArtifactItems {
 	public static final ItemEntry<UpgradeBoostItem>[] ITEM_BOOST_MAIN, ITEM_BOOST_SUB;
 
 	static {
-		ITagManager<Item> manager = Objects.requireNonNull(ForgeRegistries.ITEMS.tags());
 		SELECT = REGISTRATE.item("select", SelectArtifactItem::new)
 				.defaultModel().lang("Artifact Selector (Creative)").register();
 		FILTER = REGISTRATE.item("filter", ArtifactChestItem::new)
@@ -51,12 +46,12 @@ public class ArtifactItems {
 		RANDOM = new ItemEntry[n];
 		for (int i = 0; i < n; i++) {
 			int r = i + 1;
-			TagKey<Item> artifact = manager.createTagKey(new ResourceLocation(L2Artifacts.MODID, "artifact"));
-			TagKey<Item> rank_tag = manager.createTagKey(new ResourceLocation(L2Artifacts.MODID, "rank_" + r));
+			TagKey<Item> artifact = ItemTags.create(L2Artifacts.loc("artifact"));
+			TagKey<Item> rank_tag = ItemTags.create(L2Artifacts.loc("rank_" + r));
 			RANDOM[i] = REGISTRATE.item("random_" + r, p -> new RandomArtifactItem(p, r))
 					.model((ctx, pvd) -> pvd.getBuilder(ctx.getName()).parent(new ModelFile.UncheckedModelFile("item/generated"))
-							.texture("layer0", new ResourceLocation(L2Artifacts.MODID, "item/rank/" + r))
-							.texture("layer1", new ResourceLocation(L2Artifacts.MODID, "item/random")))
+							.texture("layer0", L2Artifacts.loc("item/rank/" + r))
+							.texture("layer1", L2Artifacts.loc("item/random")))
 					.tag(rank_tag, artifact)
 					.lang("Random Artifact" + RANK_NAME[i]).register();
 		}
@@ -65,8 +60,8 @@ public class ArtifactItems {
 			int r = i + 1;
 			RANDOM_SET[i] = REGISTRATE.item("random_set_" + r, p -> new RandomArtifactSetItem(p, r))
 					.model((ctx, pvd) -> pvd.getBuilder(ctx.getName()).parent(new ModelFile.UncheckedModelFile("item/generated"))
-							.texture("layer0", new ResourceLocation(L2Artifacts.MODID, "item/rank/" + r))
-							.texture("layer1", new ResourceLocation(L2Artifacts.MODID, "item/random_set")))
+							.texture("layer0", L2Artifacts.loc("item/rank/" + r))
+							.texture("layer1", L2Artifacts.loc("item/random_set")))
 					.lang("Random Artifact Set" + RANK_NAME[i]).register();
 		}
 		ITEM_EXP = new ItemEntry[n];
@@ -74,8 +69,8 @@ public class ArtifactItems {
 			int r = i + 1;
 			ITEM_EXP[i] = REGISTRATE.item("artifact_experience_" + r, p -> new ExpItem(p, r))
 					.model((ctx, pvd) -> pvd.getBuilder(ctx.getName()).parent(new ModelFile.UncheckedModelFile("item/generated"))
-							.texture("layer0", new ResourceLocation(L2Artifacts.MODID, "item/rank/" + r))
-							.texture("layer1", new ResourceLocation(L2Artifacts.MODID, "item/artifact_experience")))
+							.texture("layer0", L2Artifacts.loc("item/rank/" + r))
+							.texture("layer1", L2Artifacts.loc("item/artifact_experience")))
 					.lang("Artifact Experience" + RANK_NAME[i]).register();
 		}
 		ITEM_STAT = new ItemEntry[n];
@@ -83,8 +78,8 @@ public class ArtifactItems {
 			int r = i + 1;
 			ITEM_STAT[i] = REGISTRATE.item("stat_container_" + r, p -> new StatContainerItem(p, r))
 					.model((ctx, pvd) -> pvd.getBuilder(ctx.getName()).parent(new ModelFile.UncheckedModelFile("item/generated"))
-							.texture("layer0", new ResourceLocation(L2Artifacts.MODID, "item/rank/" + r))
-							.texture("layer1", new ResourceLocation(L2Artifacts.MODID, "item/stat_container")))
+							.texture("layer0", L2Artifacts.loc("item/rank/" + r))
+							.texture("layer1", L2Artifacts.loc("item/stat_container")))
 					.lang("Stat Container" + RANK_NAME[i]).register();
 		}
 		ITEM_BOOST_MAIN = new ItemEntry[n];
@@ -92,8 +87,8 @@ public class ArtifactItems {
 			int r = i + 1;
 			ITEM_BOOST_MAIN[i] = REGISTRATE.item("boost_main_" + r, p -> new UpgradeBoostItem(p, r, Upgrade.Type.BOOST_MAIN_STAT))
 					.model((ctx, pvd) -> pvd.getBuilder(ctx.getName()).parent(new ModelFile.UncheckedModelFile("item/generated"))
-							.texture("layer0", new ResourceLocation(L2Artifacts.MODID, "item/rank/" + r))
-							.texture("layer1", new ResourceLocation(L2Artifacts.MODID, "item/boost_main")))
+							.texture("layer0", L2Artifacts.loc("item/rank/" + r))
+							.texture("layer1", L2Artifacts.loc("item/boost_main")))
 					.lang("Main Stat Booster" + RANK_NAME[i]).register();
 		}
 		ITEM_BOOST_SUB = new ItemEntry[n];
@@ -101,8 +96,8 @@ public class ArtifactItems {
 			int r = i + 1;
 			ITEM_BOOST_SUB[i] = REGISTRATE.item("boost_sub_" + r, p -> new UpgradeBoostItem(p, r, Upgrade.Type.BOOST_SUB_STAT))
 					.model((ctx, pvd) -> pvd.getBuilder(ctx.getName()).parent(new ModelFile.UncheckedModelFile("item/generated"))
-							.texture("layer0", new ResourceLocation(L2Artifacts.MODID, "item/rank/" + r))
-							.texture("layer1", new ResourceLocation(L2Artifacts.MODID, "item/boost_sub")))
+							.texture("layer0", L2Artifacts.loc("item/rank/" + r))
+							.texture("layer1", L2Artifacts.loc("item/boost_sub")))
 					.lang("Sub Stat Booster" + RANK_NAME[i]).register();
 		}
 	}

@@ -10,8 +10,8 @@ import dev.xkmc.l2artifacts.init.L2Artifacts;
 import dev.xkmc.l2artifacts.init.data.ArtifactConfig;
 import dev.xkmc.l2artifacts.init.data.LangData;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactTypeRegistry;
-import dev.xkmc.l2library.base.NamedEntry;
-import dev.xkmc.l2library.util.Proxy;
+import dev.xkmc.l2core.init.reg.registrate.NamedEntry;
+import dev.xkmc.l2core.util.Proxy;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.chat.Component;
@@ -19,7 +19,6 @@ import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.registries.ForgeRegistries;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.SlotResult;
@@ -63,7 +62,7 @@ public class ArtifactSet extends NamedEntry<ArtifactSet> implements IArtifactFea
 
 	public Optional<SetContext> getCountAndIndex(@Nullable SlotContext context) {
 		LivingEntity e = context == null ? Proxy.getPlayer() : context.entity();
-		var opt = CuriosApi.getCuriosInventory(e).resolve();
+		var opt = CuriosApi.getCuriosInventory(e);
 		if (opt.isPresent()) {
 			List<SlotResult> list = opt.get()
 					.findCurios(stack -> stack.getItem() instanceof BaseArtifact artifact && artifact.set.get() == this);
@@ -85,7 +84,7 @@ public class ArtifactSet extends NamedEntry<ArtifactSet> implements IArtifactFea
 	}
 
 	public Optional<SetContext> getSetCount(LivingEntity e) {
-		var opt = CuriosApi.getCuriosInventory(e).resolve();
+		var opt = CuriosApi.getCuriosInventory(e);
 		if (opt.isPresent()) {
 			List<SlotResult> list = opt.get()
 					.findCurios(stack -> stack.getItem() instanceof BaseArtifact artifact && artifact.set.get() == this);

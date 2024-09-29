@@ -1,10 +1,9 @@
 package dev.xkmc.l2artifacts.content.effects.v5;
 
 import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
-import dev.xkmc.l2artifacts.content.effects.core.PlayerOnlySetEffect;
 import dev.xkmc.l2artifacts.content.effects.core.SetEffect;
 import dev.xkmc.l2artifacts.init.registrate.entries.LinearFuncEntry;
-import dev.xkmc.l2damagetracker.contents.attack.AttackCache;
+import dev.xkmc.l2damagetracker.contents.attack.DamageData;
 import dev.xkmc.l2damagetracker.contents.attack.DamageModifier;
 import dev.xkmc.l2damagetracker.init.data.L2DamageTypes;
 import net.minecraft.network.chat.Component;
@@ -12,7 +11,7 @@ import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
+import net.neoforged.neoforge.common.Tags;
 
 import java.util.List;
 
@@ -28,14 +27,14 @@ public class Slimification extends SetEffect {
 	}
 
 	@Override
-	public void playerReduceDamage(LivingEntity player, ArtifactSetConfig.Entry ent, int rank, DamageSource source, AttackCache cache) {
+	public void playerReduceDamage(LivingEntity player, ArtifactSetConfig.Entry ent, int rank, DamageSource source, DamageData.Defence cache) {
 		if (source.is(L2DamageTypes.DIRECT) || source.is(DamageTypeTags.IS_PROJECTILE))
-			cache.addDealtModifier(DamageModifier.multTotal(1 - (float) reduction.getFromRank(rank)));
+			cache.addDealtModifier(DamageModifier.multTotal(1 - (float) reduction.getFromRank(rank), getRegistryName()));
 		if (source.is(DamageTypeTags.IS_FIRE) ||
 				source.is(DamageTypeTags.IS_FREEZING) ||
 				source.is(DamageTypeTags.IS_EXPLOSION) ||
-				source.is(L2DamageTypes.MAGIC))
-			cache.addDealtModifier(DamageModifier.multTotal(1 + (float) penalty.getFromRank(rank)));
+				source.is(Tags.DamageTypes.IS_MAGIC))
+			cache.addDealtModifier(DamageModifier.multTotal(1 + (float) penalty.getFromRank(rank), getRegistryName()));
 	}
 
 	@Override

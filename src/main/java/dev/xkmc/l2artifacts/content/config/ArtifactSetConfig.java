@@ -10,6 +10,8 @@ import dev.xkmc.l2library.serial.config.CollectType;
 import dev.xkmc.l2library.serial.config.ConfigCollect;
 import dev.xkmc.l2library.util.math.MathHelper;
 import dev.xkmc.l2serial.serialization.SerialClass;
+import dev.xkmc.l2serial.serialization.marker.SerialClass;
+import dev.xkmc.l2serial.serialization.marker.SerialField;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -33,7 +35,7 @@ public class ArtifactSetConfig extends BaseConfig {
 	}
 
 	@ConfigCollect(CollectType.MAP_COLLECT)
-	@SerialClass.SerialField
+	@SerialField
 	public HashMap<ArtifactSet, ArrayList<Entry>> map = new HashMap<>();
 
 	@Override
@@ -45,10 +47,10 @@ public class ArtifactSetConfig extends BaseConfig {
 	@SerialClass
 	public static class Entry implements Comparable<Entry>, Context {
 
-		@SerialClass.SerialField
+		@SerialField
 		public int count;
 
-		@SerialClass.SerialField
+		@SerialField
 		public SetEffect effect;
 
 		private String name;

@@ -1,6 +1,7 @@
 package dev.xkmc.l2artifacts.content.mobeffects;
 
 import dev.xkmc.l2artifacts.init.L2Artifacts;
+import dev.xkmc.l2core.base.effects.api.InherentEffect;
 import dev.xkmc.l2library.base.effects.api.DelayedEntityRender;
 import dev.xkmc.l2library.base.effects.api.InherentEffect;
 import dev.xkmc.l2library.util.math.MathHelper;

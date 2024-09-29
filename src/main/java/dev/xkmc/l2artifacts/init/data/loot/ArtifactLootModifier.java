@@ -1,6 +1,7 @@
 package dev.xkmc.l2artifacts.init.data.loot;
 
 import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import dev.xkmc.l2artifacts.compat.L2HostilityCompat;
 import dev.xkmc.l2artifacts.init.data.ArtifactConfig;
@@ -12,12 +13,12 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
-import net.minecraftforge.common.loot.LootModifier;
+import net.neoforged.neoforge.common.loot.LootModifier;
 import org.jetbrains.annotations.NotNull;
 
 public class ArtifactLootModifier extends LootModifier {
 
-	public static final Codec<ArtifactLootModifier> CODEC = RecordCodecBuilder.create(i -> codecStart(i).and(i.group(
+	public static final MapCodec<ArtifactLootModifier> CODEC = RecordCodecBuilder.mapCodec(i -> codecStart(i).and(i.group(
 					Codec.INT.fieldOf("healthMin").forGetter(e -> e.healthMin),
 					Codec.INT.fieldOf("healthMax").forGetter(e -> e.healthMax),
 					Codec.DOUBLE.fieldOf("chance").forGetter(e -> e.chance),
@@ -58,7 +59,7 @@ public class ArtifactLootModifier extends LootModifier {
 	}
 
 	@Override
-	public Codec<ArtifactLootModifier> codec() {
+	public MapCodec<ArtifactLootModifier> codec() {
 		return CODEC;
 	}
 

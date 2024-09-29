@@ -5,8 +5,6 @@ import dev.xkmc.l2artifacts.content.core.StatEntry;
 import dev.xkmc.l2artifacts.content.search.token.IArtifactFeature;
 import dev.xkmc.l2artifacts.network.NetworkManager;
 import dev.xkmc.l2damagetracker.contents.curios.AttrTooltip;
-import dev.xkmc.l2library.serial.config.BaseConfig;
-import dev.xkmc.l2serial.serialization.SerialClass;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
@@ -15,14 +13,19 @@ import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Collection;
-import java.util.UUID;
 
 import static net.minecraft.world.item.ItemStack.ATTRIBUTE_MODIFIER_FORMAT;
 
-@SerialClass
-public class StatTypeConfig extends BaseConfig implements IArtifactFeature.Sprite {
+public record StatTypeConfig(
+		double base, double base_low, double base_high,
+		double main_low, double main_high, double sub_low,
+		double sub_high, Attribute attr,
+		AttributeModifier.Operation op, boolean usePercent,
+		@Nullable ResourceLocation icon
+) implements IArtifactFeature.Sprite {
 
 	public static StatTypeConfig get(ResourceLocation id) {
 		return NetworkManager.STAT_TYPES.getEntry(id);
@@ -32,23 +35,8 @@ public class StatTypeConfig extends BaseConfig implements IArtifactFeature.Sprit
 		return NetworkManager.STAT_TYPES.getAll();
 	}
 
-	@SerialClass.SerialField
-	public double base, base_low, base_high, main_low, main_high, sub_low, sub_high;
-
-	@SerialClass.SerialField
-	public Attribute attr;
-
-	@SerialClass.SerialField
-	public AttributeModifier.Operation op;
-
-	@SerialClass.SerialField
-	public boolean usePercent;
-
-	@SerialClass.SerialField
-	public ResourceLocation icon;
-
-	public void getModifier(ImmutableMultimap.Builder<Attribute, AttributeModifier> builder, StatEntry entry, UUID uuid) {
-		builder.put(attr, new AttributeModifier(uuid, entry.getName(), entry.getValue(), op));
+	public void getModifier(ImmutableMultimap.Builder<Attribute, AttributeModifier> builder, StatEntry entry, ResourceLocation uuid) {
+		builder.put(attr, new AttributeModifier(uuid, entry.getValue(), op));
 	}
 
 	public double getInitialValue(RandomSource random, boolean max) {
@@ -81,7 +69,7 @@ public class StatTypeConfig extends BaseConfig implements IArtifactFeature.Sprit
 	}
 
 	@Override
-	public ResourceLocation getIcon() {
+	public ResourceLocation icon() {
 		if (icon != null) return icon;
 		ResourceLocation rl = getID();
 		return new ResourceLocation(rl.getNamespace(), "textures/stat_type/" + rl.getPath() + ".png");

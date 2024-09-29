@@ -2,6 +2,8 @@ package dev.xkmc.l2artifacts.init.registrate.entries;
 
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import dev.xkmc.l2artifacts.content.core.LinearFuncHandle;
+import dev.xkmc.l2artifacts.init.registrate.ArtifactTypeRegistry;
+import dev.xkmc.l2core.util.Proxy;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
 public class LinearFuncEntry extends RegistryEntry<LinearFuncHandle, LinearFuncHandle> {
@@ -18,6 +20,13 @@ public class LinearFuncEntry extends RegistryEntry<LinearFuncHandle, LinearFuncH
 	}
 
 	public double getFromRank(int rank) {
-		return get().getValue(rank - 1);
+		var access = Proxy.getRegistryAccess();
+		if (access != null) {
+			var c = ArtifactTypeRegistry.LINEAR_CONFIG.get(access, this);
+			if (c != null) {
+				return c.base() + c.slope() * (rank - 1);
+			}
+		}
+		return base + slope * (rank - 1);
 	}
 }

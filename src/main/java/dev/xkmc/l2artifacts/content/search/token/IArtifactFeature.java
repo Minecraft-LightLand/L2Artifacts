@@ -19,7 +19,7 @@ public interface IArtifactFeature {
 
 	interface Sprite extends IArtifactFeature {
 
-		ResourceLocation getIcon();
+		ResourceLocation icon();
 	}
 
 	interface ItemIcon extends IArtifactFeature {

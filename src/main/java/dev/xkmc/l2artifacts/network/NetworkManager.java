@@ -27,8 +27,6 @@ public class NetworkManager {
 			= new ConfigTypeEntry<>(HANDLER, "slot_stats", SlotStatConfig.class);
 	public static final ConfigTypeEntry<StatTypeConfig> STAT_TYPES
 			= new ConfigTypeEntry<>(HANDLER, "stat_types", StatTypeConfig.class);
-	public static final ConfigTypeEntry<LinearFuncConfig> LINEAR
-			= new ConfigTypeEntry<>(HANDLER, "linear", LinearFuncConfig.class);
 
 	public static void register() {
 	}

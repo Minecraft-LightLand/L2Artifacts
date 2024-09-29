@@ -48,7 +48,7 @@ public class ArtifactSlot extends NamedEntry<ArtifactSlot> implements IArtifactF
 	}
 
 	@Override
-	public ResourceLocation getIcon() {
+	public ResourceLocation icon() {
 		return getRegistryName().withPath(e -> "textures/slot/empty_artifact_" + e + "_slot.png");
 	}
 

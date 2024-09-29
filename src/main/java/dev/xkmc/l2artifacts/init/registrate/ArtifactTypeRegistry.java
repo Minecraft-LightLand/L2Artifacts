@@ -1,6 +1,7 @@
 package dev.xkmc.l2artifacts.init.registrate;
 
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
+import dev.xkmc.l2artifacts.content.config.LinearFuncConfig;
 import dev.xkmc.l2artifacts.content.core.ArtifactSet;
 import dev.xkmc.l2artifacts.content.core.ArtifactSlot;
 import dev.xkmc.l2artifacts.content.core.LinearFuncHandle;
@@ -8,6 +9,7 @@ import dev.xkmc.l2artifacts.content.effects.core.SetEffect;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
 import dev.xkmc.l2artifacts.init.data.ArtifactSlotCuriosType;
 import dev.xkmc.l2artifacts.init.data.loot.ArtifactLootModifier;
+import dev.xkmc.l2core.init.reg.datapack.DataMapReg;
 import dev.xkmc.l2core.init.reg.registrate.L2Registrate;
 import dev.xkmc.l2core.init.reg.registrate.SimpleEntry;
 import dev.xkmc.l2core.init.reg.simple.CdcReg;
@@ -33,6 +35,10 @@ public class ArtifactTypeRegistry {
 
 	private static final CdcReg<IGlobalLootModifier> CDC = CdcReg.of(L2Artifacts.REG, NeoForgeRegistries.GLOBAL_LOOT_MODIFIER_SERIALIZERS);
 	public static final CdcVal<ArtifactLootModifier> SER = CDC.reg("main", ArtifactLootModifier.CODEC);
+
+
+	public static final DataMapReg<LinearFuncHandle, LinearFuncConfig> LINEAR_CONFIG =
+			L2Artifacts.REG.dataMap("linear", LINEAR.key(), LinearFuncConfig.class);
 
 	public static void register() {
 

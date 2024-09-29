@@ -1,25 +1,21 @@
 package dev.xkmc.l2artifacts.content.core;
 
-import com.tterrag.registrate.providers.RegistrateLangProvider;
 import dev.xkmc.l2artifacts.content.config.StatTypeConfig;
-import dev.xkmc.l2serial.serialization.SerialClass;
+import dev.xkmc.l2serial.serialization.marker.SerialClass;
+import dev.xkmc.l2serial.serialization.marker.SerialField;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
-
-import java.util.UUID;
 
 @SerialClass
 public class StatEntry {
 
-	@SerialClass.SerialField
+	@SerialField
 	public ResourceLocation type;
 
-	@SerialClass.SerialField
+	@SerialField
 	private double value;
 
-	private String name;
-
-	public UUID id;
+	public ResourceLocation id;
 
 	@Deprecated
 	public StatEntry() {
@@ -29,11 +25,6 @@ public class StatEntry {
 	public StatEntry(ArtifactSlot slot, ResourceLocation type, double value) {
 		this.type = type;
 		this.value = value;
-		init(slot);
-	}
-
-	protected void init(ArtifactSlot slot) {
-		name = RegistrateLangProvider.toEnglishName(slot.getRegistryName().getPath());
 	}
 
 	public StatTypeConfig getType() {
@@ -50,10 +41,6 @@ public class StatEntry {
 
 	public void addMultiplier(double value) {
 		this.value += value;
-	}
-
-	public String getName() {
-		return name;
 	}
 
 }

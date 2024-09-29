@@ -4,7 +4,9 @@ import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import dev.xkmc.l2artifacts.content.upgrades.ArtifactUpgradeManager;
 import dev.xkmc.l2artifacts.content.upgrades.Upgrade;
-import dev.xkmc.l2serial.serialization.SerialClass;
+import dev.xkmc.l2serial.serialization.marker.OnInject;
+import dev.xkmc.l2serial.serialization.marker.SerialClass;
+import dev.xkmc.l2serial.serialization.marker.SerialField;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.ai.attributes.Attribute;
@@ -13,7 +15,6 @@ import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 
 @SerialClass
 public class ArtifactStats {
@@ -24,16 +25,16 @@ public class ArtifactStats {
 		return ans;
 	}
 
-	@SerialClass.SerialField
+	@SerialField
 	public ArtifactSlot slot;
 
-	@SerialClass.SerialField
+	@SerialField
 	public int rank, level, exp, old_level;
 
-	@SerialClass.SerialField
+	@SerialField
 	public StatEntry main_stat;
 
-	@SerialClass.SerialField
+	@SerialField
 	public ArrayList<StatEntry> sub_stats = new ArrayList<>();
 
 	public final Map<ResourceLocation, StatEntry> map = new HashMap<>();
@@ -48,12 +49,10 @@ public class ArtifactStats {
 		this.rank = rank;
 	}
 
-	@SerialClass.OnInject
+	@OnInject
 	public void onInject() {
-		main_stat.init(slot);
 		map.put(main_stat.type, main_stat);
 		for (StatEntry ent : sub_stats) {
-			ent.init(slot);
 			map.put(ent.type, ent);
 		}
 	}
@@ -66,7 +65,6 @@ public class ArtifactStats {
 		} else {
 			sub_stats.add(entry);
 		}
-		entry.init(slot);
 		map.put(entry.type, entry);
 	}
 
@@ -78,10 +76,10 @@ public class ArtifactStats {
 		}
 	}
 
-	public Multimap<Attribute, AttributeModifier> buildAttributes(String uuidBase) {
+	public Multimap<Attribute, AttributeModifier> buildAttributes(ResourceLocation uuidBase) {
 		ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
 		for (StatEntry ent : map.values()) {
-			ent.getType().getModifier(builder, ent, UUID.nameUUIDFromBytes((uuidBase + ent.type).getBytes()));
+			ent.getType().getModifier(builder, ent, uuidBase.withSuffix("_" + ent.type.getPath()));
 		}
 		return builder.build();
 	}

@@ -70,7 +70,7 @@ public abstract class StackedScreen extends Screen implements IFilterScreen {
 
 	protected void renderItem(GuiGraphics g, FilterHover hover) {
 		if (hover.item instanceof IArtifactFeature.Sprite icon) {
-			g.blit(icon.getIcon(), hover.x, hover.y, 0, 0, 16, 16, 16, 16);
+			g.blit(icon.icon(), hover.x, hover.y, 0, 0, 16, 16, 16, 16);
 		} else if (hover.item instanceof IArtifactFeature.ItemIcon icon) {
 			renderSlotItem(g, hover.x, hover.y, icon.getItemIcon().getDefaultInstance());
 		}

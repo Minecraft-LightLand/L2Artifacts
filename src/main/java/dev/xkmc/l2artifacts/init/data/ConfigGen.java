@@ -1,7 +1,6 @@
 package dev.xkmc.l2artifacts.init.data;
 
 import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
-import dev.xkmc.l2artifacts.content.config.LinearFuncConfig;
 import dev.xkmc.l2artifacts.content.config.SlotStatConfig;
 import dev.xkmc.l2artifacts.content.config.StatTypeConfig;
 import dev.xkmc.l2artifacts.content.core.ArtifactSet;
@@ -168,17 +167,6 @@ public class ConfigGen extends ConfigDataProvider {
 		for (SetEntry<?> set : L2Artifacts.REGISTRATE.SET_LIST) {
 			addArtifactSet(map, set.get(), set.builder);
 		}
-
-		// linear function handle
-
-		for (var key : L2Artifacts.REGISTRATE.LINEAR_LIST.keySet()) {
-			LinearFuncConfig config = new LinearFuncConfig();
-			var list = L2Artifacts.REGISTRATE.LINEAR_LIST.get(key);
-			for (var entry : list) {
-				config.map.put(entry.get(), new LinearFuncConfig.Entry(entry.base, entry.slope));
-			}
-			map.add(NetworkManager.LINEAR, key, config);
-		}
 	}
 
 	public static void addSlotStat(Collector map, ArtifactSlot slot, ArrayList<ResourceLocation> main, ArrayList<ResourceLocation> sub) {
@@ -199,18 +187,11 @@ public class ConfigGen extends ConfigDataProvider {
 	}
 
 	private static StatTypeConfig genEntry(Attribute attr, AttributeModifier.Operation op, boolean perc, double base, double sub, double factor) {
-		StatTypeConfig entry = new StatTypeConfig();
-		entry.base = base;
-		entry.base_low = 1;
-		entry.base_high = factor;
-		entry.main_low = sub;
-		entry.main_high = sub * factor;
-		entry.sub_low = sub;
-		entry.sub_high = sub * factor;
-		entry.attr = attr;
-		entry.op = op;
-		entry.usePercent = perc;
-		return entry;
+		return new StatTypeConfig(
+				base, 1, factor, sub,
+				sub * factor, sub, sub * factor,
+				attr, op, perc, null
+		);
 	}
 
 

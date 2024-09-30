@@ -5,8 +5,6 @@ import dev.xkmc.l2artifacts.content.core.BaseArtifact;
 import dev.xkmc.l2artifacts.content.core.StatEntry;
 import dev.xkmc.l2artifacts.content.search.filter.FilterScreen;
 import dev.xkmc.l2artifacts.content.search.recycle.RecycleMenuScreen;
-import dev.xkmc.l2artifacts.content.search.tabs.FilterTabManager;
-import dev.xkmc.l2artifacts.content.search.tabs.IFilterScreen;
 import dev.xkmc.l2artifacts.content.upgrades.StatContainerItem;
 import dev.xkmc.l2artifacts.init.data.ArtifactLang;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactTabRegistry;

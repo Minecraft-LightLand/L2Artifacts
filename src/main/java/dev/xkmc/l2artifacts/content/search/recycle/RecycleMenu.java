@@ -25,7 +25,7 @@ public class RecycleMenu extends AbstractScrollerMenu<RecycleMenu> {
 
 	public static RecycleMenu fromNetwork(MenuType<RecycleMenu> type, int wid, Inventory plInv, FriendlyByteBuf buf) {
 		int i = buf.readInt();
-		return new RecycleMenu(wid, plInv, ArtifactChestToken.of(plInv.player, i));
+		return new RecycleMenu(wid, plInv, ArtifactTabData.of(plInv.player, i));
 	}
 
 	public final IntDataSlot select_count;

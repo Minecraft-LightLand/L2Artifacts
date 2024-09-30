@@ -2,8 +2,8 @@ package dev.xkmc.l2artifacts.content.search.recycle;
 
 import dev.xkmc.l2artifacts.content.search.common.AbstractScrollerScreen;
 import dev.xkmc.l2artifacts.content.search.filter.FilterScreen;
-import dev.xkmc.l2artifacts.content.search.tabs.FilterTabManager;
 import dev.xkmc.l2artifacts.init.data.ArtifactLang;
+import dev.xkmc.l2artifacts.init.registrate.ArtifactTabRegistry;
 import dev.xkmc.l2core.base.menu.base.MenuLayoutConfig;
 import dev.xkmc.l2core.base.menu.stacked.StackedRenderHandle;
 import net.minecraft.ChatFormatting;
@@ -17,7 +17,7 @@ public class RecycleMenuScreen extends AbstractScrollerScreen<RecycleMenu> {
 	private boolean pressed, canDrag, dragging, enable, hover_a, hover_b;
 
 	public RecycleMenuScreen(RecycleMenu cont, Inventory plInv, Component title) {
-		super(cont, plInv, ArtifactLang.TAB_RECYCLE.get().withStyle(ChatFormatting.GRAY), FilterTabManager.RECYCLE);
+		super(cont, plInv, ArtifactLang.TAB_RECYCLE.get().withStyle(ChatFormatting.GRAY), ArtifactTabRegistry.RECYCLE.get());
 	}
 
 	@Override

@@ -1,10 +1,11 @@
 package dev.xkmc.l2artifacts.content.search.shape;
 
-import dev.xkmc.l2artifacts.content.search.tabs.FilterTabManager;
 import dev.xkmc.l2artifacts.init.data.ArtifactLang;
+import dev.xkmc.l2artifacts.init.registrate.ArtifactTabRegistry;
 import dev.xkmc.l2core.base.menu.base.BaseContainerScreen;
 import dev.xkmc.l2core.base.menu.base.MenuLayoutConfig;
 import dev.xkmc.l2tabs.tabs.core.ITabScreen;
+import dev.xkmc.l2tabs.tabs.core.TabManager;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
@@ -21,7 +22,7 @@ public class ShapeMenuScreen extends BaseContainerScreen<ShapeMenu> implements I
 	@Override
 	protected final void init() {
 		super.init();
-		new FilterTabManager(this, menu.token).init(this::addRenderableWidget, FilterTabManager.SHAPE);
+		new TabManager<>(this, menu.token).init(this::addRenderableWidget, ArtifactTabRegistry.SHAPE.get());
 	}
 
 	@Override

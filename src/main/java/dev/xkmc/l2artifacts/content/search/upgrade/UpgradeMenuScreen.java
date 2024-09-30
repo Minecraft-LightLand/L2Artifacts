@@ -5,9 +5,8 @@ import dev.xkmc.l2artifacts.content.core.BaseArtifact;
 import dev.xkmc.l2artifacts.content.core.StatEntry;
 import dev.xkmc.l2artifacts.content.search.filter.FilterScreen;
 import dev.xkmc.l2artifacts.content.search.recycle.RecycleMenuScreen;
-import dev.xkmc.l2artifacts.content.search.tabs.FilterTabManager;
-import dev.xkmc.l2artifacts.content.search.tabs.IFilterScreen;
 import dev.xkmc.l2artifacts.init.data.ArtifactLang;
+import dev.xkmc.l2artifacts.init.registrate.ArtifactTabRegistry;
 import dev.xkmc.l2core.base.menu.base.BaseContainerScreen;
 import dev.xkmc.l2core.base.menu.stacked.StackedRenderHandle;
 import dev.xkmc.l2tabs.tabs.core.ITabScreen;
@@ -57,7 +56,7 @@ public class UpgradeMenuScreen extends BaseContainerScreen<UpgradeMenu> implemen
 	@Override
 	protected final void init() {
 		super.init();
-		new TabManager(this, menu.token).init(this::addRenderableWidget, FilterTabManager.UPGRADE);
+		new TabManager<>(this, menu.token).init(this::addRenderableWidget, ArtifactTabRegistry.UPGRADE.get());
 	}
 
 	@Override
@@ -122,12 +121,12 @@ public class UpgradeMenuScreen extends BaseContainerScreen<UpgradeMenu> implemen
 			if (opt.isPresent()) {
 				ArtifactStats stat = opt.get();
 				List<Component[]> table = new ArrayList<>();
-				table.add(addEntry(true, stat.main_stat,
-						old == null ? null : old.main_stat));
-				boolean display = old != null && old.sub_stats.size() == stat.sub_stats.size();
-				for (int i = 0; i < stat.sub_stats.size(); i++) {
-					table.add(addEntry(false, stat.sub_stats.get(i),
-							!display ? null : old.sub_stats.get(i)));
+				table.add(addEntry(true, stat.main_stat(),
+						old == null ? null : old.main_stat()));
+				boolean display = old != null && old.sub_stats().size() == stat.sub_stats().size();
+				for (int i = 0; i < stat.sub_stats().size(); i++) {
+					table.add(addEntry(false, stat.sub_stats().get(i),
+							!display ? null : old.sub_stats().get(i)));
 				}
 				handle.drawTable(table.toArray(Component[][]::new), imageWidth, false);
 				current = stat;

@@ -5,21 +5,19 @@ import dev.xkmc.l2artifacts.content.search.dissolve.DissolveMenuScreen;
 import dev.xkmc.l2artifacts.content.search.fitered.FilteredMenuScreen;
 import dev.xkmc.l2artifacts.content.search.recycle.RecycleMenuScreen;
 import dev.xkmc.l2artifacts.content.search.shape.ShapeMenuScreen;
-import dev.xkmc.l2artifacts.content.search.tabs.IFilterScreen;
 import dev.xkmc.l2artifacts.content.search.upgrade.UpgradeMenuScreen;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
+import dev.xkmc.l2artifacts.init.registrate.ArtifactTabRegistry;
+import dev.xkmc.l2tabs.compat.jei.SideTabProperties;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
-import mezz.jei.api.gui.handlers.IGuiProperties;
 import mezz.jei.api.registration.IGuiHandlerRegistration;
 import net.minecraft.resources.ResourceLocation;
-
-import javax.annotation.Nullable;
 
 @JeiPlugin
 public class ArtifactJEIPlugin implements IModPlugin {
 
-	public static final ResourceLocation ID = new ResourceLocation(L2Artifacts.MODID, "main");
+	public static final ResourceLocation ID = L2Artifacts.loc("main");
 
 	@Override
 	public ResourceLocation getPluginUid() {
@@ -27,31 +25,16 @@ public class ArtifactJEIPlugin implements IModPlugin {
 	}
 
 	@Override
-	public void registerGuiHandlers(IGuiHandlerRegistration registration) {
-		registration.addGuiScreenHandler(FilteredMenuScreen.class, ArtifactJEIPlugin::create);
-		registration.addGuiScreenHandler(RecycleMenuScreen.class, e -> null);
-		registration.addGuiScreenHandler(UpgradeMenuScreen.class, ArtifactJEIPlugin::create);
-		registration.addGuiScreenHandler(DissolveMenuScreen.class, ArtifactJEIPlugin::create);
-		registration.addGuiScreenHandler(AugmentMenuScreen.class, ArtifactJEIPlugin::create);
-		registration.addGuiScreenHandler(ShapeMenuScreen.class, ArtifactJEIPlugin::create);
-	}
-
-	@Nullable
-	public static IGuiProperties create(IFilterScreen screen) {
-		if (screen.screenWidth() <= 0 || screen.screenHeight() <= 0) {
-			return null;
-		}
-		int x = screen.getGuiLeft();
-		int y = screen.getGuiTop();
-		int width = screen.getXSize() + 32;
-		int height = screen.getYSize();
-		if (width <= 0 || height <= 0) {
-			return null;
-		}
-		return new GuiProperties(screen.asScreen().getClass(),
-				x, y, width, height,
-				screen.screenWidth(), screen.screenHeight()
+	public void registerGuiHandlers(IGuiHandlerRegistration r) {
+		var prop = new SideTabProperties(ArtifactTabRegistry.ARTIFACT);
+		prop.register(r,
+				FilteredMenuScreen.class,
+				UpgradeMenuScreen.class,
+				DissolveMenuScreen.class,
+				AugmentMenuScreen.class,
+				ShapeMenuScreen.class
 		);
+		r.addGuiScreenHandler(RecycleMenuScreen.class, e -> null);
 	}
 
 }

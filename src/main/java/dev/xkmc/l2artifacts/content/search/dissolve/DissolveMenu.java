@@ -21,7 +21,7 @@ public class DissolveMenu extends AbstractScrollerMenu<DissolveMenu> {
 
 	public static DissolveMenu fromNetwork(MenuType<DissolveMenu> type, int wid, Inventory plInv, FriendlyByteBuf buf) {
 		int i = buf.readInt();
-		return new DissolveMenu(wid, plInv, ArtifactChestToken.of(plInv.player, i));
+		return new DissolveMenu(wid, plInv, ArtifactTabData.of(plInv.player, i));
 	}
 
 	protected final IntDataSlot select_index;

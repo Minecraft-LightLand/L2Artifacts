@@ -3,6 +3,7 @@ package dev.xkmc.l2artifacts.content.search.shape;
 import dev.xkmc.l2artifacts.content.core.ArtifactStats;
 import dev.xkmc.l2artifacts.content.core.BaseArtifact;
 import dev.xkmc.l2artifacts.content.search.common.IFilterMenu;
+import dev.xkmc.l2artifacts.content.search.tab.ArtifactTabData;
 import dev.xkmc.l2artifacts.content.search.token.ArtifactChestToken;
 import dev.xkmc.l2artifacts.content.upgrades.ArtifactUpgradeManager;
 import dev.xkmc.l2artifacts.content.upgrades.StatContainerItem;
@@ -29,13 +30,13 @@ public class ShapeMenu extends BaseContainerMenu<ShapeMenu> implements IFilterMe
 
 	public static ShapeMenu fromNetwork(MenuType<ShapeMenu> type, int wid, Inventory plInv, FriendlyByteBuf buf) {
 		int i = buf.readInt();
-		return new ShapeMenu(wid, plInv, ArtifactChestToken.of(plInv.player, i));
+		return new ShapeMenu(wid, plInv, ArtifactTabData.of(plInv.player, i));
 	}
 
-	public final ArtifactChestToken token;
+	public final ArtifactTabData token;
 	public final Player player;
 
-	public ShapeMenu(int wid, Inventory plInv, ArtifactChestToken token) {
+	public ShapeMenu(int wid, Inventory plInv, ArtifactTabData token) {
 		super(ArtifactMenuRegistry.MT_SHAPE.get(), wid, plInv, MANAGER, e -> new BaseContainer<>(15, e).setMax(1), true);
 		this.token = token;
 		this.player = plInv.player;

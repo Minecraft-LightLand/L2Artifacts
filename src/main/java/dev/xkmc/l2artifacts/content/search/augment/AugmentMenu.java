@@ -30,7 +30,7 @@ public class AugmentMenu extends BaseContainerMenu<AugmentMenu> implements IFilt
 
 	public static AugmentMenu fromNetwork(MenuType<AugmentMenu> type, int wid, Inventory plInv, FriendlyByteBuf buf) {
 		int i = buf.readInt();
-		return new AugmentMenu(wid, plInv, ArtifactChestToken.of(plInv.player, i));
+		return new AugmentMenu(wid, plInv, ArtifactTabData.of(plInv.player, i));
 	}
 
 	public final ArtifactTabData token;

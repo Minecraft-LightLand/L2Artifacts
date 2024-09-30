@@ -89,8 +89,8 @@ public abstract class StackedScreen extends Screen implements ArtifactTabScreen 
 		hover = null;
 		renderInit();
 		List<FilterHover> list = new ArrayList<>();
-		for (int i = 0; i < token.filters.size(); i++) {
-			var filter = token.filters.get(i);
+		for (int i = 0; i < token.token.filters.size(); i++) {
+			var filter = token.token.filters.get(i);
 			renderText(handle, i, mx, my);
 			for (int j = 0; j < filter.allEntries.size(); j++) {
 				boolean selected = filter.getSelected(j);
@@ -138,7 +138,7 @@ public abstract class StackedScreen extends Screen implements ArtifactTabScreen 
 	public void onSwitch() {
 		var filter = TagCodec.toTag(new CompoundTag(), token);
 		assert filter != null;
-		ArtifactChestItem.setFilter(Proxy.getClientPlayer().getInventory().getItem(token.invSlot), filter);
+		ArtifactChestItem.setFilter(Proxy.getClientPlayer().getInventory().getItem(token.token.invSlot), filter);
 	}
 
 	@Override

@@ -22,7 +22,7 @@ public class FilteredMenu extends AbstractScrollerMenu<FilteredMenu> {
 
 	public static FilteredMenu fromNetwork(MenuType<FilteredMenu> type, int wid, Inventory plInv, FriendlyByteBuf buf) {
 		int i = buf.readInt();
-		return new FilteredMenu(wid, plInv, ArtifactChestToken.of(plInv.player, i));
+		return new FilteredMenu(wid, plInv, ArtifactTabData.of(plInv.player, i));
 	}
 
 	private ItemStack selected = ItemStack.EMPTY;

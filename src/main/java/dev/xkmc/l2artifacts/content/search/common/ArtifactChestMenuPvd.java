@@ -1,5 +1,6 @@
 package dev.xkmc.l2artifacts.content.search.common;
 
+import dev.xkmc.l2artifacts.content.search.tab.ArtifactTabData;
 import dev.xkmc.l2artifacts.content.search.token.ArtifactChestToken;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
@@ -20,7 +21,7 @@ public record ArtifactChestMenuPvd(Factory fac, ServerPlayer player,
 
 	@Override
 	public AbstractContainerMenu createMenu(int id, Inventory inventory, Player player) {
-		return fac.apply(id, inventory, ArtifactChestToken.of(player, slot));
+		return fac.apply(id, inventory, ArtifactTabData.of(player, slot));
 	}
 
 	public void writeBuffer(FriendlyByteBuf buf) {
@@ -33,7 +34,7 @@ public record ArtifactChestMenuPvd(Factory fac, ServerPlayer player,
 
 	public interface Factory {
 
-		AbstractContainerMenu apply(int id, Inventory inv, ArtifactChestToken token);
+		AbstractContainerMenu apply(int id, Inventory inv, ArtifactTabData token);
 
 	}
 

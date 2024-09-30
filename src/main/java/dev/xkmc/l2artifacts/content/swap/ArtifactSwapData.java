@@ -3,10 +3,12 @@ package dev.xkmc.l2artifacts.content.swap;
 import dev.xkmc.l2artifacts.content.core.ArtifactSlot;
 import dev.xkmc.l2artifacts.content.core.BaseArtifact;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactTypeRegistry;
-import dev.xkmc.l2serial.serialization.SerialClass;
+import dev.xkmc.l2serial.serialization.marker.OnInject;
+import dev.xkmc.l2serial.serialization.marker.SerialClass;
+import dev.xkmc.l2serial.serialization.marker.SerialField;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import top.theillusivec4.curios.api.CuriosCapability;
+import top.theillusivec4.curios.api.CuriosApi;
 
 @SerialClass
 public class ArtifactSwapData {
@@ -16,10 +18,10 @@ public class ArtifactSwapData {
 
 		public ArtifactSlot slot;
 
-		@SerialClass.SerialField
+		@SerialField
 		private ItemStack stack = ItemStack.EMPTY;
 
-		@SerialClass.SerialField
+		@SerialField
 		private boolean disabled = false;
 
 		@Deprecated
@@ -57,10 +59,10 @@ public class ArtifactSwapData {
 		}
 	}
 
-	@SerialClass.SerialField
+	@SerialField
 	public final SwapSlot[] contents = new SwapSlot[45];
 
-	@SerialClass.SerialField
+	@SerialField
 	public int select = 0;
 
 	public ArtifactSwapData() {
@@ -73,7 +75,7 @@ public class ArtifactSwapData {
 		}
 	}
 
-	@SerialClass.OnInject
+	@OnInject
 	public void onInject() {
 		int slot_ind = 0;
 		for (var slot : ArtifactTypeRegistry.SLOT.get()) {
@@ -85,7 +87,7 @@ public class ArtifactSwapData {
 	}
 
 	public void swap(Player player) {
-		player.getCapability(CuriosCapability.INVENTORY).resolve().ifPresent(cap -> {
+		CuriosApi.getCuriosInventory(player).ifPresent(cap -> {
 			for (int slot_ind = 0; slot_ind < 5; slot_ind++) {
 				SwapSlot slot = contents[slot_ind * 9 + select];
 				if (slot.disabled) {

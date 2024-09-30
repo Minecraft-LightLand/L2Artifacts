@@ -2,20 +2,20 @@ package dev.xkmc.l2artifacts.content.swap;
 
 import com.mojang.datafixers.util.Pair;
 import dev.xkmc.l2artifacts.events.ArtifactSel;
-import dev.xkmc.l2library.base.overlay.OverlayUtil;
-import dev.xkmc.l2library.base.overlay.SelectionSideBar;
-import dev.xkmc.l2library.base.overlay.SideBar;
-import dev.xkmc.l2library.util.Proxy;
+import dev.xkmc.l2core.util.Proxy;
+import dev.xkmc.l2itemselector.overlay.OverlayUtil;
+import dev.xkmc.l2itemselector.overlay.SelectionSideBar;
+import dev.xkmc.l2itemselector.overlay.SideBar;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.world.item.ItemStack;
-import top.theillusivec4.curios.api.CuriosCapability;
+import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.type.inventory.ICurioStacksHandler;
 
 import java.util.List;
 
-import static dev.xkmc.l2library.base.overlay.ItemSelSideBar.color;
+import static dev.xkmc.l2itemselector.overlay.ItemSelSideBar.color;
 
 public class ArtifactSwapOverlay extends SelectionSideBar<Integer, SideBar.IntSignature> {
 
@@ -77,7 +77,7 @@ public class ArtifactSwapOverlay extends SelectionSideBar<Integer, SideBar.IntSi
 					ctx.renderItem(stack, x, y);
 				}
 				if (data.select == i) {
-					var opt = player.getCapability(CuriosCapability.INVENTORY).resolve()
+					var opt = CuriosApi.getCuriosInventory(player)
 							.flatMap(cap -> cap.getStacksHandler(slot.slot.getCurioIdentifier()))
 							.map(ICurioStacksHandler::getStacks);
 					if (opt.isPresent()) {

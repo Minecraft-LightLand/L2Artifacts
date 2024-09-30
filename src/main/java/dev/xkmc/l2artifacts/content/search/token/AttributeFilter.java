@@ -16,13 +16,13 @@ import java.util.List;
 public class AttributeFilter extends ArtifactFilter<StatTypeHolder> {
 
 	public AttributeFilter(IArtifactFilter parent, ArtifactLang desc, Collection<StatTypeHolder> reg) {
-		super(parent, desc, reg, (item, type) -> BaseArtifact.getStats(item.stack()).map(x -> x.map.containsKey(type.getID())).orElse(false));
+		super(parent, desc, reg, (item, type) -> BaseArtifact.getStats(item.stack()).map(x -> x.containsKey(type.holder())).orElse(false));
 	}
 
 	@Override
 	public Comparator<GenericItemStack<BaseArtifact>> getComparator() {
 		Comparator<GenericItemStack<BaseArtifact>> ans = Comparator.comparingInt(e -> BaseArtifact.getStats(e.stack())
-				.map(x -> -item_priority[revMap.get(x.main_stat.getType())]).orElse(item_priority.length));
+				.map(x -> -item_priority[revMap.get(x.main_stat().getType())]).orElse(item_priority.length));
 		List<Pair<StatTypeHolder, Integer>> list = new ArrayList<>(allEntries.stream()
 				.map(e -> Pair.of(e, revMap.get(e)))
 				.filter(e -> getSelected(e.second())).toList());

@@ -21,7 +21,7 @@ public class ArtifactSel implements ISelectionListener {
 	public static final int UP = -1;
 	public static final int DOWN = -2;
 	public static final int SWAP = -3;
-	private static final ResourceLocation ID = new ResourceLocation(L2Artifacts.MODID, "swap");
+	private static final ResourceLocation ID = L2Artifacts.loc("swap");
 
 
 	@Override
@@ -39,14 +39,14 @@ public class ArtifactSel implements ISelectionListener {
 	public void handleServerSetSelection(SetSelectedToServer packet, Player player) {
 		var token = getData(player);
 		if (token == null) return;
-		if (packet.slot == SWAP) {
+		if (packet.slot() == SWAP) {
 			token.second().swap(player);
 			ArtifactSwapItem.setData(token.first(), token.second());
 		} else {
-			int s = packet.slot;
-			if (packet.slot < 0) {
+			int s = packet.slot();
+			if (packet.slot() < 0) {
 				s = token.second().select;
-				if (packet.slot == UP) s--;
+				if (packet.slot() == UP) s--;
 				else s++;
 				s = (s + 9) % 9;
 			}

@@ -11,19 +11,19 @@ import dev.xkmc.l2artifacts.init.registrate.entries.SetEntry;
 import dev.xkmc.l2artifacts.network.NetworkManager;
 import dev.xkmc.l2damagetracker.init.L2DamageTracker;
 import dev.xkmc.l2library.serial.config.ConfigDataProvider;
+import net.minecraft.core.Holder;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraftforge.common.ForgeMod;
 
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.function.Consumer;
 
-import static net.minecraft.world.entity.ai.attributes.AttributeModifier.Operation.ADDITION;
-import static net.minecraft.world.entity.ai.attributes.AttributeModifier.Operation.MULTIPLY_BASE;
+import static net.minecraft.world.entity.ai.attributes.AttributeModifier.Operation.ADD_MULTIPLIED_BASE;
+import static net.minecraft.world.entity.ai.attributes.AttributeModifier.Operation.ADD_VALUE;
 
 public class ConfigGen extends ConfigDataProvider {
 
@@ -58,19 +58,19 @@ public class ConfigGen extends ConfigDataProvider {
 	public void add(Collector map) {
 
 		// Stat Type Config
-		regStat(map, HEALTH_ADD, Attributes.MAX_HEALTH, ADDITION, false, 2);
-		regStat(map, ARMOR_ADD, Attributes.ARMOR, ADDITION, false, 2);
-		regStat(map, TOUGH_ADD, Attributes.ARMOR_TOUGHNESS, ADDITION, false, 1);
-		regStat(map, ATK_ADD, Attributes.ATTACK_DAMAGE, ADDITION, false, 2);
-		regStat(map, REACH_ADD, ForgeMod.ENTITY_REACH.get(), ADDITION, false, 0.1);
-		regStat(map, CR_ADD, L2DamageTracker.CRIT_RATE.get(), ADDITION, true, 0.05);
-		regStat(map, CD_ADD, L2DamageTracker.CRIT_DMG.get(), ADDITION, true, 0.1);
-		regStat(map, ATK_MULT, Attributes.ATTACK_DAMAGE, MULTIPLY_BASE, true, 0.1);
-		regStat(map, SPEED_MULT, Attributes.MOVEMENT_SPEED, MULTIPLY_BASE, true, 0.05);
-		regStat(map, ATK_SPEED_MULT, Attributes.ATTACK_SPEED, MULTIPLY_BASE, true, 0.05);
-		regStat(map, BOW_ADD, L2DamageTracker.BOW_STRENGTH.get(), ADDITION, true, 0.1);
-		regStat(map, EXPLOSION_ADD, L2DamageTracker.EXPLOSION_FACTOR.get(), ADDITION, true, 0.2);
-		regStat(map, MAGIC_ADD, L2DamageTracker.MAGIC_FACTOR.get(), ADDITION, true, 0.15);
+		regStat(map, HEALTH_ADD, Attributes.MAX_HEALTH, ADD_VALUE, false, 2);
+		regStat(map, ARMOR_ADD, Attributes.ARMOR, ADD_VALUE, false, 2);
+		regStat(map, TOUGH_ADD, Attributes.ARMOR_TOUGHNESS, ADD_VALUE, false, 1);
+		regStat(map, ATK_ADD, Attributes.ATTACK_DAMAGE, ADD_VALUE, false, 2);
+		regStat(map, REACH_ADD, Attributes.ENTITY_INTERACTION_RANGE, ADD_VALUE, false, 0.1);
+		regStat(map, CR_ADD, L2DamageTracker.CRIT_RATE, ADD_VALUE, true, 0.05);
+		regStat(map, CD_ADD, L2DamageTracker.CRIT_DMG, ADD_VALUE, true, 0.1);
+		regStat(map, ATK_MULT, Attributes.ATTACK_DAMAGE, ADD_MULTIPLIED_BASE, true, 0.1);
+		regStat(map, SPEED_MULT, Attributes.MOVEMENT_SPEED, ADD_MULTIPLIED_BASE, true, 0.05);
+		regStat(map, ATK_SPEED_MULT, Attributes.ATTACK_SPEED, ADD_MULTIPLIED_BASE, true, 0.05);
+		regStat(map, BOW_ADD, L2DamageTracker.BOW_STRENGTH, ADD_VALUE, true, 0.1);
+		regStat(map, EXPLOSION_ADD, L2DamageTracker.EXPLOSION_FACTOR, ADD_VALUE, true, 0.2);
+		regStat(map, MAGIC_ADD, L2DamageTracker.MAGIC_FACTOR, ADD_VALUE, true, 0.15);
 		// Slot Stat Config
 		{
 
@@ -177,7 +177,7 @@ public class ConfigGen extends ConfigDataProvider {
 		map.add(NetworkManager.SLOT_STATS, rl, config);
 	}
 
-	private static void regStat(Collector map, ResourceLocation id, Attribute attr, AttributeModifier.Operation op, boolean perc, double base) {
+	private static void regStat(Collector map, ResourceLocation id, Holder<Attribute> attr, AttributeModifier.Operation op, boolean perc, double base) {
 		map.add(NetworkManager.STAT_TYPES, id, genEntry(attr, op, perc, base, 0.2, 2));
 	}
 

@@ -1,17 +1,17 @@
 package dev.xkmc.l2artifacts.init.registrate.entries;
 
 import com.tterrag.registrate.util.entry.RegistryEntry;
-import dev.xkmc.l2artifacts.content.core.LinearFuncHandle;
+import dev.xkmc.l2artifacts.content.core.LinearFunc;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactTypeRegistry;
 import dev.xkmc.l2core.util.Proxy;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
-public class LinearFuncEntry extends RegistryEntry<LinearFuncHandle, LinearFuncHandle> {
+public class LinearFuncEntry extends RegistryEntry<LinearFunc, LinearFunc> {
 
 	public final SetRegHelper set;
 	public final double base, slope;
 
-	public LinearFuncEntry(ArtifactRegistrate owner, SetRegHelper set, DeferredHolder<LinearFuncHandle, LinearFuncHandle> delegate, double base, double slope) {
+	public LinearFuncEntry(ArtifactRegistrate owner, SetRegHelper set, DeferredHolder<LinearFunc, LinearFunc> delegate, double base, double slope) {
 		super(owner, delegate);
 		this.base = base;
 		this.slope = slope;

@@ -1,6 +1,6 @@
 package dev.xkmc.l2artifacts.content.upgrades;
 
-import dev.xkmc.l2artifacts.content.config.StatTypeConfig;
+import dev.xkmc.l2artifacts.content.config.StatType;
 import dev.xkmc.l2artifacts.init.data.LangData;
 import dev.xkmc.l2library.util.nbt.ItemCompoundTag;
 import net.minecraft.ChatFormatting;
@@ -47,7 +47,7 @@ public class StatContainerItem extends UpgradeEnhanceItem {
 	@Override
 	public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> list, TooltipFlag flag) {
 		getType(stack).ifPresentOrElse(e -> {
-			list.add(LangData.STAT_INFO.get(StatTypeConfig.get(e).getDesc().withStyle(ChatFormatting.BLUE)).withStyle(ChatFormatting.DARK_GREEN));
+			list.add(LangData.STAT_INFO.get(StatType.get(e).getDesc().withStyle(ChatFormatting.BLUE)).withStyle(ChatFormatting.DARK_GREEN));
 			list.add(LangData.STAT_USE_INFO.get().withStyle(ChatFormatting.GRAY));
 		}, () -> list.add(LangData.STAT_CAPTURE_INFO.get().withStyle(ChatFormatting.GRAY)));
 	}

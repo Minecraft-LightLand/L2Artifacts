@@ -1,6 +1,6 @@
 package dev.xkmc.l2artifacts.content.search.token;
 
-import dev.xkmc.l2artifacts.content.config.StatTypeConfig;
+import dev.xkmc.l2artifacts.content.config.StatType;
 import dev.xkmc.l2artifacts.content.core.ArtifactSet;
 import dev.xkmc.l2artifacts.content.core.ArtifactSlot;
 import dev.xkmc.l2artifacts.content.core.BaseArtifact;
@@ -48,7 +48,7 @@ public class ArtifactChestToken implements IArtifactFilter {
 	public final ArtifactFilter<ArtifactSlot> slot;
 
 	@SerialField
-	public final ArtifactFilter<StatTypeConfig> stat;
+	public final ArtifactFilter<StatType> stat;
 
 	public int exp = 0;
 
@@ -64,7 +64,7 @@ public class ArtifactChestToken implements IArtifactFilter {
 				ArtifactTypeRegistry.SET.get(), i -> i.set.get()));
 		slot = addFilter(e -> new SimpleArtifactFilter<>(e, LangData.FILTER_SLOT,
 				ArtifactTypeRegistry.SLOT.get(), i -> i.slot.get()));
-		stat = addFilter(e -> new AttributeFilter(e, LangData.FILTER_STAT, StatTypeConfig.getValues()));
+		stat = addFilter(e -> new AttributeFilter(e, LangData.FILTER_STAT, StatType.getValues()));
 		TagCodec.fromTag(ArtifactChestItem.getFilter(stack), ArtifactChestToken.class, this, e -> true);
 	}
 

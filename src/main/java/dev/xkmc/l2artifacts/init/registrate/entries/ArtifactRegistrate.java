@@ -3,10 +3,10 @@ package dev.xkmc.l2artifacts.init.registrate.entries;
 import com.google.common.collect.LinkedListMultimap;
 import com.google.common.collect.Multimap;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
-import dev.xkmc.l2artifacts.content.config.LinearFuncConfig;
+import dev.xkmc.l2artifacts.content.config.LinearParam;
 import dev.xkmc.l2artifacts.content.core.ArtifactSet;
 import dev.xkmc.l2artifacts.content.core.BaseArtifact;
-import dev.xkmc.l2artifacts.content.core.LinearFuncHandle;
+import dev.xkmc.l2artifacts.content.core.LinearFunc;
 import dev.xkmc.l2artifacts.content.effects.core.SetEffect;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactTypeRegistry;
@@ -32,8 +32,8 @@ public class ArtifactRegistrate extends L2Registrate {
 	}
 
 	final LinearFuncEntry regLinear(String id, SetRegHelper set, double base, double slope) {
-		return (LinearFuncEntry) this.entry(id, cb -> new LinearFuncBuilder<>(this, this, id, cb, set, LinearFuncHandle::new, base, slope))
-				.dataMap(ArtifactTypeRegistry.LINEAR_CONFIG.reg(), new LinearFuncConfig(base, slope)).register();
+		return (LinearFuncEntry) this.entry(id, cb -> new LinearFuncBuilder<>(this, this, id, cb, set, LinearFunc::new, base, slope))
+				.dataMap(ArtifactTypeRegistry.LINEAR_CONFIG.reg(), new LinearParam(base, slope)).register();
 	}
 
 	<T extends SetEffect> SetEffectBuilder<T, ArtifactRegistrate> setEffect(String id, NonNullSupplier<T> sup) {

@@ -2,10 +2,9 @@ package dev.xkmc.l2artifacts.content.config;
 
 import com.google.common.collect.ImmutableMultimap;
 import dev.xkmc.l2artifacts.content.core.StatEntry;
-import dev.xkmc.l2artifacts.content.search.token.IArtifactFeature;
-import dev.xkmc.l2artifacts.network.NetworkManager;
-import dev.xkmc.l2damagetracker.contents.curios.AttrTooltip;
-import net.minecraft.ChatFormatting;
+import dev.xkmc.l2artifacts.init.L2Artifacts;
+import dev.xkmc.l2artifacts.init.registrate.ArtifactTypeRegistry;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
@@ -13,26 +12,29 @@ import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.item.TooltipFlag;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Collection;
 
-import static net.minecraft.world.item.ItemStack.ATTRIBUTE_MODIFIER_FORMAT;
-
-public record StatTypeConfig(
+public record StatType(
 		double base, double base_low, double base_high,
 		double main_low, double main_high, double sub_low,
 		double sub_high, Attribute attr,
-		AttributeModifier.Operation op, boolean usePercent,
+		AttributeModifier.Operation op,
 		@Nullable ResourceLocation icon
-) implements IArtifactFeature.Sprite {
+) {
 
-	public static StatTypeConfig get(ResourceLocation id) {
-		return NetworkManager.STAT_TYPES.getEntry(id);
+	private static final ResourceLocation DUMMY_ID = L2Artifacts.loc("dummy");
+
+	@Nullable
+	public static StatTypeHolder get(RegistryAccess access, ResourceLocation id) {
+		var holder = ArtifactTypeRegistry.STAT_TYPE.get(access, id);
+		return holder == null ? null : new StatTypeHolder(holder);
 	}
 
-	public static Collection<StatTypeConfig> getValues() {
-		return NetworkManager.STAT_TYPES.getAll();
+	public static Collection<StatTypeHolder> getValues(RegistryAccess access) {
+		return ArtifactTypeRegistry.STAT_TYPE.getAll(access).map(StatTypeHolder::new).toList();
 	}
 
 	public void getModifier(ImmutableMultimap.Builder<Attribute, AttributeModifier> builder, StatEntry entry, ResourceLocation uuid) {
@@ -52,32 +54,11 @@ public record StatTypeConfig(
 	}
 
 	public MutableComponent getValueText(double val) {
-		var ans = Component.literal("+");
-		ans = ans.append(ATTRIBUTE_MODIFIER_FORMAT.format(usePercent ? val * 100 : val));
-		if (usePercent) {
-			ans = ans.append("%");
-		}
-		return ans;
+		return attr.toValueComponent(op, val, TooltipFlag.NORMAL);
 	}
 
 	public Component getTooltip(double val) {
-		boolean neg = val < 0 ^ AttrTooltip.isNegative(attr);
-		return Component.translatable(
-				"attribute.modifier.plus." + (usePercent ? 1 : 0),
-				ATTRIBUTE_MODIFIER_FORMAT.format(usePercent ? val * 100 : val),
-				Component.translatable(attr.getDescriptionId())).withStyle(neg ? ChatFormatting.RED : ChatFormatting.BLUE);
-	}
-
-	@Override
-	public ResourceLocation icon() {
-		if (icon != null) return icon;
-		ResourceLocation rl = getID();
-		return new ResourceLocation(rl.getNamespace(), "textures/stat_type/" + rl.getPath() + ".png");
-	}
-
-	@Override
-	public MutableComponent getDesc() {
-		return Component.translatable("stat_type." + getID().getNamespace() + "." + getID().getPath());
+		return attr.toComponent(new AttributeModifier(DUMMY_ID, val, op), TooltipFlag.NORMAL);
 	}
 
 	public double getBaseValue() {

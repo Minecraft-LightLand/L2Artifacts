@@ -1,8 +1,9 @@
 package dev.xkmc.l2artifacts.content.core;
 
-import dev.xkmc.l2artifacts.content.config.StatTypeConfig;
+import dev.xkmc.l2artifacts.content.config.StatType;
 import dev.xkmc.l2serial.serialization.marker.SerialClass;
 import dev.xkmc.l2serial.serialization.marker.SerialField;
+import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 
@@ -10,7 +11,7 @@ import net.minecraft.resources.ResourceLocation;
 public class StatEntry {
 
 	@SerialField
-	public ResourceLocation type;
+	public Holder<StatType> type;
 
 	@SerialField
 	private double value;
@@ -22,21 +23,21 @@ public class StatEntry {
 
 	}
 
-	public StatEntry(ArtifactSlot slot, ResourceLocation type, double value) {
+	public StatEntry(ArtifactSlot slot, Holder<StatType> type, double value) {
 		this.type = type;
 		this.value = value;
 	}
 
-	public StatTypeConfig getType() {
-		return StatTypeConfig.get(type);
+	public Holder<StatType> getType() {
+		return type;
 	}
 
 	public Component getTooltip() {
-		return getType().getTooltip(getValue());
+		return type.value().getTooltip(getValue());
 	}
 
 	public double getValue() {
-		return value * getType().getBaseValue();
+		return value * getType().value().getBaseValue();
 	}
 
 	public void addMultiplier(double value) {

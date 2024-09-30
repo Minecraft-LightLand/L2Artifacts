@@ -1,6 +1,6 @@
 package dev.xkmc.l2artifacts.content.search.token;
 
-import dev.xkmc.l2artifacts.content.config.StatTypeConfig;
+import dev.xkmc.l2artifacts.content.config.StatType;
 import dev.xkmc.l2artifacts.content.core.BaseArtifact;
 import dev.xkmc.l2artifacts.init.data.LangData;
 import dev.xkmc.l2library.util.code.GenericItemStack;
@@ -13,9 +13,9 @@ import java.util.Comparator;
 import java.util.List;
 
 @SerialClass
-public class AttributeFilter extends ArtifactFilter<StatTypeConfig> {
+public class AttributeFilter extends ArtifactFilter<StatType> {
 
-	public AttributeFilter(IArtifactFilter parent, LangData desc, Collection<StatTypeConfig> reg) {
+	public AttributeFilter(IArtifactFilter parent, LangData desc, Collection<StatType> reg) {
 		super(parent, desc, reg, (item, type) -> BaseArtifact.getStats(item.stack()).map(x -> x.map.containsKey(type.getID())).orElse(false));
 	}
 
@@ -23,7 +23,7 @@ public class AttributeFilter extends ArtifactFilter<StatTypeConfig> {
 	public Comparator<GenericItemStack<BaseArtifact>> getComparator() {
 		Comparator<GenericItemStack<BaseArtifact>> ans = Comparator.comparingInt(e -> BaseArtifact.getStats(e.stack())
 				.map(x -> -item_priority[revMap.get(x.main_stat.getType())]).orElse(item_priority.length));
-		List<Pair<StatTypeConfig, Integer>> list = new ArrayList<>(allEntries.stream()
+		List<Pair<StatType, Integer>> list = new ArrayList<>(allEntries.stream()
 				.map(e -> Pair.of(e, revMap.get(e)))
 				.filter(e -> getSelected(e.second())).toList());
 		list.sort(Comparator.comparingInt(e -> item_priority[e.second()]));

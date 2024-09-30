@@ -2,7 +2,7 @@ package dev.xkmc.l2artifacts.init.data;
 
 import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
 import dev.xkmc.l2artifacts.content.config.SlotStatConfig;
-import dev.xkmc.l2artifacts.content.config.StatTypeConfig;
+import dev.xkmc.l2artifacts.content.config.StatType;
 import dev.xkmc.l2artifacts.content.core.ArtifactSet;
 import dev.xkmc.l2artifacts.content.core.ArtifactSlot;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
@@ -186,8 +186,8 @@ public class ConfigGen extends ConfigDataProvider {
 		map.add(NetworkManager.ARTIFACT_SETS, rl, ArtifactSetConfig.construct(set, builder));
 	}
 
-	private static StatTypeConfig genEntry(Attribute attr, AttributeModifier.Operation op, boolean perc, double base, double sub, double factor) {
-		return new StatTypeConfig(
+	private static StatType genEntry(Attribute attr, AttributeModifier.Operation op, boolean perc, double base, double sub, double factor) {
+		return new StatType(
 				base, 1, factor, sub,
 				sub * factor, sub, sub * factor,
 				attr, op, perc, null

@@ -66,8 +66,20 @@ public record Upgrade(int main, int sub, ArrayList<Holder<StatType>> stats) {
 			return null;
 		}
 
+		public void add(Holder<StatType> type) {
+			stats.add(type);
+		}
+
 		public Upgrade immutable() {
 			return new Upgrade(main, sub, stats);
+		}
+
+		public void addMain() {
+			main++;
+		}
+
+		public void addSub() {
+			sub++;
 		}
 
 	}

@@ -1,13 +1,13 @@
 package dev.xkmc.l2artifacts.content.search.common;
 
-import dev.xkmc.l2artifacts.content.search.tabs.FilterTabManager;
-import dev.xkmc.l2artifacts.content.search.tabs.FilterTabToken;
-import dev.xkmc.l2artifacts.content.search.tabs.IFilterScreen;
+import dev.xkmc.l2artifacts.content.search.tab.ArtifactTabData;
 import dev.xkmc.l2core.base.menu.base.BaseContainerScreen;
 import dev.xkmc.l2core.base.menu.base.MenuLayoutConfig;
 import dev.xkmc.l2core.base.menu.scroller.Scroller;
 import dev.xkmc.l2core.base.menu.scroller.ScrollerScreen;
 import dev.xkmc.l2tabs.tabs.core.ITabScreen;
+import dev.xkmc.l2tabs.tabs.core.TabManager;
+import dev.xkmc.l2tabs.tabs.core.TabToken;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
@@ -19,9 +19,9 @@ public class AbstractScrollerScreen<T extends AbstractScrollerMenu<T>>
 		extends BaseContainerScreen<T> implements ScrollerScreen, ITabScreen {
 
 	private final Scroller scroller;
-	private final FilterTabToken<?> tab;
+	private final TabToken<ArtifactTabData, ?> tab;
 
-	public AbstractScrollerScreen(T cont, Inventory plInv, Component title, FilterTabToken<?> tab) {
+	public AbstractScrollerScreen(T cont, Inventory plInv, Component title, TabToken<ArtifactTabData, ?> tab) {
 		super(cont, plInv, title);
 		scroller = new Scroller(this, cont.getLayout(),
 				"slider_middle", "slider_light", "slider_dark");
@@ -31,7 +31,7 @@ public class AbstractScrollerScreen<T extends AbstractScrollerMenu<T>>
 	@Override
 	protected final void init() {
 		super.init();
-		new FilterTabManager(this, menu.token).init(this::addRenderableWidget, tab);
+		new TabManager<>(this, menu.token).init(this::addRenderableWidget, tab);
 	}
 
 	@Override

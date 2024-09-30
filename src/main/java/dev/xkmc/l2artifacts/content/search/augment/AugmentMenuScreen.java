@@ -9,9 +9,11 @@ import dev.xkmc.l2artifacts.content.search.tabs.FilterTabManager;
 import dev.xkmc.l2artifacts.content.search.tabs.IFilterScreen;
 import dev.xkmc.l2artifacts.content.upgrades.StatContainerItem;
 import dev.xkmc.l2artifacts.init.data.ArtifactLang;
+import dev.xkmc.l2artifacts.init.registrate.ArtifactTabRegistry;
 import dev.xkmc.l2core.base.menu.base.BaseContainerScreen;
 import dev.xkmc.l2core.base.menu.stacked.StackedRenderHandle;
 import dev.xkmc.l2tabs.tabs.core.ITabScreen;
+import dev.xkmc.l2tabs.tabs.core.TabManager;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
@@ -58,7 +60,7 @@ public class AugmentMenuScreen extends BaseContainerScreen<AugmentMenu> implemen
 	@Override
 	protected final void init() {
 		super.init();
-		new FilterTabManager(this, menu.token).init(this::addRenderableWidget, FilterTabManager.AUGMENT);
+		new TabManager<>(this, menu.token).init(this::addRenderableWidget, ArtifactTabRegistry.AUGMENT.get());
 	}
 
 	@Override
@@ -142,19 +144,19 @@ public class AugmentMenuScreen extends BaseContainerScreen<AugmentMenu> implemen
 			if (opt.isPresent()) {
 				ArtifactStats stat = opt.get();
 				List<Component[]> table = new ArrayList<>();
-				table.add(addEntry(true, stat.main_stat,
-						old == null ? null : old.main_stat, false, (menu.mask.get() & 2) > 0));
-				boolean display = old != null && old.sub_stats.size() == stat.sub_stats.size();
-				for (int i = 0; i < stat.sub_stats.size(); i++) {
+				table.add(addEntry(true, stat.main_stat(),
+						old == null ? null : old.main_stat(), false, (menu.mask.get() & 2) > 0));
+				boolean display = old != null && old.sub_stats().size() == stat.sub_stats().size();
+				for (int i = 0; i < stat.sub_stats().size(); i++) {
 					int I = i;
 					boolean stat_exist = (menu.mask.get() & 1) > 0;
 					boolean lit_name = stat_exist &&
 							StatContainerItem.getType(menu.access, menu.container.getItem(1))
-									.map(e -> e.equals(stat.sub_stats.get(I).type)).orElse(false);
+									.map(e -> e.equals(stat.sub_stats().get(I).type)).orElse(false);
 					boolean boost_sub = (menu.mask.get() & 4) > 0;
 					boolean lit_stat = boost_sub && (!stat_exist || lit_name);
-					table.add(addEntry(false, stat.sub_stats.get(i),
-							!display ? null : old.sub_stats.get(i), lit_name, lit_stat));
+					table.add(addEntry(false, stat.sub_stats().get(i),
+							!display ? null : old.sub_stats().get(i), lit_name, lit_stat));
 				}
 				handle.drawTable(table.toArray(Component[][]::new), imageWidth, false);
 				current = stat;

@@ -70,6 +70,14 @@ public record ArtifactStats(
 		return mutable.flush();
 	}
 
+	public boolean containsKey(Holder<StatType> astat) {
+		if (main_stat.getType().equals(astat)) return true;
+		for (var e : sub_stats) {
+			if (e.getType().equals(astat)) return true;
+		}
+		return false;
+	}
+
 	public static class Mutable {
 
 		private final ArtifactStats ref;

@@ -157,8 +157,7 @@ public class LAItem4 {
 							"When there is no Monster in the nearby 8 blocks:")
 					.register();
 
-			EFF_LONGSHOOTER_4 = helper.setEffect("long_shooter_4", () -> new LongShooterPersistentEffect(
-							new AttrSetEntry(BOW_STRENGTH, ADD_VALUE, long_shooter_atk, true)))
+			EFF_LONGSHOOTER_4 = helper.setEffect("long_shooter_4", LongShooterPersistentEffect::new)
 					.desc("Last chance",
 							"Focus distance above becomes 6 blocks. When approached, it still lasts for two seconds and gains two second acceleration"
 					).register();

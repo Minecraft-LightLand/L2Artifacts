@@ -40,7 +40,7 @@ public class UpgradeMenu extends BaseContainerMenu<UpgradeMenu> implements IFilt
 		addSlot("input", e -> e.getItem() instanceof BaseArtifact);
 		this.experience = new IntDataSlot(this);
 		this.exp_cost = new IntDataSlot(this);
-		experience.set(token.exp);
+		experience.set(token.token.exp);
 	}
 
 	@Override
@@ -58,8 +58,8 @@ public class UpgradeMenu extends BaseContainerMenu<UpgradeMenu> implements IFilt
 			var opt = BaseArtifact.getStats(stack);
 			if (opt.isPresent()) {
 				var stats = opt.get();
-				if (stats.level < ArtifactUpgradeManager.getMaxLevel(item.rank)) {
-					ec = ArtifactUpgradeManager.getExpForLevel(item.rank, stats.level) - stats.exp;
+				if (stats.level() < ArtifactUpgradeManager.getMaxLevel(item.rank)) {
+					ec = ArtifactUpgradeManager.getExpForLevel(item.rank, stats.level()) - stats.exp();
 				}
 			}
 		}
@@ -78,7 +78,7 @@ public class UpgradeMenu extends BaseContainerMenu<UpgradeMenu> implements IFilt
 			if (!canUpgrade)
 				return false;
 			ItemStack stack = container.getItem(0);
-			BaseArtifact.upgrade(stack, cost, player.getRandom());
+			BaseArtifact.upgrade(stack, cost);
 			stack = ((BaseArtifact) stack.getItem()).resolve(stack, false, player.getRandom()).getObject();
 			container.setItem(0, stack);
 			costExp(cost);
@@ -87,9 +87,9 @@ public class UpgradeMenu extends BaseContainerMenu<UpgradeMenu> implements IFilt
 	}
 
 	private void costExp(int exp) {
-		token.exp -= exp;
-		ArtifactChestItem.setExp(token.stack, token.exp);
-		experience.set(token.exp);
+		token.token.exp -= exp;
+		ArtifactChestItem.setExp(token.token.stack, token.token.exp);
+		experience.set(token.token.exp);
 		sendAllDataToRemote();
 	}
 

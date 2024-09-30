@@ -87,7 +87,7 @@ public class RandomArtifactItem extends RankedItem {
 	}
 
 	@Override
-	public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> list, TooltipFlag flag) {
+	public void appendHoverText(ItemStack stack, TooltipContext level, List<Component> list, TooltipFlag flag) {
 		var sets = getList(stack, rank);
 		if (sets == null) {
 			list.add(ArtifactLang.LOOT_POOL_ALL.get());

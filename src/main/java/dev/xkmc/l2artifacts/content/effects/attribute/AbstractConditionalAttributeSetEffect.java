@@ -37,7 +37,7 @@ public abstract class AbstractConditionalAttributeSetEffect<T extends AttributeS
 	public T getData(ArtifactSetConfig.Entry ent) {
 		T ans = getData();
 		for (AttrSetEntry entry : entries) {
-			var id = ent.effect.getRegistryName();
+			var id = ent.effect().getRegistryName();
 			ans.list.add(new AttributeSetData.AttributePair(entry.attr(), id));
 		}
 		return ans;

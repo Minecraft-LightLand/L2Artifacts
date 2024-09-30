@@ -14,7 +14,7 @@ public record RankToken(int rank) implements IArtifactFeature.Sprite {
 
 	@Override
 	public ResourceLocation icon() {
-		return new ResourceLocation(L2Artifacts.MODID, "textures/rank/" + rank + ".png");
+		return L2Artifacts.loc("textures/rank/" + rank + ".png");
 	}
 
 	@Override

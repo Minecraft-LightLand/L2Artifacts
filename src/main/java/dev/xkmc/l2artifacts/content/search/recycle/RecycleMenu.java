@@ -4,6 +4,7 @@ import dev.xkmc.l2artifacts.content.core.BaseArtifact;
 import dev.xkmc.l2artifacts.content.misc.ArtifactChestItem;
 import dev.xkmc.l2artifacts.content.misc.ExpItem;
 import dev.xkmc.l2artifacts.content.search.common.AbstractScrollerMenu;
+import dev.xkmc.l2artifacts.content.search.tab.ArtifactTabData;
 import dev.xkmc.l2artifacts.content.search.token.ArtifactChestToken;
 import dev.xkmc.l2artifacts.content.upgrades.ArtifactUpgradeManager;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
@@ -34,7 +35,7 @@ public class RecycleMenu extends AbstractScrollerMenu<RecycleMenu> {
 
 	protected boolean[] selected;
 
-	public RecycleMenu(int wid, Inventory plInv, ArtifactChestToken token) {
+	public RecycleMenu(int wid, Inventory plInv, ArtifactTabData token) {
 		super(ArtifactMenuRegistry.MT_RECYCLE.get(), wid, plInv, MANAGER, 1, token, true);
 		this.addSlot("input", e -> e.getItem() instanceof ExpItem);
 		this.addSlot("grid", e -> false, e -> e.setPickup(() -> false));
@@ -48,7 +49,7 @@ public class RecycleMenu extends AbstractScrollerMenu<RecycleMenu> {
 	protected void reload(boolean changeContent) {
 		super.reload(changeContent);
 		if (changeContent) {
-			var list = token.getFiltered();
+			var list = token.token.getFiltered();
 			selected = new boolean[list.size()];
 			for (int i = 0; i < list.size(); i++) {
 				selected[i] = false;
@@ -80,7 +81,7 @@ public class RecycleMenu extends AbstractScrollerMenu<RecycleMenu> {
 	}
 
 	private int getExp(int i) {
-		var list = token.getFiltered();
+		var list = token.token.getFiltered();
 		ItemStack stack = list.get(i).stack();
 		int rank = list.get(i).item().rank;
 		var stat = BaseArtifact.getStats(stack).orElse(null);
@@ -105,27 +106,27 @@ public class RecycleMenu extends AbstractScrollerMenu<RecycleMenu> {
 		if (pId == 50) {
 			if (player.level().isClientSide)
 				return true;
-			var list = token.getFiltered();
+			var list = token.token.getFiltered();
 			int exp = 0;
 			for (int i = 0; i < selected.length; i++) {
 				if (selected[i]) {
 					ItemStack stack = list.get(i).stack();
 					exp += getExp(i);
-					token.list.remove(stack);
+					token.token.list.remove(stack);
 				}
 			}
 			addExp(exp);
 			select_count.set(0);
 			to_gain.set(0);
-			token.update();
-			token.save();
+			token.token.update();
+			token.token.save();
 			reload(true);
 			return true;
 		}
 		if (pId == 51) {
 			if (player.level().isClientSide)
 				return true;
-			var list = token.getFiltered();
+			var list = token.token.getFiltered();
 			int exp = 0;
 			for (int i = 0; i < list.size(); i++) {
 				selected[i] = true;
@@ -139,7 +140,7 @@ public class RecycleMenu extends AbstractScrollerMenu<RecycleMenu> {
 		if (pId == 52) {
 			if (player.level().isClientSide)
 				return true;
-			var list = token.getFiltered();
+			var list = token.token.getFiltered();
 			for (int i = 0; i < list.size(); i++) {
 				selected[i] = false;
 			}
@@ -152,9 +153,9 @@ public class RecycleMenu extends AbstractScrollerMenu<RecycleMenu> {
 	}
 
 	private void addExp(int exp) {
-		token.exp += exp;
-		ArtifactChestItem.setExp(token.stack, token.exp);
-		experience.set(token.exp);
+		token.token.exp += exp;
+		ArtifactChestItem.setExp(token.token.stack, token.token.exp);
+		experience.set(token.token.exp);
 		sendAllDataToRemote();
 	}
 

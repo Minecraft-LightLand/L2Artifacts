@@ -5,8 +5,6 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.level.Level;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
@@ -20,7 +18,7 @@ public class UpgradeBoostItem extends UpgradeEnhanceItem {
 	}
 
 	@Override
-	public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> list, TooltipFlag flag) {
+	public void appendHoverText(ItemStack stack, TooltipContext level, List<Component> list, TooltipFlag flag) {
 		list.add((type == Upgrade.Type.BOOST_MAIN_STAT ? ArtifactLang.BOOST_MAIN : ArtifactLang.BOOST_SUB).get().withStyle(ChatFormatting.GRAY));
 	}
 

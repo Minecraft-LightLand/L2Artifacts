@@ -18,7 +18,7 @@ public class ExpItem extends RankedItem {
 	}
 
 	@Override
-	public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> list, TooltipFlag flag) {
+	public void appendHoverText(ItemStack stack, TooltipContext level, List<Component> list, TooltipFlag flag) {
 		list.add(ArtifactLang.EXP_CONVERSION.get(ArtifactUpgradeManager.getExpForConversion(rank, null)));
 		super.appendHoverText(stack, level, list, flag);
 	}

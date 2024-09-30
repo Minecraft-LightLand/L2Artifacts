@@ -9,7 +9,6 @@ import dev.xkmc.l2artifacts.content.search.fitered.FilteredMenu;
 import dev.xkmc.l2artifacts.content.search.recycle.RecycleMenu;
 import dev.xkmc.l2artifacts.content.search.shape.ShapeMenu;
 import dev.xkmc.l2artifacts.content.search.tab.ArtifactTabData;
-import dev.xkmc.l2artifacts.content.search.token.ArtifactChestToken;
 import dev.xkmc.l2artifacts.content.search.upgrade.UpgradeMenu;
 import dev.xkmc.l2core.util.Proxy;
 import dev.xkmc.l2serial.network.SerialPacketBase;

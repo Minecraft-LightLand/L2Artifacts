@@ -3,6 +3,7 @@ package dev.xkmc.l2artifacts.content.search.augment;
 import dev.xkmc.l2artifacts.content.core.BaseArtifact;
 import dev.xkmc.l2artifacts.content.misc.ArtifactChestItem;
 import dev.xkmc.l2artifacts.content.search.common.IFilterMenu;
+import dev.xkmc.l2artifacts.content.search.tab.ArtifactTabData;
 import dev.xkmc.l2artifacts.content.search.token.ArtifactChestToken;
 import dev.xkmc.l2artifacts.content.upgrades.ArtifactUpgradeManager;
 import dev.xkmc.l2artifacts.content.upgrades.StatContainerItem;
@@ -32,7 +33,7 @@ public class AugmentMenu extends BaseContainerMenu<AugmentMenu> implements IFilt
 		return new AugmentMenu(wid, plInv, ArtifactChestToken.of(plInv.player, i));
 	}
 
-	public final ArtifactChestToken token;
+	public final ArtifactTabData token;
 	public final Player player;
 
 	public final IntDataSlot experience;
@@ -41,7 +42,7 @@ public class AugmentMenu extends BaseContainerMenu<AugmentMenu> implements IFilt
 
 	private final PredSlot input, in_0, in_1, in_2;
 
-	public AugmentMenu(int wid, Inventory plInv, ArtifactChestToken token) {
+	public AugmentMenu(int wid, Inventory plInv, ArtifactTabData token) {
 		super(ArtifactMenuRegistry.MT_AUGMENT.get(), wid, plInv, MANAGER, e -> new BaseContainer<>(4, e), true);
 		this.token = token;
 		this.player = plInv.player;
@@ -55,7 +56,7 @@ public class AugmentMenu extends BaseContainerMenu<AugmentMenu> implements IFilt
 		this.experience = new IntDataSlot(this);
 		this.exp_cost = new IntDataSlot(this);
 		this.mask = new IntDataSlot(this);
-		experience.set(token.exp);
+		experience.set(token.token.exp);
 
 		this.input = getAsPredSlot("input");
 		this.in_0 = getAsPredSlot("in_0");
@@ -94,16 +95,16 @@ public class AugmentMenu extends BaseContainerMenu<AugmentMenu> implements IFilt
 			var opt = BaseArtifact.getStats(stack);
 			if (opt.isPresent()) {
 				var stats = opt.get();
-				if (stats.level < ArtifactUpgradeManager.getMaxLevel(item.rank)) {
-					ec = ArtifactUpgradeManager.getExpForLevel(item.rank, stats.level) - stats.exp;
+				if (stats.level() < ArtifactUpgradeManager.getMaxLevel(item.rank)) {
+					ec = ArtifactUpgradeManager.getExpForLevel(item.rank, stats.level()) - stats.exp();
 					useMain = !in_1.getItem().isEmpty();
-					if ((stats.level + 1) % ArtifactConfig.COMMON.levelPerSubStat.get() == 0) {
+					if ((stats.level() + 1) % ArtifactConfig.COMMON.levelPerSubStat.get() == 0) {
 						useSub = !in_2.getItem().isEmpty();
 						ItemStack stat = in_0.getItem();
 						var opt_stat = StatContainerItem.getType(access, stat);
 						if (opt_stat.isPresent()) {
 							var astat = opt_stat.get();
-							if (!stats.main_stat.type.equals(astat) && stats.map.containsKey(astat)) {
+							if (!stats.main_stat().type.equals(astat) && stats.containsKey(astat)) {
 								useStat = true;
 							}
 						}
@@ -126,24 +127,24 @@ public class AugmentMenu extends BaseContainerMenu<AugmentMenu> implements IFilt
 			if (!canUpgrade)
 				return false;
 			ItemStack stack = getAsPredSlot("input").getItem();
-			Upgrade upgrade = BaseArtifact.getUpgrade(stack).orElseGet(Upgrade::new);
+			var upgrade = BaseArtifact.getUpgrade(stack).orElse(Upgrade.EMPTY).mutable();
 			int mask = this.mask.get();
 			if ((mask & 1) > 0) {
 				ItemStack stat = getAsPredSlot("in_0").getItem();
 				var opt_stat = StatContainerItem.getType(access, stat);
-				opt_stat.ifPresent(artifactStatType -> upgrade.stats.add(artifactStatType));
+				opt_stat.ifPresent(upgrade::add);
 				getAsPredSlot("in_0").getItem().shrink(1);
 			}
 			if ((mask & 2) > 0) {
-				upgrade.main++;
+				upgrade.addMain();
 				getAsPredSlot("in_1").getItem().shrink(1);
 			}
 			if ((mask & 4) > 0) {
-				upgrade.sub++;
+				upgrade.addSub();
 				getAsPredSlot("in_2").getItem().shrink(1);
 			}
-			BaseArtifact.setUpgrade(stack, upgrade);
-			BaseArtifact.upgrade(stack, cost, player.getRandom());
+			ArtifactItems.UPGRADES.set(stack, upgrade.immutable());
+			BaseArtifact.upgrade(stack, cost);
 			stack = ((BaseArtifact) stack.getItem()).resolve(stack, false, player.getRandom()).getObject();
 			getAsPredSlot("input").set(stack);
 			costExp(cost);
@@ -152,9 +153,9 @@ public class AugmentMenu extends BaseContainerMenu<AugmentMenu> implements IFilt
 	}
 
 	private void costExp(int exp) {
-		token.exp -= exp;
-		ArtifactChestItem.setExp(token.stack, token.exp);
-		experience.set(token.exp);
+		token.token.exp -= exp;
+		ArtifactChestItem.setExp(token.token.stack, token.token.exp);
+		experience.set(token.token.exp);
 		sendAllDataToRemote();
 	}
 

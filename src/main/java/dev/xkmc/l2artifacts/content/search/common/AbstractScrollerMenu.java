@@ -1,6 +1,6 @@
 package dev.xkmc.l2artifacts.content.search.common;
 
-import dev.xkmc.l2artifacts.content.search.token.ArtifactChestToken;
+import dev.xkmc.l2artifacts.content.search.tab.ArtifactTabData;
 import dev.xkmc.l2core.base.menu.base.BaseContainerMenu;
 import dev.xkmc.l2core.base.menu.base.SpriteManager;
 import dev.xkmc.l2core.base.menu.data.IntDataSlot;
@@ -15,7 +15,7 @@ import net.minecraft.world.item.ItemStack;
 public abstract class AbstractScrollerMenu<T extends AbstractScrollerMenu<T>> extends BaseContainerMenu<T>
 		implements ScrollerMenu, IFilterMenu {
 
-	public final ArtifactChestToken token;
+	public final ArtifactTabData token;
 	public final IntDataSlot total_count;
 	public final IntDataSlot current_count;
 	public final IntDataSlot experience;
@@ -28,7 +28,7 @@ public abstract class AbstractScrollerMenu<T extends AbstractScrollerMenu<T>> ex
 	public final int extra;
 
 
-	public AbstractScrollerMenu(MenuType<?> type, int wid, Inventory plInv, SpriteManager manager, int extra, ArtifactChestToken token, boolean isVirtual) {
+	public AbstractScrollerMenu(MenuType<?> type, int wid, Inventory plInv, SpriteManager manager, int extra, ArtifactTabData token, boolean isVirtual) {
 		super(type, wid, plInv, manager, e -> new BaseContainer<>(36 + extra, e), isVirtual);
 		this.token = token;
 		this.player = plInv.player;
@@ -42,7 +42,7 @@ public abstract class AbstractScrollerMenu<T extends AbstractScrollerMenu<T>> ex
 
 	protected void reload(boolean changeContent) {
 		if (player.level().isClientSide()) return;
-		var list = token.getFiltered();
+		var list = token.token.getFiltered();
 		max_row.set((int) Math.ceil(list.size() / 6.0));
 		if (row.get() < 0) row.set(0);
 		if (row.get() > getMaxScroll()) row.set(getMaxScroll());
@@ -51,9 +51,9 @@ public abstract class AbstractScrollerMenu<T extends AbstractScrollerMenu<T>> ex
 			ItemStack stack = index >= list.size() ? ItemStack.EMPTY : list.get(index).stack();
 			container.setItem(i + extra, stack);
 		}
-		total_count.set(token.list.size());
+		total_count.set(token.token.list.size());
 		current_count.set(list.size());
-		experience.set(token.exp);
+		experience.set(token.token.exp);
 	}
 
 	public final int getMaxScroll() {
@@ -93,7 +93,7 @@ public abstract class AbstractScrollerMenu<T extends AbstractScrollerMenu<T>> ex
 
 	@Override
 	public final boolean stillValid(Player player) {
-		return player.getInventory().getItem(token.invSlot) == token.stack;
+		return player.getInventory().getItem(token.token.invSlot) == token.token.stack;
 	}
 
 	@Override

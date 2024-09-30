@@ -1,7 +1,7 @@
 package dev.xkmc.l2artifacts.content.client.select;
 
 import dev.xkmc.l2artifacts.init.L2Artifacts;
-import dev.xkmc.l2artifacts.init.data.LangData;
+import dev.xkmc.l2artifacts.init.data.ArtifactLang;
 import dev.xkmc.l2core.base.menu.base.SpriteManager;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
@@ -14,14 +14,14 @@ public class SlotSelectScreen extends AbstractSelectScreen {
 	private final int set;
 
 	protected SlotSelectScreen(int set) {
-		super(LangData.TITLE_SELECT_SLOT.get(), MANAGER, "set", "slot");
+		super(ArtifactLang.TITLE_SELECT_SLOT.get(), MANAGER, "set", "slot");
 		this.set = set;
 	}
 
 	@Override
 	protected void renderLabels(GuiGraphics g, int mx, int my) {
-		g.drawString(font, LangData.TITLE_SELECT_SET.get(), 8, 6, 4210752, false);
-		g.drawString(font, LangData.TITLE_SELECT_SLOT.get(), 8, 6 + 13 + 18, 4210752, false);
+		g.drawString(font, ArtifactLang.TITLE_SELECT_SET.get(), 8, 6, 4210752, false);
+		g.drawString(font, ArtifactLang.TITLE_SELECT_SLOT.get(), 8, 6 + 13 + 18, 4210752, false);
 	}
 
 	@Override

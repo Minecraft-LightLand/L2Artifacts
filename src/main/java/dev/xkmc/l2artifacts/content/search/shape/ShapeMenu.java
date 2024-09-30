@@ -14,7 +14,6 @@ import dev.xkmc.l2artifacts.init.registrate.items.ArtifactItems;
 import dev.xkmc.l2core.base.menu.base.BaseContainerMenu;
 import dev.xkmc.l2core.base.menu.base.PredSlot;
 import dev.xkmc.l2core.base.menu.base.SpriteManager;
-import dev.xkmc.l2serial.serialization.codec.TagCodec;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Inventory;
@@ -46,7 +45,7 @@ public class ShapeMenu extends BaseContainerMenu<ShapeMenu> implements IFilterMe
 			int rank = art.rank;
 			var opt = BaseArtifact.getStats(e);
 			if (opt.isEmpty()) return false;
-			return opt.get().level == ArtifactUpgradeManager.getMaxLevel(rank);
+			return opt.get().level() == ArtifactUpgradeManager.getMaxLevel(rank);
 		});
 		addSlot(ShapeSlots.BOOST_MAIN.slot(), e -> !getMainItem().isEmpty() && e.getItem() instanceof UpgradeBoostItem boost && boost.rank == ((BaseArtifact) getMainItem().getItem()).rank && boost.type == Upgrade.Type.BOOST_MAIN_STAT, s -> s.setInputLockPred(this::mainSlotsLocked));
 		addSlot(ShapeSlots.ARTIFACT_SUB.slot(), this::isAllowedAsSubArtifact, (i, e) -> e.setInputLockPred(() -> subArtifactSlotLocked(i)));
@@ -55,11 +54,11 @@ public class ShapeMenu extends BaseContainerMenu<ShapeMenu> implements IFilterMe
 			if (sub.isEmpty()) return false;
 			BaseArtifact item = (BaseArtifact) sub.getItem();
 			if (e.getItem() != ArtifactItems.ITEM_STAT[item.rank - 1].get()) return false;
-			var statOpt = StatContainerItem.getType(e);
+			var statOpt = StatContainerItem.getType(access, e);
 			var subOpt = BaseArtifact.getStats(sub);
 			if (statOpt.isEmpty()) return false;
 			if (subOpt.isEmpty()) return false;
-			return subOpt.get().main_stat.type.equals(statOpt.get());
+			return subOpt.get().main_stat().type.equals(statOpt.get());
 		}, (i, s) -> s.setInputLockPred(() -> subMatSlotLocked(i)));
 		addSlot(ShapeSlots.BOOST_SUB.slot(), (i, e) -> {
 			ItemStack sub = ShapeSlots.ARTIFACT_SUB.get(this, i).getItem();
@@ -114,12 +113,12 @@ public class ShapeMenu extends BaseContainerMenu<ShapeMenu> implements IFilterMe
 		if (index >= rank - 1) return false;
 		var mainOpt = BaseArtifact.getStats(main);
 		if (mainOpt.isEmpty()) return false;
-		if (mainOpt.get().level < ArtifactUpgradeManager.getMaxLevel(rank)) return false;
-		var mainType = mainOpt.get().main_stat.type;
+		if (mainOpt.get().level() < ArtifactUpgradeManager.getMaxLevel(rank)) return false;
+		var mainType = mainOpt.get().main_stat().type;
 		var eOpt = BaseArtifact.getStats(e);
 		if (eOpt.isEmpty()) return false;
-		if (eOpt.get().level < ArtifactUpgradeManager.getMaxLevel(rank)) return false;
-		var eType = eOpt.get().main_stat.type;
+		if (eOpt.get().level() < ArtifactUpgradeManager.getMaxLevel(rank)) return false;
+		var eType = eOpt.get().main_stat().type;
 		if (mainType.equals(eType)) return false;
 		for (int i = 0; i < rank - 1; i++) {
 			if (i == index) continue;
@@ -127,7 +126,7 @@ public class ShapeMenu extends BaseContainerMenu<ShapeMenu> implements IFilterMe
 			if (other.isEmpty()) continue;
 			var subOpt = BaseArtifact.getStats(other);
 			assert subOpt.isPresent();
-			var subType = subOpt.get().main_stat.type;
+			var subType = subOpt.get().main_stat().type;
 			if (subType.equals(eType)) return false;
 		}
 		return true;
@@ -159,18 +158,18 @@ public class ShapeMenu extends BaseContainerMenu<ShapeMenu> implements IFilterMe
 				if (pass) {
 					ItemStack result = new ItemStack(artifact, 1);
 					var r = player.getRandom();
-					ArtifactStats stat = new ArtifactStats(artifact.slot.get(), rank);
+					var stat = ArtifactStats.of(artifact.slot.get(), rank);
 					var mainOpt = BaseArtifact.getStats(getMainItem());
 					assert mainOpt.isPresent();
-					var mainStat = mainOpt.get().main_stat.type;
+					var mainStat = mainOpt.get().main_stat().getType();
 					stat.add(mainStat, mainStat.value().getInitialValue(r, true));
 					for (int i = 0; i < rank - 1; i++) {
 						var subOpt = BaseArtifact.getStats(ShapeSlots.ARTIFACT_SUB.get(this, i).getItem());
 						assert subOpt.isPresent();
-						var subStat = subOpt.get().main_stat.type;
+						var subStat = subOpt.get().main_stat().getType();
 						stat.add(subStat, subStat.value().getInitialValue(r, true));
 					}
-					TagCodec.toTag(ItemCompoundTag.of(result).getSubTag(BaseArtifact.KEY).getOrCreate(), stat);
+					ArtifactItems.STATS.set(result, stat.immutable());
 					ShapeSlots.OUTPUT.get(this).set(result);
 				} else {
 					ShapeSlots.OUTPUT.get(this).set(ItemStack.EMPTY);

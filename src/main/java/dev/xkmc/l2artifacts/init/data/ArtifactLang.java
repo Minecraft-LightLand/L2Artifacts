@@ -10,7 +10,7 @@ import net.minecraft.network.chat.MutableComponent;
 import javax.annotation.Nullable;
 import java.util.Locale;
 
-public enum LangData {
+public enum ArtifactLang {
 	RAW_ARTIFACT("tooltip.raw_artifact", "Right Click to Reveal Stats", 0, null),
 	ARTIFACT_LEVEL("tooltip.artifact_level", "Level: %s", 1, null),
 	ARTIFACT_EXP("tooltip.artifact_exp", "Exp: %s/%s", 2, ChatFormatting.DARK_GRAY),
@@ -74,7 +74,7 @@ public enum LangData {
 	private final ChatFormatting format;
 
 
-	LangData(String key, String def, int arg, @Nullable ChatFormatting format) {
+	ArtifactLang(String key, String def, int arg, @Nullable ChatFormatting format) {
 		this.key = L2Artifacts.MODID + "." + key;
 		this.def = def;
 		this.arg = arg;
@@ -100,7 +100,7 @@ public enum LangData {
 	}
 
 	public static void genLang(RegistrateLangProvider pvd) {
-		for (LangData lang : LangData.values()) {
+		for (ArtifactLang lang : ArtifactLang.values()) {
 			pvd.add(lang.key, lang.def);
 		}
 		for (ArtifactSlotCuriosType type : ArtifactSlotCuriosType.values()) {

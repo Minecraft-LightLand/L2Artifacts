@@ -3,7 +3,7 @@ package dev.xkmc.l2artifacts.content.search.recycle;
 import dev.xkmc.l2artifacts.content.search.common.AbstractScrollerScreen;
 import dev.xkmc.l2artifacts.content.search.filter.FilterScreen;
 import dev.xkmc.l2artifacts.content.search.tabs.FilterTabManager;
-import dev.xkmc.l2artifacts.init.data.LangData;
+import dev.xkmc.l2artifacts.init.data.ArtifactLang;
 import dev.xkmc.l2core.base.menu.base.MenuLayoutConfig;
 import dev.xkmc.l2core.base.menu.stacked.StackedRenderHandle;
 import net.minecraft.ChatFormatting;
@@ -17,7 +17,7 @@ public class RecycleMenuScreen extends AbstractScrollerScreen<RecycleMenu> {
 	private boolean pressed, canDrag, dragging, enable, hover_a, hover_b;
 
 	public RecycleMenuScreen(RecycleMenu cont, Inventory plInv, Component title) {
-		super(cont, plInv, LangData.TAB_RECYCLE.get().withStyle(ChatFormatting.GRAY), FilterTabManager.RECYCLE);
+		super(cont, plInv, ArtifactLang.TAB_RECYCLE.get().withStyle(ChatFormatting.GRAY), FilterTabManager.RECYCLE);
 	}
 
 	@Override
@@ -136,11 +136,11 @@ public class RecycleMenuScreen extends AbstractScrollerScreen<RecycleMenu> {
 		pPoseStack.pose().pushPose();
 		pPoseStack.pose().translate(0, topPos, 0);
 		var handle = new StackedRenderHandle(this, pPoseStack, 8, 0xFFFFFFFF, getRenderer());
-		handle.drawText(LangData.TAB_INFO_TOTAL.get(menu.total_count.get()), false);
-		handle.drawText(LangData.TAB_INFO_MATCHED.get(menu.current_count.get()), false);
-		handle.drawText(LangData.TAB_INFO_EXP.get(formatNumber(menu.experience.get())), false);
-		handle.drawText(LangData.TAB_INFO_SELECTED.get(menu.select_count.get()), false);
-		handle.drawText(LangData.TAB_INFO_EXP_GAIN.get(formatNumber(menu.to_gain.get())), false);
+		handle.drawText(ArtifactLang.TAB_INFO_TOTAL.get(menu.total_count.get()), false);
+		handle.drawText(ArtifactLang.TAB_INFO_MATCHED.get(menu.current_count.get()), false);
+		handle.drawText(ArtifactLang.TAB_INFO_EXP.get(formatNumber(menu.experience.get())), false);
+		handle.drawText(ArtifactLang.TAB_INFO_SELECTED.get(menu.select_count.get()), false);
+		handle.drawText(ArtifactLang.TAB_INFO_EXP_GAIN.get(formatNumber(menu.to_gain.get())), false);
 		handle.flushText();
 		pPoseStack.pose().popPose();
 		if (!dragging) {

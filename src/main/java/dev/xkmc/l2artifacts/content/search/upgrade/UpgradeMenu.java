@@ -3,6 +3,7 @@ package dev.xkmc.l2artifacts.content.search.upgrade;
 import dev.xkmc.l2artifacts.content.core.BaseArtifact;
 import dev.xkmc.l2artifacts.content.misc.ArtifactChestItem;
 import dev.xkmc.l2artifacts.content.search.common.IFilterMenu;
+import dev.xkmc.l2artifacts.content.search.tab.ArtifactTabData;
 import dev.xkmc.l2artifacts.content.search.token.ArtifactChestToken;
 import dev.xkmc.l2artifacts.content.upgrades.ArtifactUpgradeManager;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
@@ -26,13 +27,13 @@ public class UpgradeMenu extends BaseContainerMenu<UpgradeMenu> implements IFilt
 		return new UpgradeMenu(wid, plInv, ArtifactChestToken.of(plInv.player, i));
 	}
 
-	public final ArtifactChestToken token;
+	public final ArtifactTabData token;
 	public final Player player;
 
 	public final IntDataSlot experience;
 	public final IntDataSlot exp_cost;
 
-	public UpgradeMenu(int wid, Inventory plInv, ArtifactChestToken token) {
+	public UpgradeMenu(int wid, Inventory plInv, ArtifactTabData token) {
 		super(ArtifactMenuRegistry.MT_UPGRADE.get(), wid, plInv, MANAGER, e -> new BaseContainer<>(1, e), true);
 		this.token = token;
 		this.player = plInv.player;

@@ -1,7 +1,7 @@
 package dev.xkmc.l2artifacts.content.search.token;
 
 import dev.xkmc.l2artifacts.init.L2Artifacts;
-import dev.xkmc.l2artifacts.init.data.LangData;
+import dev.xkmc.l2artifacts.init.data.ArtifactLang;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 
@@ -19,6 +19,6 @@ public record RankToken(int rank) implements IArtifactFeature.Sprite {
 
 	@Override
 	public MutableComponent getDesc() {
-		return LangData.getTranslate("tooltip.rank." + rank);
+		return ArtifactLang.getTranslate("tooltip.rank." + rank);
 	}
 }

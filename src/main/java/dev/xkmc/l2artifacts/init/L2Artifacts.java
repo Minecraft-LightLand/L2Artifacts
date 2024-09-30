@@ -60,7 +60,7 @@ public class L2Artifacts {
 
 	@SubscribeEvent(priority = EventPriority.HIGH)
 	public static void gatherData(GatherDataEvent event) {
-		REGISTRATE.addDataGenerator(ProviderType.LANG, LangData::genLang);
+		REGISTRATE.addDataGenerator(ProviderType.LANG, ArtifactLang::genLang);
 		REGISTRATE.addDataGenerator(ProviderType.RECIPE, RecipeGen::genRecipe);
 		REGISTRATE.addDataGenerator(ProviderType.LOOT, ArtifactLootGen::onLootGen);
 		REGISTRATE.addDataGenerator(L2TagGen.EFF_TAGS, ArtifactTagGen::onEffectTagGen);

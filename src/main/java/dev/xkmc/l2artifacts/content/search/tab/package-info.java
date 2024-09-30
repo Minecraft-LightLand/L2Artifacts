@@ -1,7 +1,7 @@
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
 
-package dev.xkmc.l2artifacts.content.search.tabs;
+package dev.xkmc.l2artifacts.content.search.tab;
 
 import net.minecraft.MethodsReturnNonnullByDefault;
 

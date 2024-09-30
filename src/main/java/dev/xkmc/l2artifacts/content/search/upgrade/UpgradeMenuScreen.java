@@ -7,9 +7,11 @@ import dev.xkmc.l2artifacts.content.search.filter.FilterScreen;
 import dev.xkmc.l2artifacts.content.search.recycle.RecycleMenuScreen;
 import dev.xkmc.l2artifacts.content.search.tabs.FilterTabManager;
 import dev.xkmc.l2artifacts.content.search.tabs.IFilterScreen;
-import dev.xkmc.l2artifacts.init.data.LangData;
+import dev.xkmc.l2artifacts.init.data.ArtifactLang;
 import dev.xkmc.l2core.base.menu.base.BaseContainerScreen;
 import dev.xkmc.l2core.base.menu.stacked.StackedRenderHandle;
+import dev.xkmc.l2tabs.tabs.core.ITabScreen;
+import dev.xkmc.l2tabs.tabs.core.TabManager;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
@@ -23,7 +25,7 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UpgradeMenuScreen extends BaseContainerScreen<UpgradeMenu> implements IFilterScreen {
+public class UpgradeMenuScreen extends BaseContainerScreen<UpgradeMenu> implements ITabScreen {
 
 	private static int lerpColor(float perc, int fg, int bg) {
 		int c0 = Math.round(Mth.lerp(perc, fg & 0xFF, bg & 0xFF));
@@ -49,13 +51,13 @@ public class UpgradeMenuScreen extends BaseContainerScreen<UpgradeMenu> implemen
 	private boolean keep = false;
 
 	public UpgradeMenuScreen(UpgradeMenu cont, Inventory plInv, Component title) {
-		super(cont, plInv, LangData.TAB_UPGRADE.get().withStyle(ChatFormatting.GRAY));
+		super(cont, plInv, ArtifactLang.TAB_UPGRADE.get().withStyle(ChatFormatting.GRAY));
 	}
 
 	@Override
 	protected final void init() {
 		super.init();
-		new FilterTabManager(this, menu.token).init(this::addRenderableWidget, FilterTabManager.UPGRADE);
+		new TabManager(this, menu.token).init(this::addRenderableWidget, FilterTabManager.UPGRADE);
 	}
 
 	@Override
@@ -107,7 +109,7 @@ public class UpgradeMenuScreen extends BaseContainerScreen<UpgradeMenu> implemen
 		int cost = menu.exp_cost.get();
 		if (cost > 0) {
 			String str = RecycleMenuScreen.formatNumber(cost) + "/" + RecycleMenuScreen.formatNumber(exp);
-			handle.drawText(LangData.TAB_INFO_EXP_COST.get(Component.literal(str)
+			handle.drawText(ArtifactLang.TAB_INFO_EXP_COST.get(Component.literal(str)
 							.withStyle(cost <= exp ? ChatFormatting.DARK_GREEN : ChatFormatting.RED))
 					.withStyle(ChatFormatting.GRAY), false);
 			ItemStack stack = menu.container.getItem(0);
@@ -131,7 +133,7 @@ public class UpgradeMenuScreen extends BaseContainerScreen<UpgradeMenu> implemen
 				current = stat;
 			}
 		} else {
-			handle.drawText(LangData.TAB_INFO_EXP.get(exp).withStyle(ChatFormatting.GRAY), false);
+			handle.drawText(ArtifactLang.TAB_INFO_EXP.get(exp).withStyle(ChatFormatting.GRAY), false);
 		}
 		handle.flushText();
 		g.pose().popPose();

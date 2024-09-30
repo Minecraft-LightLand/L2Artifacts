@@ -1,12 +1,15 @@
 package dev.xkmc.l2artifacts.init.registrate.items;
 
 import com.tterrag.registrate.util.entry.ItemEntry;
+import dev.xkmc.l2artifacts.content.core.ArtifactStats;
 import dev.xkmc.l2artifacts.content.misc.*;
 import dev.xkmc.l2artifacts.content.swap.ArtifactSwapItem;
 import dev.xkmc.l2artifacts.content.upgrades.StatContainerItem;
 import dev.xkmc.l2artifacts.content.upgrades.Upgrade;
 import dev.xkmc.l2artifacts.content.upgrades.UpgradeBoostItem;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
+import dev.xkmc.l2core.init.reg.simple.DCReg;
+import dev.xkmc.l2core.init.reg.simple.DCVal;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
@@ -32,6 +35,11 @@ public class ArtifactItems {
 	public static final ItemEntry<ExpItem>[] ITEM_EXP;
 	public static final ItemEntry<StatContainerItem>[] ITEM_STAT;
 	public static final ItemEntry<UpgradeBoostItem>[] ITEM_BOOST_MAIN, ITEM_BOOST_SUB;
+
+	private static final DCReg DC = DCReg.of(L2Artifacts.REG);
+	public static final DCVal<ArtifactStats> STATS = DC.reg("stats", ArtifactStats.class, false);
+	public static final DCVal<Upgrade> UPGRADES = DC.reg("upgrades", Upgrade.class, false);
+	public static final DCVal<String> STAT = DC.str("stat");
 
 	static {
 		SELECT = REGISTRATE.item("select", SelectArtifactItem::new)

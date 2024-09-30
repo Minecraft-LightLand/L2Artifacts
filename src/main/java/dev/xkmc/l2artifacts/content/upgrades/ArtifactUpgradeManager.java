@@ -1,9 +1,7 @@
 package dev.xkmc.l2artifacts.content.upgrades;
 
 import dev.xkmc.l2artifacts.content.core.ArtifactStats;
-import dev.xkmc.l2artifacts.content.core.StatEntry;
 import dev.xkmc.l2artifacts.init.data.ArtifactConfig;
-import net.minecraft.util.RandomSource;
 
 import javax.annotation.Nullable;
 
@@ -24,9 +22,9 @@ public class ArtifactUpgradeManager {
 		if (stat == null) {
 			return (int) Math.round(base_exp);
 		}
-		double used_exp = stat.exp;
-		for (int i = 0; i < stat.level; i++) {
-			used_exp += getExpForLevel(stat.rank, i);
+		double used_exp = stat.exp();
+		for (int i = 0; i < stat.level(); i++) {
+			used_exp += getExpForLevel(stat.rank(), i);
 		}
 		return (int) Math.round(base_exp + used_exp * retention);
 	}
@@ -35,24 +33,4 @@ public class ArtifactUpgradeManager {
 		return rank * ArtifactConfig.COMMON.maxLevelPerRank.get();
 	}
 
-	public static void onUpgrade(ArtifactStats stats, int lv, Upgrade upgrade, RandomSource random) {
-		int gate = ArtifactConfig.COMMON.levelPerSubStat.get();
-		stats.add(stats.main_stat.type, stats.main_stat.getType().value().getMainValue(random, upgrade.removeMain()));
-		if (lv % gate == 0 && !stats.sub_stats.isEmpty()) {
-			StatEntry substat = null;
-			if (!upgrade.stats.isEmpty()) {
-				for (StatEntry entry : stats.sub_stats) {
-					if (entry.type.equals(upgrade.stats.getFirst())) {
-						upgrade.stats.removeFirst();
-						substat = entry;
-						break;
-					}
-				}
-			}
-			if (substat == null) {
-				substat = stats.sub_stats.get(random.nextInt(stats.sub_stats.size()));
-			}
-			stats.add(substat.type, substat.getType().value().getSubValue(random, upgrade.removeSub()));
-		}
-	}
 }

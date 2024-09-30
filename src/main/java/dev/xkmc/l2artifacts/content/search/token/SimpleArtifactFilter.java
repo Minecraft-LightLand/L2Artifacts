@@ -1,7 +1,7 @@
 package dev.xkmc.l2artifacts.content.search.token;
 
 import dev.xkmc.l2artifacts.content.core.BaseArtifact;
-import dev.xkmc.l2artifacts.init.data.LangData;
+import dev.xkmc.l2artifacts.init.data.ArtifactLang;
 import dev.xkmc.l2library.util.GenericItemStack;
 import dev.xkmc.l2serial.serialization.marker.SerialClass;
 
@@ -22,7 +22,7 @@ public class SimpleArtifactFilter<T extends IArtifactFeature> extends ArtifactFi
 
 	private final IArtifactExtractor<T> func;
 
-	public SimpleArtifactFilter(IArtifactFilter parent, LangData desc, Iterable<T> reg, IArtifactExtractor<T> func) {
+	public SimpleArtifactFilter(IArtifactFilter parent, ArtifactLang desc, Iterable<T> reg, IArtifactExtractor<T> func) {
 		super(parent, desc, wrap(reg), (item, t) -> func.get(item.item()) == t);
 		this.func = func;
 	}

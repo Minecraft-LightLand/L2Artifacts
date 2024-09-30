@@ -1,7 +1,7 @@
 package dev.xkmc.l2artifacts.content.search.token;
 
 import dev.xkmc.l2artifacts.content.core.BaseArtifact;
-import dev.xkmc.l2artifacts.init.data.LangData;
+import dev.xkmc.l2artifacts.init.data.ArtifactLang;
 import dev.xkmc.l2library.util.GenericItemStack;
 import dev.xkmc.l2serial.serialization.marker.OnInject;
 import dev.xkmc.l2serial.serialization.marker.SerialClass;
@@ -22,7 +22,7 @@ public abstract class ArtifactFilter<T extends IArtifactFeature> implements IArt
 
 	private final IArtifactFilter parent;
 	private final IArtifactPredicate<T> func;
-	private final LangData desc;
+	private final ArtifactLang desc;
 
 	@SerialField
 	private boolean[] selected;
@@ -36,7 +36,7 @@ public abstract class ArtifactFilter<T extends IArtifactFeature> implements IArt
 	@Nullable
 	private boolean[] availability;
 
-	public ArtifactFilter(IArtifactFilter parent, LangData desc, Collection<T> reg, IArtifactPredicate<T> func) {
+	public ArtifactFilter(IArtifactFilter parent, ArtifactLang desc, Collection<T> reg, IArtifactPredicate<T> func) {
 		this.parent = parent;
 		this.sort_priority = parent instanceof ArtifactFilter<?> a ? a.sort_priority + 1 : 1;
 		allEntries = new ArrayList<>(reg);

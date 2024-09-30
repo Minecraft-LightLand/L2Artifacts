@@ -1,10 +1,10 @@
 package dev.xkmc.l2artifacts.content.search.shape;
 
 import dev.xkmc.l2artifacts.content.search.tabs.FilterTabManager;
-import dev.xkmc.l2artifacts.content.search.tabs.IFilterScreen;
-import dev.xkmc.l2artifacts.init.data.LangData;
+import dev.xkmc.l2artifacts.init.data.ArtifactLang;
 import dev.xkmc.l2core.base.menu.base.BaseContainerScreen;
 import dev.xkmc.l2core.base.menu.base.MenuLayoutConfig;
+import dev.xkmc.l2tabs.tabs.core.ITabScreen;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
@@ -12,10 +12,10 @@ import net.minecraft.world.entity.player.Inventory;
 
 import javax.annotation.Nullable;
 
-public class ShapeMenuScreen extends BaseContainerScreen<ShapeMenu> implements IFilterScreen {
+public class ShapeMenuScreen extends BaseContainerScreen<ShapeMenu> implements ITabScreen {
 
 	public ShapeMenuScreen(ShapeMenu cont, Inventory plInv, Component title) {
-		super(cont, plInv, LangData.TAB_SHAPE.get());
+		super(cont, plInv, ArtifactLang.TAB_SHAPE.get());
 	}
 
 	@Override

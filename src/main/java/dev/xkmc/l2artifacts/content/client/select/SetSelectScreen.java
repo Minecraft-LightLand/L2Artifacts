@@ -1,7 +1,7 @@
 package dev.xkmc.l2artifacts.content.client.select;
 
 import dev.xkmc.l2artifacts.init.L2Artifacts;
-import dev.xkmc.l2artifacts.init.data.LangData;
+import dev.xkmc.l2artifacts.init.data.ArtifactLang;
 import dev.xkmc.l2core.base.menu.base.SpriteManager;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
@@ -12,12 +12,12 @@ public class SetSelectScreen extends AbstractSelectScreen {
 	private static final SpriteManager MANAGER = new SpriteManager(L2Artifacts.MODID, "set_select");
 
 	public SetSelectScreen() {
-		super(LangData.TITLE_SELECT_SET.get(), MANAGER, "grid");
+		super(ArtifactLang.TITLE_SELECT_SET.get(), MANAGER, "grid");
 	}
 
 	@Override
 	protected void renderLabels(GuiGraphics g, int mx, int my) {
-		g.drawString(font, LangData.TITLE_SELECT_SET.get(), 8, 6, 4210752, false);
+		g.drawString(font, ArtifactLang.TITLE_SELECT_SET.get(), 8, 6, 4210752, false);
 	}
 
 	@Override

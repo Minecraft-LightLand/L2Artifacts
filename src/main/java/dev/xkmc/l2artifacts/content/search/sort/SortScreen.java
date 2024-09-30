@@ -1,10 +1,10 @@
 package dev.xkmc.l2artifacts.content.search.sort;
 
 import dev.xkmc.l2artifacts.content.search.common.StackedScreen;
-import dev.xkmc.l2artifacts.content.search.tabs.FilterTabManager;
-import dev.xkmc.l2artifacts.content.search.token.ArtifactChestToken;
+import dev.xkmc.l2artifacts.content.search.tab.ArtifactTabData;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
-import dev.xkmc.l2artifacts.init.data.LangData;
+import dev.xkmc.l2artifacts.init.data.ArtifactLang;
+import dev.xkmc.l2artifacts.init.registrate.ArtifactTabRegistry;
 import dev.xkmc.l2core.base.menu.base.SpriteManager;
 import dev.xkmc.l2core.base.menu.stacked.CellEntry;
 import dev.xkmc.l2core.base.menu.stacked.StackedRenderHandle;
@@ -20,8 +20,8 @@ public class SortScreen extends StackedScreen {
 	@Nullable
 	private ButtonHover btnHover;
 
-	protected SortScreen(ArtifactChestToken token) {
-		super(LangData.TAB_SORT.get(), MANAGER, FilterTabManager.SORT, token);
+	protected SortScreen(ArtifactTabData token) {
+		super(ArtifactLang.TAB_SORT.get(), MANAGER, ArtifactTabRegistry.SORT.get(), token);
 	}
 
 	private ButtonHover prevBtnHover;

@@ -2,7 +2,7 @@ package dev.xkmc.l2artifacts.content.search.token;
 
 import dev.xkmc.l2artifacts.content.config.StatTypeHolder;
 import dev.xkmc.l2artifacts.content.core.BaseArtifact;
-import dev.xkmc.l2artifacts.init.data.LangData;
+import dev.xkmc.l2artifacts.init.data.ArtifactLang;
 import dev.xkmc.l2library.util.GenericItemStack;
 import dev.xkmc.l2serial.serialization.marker.SerialClass;
 import it.unimi.dsi.fastutil.Pair;
@@ -15,7 +15,7 @@ import java.util.List;
 @SerialClass
 public class AttributeFilter extends ArtifactFilter<StatTypeHolder> {
 
-	public AttributeFilter(IArtifactFilter parent, LangData desc, Collection<StatTypeHolder> reg) {
+	public AttributeFilter(IArtifactFilter parent, ArtifactLang desc, Collection<StatTypeHolder> reg) {
 		super(parent, desc, reg, (item, type) -> BaseArtifact.getStats(item.stack()).map(x -> x.map.containsKey(type.getID())).orElse(false));
 	}
 

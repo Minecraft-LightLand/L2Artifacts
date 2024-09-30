@@ -2,15 +2,15 @@ package dev.xkmc.l2artifacts.content.search.common;
 
 import dev.xkmc.l2artifacts.content.client.tooltip.ItemTooltip;
 import dev.xkmc.l2artifacts.content.misc.ArtifactChestItem;
-import dev.xkmc.l2artifacts.content.search.tabs.FilterTabManager;
-import dev.xkmc.l2artifacts.content.search.tabs.FilterTabToken;
-import dev.xkmc.l2artifacts.content.search.tabs.IFilterScreen;
-import dev.xkmc.l2artifacts.content.search.token.ArtifactChestToken;
+import dev.xkmc.l2artifacts.content.search.tab.ArtifactTabData;
+import dev.xkmc.l2artifacts.content.search.tab.ArtifactTabScreen;
 import dev.xkmc.l2artifacts.content.search.token.IArtifactFeature;
 import dev.xkmc.l2core.base.menu.base.SpriteManager;
 import dev.xkmc.l2core.base.menu.stacked.StackedRenderHandle;
 import dev.xkmc.l2core.util.Proxy;
 import dev.xkmc.l2serial.serialization.codec.TagCodec;
+import dev.xkmc.l2tabs.tabs.core.TabManager;
+import dev.xkmc.l2tabs.tabs.core.TabToken;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.renderer.RenderType;
@@ -24,16 +24,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public abstract class StackedScreen extends Screen implements IFilterScreen {
+public abstract class StackedScreen extends Screen implements ArtifactTabScreen {
 
 	public static void renderHighlight(GuiGraphics g, int x, int y, int w, int h, int c) {
 		g.fillGradient(RenderType.guiOverlay(), x, y, x + w, y + h, c, c, 0);
 	}
 
-	public final ArtifactChestToken token;
+	public final ArtifactTabData token;
 
 	private final SpriteManager manager;
-	private final FilterTabToken<?> tab;
+	private final TabToken<ArtifactTabData, ?> tab;
 
 	private int imageWidth, imageHeight, leftPos, topPos;
 
@@ -42,7 +42,7 @@ public abstract class StackedScreen extends Screen implements IFilterScreen {
 	@Nullable
 	private FilterHover hover;
 
-	protected StackedScreen(Component title, SpriteManager manager, FilterTabToken<?> tab, ArtifactChestToken token) {
+	protected StackedScreen(Component title, SpriteManager manager, TabToken<ArtifactTabData, ?> tab, ArtifactTabData token) {
 		super(title);
 		this.token = token;
 		this.tab = tab;
@@ -57,7 +57,7 @@ public abstract class StackedScreen extends Screen implements IFilterScreen {
 		this.imageHeight = manager.get(access).getHeight();
 		this.leftPos = (this.width - imageWidth) / 2;
 		this.topPos = (this.height - imageHeight) / 2;
-		new FilterTabManager(this, token).init(this::addRenderableWidget, tab);
+		new TabManager<>(this, token).init(this::addRenderableWidget, tab);
 	}
 
 	protected void renderInit() {

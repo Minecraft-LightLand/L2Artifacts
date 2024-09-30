@@ -2,7 +2,7 @@ package dev.xkmc.l2artifacts.content.misc;
 
 import dev.xkmc.l2artifacts.content.core.RankedItem;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
-import dev.xkmc.l2artifacts.init.data.LangData;
+import dev.xkmc.l2artifacts.init.data.ArtifactLang;
 import dev.xkmc.l2artifacts.init.registrate.entries.SetEntry;
 import dev.xkmc.l2artifacts.init.registrate.items.ArtifactItems;
 import net.minecraft.ChatFormatting;
@@ -94,9 +94,9 @@ public class RandomArtifactSetItem extends RankedItem {
 	public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> list, TooltipFlag flag) {
 		var sets = getList(stack, rank);
 		if (sets == null) {
-			list.add(LangData.LOOT_POOL_ALL.get());
+			list.add(ArtifactLang.LOOT_POOL_ALL.get());
 		} else {
-			list.add(LangData.LOOT_POOL.get());
+			list.add(ArtifactLang.LOOT_POOL.get());
 			for (var e : sets) {
 				list.add(e.get().getDesc().withStyle(ChatFormatting.GRAY));
 			}

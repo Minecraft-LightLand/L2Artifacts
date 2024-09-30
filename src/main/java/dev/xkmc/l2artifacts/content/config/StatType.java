@@ -37,10 +37,6 @@ public record StatType(
 		return ArtifactTypeRegistry.STAT_TYPE.getAll(access).map(StatTypeHolder::new).toList();
 	}
 
-	public void getModifier(ImmutableMultimap.Builder<Attribute, AttributeModifier> builder, StatEntry entry, ResourceLocation uuid) {
-		builder.put(attr, new AttributeModifier(uuid, entry.getValue(), op));
-	}
-
 	public double getInitialValue(RandomSource random, boolean max) {
 		return max ? base_high : Mth.nextDouble(random, base_low, base_high);
 	}
@@ -68,5 +64,5 @@ public record StatType(
 	public MutableComponent getDesc() {
 		return Component.translatable(attr.getDescriptionId());
 	}
-	
+
 }

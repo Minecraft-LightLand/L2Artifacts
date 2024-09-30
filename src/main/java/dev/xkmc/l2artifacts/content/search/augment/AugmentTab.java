@@ -1,21 +1,21 @@
 package dev.xkmc.l2artifacts.content.search.augment;
 
-import dev.xkmc.l2artifacts.content.search.tabs.FilterTabBase;
-import dev.xkmc.l2artifacts.content.search.tabs.FilterTabManager;
-import dev.xkmc.l2artifacts.content.search.tabs.FilterTabToken;
+import dev.xkmc.l2artifacts.content.search.tab.ArtifactTabData;
 import dev.xkmc.l2artifacts.network.NetworkManager;
 import dev.xkmc.l2artifacts.network.SetFilterToServer;
+import dev.xkmc.l2tabs.tabs.core.TabBase;
+import dev.xkmc.l2tabs.tabs.core.TabManager;
+import dev.xkmc.l2tabs.tabs.core.TabToken;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.item.ItemStack;
 
-public class AugmentTab extends FilterTabBase<AugmentTab> {
+public class AugmentTab extends TabBase<ArtifactTabData, AugmentTab> {
 
-	public AugmentTab(int index, FilterTabToken<AugmentTab> token, FilterTabManager manager, ItemStack stack, Component title) {
-		super(index, token, manager, stack, title);
+	public AugmentTab(int index, TabToken<ArtifactTabData, AugmentTab> token, TabManager<ArtifactTabData> manager, Component title) {
+		super(index, token, manager, title);
 	}
 
 	@Override
 	public void onTabClicked() {
-		NetworkManager.HANDLER.toServer(new SetFilterToServer(manager.token, SetFilterToServer.Type.AUGMENT));
+		NetworkManager.HANDLER.toServer(SetFilterToServer.of(manager.token, SetFilterToServer.Type.AUGMENT));
 	}
 }

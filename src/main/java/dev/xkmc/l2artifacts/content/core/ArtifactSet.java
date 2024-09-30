@@ -8,7 +8,7 @@ import dev.xkmc.l2artifacts.content.search.token.IArtifactFeature;
 import dev.xkmc.l2artifacts.events.ArtifactEffectEvents;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
 import dev.xkmc.l2artifacts.init.data.ArtifactConfig;
-import dev.xkmc.l2artifacts.init.data.LangData;
+import dev.xkmc.l2artifacts.init.data.ArtifactLang;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactTypeRegistry;
 import dev.xkmc.l2core.init.reg.registrate.NamedEntry;
 import dev.xkmc.l2core.util.Proxy;
@@ -54,7 +54,7 @@ public class ArtifactSet extends NamedEntry<ArtifactSet> implements IArtifactFea
 
 	private MutableComponent getCountDesc(int count) {
 		int max = L2Artifacts.REGISTRATE.SET_MAP.get(getRegistryName()).items.length;
-		return LangData.getTranslate("set." + count, max);
+		return ArtifactLang.getTranslate("set." + count, max);
 	}
 
 	public ArtifactSet() {
@@ -167,7 +167,7 @@ public class ArtifactSet extends NamedEntry<ArtifactSet> implements IArtifactFea
 			Optional<SetContext> opt = getSetCount(Proxy.getPlayer());
 			if (opt.isPresent()) {
 				SetContext ctx = opt.get();
-				ans.add(LangData.SET.get(Component.translatable(getDescriptionId()).withStyle(ChatFormatting.YELLOW)));
+				ans.add(ArtifactLang.SET.get(Component.translatable(getDescriptionId()).withStyle(ChatFormatting.YELLOW)));
 				if (show) {
 					for (ArtifactSetConfig.Entry ent : list) {
 						ChatFormatting color_count = ctx.count() < ent.count() ?
@@ -191,7 +191,7 @@ public class ArtifactSet extends NamedEntry<ArtifactSet> implements IArtifactFea
 				playerOnly |= e.effect() instanceof PlayerOnlySetEffect;
 			}
 			if (playerOnly) {
-				ans.add(LangData.PLAYER_ONLY.get().withStyle(ChatFormatting.DARK_GRAY));
+				ans.add(ArtifactLang.PLAYER_ONLY.get().withStyle(ChatFormatting.DARK_GRAY));
 			}
 		}
 		return ans;
@@ -200,7 +200,7 @@ public class ArtifactSet extends NamedEntry<ArtifactSet> implements IArtifactFea
 	public List<Pair<List<Component>, List<Component>>> addComponents(SetContext ctx) {
 		List<Pair<List<Component>, List<Component>>> ans = new ArrayList<>();//创建一个空list
 		//获取一个SetEffect，List.of()把SetEffect对象转为只有一个元素的List，Pair.of()把两个List封装成一个Pair，Pair添加到ans
-		ans.add(Pair.of(List.of(LangData.ALL_SET_EFFECTS.get(getDesc(), ctx.count())), List.of()));
+		ans.add(Pair.of(List.of(ArtifactLang.ALL_SET_EFFECTS.get(getDesc(), ctx.count())), List.of()));
 		var list = getConfig(Proxy.getRegistryAccess());
 		for (ArtifactSetConfig.Entry ent : list) {
 			//判断符合数量条件的效果与描述加入ans

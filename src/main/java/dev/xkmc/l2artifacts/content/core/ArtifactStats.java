@@ -2,12 +2,11 @@ package dev.xkmc.l2artifacts.content.core;
 
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
+import dev.xkmc.l2artifacts.content.config.SlotStatConfig;
 import dev.xkmc.l2artifacts.content.config.StatType;
 import dev.xkmc.l2artifacts.content.upgrades.ArtifactUpgradeManager;
 import dev.xkmc.l2artifacts.content.upgrades.Upgrade;
-import dev.xkmc.l2serial.serialization.marker.OnInject;
-import dev.xkmc.l2serial.serialization.marker.SerialClass;
-import dev.xkmc.l2serial.serialization.marker.SerialField;
+import dev.xkmc.l2artifacts.init.data.ArtifactConfig;
 import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.RandomSource;
@@ -15,94 +14,141 @@ import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
-@SerialClass
-public class ArtifactStats {
+public record ArtifactStats(
+		ArtifactSlot slot, int rank, int level, int exp, int old_level,
+		StatEntry main_stat, ArrayList<StatEntry> sub_stats
+) {
 
-	public static ArtifactStats generate(ArtifactSlot slot, int rank, Upgrade upgrade, RandomSource random) {
-		ArtifactStats ans = new ArtifactStats(slot, rank);
-		slot.generate(ans, upgrade, random);
-		return ans;
+	public static ArtifactStats.Mutable of(ArtifactSlot slot, int rank) {
+		return new Mutable(new ArtifactStats(slot, rank, 0, 0, 0, null, new ArrayList<>()));
 	}
 
-	@SerialField
-	public ArtifactSlot slot;
-
-	@SerialField
-	public int rank, level, exp, old_level;
-
-	@SerialField
-	public StatEntry main_stat;
-
-	@SerialField
-	public ArrayList<StatEntry> sub_stats = new ArrayList<>();
-
-	public final Map<Holder<StatType>, StatEntry> map = new HashMap<>();
-
-	@Deprecated
-	public ArtifactStats() {
-
+	public static ArtifactStats generate(ArtifactSlot slot, int rank, Upgrade.Mutable upgrade, RandomSource random) {
+		var ans = ArtifactStats.of(slot, rank);
+		ans.generate(upgrade, random);
+		return ans.immutable();
 	}
 
-	public ArtifactStats(ArtifactSlot slot, int rank) {
-		this.slot = slot;
-		this.rank = rank;
-	}
-
-	@OnInject
-	public void onInject() {
-		map.put(main_stat.type, main_stat);
-		for (StatEntry ent : sub_stats) {
-			map.put(ent.type, ent);
-		}
-	}
-
-	public void add(StatEntry entry) {
-		if (map.containsKey(entry.type))
-			return;
-		if (main_stat == null) {
-			main_stat = entry;
-		} else {
-			sub_stats.add(entry);
-		}
-		map.put(entry.type, entry);
-	}
-
-	public void add(Holder<StatType> type, double value) {
-		if (map.containsKey(type)) {
-			map.get(type).addMultiplier(value);
-		} else {
-			add(new StatEntry(slot, type, value));
-		}
-	}
-
-	public Multimap<Attribute, AttributeModifier> buildAttributes(ResourceLocation uuidBase) {
+	public Multimap<Attribute, AttributeModifier> buildAttributes(ResourceLocation base) {
 		ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
-		for (StatEntry ent : map.values()) {
-			ent.getType().value().getModifier(builder, ent, uuidBase.withSuffix("_" + ent.getID().getPath()));
+		main_stat.toModifier(builder, base);
+		for (StatEntry ent : sub_stats) {
+			ent.toModifier(builder, base);
 		}
 		return builder.build();
 	}
 
-	public void addExp(int exp, RandomSource random) {
-		this.exp += exp;
+	public ArtifactStats addExp(int gain) {
+		int nexp = exp + gain;
+		int nlevel = level;
 		int max_level = ArtifactUpgradeManager.getMaxLevel(rank);
 		while (true) {
-			if (this.level >= max_level) {
+			if (nlevel >= max_level) {
 				break;
 			}
-			int max_exp = ArtifactUpgradeManager.getExpForLevel(rank, level);
-			if (this.exp < max_exp) {
+			int max_exp = ArtifactUpgradeManager.getExpForLevel(rank, nlevel);
+			if (nexp < max_exp) {
 				break;
 			}
-			this.exp -= max_exp;
-			this.level++;
+			nexp -= max_exp;
+			nlevel++;
 		}
-		if (this.level == max_level) {
-			this.exp = 0;
+		if (nlevel == max_level) {
+			nexp = 0;
 		}
+		return new ArtifactStats(slot, rank, nlevel, nexp, old_level, main_stat, sub_stats);
+	}
+
+	public ArtifactStats upgrade(Upgrade.Mutable upgrade, RandomSource random) {
+		var mutable = new Mutable(this);
+		for (int i = old_level + 1; i <= level; i++) {
+			mutable.onUpgrade(i, upgrade, random);
+		}
+		return mutable.flush();
+	}
+
+	public static class Mutable {
+
+		private final ArtifactStats ref;
+		private final ArrayList<StatEntry> sub_stats;
+		private final Map<Holder<StatType>, StatEntry> map;
+		private StatEntry main_stat;
+
+		private Mutable(ArtifactStats self) {
+			this.ref = self;
+			this.main_stat = ref.main_stat;
+			this.sub_stats = new ArrayList<>(self.sub_stats);
+			map = new LinkedHashMap<>();
+			if (main_stat != null)
+				map.put(main_stat.type, main_stat);
+			for (StatEntry ent : sub_stats) {
+				map.put(ent.type, ent);
+			}
+		}
+
+		private void add(StatEntry entry) {
+			if (map.containsKey(entry.type))
+				return;
+			if (main_stat == null) {
+				main_stat = entry;
+			} else {
+				sub_stats.add(entry);
+			}
+			map.put(entry.type, entry);
+		}
+
+		public void add(Holder<StatType> type, double value) {
+			if (map.containsKey(type)) {
+				map.get(type).addMultiplier(value);
+			} else {
+				add(new StatEntry(ref.slot, type, value));
+			}
+		}
+
+		private void generate(Upgrade.Mutable upgrade, RandomSource random) {
+			var main_list = new ArrayList<>(SlotStatConfig.getInstance().available_main_stats.get(ref.slot));
+			var sub_list = new ArrayList<>(SlotStatConfig.getInstance().available_sub_stats.get(ref.slot));
+			var main = main_list.get(random.nextInt(main_list.size()));
+			sub_list.remove(main);
+			add(main, main.value().getInitialValue(random, upgrade.removeMain()));
+			int roll = ref.rank() - 1;
+			for (int i = 0; i < roll; i++) {
+				if (sub_list.isEmpty()) break;
+				Holder<StatType> sub = upgrade.removeStat();
+				if (sub == null) {
+					int index = random.nextInt(sub_list.size());
+					sub = sub_list.get(index);
+				}
+				sub_list.remove(sub);
+				add(sub, sub.value().getSubValue(random, upgrade.removeSub()));
+			}
+		}
+
+		private void onUpgrade(int lv, Upgrade.Mutable upgrade, RandomSource random) {
+			int gate = ArtifactConfig.COMMON.levelPerSubStat.get();
+			if (main_stat != null) {
+				add(main_stat.type, main_stat.getType().value().getMainValue(random, upgrade.removeMain()));
+			}
+			if (lv % gate == 0 && !sub_stats.isEmpty()) {
+				StatEntry substat = upgrade.selectAmong(sub_stats);
+				if (substat == null) {
+					substat = sub_stats.get(random.nextInt(sub_stats.size()));
+				}
+				add(substat.type, substat.getType().value().getSubValue(random, upgrade.removeSub()));
+			}
+		}
+
+		public ArtifactStats immutable() {
+			return new ArtifactStats(ref.slot, ref.rank, ref.level, ref.exp, ref.old_level, main_stat, sub_stats);
+		}
+
+		private ArtifactStats flush() {
+			return new ArtifactStats(ref.slot, ref.rank, ref.level, ref.exp, ref.level, main_stat, sub_stats);
+		}
+
 	}
 
 }

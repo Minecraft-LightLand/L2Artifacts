@@ -6,7 +6,7 @@ import dev.xkmc.l2artifacts.content.core.ArtifactSet;
 import dev.xkmc.l2artifacts.content.core.ArtifactSlot;
 import dev.xkmc.l2artifacts.content.core.BaseArtifact;
 import dev.xkmc.l2artifacts.content.misc.ArtifactChestItem;
-import dev.xkmc.l2artifacts.init.data.LangData;
+import dev.xkmc.l2artifacts.init.data.ArtifactLang;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactTypeRegistry;
 import dev.xkmc.l2library.util.GenericItemStack;
 import dev.xkmc.l2serial.serialization.codec.TagCodec;
@@ -60,12 +60,12 @@ public class ArtifactChestToken implements IArtifactFilter {
 		this.list = list;
 		this.stack = stack;
 		this.invSlot = invSlot;
-		rank = addFilter(e -> new RankFilter(e, LangData.FILTER_RANK));
-		set = addFilter(e -> new SimpleArtifactFilter<>(e, LangData.FILTER_SET,
+		rank = addFilter(e -> new RankFilter(e, ArtifactLang.FILTER_RANK));
+		set = addFilter(e -> new SimpleArtifactFilter<>(e, ArtifactLang.FILTER_SET,
 				ArtifactTypeRegistry.SET.get(), i -> i.set.get()));
-		slot = addFilter(e -> new SimpleArtifactFilter<>(e, LangData.FILTER_SLOT,
+		slot = addFilter(e -> new SimpleArtifactFilter<>(e, ArtifactLang.FILTER_SLOT,
 				ArtifactTypeRegistry.SLOT.get(), i -> i.slot.get()));
-		stat = addFilter(e -> new AttributeFilter(e, LangData.FILTER_STAT, StatType.getValues()));
+		stat = addFilter(e -> new AttributeFilter(e, ArtifactLang.FILTER_STAT, StatType.getValues()));
 		TagCodec.fromTag(ArtifactChestItem.getFilter(stack), ArtifactChestToken.class, this, e -> true);
 	}
 

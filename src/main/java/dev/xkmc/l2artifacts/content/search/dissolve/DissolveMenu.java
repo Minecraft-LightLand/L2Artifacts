@@ -29,7 +29,7 @@ public class DissolveMenu extends AbstractScrollerMenu<DissolveMenu> {
 
 	public DissolveMenu(int wid, Inventory plInv, ArtifactChestToken token) {
 		super(ArtifactMenuRegistry.MT_DISSOLVE.get(), wid, plInv, MANAGER, 2, token, true);
-		this.addSlot("input", e -> e.getItem() instanceof StatContainerItem && StatContainerItem.getType(e).isEmpty());
+		this.addSlot("input", e -> e.getItem() instanceof StatContainerItem && StatContainerItem.getType(access, e).isEmpty());
 		this.addSlot("output", e -> false);
 		this.addSlot("grid", e -> false, e -> e.setPickup(() -> false));
 		this.select_index = new IntDataSlot(this);

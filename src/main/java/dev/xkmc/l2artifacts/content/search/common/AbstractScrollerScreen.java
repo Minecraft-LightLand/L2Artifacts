@@ -7,6 +7,7 @@ import dev.xkmc.l2core.base.menu.base.BaseContainerScreen;
 import dev.xkmc.l2core.base.menu.base.MenuLayoutConfig;
 import dev.xkmc.l2core.base.menu.scroller.Scroller;
 import dev.xkmc.l2core.base.menu.scroller.ScrollerScreen;
+import dev.xkmc.l2tabs.tabs.core.ITabScreen;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
@@ -15,7 +16,7 @@ import net.minecraft.world.inventory.Slot;
 import org.lwjgl.glfw.GLFW;
 
 public class AbstractScrollerScreen<T extends AbstractScrollerMenu<T>>
-		extends BaseContainerScreen<T> implements ScrollerScreen, IFilterScreen {
+		extends BaseContainerScreen<T> implements ScrollerScreen, ITabScreen {
 
 	private final Scroller scroller;
 	private final FilterTabToken<?> tab;

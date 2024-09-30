@@ -1,6 +1,6 @@
 package dev.xkmc.l2artifacts.content.upgrades;
 
-import dev.xkmc.l2artifacts.init.data.LangData;
+import dev.xkmc.l2artifacts.init.data.ArtifactLang;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
@@ -21,7 +21,7 @@ public class UpgradeBoostItem extends UpgradeEnhanceItem {
 
 	@Override
 	public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> list, TooltipFlag flag) {
-		list.add((type == Upgrade.Type.BOOST_MAIN_STAT ? LangData.BOOST_MAIN : LangData.BOOST_SUB).get().withStyle(ChatFormatting.GRAY));
+		list.add((type == Upgrade.Type.BOOST_MAIN_STAT ? ArtifactLang.BOOST_MAIN : ArtifactLang.BOOST_SUB).get().withStyle(ChatFormatting.GRAY));
 	}
 
 }

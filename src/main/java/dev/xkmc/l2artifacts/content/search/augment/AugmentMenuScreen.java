@@ -8,9 +8,10 @@ import dev.xkmc.l2artifacts.content.search.recycle.RecycleMenuScreen;
 import dev.xkmc.l2artifacts.content.search.tabs.FilterTabManager;
 import dev.xkmc.l2artifacts.content.search.tabs.IFilterScreen;
 import dev.xkmc.l2artifacts.content.upgrades.StatContainerItem;
-import dev.xkmc.l2artifacts.init.data.LangData;
+import dev.xkmc.l2artifacts.init.data.ArtifactLang;
 import dev.xkmc.l2core.base.menu.base.BaseContainerScreen;
 import dev.xkmc.l2core.base.menu.stacked.StackedRenderHandle;
+import dev.xkmc.l2tabs.tabs.core.ITabScreen;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
@@ -24,7 +25,7 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AugmentMenuScreen extends BaseContainerScreen<AugmentMenu> implements IFilterScreen {
+public class AugmentMenuScreen extends BaseContainerScreen<AugmentMenu> implements ITabScreen {
 
 	private static int lerpColor(float perc, int fg, int bg) {
 		int c0 = Math.round(Mth.lerp(perc, fg & 0xFF, bg & 0xFF));
@@ -51,7 +52,7 @@ public class AugmentMenuScreen extends BaseContainerScreen<AugmentMenu> implemen
 	private boolean keep = false;
 
 	public AugmentMenuScreen(AugmentMenu cont, Inventory plInv, Component title) {
-		super(cont, plInv, LangData.TAB_AUGMENT.get().withStyle(ChatFormatting.GRAY));
+		super(cont, plInv, ArtifactLang.TAB_AUGMENT.get().withStyle(ChatFormatting.GRAY));
 	}
 
 	@Override
@@ -128,7 +129,7 @@ public class AugmentMenuScreen extends BaseContainerScreen<AugmentMenu> implemen
 		int cost = menu.exp_cost.get();
 		if (cost > 0) {
 			String str = RecycleMenuScreen.formatNumber(cost) + "/" + RecycleMenuScreen.formatNumber(exp);
-			handle.drawText(LangData.TAB_INFO_EXP_COST.get(Component.literal(str)
+			handle.drawText(ArtifactLang.TAB_INFO_EXP_COST.get(Component.literal(str)
 							.withStyle(cost <= exp ? ChatFormatting.DARK_GREEN : ChatFormatting.RED))
 					.withStyle(ChatFormatting.GRAY), false);
 			ItemStack stack = menu.container.getItem(0);
@@ -148,7 +149,7 @@ public class AugmentMenuScreen extends BaseContainerScreen<AugmentMenu> implemen
 					int I = i;
 					boolean stat_exist = (menu.mask.get() & 1) > 0;
 					boolean lit_name = stat_exist &&
-							StatContainerItem.getType(menu.container.getItem(1))
+							StatContainerItem.getType(menu.access, menu.container.getItem(1))
 									.map(e -> e.equals(stat.sub_stats.get(I).type)).orElse(false);
 					boolean boost_sub = (menu.mask.get() & 4) > 0;
 					boolean lit_stat = boost_sub && (!stat_exist || lit_name);
@@ -159,7 +160,7 @@ public class AugmentMenuScreen extends BaseContainerScreen<AugmentMenu> implemen
 				current = stat;
 			}
 		} else {
-			handle.drawText(LangData.TAB_INFO_EXP.get(exp).withStyle(ChatFormatting.GRAY), false);
+			handle.drawText(ArtifactLang.TAB_INFO_EXP.get(exp).withStyle(ChatFormatting.GRAY), false);
 		}
 		handle.flushText();
 		g.pose().popPose();

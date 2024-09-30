@@ -8,6 +8,7 @@ import dev.xkmc.l2artifacts.content.search.dissolve.DissolveMenu;
 import dev.xkmc.l2artifacts.content.search.fitered.FilteredMenu;
 import dev.xkmc.l2artifacts.content.search.recycle.RecycleMenu;
 import dev.xkmc.l2artifacts.content.search.shape.ShapeMenu;
+import dev.xkmc.l2artifacts.content.search.tab.ArtifactTabData;
 import dev.xkmc.l2artifacts.content.search.token.ArtifactChestToken;
 import dev.xkmc.l2artifacts.content.search.upgrade.UpgradeMenu;
 import dev.xkmc.l2core.util.Proxy;
@@ -39,8 +40,8 @@ public record SetFilterToServer(
 		}
 	}
 
-	public static SetFilterToServer of(ArtifactChestToken token, @Nullable Type type) {
-		var slot = token.invSlot;
+	public static SetFilterToServer of(ArtifactTabData token, @Nullable Type type) {
+		var slot = token.token.invSlot;
 		var filter = TagCodec.toTag(new CompoundTag(), token);
 		ArtifactChestItem.setFilter(Proxy.getClientPlayer().getInventory().getItem(slot), filter);
 		return new SetFilterToServer(slot, filter, type);

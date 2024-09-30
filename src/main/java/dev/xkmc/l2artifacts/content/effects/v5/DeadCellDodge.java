@@ -18,7 +18,7 @@ public class DeadCellDodge extends PlayerOnlySetEffect {
 	private final LinearFuncEntry chance;
 
 	public DeadCellDodge(LinearFuncEntry chance) {
-		super(0);
+		super();
 		this.chance = chance;
 	}
 

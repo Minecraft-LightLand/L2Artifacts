@@ -1,6 +1,7 @@
 package dev.xkmc.l2artifacts.init.registrate;
 
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
+import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
 import dev.xkmc.l2artifacts.content.config.LinearParam;
 import dev.xkmc.l2artifacts.content.config.StatType;
 import dev.xkmc.l2artifacts.content.core.ArtifactSet;
@@ -31,6 +32,7 @@ public class ArtifactTypeRegistry {
 	public static final DatapackReg<StatType> STAT_TYPE = L2Artifacts.REG.dataReg("stat_type", StatType.class);
 
 	public static final DataMapReg<LinearFunc, LinearParam> LINEAR_CONFIG = L2Artifacts.REG.dataMap("linear", LINEAR.key(), LinearParam.class);
+	public static final DataMapReg<ArtifactSet, ArtifactSetConfig> ARTIFACT_SETS = L2Artifacts.REG.dataMap("artifact_sets", SET.key(), ArtifactSetConfig.class);
 
 	public static final SimpleEntry<ArtifactSlot> SLOT_HEAD = regSlot("head", () -> new ArtifactSlot(ArtifactSlotCuriosType.HEAD));
 	public static final SimpleEntry<ArtifactSlot> SLOT_NECKLACE = regSlot("necklace", () -> new ArtifactSlot(ArtifactSlotCuriosType.NECKLACE));

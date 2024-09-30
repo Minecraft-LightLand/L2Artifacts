@@ -4,34 +4,30 @@ import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
 import dev.xkmc.l2artifacts.content.effects.core.PersistentDataSetEffect;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.player.Player;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
-
-import static net.minecraft.world.item.ItemStack.ATTRIBUTE_MODIFIER_FORMAT;
 
 public abstract class AbstractConditionalAttributeSetEffect<T extends AttributeSetData> extends PersistentDataSetEffect<T> {
 
 	private final AttrSetEntry[] entries;
 
 	public AbstractConditionalAttributeSetEffect(AttrSetEntry... entries) {
-		super(entries.length);
 		this.entries = entries;
 	}
 
-	protected void addAttributes(Player player, ArtifactSetConfig.Entry ent, int rank, T data) {
-		for (int i = 0; i < entries.length; i++) {
-			AttrSetEntry entry = entries[i];
+	protected void addAttributes(Player player, int rank) {
+		for (AttrSetEntry entry : entries) {
 			AttributeInstance ins = player.getAttribute(entry.attr());
 			if (ins == null) continue;
-			UUID id = ent.id[i];
+			ResourceLocation id = entry.getId(this);
 			if (ins.getModifier(id) != null) continue;
 			double val = entry.getValue(rank);
-			ins.addTransientModifier(new AttributeModifier(id, ent.getName(), val, entry.op()));
+			ins.addTransientModifier(new AttributeModifier(id, val, entry.op()));
 		}
 	}
 
@@ -40,9 +36,8 @@ public abstract class AbstractConditionalAttributeSetEffect<T extends AttributeS
 	@Override
 	public T getData(ArtifactSetConfig.Entry ent) {
 		T ans = getData();
-		for (int i = 0; i < entries.length; i++) {
-			AttrSetEntry entry = entries[i];
-			var id = ent.id[i];
+		for (AttrSetEntry entry : entries) {
+			var id = ent.effect.getRegistryName();
 			ans.list.add(new AttributeSetData.AttributePair(entry.attr(), id));
 		}
 		return ans;
@@ -57,12 +52,7 @@ public abstract class AbstractConditionalAttributeSetEffect<T extends AttributeS
 		List<MutableComponent> ans = new ArrayList<>();
 		ans.add(getConditionText(rank));
 		for (AttrSetEntry ent : entries) {
-			double val = ent.getValue(rank);
-			String sign = val > 0 ? "attribute.modifier.plus." : "attribute.modifier.take.";
-			ans.add(Component.translatable(
-					sign + (ent.usePercent() ? 1 : 0),
-					ATTRIBUTE_MODIFIER_FORMAT.format(Math.abs(ent.usePercent() ? val * 100 : val)),
-					Component.translatable(ent.attr().get().getDescriptionId())));
+			ans.add(ent.toComponent(rank));
 		}
 		return ans;
 	}

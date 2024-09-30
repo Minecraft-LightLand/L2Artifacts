@@ -2,11 +2,13 @@ package dev.xkmc.l2artifacts.content.core;
 
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
+import dev.xkmc.l2artifacts.content.config.StatType;
 import dev.xkmc.l2artifacts.content.upgrades.ArtifactUpgradeManager;
 import dev.xkmc.l2artifacts.content.upgrades.Upgrade;
 import dev.xkmc.l2serial.serialization.marker.OnInject;
 import dev.xkmc.l2serial.serialization.marker.SerialClass;
 import dev.xkmc.l2serial.serialization.marker.SerialField;
+import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.ai.attributes.Attribute;
@@ -37,7 +39,7 @@ public class ArtifactStats {
 	@SerialField
 	public ArrayList<StatEntry> sub_stats = new ArrayList<>();
 
-	public final Map<ResourceLocation, StatEntry> map = new HashMap<>();
+	public final Map<Holder<StatType>, StatEntry> map = new HashMap<>();
 
 	@Deprecated
 	public ArtifactStats() {
@@ -68,7 +70,7 @@ public class ArtifactStats {
 		map.put(entry.type, entry);
 	}
 
-	public void add(ResourceLocation type, double value) {
+	public void add(Holder<StatType> type, double value) {
 		if (map.containsKey(type)) {
 			map.get(type).addMultiplier(value);
 		} else {
@@ -79,7 +81,7 @@ public class ArtifactStats {
 	public Multimap<Attribute, AttributeModifier> buildAttributes(ResourceLocation uuidBase) {
 		ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
 		for (StatEntry ent : map.values()) {
-			ent.getType().getModifier(builder, ent, uuidBase.withSuffix("_" + ent.type.getPath()));
+			ent.getType().value().getModifier(builder, ent, uuidBase.withSuffix("_" + ent.getID().getPath()));
 		}
 		return builder.build();
 	}

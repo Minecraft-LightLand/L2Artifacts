@@ -17,7 +17,7 @@ public class ExecutorLimitEffect extends SetEffect {
 	private final LinearFuncEntry factor;
 
 	public ExecutorLimitEffect(LinearFuncEntry factor) {
-		super(0);
+		super();
 		this.factor = factor;
 	}
 

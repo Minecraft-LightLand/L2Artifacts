@@ -12,7 +12,7 @@ import java.util.List;
 public class LongShooterPersistentEffect extends PersistentDataSetEffect<SetEffectData> {
 
 	public LongShooterPersistentEffect() {
-		super(0);
+		super();
 	}
 
 	@Override

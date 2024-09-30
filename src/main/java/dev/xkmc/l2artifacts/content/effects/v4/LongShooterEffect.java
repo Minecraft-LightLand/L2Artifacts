@@ -33,7 +33,7 @@ public class LongShooterEffect extends AbstractConditionalAttributeSetEffect<Att
 		if (player.level().getEntities(EntityTypeTest.forClass(Monster.class), box, EntitySelector.NO_SPECTATORS).isEmpty()) {
 			var data = fetch(player, ent);
 			data.update(11, rank);
-			addAttributes(player, ent, rank, data);
+			addAttributes(player, rank);
 		} else {
 			if (fetchNullable(player) != null && !player.hasEffect(MobEffects.MOVEMENT_SPEED)) {
 				player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 40, 1));

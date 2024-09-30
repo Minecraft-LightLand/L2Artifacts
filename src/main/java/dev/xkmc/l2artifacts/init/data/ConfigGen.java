@@ -183,7 +183,7 @@ public class ConfigGen extends ConfigDataProvider {
 
 	private static void addArtifactSet(Collector map, ArtifactSet set, Consumer<ArtifactSetConfig.SetBuilder> builder) {
 		ResourceLocation rl = Objects.requireNonNull(set.getRegistryName());
-		map.add(NetworkManager.ARTIFACT_SETS, rl, ArtifactSetConfig.construct(set, builder));
+		map.add(NetworkManager.ARTIFACT_SETS, rl, ArtifactSetConfig.construct(builder));
 	}
 
 	private static StatType genEntry(Attribute attr, AttributeModifier.Operation op, boolean perc, double base, double sub, double factor) {

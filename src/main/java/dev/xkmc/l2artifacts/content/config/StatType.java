@@ -25,7 +25,7 @@ public record StatType(
 		@Nullable ResourceLocation icon
 ) {
 
-	private static final ResourceLocation DUMMY_ID = L2Artifacts.loc("dummy");
+	public static final ResourceLocation DUMMY_ID = L2Artifacts.loc("dummy");
 
 	@Nullable
 	public static StatTypeHolder get(RegistryAccess access, ResourceLocation id) {
@@ -65,4 +65,8 @@ public record StatType(
 		return base;
 	}
 
+	public MutableComponent getDesc() {
+		return Component.translatable(attr.getDescriptionId());
+	}
+	
 }

@@ -3,20 +3,24 @@ package dev.xkmc.l2artifacts.init.data.loot;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactEffects;
 import dev.xkmc.l2artifacts.init.registrate.items.ArtifactItems;
-import dev.xkmc.l2library.util.data.LootTableTemplate;
+import dev.xkmc.l2core.serial.loot.AddLootTableModifier;
+import dev.xkmc.l2core.serial.loot.LootTableTemplate;
 import net.minecraft.advancements.critereon.DamageSourcePredicate;
 import net.minecraft.advancements.critereon.EntityPredicate;
 import net.minecraft.advancements.critereon.MobEffectsPredicate;
-import net.minecraft.data.DataGenerator;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.data.PackOutput;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.predicates.DamageSourceCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemEntityPropertyCondition;
-import net.minecraftforge.common.data.GlobalLootModifierProvider;
+import net.neoforged.neoforge.common.data.GlobalLootModifierProvider;
+
+import java.util.concurrent.CompletableFuture;
 
 public class ArtifactGLMProvider extends GlobalLootModifierProvider {
 
-	public ArtifactGLMProvider(DataGenerator gen) {
-		super(gen.getPackOutput(), L2Artifacts.MODID);
+	public ArtifactGLMProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
+		super(output, registries, L2Artifacts.MODID);
 	}
 
 	@Override
@@ -30,8 +34,8 @@ public class ArtifactGLMProvider extends GlobalLootModifierProvider {
 		add("fungus_infection", new AddLootTableModifier(ArtifactLootGen.DROP_FUNGUS,
 				DamageSourceCondition.hasDamageSource(DamageSourcePredicate.Builder.damageType()).build(),
 				LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.THIS,
-						EntityPredicate.Builder.entity().effects(MobEffectsPredicate.effects()
-								.and(ArtifactEffects.FUNGUS.get()))).build()));
+						EntityPredicate.Builder.entity().effects(MobEffectsPredicate.Builder.effects()
+								.and(ArtifactEffects.FUNGUS))).build()));
 
 	}
 }

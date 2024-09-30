@@ -20,7 +20,7 @@ public class FleshOvergrowth extends SetEffect {
 	private final LinearFuncEntry duration;
 
 	public FleshOvergrowth(LinearFuncEntry duration) {
-		super(0);
+		super();
 		this.duration = duration;
 	}
 

@@ -16,8 +16,6 @@ public class StatEntry {
 	@SerialField
 	private double value;
 
-	public ResourceLocation id;
-
 	@Deprecated
 	public StatEntry() {
 
@@ -30,6 +28,10 @@ public class StatEntry {
 
 	public Holder<StatType> getType() {
 		return type;
+	}
+
+	public ResourceLocation getID(){
+		return type.unwrapKey().orElseThrow().location();
 	}
 
 	public Component getTooltip() {

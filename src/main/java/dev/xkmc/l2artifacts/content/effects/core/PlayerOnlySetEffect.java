@@ -11,10 +11,6 @@ import net.neoforged.neoforge.event.entity.player.CriticalHitEvent;
 
 public class PlayerOnlySetEffect extends SetEffect {
 
-	public PlayerOnlySetEffect(int ids) {
-		super(ids);
-	}
-
 	/**
 	 * when the set count changes. Entry contains an uuid if one needs to add it. for Attributes, it must be transient
 	 */

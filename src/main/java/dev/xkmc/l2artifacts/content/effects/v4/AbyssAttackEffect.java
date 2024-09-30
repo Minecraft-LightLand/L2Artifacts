@@ -22,7 +22,7 @@ public class AbyssAttackEffect extends SetEffect {
 	private final LinearFuncEntry duration, level, hurt;
 
 	public AbyssAttackEffect(LinearFuncEntry duration, LinearFuncEntry level, LinearFuncEntry hurt, int ids) {
-		super(ids);
+		super();
 		this.duration = duration;
 		this.level = level;
 		this.hurt = hurt;

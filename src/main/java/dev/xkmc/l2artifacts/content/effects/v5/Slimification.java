@@ -21,7 +21,7 @@ public class Slimification extends SetEffect {
 	private final LinearFuncEntry penalty;
 
 	public Slimification(LinearFuncEntry reduction, LinearFuncEntry penalty) {
-		super(0);
+		super();
 		this.reduction = reduction;
 		this.penalty = penalty;
 	}

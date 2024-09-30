@@ -10,7 +10,7 @@ import net.minecraft.world.entity.LivingEntity;
 public class ProtectionResistance extends SetEffect {
 
 	public ProtectionResistance() {
-		super(0);
+		super();
 	}
 
 	@Override

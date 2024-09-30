@@ -18,7 +18,7 @@ public class WrathEffect extends SetEffect {
 	private final LinearFuncEntry dec, inc;
 
 	public WrathEffect(Predicate<LivingEntity> pred, LinearFuncEntry dec, LinearFuncEntry inc) {
-		super(0);
+		super();
 		this.pred = pred;
 		this.dec = dec;
 		this.inc = inc;

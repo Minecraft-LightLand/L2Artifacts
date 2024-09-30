@@ -1,6 +1,7 @@
 package dev.xkmc.l2artifacts.content.search.token;
 
 import dev.xkmc.l2artifacts.content.config.StatType;
+import dev.xkmc.l2artifacts.content.config.StatTypeHolder;
 import dev.xkmc.l2artifacts.content.core.ArtifactSet;
 import dev.xkmc.l2artifacts.content.core.ArtifactSlot;
 import dev.xkmc.l2artifacts.content.core.BaseArtifact;
@@ -48,7 +49,7 @@ public class ArtifactChestToken implements IArtifactFilter {
 	public final ArtifactFilter<ArtifactSlot> slot;
 
 	@SerialField
-	public final ArtifactFilter<StatType> stat;
+	public final ArtifactFilter<StatTypeHolder> stat;
 
 	public int exp = 0;
 

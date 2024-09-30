@@ -9,10 +9,6 @@ import org.jetbrains.annotations.Nullable;
 
 public abstract class PersistentDataSetEffect<T extends SetEffectData> extends PlayerOnlySetEffect {
 
-	public PersistentDataSetEffect(int n) {
-		super(n);
-	}
-
 	@Override
 	public void tick(Player player, ArtifactSetConfig.Entry ent, int rank, boolean enabled) {
 		if (!enabled) return;

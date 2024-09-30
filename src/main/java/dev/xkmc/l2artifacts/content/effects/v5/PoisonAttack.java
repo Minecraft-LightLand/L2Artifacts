@@ -17,7 +17,7 @@ public class PoisonAttack extends SetEffect {
 	private final LinearFuncEntry atk;
 
 	public PoisonAttack(LinearFuncEntry atk) {
-		super(0);
+		super();
 		this.atk = atk;
 	}
 

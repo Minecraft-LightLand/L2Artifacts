@@ -20,7 +20,7 @@ public class SimpleCASetEffect extends AbstractConditionalAttributeSetEffect<Att
 		if (!pred.test(player)) return;
 		AttributeSetData data = fetch(player, ent);
 		data.update(2, rank);
-		addAttributes(player, ent, rank, data);
+		addAttributes(player, rank);
 	}
 
 	@Override

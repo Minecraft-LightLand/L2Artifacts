@@ -24,7 +24,7 @@ public class LuckAttackEffect extends AbstractConditionalAttributeSetEffect<Luck
 		if (!enabled) return;
 		LuckAttackData data = fetchNullable(player);
 		if (data != null && data.count == count.getFromRank(rank))
-			addAttributes(player, ent, rank, data);
+			addAttributes(player, rank);
 	}
 
 	@Override

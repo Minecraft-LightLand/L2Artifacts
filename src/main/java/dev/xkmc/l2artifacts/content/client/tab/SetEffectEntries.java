@@ -3,7 +3,7 @@ package dev.xkmc.l2artifacts.content.client.tab;
 import com.mojang.datafixers.util.Pair;
 import dev.xkmc.l2artifacts.content.core.ArtifactSet;
 import dev.xkmc.l2artifacts.content.core.BaseArtifact;
-import dev.xkmc.l2library.util.code.TextWrapper;
+import dev.xkmc.l2library.util.TextWrapper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.FormattedCharSequence;
@@ -23,7 +23,7 @@ public record SetEffectEntries(
 
 	public static List<List<SetEffectEntries>> aggregate(@Nullable LivingEntity le, int width, int linePerPage) {
 		if (le == null) return List.of();
-		var opt = CuriosApi.getCuriosInventory(le).resolve();
+		var opt = CuriosApi.getCuriosInventory(le);
 		if (opt.isEmpty()) return List.of();
 		List<SlotResult> slots = opt.get()
 				.findCurios(stack -> stack.getItem() instanceof BaseArtifact);

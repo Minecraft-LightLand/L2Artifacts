@@ -14,7 +14,7 @@ public class Photosynthesisffect extends PlayerOnlySetEffect {
 	private final LinearFuncEntry period, lightLow, lightHigh;
 
 	public Photosynthesisffect(LinearFuncEntry period, LinearFuncEntry lightLow, LinearFuncEntry lightHigh) {
-		super(0);
+		super();
 		this.period = period;
 		this.lightLow = lightLow;
 		this.lightHigh = lightHigh;

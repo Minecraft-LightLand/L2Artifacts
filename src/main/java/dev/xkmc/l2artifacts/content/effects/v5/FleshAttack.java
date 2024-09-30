@@ -16,7 +16,7 @@ public class FleshAttack extends SetEffect {
 	private final LinearFuncEntry thr, atk;
 
 	public FleshAttack(LinearFuncEntry thr, LinearFuncEntry atk) {
-		super(0);
+		super();
 		this.thr = thr;
 		this.atk = atk;
 	}

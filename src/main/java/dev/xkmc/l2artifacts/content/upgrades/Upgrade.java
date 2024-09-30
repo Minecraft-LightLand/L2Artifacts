@@ -1,8 +1,9 @@
 package dev.xkmc.l2artifacts.content.upgrades;
 
+import dev.xkmc.l2artifacts.content.config.StatType;
 import dev.xkmc.l2serial.serialization.marker.SerialClass;
 import dev.xkmc.l2serial.serialization.marker.SerialField;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.core.Holder;
 
 import java.util.ArrayList;
 
@@ -12,7 +13,7 @@ public class Upgrade {
 	@SerialField
 	public int main, sub;
 	@SerialField
-	public ArrayList<ResourceLocation> stats = new ArrayList<>();
+	public ArrayList<Holder<StatType>> stats = new ArrayList<>();
 
 	public boolean removeMain() {
 		if (main > 0) {

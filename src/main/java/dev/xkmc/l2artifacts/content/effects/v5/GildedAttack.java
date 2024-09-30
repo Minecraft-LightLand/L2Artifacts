@@ -17,7 +17,7 @@ public class GildedAttack extends SetEffect {
 	private final LinearFuncEntry atk;
 
 	public GildedAttack(LinearFuncEntry atk) {
-		super(0);
+		super();
 		this.atk = atk;
 	}
 

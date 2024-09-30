@@ -17,7 +17,7 @@ public class PerfectionProtection extends SetEffect {
 	private final LinearFuncEntry reduce;
 
 	public PerfectionProtection(LinearFuncEntry reduce) {
-		super(0);
+		super();
 		this.reduce = reduce;
 	}
 

@@ -18,7 +18,7 @@ public class DeadCellParry extends PlayerOnlySetEffect {
 	private final LinearFuncEntry reflect;
 
 	public DeadCellParry(LinearFuncEntry reflect) {
-		super(0);
+		super();
 		this.reflect = reflect;
 	}
 

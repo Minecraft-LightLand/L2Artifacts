@@ -21,7 +21,7 @@ public class FrozeSlowEffect extends SetEffect {
 	private final LinearFuncEntry factor, period, level;
 
 	public FrozeSlowEffect(LinearFuncEntry factor, LinearFuncEntry period, LinearFuncEntry level) {
-		super(0);
+		super();
 		this.factor = factor;
 		this.period = period;
 		this.level = level;

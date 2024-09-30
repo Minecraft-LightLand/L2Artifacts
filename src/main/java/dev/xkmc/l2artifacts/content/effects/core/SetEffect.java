@@ -17,11 +17,8 @@ import java.util.List;
 
 public abstract class SetEffect extends NamedEntry<SetEffect> {
 
-	public final int ids;
-
-	public SetEffect(int ids) {
+	public SetEffect() {
 		super(ArtifactTypeRegistry.SET_EFFECT);
-		this.ids = ids;
 	}
 
 	/**

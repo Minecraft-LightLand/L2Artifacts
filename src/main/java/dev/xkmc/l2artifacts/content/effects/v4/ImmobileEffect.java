@@ -20,7 +20,7 @@ public class ImmobileEffect extends PersistentDataSetEffect<ImmobileData> {
 	private final LinearFuncEntry protection, threshold;
 
 	public ImmobileEffect(LinearFuncEntry protection, LinearFuncEntry threshold) {
-		super(0);
+		super();
 		this.protection = protection;
 		this.threshold = threshold;
 	}

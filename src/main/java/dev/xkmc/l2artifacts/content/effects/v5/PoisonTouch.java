@@ -23,7 +23,7 @@ public class PoisonTouch extends SetEffect {
 	private final LinearFuncEntry chance, duration;
 
 	public PoisonTouch(LinearFuncEntry chance, LinearFuncEntry duration) {
-		super(0);
+		super();
 		this.chance = chance;
 		this.duration = duration;
 	}

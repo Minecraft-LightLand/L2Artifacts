@@ -20,7 +20,7 @@ public class ThermalMotive extends SetEffect {
 	private final LinearFuncEntry atk, duration;
 
 	public ThermalMotive(LinearFuncEntry atk, LinearFuncEntry duration) {
-		super(0);
+		super();
 		this.atk = atk;
 		this.duration = duration;
 	}

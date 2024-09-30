@@ -5,9 +5,9 @@ import dev.xkmc.l2artifacts.content.search.tabs.FilterTabManager;
 import dev.xkmc.l2artifacts.content.search.token.ArtifactChestToken;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
 import dev.xkmc.l2artifacts.init.data.LangData;
-import dev.xkmc.l2library.base.menu.base.SpriteManager;
-import dev.xkmc.l2library.base.menu.stacked.CellEntry;
-import dev.xkmc.l2library.base.menu.stacked.StackedRenderHandle;
+import dev.xkmc.l2core.base.menu.base.SpriteManager;
+import dev.xkmc.l2core.base.menu.stacked.CellEntry;
+import dev.xkmc.l2core.base.menu.stacked.StackedRenderHandle;
 import net.minecraft.client.gui.GuiGraphics;
 
 import javax.annotation.Nullable;

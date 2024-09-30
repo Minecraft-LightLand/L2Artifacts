@@ -10,7 +10,7 @@ public abstract class AbstractConditionalPersistentSetEffect<T extends PeriodicD
 	private final LinearFuncEntry period;
 
 	public AbstractConditionalPersistentSetEffect(LinearFuncEntry period) {
-		super(0);
+		super();
 		this.period = period;
 	}
 

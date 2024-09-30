@@ -7,7 +7,7 @@ import dev.xkmc.l2artifacts.content.effects.core.SetEffectData;
 public class SunBlockMask extends PersistentDataSetEffect<SetEffectData> {
 
 	public SunBlockMask() {
-		super(0);
+		super();
 	}
 
 	@Override

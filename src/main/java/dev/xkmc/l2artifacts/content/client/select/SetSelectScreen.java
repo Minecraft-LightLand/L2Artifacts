@@ -2,7 +2,7 @@ package dev.xkmc.l2artifacts.content.client.select;
 
 import dev.xkmc.l2artifacts.init.L2Artifacts;
 import dev.xkmc.l2artifacts.init.data.LangData;
-import dev.xkmc.l2library.base.menu.base.SpriteManager;
+import dev.xkmc.l2core.base.menu.base.SpriteManager;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.world.item.ItemStack;

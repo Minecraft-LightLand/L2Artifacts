@@ -18,7 +18,7 @@ public class VampireBurn extends SetEffect {
 	private final LinearFuncEntry light;
 
 	public VampireBurn(LinearFuncEntry lightLow) {
-		super(0);
+		super();
 		this.light = lightLow;
 	}
 

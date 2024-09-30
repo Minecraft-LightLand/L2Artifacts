@@ -18,7 +18,7 @@ public class SlimyBuffer extends SetEffect {
 	private final LinearFuncEntry reduction;
 
 	public SlimyBuffer(LinearFuncEntry reduction) {
-		super(0);
+		super();
 		this.reduction = reduction;
 	}
 

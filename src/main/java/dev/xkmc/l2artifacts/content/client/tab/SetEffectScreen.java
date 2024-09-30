@@ -1,6 +1,7 @@
 package dev.xkmc.l2artifacts.content.client.tab;
 
 import dev.xkmc.l2artifacts.init.ArtifactClient;
+import dev.xkmc.l2core.util.Proxy;
 import dev.xkmc.l2library.util.Proxy;
 import dev.xkmc.l2tabs.init.data.L2TabsConfig;
 import dev.xkmc.l2tabs.tabs.contents.BaseTextScreen;

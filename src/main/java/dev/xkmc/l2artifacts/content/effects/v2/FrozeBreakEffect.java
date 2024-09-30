@@ -17,7 +17,7 @@ public class FrozeBreakEffect extends SetEffect {
 	private final LinearFuncEntry factor;
 
 	public FrozeBreakEffect(LinearFuncEntry factor) {
-		super(0);
+		super();
 		this.factor = factor;
 	}
 

@@ -18,7 +18,6 @@ import dev.xkmc.l2core.init.L2TagGen;
 import dev.xkmc.l2core.init.reg.simple.Reg;
 import dev.xkmc.l2damagetracker.contents.attack.AttackEventHandler;
 import dev.xkmc.l2itemselector.select.SelectionRegistry;
-import dev.xkmc.l2library.init.events.EffectSyncEvents;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -56,8 +55,6 @@ public class L2Artifacts {
 	@SubscribeEvent
 	public static void commonInit(FMLCommonSetupEvent event) {
 		event.enqueueWork(() -> {
-			EffectSyncEvents.TRACKED.add(ArtifactEffects.FLESH_OVERGROWTH.get());
-			EffectSyncEvents.TRACKED.add(ArtifactEffects.FUNGUS.get());
 		});
 	}
 
@@ -67,11 +64,16 @@ public class L2Artifacts {
 		REGISTRATE.addDataGenerator(ProviderType.RECIPE, RecipeGen::genRecipe);
 		REGISTRATE.addDataGenerator(ProviderType.LOOT, ArtifactLootGen::onLootGen);
 		REGISTRATE.addDataGenerator(L2TagGen.EFF_TAGS, ArtifactTagGen::onEffectTagGen);
-
 		REGISTRATE.addDataGenerator(ProviderType.ENTITY_TAGS, ArtifactTagGen::onEntityTypeGen);
-		event.getGenerator().addProvider(event.includeServer(), new ConfigGen(event.getGenerator()));
-		event.getGenerator().addProvider(event.includeServer(), new SlotGen(event.getGenerator()));
-		event.getGenerator().addProvider(event.includeServer(), new ArtifactGLMProvider(event.getGenerator()));
+
+		var run = event.includeServer();
+		var gen = event.getGenerator();
+		var reg = event.getLookupProvider();
+		var out = gen.getPackOutput();
+
+		gen.addProvider(run, new ConfigGen(gen));
+		gen.addProvider(run, new SlotGen(event.getGenerator()));
+		gen.addProvider(run, new ArtifactGLMProvider(out, reg));
 	}
 
 	public static ResourceLocation loc(String id) {

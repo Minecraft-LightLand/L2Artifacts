@@ -15,7 +15,7 @@ public class GluttonyHeal extends PlayerOnlySetEffect {
 	private final LinearFuncEntry value;
 
 	public GluttonyHeal(LinearFuncEntry value) {
-		super(0);
+		super();
 		this.value = value;
 	}
 

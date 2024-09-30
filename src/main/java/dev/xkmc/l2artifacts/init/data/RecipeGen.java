@@ -11,24 +11,22 @@ import dev.xkmc.l2artifacts.init.registrate.entries.SetEntry;
 import dev.xkmc.l2artifacts.init.registrate.items.ArtifactItems;
 import dev.xkmc.l2complements.init.L2Complements;
 import dev.xkmc.l2complements.init.registrate.LCItems;
-import dev.xkmc.l2library.serial.conditions.BooleanValueCondition;
-import dev.xkmc.l2library.serial.recipe.ConditionalRecipeWrapper;
-import dev.xkmc.l2library.serial.recipe.NBTRecipe;
+import dev.xkmc.l2core.serial.configval.BooleanValueCondition;
+import dev.xkmc.l2core.serial.recipe.ConditionalRecipeWrapper;
+import dev.xkmc.l2core.serial.recipe.DataRecipeWrapper;
+import net.minecraft.advancements.Criterion;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.data.recipes.SmithingTransformRecipeBuilder;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.tags.ITagManager;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.function.BiFunction;
 
 public class RecipeGen {
@@ -45,10 +43,9 @@ public class RecipeGen {
 	}
 
 	public static void genRecipe(RegistrateRecipeProvider pvd) {
-		ITagManager<Item> manager = Objects.requireNonNull(ForgeRegistries.ITEMS.tags());
 		for (int i = 0; i < 5; i++) {
 			int rank = i + 1;
-			TagKey<Item> rank_tag = manager.createTagKey(new ResourceLocation(L2Artifacts.MODID, "rank_" + rank));
+			TagKey<Item> rank_tag = ItemTags.create(L2Artifacts.loc("rank_" + rank));
 			ItemEntry<?> output = ArtifactItems.ITEM_EXP[i];
 			pvd.singleItem(DataIngredient.tag(rank_tag), RecipeCategory.MISC, output, 1, 1);
 		}
@@ -66,16 +63,16 @@ public class RecipeGen {
 				for (int i = 1; i < n; i++) {
 					BaseArtifact input = slot[i - 1].get();
 					BaseArtifact output = slot[i].get();
-					unlock(pvd, new ShapelessRecipeBuilder(RecipeCategory.MISC, output, 1)::unlockedBy, input)
+					unlock(pvd, ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, output, 1)::unlockedBy, input)
 							.requires(input, 2)
-							.save(ConditionalRecipeWrapper.of(pvd, BooleanValueCondition.of(ArtifactConfig.COMMON_PATH,
-											ArtifactConfig.COMMON.enableArtifactRankUpRecipe, true)),
+							.save(ConditionalRecipeWrapper.of(pvd, BooleanValueCondition.of(ArtifactConfig.COMMON,
+											e -> e.enableArtifactRankUpRecipe, true)),
 									slot[i].getId().withPrefix("rank_up/"));
 				}
 			}
 		}
 
-		TagKey<Item> artifact = manager.createTagKey(new ResourceLocation(L2Artifacts.MODID, "artifact"));
+		TagKey<Item> artifact = ItemTags.create(L2Artifacts.loc("artifact"));
 		unlock(pvd, new ShapedRecipeBuilder(RecipeCategory.MISC, ArtifactItems.FILTER.get(), 1)::unlockedBy, Items.ENDER_PEARL)
 				.pattern(" A ").pattern("LEL").pattern(" L ")
 				.define('E', Items.ENDER_PEARL).define('L', Items.LEATHER).define('A', artifact)
@@ -119,9 +116,8 @@ public class RecipeGen {
 						.define('X', ArtifactItems.ITEM_EXP[i])
 						.define('1', LCItems.RESONANT_FEATHER.get())
 						.define('2', LCItems.EXPLOSION_SHARD.get())
-						.save(e -> ConditionalRecipeWrapper.mod(pvd, L2Complements.MODID)
-										.accept(new NBTRecipe(e, RandomArtifactItem.setList(rank, set0))),
-								new ResourceLocation(L2Artifacts.MODID, "directed/set_0_rank_" + rank));
+						.save(new DataRecipeWrapper(ConditionalRecipeWrapper.mod(pvd, L2Complements.MODID), RandomArtifactItem.setList(rank, set0)),
+								L2Artifacts.loc("directed/set_0_rank_" + rank));
 
 				unlock(pvd, new ShapedRecipeBuilder(RecipeCategory.MISC, ArtifactItems.RANDOM[i], 4)::unlockedBy, LCItems.STORM_CORE.get())
 						.pattern("1A2").pattern("AXA").pattern("2A1")
@@ -129,9 +125,8 @@ public class RecipeGen {
 						.define('X', ArtifactItems.ITEM_EXP[i])
 						.define('1', LCItems.CAPTURED_BULLET.get())
 						.define('2', LCItems.STORM_CORE.get())
-						.save(e -> ConditionalRecipeWrapper.mod(pvd, L2Complements.MODID)
-										.accept(new NBTRecipe(e, RandomArtifactItem.setList(rank, set1))),
-								new ResourceLocation(L2Artifacts.MODID, "directed/set_1_rank_" + rank));
+						.save(new DataRecipeWrapper(ConditionalRecipeWrapper.mod(pvd, L2Complements.MODID), RandomArtifactItem.setList(rank, set1)),
+								L2Artifacts.loc("directed/set_1_rank_" + rank));
 
 				unlock(pvd, new ShapedRecipeBuilder(RecipeCategory.MISC, ArtifactItems.RANDOM[i], 4)::unlockedBy, LCItems.SOUL_FLAME.get())
 						.pattern("1A2").pattern("AXA").pattern("2A1")
@@ -139,9 +134,8 @@ public class RecipeGen {
 						.define('X', ArtifactItems.ITEM_EXP[i])
 						.define('1', LCItems.HARD_ICE.get())
 						.define('2', LCItems.SOUL_FLAME.get())
-						.save(e -> ConditionalRecipeWrapper.mod(pvd, L2Complements.MODID)
-										.accept(new NBTRecipe(e, RandomArtifactItem.setList(rank, set2))),
-								new ResourceLocation(L2Artifacts.MODID, "directed/set_2_rank_" + rank));
+						.save(new DataRecipeWrapper(ConditionalRecipeWrapper.mod(pvd, L2Complements.MODID), RandomArtifactItem.setList(rank, set2)),
+								L2Artifacts.loc("directed/set_2_rank_" + rank));
 
 				unlock(pvd, new ShapedRecipeBuilder(RecipeCategory.MISC, ArtifactItems.RANDOM[i], 4)::unlockedBy, LCItems.CAPTURED_WIND.get())
 						.pattern("1A2").pattern("AXA").pattern("2A1")
@@ -149,9 +143,8 @@ public class RecipeGen {
 						.define('X', ArtifactItems.ITEM_EXP[i])
 						.define('1', LCItems.WARDEN_BONE_SHARD.get())
 						.define('2', LCItems.CAPTURED_WIND.get())
-						.save(e -> ConditionalRecipeWrapper.mod(pvd, L2Complements.MODID)
-										.accept(new NBTRecipe(e, RandomArtifactItem.setList(rank, set3))),
-								new ResourceLocation(L2Artifacts.MODID, "directed/set_3_rank_" + rank));
+						.save(new DataRecipeWrapper(ConditionalRecipeWrapper.mod(pvd, L2Complements.MODID), RandomArtifactItem.setList(rank, set3)),
+								L2Artifacts.loc("directed/set_3_rank_" + rank));
 			}
 
 			unlock(pvd, new ShapedRecipeBuilder(RecipeCategory.MISC, ArtifactItems.ITEM_STAT[0].get(), 4)::unlockedBy, LCItems.RESONANT_FEATHER.get())
@@ -177,8 +170,8 @@ public class RecipeGen {
 		}
 	}
 
-	public static <T> T unlock(RegistrateRecipeProvider pvd, BiFunction<String, InventoryChangeTrigger.TriggerInstance, T> func, Item item) {
-		return func.apply("has_" + pvd.safeName(item), DataIngredient.items(item).getCritereon(pvd));
+	public static <T> T unlock(RegistrateRecipeProvider pvd, BiFunction<String, Criterion<InventoryChangeTrigger.TriggerInstance>, T> func, Item item) {
+		return func.apply("has_" + pvd.safeName(item), DataIngredient.items(item).getCriterion(pvd));
 	}
 
 }

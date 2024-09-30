@@ -18,7 +18,7 @@ public class FungusInfect extends SetEffect {
 	private final LinearFuncEntry duration;
 
 	public FungusInfect(LinearFuncEntry duration) {
-		super(0);
+		super();
 		this.duration = duration;
 	}
 

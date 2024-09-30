@@ -4,7 +4,7 @@ import dev.xkmc.l2artifacts.init.L2Artifacts;
 import dev.xkmc.l2artifacts.init.data.LangData;
 import dev.xkmc.l2artifacts.network.ChooseArtifactToServer;
 import dev.xkmc.l2artifacts.network.NetworkManager;
-import dev.xkmc.l2library.base.menu.base.SpriteManager;
+import dev.xkmc.l2core.base.menu.base.SpriteManager;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.world.item.ItemStack;

@@ -7,9 +7,9 @@ import dev.xkmc.l2artifacts.content.search.tabs.FilterTabToken;
 import dev.xkmc.l2artifacts.content.search.tabs.IFilterScreen;
 import dev.xkmc.l2artifacts.content.search.token.ArtifactChestToken;
 import dev.xkmc.l2artifacts.content.search.token.IArtifactFeature;
-import dev.xkmc.l2library.base.menu.base.SpriteManager;
-import dev.xkmc.l2library.base.menu.stacked.StackedRenderHandle;
-import dev.xkmc.l2library.util.Proxy;
+import dev.xkmc.l2core.base.menu.base.SpriteManager;
+import dev.xkmc.l2core.base.menu.stacked.StackedRenderHandle;
+import dev.xkmc.l2core.util.Proxy;
 import dev.xkmc.l2serial.serialization.codec.TagCodec;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.Screen;
@@ -51,8 +51,10 @@ public abstract class StackedScreen extends Screen implements IFilterScreen {
 
 	@Override
 	protected void init() {
-		this.imageWidth = manager.get().getWidth();
-		this.imageHeight = manager.get().getHeight();
+		var access = Proxy.getRegistryAccess();
+		if (access == null) return;
+		this.imageWidth = manager.get(access).getWidth();
+		this.imageHeight = manager.get(access).getHeight();
 		this.leftPos = (this.width - imageWidth) / 2;
 		this.topPos = (this.height - imageHeight) / 2;
 		new FilterTabManager(this, token).init(this::addRenderableWidget, tab);
@@ -77,10 +79,13 @@ public abstract class StackedScreen extends Screen implements IFilterScreen {
 	}
 
 	public final void render(GuiGraphics g, int mx, int my, float pTick) {
-		renderBg(g, pTick, mx, my);
+		var access = Proxy.getRegistryAccess();
+		if (access == null) return;
+		var sr = manager.get(access).getRenderer(manager.id(), this, leftPos, topPos, imageWidth, height);
+		sr.start(g);
 		g.pose().pushPose();
 		g.pose().translate(leftPos, topPos, 0);
-		StackedRenderHandle handle = new StackedRenderHandle(this, g, manager.get());
+		StackedRenderHandle handle = new StackedRenderHandle(this, g, sr);
 		hover = null;
 		renderInit();
 		List<FilterHover> list = new ArrayList<>();
@@ -111,11 +116,6 @@ public abstract class StackedScreen extends Screen implements IFilterScreen {
 		renderPost(g);
 		g.pose().popPose();
 		super.render(g, mx, my, pTick);
-	}
-
-	private void renderBg(GuiGraphics g, float pt, int mx, int my) {
-		var sr = manager.get().new ScreenRenderer(this, leftPos, topPos, imageWidth, imageHeight);
-		sr.start(g);
 	}
 
 	protected boolean isHovering(int x, int y, int w, int h, double mx, double my) {

@@ -18,7 +18,7 @@ public class FungusExplode extends SetEffect {
 	private final LinearFuncEntry range, rate;
 
 	public FungusExplode(LinearFuncEntry range, LinearFuncEntry rate) {
-		super(0);
+		super();
 		this.range = range;
 		this.rate = rate;
 	}

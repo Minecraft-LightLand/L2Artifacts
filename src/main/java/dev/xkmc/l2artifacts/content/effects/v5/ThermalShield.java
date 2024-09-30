@@ -20,7 +20,7 @@ public class ThermalShield extends SetEffect {
 	private final LinearFuncEntry def, duration;
 
 	public ThermalShield(LinearFuncEntry def, LinearFuncEntry duration) {
-		super(0);
+		super();
 		this.def = def;
 		this.duration = duration;
 	}

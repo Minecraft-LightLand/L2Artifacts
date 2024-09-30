@@ -91,7 +91,7 @@ public class AugmentMenuScreen extends BaseContainerScreen<AugmentMenu> implemen
 			FilterScreen.renderHighlight(g, leftPos + rect.x, topPos + rect.y, rect.w, rect.h, -2130706433);
 		}
 		if (time > 0) {
-			time -= Minecraft.getInstance().getDeltaFrameTime();
+			time -= Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(true);
 			if (time <= 0) {
 				time = 0;
 				old = null;
@@ -171,8 +171,8 @@ public class AugmentMenuScreen extends BaseContainerScreen<AugmentMenu> implemen
 		if (player == null || player.tickCount % 20 < 10) {
 			lit_name = lit_stat = false;
 		}
-		ans[0] = Component.translatable(entry.getType().attr.getDescriptionId()).withStyle(lit_name ? LIT : main ? MAIN : SUB);
-		ans[1] = entry.getType().getValueText(entry.getValue()).withStyle(lit_stat ? LIT : main ? MAIN : SUB);
+		ans[0] = entry.getType().value().getDesc().withStyle(lit_name ? LIT : main ? MAIN : SUB);
+		ans[1] = entry.getType().value().getValueText(entry.getValue()).withStyle(lit_stat ? LIT : main ? MAIN : SUB);
 		if (old != null) {
 			double diff = entry.getValue() - old.getValue();
 			if (diff > 1e-3) {
@@ -180,7 +180,7 @@ public class AugmentMenuScreen extends BaseContainerScreen<AugmentMenu> implemen
 				assert fg != null;
 				float perc = 1 - time / MAX_TIME;
 				int c = lerpColor(perc, fg, 0x33322E);
-				ans[2] = entry.getType().getValueText(diff).withStyle(Style.EMPTY.withColor(c));
+				ans[2] = entry.getType().value().getValueText(diff).withStyle(Style.EMPTY.withColor(c));
 			} else {
 				ans[2] = Component.empty();
 			}

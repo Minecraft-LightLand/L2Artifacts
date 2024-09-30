@@ -15,7 +15,7 @@ public class VampireHeal extends SetEffect {
 	private final LinearFuncEntry light, percent;
 
 	public VampireHeal(LinearFuncEntry light, LinearFuncEntry percent) {
-		super(0);
+		super();
 		this.light = light;
 		this.percent = percent;
 	}

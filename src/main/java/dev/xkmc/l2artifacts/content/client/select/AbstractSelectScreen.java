@@ -1,9 +1,11 @@
 package dev.xkmc.l2artifacts.content.client.select;
 
-import dev.xkmc.l2library.base.menu.base.SpriteManager;
+import dev.xkmc.l2core.base.menu.base.SpriteManager;
+import dev.xkmc.l2core.util.Proxy;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 
@@ -27,8 +29,10 @@ public abstract class AbstractSelectScreen extends Screen {
 
 	@Override
 	protected void init() {
+		RegistryAccess access = Proxy.getRegistryAccess();
+		if (access == null) return;
 		this.imageWidth = 176;
-		this.imageHeight = manager.get().getHeight();
+		this.imageHeight = manager.get(access).getHeight();
 		this.leftPos = (this.width - imageWidth) / 2;
 		this.topPos = (this.height - imageHeight) / 2;
 	}
@@ -57,7 +61,9 @@ public abstract class AbstractSelectScreen extends Screen {
 	protected abstract ItemStack getStack(String comp, int x, int y);
 
 	private void renderSlotComp(GuiGraphics pose, String name, int mx, int my) {
-		var comp = manager.get().getComp(name);
+		RegistryAccess access = Proxy.getRegistryAccess();
+		if (access == null) return;
+		var comp = manager.get(access).getComp(name);
 		for (int i = 0; i < comp.rx; i++) {
 			for (int j = 0; j < comp.ry; j++) {
 				int sx = comp.x + comp.w * i;
@@ -81,12 +87,16 @@ public abstract class AbstractSelectScreen extends Screen {
 	}
 
 	private void renderBg(GuiGraphics stack, float pt, int mx, int my) {
-		var sr = manager.get().new ScreenRenderer(this, leftPos, topPos, imageWidth, imageHeight);
+		RegistryAccess access = Proxy.getRegistryAccess();
+		if (access == null) return;
+		var sr = manager.get(access).getRenderer(manager.id(), this, leftPos, topPos, imageWidth, imageHeight);
 		sr.start(stack);
 	}
 
 	private boolean isHovering(String slot, int i, int j, double mx, double my) {
-		var comp = manager.get().getComp(slot);
+		RegistryAccess access = Proxy.getRegistryAccess();
+		if (access == null) return false;
+		var comp = manager.get(access).getComp(slot);
 		return this.isHovering(comp.x + comp.w * i, comp.y + comp.h * j, 16, 16, mx, my);
 	}
 
@@ -100,8 +110,10 @@ public abstract class AbstractSelectScreen extends Screen {
 
 	@Nullable
 	protected SlotResult findSlot(double mx, double my) {
+		RegistryAccess access = Proxy.getRegistryAccess();
+		if (access == null) return null;
 		for (String c : slots) {
-			var comp = manager.get().getComp(c);
+			var comp = manager.get(access).getComp(c);
 			for (int i = 0; i < comp.rx; i++) {
 				for (int j = 0; j < comp.ry; j++) {
 					if (this.isHovering(c, i, j, mx, my)) {

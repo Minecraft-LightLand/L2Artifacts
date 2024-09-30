@@ -4,7 +4,6 @@ import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
 import dev.xkmc.l2artifacts.content.effects.attribute.AbstractConditionalAttributeSetEffect;
 import dev.xkmc.l2artifacts.content.effects.attribute.AttrSetEntry;
 import dev.xkmc.l2artifacts.init.registrate.entries.LinearFuncEntry;
-import dev.xkmc.l2core.init.L2LibReg;
 import dev.xkmc.l2damagetracker.contents.attack.DamageData;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
@@ -25,7 +24,7 @@ public class AttackStrikeEffect extends AbstractConditionalAttributeSetEffect<At
 		if (!enabled) return;
 		AttackStrikeData data = fetchNullable(player);
 		if (data != null && data.count >= count.getFromRank(rank))
-			addAttributes(player, ent, rank, data); // efficient operation, perform every tick
+			addAttributes(player, rank); // efficient operation, perform every tick
 	}
 
 	@Override

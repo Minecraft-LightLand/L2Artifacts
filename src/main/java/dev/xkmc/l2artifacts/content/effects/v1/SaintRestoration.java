@@ -16,7 +16,7 @@ public class SaintRestoration extends PlayerOnlySetEffect {
 	private final LinearFuncEntry val;
 
 	public SaintRestoration(LinearFuncEntry val) {
-		super(0);
+		super();
 		this.val = val;
 	}
 

@@ -17,7 +17,7 @@ public class SaintReduction extends PlayerOnlySetEffect {
 	private final LinearFuncEntry atk, def;
 
 	public SaintReduction(LinearFuncEntry atk, LinearFuncEntry def) {
-		super(0);
+		super();
 		this.atk = atk;
 		this.def = def;
 	}

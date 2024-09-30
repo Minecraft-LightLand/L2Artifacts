@@ -3,8 +3,6 @@ package dev.xkmc.l2artifacts.content.core;
 import dev.xkmc.l2artifacts.content.upgrades.ArtifactUpgradeManager;
 import dev.xkmc.l2artifacts.content.upgrades.Upgrade;
 import dev.xkmc.l2artifacts.init.data.LangData;
-import dev.xkmc.l2library.util.Proxy;
-import dev.xkmc.l2library.util.nbt.ItemCompoundTag;
 import dev.xkmc.l2serial.serialization.codec.TagCodec;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
@@ -18,9 +16,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.capabilities.ICapabilityProvider;
-import net.minecraftforge.common.util.LazyOptional;
 import org.jetbrains.annotations.Nullable;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.CuriosCapability;
@@ -100,7 +95,7 @@ public class BaseArtifact extends RankedItem {
 				if (stats.level > stats.old_level) {
 					if (!isClient) {
 						for (int i = stats.old_level + 1; i <= stats.level; i++) {
-							ArtifactUpgradeManager.onUpgrade(stats, i, upgrade, random);
+							ArtifactUpgradeManager.onUpgrade(i, upgrade, random);
 						}
 						stats.old_level = stats.level;
 						CompoundTag newTag = TagCodec.toTag(new CompoundTag(), stats);
@@ -153,16 +148,6 @@ public class BaseArtifact extends RankedItem {
 		if (!shift) {
 			list.add(LangData.SHIFT_TEXT.get());
 		}
-	}
-
-	@Override
-	public @Nullable ICapabilityProvider initCapabilities(ItemStack stack, @Nullable CompoundTag nbt) {
-		return new ICapabilityProvider() {
-			@Nonnull
-			public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
-				return CuriosCapability.ITEM.orEmpty(cap, LazyOptional.of(() -> new ArtifactCurioCap(stack)));
-			}
-		};
 	}
 
 }

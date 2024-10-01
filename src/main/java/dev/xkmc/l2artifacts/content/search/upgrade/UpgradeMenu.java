@@ -1,10 +1,8 @@
 package dev.xkmc.l2artifacts.content.search.upgrade;
 
 import dev.xkmc.l2artifacts.content.core.BaseArtifact;
-import dev.xkmc.l2artifacts.content.misc.ArtifactChestItem;
 import dev.xkmc.l2artifacts.content.search.common.IFilterMenu;
-import dev.xkmc.l2artifacts.content.search.tab.ArtifactTabData;
-import dev.xkmc.l2artifacts.content.search.token.ArtifactChestToken;
+import dev.xkmc.l2artifacts.content.search.token.ArtifactTabData;
 import dev.xkmc.l2artifacts.content.upgrades.ArtifactUpgradeManager;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactMenuRegistry;
@@ -40,7 +38,7 @@ public class UpgradeMenu extends BaseContainerMenu<UpgradeMenu> implements IFilt
 		addSlot("input", e -> e.getItem() instanceof BaseArtifact);
 		this.experience = new IntDataSlot(this);
 		this.exp_cost = new IntDataSlot(this);
-		experience.set(token.token.exp);
+		experience.set(token.exp);
 	}
 
 	@Override
@@ -86,10 +84,14 @@ public class UpgradeMenu extends BaseContainerMenu<UpgradeMenu> implements IFilt
 		return false;
 	}
 
+	@Override
+	public final boolean stillValid(Player player) {
+		return token.stillValid(player);
+	}
+
 	private void costExp(int exp) {
-		token.token.exp -= exp;
-		ArtifactChestItem.setExp(token.token.stack, token.token.exp);
-		experience.set(token.token.exp);
+		token.addExp(-exp);
+		experience.set(token.exp);
 		sendAllDataToRemote();
 	}
 

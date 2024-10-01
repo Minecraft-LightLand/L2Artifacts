@@ -1,20 +1,17 @@
 package dev.xkmc.l2artifacts.content.search.common;
 
 import dev.xkmc.l2artifacts.content.client.tooltip.ItemTooltip;
-import dev.xkmc.l2artifacts.content.misc.ArtifactChestItem;
-import dev.xkmc.l2artifacts.content.search.tab.ArtifactTabData;
-import dev.xkmc.l2artifacts.content.search.tab.ArtifactTabScreen;
-import dev.xkmc.l2artifacts.content.search.token.IArtifactFeature;
+import dev.xkmc.l2artifacts.content.search.filter.IArtifactFeature;
+import dev.xkmc.l2artifacts.content.search.token.ArtifactTabData;
+import dev.xkmc.l2artifacts.content.search.token.ArtifactTabScreen;
 import dev.xkmc.l2core.base.menu.base.SpriteManager;
 import dev.xkmc.l2core.base.menu.stacked.StackedRenderHandle;
 import dev.xkmc.l2core.util.Proxy;
-import dev.xkmc.l2serial.serialization.codec.TagCodec;
 import dev.xkmc.l2tabs.tabs.core.TabManager;
 import dev.xkmc.l2tabs.tabs.core.TabToken;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.inventory.tooltip.TooltipComponent;
 import net.minecraft.world.item.ItemStack;
@@ -89,8 +86,8 @@ public abstract class StackedScreen extends Screen implements ArtifactTabScreen 
 		hover = null;
 		renderInit();
 		List<FilterHover> list = new ArrayList<>();
-		for (int i = 0; i < token.token.filters.size(); i++) {
-			var filter = token.token.filters.get(i);
+		for (int i = 0; i < token.filter.filters.size(); i++) {
+			var filter = token.filter.filters.get(i);
 			renderText(handle, i, mx, my);
 			for (int j = 0; j < filter.allEntries.size(); j++) {
 				boolean selected = filter.getSelected(j);
@@ -136,9 +133,7 @@ public abstract class StackedScreen extends Screen implements ArtifactTabScreen 
 	protected abstract void clickHover(int i, int j);
 
 	public void onSwitch() {
-		var filter = TagCodec.toTag(new CompoundTag(), token);
-		assert filter != null;
-		ArtifactChestItem.setFilter(Proxy.getClientPlayer().getInventory().getItem(token.token.invSlot), filter);
+		token.getFilteredToServer();
 	}
 
 	@Override

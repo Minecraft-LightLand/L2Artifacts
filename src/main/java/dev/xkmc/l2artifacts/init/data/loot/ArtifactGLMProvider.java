@@ -31,7 +31,7 @@ public class ArtifactGLMProvider extends GlobalLootModifierProvider {
 		this.add("health_based_4", new ArtifactLootModifier(400, 500, 1, ArtifactItems.RANDOM[3].asStack(), LootTableTemplate.byPlayer().build()));
 		this.add("health_based_5", new ArtifactLootModifier(500, 0, 1, ArtifactItems.RANDOM[4].asStack(), LootTableTemplate.byPlayer().build()));
 
-		add("fungus_infection", new AddLootTableModifier(ArtifactLootGen.DROP_FUNGUS,
+		add("fungus_infection", new AddLootTableModifier(ArtifactLootGen.DROP_FUNGUS.location(),
 				DamageSourceCondition.hasDamageSource(DamageSourcePredicate.Builder.damageType()).build(),
 				LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.THIS,
 						EntityPredicate.Builder.entity().effects(MobEffectsPredicate.Builder.effects()

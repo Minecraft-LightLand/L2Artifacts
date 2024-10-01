@@ -1,6 +1,6 @@
 package dev.xkmc.l2artifacts.content.config;
 
-import dev.xkmc.l2artifacts.content.search.token.IArtifactFeature;
+import dev.xkmc.l2artifacts.content.search.filter.IArtifactFeature;
 import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;

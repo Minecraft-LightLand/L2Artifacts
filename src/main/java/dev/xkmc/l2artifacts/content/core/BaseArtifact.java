@@ -1,26 +1,34 @@
 package dev.xkmc.l2artifacts.content.core;
 
+import com.google.common.collect.Multimap;
 import dev.xkmc.l2artifacts.content.upgrades.ArtifactUpgradeManager;
 import dev.xkmc.l2artifacts.content.upgrades.Upgrade;
+import dev.xkmc.l2artifacts.init.L2Artifacts;
 import dev.xkmc.l2artifacts.init.data.ArtifactLang;
 import dev.xkmc.l2artifacts.init.registrate.items.ArtifactItems;
+import dev.xkmc.l2core.init.L2LibReg;
 import dev.xkmc.l2core.util.Proxy;
 import net.minecraft.ChatFormatting;
+import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.ai.attributes.Attribute;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
-import top.theillusivec4.curios.api.CuriosApi;
+import top.theillusivec4.curios.api.SlotContext;
+import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Supplier;
 
-public class BaseArtifact extends RankedItem {
+public class BaseArtifact extends RankedItem implements ICurioItem {
 
 	public static void upgrade(ItemStack stack, int exp) {
 		var stats = ArtifactItems.STATS.get(stack);
@@ -29,8 +37,7 @@ public class BaseArtifact extends RankedItem {
 	}
 
 	public static Optional<ArtifactStats> getStats(ItemStack stack) {
-		return CuriosApi.getCurio(stack).filter(e -> e instanceof ArtifactCurioCap)
-				.flatMap(e -> ((ArtifactCurioCap) e).getStats());
+		return Optional.ofNullable(ArtifactItems.STATS.get(stack));
 	}
 
 	public static Optional<Upgrade> getUpgrade(ItemStack stack) {
@@ -61,10 +68,11 @@ public class BaseArtifact extends RankedItem {
 	public InteractionResultHolder<ItemStack> resolve(ItemStack stack, boolean isClient, RandomSource random) {
 		var optStats = getStats(stack);
 		Upgrade upgrade = getUpgrade(stack).orElse(Upgrade.EMPTY);
-		if (optStats.isEmpty()) {
+		var access = Proxy.getRegistryAccess();
+		if (access != null && optStats.isEmpty()) {
 			if (!isClient) {
 				var mu = upgrade.mutable();
-				ArtifactStats stats = ArtifactStats.generate(slot.get(), rank, mu, random);
+				ArtifactStats stats = ArtifactStats.generate(access, slot.get(), rank, mu, random);
 				complete(stack, stats, mu);
 			}
 			return InteractionResultHolder.success(stack);
@@ -116,6 +124,43 @@ public class BaseArtifact extends RankedItem {
 		}
 		if (!shift) {
 			list.add(ArtifactLang.SHIFT_TEXT.get());
+		}
+	}
+
+	@Override
+	public Multimap<Holder<Attribute>, AttributeModifier> getAttributeModifiers(SlotContext ctx, ResourceLocation id, ItemStack stack) {
+		var stats = getStats(stack);
+		if (stats.isPresent()) {
+			return stats.get().buildAttributes(id);
+		}
+		return ICurioItem.super.getAttributeModifiers(ctx, id, stack);
+	}
+
+	@Override
+	public void onEquip(SlotContext slotContext, ItemStack prevStack, ItemStack stack) {
+		if (stack.getItem() instanceof BaseArtifact base) {
+			base.set.get().update(slotContext);
+		}
+	}
+
+	@Override
+	public void onUnequip(SlotContext slotContext, ItemStack newStack, ItemStack stack) {
+		if (stack.getItem() instanceof BaseArtifact base) {
+			base.set.get().update(slotContext);
+		}
+	}
+
+	@Override
+	public void curioTick(SlotContext slotContext, ItemStack stack) {
+		try {
+			if (stack.getItem() instanceof BaseArtifact base) {
+				base.set.get().tick(slotContext);
+			}
+		} catch (Exception e) {
+			if (slotContext.entity() instanceof Player player) {
+				L2LibReg.CONDITIONAL.type().getOrCreate(player).data.entrySet().removeIf(x -> x.getKey().type().equals(L2Artifacts.MODID));
+				L2Artifacts.LOGGER.error("Player " + player + " has invalid artifact data for " + stack.getItem() + ". This could be a bug.");
+			}
 		}
 	}
 

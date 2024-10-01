@@ -1,6 +1,7 @@
 package dev.xkmc.l2artifacts.init.registrate.items;
 
 import com.tterrag.registrate.util.entry.ItemEntry;
+import dev.xkmc.l2artifacts.content.config.SetGroup;
 import dev.xkmc.l2artifacts.content.core.ArtifactStats;
 import dev.xkmc.l2artifacts.content.misc.*;
 import dev.xkmc.l2artifacts.content.swap.ArtifactSwapItem;
@@ -13,6 +14,7 @@ import dev.xkmc.l2core.init.reg.simple.DCVal;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.component.ItemContainerContents;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
 
 import static dev.xkmc.l2artifacts.init.L2Artifacts.REGISTRATE;
@@ -40,6 +42,9 @@ public class ArtifactItems {
 	public static final DCVal<ArtifactStats> STATS = DC.reg("stats", ArtifactStats.class, false);
 	public static final DCVal<Upgrade> UPGRADES = DC.reg("upgrades", Upgrade.class, false);
 	public static final DCVal<String> STAT = DC.str("stat");
+	public static final DCVal<ItemContainerContents> ITEMS = DC.reg("items", ItemContainerContents.CODEC, ItemContainerContents.STREAM_CODEC, false);
+	public static final DCVal<Integer> EXP = DC.intVal("experience");
+	public static final DCVal<SetGroup> GROUP = DC.reg("set_group", SetGroup.class, true);
 
 	static {
 		SELECT = REGISTRATE.item("select", SelectArtifactItem::new)

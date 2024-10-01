@@ -1,7 +1,7 @@
 package dev.xkmc.l2artifacts.content.search.sort;
 
-import dev.xkmc.l2artifacts.content.search.tab.ArtifactTabData;
-import dev.xkmc.l2artifacts.content.search.tab.ArtifactTabScreen;
+import dev.xkmc.l2artifacts.content.search.token.ArtifactTabData;
+import dev.xkmc.l2artifacts.content.search.token.ArtifactTabScreen;
 import dev.xkmc.l2artifacts.network.NetworkManager;
 import dev.xkmc.l2artifacts.network.SetFilterToServer;
 import dev.xkmc.l2tabs.tabs.core.TabBase;
@@ -20,7 +20,7 @@ public class SortTab extends TabBase<ArtifactTabData, SortTab> {
 	public void onTabClicked() {
 		if (manager.screen instanceof ArtifactTabScreen scr) scr.onSwitch();
 		Minecraft.getInstance().setScreen(new SortScreen(manager.token.copy()));
-		NetworkManager.HANDLER.toServer(new SetFilterToServer(manager.token, null));
+		NetworkManager.HANDLER.toServer(SetFilterToServer.of(manager.token, null));
 	}
 
 }

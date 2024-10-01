@@ -2,7 +2,7 @@ package dev.xkmc.l2artifacts.events;
 
 import dev.xkmc.l2artifacts.content.misc.ArtifactChestItem;
 import dev.xkmc.l2artifacts.content.search.common.ArtifactChestMenuPvd;
-import dev.xkmc.l2artifacts.content.search.fitered.FilteredMenu;
+import dev.xkmc.l2artifacts.content.search.main.FilteredMenu;
 import dev.xkmc.l2artifacts.content.swap.ArtifactSwapItem;
 import dev.xkmc.l2artifacts.content.swap.ArtifactSwapMenuPvd;
 import dev.xkmc.l2artifacts.init.L2Artifacts;

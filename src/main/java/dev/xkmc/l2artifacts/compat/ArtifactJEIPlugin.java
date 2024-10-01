@@ -1,10 +1,10 @@
 package dev.xkmc.l2artifacts.compat;
 
-import dev.xkmc.l2artifacts.content.search.augment.AugmentMenuScreen;
-import dev.xkmc.l2artifacts.content.search.dissolve.DissolveMenuScreen;
-import dev.xkmc.l2artifacts.content.search.fitered.FilteredMenuScreen;
-import dev.xkmc.l2artifacts.content.search.recycle.RecycleMenuScreen;
-import dev.xkmc.l2artifacts.content.search.shape.ShapeMenuScreen;
+import dev.xkmc.l2artifacts.content.search.upgrade.AugmentMenuScreen;
+import dev.xkmc.l2artifacts.content.search.convert.DissolveMenuScreen;
+import dev.xkmc.l2artifacts.content.search.main.FilteredMenuScreen;
+import dev.xkmc.l2artifacts.content.search.convert.RecycleMenuScreen;
+import dev.xkmc.l2artifacts.content.search.genesis.ShapeMenuScreen;
 import dev.xkmc.l2artifacts.content.search.upgrade.UpgradeMenuScreen;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactTabRegistry;

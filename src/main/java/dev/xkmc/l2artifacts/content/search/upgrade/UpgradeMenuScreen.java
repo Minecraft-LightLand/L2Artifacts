@@ -3,8 +3,8 @@ package dev.xkmc.l2artifacts.content.search.upgrade;
 import dev.xkmc.l2artifacts.content.core.ArtifactStats;
 import dev.xkmc.l2artifacts.content.core.BaseArtifact;
 import dev.xkmc.l2artifacts.content.core.StatEntry;
-import dev.xkmc.l2artifacts.content.search.filter.FilterScreen;
-import dev.xkmc.l2artifacts.content.search.recycle.RecycleMenuScreen;
+import dev.xkmc.l2artifacts.content.search.sort.FilterScreen;
+import dev.xkmc.l2artifacts.content.search.convert.RecycleMenuScreen;
 import dev.xkmc.l2artifacts.init.data.ArtifactLang;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactTabRegistry;
 import dev.xkmc.l2core.base.menu.base.BaseContainerScreen;
@@ -140,16 +140,16 @@ public class UpgradeMenuScreen extends BaseContainerScreen<UpgradeMenu> implemen
 
 	private Component[] addEntry(boolean main, StatEntry entry, @Nullable StatEntry old) {
 		Component[] ans = new Component[3];
-		ans[0] = entry.getType().value().getDesc().withStyle(main ? MAIN : SUB);
-		ans[1] = entry.getType().value().getValueText(entry.getValue()).withStyle(main ? MAIN : SUB);
+		ans[0] = entry.type().value().getDesc().withStyle(main ? MAIN : SUB);
+		ans[1] = entry.type().value().getValueText(entry.value()).withStyle(main ? MAIN : SUB);
 		if (old != null) {
-			double diff = entry.getValue() - old.getValue();
+			double diff = entry.value() - old.value();
 			if (diff > 1e-3) {
 				Integer fg = ChatFormatting.DARK_PURPLE.getColor();
 				assert fg != null;
 				float perc = 1 - time / MAX_TIME;
 				int c = lerpColor(perc, fg, 0x33322E);
-				ans[2] = entry.getType().value().getValueText(diff).withStyle(Style.EMPTY.withColor(c));
+				ans[2] = entry.type().value().getValueText(diff).withStyle(Style.EMPTY.withColor(c));
 			} else {
 				ans[2] = Component.empty();
 			}

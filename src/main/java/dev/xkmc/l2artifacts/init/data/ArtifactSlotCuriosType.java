@@ -3,6 +3,7 @@ package dev.xkmc.l2artifacts.init.data;
 import com.tterrag.registrate.providers.RegistrateLangProvider;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
 import dev.xkmc.l2artifacts.init.data.slot.CurioSlotBuilder;
+import top.theillusivec4.curios.api.CuriosDataProvider;
 
 import java.util.Locale;
 import java.util.function.BiConsumer;
@@ -15,7 +16,7 @@ public enum ArtifactSlotCuriosType {
 	BELT("artifact_belt", -1360);
 
 	final String id;
-	final int priority;
+	public final int priority;
 
 	ArtifactSlotCuriosType(String id, int priority) {
 		this.id = id;
@@ -34,9 +35,6 @@ public enum ArtifactSlotCuriosType {
 		return "curios.identifier." + id;
 	}
 
-	public void buildConfig(BiConsumer<String, CurioSlotBuilder> cons) {
-		cons.accept("curios/curios/slots/" + getIdentifier(),
-				new CurioSlotBuilder(priority, L2Artifacts.loc(
-						"slot/empty_" + this.getIdentifier() + "_slot").toString()));
+	public void buildConfig(CuriosDataProvider cons) {
 	}
 }

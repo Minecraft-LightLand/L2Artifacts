@@ -1,6 +1,6 @@
 package dev.xkmc.l2artifacts.content.core;
 
-import dev.xkmc.l2artifacts.content.search.token.IArtifactFeature;
+import dev.xkmc.l2artifacts.content.search.filter.IArtifactFeature;
 import dev.xkmc.l2artifacts.init.data.ArtifactSlotCuriosType;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactTypeRegistry;
 import dev.xkmc.l2core.init.reg.registrate.NamedEntry;

@@ -1,9 +1,9 @@
 package dev.xkmc.l2artifacts.content.config;
 
-import com.google.common.collect.ImmutableMultimap;
-import dev.xkmc.l2artifacts.content.core.StatEntry;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactTypeRegistry;
+import dev.xkmc.l2core.util.Proxy;
+import net.minecraft.core.Holder;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
@@ -16,12 +16,14 @@ import net.minecraft.world.item.TooltipFlag;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Collection;
+import java.util.List;
 
 public record StatType(
 		double base, double base_low, double base_high,
 		double main_low, double main_high, double sub_low,
-		double sub_high, Attribute attr,
+		double sub_high, Holder<Attribute> attr,
 		AttributeModifier.Operation op,
+		int mainWeight, int subWeight,
 		@Nullable ResourceLocation icon
 ) {
 
@@ -33,7 +35,9 @@ public record StatType(
 		return holder == null ? null : new StatTypeHolder(holder);
 	}
 
-	public static Collection<StatTypeHolder> getValues(RegistryAccess access) {
+	public static Collection<StatTypeHolder> getValues() {
+		RegistryAccess access = Proxy.getRegistryAccess();
+		if (access == null) return List.of();
 		return ArtifactTypeRegistry.STAT_TYPE.getAll(access).map(StatTypeHolder::new).toList();
 	}
 
@@ -50,11 +54,11 @@ public record StatType(
 	}
 
 	public MutableComponent getValueText(double val) {
-		return attr.toValueComponent(op, val, TooltipFlag.NORMAL);
+		return attr.value().toValueComponent(op, val, TooltipFlag.NORMAL);
 	}
 
 	public Component getTooltip(double val) {
-		return attr.toComponent(new AttributeModifier(DUMMY_ID, val, op), TooltipFlag.NORMAL);
+		return attr.value().toComponent(new AttributeModifier(DUMMY_ID, val, op), TooltipFlag.NORMAL);
 	}
 
 	public double getBaseValue() {
@@ -62,7 +66,7 @@ public record StatType(
 	}
 
 	public MutableComponent getDesc() {
-		return Component.translatable(attr.getDescriptionId());
+		return Component.translatable(attr.value().getDescriptionId());
 	}
 
 }

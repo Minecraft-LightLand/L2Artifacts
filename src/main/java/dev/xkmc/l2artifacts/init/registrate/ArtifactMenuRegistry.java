@@ -1,16 +1,16 @@
 package dev.xkmc.l2artifacts.init.registrate;
 
 import com.tterrag.registrate.util.entry.MenuEntry;
-import dev.xkmc.l2artifacts.content.search.augment.AugmentMenu;
-import dev.xkmc.l2artifacts.content.search.augment.AugmentMenuScreen;
-import dev.xkmc.l2artifacts.content.search.dissolve.DissolveMenu;
-import dev.xkmc.l2artifacts.content.search.dissolve.DissolveMenuScreen;
-import dev.xkmc.l2artifacts.content.search.fitered.FilteredMenu;
-import dev.xkmc.l2artifacts.content.search.fitered.FilteredMenuScreen;
-import dev.xkmc.l2artifacts.content.search.recycle.RecycleMenu;
-import dev.xkmc.l2artifacts.content.search.recycle.RecycleMenuScreen;
-import dev.xkmc.l2artifacts.content.search.shape.ShapeMenu;
-import dev.xkmc.l2artifacts.content.search.shape.ShapeMenuScreen;
+import dev.xkmc.l2artifacts.content.search.upgrade.AugmentMenu;
+import dev.xkmc.l2artifacts.content.search.upgrade.AugmentMenuScreen;
+import dev.xkmc.l2artifacts.content.search.convert.DissolveMenu;
+import dev.xkmc.l2artifacts.content.search.convert.DissolveMenuScreen;
+import dev.xkmc.l2artifacts.content.search.main.FilteredMenu;
+import dev.xkmc.l2artifacts.content.search.main.FilteredMenuScreen;
+import dev.xkmc.l2artifacts.content.search.convert.RecycleMenu;
+import dev.xkmc.l2artifacts.content.search.convert.RecycleMenuScreen;
+import dev.xkmc.l2artifacts.content.search.genesis.ShapeMenu;
+import dev.xkmc.l2artifacts.content.search.genesis.ShapeMenuScreen;
 import dev.xkmc.l2artifacts.content.search.upgrade.UpgradeMenu;
 import dev.xkmc.l2artifacts.content.search.upgrade.UpgradeMenuScreen;
 import dev.xkmc.l2artifacts.content.swap.ArtifactSwapMenu;

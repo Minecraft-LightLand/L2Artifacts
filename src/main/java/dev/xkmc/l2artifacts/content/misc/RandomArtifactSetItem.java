@@ -1,14 +1,12 @@
 package dev.xkmc.l2artifacts.content.misc;
 
+import dev.xkmc.l2artifacts.content.config.SetGroup;
 import dev.xkmc.l2artifacts.content.core.RankedItem;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
 import dev.xkmc.l2artifacts.init.data.ArtifactLang;
 import dev.xkmc.l2artifacts.init.registrate.entries.SetEntry;
 import dev.xkmc.l2artifacts.init.registrate.items.ArtifactItems;
 import net.minecraft.ChatFormatting;
-import net.minecraft.nbt.ListTag;
-import net.minecraft.nbt.StringTag;
-import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.stats.Stats;
 import net.minecraft.util.RandomSource;
@@ -20,7 +18,9 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 public class RandomArtifactSetItem extends RankedItem {
 
@@ -43,39 +43,15 @@ public class RandomArtifactSetItem extends RankedItem {
 	}
 
 	public static ItemStack setList(int rank, Collection<SetEntry<?>> sets) {
-		ItemStack stack = ArtifactItems.RANDOM[rank - 1].asStack();
-		var root = stack.getOrCreateTag();
-		ListTag ltag = new ListTag();
-		for (var e : sets) {
-			if (e.hasRank(rank) && e.items.length == 5)
-				ltag.add(StringTag.valueOf(e.get().getID()));
-		}
-		root.put("Sets", ltag);
-		return stack;
+		ItemStack stack = ArtifactItems.RANDOM_SET[rank - 1].asStack();
+		return ArtifactItems.GROUP.set(stack, SetGroup.ofGroup(rank, sets));
 	}
 
 	@Nullable
 	private static Collection<SetEntry<?>> getList(ItemStack stack, int rank) {
-		var tag = stack.getTag();
-		if (tag != null && tag.contains("Sets")) {
-			ListTag ltag = tag.getList("Sets", Tag.TAG_STRING);
-			Map<String, SetEntry<?>> map = new HashMap<>();
-			for (var e : L2Artifacts.REGISTRATE.SET_LIST) {
-				if (e.hasRank(rank) && e.items.length == 5)
-					map.put(e.get().getID(), e);
-			}
-			Collection<SetEntry<?>> list = new ArrayList<>();
-			for (int i = 0; i < ltag.size(); i++) {
-				String str = ltag.getString(i);
-				if (map.containsKey(str)) {
-					list.add(map.get(str));
-				}
-			}
-			if (!list.isEmpty()) {
-				return list;
-			}
-		}
-		return null;
+		var group = ArtifactItems.GROUP.get(stack);
+		if (group == null) return null;
+		return group.getSets(rank, true);
 	}
 
 	public static List<ItemStack> getRandomArtifact(ItemStack stack, int rank, RandomSource random) {
@@ -91,7 +67,7 @@ public class RandomArtifactSetItem extends RankedItem {
 	}
 
 	@Override
-	public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> list, TooltipFlag flag) {
+	public void appendHoverText(ItemStack stack, TooltipContext level, List<Component> list, TooltipFlag flag) {
 		var sets = getList(stack, rank);
 		if (sets == null) {
 			list.add(ArtifactLang.LOOT_POOL_ALL.get());

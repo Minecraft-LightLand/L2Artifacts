@@ -14,7 +14,7 @@ public class EffectDesc {
 					Component.translatable("potion.potency." + ins.getAmplifier()));
 		}
 		if (showDuration && !ins.endsWithin(20)) {
-			desc = Component.translatable("potion.withDuration", desc, MobEffectUtil.formatDuration(ins, 1));
+			desc = Component.translatable("potion.withDuration", desc, MobEffectUtil.formatDuration(ins, 1, 20));
 		}
 
 		return desc;

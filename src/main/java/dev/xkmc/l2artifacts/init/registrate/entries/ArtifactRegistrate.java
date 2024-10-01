@@ -3,6 +3,7 @@ package dev.xkmc.l2artifacts.init.registrate.entries;
 import com.google.common.collect.LinkedListMultimap;
 import com.google.common.collect.Multimap;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
+import dev.xkmc.l2artifacts.content.config.ArtifactSetConfig;
 import dev.xkmc.l2artifacts.content.config.LinearParam;
 import dev.xkmc.l2artifacts.content.core.ArtifactSet;
 import dev.xkmc.l2artifacts.content.core.BaseArtifact;
@@ -10,12 +11,16 @@ import dev.xkmc.l2artifacts.content.core.LinearFunc;
 import dev.xkmc.l2artifacts.content.effects.core.SetEffect;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactTypeRegistry;
+import dev.xkmc.l2artifacts.network.NetworkManager;
 import dev.xkmc.l2core.init.reg.registrate.L2Registrate;
+import dev.xkmc.l2core.serial.config.ConfigDataProvider;
 import net.minecraft.resources.ResourceLocation;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.TreeMap;
+import java.util.function.Consumer;
 
 public class ArtifactRegistrate extends L2Registrate {
 

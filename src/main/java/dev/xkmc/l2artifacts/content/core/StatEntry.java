@@ -2,57 +2,59 @@ package dev.xkmc.l2artifacts.content.core;
 
 import com.google.common.collect.ImmutableMultimap;
 import dev.xkmc.l2artifacts.content.config.StatType;
-import dev.xkmc.l2serial.serialization.marker.SerialClass;
-import dev.xkmc.l2serial.serialization.marker.SerialField;
 import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 
-@SerialClass
-public class StatEntry {
-
-	@SerialField
-	public Holder<StatType> type;
-
-	@SerialField
-	private double value;
-
-	@Deprecated
-	public StatEntry() {
-
-	}
-
-	public StatEntry(ArtifactSlot slot, Holder<StatType> type, double value) {
-		this.type = type;
-		this.value = value;
-	}
-
-	public Holder<StatType> getType() {
-		return type;
-	}
+public record StatEntry(Holder<StatType> type, double value) {
 
 	public ResourceLocation getID() {
 		return type.unwrapKey().orElseThrow().location();
 	}
 
 	public Component getTooltip() {
-		return type.value().getTooltip(getValue());
+		return type.value().getTooltip(value());
 	}
 
-	public double getValue() {
-		return value * getType().value().getBaseValue();
+	@Override
+	public double value() {
+		return value * type().value().getBaseValue();
 	}
 
-	public void addMultiplier(double value) {
-		this.value += value;
-	}
-
-	public void toModifier(ImmutableMultimap.Builder<Attribute, AttributeModifier> builder, ResourceLocation base) {
-		var e = getType().value();
+	public void toModifier(ImmutableMultimap.Builder<Holder<Attribute>, AttributeModifier> builder, ResourceLocation base) {
+		var e = type().value();
 		var id = base.withSuffix("_" + getID().getPath());
-		builder.put(e.attr(), new AttributeModifier(id, getValue(), e.op()));
+		builder.put(e.attr(), new AttributeModifier(id, value(), e.op()));
+	}
+
+	public Mutable mutable() {
+		return new Mutable(type, value);
+	}
+
+	public static class Mutable {
+
+		private final Holder<StatType> type;
+		private double value;
+
+		private Mutable(Holder<StatType> type, double value) {
+			this.type = type;
+			this.value = value;
+		}
+
+
+		public void addMultiplier(double val) {
+			value += val;
+		}
+
+		public StatEntry immutable() {
+			return new StatEntry(type, value);
+		}
+
+		public Holder<StatType> type() {
+			return type;
+		}
 	}
 
 }

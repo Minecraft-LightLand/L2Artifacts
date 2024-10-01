@@ -1,14 +1,14 @@
 package dev.xkmc.l2artifacts.network;
 
 import dev.xkmc.l2artifacts.content.misc.ArtifactChestItem;
-import dev.xkmc.l2artifacts.content.search.augment.AugmentMenu;
 import dev.xkmc.l2artifacts.content.search.common.ArtifactChestMenuPvd;
 import dev.xkmc.l2artifacts.content.search.common.IFilterMenu;
-import dev.xkmc.l2artifacts.content.search.dissolve.DissolveMenu;
-import dev.xkmc.l2artifacts.content.search.fitered.FilteredMenu;
-import dev.xkmc.l2artifacts.content.search.recycle.RecycleMenu;
-import dev.xkmc.l2artifacts.content.search.shape.ShapeMenu;
-import dev.xkmc.l2artifacts.content.search.tab.ArtifactTabData;
+import dev.xkmc.l2artifacts.content.search.convert.DissolveMenu;
+import dev.xkmc.l2artifacts.content.search.convert.RecycleMenu;
+import dev.xkmc.l2artifacts.content.search.genesis.ShapeMenu;
+import dev.xkmc.l2artifacts.content.search.main.FilteredMenu;
+import dev.xkmc.l2artifacts.content.search.token.ArtifactTabData;
+import dev.xkmc.l2artifacts.content.search.upgrade.AugmentMenu;
 import dev.xkmc.l2artifacts.content.search.upgrade.UpgradeMenu;
 import dev.xkmc.l2core.util.Proxy;
 import dev.xkmc.l2serial.network.SerialPacketBase;
@@ -21,7 +21,7 @@ import net.minecraft.world.item.ItemStack;
 import javax.annotation.Nullable;
 
 public record SetFilterToServer(
-		int slot, CompoundTag filter, @Nullable Type type
+		int slot, @Nullable Type type
 ) implements SerialPacketBase<SetFilterToServer> {
 
 	public enum Type {
@@ -40,7 +40,7 @@ public record SetFilterToServer(
 	}
 
 	public static SetFilterToServer of(ArtifactTabData token, @Nullable Type type) {
-		var slot = token.token.invSlot;
+		var slot = token.invSlot;
 		var filter = TagCodec.toTag(new CompoundTag(), token);
 		ArtifactChestItem.setFilter(Proxy.getClientPlayer().getInventory().getItem(slot), filter);
 		return new SetFilterToServer(slot, filter, type);

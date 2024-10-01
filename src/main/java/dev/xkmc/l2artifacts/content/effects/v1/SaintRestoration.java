@@ -6,10 +6,9 @@ import dev.xkmc.l2artifacts.init.registrate.entries.LinearFuncEntry;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.entity.player.Player;
+import net.neoforged.neoforge.common.extensions.IAttributeExtension;
 
 import java.util.List;
-
-import static net.minecraft.world.item.ItemStack.ATTRIBUTE_MODIFIER_FORMAT;
 
 public class SaintRestoration extends PlayerOnlySetEffect {
 
@@ -48,7 +47,7 @@ public class SaintRestoration extends PlayerOnlySetEffect {
 	@Override
 	public List<MutableComponent> getDetailedDescription(int rank) {
 		double period = val.getFromRank(rank) / 20d;
-		return List.of(Component.translatable(getDescriptionId() + ".desc", ATTRIBUTE_MODIFIER_FORMAT.format(period)));
+		return List.of(Component.translatable(getDescriptionId() + ".desc", IAttributeExtension.FORMAT.format(period)));
 	}
 
 }

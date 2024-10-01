@@ -2,6 +2,8 @@ package dev.xkmc.l2artifacts.init.registrate.entries;
 
 import com.tterrag.registrate.builders.AbstractBuilder;
 import com.tterrag.registrate.builders.BuilderCallback;
+import com.tterrag.registrate.providers.DataGenContext;
+import com.tterrag.registrate.providers.ProviderType;
 import com.tterrag.registrate.providers.RegistrateLangProvider;
 import com.tterrag.registrate.util.entry.ItemEntry;
 import com.tterrag.registrate.util.entry.RegistryEntry;
@@ -35,7 +37,6 @@ public class SetBuilder<T extends ArtifactSet, I extends BaseArtifact, P> extend
 
 	private SimpleEntry<ArtifactSlot>[] slots;
 	private ItemEntry<BaseArtifact>[][] items;
-	private Consumer<ArtifactSetConfig.SetBuilder> builder;
 
 	public SetBuilder(ArtifactRegistrate owner, P parent, String name, BuilderCallback callback, NonNullSupplier<T> sup, int min_rank, int max_rank) {
 		super(owner, parent, name, callback, ArtifactTypeRegistry.SET.key());
@@ -52,9 +53,11 @@ public class SetBuilder<T extends ArtifactSet, I extends BaseArtifact, P> extend
 	}
 
 	public SetBuilder<T, I, P> buildConfig(Consumer<ArtifactSetConfig.SetBuilder> builder) {
-		this.builder = builder;
+		getOwner().addDataGenerator(ProviderType.DATA_MAP, (e) -> e.builder(ArtifactTypeRegistry.ARTIFACT_SETS.reg())
+				.add(DataGenContext.from(this).getId(), ArtifactSetConfig.construct(builder), false));
 		return this;
 	}
+
 
 	@SuppressWarnings({"rawtype", "unchecked"})
 	public SetBuilder<T, I, P> regItems() {
@@ -84,9 +87,8 @@ public class SetBuilder<T extends ArtifactSet, I extends BaseArtifact, P> extend
 	@Override
 	protected RegistryEntry<ArtifactSet, T> createEntryWrapper(DeferredHolder<ArtifactSet, T> delegate) {
 		if (slots == null) throw new IllegalStateException("call setSlots() first");
-		if (builder == null) throw new IllegalStateException("call buildConfig() first");
 		if (items == null) throw new IllegalStateException("call regItems() first");
-		return new SetEntry<>(Wrappers.cast(this.getOwner()), delegate, items, builder);
+		return new SetEntry<>(Wrappers.cast(this.getOwner()), delegate, items);
 	}
 
 	@NonnullType

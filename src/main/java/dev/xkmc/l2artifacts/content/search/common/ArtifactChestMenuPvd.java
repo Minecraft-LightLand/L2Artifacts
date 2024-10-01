@@ -1,7 +1,6 @@
 package dev.xkmc.l2artifacts.content.search.common;
 
-import dev.xkmc.l2artifacts.content.search.tab.ArtifactTabData;
-import dev.xkmc.l2artifacts.content.search.token.ArtifactChestToken;
+import dev.xkmc.l2artifacts.content.search.token.ArtifactTabData;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;

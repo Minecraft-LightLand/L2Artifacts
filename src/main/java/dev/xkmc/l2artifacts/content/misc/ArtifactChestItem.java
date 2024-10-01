@@ -1,16 +1,15 @@
 package dev.xkmc.l2artifacts.content.misc;
 
 import dev.xkmc.l2artifacts.content.search.common.ArtifactChestMenuPvd;
-import dev.xkmc.l2artifacts.content.search.fitered.FilteredMenu;
-import dev.xkmc.l2library.util.nbt.ItemCompoundTag;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.Tag;
+import dev.xkmc.l2artifacts.content.search.main.FilteredMenu;
+import dev.xkmc.l2artifacts.init.registrate.items.ArtifactItems;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.ItemContainerContents;
 import net.minecraft.world.level.Level;
 
 import java.util.ArrayList;
@@ -18,45 +17,29 @@ import java.util.List;
 
 public class ArtifactChestItem extends Item {
 
-	private static final String KEY_LIST = "artifact_list";
-	private static final String KEY_FILTER = "filter";
-	private static final String KEY_EXP = "experience";
-
 	public static List<ItemStack> getContent(ItemStack stack) {
-		var list = ItemCompoundTag.of(stack).getSubList(KEY_LIST, Tag.TAG_COMPOUND).getOrCreate();
-		List<ItemStack> ans = new ArrayList<>();
-		for (int i = 0; i < list.size(); i++) {
-			ans.add(ItemStack.of(list.getCompound(i)));
+		var cont = ArtifactItems.ITEMS.getOrDefault(stack, ItemContainerContents.EMPTY);
+		var ans = new ArrayList<ItemStack>();
+		for (var e : cont.nonEmptyItems()) {
+			ans.add(e);
 		}
 		return ans;
 	}
 
 	public static void setContent(ItemStack stack, List<ItemStack> ans) {
-		var list = ItemCompoundTag.of(stack).getSubList(KEY_LIST, Tag.TAG_COMPOUND);
-		list.clear();
-		for (ItemStack e : ans) {
-			list.addCompound().setTag(e.serializeNBT());
-		}
+		ArtifactItems.ITEMS.set(stack, ItemContainerContents.fromItems(ans));
 	}
 
 	public ArtifactChestItem(Properties properties) {
 		super(properties.stacksTo(1));
 	}
 
-	public static CompoundTag getFilter(ItemStack stack) {
-		return stack.getOrCreateTag().getCompound(KEY_FILTER);
-	}
-
-	public static void setFilter(ItemStack stack, CompoundTag filter) {
-		stack.getOrCreateTag().put(KEY_FILTER, filter);
-	}
-
 	public static int getExp(ItemStack stack) {
-		return stack.getOrCreateTag().getInt(KEY_EXP);
+		return ArtifactItems.EXP.getOrDefault(stack, 0);
 	}
 
 	public static void setExp(ItemStack stack, int exp) {
-		stack.getOrCreateTag().putInt(KEY_EXP, exp);
+		ArtifactItems.EXP.set(stack, exp);
 	}
 
 	@Override

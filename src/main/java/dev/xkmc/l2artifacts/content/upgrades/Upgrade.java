@@ -54,11 +54,11 @@ public record Upgrade(int main, int sub, ArrayList<Holder<StatType>> stats) {
 		}
 
 
-		public @Nullable StatEntry selectAmong(ArrayList<StatEntry> set) {
+		public @Nullable StatEntry.Mutable selectAmong(ArrayList<StatEntry.Mutable> set) {
 			if (stats.isEmpty()) return null;
 			var first = stats.getFirst();
 			for (var e : set) {
-				if (e.getType().equals(first)) {
+				if (e.type().equals(first)) {
 					stats.removeFirst();
 					return e;
 				}

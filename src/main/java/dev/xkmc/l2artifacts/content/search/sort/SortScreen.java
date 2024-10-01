@@ -1,7 +1,7 @@
 package dev.xkmc.l2artifacts.content.search.sort;
 
 import dev.xkmc.l2artifacts.content.search.common.StackedScreen;
-import dev.xkmc.l2artifacts.content.search.tab.ArtifactTabData;
+import dev.xkmc.l2artifacts.content.search.token.ArtifactTabData;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
 import dev.xkmc.l2artifacts.init.data.ArtifactLang;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactTabRegistry;
@@ -40,9 +40,9 @@ public class SortScreen extends StackedScreen {
 
 	protected void renderText(StackedRenderHandle handle, int i, int mx, int my) {
 		boolean p = pressed && prevBtnHover != null && prevBtnHover.i() == i;
-		var btns = handle.drawTextWithButtons(token.token.filters.get(i).getDescription(), false);
+		var btns = handle.drawTextWithButtons(token.getDescription(i), false);
 		var ca = btns.addButton(p ? "sort_1" : "sort_1p");
-		btns.drawText(ca, Component.literal("" + token.token.filters.get(i).priority()), false);
+		btns.drawText(ca, Component.literal("" + token.filter.filters.get(i).priority()), false);
 		if (isHovering(ca.x(), ca.y(), ca.w(), ca.h(), mx, my)) {
 			btnHover = new ButtonHover(i, ca);
 		}
@@ -51,7 +51,7 @@ public class SortScreen extends StackedScreen {
 	@Override
 	protected void renderItem(GuiGraphics g, FilterHover hover) {
 		super.renderItem(g, hover);
-		String s = token.token.filters.get(hover.i()).getPriority(hover.j()) + "";
+		String s = token.filter.filters.get(hover.i()).getPriority(hover.j()) + "";
 		g.pose().pushPose();
 		g.pose().translate(0.0D, 0.0D, 300.0F);
 		int tx = hover.x() + 19 - 2 - font.width(s);
@@ -62,21 +62,20 @@ public class SortScreen extends StackedScreen {
 
 	@Override
 	protected boolean isAvailable(int i, int j) {
-		var filter = token.token.filters.get(i);
-		return filter.getSelected(j) || filter.getAvailability(j);
+		return token.isAvailable(i, j, true);
 	}
 
 	@Override
 	protected void clickHover(int i, int j) {
 		if (!isAvailable(i, j)) return;
-		token.token.filters.get(i).prioritize(j);
+		token.prioritize(i, j);
 	}
 
 	@Override
 	public boolean mouseReleased(double pMouseX, double pMouseY, int pButton) {
 		pressed = false;
 		if (btnHover != null) {
-			token.token.prioritize(btnHover.i());
+			token.prioritize(btnHover.i());
 			return true;
 		}
 		return super.mouseReleased(pMouseX, pMouseY, pButton);

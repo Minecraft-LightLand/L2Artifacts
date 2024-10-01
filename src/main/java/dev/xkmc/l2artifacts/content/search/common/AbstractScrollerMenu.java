@@ -1,6 +1,6 @@
 package dev.xkmc.l2artifacts.content.search.common;
 
-import dev.xkmc.l2artifacts.content.search.tab.ArtifactTabData;
+import dev.xkmc.l2artifacts.content.search.token.ArtifactTabData;
 import dev.xkmc.l2core.base.menu.base.BaseContainerMenu;
 import dev.xkmc.l2core.base.menu.base.SpriteManager;
 import dev.xkmc.l2core.base.menu.data.IntDataSlot;
@@ -42,7 +42,7 @@ public abstract class AbstractScrollerMenu<T extends AbstractScrollerMenu<T>> ex
 
 	protected void reload(boolean changeContent) {
 		if (player.level().isClientSide()) return;
-		var list = token.token.getFiltered();
+		var list = token.getFiltered();
 		max_row.set((int) Math.ceil(list.size() / 6.0));
 		if (row.get() < 0) row.set(0);
 		if (row.get() > getMaxScroll()) row.set(getMaxScroll());
@@ -51,9 +51,9 @@ public abstract class AbstractScrollerMenu<T extends AbstractScrollerMenu<T>> ex
 			ItemStack stack = index >= list.size() ? ItemStack.EMPTY : list.get(index).stack();
 			container.setItem(i + extra, stack);
 		}
-		total_count.set(token.token.list.size());
+		total_count.set(token.data.totalSize());
 		current_count.set(list.size());
-		experience.set(token.token.exp);
+		experience.set(token.exp);
 	}
 
 	public final int getMaxScroll() {
@@ -93,7 +93,7 @@ public abstract class AbstractScrollerMenu<T extends AbstractScrollerMenu<T>> ex
 
 	@Override
 	public final boolean stillValid(Player player) {
-		return player.getInventory().getItem(token.token.invSlot) == token.token.stack;
+		return token.stillValid(player);
 	}
 
 	@Override

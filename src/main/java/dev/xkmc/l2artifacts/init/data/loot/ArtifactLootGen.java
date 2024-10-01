@@ -3,15 +3,16 @@ package dev.xkmc.l2artifacts.init.data.loot;
 import com.tterrag.registrate.providers.loot.RegistrateLootTableProvider;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
 import dev.xkmc.l2artifacts.init.registrate.items.LAItemMisc;
-import dev.xkmc.l2library.util.data.LootTableTemplate;
-import net.minecraft.resources.ResourceLocation;
+import dev.xkmc.l2core.serial.loot.LootTableTemplate;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 
 public class ArtifactLootGen {
 
-	public static final ResourceLocation DROP_FUNGUS = new ResourceLocation(L2Artifacts.MODID, "drop_fungus");
+	public static final ResourceKey<LootTable> DROP_FUNGUS = ResourceKey.create(Registries.LOOT_TABLE, L2Artifacts.loc("drop_fungus"));
 
 	public static void onLootGen(RegistrateLootTableProvider pvd) {
 		pvd.addLootAction(LootContextParamSets.EMPTY, cons ->

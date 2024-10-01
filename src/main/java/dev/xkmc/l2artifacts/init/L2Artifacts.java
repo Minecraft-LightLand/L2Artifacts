@@ -46,7 +46,6 @@ public class L2Artifacts {
 		ArtifactEffects.register();
 		ArtifactConfig.init();
 		NetworkManager.register();
-		ConfigGen.register();
 
 		SelectionRegistry.register(-5000, ArtifactSel.INSTANCE);
 		AttackEventHandler.register(3000, new ArtifactAttackListener());
@@ -60,19 +59,22 @@ public class L2Artifacts {
 
 	@SubscribeEvent(priority = EventPriority.HIGH)
 	public static void gatherData(GatherDataEvent event) {
+		ConfigGen.register();
 		REGISTRATE.addDataGenerator(ProviderType.LANG, ArtifactLang::genLang);
 		REGISTRATE.addDataGenerator(ProviderType.RECIPE, RecipeGen::genRecipe);
 		REGISTRATE.addDataGenerator(ProviderType.LOOT, ArtifactLootGen::onLootGen);
 		REGISTRATE.addDataGenerator(L2TagGen.EFF_TAGS, ArtifactTagGen::onEffectTagGen);
 		REGISTRATE.addDataGenerator(ProviderType.ENTITY_TAGS, ArtifactTagGen::onEntityTypeGen);
+		var init = REGISTRATE.getDataGenInitializer();
+		init.add(ArtifactTypeRegistry.STAT_TYPE.key(), ConfigGen::genSlotType);
 
 		var run = event.includeServer();
 		var gen = event.getGenerator();
 		var reg = event.getLookupProvider();
 		var out = gen.getPackOutput();
+		var file = event.getExistingFileHelper();
 
-		gen.addProvider(run, new ConfigGen(gen));
-		gen.addProvider(run, new SlotGen(event.getGenerator()));
+		gen.addProvider(run, new SlotGen(MODID, out, file, reg));
 		gen.addProvider(run, new ArtifactGLMProvider(out, reg));
 	}
 

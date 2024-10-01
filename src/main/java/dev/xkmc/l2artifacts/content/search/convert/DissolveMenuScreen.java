@@ -1,0 +1,46 @@
+package dev.xkmc.l2artifacts.content.search.convert;
+
+import dev.xkmc.l2artifacts.content.core.BaseArtifact;
+import dev.xkmc.l2artifacts.content.search.common.AbstractScrollerScreen;
+import dev.xkmc.l2artifacts.content.upgrades.StatContainerItem;
+import dev.xkmc.l2artifacts.init.data.ArtifactLang;
+import dev.xkmc.l2artifacts.init.registrate.ArtifactTabRegistry;
+import dev.xkmc.l2core.base.menu.base.MenuLayoutConfig;
+import net.minecraft.ChatFormatting;
+import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.item.ItemStack;
+
+public class DissolveMenuScreen extends AbstractScrollerScreen<DissolveMenu> {
+
+	public DissolveMenuScreen(DissolveMenu cont, Inventory plInv, Component title) {
+		super(cont, plInv, ArtifactLang.TAB_DISSOLVE.get().withStyle(ChatFormatting.GRAY), ArtifactTabRegistry.DISSOLVE.get());
+	}
+
+	@Override
+	protected void renderBgExtra(GuiGraphics g, MenuLayoutConfig.ScreenRenderer sr, int mx, int my) {
+		ItemStack stack = menu.container.getItem(0);
+		int rank = stack.isEmpty() ? 0 : ((StatContainerItem) stack.getItem()).rank;
+		for (int i = 0; i < 6; i++) {
+			for (int j = 0; j < 6; j++) {
+				if (menu.select_index.get() == i * 6 + j) {
+					sr.draw(g, "grid", "toggle_slot_1", j * 18 - 1, i * 18 - 1);
+				} else {
+					ItemStack art = menu.container.getItem(i * 6 + j + 2);
+					int r = art.isEmpty() ? 0 : ((BaseArtifact) art.getItem()).rank;
+					if (rank > 0 && r > 0 && rank != r) {
+						sr.draw(g, "grid", "toggle_slot_2", j * 18 - 1, i * 18 - 1);
+					}
+				}
+
+			}
+		}
+	}
+
+	@Override
+	public Component getTitle() {
+		return super.getTitle().copy().append(": " + menu.current_count.get() + "/" + menu.total_count.get());
+	}
+
+}

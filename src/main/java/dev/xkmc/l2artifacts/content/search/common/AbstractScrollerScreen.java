@@ -1,6 +1,6 @@
 package dev.xkmc.l2artifacts.content.search.common;
 
-import dev.xkmc.l2artifacts.content.search.tab.ArtifactTabData;
+import dev.xkmc.l2artifacts.content.search.token.ArtifactTabData;
 import dev.xkmc.l2core.base.menu.base.BaseContainerScreen;
 import dev.xkmc.l2core.base.menu.base.MenuLayoutConfig;
 import dev.xkmc.l2core.base.menu.scroller.Scroller;

@@ -8,6 +8,7 @@ import dev.xkmc.l2artifacts.init.data.ArtifactLang;
 import dev.xkmc.l2artifacts.init.registrate.items.ArtifactItems;
 import dev.xkmc.l2core.init.L2LibReg;
 import dev.xkmc.l2core.util.Proxy;
+import dev.xkmc.l2core.util.ServerProxy;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
@@ -68,7 +69,7 @@ public class BaseArtifact extends RankedItem implements ICurioItem {
 	public InteractionResultHolder<ItemStack> resolve(ItemStack stack, boolean isClient, RandomSource random) {
 		var optStats = getStats(stack);
 		Upgrade upgrade = getUpgrade(stack).orElse(Upgrade.EMPTY);
-		var access = Proxy.getRegistryAccess();
+		var access = ServerProxy.getRegistryAccess();
 		if (access != null && optStats.isEmpty()) {
 			if (!isClient) {
 				var mu = upgrade.mutable();

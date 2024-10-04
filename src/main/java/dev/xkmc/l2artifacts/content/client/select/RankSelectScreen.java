@@ -2,8 +2,6 @@ package dev.xkmc.l2artifacts.content.client.select;
 
 import dev.xkmc.l2artifacts.init.L2Artifacts;
 import dev.xkmc.l2artifacts.init.data.ArtifactLang;
-import dev.xkmc.l2artifacts.network.ChooseArtifactToServer;
-import dev.xkmc.l2artifacts.network.NetworkManager;
 import dev.xkmc.l2core.base.menu.base.SpriteManager;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
@@ -57,7 +55,7 @@ public class RankSelectScreen extends AbstractSelectScreen {
 		int n = setEntry.items[slot].length;
 		if (ind >= n) return false;
 		Minecraft.getInstance().setScreen(null);
-		NetworkManager.HANDLER.toServer(new ChooseArtifactToServer(set, slot, ind));
+		L2Artifacts.HANDLER.toServer(new ChooseArtifactToServer(set, slot, ind));
 		return true;
 	}
 

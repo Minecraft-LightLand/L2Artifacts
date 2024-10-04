@@ -1,8 +1,6 @@
-package dev.xkmc.l2artifacts.network;
+package dev.xkmc.l2artifacts.content.search.common;
 
 import dev.xkmc.l2artifacts.content.misc.ArtifactChestItem;
-import dev.xkmc.l2artifacts.content.search.common.ArtifactChestMenuPvd;
-import dev.xkmc.l2artifacts.content.search.common.IFilterMenu;
 import dev.xkmc.l2artifacts.content.search.convert.DissolveMenu;
 import dev.xkmc.l2artifacts.content.search.convert.RecycleMenu;
 import dev.xkmc.l2artifacts.content.search.genesis.ShapeMenu;
@@ -10,19 +8,16 @@ import dev.xkmc.l2artifacts.content.search.main.FilteredMenu;
 import dev.xkmc.l2artifacts.content.search.token.ArtifactTabData;
 import dev.xkmc.l2artifacts.content.search.upgrade.AugmentMenu;
 import dev.xkmc.l2artifacts.content.search.upgrade.UpgradeMenu;
-import dev.xkmc.l2core.util.Proxy;
 import dev.xkmc.l2serial.network.SerialPacketBase;
-import dev.xkmc.l2serial.serialization.codec.TagCodec;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 
 import javax.annotation.Nullable;
 
-public record SetFilterToServer(
+public record OpenTabToServer(
 		int slot, @Nullable Type type
-) implements SerialPacketBase<SetFilterToServer> {
+) implements SerialPacketBase<OpenTabToServer> {
 
 	public enum Type {
 		FILTER(FilteredMenu::new),
@@ -39,11 +34,8 @@ public record SetFilterToServer(
 		}
 	}
 
-	public static SetFilterToServer of(ArtifactTabData token, @Nullable Type type) {
-		var slot = token.invSlot;
-		var filter = TagCodec.toTag(new CompoundTag(), token);
-		ArtifactChestItem.setFilter(Proxy.getClientPlayer().getInventory().getItem(slot), filter);
-		return new SetFilterToServer(slot, filter, type);
+	public static OpenTabToServer of(ArtifactTabData token, @Nullable Type type) {
+		return new OpenTabToServer(token.invSlot, type);
 	}
 
 	@Override
@@ -52,18 +44,18 @@ public record SetFilterToServer(
 		ItemStack stack = player.getInventory().getItem(slot);
 		if (!(stack.getItem() instanceof ArtifactChestItem))
 			return;
-		ArtifactChestItem.setFilter(stack, filter);
 		if (type == null) {
 			sp.doCloseContainer();
 			return;
 		}
+		var pvd = new ArtifactChestMenuPvd(type.factory, sp, slot, stack);
 		if (player.containerMenu instanceof IFilterMenu) {
 			ItemStack carried = player.containerMenu.getCarried();
 			player.containerMenu.setCarried(ItemStack.EMPTY);
-			new ArtifactChestMenuPvd(type.factory, sp, slot, stack).open();
+			pvd.open();
 			player.containerMenu.setCarried(carried);
 		} else {
-			new ArtifactChestMenuPvd(type.factory, sp, slot, stack).open();
+			pvd.open();
 		}
 	}
 

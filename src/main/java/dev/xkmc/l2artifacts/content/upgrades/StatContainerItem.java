@@ -4,7 +4,7 @@ import dev.xkmc.l2artifacts.content.config.StatType;
 import dev.xkmc.l2artifacts.init.data.ArtifactLang;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactTypeRegistry;
 import dev.xkmc.l2artifacts.init.registrate.items.ArtifactItems;
-import dev.xkmc.l2core.util.Proxy;
+import dev.xkmc.l2core.util.ServerProxy;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.Holder;
 import net.minecraft.core.RegistryAccess;
@@ -42,7 +42,7 @@ public class StatContainerItem extends UpgradeEnhanceItem {
 	@Override
 	public void appendHoverText(ItemStack stack, TooltipContext ctx, List<Component> list, TooltipFlag flag) {
 		if (ctx.registries() == null) return;
-		var access = Proxy.getRegistryAccess();
+		var access = ServerProxy.getRegistryAccess();
 		if (access == null) return;
 		getType(access, stack).ifPresentOrElse(e -> {
 			list.add(ArtifactLang.STAT_INFO.get(e.value().getDesc().withStyle(ChatFormatting.BLUE)).withStyle(ChatFormatting.DARK_GREEN));
@@ -52,6 +52,6 @@ public class StatContainerItem extends UpgradeEnhanceItem {
 
 	@Override
 	public boolean isFoil(ItemStack pStack) {
-		return getType(Proxy.getRegistryAccess(), pStack).isPresent();
+		return getType(ServerProxy.getRegistryAccess(), pStack).isPresent();
 	}
 }

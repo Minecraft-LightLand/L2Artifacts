@@ -13,6 +13,11 @@ public class ArtifactSlot extends NamedEntry<ArtifactSlot> implements IArtifactF
 	public ArtifactSlot(ArtifactSlotCuriosType curios) {
 		super(ArtifactTypeRegistry.SLOT);
 		this.curios = curios;
+		curios.slot = this;
+	}
+
+	public int ordinal() {
+		return curios.ordinal();
 	}
 
 	@Override

@@ -1,10 +1,10 @@
 package dev.xkmc.l2artifacts.init.registrate.items;
 
 import com.tterrag.registrate.util.entry.ItemEntry;
+import dev.xkmc.l2artifacts.compat.swap.ArtifactSwapItem;
 import dev.xkmc.l2artifacts.content.config.SetGroup;
 import dev.xkmc.l2artifacts.content.core.ArtifactStats;
 import dev.xkmc.l2artifacts.content.misc.*;
-import dev.xkmc.l2artifacts.content.swap.ArtifactSwapItem;
 import dev.xkmc.l2artifacts.content.upgrades.StatContainerItem;
 import dev.xkmc.l2artifacts.content.upgrades.Upgrade;
 import dev.xkmc.l2artifacts.content.upgrades.UpgradeBoostItem;
@@ -39,12 +39,13 @@ public class ArtifactItems {
 	public static final ItemEntry<UpgradeBoostItem>[] ITEM_BOOST_MAIN, ITEM_BOOST_SUB;
 
 	private static final DCReg DC = DCReg.of(L2Artifacts.REG);
+	public static final DCVal<Integer> EXP = DC.intVal("experience");
+	public static final DCVal<String> STAT = DC.str("stat");
 	public static final DCVal<ArtifactStats> STATS = DC.reg("stats", ArtifactStats.class, false);
 	public static final DCVal<Upgrade> UPGRADES = DC.reg("upgrades", Upgrade.class, false);
-	public static final DCVal<String> STAT = DC.str("stat");
-	public static final DCVal<ItemContainerContents> ITEMS = DC.reg("items", ItemContainerContents.CODEC, ItemContainerContents.STREAM_CODEC, false);
-	public static final DCVal<Integer> EXP = DC.intVal("experience");
 	public static final DCVal<SetGroup> GROUP = DC.reg("set_group", SetGroup.class, true);
+	public static final DCVal<ItemContainerContents> ITEMS = DC.reg("items", ItemContainerContents.CODEC, ItemContainerContents.STREAM_CODEC, false);
+
 
 	static {
 		SELECT = REGISTRATE.item("select", SelectArtifactItem::new)

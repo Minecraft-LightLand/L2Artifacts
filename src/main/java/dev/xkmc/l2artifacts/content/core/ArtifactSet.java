@@ -12,6 +12,7 @@ import dev.xkmc.l2artifacts.init.data.ArtifactLang;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactTypeRegistry;
 import dev.xkmc.l2core.init.reg.registrate.NamedEntry;
 import dev.xkmc.l2core.util.Proxy;
+import dev.xkmc.l2core.util.ServerProxy;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.RegistryAccess;
@@ -162,7 +163,7 @@ public class ArtifactSet extends NamedEntry<ArtifactSet> implements IArtifactFea
 	public List<MutableComponent> getAllDescs(ItemStack stack, boolean show) {
 		List<MutableComponent> ans = new ArrayList<>();
 		BaseArtifact artifact = (BaseArtifact) stack.getItem();
-		var list = getConfig(Proxy.getRegistryAccess());
+		var list = getConfig(ServerProxy.getRegistryAccess());
 		if (Proxy.getPlayer() != null) {
 			Optional<SetContext> opt = getSetCount(Proxy.getPlayer());
 			if (opt.isPresent()) {
@@ -201,7 +202,7 @@ public class ArtifactSet extends NamedEntry<ArtifactSet> implements IArtifactFea
 		List<Pair<List<Component>, List<Component>>> ans = new ArrayList<>();//创建一个空list
 		//获取一个SetEffect，List.of()把SetEffect对象转为只有一个元素的List，Pair.of()把两个List封装成一个Pair，Pair添加到ans
 		ans.add(Pair.of(List.of(ArtifactLang.ALL_SET_EFFECTS.get(getDesc(), ctx.count())), List.of()));
-		var list = getConfig(Proxy.getRegistryAccess());
+		var list = getConfig(ServerProxy.getRegistryAccess());
 		for (ArtifactSetConfig.Entry ent : list) {
 			//判断符合数量条件的效果与描述加入ans
 			if (ctx.count() >= ent.count()) {//若数量符合

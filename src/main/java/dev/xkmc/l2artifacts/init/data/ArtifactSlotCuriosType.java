@@ -1,12 +1,10 @@
 package dev.xkmc.l2artifacts.init.data;
 
 import com.tterrag.registrate.providers.RegistrateLangProvider;
-import dev.xkmc.l2artifacts.init.L2Artifacts;
-import dev.xkmc.l2artifacts.init.data.slot.CurioSlotBuilder;
+import dev.xkmc.l2artifacts.content.core.ArtifactSlot;
 import top.theillusivec4.curios.api.CuriosDataProvider;
 
 import java.util.Locale;
-import java.util.function.BiConsumer;
 
 public enum ArtifactSlotCuriosType {
 	HEAD("artifact_head", -1400),
@@ -17,6 +15,8 @@ public enum ArtifactSlotCuriosType {
 
 	final String id;
 	public final int priority;
+
+	public ArtifactSlot slot;
 
 	ArtifactSlotCuriosType(String id, int priority) {
 		this.id = id;

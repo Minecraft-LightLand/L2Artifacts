@@ -28,7 +28,7 @@ public class ArtifactTabData extends TabGroupData<ArtifactTabData> {
 	public final FilledTokenData data;
 
 	private final ItemStack stack;
-	private final int invSlot;
+	public final int invSlot;
 
 	public int exp = 0;
 

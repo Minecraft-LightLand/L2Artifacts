@@ -1,8 +1,8 @@
 package dev.xkmc.l2artifacts.content.search.convert;
 
 import dev.xkmc.l2artifacts.content.search.token.ArtifactTabData;
-import dev.xkmc.l2artifacts.network.NetworkManager;
-import dev.xkmc.l2artifacts.network.SetFilterToServer;
+import dev.xkmc.l2artifacts.init.L2Artifacts;
+import dev.xkmc.l2artifacts.content.search.common.OpenTabToServer;
 import dev.xkmc.l2tabs.tabs.core.TabBase;
 import dev.xkmc.l2tabs.tabs.core.TabManager;
 import dev.xkmc.l2tabs.tabs.core.TabToken;
@@ -16,6 +16,6 @@ public class DissolveTab extends TabBase<ArtifactTabData, DissolveTab> {
 
 	@Override
 	public void onTabClicked() {
-		NetworkManager.HANDLER.toServer(SetFilterToServer.of(manager.token, SetFilterToServer.Type.DISSOLVE));
+		L2Artifacts.HANDLER.toServer(OpenTabToServer.of(manager.token, OpenTabToServer.Type.DISSOLVE));
 	}
 }

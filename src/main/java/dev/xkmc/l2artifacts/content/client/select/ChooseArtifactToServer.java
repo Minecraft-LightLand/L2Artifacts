@@ -1,4 +1,4 @@
-package dev.xkmc.l2artifacts.network;
+package dev.xkmc.l2artifacts.content.client.select;
 
 import dev.xkmc.l2artifacts.content.misc.SelectArtifactItem;
 import dev.xkmc.l2artifacts.init.L2Artifacts;

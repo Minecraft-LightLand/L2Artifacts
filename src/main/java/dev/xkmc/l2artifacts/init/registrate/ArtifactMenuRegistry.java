@@ -1,20 +1,20 @@
 package dev.xkmc.l2artifacts.init.registrate;
 
 import com.tterrag.registrate.util.entry.MenuEntry;
-import dev.xkmc.l2artifacts.content.search.upgrade.AugmentMenu;
-import dev.xkmc.l2artifacts.content.search.upgrade.AugmentMenuScreen;
+import dev.xkmc.l2artifacts.compat.swap.ArtifactSwapMenu;
+import dev.xkmc.l2artifacts.compat.swap.ArtifactSwapScreen;
 import dev.xkmc.l2artifacts.content.search.convert.DissolveMenu;
 import dev.xkmc.l2artifacts.content.search.convert.DissolveMenuScreen;
-import dev.xkmc.l2artifacts.content.search.main.FilteredMenu;
-import dev.xkmc.l2artifacts.content.search.main.FilteredMenuScreen;
 import dev.xkmc.l2artifacts.content.search.convert.RecycleMenu;
 import dev.xkmc.l2artifacts.content.search.convert.RecycleMenuScreen;
 import dev.xkmc.l2artifacts.content.search.genesis.ShapeMenu;
 import dev.xkmc.l2artifacts.content.search.genesis.ShapeMenuScreen;
+import dev.xkmc.l2artifacts.content.search.main.FilteredMenu;
+import dev.xkmc.l2artifacts.content.search.main.FilteredMenuScreen;
+import dev.xkmc.l2artifacts.content.search.upgrade.AugmentMenu;
+import dev.xkmc.l2artifacts.content.search.upgrade.AugmentMenuScreen;
 import dev.xkmc.l2artifacts.content.search.upgrade.UpgradeMenu;
 import dev.xkmc.l2artifacts.content.search.upgrade.UpgradeMenuScreen;
-import dev.xkmc.l2artifacts.content.swap.ArtifactSwapMenu;
-import dev.xkmc.l2artifacts.content.swap.ArtifactSwapScreen;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.MenuType;

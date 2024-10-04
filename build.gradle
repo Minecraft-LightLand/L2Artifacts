@@ -182,6 +182,7 @@ dependencies {
     implementation "dev.xkmc:l2damagetracker:${l2damagetracker_ver}"
     implementation "dev.xkmc:modulargolems:${modulargolems_ver}"
     implementation "dev.xkmc:l2complements:${l2complements_ver}"
+    implementation "dev.xkmc:l2backpack:${l2backpack_ver}"
     implementation "dev.xkmc:l2weaponry:${l2weaponry_ver}"
     implementation "dev.xkmc:l2archery:${l2archery_ver}"
 

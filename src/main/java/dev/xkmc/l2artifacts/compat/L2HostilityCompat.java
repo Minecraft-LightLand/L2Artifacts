@@ -1,16 +1,14 @@
 package dev.xkmc.l2artifacts.compat;
 
-import dev.xkmc.l2hostility.content.capability.mob.MobTraitCap;
-import dev.xkmc.l2hostility.init.L2Hostility;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.monster.Enemy;
-import net.minecraftforge.fml.ModList;
+import net.neoforged.fml.ModList;
 
 public class L2HostilityCompat {
 
 	public static boolean validForDrop(LivingEntity e, int min, int max) {
-		if (e instanceof Mob mob && ModList.get().isLoaded(L2Hostility.MODID)) {
+		if (e instanceof Mob mob && ModList.get().isLoaded("l2hostility")) {
 			return validForDropForHostility(mob, min, max);
 		}
 		if (e instanceof Enemy) {
@@ -21,6 +19,8 @@ public class L2HostilityCompat {
 	}
 
 	private static boolean validForDropForHostility(Mob e, int min, int max) {
+		return false;
+		/* TODO
 		var opt = e.getCapability(MobTraitCap.CAPABILITY).resolve();
 		if (opt.isEmpty()) {
 			return false;
@@ -33,6 +33,7 @@ public class L2HostilityCompat {
 		boolean underLevel = lv < max;
 		if (!overHealth || !overLevel) return false;
 		return max <= 0 || underHealth || underLevel;
+		 */
 	}
 
 

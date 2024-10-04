@@ -2,7 +2,7 @@ package dev.xkmc.l2artifacts.content.config;
 
 import dev.xkmc.l2artifacts.init.L2Artifacts;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactTypeRegistry;
-import dev.xkmc.l2core.util.Proxy;
+import dev.xkmc.l2core.util.ServerProxy;
 import net.minecraft.core.Holder;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.chat.Component;
@@ -36,7 +36,7 @@ public record StatType(
 	}
 
 	public static Collection<StatTypeHolder> getValues() {
-		RegistryAccess access = Proxy.getRegistryAccess();
+		RegistryAccess access = ServerProxy.getRegistryAccess();
 		if (access == null) return List.of();
 		return ArtifactTypeRegistry.STAT_TYPE.getAll(access).map(StatTypeHolder::new).toList();
 	}

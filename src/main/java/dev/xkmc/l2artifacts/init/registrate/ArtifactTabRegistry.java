@@ -1,14 +1,14 @@
 package dev.xkmc.l2artifacts.init.registrate;
 
 import dev.xkmc.l2artifacts.content.client.tab.TabSetEffects;
-import dev.xkmc.l2artifacts.content.search.upgrade.AugmentTab;
 import dev.xkmc.l2artifacts.content.search.convert.DissolveTab;
-import dev.xkmc.l2artifacts.content.search.sort.FilterTab;
-import dev.xkmc.l2artifacts.content.search.main.FilteredTab;
 import dev.xkmc.l2artifacts.content.search.convert.RecycleTab;
 import dev.xkmc.l2artifacts.content.search.genesis.ShapeTab;
+import dev.xkmc.l2artifacts.content.search.main.FilteredTab;
+import dev.xkmc.l2artifacts.content.search.sort.FilterTab;
 import dev.xkmc.l2artifacts.content.search.sort.SortTab;
 import dev.xkmc.l2artifacts.content.search.token.ArtifactTabData;
+import dev.xkmc.l2artifacts.content.search.upgrade.AugmentTab;
 import dev.xkmc.l2artifacts.content.search.upgrade.UpgradeTab;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
 import dev.xkmc.l2artifacts.init.data.ArtifactLang;

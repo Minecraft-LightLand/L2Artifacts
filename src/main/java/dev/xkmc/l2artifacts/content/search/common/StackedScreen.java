@@ -6,7 +6,7 @@ import dev.xkmc.l2artifacts.content.search.token.ArtifactTabData;
 import dev.xkmc.l2artifacts.content.search.token.ArtifactTabScreen;
 import dev.xkmc.l2core.base.menu.base.SpriteManager;
 import dev.xkmc.l2core.base.menu.stacked.StackedRenderHandle;
-import dev.xkmc.l2core.util.Proxy;
+import dev.xkmc.l2core.util.ServerProxy;
 import dev.xkmc.l2tabs.tabs.core.TabManager;
 import dev.xkmc.l2tabs.tabs.core.TabToken;
 import net.minecraft.client.gui.GuiGraphics;
@@ -48,7 +48,7 @@ public abstract class StackedScreen extends Screen implements ArtifactTabScreen 
 
 	@Override
 	protected void init() {
-		var access = Proxy.getRegistryAccess();
+		var access = ServerProxy.getRegistryAccess();
 		if (access == null) return;
 		this.imageWidth = manager.get(access).getWidth();
 		this.imageHeight = manager.get(access).getHeight();
@@ -76,7 +76,7 @@ public abstract class StackedScreen extends Screen implements ArtifactTabScreen 
 	}
 
 	public final void render(GuiGraphics g, int mx, int my, float pTick) {
-		var access = Proxy.getRegistryAccess();
+		var access = ServerProxy.getRegistryAccess();
 		if (access == null) return;
 		var sr = manager.get(access).getRenderer(manager.id(), this, leftPos, topPos, imageWidth, height);
 		sr.start(g);

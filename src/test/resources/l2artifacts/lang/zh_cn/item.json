@@ -1,0 +1,234 @@
+{
+  "item.l2artifacts": {
+	"select": "古遗物选择器（创造）",
+	"filter": "古遗物多功能包",
+	"upgraded_pocket": "高级古遗物多功能包",
+	"swap": "古遗物快捷切换包",
+	"explosive_fungus": "爆裂蘑菇",
+	"nutritious_fungus": "肥厚蘑菇",
+	"petrified_fungus": "石化蘑菇"
+  },
+  "-cartesian": {
+	"sets": {
+	  "path": "item.l2artifacts",
+	  "list": [
+		{
+		  "berserker": "狂战士的",
+		  "gambler": "赌徒的",
+		  "perfection": "完美之人的",
+		  "saint": "圣人的",
+		  "archer": "神射手的",
+		  "physical": "愚勇之人的",
+		  "wrath": "厄运",
+		  "vampire": "吸血鬼的",
+		  "gluttony": "暴食",
+		  "fury_of_fallen": "求生之人的"
+		},
+		{
+		  "head": "帽子",
+		  "necklace": "项链",
+		  "body": "胸针",
+		  "bracelet": "手环",
+		  "belt": "腰带"
+		},
+		{
+		  "1": "-常见级",
+		  "2": "-稀有级",
+		  "3": "-特质级",
+		  "4": "-传奇级",
+		  "5": "-神化级"
+		}
+	  ]
+	},
+	"set_froze": {
+	  "path": "item.l2artifacts",
+	  "list": [
+		{
+		  "froze": "冰封"
+		},
+		{
+		  "head": "之冠",
+		  "necklace": "之血",
+		  "body": "之心",
+		  "bracelet": "护手",
+		  "belt": "腰带"
+		},
+		{
+		  "1": "-常见级",
+		  "2": "-稀有级",
+		  "3": "-特质级",
+		  "4": "-传奇级",
+		  "5": "-神化级"
+		}
+	  ]
+	},
+	"set_ancient": {
+	  "path": "item.l2artifacts",
+	  "list": [
+		{
+		  "ancient_scroll": "古兵书残卷"
+		},
+		{
+		  "head": "书套",
+		  "necklace": "书签",
+		  "body": "上部",
+		  "bracelet": "书绳",
+		  "belt": "下部"
+		},
+		{
+		  "1": "-常见级",
+		  "2": "-稀有级",
+		  "3": "-特质级",
+		  "4": "-传奇级",
+		  "5": "-神化级"
+		}
+	  ]
+	},
+	"set_abyss_medal": {
+	  "path": "item.l2artifacts",
+	  "list": [
+		{
+		  "abyss_medal_head": "蚀章面具",
+		  "abyss_medal_necklace": "深渊雪云",
+		  "abyss_medal_body": "深渊之证",
+		  "abyss_medal_bracelet": "蚀章腕带",
+		  "abyss_medal_belt": "蚀章系带"
+		},
+		{
+		  "1": "-常见级",
+		  "2": "-稀有级",
+		  "3": "-特质级",
+		  "4": "-传奇级",
+		  "5": "-神化级"
+		}
+	  ]
+	},
+	"set_luck_clover": {
+	  "path": "item.l2artifacts",
+	  "list": [
+		{
+		  "luck_clover_necklace": "四叶草项链",
+		  "luck_clover_body": "四叶草别针",
+		  "luck_clover_bracelet": "四叶草手链",
+		  "luck_clover_belt": "四叶草腰带"
+		},
+		{
+		  "4": "-传奇级"
+		}
+	  ]
+	},
+	"set_long_shooter": {
+	  "path": "item.l2artifacts",
+	  "list": [
+		{
+		  "long_shooter": "远射者"
+		},
+		{
+		  "head": "头巾",
+		  "necklace": "挂件",
+		  "bracelet": "护腕",
+		  "belt": "腰带"
+		},
+		{
+		  "1": "-常见级",
+		  "2": "-稀有级",
+		  "3": "-特质级",
+		  "4": "-传奇级",
+		  "5": "-神化级"
+		}
+	  ]
+	},
+	"set_executor": {
+	  "path": "item.l2artifacts",
+	  "list": [
+		{
+		  "executor_head": "执行者之冠",
+		  "executor_necklace": "老式照片吊坠",
+		  "executor_body": "残破的契约",
+		  "executor_bracelet": "执行者护腕",
+		  "executor_belt": "执行者腰带"
+		},
+		{
+		  "1": "-常见级",
+		  "2": "-稀有级",
+		  "3": "-特质级",
+		  "4": "-传奇级",
+		  "5": "-神化级"
+		}
+	  ]
+	},
+	"singles": {
+	  "path": "item.l2artifacts",
+	  "list": [
+		{
+		  "random": "未鉴定古遗物",
+		  "random_set": "未鉴定古遗物套装",
+		  "artifact_experience": "古遗物经验",
+		  "stat_container": "词条容器",
+		  "boost_main": "主词条充能水晶",
+		  "boost_sub": "副词条充能水晶",
+		  "damocles_head": "达摩克利斯之剑",
+		  "protection_head": "向死而生之冠",
+		  "photosynthesis_head": "翠绿之冠",
+		  "sun_block_head": "阳伞"
+		},
+		{
+		  "1": "-常见级",
+		  "2": "-稀有级",
+		  "3": "-特质级",
+		  "4": "-传奇级",
+		  "5": "-神化级"
+		}
+	  ]
+	},
+	"v55": {
+	  "path": "item.l2artifacts",
+	  "list": [
+		{
+		  "cell": "死亡细胞",
+		  "flesh": "血肉",
+		  "fungus": "真菌",
+		  "gilded": "炉金",
+		  "poisonous": "毒辐",
+		  "thermal": "热力",
+		  "mage": "法师",
+		  "pirate": "海盗"
+		},
+		{
+		  "head": "头饰",
+		  "necklace": "脖饰",
+		  "body": "胸饰",
+		  "bracelet": "手饰",
+		  "belt": "腰饰"
+		},
+		{
+		  "1": "-常见级",
+		  "2": "-稀有级",
+		  "3": "-特质级",
+		  "4": "-传奇级",
+		  "5": "-神化级"
+		}
+	  ]
+	},
+	"slimy": {
+	  "path": "item.l2artifacts",
+	  "list": [
+		{
+		  "slimy": "史莱姆"
+		},
+		{
+		  "head": "头饰",
+		  "body": "胸饰",
+		  "belt": "腰饰"
+		},
+		{
+		  "1": "-常见级",
+		  "2": "-稀有级",
+		  "3": "-特质级",
+		  "4": "-传奇级",
+		  "5": "-神化级"
+		}
+	  ]
+	}
+  }
+}

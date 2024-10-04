@@ -1,0 +1,40 @@
+{
+  "side": [
+	"upgrade_on",
+	"toggle_slot_0",
+	"toggle_slot_1",
+	"toggle_slot_2",
+	"altas_stat_container",
+	"altas_boost_main",
+	"altas_boost_sub"
+  ],
+  "comp": {
+	"in_0": {
+	  "sprite": "slot",
+	  "x": 16,
+	  "y": 0
+	},
+	"in_1": {
+	  "sprite": "slot",
+	  "x": 34,
+	  "y": 0
+	},
+	"in_2": {
+	  "sprite": "slot",
+	  "x": 52,
+	  "y": 0
+	},
+	"input": {
+	  "sprite": "result_slot",
+	  "x": 88,
+	  "y": 0
+	},
+	"upgrade": {
+	  "sprite": "upgrade_off",
+	  "x": 124,
+	  "y": 0
+	}
+  },
+  "height": 220,
+  "isContainer": true
+}

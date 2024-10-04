@@ -1,0 +1,13 @@
+{
+  "side": [
+	"toggle_slot_0",
+	"toggle_slot_1",
+	"toggle_slot_2",
+	"sort_1",
+	"sort_1p"
+  ],
+  "comp": {
+  },
+  "height": 220,
+  "isContainer": false
+}

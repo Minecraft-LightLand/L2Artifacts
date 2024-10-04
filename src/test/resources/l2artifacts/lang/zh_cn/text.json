@@ -1,0 +1,77 @@
+{
+  "l2artifacts": {
+	"tooltip": {
+	  "artifact_exp": "经验值: %s/%s",
+	  "artifact_level": "等级: %s",
+	  "main_stat": "主词条:",
+	  "raw_artifact": "右键鉴定属性",
+	  "sub_stat": "副词条:",
+	  "upgrade": "右键显示升级后的属性",
+	  "exp_conversion": "作为升级材料可提供经验: %s",
+	  "shift": "按Shift显示套装效果",
+	  "set": "套装: %s",
+	  "loot_pool": "可能出现的套装：",
+	  "loot_pool_all": "可能出现的套装：所有套装",
+	  "player_only": "套装效果只对玩家生效",
+	  "boost": {
+		"main": "下一次主词条强化将会使用最高数值",
+		"sub": "下一次副词条强化将会大幅提高数值"
+	  },
+	  "enhance": {
+		"main": "下一次主词条强化将会使用最高数值: x%s",
+		"stat": "下一次副词条强化将会使用%s",
+		"sub": "下一次副词条强化将会使用最高数值: x%s"
+	  },
+	  "stat_container": {
+		"apply": "下一次副词条强化将会强化当前词条",
+		"capture": "可以提取古遗物主词条",
+		"info": "词条: %s"
+	  },
+	  "rank": {
+		"1": "常见级",
+		"2": "稀有级",
+		"3": "特质级",
+		"4": "传奇级",
+		"5": "神化级"
+	  }
+	},
+	"set": {
+	  "1": "单件套: ",
+	  "2": "两件套: ",
+	  "3": "三件套: ",
+	  "4": "四件套: ",
+	  "5": "五件套: ",
+	  "all_set_effects": "套装-%s: %s件"
+	},
+	"title": {
+	  "select_set": "选择套装",
+	  "select_slot": "选择部件",
+	  "select_rank": "选择品质",
+	  "filter": {
+		"rank": "品质筛选",
+		"set": "套装筛选",
+		"slot": "部位筛选",
+		"stat": "词条筛选"
+	  },
+	  "tab": {
+		"filter": "筛选器设置",
+		"filtered": "古遗物列表",
+		"recycle": "批量经验转化",
+		"upgrade": "古遗物升级",
+		"sort": "排序设置",
+		"augment": "定向强化",
+		"dissolve": "词条溶解",
+		"shape": "古遗物重构"
+	  },
+	  "info": {
+		"exp_gain": "可获取经验: %s",
+		"experience": "储存经验: %s",
+		"matched": "匹配数量: %s",
+		"selected": "已选中: %s",
+		"total": "总数: %s",
+		"exp_cost": "古遗物经验消耗: %s"
+	  }
+	},
+	"tool.swap": "储存9套古遗物。按上下键选择，按R切换套装。右键空格子锁定格子，以避免在不想要的时候把古遗物换到那些格子中。"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "l2complements"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "1": {
+      "item": "l2complements:resonant_feather"
+    },
+    "A": {
+      "item": "l2artifacts:random_5"
+    },
+    "X": {
+      "item": "l2artifacts:artifact_experience_5"
+    }
+  },
+  "pattern": [
+    "XXX",
+    "A1A",
+    "AAA"
+  ],
+  "result": {
+    "count": 1,
+    "id": "l2artifacts:random_set_5"
+  }
+}

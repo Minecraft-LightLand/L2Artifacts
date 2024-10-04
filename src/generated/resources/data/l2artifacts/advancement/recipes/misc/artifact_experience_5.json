@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_rank_5": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#l2artifacts:rank_5"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "l2artifacts:artifact_experience_5"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_rank_5"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "l2artifacts:artifact_experience_5"
+    ]
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "l2core:bool_config",
+      "expected": true,
+      "line": [
+        "enableArtifactRankUpRecipe"
+      ],
+      "path": "l2configs/l2artifacts-server.toml"
+    }
+  ],
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "l2artifacts:rank_up/thermal_necklace_2"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_thermal_necklace_1": {
+      "conditions": {
+        "items": [
+          {
+            "items": "l2artifacts:thermal_necklace_1"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_thermal_necklace_1"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "l2artifacts:rank_up/thermal_necklace_2"
+    ]
+  }
+}

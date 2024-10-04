@@ -1,0 +1,38 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "l2complements"
+    }
+  ],
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_force_field": {
+      "conditions": {
+        "items": [
+          {
+            "items": "l2complements:force_field"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "l2artifacts:boost_main_1"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_force_field"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "l2artifacts:boost_main_1"
+    ]
+  }
+}

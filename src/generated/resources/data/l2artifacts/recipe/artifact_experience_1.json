@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "l2artifacts:rank_1"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "l2artifacts:artifact_experience_1"
+  }
+}

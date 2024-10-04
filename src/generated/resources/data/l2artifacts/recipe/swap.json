@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "tag": "l2artifacts:artifact"
+    },
+    "E": {
+      "item": "minecraft:ender_pearl"
+    },
+    "L": {
+      "item": "minecraft:leather"
+    }
+  },
+  "pattern": [
+    " E ",
+    "LAL",
+    " L "
+  ],
+  "result": {
+    "count": 1,
+    "id": "l2artifacts:swap"
+  }
+}

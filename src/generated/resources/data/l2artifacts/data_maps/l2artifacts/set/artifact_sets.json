@@ -1,0 +1,364 @@
+{
+  "values": {
+    "l2artifacts:abyss_medal": {
+      "entries": [
+        {
+          "count": 3,
+          "effect": "l2artifacts:abyss_medal_3"
+        },
+        {
+          "count": 5,
+          "effect": "l2artifacts:abyss_medal_5"
+        }
+      ]
+    },
+    "l2artifacts:ancient_scroll": {
+      "entries": [
+        {
+          "count": 1,
+          "effect": "l2artifacts:ancient_scroll_1"
+        },
+        {
+          "count": 2,
+          "effect": "l2artifacts:ancient_scroll_2"
+        },
+        {
+          "count": 3,
+          "effect": "l2artifacts:ancient_scroll_3"
+        },
+        {
+          "count": 4,
+          "effect": "l2artifacts:ancient_scroll_4"
+        },
+        {
+          "count": 5,
+          "effect": "l2artifacts:ancient_scroll_5"
+        }
+      ]
+    },
+    "l2artifacts:archer": {
+      "entries": [
+        {
+          "count": 3,
+          "effect": "l2artifacts:archer_3"
+        },
+        {
+          "count": 5,
+          "effect": "l2artifacts:archer_5"
+        }
+      ]
+    },
+    "l2artifacts:berserker": {
+      "entries": [
+        {
+          "count": 3,
+          "effect": "l2artifacts:berserker_3"
+        },
+        {
+          "count": 5,
+          "effect": "l2artifacts:berserker_5"
+        }
+      ]
+    },
+    "l2artifacts:cell": {
+      "entries": [
+        {
+          "count": 3,
+          "effect": "l2artifacts:dead_cell_dodge"
+        },
+        {
+          "count": 5,
+          "effect": "l2artifacts:dead_cell_parry"
+        }
+      ]
+    },
+    "l2artifacts:damocles": {
+      "entries": [
+        {
+          "count": 1,
+          "effect": "l2artifacts:damocles"
+        }
+      ]
+    },
+    "l2artifacts:executor": {
+      "entries": [
+        {
+          "count": 3,
+          "effect": "l2artifacts:executor_self_hurt"
+        },
+        {
+          "count": 5,
+          "effect": "l2artifacts:executor_limit"
+        }
+      ]
+    },
+    "l2artifacts:flesh": {
+      "entries": [
+        {
+          "count": 3,
+          "effect": "l2artifacts:flesh_overgrowth"
+        },
+        {
+          "count": 5,
+          "effect": "l2artifacts:flesh_decay"
+        }
+      ]
+    },
+    "l2artifacts:froze": {
+      "entries": [
+        {
+          "count": 3,
+          "effect": "l2artifacts:froze_slow"
+        },
+        {
+          "count": 5,
+          "effect": "l2artifacts:froze_break"
+        }
+      ]
+    },
+    "l2artifacts:fungus": {
+      "entries": [
+        {
+          "count": 3,
+          "effect": "l2artifacts:fungus_infect"
+        },
+        {
+          "count": 5,
+          "effect": "l2artifacts:fungus_explode"
+        }
+      ]
+    },
+    "l2artifacts:fury_of_fallen": {
+      "entries": [
+        {
+          "count": 1,
+          "effect": "l2artifacts:fury_of_fallen_1"
+        },
+        {
+          "count": 2,
+          "effect": "l2artifacts:fury_of_fallen_2"
+        },
+        {
+          "count": 3,
+          "effect": "l2artifacts:fury_of_fallen_3"
+        },
+        {
+          "count": 4,
+          "effect": "l2artifacts:fury_of_fallen_4"
+        },
+        {
+          "count": 5,
+          "effect": "l2artifacts:fury_of_fallen_5"
+        }
+      ]
+    },
+    "l2artifacts:gambler": {
+      "entries": [
+        {
+          "count": 3,
+          "effect": "l2artifacts:gambler_3"
+        },
+        {
+          "count": 5,
+          "effect": "l2artifacts:gambler_5"
+        }
+      ]
+    },
+    "l2artifacts:gilded": {
+      "entries": [
+        {
+          "count": 3,
+          "effect": "l2artifacts:gilded_3"
+        },
+        {
+          "count": 5,
+          "effect": "l2artifacts:gilded_5"
+        }
+      ]
+    },
+    "l2artifacts:gluttony": {
+      "entries": [
+        {
+          "count": 3,
+          "effect": "l2artifacts:gluttony_fast"
+        },
+        {
+          "count": 5,
+          "effect": "l2artifacts:gluttony_eat"
+        }
+      ]
+    },
+    "l2artifacts:long_shooter": {
+      "entries": [
+        {
+          "count": 3,
+          "effect": "l2artifacts:long_shooter_3"
+        },
+        {
+          "count": 4,
+          "effect": "l2artifacts:long_shooter_4"
+        }
+      ]
+    },
+    "l2artifacts:luck_clover": {
+      "entries": [
+        {
+          "count": 3,
+          "effect": "l2artifacts:luck_clover_3"
+        },
+        {
+          "count": 4,
+          "effect": "l2artifacts:luck_clover_4"
+        }
+      ]
+    },
+    "l2artifacts:mage": {
+      "entries": [
+        {
+          "count": 2,
+          "effect": "l2artifacts:mage_2"
+        },
+        {
+          "count": 4,
+          "effect": "l2artifacts:mage_4"
+        }
+      ]
+    },
+    "l2artifacts:perfection": {
+      "entries": [
+        {
+          "count": 2,
+          "effect": "l2artifacts:perfection_protection"
+        },
+        {
+          "count": 4,
+          "effect": "l2artifacts:perfection_absorption"
+        }
+      ]
+    },
+    "l2artifacts:photosynthesis": {
+      "entries": [
+        {
+          "count": 1,
+          "effect": "l2artifacts:photosynthesis"
+        }
+      ]
+    },
+    "l2artifacts:physical": {
+      "entries": [
+        {
+          "count": 3,
+          "effect": "l2artifacts:physical_damage"
+        },
+        {
+          "count": 5,
+          "effect": "l2artifacts:physical_armor"
+        }
+      ]
+    },
+    "l2artifacts:pirate": {
+      "entries": [
+        {
+          "count": 2,
+          "effect": "l2artifacts:pirate_2"
+        },
+        {
+          "count": 4,
+          "effect": "l2artifacts:pirate_4"
+        }
+      ]
+    },
+    "l2artifacts:poisonous": {
+      "entries": [
+        {
+          "count": 2,
+          "effect": "l2artifacts:poisonous_touch"
+        },
+        {
+          "count": 5,
+          "effect": "l2artifacts:poisonous_erosion"
+        }
+      ]
+    },
+    "l2artifacts:protection": {
+      "entries": [
+        {
+          "count": 1,
+          "effect": "l2artifacts:protection_resistance"
+        }
+      ]
+    },
+    "l2artifacts:saint": {
+      "entries": [
+        {
+          "count": 3,
+          "effect": "l2artifacts:saint_reduction"
+        },
+        {
+          "count": 5,
+          "effect": "l2artifacts:saint_restoration"
+        }
+      ]
+    },
+    "l2artifacts:slimy": {
+      "entries": [
+        {
+          "count": 1,
+          "effect": "l2artifacts:slimy_buffer"
+        },
+        {
+          "count": 3,
+          "effect": "l2artifacts:slimification"
+        }
+      ]
+    },
+    "l2artifacts:sun_block": {
+      "entries": [
+        {
+          "count": 1,
+          "effect": "l2artifacts:sun_block"
+        }
+      ]
+    },
+    "l2artifacts:thermal": {
+      "entries": [
+        {
+          "count": 2,
+          "effect": "l2artifacts:thermal_motive"
+        },
+        {
+          "count": 4,
+          "effect": "l2artifacts:frost_shield"
+        }
+      ]
+    },
+    "l2artifacts:vampire": {
+      "entries": [
+        {
+          "count": 1,
+          "effect": "l2artifacts:vampire_burn"
+        },
+        {
+          "count": 4,
+          "effect": "l2artifacts:vampire_heal"
+        }
+      ]
+    },
+    "l2artifacts:wrath": {
+      "entries": [
+        {
+          "count": 1,
+          "effect": "l2artifacts:wrath_poison"
+        },
+        {
+          "count": 3,
+          "effect": "l2artifacts:wrath_slow"
+        },
+        {
+          "count": 5,
+          "effect": "l2artifacts:wrath_fire"
+        }
+      ]
+    }
+  }
+}

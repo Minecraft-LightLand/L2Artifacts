@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "l2artifacts:artifact_experience_4"
+    },
+    {
+      "item": "l2artifacts:artifact_experience_4"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "l2artifacts:artifact_experience_5"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "l2artifacts:boost_sub_3"
+    },
+    {
+      "item": "l2artifacts:boost_sub_3"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "l2artifacts:boost_sub_4"
+  }
+}

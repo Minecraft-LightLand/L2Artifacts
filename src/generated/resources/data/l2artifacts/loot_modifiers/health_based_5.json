@@ -9,7 +9,7 @@
   "healthMax": 0,
   "healthMin": 500,
   "result": {
-    "Count": 1,
+    "count": 1,
     "id": "l2artifacts:random_5"
   }
 }

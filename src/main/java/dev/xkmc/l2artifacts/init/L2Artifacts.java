@@ -1,7 +1,9 @@
 package dev.xkmc.l2artifacts.init;
 
 import com.tterrag.registrate.providers.ProviderType;
+import com.tterrag.registrate.providers.RegistrateDataMapProvider;
 import dev.xkmc.l2artifacts.content.client.select.ChooseArtifactToServer;
+import dev.xkmc.l2artifacts.content.config.StatType;
 import dev.xkmc.l2artifacts.content.search.common.OpenTabToServer;
 import dev.xkmc.l2artifacts.events.ArtifactAttackListener;
 import dev.xkmc.l2artifacts.events.ArtifactSlotClickListener;
@@ -11,6 +13,7 @@ import dev.xkmc.l2artifacts.init.data.loot.ArtifactLootGen;
 import dev.xkmc.l2artifacts.init.data.slot.SlotGen;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactEffects;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactMenuRegistry;
+import dev.xkmc.l2artifacts.init.registrate.ArtifactTabRegistry;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactTypeRegistry;
 import dev.xkmc.l2artifacts.init.registrate.entries.ArtifactRegistrate;
 import dev.xkmc.l2artifacts.init.registrate.items.ArtifactItems;
@@ -20,6 +23,7 @@ import dev.xkmc.l2core.init.reg.simple.Reg;
 import dev.xkmc.l2core.serial.config.PacketHandlerWithConfig;
 import dev.xkmc.l2damagetracker.contents.attack.AttackEventHandler;
 import dev.xkmc.l2serial.network.PacketHandler;
+import dev.xkmc.l2serial.serialization.custom_handler.Handlers;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -55,7 +59,9 @@ public class L2Artifacts {
 		ArtifactItems.register();
 		ArtifactMenuRegistry.register();
 		ArtifactEffects.register();
+		ArtifactTabRegistry.register();
 		ArtifactConfig.init();
+		Handlers.registerReg(StatType.class, ArtifactTypeRegistry.STAT_TYPE.key());
 
 		AttackEventHandler.register(3000, new ArtifactAttackListener());
 	}
@@ -83,6 +89,7 @@ public class L2Artifacts {
 		REGISTRATE.addDataGenerator(ProviderType.LOOT, ArtifactLootGen::onLootGen);
 		REGISTRATE.addDataGenerator(L2TagGen.EFF_TAGS, ArtifactTagGen::onEffectTagGen);
 		REGISTRATE.addDataGenerator(ProviderType.ENTITY_TAGS, ArtifactTagGen::onEntityTypeGen);
+		REGISTRATE.addDataGenerator(ProviderType.DATA_MAP, L2Artifacts::onDataMapGen);
 		var init = REGISTRATE.getDataGenInitializer();
 		init.add(ArtifactTypeRegistry.STAT_TYPE.key(), ConfigGen::genSlotType);
 
@@ -94,6 +101,10 @@ public class L2Artifacts {
 
 		gen.addProvider(run, new SlotGen(MODID, out, file, reg));
 		gen.addProvider(run, new ArtifactGLMProvider(out, reg));
+	}
+
+	private static void onDataMapGen(RegistrateDataMapProvider pvd) {
+		ArtifactTabRegistry.genTabs(pvd);
 	}
 
 	public static ResourceLocation loc(String id) {

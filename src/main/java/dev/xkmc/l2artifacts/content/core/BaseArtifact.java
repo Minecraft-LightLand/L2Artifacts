@@ -11,6 +11,7 @@ import dev.xkmc.l2core.util.Proxy;
 import dev.xkmc.l2core.util.ServerProxy;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.Holder;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.RandomSource;
@@ -22,6 +23,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.Nullable;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
@@ -63,14 +65,13 @@ public class BaseArtifact extends RankedItem implements ICurioItem {
 	@Override
 	public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
 		ItemStack stack = player.getItemInHand(hand);
-		return resolve(stack, level.isClientSide(), player.getRandom());
+		return resolve(level.registryAccess(), stack, level.isClientSide(), player.getRandom());
 	}
 
-	public InteractionResultHolder<ItemStack> resolve(ItemStack stack, boolean isClient, RandomSource random) {
+	public InteractionResultHolder<ItemStack> resolve( RegistryAccess access, ItemStack stack, boolean isClient, RandomSource random) {
 		var optStats = getStats(stack);
 		Upgrade upgrade = getUpgrade(stack).orElse(Upgrade.EMPTY);
-		var access = ServerProxy.getRegistryAccess();
-		if (access != null && optStats.isEmpty()) {
+		if (optStats.isEmpty()) {
 			if (!isClient) {
 				var mu = upgrade.mutable();
 				ArtifactStats stats = ArtifactStats.generate(access, slot.get(), rank, mu, random);

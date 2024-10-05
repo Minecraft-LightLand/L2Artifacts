@@ -8,6 +8,7 @@ import dev.xkmc.l2artifacts.init.registrate.ArtifactTabRegistry;
 import dev.xkmc.l2core.base.menu.base.SpriteManager;
 import dev.xkmc.l2core.base.menu.stacked.CellEntry;
 import dev.xkmc.l2core.base.menu.stacked.StackedRenderHandle;
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 
@@ -42,7 +43,7 @@ public class SortScreen extends StackedScreen {
 		boolean p = pressed && prevBtnHover != null && prevBtnHover.i() == i;
 		var btns = handle.drawTextWithButtons(token.getDescription(i), false);
 		var ca = btns.addButton(p ? "sort_1" : "sort_1p");
-		btns.drawText(ca, Component.literal("" + token.filter.filters.get(i).priority()), false);
+		btns.drawText(ca, Component.literal("" + token.filter.filters.get(i).priority()).withStyle(ChatFormatting.WHITE), false);
 		if (isHovering(ca.x(), ca.y(), ca.w(), ca.h(), mx, my)) {
 			btnHover = new ButtonHover(i, ca);
 		}

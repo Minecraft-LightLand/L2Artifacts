@@ -75,6 +75,11 @@ public abstract class StackedScreen extends Screen implements ArtifactTabScreen 
 		}
 	}
 
+	@Override
+	protected void renderBlurredBackground(float partialTick) {
+
+	}
+
 	public final void render(GuiGraphics g, int mx, int my, float pTick) {
 		var access = ServerProxy.getRegistryAccess();
 		if (access == null) return;

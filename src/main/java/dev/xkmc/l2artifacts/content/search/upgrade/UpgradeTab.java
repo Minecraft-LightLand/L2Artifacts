@@ -3,6 +3,7 @@ package dev.xkmc.l2artifacts.content.search.upgrade;
 import dev.xkmc.l2artifacts.content.search.token.ArtifactTabData;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
 import dev.xkmc.l2artifacts.content.search.common.OpenTabToServer;
+import dev.xkmc.l2menustacker.init.MouseCache;
 import dev.xkmc.l2tabs.tabs.core.TabBase;
 import dev.xkmc.l2tabs.tabs.core.TabManager;
 import dev.xkmc.l2tabs.tabs.core.TabToken;

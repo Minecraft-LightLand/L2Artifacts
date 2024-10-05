@@ -21,5 +21,6 @@ public class FilterTab extends TabBase<ArtifactTabData, FilterTab> {
 		if (manager.screen instanceof ArtifactTabScreen scr) scr.onSwitch();
 		Minecraft.getInstance().setScreen(new FilterScreen(manager.token.copy()));
 		L2Artifacts.HANDLER.toServer(OpenTabToServer.of(manager.token, null));
+
 	}
 }

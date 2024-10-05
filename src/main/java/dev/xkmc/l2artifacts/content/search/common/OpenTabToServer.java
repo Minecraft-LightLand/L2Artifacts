@@ -8,6 +8,7 @@ import dev.xkmc.l2artifacts.content.search.main.FilteredMenu;
 import dev.xkmc.l2artifacts.content.search.token.ArtifactTabData;
 import dev.xkmc.l2artifacts.content.search.upgrade.AugmentMenu;
 import dev.xkmc.l2artifacts.content.search.upgrade.UpgradeMenu;
+import dev.xkmc.l2menustacker.init.MouseCache;
 import dev.xkmc.l2serial.network.SerialPacketBase;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
@@ -35,6 +36,7 @@ public record OpenTabToServer(
 	}
 
 	public static OpenTabToServer of(ArtifactTabData token, @Nullable Type type) {
+		if (type != null) MouseCache.cacheMousePos();
 		return new OpenTabToServer(token.invSlot, type);
 	}
 

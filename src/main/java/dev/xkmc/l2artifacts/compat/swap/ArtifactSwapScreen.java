@@ -3,13 +3,11 @@ package dev.xkmc.l2artifacts.compat.swap;
 import dev.xkmc.l2artifacts.content.core.ArtifactSlot;
 import dev.xkmc.l2backpack.content.quickswap.set.GenericSetBagSlot;
 import dev.xkmc.l2backpack.content.quickswap.set.GenericSetSwapScreen;
-import dev.xkmc.l2core.base.menu.base.MenuLayoutConfig;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.Slot;
-import net.minecraft.world.item.ItemStack;
 
 public class ArtifactSwapScreen extends GenericSetSwapScreen<ArtifactSwapMenu> {
 
@@ -23,9 +21,9 @@ public class ArtifactSwapScreen extends GenericSetSwapScreen<ArtifactSwapMenu> {
 			if (!s.isDisabled()) {
 				int i = s.getContainerSlot();
 				ArtifactSlot a = ArtifactSwapType.getSlot(i / 9);
-				 if (s.getItem().isEmpty()) {
-					 getRenderer().draw(g, "grid", "altas_" + a.getRegistryName().getPath(),
-							 (i % 9) * 18, (i / 9) * 18);
+				if (s.getItem().isEmpty()) {
+					getRenderer().draw(g, "grid", "altas_" + a.getRegistryName().getPath(),
+							(i % 9) * 18 - leftPos, (i / 9) * 18 - topPos);
 				}
 			}
 		}

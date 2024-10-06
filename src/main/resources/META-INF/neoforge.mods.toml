@@ -29,6 +29,12 @@ versionRange = "${l2library_version_range}"
 ordering = "NONE"
 side = "BOTH"
 [[dependencies.${ mod_id }]]
+modId = "l2backpack"
+type = "optional"
+versionRange = "[3.0.8,)"
+ordering = "NONE"
+side = "BOTH"
+[[dependencies.${ mod_id }]]
 modId = "curios"
 type = "required"
 versionRange = "${curios_version_range}"

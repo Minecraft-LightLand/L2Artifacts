@@ -1,2 +1,7 @@
+3.0.0+3
+- Fix crash without l2backpack
+- Add l2backpack version requirement (optional)
+- Fix tab texture
+
 3.0.0+2
--Port to 1.21.1
+- Port to 1.21.1

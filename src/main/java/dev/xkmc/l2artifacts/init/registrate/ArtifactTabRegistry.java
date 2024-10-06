@@ -9,6 +9,7 @@ import dev.xkmc.l2artifacts.content.search.main.FilteredTab;
 import dev.xkmc.l2artifacts.content.search.sort.FilterTab;
 import dev.xkmc.l2artifacts.content.search.sort.SortTab;
 import dev.xkmc.l2artifacts.content.search.token.ArtifactTabData;
+import dev.xkmc.l2artifacts.content.search.token.ArtifactTabGroup;
 import dev.xkmc.l2artifacts.content.search.upgrade.AugmentTab;
 import dev.xkmc.l2artifacts.content.search.upgrade.UpgradeTab;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
@@ -37,7 +38,7 @@ public class ArtifactTabRegistry {
 			() -> L2Tabs.GROUP.registerTab(() -> TabSetEffects::new,
 					Component.translatable("menu.tabs.set_effects")));
 
-	public static final TabGroup<ArtifactTabData> ARTIFACT = new TabGroup<>(TabType.RIGHT, 8, false);
+	public static final TabGroup<ArtifactTabData> ARTIFACT = new ArtifactTabGroup(TabType.RIGHT, 8, false);
 
 	public static final Val<TabToken<ArtifactTabData, FilteredTab>> FILTERED = TAB_REG.reg("main", () -> ARTIFACT.registerTab(() -> FilteredTab::new, ArtifactLang.TAB_FILTERED.get()));
 	public static final Val<TabToken<ArtifactTabData, FilterTab>> FILTER = TAB_REG.reg("filter", () -> ARTIFACT.registerTab(() -> FilterTab::new, ArtifactLang.TAB_FILTER.get()));

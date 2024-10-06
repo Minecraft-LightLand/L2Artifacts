@@ -9,6 +9,7 @@ import dev.xkmc.l2artifacts.init.L2Artifacts;
 import dev.xkmc.l2artifacts.init.registrate.LASets;
 import dev.xkmc.l2artifacts.init.registrate.entries.SetEntry;
 import dev.xkmc.l2artifacts.init.registrate.items.ArtifactItems;
+import dev.xkmc.l2backpack.init.L2Backpack;
 import dev.xkmc.l2complements.init.L2Complements;
 import dev.xkmc.l2complements.init.registrate.LCItems;
 import dev.xkmc.l2core.serial.configval.BooleanValueCondition;
@@ -81,7 +82,7 @@ public class RecipeGen {
 		unlock(pvd, new ShapedRecipeBuilder(RecipeCategory.MISC, ArtifactItems.SWAP.get(), 1)::unlockedBy, Items.ENDER_PEARL)
 				.pattern(" E ").pattern("LAL").pattern(" L ")
 				.define('E', Items.ENDER_PEARL).define('L', Items.LEATHER).define('A', artifact)
-				.save(pvd);
+				.save(ConditionalRecipeWrapper.mod(pvd, L2Backpack.MODID));
 
 		unlock(pvd, SmithingTransformRecipeBuilder.smithing(Ingredient.of(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE), Ingredient.of(ArtifactItems.FILTER.get()),
 						Ingredient.of(Items.NETHERITE_INGOT),

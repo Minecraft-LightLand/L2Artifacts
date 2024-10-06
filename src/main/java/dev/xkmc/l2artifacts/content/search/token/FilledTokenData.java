@@ -29,7 +29,7 @@ public class FilledTokenData {
 
 	public List<GenericItemStack<BaseArtifact>> getFiltered(ArtifactFilterData filter) {
 		if (cache != null) return cache;
-		cache = filter.getFilteredImpl(this).sorted(filter.getComparator()).toList();
+		cache = filter.getFiltered(this).sorted(filter.getComparator()).toList();
 		return cache;
 	}
 

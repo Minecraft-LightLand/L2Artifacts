@@ -8,7 +8,6 @@ import dev.xkmc.l2artifacts.init.data.ArtifactLang;
 import dev.xkmc.l2artifacts.init.registrate.items.ArtifactItems;
 import dev.xkmc.l2core.init.L2LibReg;
 import dev.xkmc.l2core.util.Proxy;
-import dev.xkmc.l2core.util.ServerProxy;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.Holder;
 import net.minecraft.core.RegistryAccess;
@@ -23,7 +22,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
-import org.jetbrains.annotations.Nullable;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
@@ -68,7 +66,7 @@ public class BaseArtifact extends RankedItem implements ICurioItem {
 		return resolve(level.registryAccess(), stack, level.isClientSide(), player.getRandom());
 	}
 
-	public InteractionResultHolder<ItemStack> resolve( RegistryAccess access, ItemStack stack, boolean isClient, RandomSource random) {
+	public InteractionResultHolder<ItemStack> resolve(RegistryAccess access, ItemStack stack, boolean isClient, RandomSource random) {
 		var optStats = getStats(stack);
 		Upgrade upgrade = getUpgrade(stack).orElse(Upgrade.EMPTY);
 		if (optStats.isEmpty()) {

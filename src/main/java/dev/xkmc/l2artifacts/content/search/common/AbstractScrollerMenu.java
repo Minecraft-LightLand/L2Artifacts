@@ -53,7 +53,7 @@ public abstract class AbstractScrollerMenu<T extends AbstractScrollerMenu<T>> ex
 		}
 		total_count.set(token.data.totalSize());
 		current_count.set(list.size());
-		experience.set(token.exp);
+		experience.set(token.getExp());
 	}
 
 	public final int getMaxScroll() {

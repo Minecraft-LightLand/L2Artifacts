@@ -3,11 +3,12 @@ package dev.xkmc.l2artifacts.compat.swap;
 import dev.xkmc.l2artifacts.content.core.ArtifactSlot;
 import dev.xkmc.l2artifacts.content.core.BaseArtifact;
 import dev.xkmc.l2artifacts.init.data.ArtifactSlotCuriosType;
+import dev.xkmc.l2artifacts.init.registrate.items.ArtifactItems;
 import dev.xkmc.l2backpack.content.quickswap.entry.*;
 import dev.xkmc.l2backpack.content.quickswap.type.ISetSwapAction;
 import dev.xkmc.l2backpack.content.quickswap.type.ISideInfoRenderer;
 import dev.xkmc.l2backpack.content.quickswap.type.ISingleSwapAction;
-import dev.xkmc.l2backpack.content.quickswap.type.QuickSwapType;
+import dev.xkmc.l2backpack.content.quickswap.type.MatcherSwapType;
 import dev.xkmc.l2backpack.init.data.LBConfig;
 import dev.xkmc.l2itemselector.overlay.OverlayUtil;
 import dev.xkmc.l2itemselector.overlay.SelectionSideBar;
@@ -19,7 +20,7 @@ import top.theillusivec4.curios.api.type.inventory.IDynamicStackHandler;
 
 import javax.annotation.Nullable;
 
-public class ArtifactSwapType extends QuickSwapType implements ISideInfoRenderer, ISingleSwapAction, ISetSwapAction {
+public class ArtifactSwapType extends MatcherSwapType implements ISideInfoRenderer, ISingleSwapAction, ISetSwapAction {
 
 	public static ArtifactSlot getSlot(ItemStack stack) {
 		return ((BaseArtifact) stack.getItem()).slot.get();
@@ -30,7 +31,12 @@ public class ArtifactSwapType extends QuickSwapType implements ISideInfoRenderer
 	}
 
 	public ArtifactSwapType(String name) {
-		super(name);
+		super(name, true);
+	}
+
+	@Override
+	public boolean match(ItemStack stack) {
+		return stack.is(ArtifactItems.SWAP);
 	}
 
 	public boolean activePopup() {
@@ -56,7 +62,7 @@ public class ArtifactSwapType extends QuickSwapType implements ISideInfoRenderer
 		for (int i = 0; i < 5; ++i) {
 			if (!handler.isLocked(i)) {
 				ItemStack stack = handler.getStack(i);
-				var slot = getSlot(stack);
+				var slot = getSlot(i);
 				var curios = CuriosApi.getCuriosInventory(player)
 						.flatMap(e -> e.getStacksHandler(slot.getCurioIdentifier()));
 				if (curios.isEmpty() || curios.get().getSlots() == 0)

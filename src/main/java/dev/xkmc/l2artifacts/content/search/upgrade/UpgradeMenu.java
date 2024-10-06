@@ -38,7 +38,7 @@ public class UpgradeMenu extends BaseContainerMenu<UpgradeMenu> implements IFilt
 		addSlot("input", e -> e.getItem() instanceof BaseArtifact);
 		this.experience = new IntDataSlot(this);
 		this.exp_cost = new IntDataSlot(this);
-		experience.set(token.exp);
+		experience.set(token.getExp());
 	}
 
 	@Override
@@ -91,7 +91,7 @@ public class UpgradeMenu extends BaseContainerMenu<UpgradeMenu> implements IFilt
 
 	private void costExp(int exp) {
 		token.addExp(-exp);
-		experience.set(token.exp);
+		experience.set(token.getExp());
 		sendAllDataToRemote();
 	}
 

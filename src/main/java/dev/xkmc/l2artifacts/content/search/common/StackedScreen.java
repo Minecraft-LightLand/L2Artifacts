@@ -91,8 +91,8 @@ public abstract class StackedScreen extends Screen implements ArtifactTabScreen 
 		hover = null;
 		renderInit();
 		List<FilterHover> list = new ArrayList<>();
-		for (int i = 0; i < token.filter.filters.size(); i++) {
-			var filter = token.filter.filters.get(i);
+		for (int i = 0; i < token.getFilter().filters.size(); i++) {
+			var filter = token.getFilter(i);
 			renderText(handle, i, mx, my);
 			for (int j = 0; j < filter.allEntries.size(); j++) {
 				boolean selected = filter.getSelected(j);
@@ -138,7 +138,7 @@ public abstract class StackedScreen extends Screen implements ArtifactTabScreen 
 	protected abstract void clickHover(int i, int j);
 
 	public void onSwitch() {
-		token.getFilteredToServer();
+		token.sendFilterToServer();
 	}
 
 	@Override

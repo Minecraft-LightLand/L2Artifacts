@@ -15,4 +15,6 @@ public interface IArtifactFilter {
 
 	Comparator<GenericItemStack<BaseArtifact>> getComparator();
 
+	void initFilter();
+
 }

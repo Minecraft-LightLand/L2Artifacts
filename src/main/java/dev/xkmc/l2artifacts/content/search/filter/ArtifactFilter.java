@@ -135,4 +135,19 @@ public abstract class ArtifactFilter<T extends IArtifactFeature> implements IArt
 		}
 	}
 
+	@Override
+	public void initFilter() {
+		int enabled = 0;
+		for (var e : selected) {
+			if (e) enabled++;
+		}
+		for (int i = 0; i < selected.length; i++) {
+			if (!selected[i]) {
+				selected[i] = true;
+				item_priority[i] = ++enabled;
+			}
+		}
+		clearCache();
+	}
+
 }

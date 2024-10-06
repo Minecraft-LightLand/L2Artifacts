@@ -149,7 +149,7 @@ public class RecycleMenu extends AbstractScrollerMenu<RecycleMenu> {
 
 	private void addExp(int exp) {
 		token.addExp(exp);
-		experience.set(token.exp);
+		experience.set(token.getExp());
 		sendAllDataToRemote();
 	}
 

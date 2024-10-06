@@ -5,11 +5,9 @@ import dev.xkmc.l2backpack.content.quickswap.common.IQuickSwapToken;
 import dev.xkmc.l2backpack.content.quickswap.common.SetSwapItem;
 import dev.xkmc.l2backpack.content.quickswap.common.SetSwapToken;
 import dev.xkmc.l2backpack.content.quickswap.common.SimpleMenuPvd;
-import dev.xkmc.l2backpack.content.quickswap.set.ArmorSetBagMenu;
 import dev.xkmc.l2backpack.content.quickswap.set.ISetToggle;
 import dev.xkmc.l2backpack.content.quickswap.set.LongSetToggle;
 import dev.xkmc.l2backpack.content.quickswap.type.QuickSwapType;
-import dev.xkmc.l2backpack.content.quickswap.type.QuickSwapTypes;
 import dev.xkmc.l2backpack.init.registrate.LBItems;
 import dev.xkmc.l2core.base.menu.data.BoolArrayDataSlot;
 import dev.xkmc.l2menustacker.screen.source.PlayerSlot;
@@ -26,6 +24,8 @@ import java.util.List;
 
 public class ArtifactSwapItem extends SetSwapItem {
 
+	public static final ArtifactSwapType TYPE = new ArtifactSwapType("artifact");
+
 	public ArtifactSwapItem(Properties properties) {
 		super(properties.stacksTo(1), 5);
 	}
@@ -39,7 +39,7 @@ public class ArtifactSwapItem extends SetSwapItem {
 	}
 
 	public @Nullable IQuickSwapToken<?> getTokenOfType(ItemStack stack, LivingEntity player, QuickSwapType type) {
-		return type != QuickSwapTypes.ARMOR ? null : new SetSwapToken(this, stack, type);
+		return type != TYPE ? null : new SetSwapToken(this, stack, type);
 	}
 
 	public boolean isItemValid(int slot, @NotNull ItemStack stack) {

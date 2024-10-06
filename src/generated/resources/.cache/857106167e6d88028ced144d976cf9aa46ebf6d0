@@ -1,4 +1,4 @@
-// 1.21.1	2024-10-06T01:12:24.242554	Registrate Provider for l2artifacts [Registries, Data Maps, Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider, Patchouli Provider, Tags (mob_effect), Tags (attribute), Tags (enchantment), Tags (damage_type)]
+// 1.21.1	2024-10-06T15:54:13.977834	Registrate Provider for l2artifacts [Registries, Data Maps, Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider, Patchouli Provider, Tags (mob_effect), Tags (attribute), Tags (enchantment), Tags (damage_type)]
 c66897d439f4546bcea66ae40d59fd46c8b817b0 assets/l2artifacts/lang/en_ud.json
 6ca2463631310a63b94355420341c6e1756d6c64 assets/l2artifacts/lang/en_us.json
 b8bd2d2e5b588898d6036ad788cad930cd830bb3 assets/l2artifacts/models/item/abyss_medal_belt_1.json
@@ -1171,7 +1171,7 @@ bdbfb78c1d3d88ed2fd6de9e6ec3e0bb7c594a6c data/l2artifacts/advancement/recipes/mi
 1ff35429290bcc6d2cc226200944926bcab13a27 data/l2artifacts/advancement/recipes/misc/rank_up/wrath_necklace_4.json
 85bcdd14040d6114542b1eba20d011a7fb48b14d data/l2artifacts/advancement/recipes/misc/rank_up/wrath_necklace_5.json
 110350b21cee70f64a771e0bc899093c05d22658 data/l2artifacts/advancement/recipes/misc/stat_container_1.json
-bf93feb038bd188aa68524dfd117d3b8db06dbd5 data/l2artifacts/advancement/recipes/misc/swap.json
+2fee1d6ae6512ebc2afcc84e02aeadf7fe3e02b6 data/l2artifacts/advancement/recipes/misc/swap.json
 bf7a4ce8ee83d62fb4550ea368e8f39db4e1d4ff data/l2artifacts/advancement/recipes/misc/upgraded_pocket.json
 232d0f8ef4880d2aadae39799c7dc62898066507 data/l2artifacts/advancement/recipes/misc/upgrades/rank_down_artifact_experience_2.json
 eb4e243873644215b6d8b68ed56a883f6408c4cd data/l2artifacts/advancement/recipes/misc/upgrades/rank_down_artifact_experience_3.json
@@ -1739,7 +1739,7 @@ a54b03ae3c40d83d058b42c959c037ce3eb90e5e data/l2artifacts/recipe/rank_up/wrath_h
 000828769a9c29562321986689021de712e04a8f data/l2artifacts/recipe/rank_up/wrath_necklace_4.json
 81c6bf0f4ed91041fe62c154d20a89b919938f6d data/l2artifacts/recipe/rank_up/wrath_necklace_5.json
 937186e0df2d5c68861995681e6c81600729bb5b data/l2artifacts/recipe/stat_container_1.json
-300b8a4c683a647798b46fcb99ee5b9bb8829383 data/l2artifacts/recipe/swap.json
+c034d962ff5b052fa7e8e989bd5a197a771dfce9 data/l2artifacts/recipe/swap.json
 4df0822d418eb2d647b44c7c48b14e6333e12730 data/l2artifacts/recipe/upgraded_pocket.json
 4a6422ff06c577da5a2094ea76a4d07460e88707 data/l2artifacts/recipe/upgrades/rank_down_artifact_experience_2.json
 532cf3746f6334766908025aef0cbf30b8d5d7e2 data/l2artifacts/recipe/upgrades/rank_down_artifact_experience_3.json

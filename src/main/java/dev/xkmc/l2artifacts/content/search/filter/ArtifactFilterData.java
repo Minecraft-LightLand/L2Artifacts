@@ -71,6 +71,10 @@ public class ArtifactFilterData implements IArtifactFilter {
 		return data.getAll().stream().map(e -> new GenericItemStack<>((BaseArtifact) e.getItem(), e));
 	}
 
+	public Stream<GenericItemStack<BaseArtifact>> getFiltered(FilledTokenData data) {
+		return stat.getFilteredImpl(data);
+	}
+
 	@Override
 	public void update(FilledTokenData data) {
 		data.clearCache();
@@ -87,6 +91,12 @@ public class ArtifactFilterData implements IArtifactFilter {
 		for (int i = 0; i < list.size(); i++) {
 			list.get(i).sort_priority = i + 1;
 		}
+	}
+
+	@Override
+	public void initFilter() {
+		for (var e : filters)
+			e.initFilter();
 	}
 
 }

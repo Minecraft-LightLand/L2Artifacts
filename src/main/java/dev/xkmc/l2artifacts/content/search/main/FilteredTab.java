@@ -1,8 +1,8 @@
 package dev.xkmc.l2artifacts.content.search.main;
 
+import dev.xkmc.l2artifacts.content.search.common.OpenTabToServer;
 import dev.xkmc.l2artifacts.content.search.token.ArtifactTabData;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
-import dev.xkmc.l2artifacts.content.search.common.OpenTabToServer;
 import dev.xkmc.l2tabs.tabs.core.TabBase;
 import dev.xkmc.l2tabs.tabs.core.TabManager;
 import dev.xkmc.l2tabs.tabs.core.TabToken;
@@ -16,6 +16,6 @@ public class FilteredTab extends TabBase<ArtifactTabData, FilteredTab> {
 
 	@Override
 	public void onTabClicked() {
-		L2Artifacts.HANDLER.toServer(OpenTabToServer.of(manager.token, OpenTabToServer.Type.FILTER));
+		L2Artifacts.HANDLER.toServer(OpenTabToServer.of(manager, OpenTabToServer.Type.FILTER));
 	}
 }

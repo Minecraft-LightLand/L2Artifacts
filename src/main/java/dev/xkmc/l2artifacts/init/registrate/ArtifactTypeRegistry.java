@@ -8,13 +8,17 @@ import dev.xkmc.l2artifacts.content.core.ArtifactSet;
 import dev.xkmc.l2artifacts.content.core.ArtifactSlot;
 import dev.xkmc.l2artifacts.content.core.LinearFunc;
 import dev.xkmc.l2artifacts.content.effects.core.SetEffect;
+import dev.xkmc.l2artifacts.content.search.token.PlayerFilterCap;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
 import dev.xkmc.l2artifacts.init.data.ArtifactSlotCuriosType;
 import dev.xkmc.l2artifacts.init.data.loot.ArtifactLootModifier;
+import dev.xkmc.l2core.capability.player.PlayerCapabilityNetworkHandler;
 import dev.xkmc.l2core.init.reg.datapack.DataMapReg;
 import dev.xkmc.l2core.init.reg.datapack.DatapackReg;
 import dev.xkmc.l2core.init.reg.registrate.L2Registrate;
 import dev.xkmc.l2core.init.reg.registrate.SimpleEntry;
+import dev.xkmc.l2core.init.reg.simple.AttReg;
+import dev.xkmc.l2core.init.reg.simple.AttVal;
 import dev.xkmc.l2core.init.reg.simple.CdcReg;
 import dev.xkmc.l2core.init.reg.simple.CdcVal;
 import net.neoforged.neoforge.common.loot.IGlobalLootModifier;
@@ -39,6 +43,10 @@ public class ArtifactTypeRegistry {
 	public static final SimpleEntry<ArtifactSlot> SLOT_BRACELET = regSlot("bracelet", () -> new ArtifactSlot(ArtifactSlotCuriosType.BRACELET));
 	public static final SimpleEntry<ArtifactSlot> SLOT_BODY = regSlot("body", () -> new ArtifactSlot(ArtifactSlotCuriosType.BODY));
 	public static final SimpleEntry<ArtifactSlot> SLOT_BELT = regSlot("belt", () -> new ArtifactSlot(ArtifactSlotCuriosType.BELT));
+
+	private static final AttReg ATT = AttReg.of(L2Artifacts.REG);
+	public static final AttVal.PlayerVal<PlayerFilterCap> FILTER = ATT.player("filter",
+			PlayerFilterCap.class, PlayerFilterCap::new, PlayerCapabilityNetworkHandler::new);
 
 	private static final CdcReg<IGlobalLootModifier> CDC = CdcReg.of(L2Artifacts.REG, NeoForgeRegistries.GLOBAL_LOOT_MODIFIER_SERIALIZERS);
 	public static final CdcVal<ArtifactLootModifier> SER = CDC.reg("main", ArtifactLootModifier.CODEC);

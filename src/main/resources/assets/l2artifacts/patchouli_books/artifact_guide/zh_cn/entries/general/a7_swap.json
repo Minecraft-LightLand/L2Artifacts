@@ -1,4 +1,5 @@
 {
+  "flag": "mod:l2backpack",
   "name": "古遗物快捷切换",
   "icon": "l2artifacts:swap",
   "category": "l2artifacts:general",

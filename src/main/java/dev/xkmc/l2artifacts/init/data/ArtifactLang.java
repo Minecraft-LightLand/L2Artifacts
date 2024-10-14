@@ -105,6 +105,7 @@ public enum ArtifactLang {
 		}
 		for (ArtifactSlotCuriosType type : ArtifactSlotCuriosType.values()) {
 			pvd.add(type.getDesc(), type.getDefTranslation());
+			pvd.add(type.getModifier(), "When equipped as " + type.getDefTranslation() + ":");
 		}
 		pvd.add("l2artifacts.set.1", "When Equip: ");
 		pvd.add("l2artifacts.set.2", "(2/%s) Set Bonus: ");

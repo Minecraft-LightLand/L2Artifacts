@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_boost_sub_1": {
+      "conditions": {
+        "items": [
+          {
+            "items": "l2artifacts:boost_sub_1"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "l2artifacts:upgrades/rank_up_boost_sub_2"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_boost_sub_1"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "l2artifacts:upgrades/rank_up_boost_sub_2"
+    ]
+  }
+}

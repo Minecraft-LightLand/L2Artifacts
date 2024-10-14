@@ -1,0 +1,42 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "l2core:bool_config",
+      "expected": true,
+      "line": [
+        "enableArtifactRankUpRecipe"
+      ],
+      "path": "l2configs/l2artifacts-server.toml"
+    }
+  ],
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_ancient_scroll_head_3": {
+      "conditions": {
+        "items": [
+          {
+            "items": "l2artifacts:ancient_scroll_head_3"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "l2artifacts:rank_up/ancient_scroll_head_4"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_ancient_scroll_head_3"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "l2artifacts:rank_up/ancient_scroll_head_4"
+    ]
+  }
+}

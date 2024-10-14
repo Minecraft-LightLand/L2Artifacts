@@ -1,0 +1,26 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "l2core:bool_config",
+      "expected": true,
+      "line": [
+        "enableArtifactRankUpRecipe"
+      ],
+      "path": "l2configs/l2artifacts-server.toml"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "l2artifacts:thermal_bracelet_1"
+    },
+    {
+      "item": "l2artifacts:thermal_bracelet_1"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "l2artifacts:thermal_bracelet_2"
+  }
+}

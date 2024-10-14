@@ -1,0 +1,42 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "l2core:bool_config",
+      "expected": true,
+      "line": [
+        "enableArtifactRankUpRecipe"
+      ],
+      "path": "l2configs/l2artifacts-server.toml"
+    }
+  ],
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_poisonous_belt_1": {
+      "conditions": {
+        "items": [
+          {
+            "items": "l2artifacts:poisonous_belt_1"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "l2artifacts:rank_up/poisonous_belt_2"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_poisonous_belt_1"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "l2artifacts:rank_up/poisonous_belt_2"
+    ]
+  }
+}

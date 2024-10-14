@@ -1,0 +1,13 @@
+{
+  "attr": "minecraft:generic.armor",
+  "base": 2.0,
+  "base_high": 2.0,
+  "base_low": 1.0,
+  "mainWeight": 100,
+  "main_high": 0.4,
+  "main_low": 0.2,
+  "op": "ADD_VALUE",
+  "subWeight": 100,
+  "sub_high": 0.4,
+  "sub_low": 0.2
+}

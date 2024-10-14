@@ -15,9 +15,11 @@ import dev.xkmc.l2artifacts.content.search.upgrade.AugmentMenu;
 import dev.xkmc.l2artifacts.content.search.upgrade.AugmentMenuScreen;
 import dev.xkmc.l2artifacts.content.search.upgrade.UpgradeMenu;
 import dev.xkmc.l2artifacts.content.search.upgrade.UpgradeMenuScreen;
+import dev.xkmc.l2backpack.init.L2Backpack;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.MenuType;
+import net.neoforged.fml.ModList;
 
 import static dev.xkmc.l2artifacts.init.L2Artifacts.REGISTRATE;
 
@@ -53,10 +55,7 @@ public class ArtifactMenuRegistry {
 					() -> ShapeMenuScreen::new)
 			.lang(ArtifactMenuRegistry::getLangKey, "Artifact Genesis").register();
 
-	public static final MenuEntry<ArtifactSwapMenu> MT_SWAP = REGISTRATE.menu("swap",
-					ArtifactSwapMenu::fromNetwork,
-					() -> ArtifactSwapScreen::new)
-			.lang(ArtifactMenuRegistry::getLangKey, "Artifact Quick Swap").register();
+	public static MenuEntry<ArtifactSwapMenu> MT_SWAP;
 
 	public static String getLangKey(MenuType<?> menu) {
 		ResourceLocation rl = BuiltInRegistries.MENU.getKey(menu);
@@ -65,6 +64,12 @@ public class ArtifactMenuRegistry {
 	}
 
 	public static void register() {
+		if (ModList.get().isLoaded(L2Backpack.MODID)) {
+			MT_SWAP = REGISTRATE.menu("swap",
+							ArtifactSwapMenu::fromNetwork,
+							() -> ArtifactSwapScreen::new)
+					.lang(ArtifactMenuRegistry::getLangKey, "Artifact Quick Swap").register();
+		}
 
 	}
 

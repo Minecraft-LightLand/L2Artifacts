@@ -35,6 +35,10 @@ public enum ArtifactSlotCuriosType {
 		return "curios.identifier." + id;
 	}
 
+	public String getModifier() {
+		return "curios.modifiers." + id;
+	}
+
 	public void buildConfig(CuriosDataProvider cons) {
 	}
 }

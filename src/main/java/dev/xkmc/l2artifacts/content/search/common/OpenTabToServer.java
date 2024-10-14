@@ -8,7 +8,10 @@ import dev.xkmc.l2artifacts.content.search.main.FilteredMenu;
 import dev.xkmc.l2artifacts.content.search.token.ArtifactTabData;
 import dev.xkmc.l2artifacts.content.search.upgrade.AugmentMenu;
 import dev.xkmc.l2artifacts.content.search.upgrade.UpgradeMenu;
+import dev.xkmc.l2artifacts.events.ArtifactClientHandler;
+import dev.xkmc.l2menustacker.init.MouseCache;
 import dev.xkmc.l2serial.network.SerialPacketBase;
+import dev.xkmc.l2tabs.tabs.core.TabManager;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -34,8 +37,12 @@ public record OpenTabToServer(
 		}
 	}
 
-	public static OpenTabToServer of(ArtifactTabData token, @Nullable Type type) {
-		return new OpenTabToServer(token.invSlot, type);
+	public static OpenTabToServer of(TabManager<ArtifactTabData> tab, @Nullable Type type) {
+		if (type != null) {
+			MouseCache.cacheMousePos();
+			ArtifactClientHandler.onTabSwitch(tab);
+		}
+		return new OpenTabToServer(tab.token.invSlot, type);
 	}
 
 	@Override

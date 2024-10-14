@@ -1,5 +1,5 @@
 {
-  "type": "l2artifacts:add_table",
+  "type": "l2core:add_table",
   "conditions": [
     {
       "condition": "minecraft:damage_source_properties",

@@ -1,0 +1,13 @@
+{
+  "values": {
+    "l2artifacts:augment": 6,
+    "l2artifacts:dissolve": 5,
+    "l2artifacts:filter": 1,
+    "l2artifacts:genesis": 7,
+    "l2artifacts:main": 0,
+    "l2artifacts:recycle": 3,
+    "l2artifacts:set_effects": 3000,
+    "l2artifacts:sort": 2,
+    "l2artifacts:upgrade": 4
+  }
+}

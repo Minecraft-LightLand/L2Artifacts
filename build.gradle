@@ -203,7 +203,7 @@ dependencies {
     commonRuntimeOnly "maven.modrinth:accessories-cc-layer:9.0.5-beta.11+1.21"
 
     //implementation "curse.maven:embeddium-908741:5681729"
-    implementation "maven.modrinth:sodium:mc1.21-0.6.0-beta.2-neoforge"
+    //implementation "maven.modrinth:sodium:mc1.21-0.6.0-beta.2-neoforge"
     //implementation "curse.maven:irisshaders-455508:5765375"
 }
 
@@ -218,6 +218,7 @@ tasks.register('publishCurseForge', TaskPublishCurseForge) {
     mainFile.addOptional(
             "l2-complements",
             "modulargolems",
+            "l2-backpack",
             "patchouli")
     mainFile.releaseType = "beta"
     disableVersionDetection()
@@ -237,6 +238,7 @@ modrinth {
         required.project "l2library"
         required.project "curios"
         optional.project "l2-complements"
+        optional.project "l2backpack"
         optional.project "modular-golems"
         optional.project "patchouli"
     }

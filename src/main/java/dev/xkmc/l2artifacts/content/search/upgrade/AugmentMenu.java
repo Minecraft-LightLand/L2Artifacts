@@ -54,7 +54,7 @@ public class AugmentMenu extends BaseContainerMenu<AugmentMenu> implements IFilt
 		this.experience = new IntDataSlot(this);
 		this.exp_cost = new IntDataSlot(this);
 		this.mask = new IntDataSlot(this);
-		experience.set(token.exp);
+		experience.set(token.getExp());
 
 		this.input = getAsPredSlot("input");
 		this.in_0 = getAsPredSlot("in_0");
@@ -79,7 +79,7 @@ public class AugmentMenu extends BaseContainerMenu<AugmentMenu> implements IFilt
 		boolean useMain = false;
 		if (!stack.isEmpty()) {
 			BaseArtifact item = getMainItem().item();
-			var result = item.resolve(stack, false, player.getRandom());
+			var result = item.resolve(access, stack, false, player.getRandom());
 			if (result.getResult().consumesAction()) {
 				stack = result.getObject();
 				input.set(stack);
@@ -143,7 +143,7 @@ public class AugmentMenu extends BaseContainerMenu<AugmentMenu> implements IFilt
 			}
 			ArtifactItems.UPGRADES.set(stack, upgrade.immutable());
 			BaseArtifact.upgrade(stack, cost);
-			stack = ((BaseArtifact) stack.getItem()).resolve(stack, false, player.getRandom()).getObject();
+			stack = ((BaseArtifact) stack.getItem()).resolve(access, stack, false, player.getRandom()).getObject();
 			getAsPredSlot("input").set(stack);
 			costExp(cost);
 		}
@@ -157,7 +157,7 @@ public class AugmentMenu extends BaseContainerMenu<AugmentMenu> implements IFilt
 
 	private void costExp(int exp) {
 		token.addExp(-exp);
-		experience.set(token.exp);
+		experience.set(token.getExp());
 		sendAllDataToRemote();
 	}
 

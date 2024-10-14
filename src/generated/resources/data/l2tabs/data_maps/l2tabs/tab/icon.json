@@ -1,0 +1,13 @@
+{
+  "values": {
+    "l2artifacts:augment": "l2artifacts:boost_main_5",
+    "l2artifacts:dissolve": "l2artifacts:stat_container_5",
+    "l2artifacts:filter": "minecraft:hopper",
+    "l2artifacts:genesis": "l2artifacts:select",
+    "l2artifacts:main": "minecraft:chest",
+    "l2artifacts:recycle": "minecraft:composter",
+    "l2artifacts:set_effects": "l2artifacts:select",
+    "l2artifacts:sort": "minecraft:comparator",
+    "l2artifacts:upgrade": "minecraft:anvil"
+  }
+}

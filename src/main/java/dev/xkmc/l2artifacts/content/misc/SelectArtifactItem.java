@@ -1,7 +1,6 @@
 package dev.xkmc.l2artifacts.content.misc;
 
-import dev.xkmc.l2artifacts.content.client.select.SetSelectScreen;
-import net.minecraft.client.Minecraft;
+import dev.xkmc.l2artifacts.events.ArtifactClientHandler;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -21,7 +20,7 @@ public class SelectArtifactItem extends Item {
 		ItemStack itemstack = player.getItemInHand(hand);
 		player.awardStat(Stats.ITEM_USED.get(this));
 		if (level.isClientSide) {
-			Minecraft.getInstance().setScreen(new SetSelectScreen());
+			ArtifactClientHandler.openSelectionScreen();
 		}
 		return InteractionResultHolder.success(itemstack);
 	}

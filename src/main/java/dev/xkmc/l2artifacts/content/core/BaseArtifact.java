@@ -8,9 +8,9 @@ import dev.xkmc.l2artifacts.init.data.ArtifactLang;
 import dev.xkmc.l2artifacts.init.registrate.items.ArtifactItems;
 import dev.xkmc.l2core.init.L2LibReg;
 import dev.xkmc.l2core.util.Proxy;
-import dev.xkmc.l2core.util.ServerProxy;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.Holder;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.RandomSource;
@@ -63,14 +63,13 @@ public class BaseArtifact extends RankedItem implements ICurioItem {
 	@Override
 	public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
 		ItemStack stack = player.getItemInHand(hand);
-		return resolve(stack, level.isClientSide(), player.getRandom());
+		return resolve(level.registryAccess(), stack, level.isClientSide(), player.getRandom());
 	}
 
-	public InteractionResultHolder<ItemStack> resolve(ItemStack stack, boolean isClient, RandomSource random) {
+	public InteractionResultHolder<ItemStack> resolve(RegistryAccess access, ItemStack stack, boolean isClient, RandomSource random) {
 		var optStats = getStats(stack);
 		Upgrade upgrade = getUpgrade(stack).orElse(Upgrade.EMPTY);
-		var access = ServerProxy.getRegistryAccess();
-		if (access != null && optStats.isEmpty()) {
+		if (optStats.isEmpty()) {
 			if (!isClient) {
 				var mu = upgrade.mutable();
 				ArtifactStats stats = ArtifactStats.generate(access, slot.get(), rank, mu, random);
@@ -110,11 +109,11 @@ public class BaseArtifact extends RankedItem implements ICurioItem {
 					list.add(ArtifactLang.UPGRADE.get());
 				} else if (!shift) {
 					list.add(ArtifactLang.MAIN_STAT.get());
-					list.add(s.main_stat().getTooltip());
+					list.add(s.main_stat().getTooltip(null));
 					if (!s.sub_stats().isEmpty()) {
 						list.add(ArtifactLang.SUB_STAT.get());
 						for (StatEntry ent : s.sub_stats()) {
-							list.add(ent.getTooltip());
+							list.add(ent.getTooltip(null));
 						}
 					}
 				}

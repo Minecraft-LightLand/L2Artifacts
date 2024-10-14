@@ -25,9 +25,7 @@ public class DeadCellDodge extends PlayerOnlySetEffect {
 	@Override
 	public boolean playerAttackedCancel(Player player, ArtifactSetConfig.Entry ent, int rank, DamageSource source, DamageData.Attack cache) {
 		if (source.is(L2DamageTypes.DIRECT) || source.is(DamageTypeTags.IS_PROJECTILE)) {
-			if (player.isShiftKeyDown() && player.getRandom().nextDouble() < chance.getFromRank(rank)) {
-				return true;
-			}
+			return player.isShiftKeyDown() && player.getRandom().nextDouble() < chance.getFromRank(rank);
 		}
 		return false;
 	}

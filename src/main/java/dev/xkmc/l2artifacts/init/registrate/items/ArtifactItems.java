@@ -9,12 +9,13 @@ import dev.xkmc.l2artifacts.content.upgrades.StatContainerItem;
 import dev.xkmc.l2artifacts.content.upgrades.Upgrade;
 import dev.xkmc.l2artifacts.content.upgrades.UpgradeBoostItem;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
+import dev.xkmc.l2backpack.init.L2Backpack;
 import dev.xkmc.l2core.init.reg.simple.DCReg;
 import dev.xkmc.l2core.init.reg.simple.DCVal;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.component.ItemContainerContents;
+import net.neoforged.fml.ModList;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
 
 import static dev.xkmc.l2artifacts.init.L2Artifacts.REGISTRATE;
@@ -31,7 +32,7 @@ public class ArtifactItems {
 
 	public static final ItemEntry<SelectArtifactItem> SELECT;
 	public static final ItemEntry<ArtifactChestItem> FILTER, UPGRADED_POCKET;
-	public static final ItemEntry<ArtifactSwapItem> SWAP;
+	public static ItemEntry<ArtifactSwapItem> SWAP;
 	public static final ItemEntry<RandomArtifactItem>[] RANDOM;
 	public static final ItemEntry<RandomArtifactSetItem>[] RANDOM_SET;
 	public static final ItemEntry<ExpItem>[] ITEM_EXP;
@@ -44,7 +45,7 @@ public class ArtifactItems {
 	public static final DCVal<ArtifactStats> STATS = DC.reg("stats", ArtifactStats.class, false);
 	public static final DCVal<Upgrade> UPGRADES = DC.reg("upgrades", Upgrade.class, false);
 	public static final DCVal<SetGroup> GROUP = DC.reg("set_group", SetGroup.class, true);
-	public static final DCVal<ItemContainerContents> ITEMS = DC.reg("items", ItemContainerContents.CODEC, ItemContainerContents.STREAM_CODEC, false);
+	public static final DCVal<ArtifactChestContents> ITEMS = DC.reg("items", ArtifactChestContents.CODEC, ArtifactChestContents.STREAM_CODEC, false);
 
 
 	static {
@@ -52,8 +53,9 @@ public class ArtifactItems {
 				.defaultModel().lang("Artifact Selector (Creative)").register();
 		FILTER = REGISTRATE.item("filter", ArtifactChestItem::new)
 				.defaultModel().lang("Artifact Pocket").register();
-		SWAP = REGISTRATE.item("swap", ArtifactSwapItem::new)
-				.defaultModel().lang("Artifact Quick Swap").register();
+		if (ModList.get().isLoaded(L2Backpack.MODID))
+			SWAP = REGISTRATE.item("swap", ArtifactSwapItem::new)
+					.defaultModel().lang("Artifact Quick Swap").register();
 		UPGRADED_POCKET = REGISTRATE.item("upgraded_pocket", ArtifactChestItem::new)
 				.defaultModel().lang("Upgraded Artifact Pocket").register();
 		int n = 5;

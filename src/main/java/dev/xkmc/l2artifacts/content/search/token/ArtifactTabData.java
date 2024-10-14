@@ -2,10 +2,11 @@ package dev.xkmc.l2artifacts.content.search.token;
 
 import dev.xkmc.l2artifacts.content.core.BaseArtifact;
 import dev.xkmc.l2artifacts.content.misc.ArtifactChestItem;
+import dev.xkmc.l2artifacts.content.search.filter.ArtifactFilter;
 import dev.xkmc.l2artifacts.content.search.filter.ArtifactFilterData;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactTabRegistry;
+import dev.xkmc.l2artifacts.init.registrate.ArtifactTypeRegistry;
 import dev.xkmc.l2artifacts.init.registrate.items.ArtifactItems;
-import dev.xkmc.l2core.util.Proxy;
 import dev.xkmc.l2library.util.GenericItemStack;
 import dev.xkmc.l2tabs.tabs.core.TabGroupData;
 import dev.xkmc.l2tabs.tabs.core.TabToken;
@@ -20,21 +21,22 @@ public class ArtifactTabData extends TabGroupData<ArtifactTabData> {
 
 	public static ArtifactTabData of(Player player, int invSlot) {
 		ItemStack stack = player.getInventory().getItem(invSlot);
-		return new ArtifactTabData(stack.is(ArtifactItems.UPGRADED_POCKET), invSlot, stack);
+		return new ArtifactTabData(player, stack.is(ArtifactItems.UPGRADED_POCKET), invSlot, stack);
 	}
 
+	private final Player player;
+
 	public final boolean advanced;
-	public final ArtifactFilterData filter;
 	public final FilledTokenData data;
 
 	private final ItemStack stack;
 	public final int invSlot;
 
-	public int exp = 0;
+	private int exp = 0;
 
 	private final List<TabToken<ArtifactTabData, ?>> list;
 
-	public ArtifactTabData(boolean advanced, int invSlot, ItemStack stack) {
+	public ArtifactTabData(Player player, boolean advanced, int invSlot, ItemStack stack) {
 		super(ArtifactTabRegistry.ARTIFACT);
 		this.advanced = advanced;
 		list = new ArrayList<>();
@@ -44,9 +46,9 @@ public class ArtifactTabData extends TabGroupData<ArtifactTabData> {
 
 		this.invSlot = invSlot;
 		this.stack = stack;
+		this.player = player;
 
 		exp = ArtifactChestItem.getExp(stack);
-		filter = new ArtifactFilterData();
 		data = new FilledTokenData(ArtifactChestItem.getContent(stack));
 	}
 
@@ -56,28 +58,32 @@ public class ArtifactTabData extends TabGroupData<ArtifactTabData> {
 	}
 
 	public ArtifactTabData copy() {
-		return of(Proxy.getPlayer(), invSlot);
+		return of(player, invSlot);
+	}
+
+	public ArtifactFilter<?> getFilter(int i) {
+		return getFilter().filters.get(i);
 	}
 
 	public boolean isAvailable(int i, int j, boolean sort) {
-		var f = filter.filters.get(i);
+		var f = getFilter().filters.get(i);
 		return sort && f.getSelected(j) || f.getAvailability(data, j);
 	}
 
 	public void prioritize(int i) {
-		filter.prioritize(i);
+		getFilter().prioritize(i);
 	}
 
 	public void prioritize(int i, int j) {
-		filter.filters.get(i).prioritize(j);
+		getFilter().filters.get(i).prioritize(j);
 	}
 
 	public void toggleSel(int i, int j) {
-		filter.filters.get(i).toggle(data, j);
+		getFilter().filters.get(i).toggle(data, j);
 	}
 
 	public void setAllSel(int type, boolean selected) {
-		var f = filter.filters.get(type);
+		var f = getFilter().filters.get(type);
 		for (int i = f.allEntries.size() - 1; i >= 0; i--) {
 			if (f.getSelected(i) != selected) {
 				f.toggle(data, i);
@@ -86,25 +92,32 @@ public class ArtifactTabData extends TabGroupData<ArtifactTabData> {
 	}
 
 	public Component getDescription(int i) {
-		return filter.filters.get(i).getDescription();
+		return getFilter().filters.get(i).getDescription();
 	}
 
 	public List<GenericItemStack<BaseArtifact>> getFiltered() {
-		return data.getFiltered(filter);
+		return data.getFiltered(getFilter());
 	}
 
 	public void remove(ItemStack stack) {
 		data.list.remove(stack);
+	}
 
+	private PlayerFilterCap getCap() {
+		return ArtifactTypeRegistry.FILTER.type().getOrCreate(player);
+	}
+
+	public ArtifactFilterData getFilter() {
+		return getCap().getFilter();
 	}
 
 	public void updateAndSave() {
-		filter.update(data);
+		getFilter().update(data);
 		ArtifactChestItem.setContent(stack, data.list);
 	}
 
-	public void getFilteredToServer() {
-		//TODO
+	public void sendFilterToServer() {
+		getCap().syncToServer(player);
 	}
 
 	public void addExp(int val) {
@@ -112,8 +125,13 @@ public class ArtifactTabData extends TabGroupData<ArtifactTabData> {
 		ArtifactChestItem.setExp(stack, exp);
 	}
 
+	public int getExp() {
+		return exp;
+	}
+
 	public boolean stillValid(Player player) {
 		return stack == player.getInventory().getItem(invSlot);
 	}
+
 
 }

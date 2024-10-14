@@ -2,6 +2,7 @@ package dev.xkmc.l2artifacts.content.misc;
 
 import dev.xkmc.l2artifacts.content.search.common.ArtifactChestMenuPvd;
 import dev.xkmc.l2artifacts.content.search.main.FilteredMenu;
+import dev.xkmc.l2artifacts.init.registrate.ArtifactTypeRegistry;
 import dev.xkmc.l2artifacts.init.registrate.items.ArtifactItems;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
@@ -9,7 +10,6 @@ import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.component.ItemContainerContents;
 import net.minecraft.world.level.Level;
 
 import java.util.ArrayList;
@@ -18,7 +18,7 @@ import java.util.List;
 public class ArtifactChestItem extends Item {
 
 	public static List<ItemStack> getContent(ItemStack stack) {
-		var cont = ArtifactItems.ITEMS.getOrDefault(stack, ItemContainerContents.EMPTY);
+		var cont = ArtifactItems.ITEMS.getOrDefault(stack, ArtifactChestContents.EMPTY);
 		var ans = new ArrayList<ItemStack>();
 		for (var e : cont.nonEmptyItems()) {
 			ans.add(e);
@@ -27,7 +27,7 @@ public class ArtifactChestItem extends Item {
 	}
 
 	public static void setContent(ItemStack stack, List<ItemStack> ans) {
-		ArtifactItems.ITEMS.set(stack, ItemContainerContents.fromItems(ans));
+		ArtifactItems.ITEMS.set(stack, ArtifactChestContents.fromItems(ans));
 	}
 
 	public ArtifactChestItem(Properties properties) {
@@ -45,8 +45,9 @@ public class ArtifactChestItem extends Item {
 	@Override
 	public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
 		ItemStack stack = player.getItemInHand(hand);
-		if (!level.isClientSide()) {
+		if (player instanceof ServerPlayer sp) {
 			int slot = hand == InteractionHand.OFF_HAND ? 40 : player.getInventory().selected;
+			ArtifactTypeRegistry.FILTER.type().getOrCreate(player).initFilter(sp);
 			new ArtifactChestMenuPvd(FilteredMenu::new, (ServerPlayer) player, slot, stack).open();
 		}
 		return InteractionResultHolder.success(stack);

@@ -156,7 +156,7 @@ public class UpgradeMenuScreen extends BaseContainerScreen<UpgradeMenu> implemen
 		} else {
 			ans[2] = Component.empty();
 		}
-		entry.getTooltip();
+		entry.getTooltip(null);
 		return ans;
 	}
 

@@ -1,7 +1,6 @@
-package dev.xkmc.l2artifacts.init.data.slot;
+package dev.xkmc.l2artifacts.init.data;
 
 import dev.xkmc.l2artifacts.init.L2Artifacts;
-import dev.xkmc.l2artifacts.init.data.ArtifactSlotCuriosType;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.entity.EntityType;

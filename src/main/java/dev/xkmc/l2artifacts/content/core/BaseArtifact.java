@@ -109,11 +109,11 @@ public class BaseArtifact extends RankedItem implements ICurioItem {
 					list.add(ArtifactLang.UPGRADE.get());
 				} else if (!shift) {
 					list.add(ArtifactLang.MAIN_STAT.get());
-					list.add(s.main_stat().getTooltip());
+					list.add(s.main_stat().getTooltip(flag));
 					if (!s.sub_stats().isEmpty()) {
 						list.add(ArtifactLang.SUB_STAT.get());
 						for (StatEntry ent : s.sub_stats()) {
-							list.add(ent.getTooltip());
+							list.add(ent.getTooltip(flag));
 						}
 					}
 				}

@@ -11,7 +11,7 @@ import dev.xkmc.l2artifacts.events.ArtifactSlotClickListener;
 import dev.xkmc.l2artifacts.init.data.*;
 import dev.xkmc.l2artifacts.init.data.loot.ArtifactGLMProvider;
 import dev.xkmc.l2artifacts.init.data.loot.ArtifactLootGen;
-import dev.xkmc.l2artifacts.init.data.slot.SlotGen;
+import dev.xkmc.l2artifacts.init.data.SlotGen;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactEffects;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactMenuRegistry;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactTabRegistry;

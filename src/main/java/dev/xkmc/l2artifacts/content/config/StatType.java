@@ -57,8 +57,11 @@ public record StatType(
 		return attr.value().toValueComponent(op, val, TooltipFlag.NORMAL);
 	}
 
-	public Component getTooltip(double val) {
-		return attr.value().toComponent(new AttributeModifier(DUMMY_ID, val, op), TooltipFlag.NORMAL);
+	public Component getTooltip(double val, @Nullable TooltipFlag flag) {
+		return attr.value().toComponent(
+				new AttributeModifier(DUMMY_ID, val, op),
+				flag == null ? TooltipFlag.NORMAL : flag
+		);
 	}
 
 	public double getBaseValue() {

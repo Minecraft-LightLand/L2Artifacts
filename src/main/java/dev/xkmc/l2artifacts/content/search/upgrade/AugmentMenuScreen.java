@@ -188,7 +188,7 @@ public class AugmentMenuScreen extends BaseContainerScreen<AugmentMenu> implemen
 		} else {
 			ans[2] = Component.empty();
 		}
-		entry.getTooltip();
+		entry.getTooltip(null);
 		return ans;
 	}
 

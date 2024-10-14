@@ -7,6 +7,8 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.item.TooltipFlag;
+import org.jetbrains.annotations.Nullable;
 
 public record StatEntry(Holder<StatType> type, double value) {
 
@@ -14,8 +16,8 @@ public record StatEntry(Holder<StatType> type, double value) {
 		return type.unwrapKey().orElseThrow().location();
 	}
 
-	public Component getTooltip() {
-		return type.value().getTooltip(value());
+	public Component getTooltip(@Nullable TooltipFlag flag) {
+		return type.value().getTooltip(value(), flag);
 	}
 
 	@Override

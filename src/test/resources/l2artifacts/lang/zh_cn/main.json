@@ -1,29 +1,37 @@
 {
-  "itemGroup.l2library.artifacts": "莱特兰-古遗物",
-  "menu.tabs.set_effects": "已启用套装效果",
-  "slot.l2artifacts": {
-	"belt": "腰带",
-	"body": "胸饰",
-	"bracelet": "手环",
-	"head": "头饰",
-	"necklace": "项链"
-  },
-  "container.l2artifacts": {
-	"filtered": "古遗物多功能包",
-	"recycle": "古遗物经验转化",
-	"upgrade": "古遗物升级",
-	"augment": "定向强化",
-	"dissolve": "词条溶解",
-	"shape": "古遗物重构",
-	"swap": "古遗物快捷切换"
-  },
-  "patchouli.l2artifacts.landing": "欢迎来到莱特兰-古遗物",
-  "patchouli.l2artifacts.title": "古遗物教程书",
-  "curios.identifier": {
-	"artifact_belt": "古遗物-腰带",
-	"artifact_body": "古遗物-胸饰",
-	"artifact_bracelet": "古遗物-手环",
-	"artifact_head": "古遗物-头饰",
-	"artifact_necklace": "古遗物-项链"
-  }
+	"itemGroup.l2core.artifacts": "莱特兰-古遗物",
+	"l2artifacts.title": "莱特兰-古遗物",
+	"menu.tabs.set_effects": "已启用套装效果",
+	"container.l2artifacts": {
+		"filtered": "古遗物多功能包",
+		"recycle": "古遗物经验转化",
+		"upgrade": "古遗物升级",
+		"augment": "定向强化",
+		"dissolve": "词条溶解",
+		"shape": "古遗物重构",
+		"swap": "古遗物快捷切换"
+	},
+	"patchouli.l2artifacts.landing": "欢迎来到莱特兰-古遗物",
+	"patchouli.l2artifacts.title": "古遗物教程书",
+	"curios.identifier": {
+	},
+	"-cartesian": {
+		"curios": {
+			"path": "",
+			"list": [
+				{
+					"belt": "腰带",
+					"body": "胸饰",
+					"bracelet": "手环",
+					"head": "头饰",
+					"necklace": "项链"
+				},
+				{
+					"slot.l2artifacts.*": "*",
+					"curios.identifier.artifact_*": "古遗物-*",
+					"curios.modifiers.artifact_*": "装备为*时："
+				}
+			]
+		}
+	}
 }

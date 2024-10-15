@@ -51,7 +51,7 @@ public class ArtifactLootModifier extends LootModifier {
 		Entity entity = context.getParam(LootContextParams.THIS_ENTITY);
 		if (entity.getType().is(ArtifactTagGen.NO_DROP)) return list;
 		if (entity instanceof LivingEntity le && L2HostilityCompat.validForDrop(le, healthMin, healthMax)) {
-			if (chance * ArtifactConfig.COMMON.globalDropChanceMultiplier.get() > context.getRandom().nextDouble()) {
+			if (chance * ArtifactConfig.SERVER.globalDropChanceMultiplier.get() > context.getRandom().nextDouble()) {
 				list.add(result.copy());
 			}
 		}

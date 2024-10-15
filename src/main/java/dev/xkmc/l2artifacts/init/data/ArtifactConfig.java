@@ -6,7 +6,21 @@ import net.neoforged.neoforge.common.ModConfigSpec;
 
 public class ArtifactConfig {
 
+
 	public static class Common extends ConfigInit {
+
+		public final ModConfigSpec.BooleanValue enableArtifactRankUpRecipe;
+
+
+		Common(Builder builder) {
+			markL2();
+			enableArtifactRankUpRecipe = builder.text("Enable Artifact Rank up recipe")
+					.define("enableArtifactRankUpRecipe", true);
+		}
+
+	}
+
+	public static class Server extends ConfigInit {
 
 		public final ModConfigSpec.IntValue maxRank;
 		public final ModConfigSpec.IntValue maxLevelPerRank;
@@ -21,16 +35,15 @@ public class ArtifactConfig {
 		public final ModConfigSpec.DoubleValue expRetention;
 		public final ModConfigSpec.IntValue baseExpConversion;
 		public final ModConfigSpec.DoubleValue expConversionRankFactor;
-		public final ModConfigSpec.BooleanValue enableArtifactRankUpRecipe;
 
 		public final ModConfigSpec.BooleanValue useLevelDropForHostility;
 		public final ModConfigSpec.DoubleValue globalDropChanceMultiplier;
 
-		Common(Builder builder) {
+		Server(Builder builder) {
 			markL2();
 			maxRank = builder.text("maximum available rank (Not implemented. Don't change.)")
 					.defineInRange("maxRank", 5, 5, 5);
-			maxLevelPerRank = builder.text("maximum level per rank (Not tested. Don't change)")
+			maxLevelPerRank = builder.text("maximum level per rank")
 					.defineInRange("maxLevelPerRank", 4, 1, 100);
 			levelPerSubStat = builder.text("level per sub stats granted (Not Tested. Don't change)")
 					.defineInRange("levelPerSubStat", 4, 1, 100);
@@ -52,19 +65,18 @@ public class ArtifactConfig {
 			expConversionRankFactor = builder.text("exponential experience available per rank")
 					.defineInRange("expConversionRankFactor", 2d, 1, 10);
 
-			enableArtifactRankUpRecipe = builder.text("Enable Artifact Rank up recipe")
-					.define("enableArtifactRankUpRecipe", true);
 			useLevelDropForHostility = builder.text("When L2Hostility is installed, use level instead of health for drops")
-					.text("Min health requirement would still be effective")
+					.comment("Min health requirement would still be effective")
 					.define("useLevelDropForHostility", true);
 			globalDropChanceMultiplier = builder.text("Reduce artifact drop chance by a factor")
-					.text("Stack multiplicatively with drop chance specified in datapack")
+					.comment("Stack multiplicatively with drop chance specified in datapack")
 					.defineInRange("globalDropChanceMultiplier", 1, 0, 10d);
 		}
 
 	}
 
-	public static final Common COMMON = L2Artifacts.REGISTRATE.registerSynced(Common::new);
+	public static final Common COMMON = L2Artifacts.REGISTRATE.registerUnsynced(Common::new);
+	public static final Server SERVER = L2Artifacts.REGISTRATE.registerSynced(Server::new);
 
 	public static void init() {
 	}

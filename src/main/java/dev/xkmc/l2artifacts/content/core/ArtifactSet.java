@@ -68,7 +68,7 @@ public class ArtifactSet extends NamedEntry<ArtifactSet> implements IArtifactFea
 		if (opt.isPresent()) {
 			List<SlotResult> list = opt.get()
 					.findCurios(stack -> stack.getItem() instanceof BaseArtifact artifact && artifact.set.get() == this);
-			int[] rank = new int[ArtifactConfig.COMMON.maxRank.get() + 1];
+			int[] rank = new int[ArtifactConfig.SERVER.maxRank.get() + 1];
 			int index = -1;
 			int count = 0;
 			for (SlotResult result : list) {
@@ -90,7 +90,7 @@ public class ArtifactSet extends NamedEntry<ArtifactSet> implements IArtifactFea
 		if (opt.isPresent()) {
 			List<SlotResult> list = opt.get()
 					.findCurios(stack -> stack.getItem() instanceof BaseArtifact artifact && artifact.set.get() == this);
-			int[] rank = new int[ArtifactConfig.COMMON.maxRank.get() + 1];
+			int[] rank = new int[ArtifactConfig.SERVER.maxRank.get() + 1];
 			int count = 0;
 			for (SlotResult result : list) {
 				if (result.stack().getItem() instanceof BaseArtifact artifact && artifact.set.get() == this) {

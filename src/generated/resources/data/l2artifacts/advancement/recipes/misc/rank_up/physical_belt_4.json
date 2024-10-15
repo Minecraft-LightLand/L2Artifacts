@@ -6,7 +6,7 @@
       "line": [
         "enableArtifactRankUpRecipe"
       ],
-      "path": "l2configs/l2artifacts-server.toml"
+      "path": "l2configs/l2artifacts-common.toml"
     }
   ],
   "parent": "minecraft:recipes/root",

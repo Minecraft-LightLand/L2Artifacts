@@ -96,7 +96,7 @@ public class AugmentMenu extends BaseContainerMenu<AugmentMenu> implements IFilt
 				if (stats.level() < ArtifactUpgradeManager.getMaxLevel(item.rank)) {
 					ec = ArtifactUpgradeManager.getExpForLevel(item.rank, stats.level()) - stats.exp();
 					useMain = !in_1.getItem().isEmpty();
-					if ((stats.level() + 1) % ArtifactConfig.COMMON.levelPerSubStat.get() == 0) {
+					if ((stats.level() + 1) % ArtifactConfig.SERVER.levelPerSubStat.get() == 0) {
 						useSub = !in_2.getItem().isEmpty();
 						ItemStack stat = in_0.getItem();
 						var opt_stat = StatContainerItem.getType(access, stat);

@@ -25,12 +25,11 @@ public class ArtifactClientHandler {
 		var opt = BaseArtifact.getStats(event.getStack());
 		if (opt.isEmpty()) return;
 		var rl = ResourceLocation.fromNamespaceAndPath("curios",
-				opt.get().slot().getCurioIdentifier());
+				opt.get().slot().getCurioIdentifier() + "/0");
 		Set<ResourceLocation> set = new HashSet<>();
 		for (var e : opt.get().buildAttributes(rl).values()) {
 			set.add(e.id());
 		}
-		//TODO
 		for (var e : set) {
 			event.skipId(e);
 		}

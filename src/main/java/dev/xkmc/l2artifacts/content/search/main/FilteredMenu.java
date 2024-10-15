@@ -35,7 +35,7 @@ public class FilteredMenu extends AbstractScrollerMenu<FilteredMenu> {
 	}
 
 	private int getMaxSize() {
-		return !token.advanced ? ArtifactConfig.COMMON.storageSmall.get() : ArtifactConfig.COMMON.storageLarge.get();
+		return !token.advanced ? ArtifactConfig.SERVER.storageSmall.get() : ArtifactConfig.SERVER.storageLarge.get();
 	}
 
 	@Override

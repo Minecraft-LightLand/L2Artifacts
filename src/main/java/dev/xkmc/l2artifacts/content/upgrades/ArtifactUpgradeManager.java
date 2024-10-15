@@ -8,16 +8,16 @@ import javax.annotation.Nullable;
 public class ArtifactUpgradeManager {
 
 	public static int getExpForLevel(int rank, int level) {
-		double rank_factor = ArtifactConfig.COMMON.expConsumptionRankFactor.get();
-		double level_factor = ArtifactConfig.COMMON.expLevelFactor.get();
-		double base = ArtifactConfig.COMMON.baseExpConsumption.get();
+		double rank_factor = ArtifactConfig.SERVER.expConsumptionRankFactor.get();
+		double level_factor = ArtifactConfig.SERVER.expLevelFactor.get();
+		double base = ArtifactConfig.SERVER.baseExpConsumption.get();
 		return (int) Math.round(base * Math.pow(level_factor, level) * Math.pow(rank_factor, rank - 1));
 	}
 
 	public static int getExpForConversion(int rank, @Nullable ArtifactStats stat) {
-		int base = ArtifactConfig.COMMON.baseExpConversion.get();
-		double base_factor = ArtifactConfig.COMMON.expConversionRankFactor.get();
-		double retention = ArtifactConfig.COMMON.expRetention.get();
+		int base = ArtifactConfig.SERVER.baseExpConversion.get();
+		double base_factor = ArtifactConfig.SERVER.expConversionRankFactor.get();
+		double retention = ArtifactConfig.SERVER.expRetention.get();
 		double base_exp = base * Math.pow(base_factor, rank - 1);
 		if (stat == null) {
 			return (int) Math.round(base_exp);
@@ -30,7 +30,7 @@ public class ArtifactUpgradeManager {
 	}
 
 	public static int getMaxLevel(int rank) {
-		return rank * ArtifactConfig.COMMON.maxLevelPerRank.get();
+		return rank * ArtifactConfig.SERVER.maxLevelPerRank.get();
 	}
 
 }

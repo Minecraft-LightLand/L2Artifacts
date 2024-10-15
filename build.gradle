@@ -187,10 +187,6 @@ dependencies {
     implementation "dev.xkmc:l2archery:${l2archery_ver}"
 
     implementation "mezz.jei:jei-${jei_minecraft_version}:${jei_version}"
-    implementation "top.theillusivec4.curios:curios-neoforge:${curios_version}"
-    implementation "vazkii.patchouli:Patchouli:${patchouli_ver}"
-
-    implementation "mezz.jei:jei-${jei_minecraft_version}:${jei_version}"
     implementation "vazkii.patchouli:Patchouli:${patchouli_ver}"
 
     //implementation "curse.maven:adorned-1036809:5740650"
@@ -199,8 +195,8 @@ dependencies {
     //runtimeOnly "top.theillusivec4.curios:curios-neoforge:${curios_version}"
     dataRuntimeOnly "top.theillusivec4.curios:curios-neoforge:${curios_version}"
     commonRuntimeOnly "curse.maven:cloth-config-348521:5623420"
-    commonRuntimeOnly "maven.modrinth:accessories:1.0.0-beta.35+1.21"
-    commonRuntimeOnly "maven.modrinth:accessories-cc-layer:9.0.5-beta.11+1.21"
+    commonRuntimeOnly "maven.modrinth:accessories:1.1.0-beta.7+1.21.1"
+    commonRuntimeOnly "maven.modrinth:accessories-cc-layer:9.0.12+1.21.1"
 
     //implementation "curse.maven:embeddium-908741:5681729"
     //implementation "maven.modrinth:sodium:mc1.21-0.6.0-beta.2-neoforge"

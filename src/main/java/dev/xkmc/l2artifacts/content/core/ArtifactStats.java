@@ -146,7 +146,7 @@ public record ArtifactStats(
 		}
 
 		private void onUpgrade(int lv, Upgrade.Mutable upgrade, RandomSource random) {
-			int gate = ArtifactConfig.COMMON.levelPerSubStat.get();
+			int gate = ArtifactConfig.SERVER.levelPerSubStat.get();
 			if (main_stat != null) {
 				add(main_stat.type(), main_stat.type().value().getMainValue(random, upgrade.removeMain()));
 			}

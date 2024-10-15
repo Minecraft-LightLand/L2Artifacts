@@ -26,7 +26,7 @@ public abstract class ArtifactFilter<T extends IArtifactFeature> implements IArt
 	private final ArtifactLang desc;
 
 	@SerialField
-	private boolean[] selected;
+	private long selection;
 
 	@SerialField
 	protected int[] item_priority;
@@ -43,18 +43,26 @@ public abstract class ArtifactFilter<T extends IArtifactFeature> implements IArt
 		allEntries = new ArrayList<>(reg);
 		this.func = func;
 		this.desc = desc;
-		selected = new boolean[allEntries.size()];
+		selection = 0;
 		item_priority = new int[allEntries.size()];
 		for (int i = 0; i < allEntries.size(); i++) {
-			selected[i] = true;
+			toggle(i);
 			item_priority[i] = i + 1;
 			revMap.put(allEntries.get(i), i);
 		}
 	}
 
+	private boolean isSelected(int i) {
+		return (selection ^ (1L << i)) != 0;
+	}
+
+	private void toggle(int i) {
+		selection ^= 1L << i;
+	}
+
 	public void toggle(FilledTokenData data, int ind) {
-		selected[ind] ^= true;
-		if (selected[ind]) {
+		toggle(ind);
+		if (isSelected(ind)) {
 			prioritize(ind);
 		} else {
 			item_priority[ind] = 0;
@@ -64,7 +72,7 @@ public abstract class ArtifactFilter<T extends IArtifactFeature> implements IArt
 
 	public void prioritize(int ind) {
 		item_priority[ind] = 0;
-		List<T> list = new ArrayList<>(allEntries.stream().filter(e -> selected[revMap.get(e)]).toList());
+		List<T> list = new ArrayList<>(allEntries.stream().filter(e -> isSelected(revMap.get(e))).toList());
 		list.sort(Comparator.comparingInt(e -> item_priority[revMap.get(e)]));
 		for (int i = 0; i < allEntries.size(); i++) {
 			item_priority[i] = 0;
@@ -75,7 +83,7 @@ public abstract class ArtifactFilter<T extends IArtifactFeature> implements IArt
 	}
 
 	public boolean getSelected(int i) {
-		return selected[i];
+		return isSelected(i);
 	}
 
 	public boolean getAvailability(FilledTokenData data, int j) {
@@ -91,7 +99,7 @@ public abstract class ArtifactFilter<T extends IArtifactFeature> implements IArt
 
 	private boolean isValid(GenericItemStack<BaseArtifact> item) {
 		for (int i = 0; i < allEntries.size(); i++) {
-			if (selected[i] && func.test(item, allEntries.get(i))) {
+			if (isSelected(i) && func.test(item, allEntries.get(i))) {
 				return true;
 			}
 		}
@@ -130,20 +138,17 @@ public abstract class ArtifactFilter<T extends IArtifactFeature> implements IArt
 		if (item_priority.length < size) {
 			item_priority = Arrays.copyOf(item_priority, size);
 		}
-		if (selected.length < size) {
-			selected = Arrays.copyOf(selected, size);
-		}
 	}
 
 	@Override
 	public void initFilter() {
 		int enabled = 0;
-		for (var e : selected) {
-			if (e) enabled++;
+		for (var i = 0; i < item_priority.length; i++) {
+			if (isSelected(i)) enabled++;
 		}
-		for (int i = 0; i < selected.length; i++) {
-			if (!selected[i]) {
-				selected[i] = true;
+		for (int i = 0; i < item_priority.length; i++) {
+			if (!isSelected(i)) {
+				toggle(i);
 				item_priority[i] = ++enabled;
 			}
 		}

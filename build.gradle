@@ -187,10 +187,6 @@ dependencies {
     implementation "dev.xkmc:l2archery:${l2archery_ver}"
 
     implementation "mezz.jei:jei-${jei_minecraft_version}:${jei_version}"
-    implementation "top.theillusivec4.curios:curios-neoforge:${curios_version}"
-    implementation "vazkii.patchouli:Patchouli:${patchouli_ver}"
-
-    implementation "mezz.jei:jei-${jei_minecraft_version}:${jei_version}"
     implementation "vazkii.patchouli:Patchouli:${patchouli_ver}"
 
     //implementation "curse.maven:adorned-1036809:5740650"

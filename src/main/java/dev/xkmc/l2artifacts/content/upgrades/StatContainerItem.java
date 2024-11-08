@@ -19,10 +19,8 @@ import java.util.Optional;
 
 public class StatContainerItem extends UpgradeEnhanceItem {
 
-	private static final String KEY = "stat";
-
 	public static ItemStack setStat(ItemStack item, Holder<StatType> type) {
-		return ArtifactItems.STAT.set(item, type.toString());
+		return ArtifactItems.STAT.set(item, type.unwrapKey().orElseThrow().location().toString());
 	}
 
 	public static Optional<Holder<StatType>> getType(@Nullable RegistryAccess access, ItemStack item) {

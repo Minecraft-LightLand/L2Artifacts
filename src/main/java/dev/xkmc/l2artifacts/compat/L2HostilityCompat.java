@@ -1,5 +1,6 @@
 package dev.xkmc.l2artifacts.compat;
 
+import dev.xkmc.l2hostility.init.registrate.LHMiscs;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.monster.Enemy;
@@ -19,9 +20,7 @@ public class L2HostilityCompat {
 	}
 
 	private static boolean validForDropForHostility(Mob e, int min, int max) {
-		return false;
-		/* TODO
-		var opt = e.getCapability(MobTraitCap.CAPABILITY).resolve();
+		var opt = LHMiscs.MOB.type().getExisting(e);
 		if (opt.isEmpty()) {
 			return false;
 		}
@@ -33,7 +32,6 @@ public class L2HostilityCompat {
 		boolean underLevel = lv < max;
 		if (!overHealth || !overLevel) return false;
 		return max <= 0 || underHealth || underLevel;
-		 */
 	}
 
 

@@ -1,6 +1,7 @@
 package dev.xkmc.l2artifacts.events;
 
 import dev.xkmc.l2artifacts.content.client.select.SetSelectScreen;
+import dev.xkmc.l2artifacts.content.core.ArtifactStats;
 import dev.xkmc.l2artifacts.content.core.BaseArtifact;
 import dev.xkmc.l2artifacts.content.search.common.StackedScreen;
 import dev.xkmc.l2artifacts.content.search.token.ArtifactTabData;
@@ -24,10 +25,17 @@ public class ArtifactClientHandler {
 		if (!(event.getStack().getItem() instanceof BaseArtifact)) return;
 		var opt = BaseArtifact.getStats(event.getStack());
 		if (opt.isEmpty()) return;
-		var rl = ResourceLocation.fromNamespaceAndPath("curios",
-				opt.get().slot().getCurioIdentifier() + "/0");
+		var slot = opt.get().slot().getCurioIdentifier();
+		var id = ResourceLocation.fromNamespaceAndPath("curios", slot);
+		skip(event, opt.get(), id);
+		skip(event, opt.get(), id.withSuffix("0"));
+		skip(event, opt.get(), id.withSuffix("/0"));
+
+	}
+
+	private static void skip(GatherSkippedAttributeTooltipsEvent event, ArtifactStats stats, ResourceLocation rl) {
 		Set<ResourceLocation> set = new HashSet<>();
-		for (var e : opt.get().buildAttributes(rl).values()) {
+		for (var e : stats.buildAttributes(rl).values()) {
 			set.add(e.id());
 		}
 		for (var e : set) {

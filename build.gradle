@@ -186,6 +186,10 @@ dependencies {
     implementation "dev.xkmc:l2weaponry:${l2weaponry_ver}"
     implementation "dev.xkmc:l2archery:${l2archery_ver}"
 
+    implementation "dev.xkmc:fast_projectile_api:${fast_projectile_api_ver}"
+    implementation "dev.xkmc:l2magic:${l2magic_ver}"
+    implementation "dev.xkmc:l2hostility:${l2hostility_ver}"
+
     implementation "mezz.jei:jei-${jei_minecraft_version}:${jei_version}"
     implementation "vazkii.patchouli:Patchouli:${patchouli_ver}"
 

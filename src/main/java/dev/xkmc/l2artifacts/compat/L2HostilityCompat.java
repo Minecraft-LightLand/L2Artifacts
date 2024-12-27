@@ -1,5 +1,6 @@
 package dev.xkmc.l2artifacts.compat;
 
+import dev.xkmc.l2artifacts.init.data.ArtifactConfig;
 import dev.xkmc.l2hostility.init.registrate.LHMiscs;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
@@ -9,7 +10,7 @@ import net.neoforged.fml.ModList;
 public class L2HostilityCompat {
 
 	public static boolean validForDrop(LivingEntity e, int min, int max) {
-		if (e instanceof Mob mob && ModList.get().isLoaded("l2hostility")) {
+		if (e instanceof Mob mob && ModList.get().isLoaded("l2hostility") && ArtifactConfig.SERVER.useLevelDropForHostility.get()) {
 			return validForDropForHostility(mob, min, max);
 		}
 		if (e instanceof Enemy) {

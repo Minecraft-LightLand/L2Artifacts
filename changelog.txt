@@ -1,3 +1,6 @@
+3.0.2
+- Fix L2Hostility compat config
+
 3.0.1
 - Fix potential crash in combat
 

@@ -1,3 +1,7 @@
+3.0.3
+- Fix L2DamageTracker not being packed into the mod
+
+
 3.0.2
 - Fix L2Hostility compat config
 

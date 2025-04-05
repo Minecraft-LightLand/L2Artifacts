@@ -1,0 +1,8 @@
+{
+  "creative_tab": "l2core:artifacts",
+  "landing_text": "patchouli.l2artifacts.landing",
+  "model": "l2artifacts:book",
+  "name": "patchouli.l2artifacts.title",
+  "use_resource_pack": true,
+  "version": 1
+}

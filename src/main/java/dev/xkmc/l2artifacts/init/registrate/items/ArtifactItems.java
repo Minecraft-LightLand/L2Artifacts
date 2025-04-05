@@ -10,10 +10,12 @@ import dev.xkmc.l2artifacts.content.upgrades.Upgrade;
 import dev.xkmc.l2artifacts.content.upgrades.UpgradeBoostItem;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
 import dev.xkmc.l2backpack.init.L2Backpack;
+import dev.xkmc.l2core.init.reg.registrate.SimpleEntry;
 import dev.xkmc.l2core.init.reg.simple.DCReg;
 import dev.xkmc.l2core.init.reg.simple.DCVal;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.neoforged.fml.ModList;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
@@ -25,8 +27,10 @@ public class ArtifactItems {
 
 	public static final String[] RANK_NAME = {" -Common-", " =Rare=", " >Epic<", " »Legendary«", " -»Godly«-"};
 
+	public static final SimpleEntry<CreativeModeTab> TAB;
+
 	static {
-		REGISTRATE.buildL2CreativeTab("artifacts", "L2 Artifacts", b -> b
+		TAB = REGISTRATE.buildL2CreativeTab("artifacts", "L2 Artifacts", b -> b
 				.icon(ArtifactItems.SELECT::asStack));
 	}
 

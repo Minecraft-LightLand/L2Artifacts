@@ -2,6 +2,7 @@ package dev.xkmc.l2artifacts.init;
 
 import com.tterrag.registrate.providers.ProviderType;
 import com.tterrag.registrate.providers.RegistrateDataMapProvider;
+import dev.xkmc.l2artifacts.compat.LABook;
 import dev.xkmc.l2artifacts.content.client.select.ChooseArtifactToServer;
 import dev.xkmc.l2artifacts.content.config.StatType;
 import dev.xkmc.l2artifacts.content.search.common.OpenTabToServer;
@@ -11,7 +12,6 @@ import dev.xkmc.l2artifacts.events.ArtifactSlotClickListener;
 import dev.xkmc.l2artifacts.init.data.*;
 import dev.xkmc.l2artifacts.init.data.loot.ArtifactGLMProvider;
 import dev.xkmc.l2artifacts.init.data.loot.ArtifactLootGen;
-import dev.xkmc.l2artifacts.init.data.SlotGen;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactEffects;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactMenuRegistry;
 import dev.xkmc.l2artifacts.init.registrate.ArtifactTabRegistry;
@@ -38,6 +38,7 @@ import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import vazkii.patchouli.api.PatchouliAPI;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(L2Artifacts.MODID)
@@ -68,6 +69,11 @@ public class L2Artifacts {
 		Handlers.registerReg(StatType.class, ArtifactTypeRegistry.STAT_TYPE.key());
 
 		AttackEventHandler.register(3000, new ArtifactAttackListener());
+
+		if (ModList.get().isLoaded(PatchouliAPI.MOD_ID)) {
+			LABook.gen();
+		}
+
 	}
 
 	@SubscribeEvent

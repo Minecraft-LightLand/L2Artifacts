@@ -1,4 +1,4 @@
-// 1.21.1	2024-10-15T10:10:28.470004	Registrate Provider for l2artifacts [Registries, Data Maps, Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider, Patchouli Provider, Tags (mob_effect), Tags (attribute), Tags (enchantment), Tags (damage_type)]
+// 1.21.1	2025-04-05T17:30:47.177034	Registrate Provider for l2artifacts [Registries, Data Maps, Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider, Patchouli Provider, Tags (mob_effect), Tags (attribute), Tags (enchantment), Tags (damage_type), Tags (trait)]
 a2646be54de61147f153ddb060522a7520457c48 assets/l2artifacts/lang/en_ud.json
 f017c4d0475ff31769e0355b99c45add8888a44a assets/l2artifacts/lang/en_us.json
 b8bd2d2e5b588898d6036ad788cad930cd830bb3 assets/l2artifacts/models/item/abyss_medal_belt_1.json
@@ -106,6 +106,7 @@ a2ff52b99a040255715d301e7e638e522a014543 assets/l2artifacts/models/item/berserke
 afd892bfd34db5f42b24e2b4ad2108496e8bf0b5 assets/l2artifacts/models/item/berserker_necklace_3.json
 129af007c4d3a812270c5e6422e04c45ba80180d assets/l2artifacts/models/item/berserker_necklace_4.json
 ef5ab149e99e4c6d941cea41626561edd599eae6 assets/l2artifacts/models/item/berserker_necklace_5.json
+6b53a8242173a8ed0821ce4cdd5cbaf7e1f83707 assets/l2artifacts/models/item/book.json
 3d30ae8af102d17346ebf300de36e051c8cda4c1 assets/l2artifacts/models/item/boost_main_1.json
 06ce2d2c33e83931c45b6210f4d611540bcc143c assets/l2artifacts/models/item/boost_main_2.json
 8bc9b7580dff801476dfb7d08ca4cd6feb2d9a00 assets/l2artifacts/models/item/boost_main_3.json
@@ -658,6 +659,7 @@ a61770e82dce3400694e487df7cd8e9d1f1f9bbb data/curios/tags/item/artifact_necklace
 e68cb318e79356905b32aa66969afb02b46a09ae data/l2artifacts/advancement/recipes/misc/artifact_experience_3.json
 5389c8269d6d01a0c44e637e897d8a3c4de46117 data/l2artifacts/advancement/recipes/misc/artifact_experience_4.json
 fbd5b81e3c6f39270c65a94fef7dd7a94eb8cbd3 data/l2artifacts/advancement/recipes/misc/artifact_experience_5.json
+50da6b625d44578b717a4252216bbf26404b4774 data/l2artifacts/advancement/recipes/misc/book.json
 35c217263acd9a40357f9dc8676ed06851437c14 data/l2artifacts/advancement/recipes/misc/boost_main_1.json
 7c538bfe697d8ec3de4ea4d298736f60a0104ab7 data/l2artifacts/advancement/recipes/misc/boost_sub_1.json
 80edec2611670f8ceb0f2bfb8006783d67972573 data/l2artifacts/advancement/recipes/misc/directed/set_0_rank_1.json
@@ -1220,12 +1222,15 @@ c39922282e58dfb5d1b5889366e587c8129bda53 data/l2artifacts/l2artifacts/stat_type/
 61f87e0981da505026687bfccfb8d71a94aa355f data/l2artifacts/l2artifacts/stat_type/reach_add.json
 7bb9f20d77ea5c96440ebd916128587dfd804ad5 data/l2artifacts/l2artifacts/stat_type/speed_mult.json
 05d0a8866fc672841f4b185557c728422515385c data/l2artifacts/l2artifacts/stat_type/tough_add.json
+1c8462d68bd4745dc0443371895fc246f418322e data/l2artifacts/loot_table/artifact_guide.json
 08420ee97706b2c177fde1174de805e79813ebab data/l2artifacts/loot_table/drop_fungus.json
+ee48df14a3663fd5ff34a02accc3131a12dd9a85 data/l2artifacts/patchouli_books/artifact_guide/book.json
 fca6e5308666e884d5e1963cc4de6e1e74fe9f9e data/l2artifacts/recipe/artifact_experience_1.json
 889fd2efb7343f834373000f7af3ef05c1d22365 data/l2artifacts/recipe/artifact_experience_2.json
 fd2f73206aac3e739b885b74a3990422a7be6622 data/l2artifacts/recipe/artifact_experience_3.json
 f5b03b17e8c203ac5e91e05814d0853476bb211a data/l2artifacts/recipe/artifact_experience_4.json
 24447e33aaf78024daf49976d1e0218caa9dc575 data/l2artifacts/recipe/artifact_experience_5.json
+5505664af70b52910fb11104911f8979b7a600bf data/l2artifacts/recipe/book.json
 b137e5ba449be4dddde48e04d228f88f6318d073 data/l2artifacts/recipe/boost_main_1.json
 095c9fa59086f5fd7b4b42f53d56a99573065397 data/l2artifacts/recipe/boost_sub_1.json
 a37b0ffc7be6b1473b6133f182dde3074bb3a30c data/l2artifacts/recipe/directed/set_0_rank_1.json

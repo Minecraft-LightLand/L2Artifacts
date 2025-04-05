@@ -1,7 +1,6 @@
 package dev.xkmc.l2artifacts.init.data;
 
 import com.tterrag.registrate.providers.RegistrateLangProvider;
-import dev.xkmc.l2artifacts.compat.PatchouliLang;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -113,7 +112,6 @@ public enum ArtifactLang {
 		pvd.add("l2artifacts.set.4", "(4/%s) Set Bonus: ");
 		pvd.add("l2artifacts.set.5", "(5/%s) Set Bonus: ");
 		pvd.add("menu.tabs.set_effects", "Activated Set Effects");
-		PatchouliLang.genLang(pvd);
 	}
 
 }

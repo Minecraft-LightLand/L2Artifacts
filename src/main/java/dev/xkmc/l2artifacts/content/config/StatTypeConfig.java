@@ -15,8 +15,11 @@ import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraftforge.registries.ForgeRegistries;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.UUID;
 
 import static net.minecraft.world.item.ItemStack.ATTRIBUTE_MODIFIER_FORMAT;
@@ -29,7 +32,10 @@ public class StatTypeConfig extends BaseConfig implements IArtifactFeature.Sprit
 	}
 
 	public static Collection<StatTypeConfig> getValues() {
-		return NetworkManager.STAT_TYPES.getAll();
+		var list = new ArrayList<>(NetworkManager.STAT_TYPES.getAll());
+		list.sort(Comparator.<StatTypeConfig>comparingInt(e -> e.sortIndex)
+				.thenComparing(e -> ForgeRegistries.ATTRIBUTES.getKey(e.attr).toString()));
+		return list;
 	}
 
 	@SerialClass.SerialField
@@ -46,6 +52,9 @@ public class StatTypeConfig extends BaseConfig implements IArtifactFeature.Sprit
 
 	@SerialClass.SerialField
 	public ResourceLocation icon;
+
+	@SerialClass.SerialField
+	public int sortIndex;
 
 	public void getModifier(ImmutableMultimap.Builder<Attribute, AttributeModifier> builder, StatEntry entry, UUID uuid) {
 		builder.put(attr, new AttributeModifier(uuid, entry.getName(), entry.getValue(), op));

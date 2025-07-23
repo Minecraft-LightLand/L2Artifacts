@@ -4,7 +4,10 @@ import com.google.common.collect.Multimap;
 import dev.xkmc.l2artifacts.init.L2Artifacts;
 import dev.xkmc.l2damagetracker.contents.curios.AttrTooltip;
 import dev.xkmc.l2library.capability.conditionals.ConditionalData;
-import dev.xkmc.l2serial.serialization.codec.TagCodec;
+import dev.xkmc.l2serial.serialization.type_cache.ClassCache;
+import dev.xkmc.l2serial.serialization.unified_processor.TagContext;
+import dev.xkmc.l2serial.serialization.unified_processor.UnifiedCodec;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -14,9 +17,22 @@ import net.minecraftforge.common.util.LazyOptional;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurio;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 public class ArtifactCurioCap implements ICurio {
+
+	private static ArtifactStats parse(CompoundTag tag) {
+		ArtifactStats ans;
+		try {
+			ans = (ArtifactStats) UnifiedCodec.deserializeObject(new TagContext(e -> true), tag, ClassCache.get(ArtifactStats.class), null);
+		} catch (Exception e) {
+			throw new IllegalArgumentException("Corrupted artifact data: " + tag, e);
+		}
+		return ans;
+	}
 
 	private final ItemStack stack;
 
@@ -25,7 +41,7 @@ public class ArtifactCurioCap implements ICurio {
 	public ArtifactCurioCap(ItemStack stack) {
 		this.stack = stack;
 		if (stack.getTag() != null && stack.getTag().contains(BaseArtifact.KEY)) {
-			stats = LazyOptional.of(() -> Objects.requireNonNull(TagCodec.fromTag(stack.getTag().getCompound(BaseArtifact.KEY), ArtifactStats.class)));
+			stats = LazyOptional.of(() -> parse(stack.getTag().getCompound(BaseArtifact.KEY)));
 		} else {
 			stats = LazyOptional.empty();
 		}

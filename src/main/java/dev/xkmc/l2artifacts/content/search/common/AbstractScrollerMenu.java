@@ -89,6 +89,12 @@ public abstract class AbstractScrollerMenu<T extends AbstractScrollerMenu<T>> ex
 		return super.clickMenuButton(pPlayer, pId);
 	}
 
+	@Override
+	public void slotsChanged(Container cont) {
+		if (!player.level().isClientSide())
+			super.slotsChanged(cont);
+	}
+
 	protected abstract void clickSlot(int slot);
 
 	@Override

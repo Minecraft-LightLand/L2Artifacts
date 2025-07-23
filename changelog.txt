@@ -1,3 +1,7 @@
+2.4.28
+- Sort the stat types in artifact pocket filter/sort tab
+- Improve client performance in Artifact Pocket Screen
+
 2.4.27
 - Fix L2Hostility config option not working
 

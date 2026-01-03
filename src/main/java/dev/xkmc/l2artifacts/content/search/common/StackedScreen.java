@@ -83,7 +83,7 @@ public abstract class StackedScreen extends Screen implements ArtifactTabScreen 
 	public final void render(GuiGraphics g, int mx, int my, float pTick) {
 		var access = ServerProxy.getRegistryAccess();
 		if (access == null) return;
-		var sr = manager.get(access).getRenderer(manager.id(), this, leftPos, topPos, imageWidth, height);
+		var sr = manager.get(access).getRenderer(manager.id(), this, leftPos, topPos, imageWidth, imageHeight);
 		sr.start(g);
 		g.pose().pushPose();
 		g.pose().translate(leftPos, topPos, 0);

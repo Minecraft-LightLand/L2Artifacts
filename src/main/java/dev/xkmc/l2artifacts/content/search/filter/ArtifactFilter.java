@@ -53,7 +53,7 @@ public abstract class ArtifactFilter<T extends IArtifactFeature> implements IArt
 	}
 
 	private boolean isSelected(int i) {
-		return (selection ^ (1L << i)) != 0;
+		return (selection & (1L << i)) != 0;
 	}
 
 	private void toggle(int i) {

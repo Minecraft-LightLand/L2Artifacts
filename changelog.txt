@@ -1,3 +1,6 @@
+3.0.7
+- Fix several set effects incorrectly staying permanent
+
 3.0.6
 - Fix Filter screen
 

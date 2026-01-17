@@ -18,7 +18,7 @@ public record AttrSetEntry(Holder<Attribute> attr, AttributeModifier.Operation o
 	}
 
 	public ResourceLocation getId(SetEffect set) {
-		return set.getRegistryName().withSuffix("_" + attr().unwrapKey().orElseThrow().location().getPath());
+		return set.getRegistryName();
 	}
 
 	public MutableComponent toComponent(int rank) {
